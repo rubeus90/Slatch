@@ -33,7 +33,7 @@ public class Unite
        aDeplacement = pDeplacement;
        aGain = pGain;
        aVie = pVie;
-       aLvl = 1;
+       aLvl = 0;
        aExperience = 0;
     }
 
@@ -92,8 +92,6 @@ public class Unite
      */
     public void addExperience(final int pExperience){
         aExperience+=pExperience;
-        // Une fois que l'unite gagne de l'experience, on regarde si elle peut monter de niveau
-        upLvl();
     }
     
     /*******
@@ -107,16 +105,18 @@ public class Unite
     
     /*******
      * Methode qui permet a une unite de monter de niveau
-     * On part du principe que l'unite monte de niveau tous les 1000xp
      */
-    private void upLvl(){
-        int vExperience = (aLvl) * 1000; // On calcul l'experience a avoir pour le niveau suivant
-        if(aExperience-vExperience>1){ // Si l'experience de l'unite est superieur au l'experience pour le niveau suivant, on monte le niveau de l'unite et ses caractéristique
-            aLvl++;
-            aAttaque=(int)(aAttaque*aGain);
-            aDeplacement=(int)(aDeplacement*aGain);
-            aVie=(int)(aVie*aGain);
+    public void upLvl(){
+        if(aExperience < 100 ){ 
+            System.out.println("Experience inferieur a 100");
+            return;
         }
+        else if(aLvl >=3){
+             System.out.println("Niveau superieur ou egal a 3");
+             return;
+        }
+       aLvl++;
+       aExperience=0;
     }
        
 }
