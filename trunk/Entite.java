@@ -3,7 +3,7 @@ import java.awt.Image;
 /**
  * Classe Entite : Unite ou Terrain
  * @author Jonathan
- * @version 00
+ * @version 1.0
  */
 public class Entite 
 {
@@ -16,7 +16,7 @@ public class Entite
     private int aJoueur;            //Numero du joueur
     
     /**
-     * Constructeur d'un Entite
+     * Constructeur d'une Entite
      * @param pCoordonneeX
      * @param pCoordonneeY
      * @param pJoueur
