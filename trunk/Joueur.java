@@ -18,7 +18,7 @@ public class Joueur
      *          la faction (Faction)
      *          le nombre de batiment au depart (entier)
      */ 
-    public Joueur(int pNumJoueur, Faction pFaction, pNbreBatiment)
+    public Joueur(final int pNumJoueur,final Faction pFaction,final pNbreBatiment)
     {
         aNumJoueur = pNumJoueur;
         aFaction = pFaction;
@@ -27,19 +27,17 @@ public class Joueur
     }
 
     /**
-     * ACCESSEUR
+     * ACCESSEUR & MODIFICATEUR
      */
+     
     int getNumJoueur()      {return aNumJoueur;}
     Faction getFaction()    {return aFaction;}   
     int getNbreBatiment()   {return aNbreBatiment;}    
     int getArgent()         {return aArgent;}
     
     
-    /**
-     * MODIFICATEUR
-     */
-    void setNumJoueur(int pNum) {aNumJoueur = pNum;}
-    void setFaction(Faction pFaction) {aFaction = pFaction;}
-    void setNbreBatiment(int pNbre) {aNbreBatiment = pNbre;}
-    void setArgent(int pArgent) {aArgent = pArgent;}
+    void setNumJoueur(final int pNum) {aNumJoueur = pNum;}
+    void setFaction(final Faction pFaction) {aFaction = pFaction;}
+    void setNbreBatiment(final int pNbre) {aNbreBatiment = pNbre;}
+    void setArgent(final int pArgent) {aArgent = pArgent;}
 }
