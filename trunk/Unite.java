@@ -1,4 +1,3 @@
-
 /****************************************
  * 
  * CLASSE UNITE
@@ -88,43 +87,23 @@ public class Unite
     }
     
      /**
-     * Modificateur de l'Experience
-     * Permet lorsque l'unite gagne un combat, d'augmenter son experience
+     * Methode qui permet l'augmentation ou la diminution de l'experience
      * @param pExperience
      */
-    public void setExperience(final int pExperience){
+    public void addExperience(final int pExperience){
         aExperience+=pExeperience;
         // Une fois que l'unite gagne de l'experience, on regarde si elle peut monter de niveau
         upLvl();
     }
     
     /*******
-     * Modificateur de l attaque de l'unite
-     * Permet lorsque l'unite monte de niveau d'augmenter son attaque
+     * Methode qui permet l'augmentation ou la diminution de la vie
      * @param pVie
      */
-    public void setVie(final int pVie){
+    public void addVie(final int pVie){
         aVie+=pVie;
     }
     
-    
-    /*******
-     * Modificateur de l attaque de l'unite
-     * Permet lorsque l'unite monte de niveau d'augmenter son attaque
-     * @param pAttaque
-     */
-    private void setAttaque(final int pAttaque){
-        aAttaque+=pAttaque
-    }
-    
-    /*******
-     * Modificateur du deplacement de l'unites
-     * Permet lorsque l'unite monte de niveau d'augmenter son deplacement
-     * @param pDeplacement
-     */
-    private void setDeplacement(final int pDeplacement){
-        aDeplacement+=pDeplacement;
-    }
     
     /*******
      * Methode qui permet a une unite de monter de niveau
