@@ -1,36 +1,42 @@
 import java.awt.Image;
 
 /**
- * Cette classe gere les entites du jeu, c'est-a-dire toutes les unites et les terrains
+ * Classe Entite : Unite ou Terrain
  * 
  * @author Jonathan
- * @version 1.0
+ * @version 00
  */
 public class Entite 
 {
-    int aCoordonnee_X;
-    int aCoordonnee_Y;
+    int aCoordonneeX;
+    int aCoordonneeY;
     Image aImage;
     String aNom;
     String aDescription;
     int aPointDeVie;
     int aJoueur;
     
-
     /**
-     * Constructeur
+     * Constructeur d'un Entite
+     * @param pCoordonneeX
+     * @param pCoordonneeY
+     * @param pJoueur
+     * @param pPointDeVie
+     * @param pNom
+     * @param pImage
+     * @param pDescription
      */
     public Entite(
-        int pCoordonnee_X,
-        int pCoordonnee_Y,
+        int pCoordonneeX,
+        int pCoordonneeY,
         int pJoueur,
         int pPointDeVie,
         String pNom,
         Image pImage,
         String pDescription) 
     {
-        aCoordonnee_X = pCoordonnee_X;
-        aCoordonnee_Y = pCoordonnee_Y;
+        aCoordonneeX = pCoordonneeX;
+        aCoordonneeY = pCoordonneeY;
         aImage = pImage;
         aNom = pNom;
         aDescription = pDescription;
@@ -39,35 +45,50 @@ public class Entite
     }
     
     /**
-     * Accesseur
-     * @return aCoordonnee_X
+     * Permet de deplacer une unite en modifiant ses coordonnées
+     * @param pNouvX
+     * @param pNouvY
      */
-    int getaCoordonnee_X() {
-        return aCoordonnee_X;
+    void deplacer (int pNouvX, int pNouvY) {
+        setaCoordonneeX(pNouvX);
+        setaCoordonneeX(pNouvY);
+    }
+    
+    
+    //***********************************/
+    //***   Accesseurs  &  Mutateurs  ***/
+    //***********************************/
+    
+    /**
+     * Accesseur
+     * @return aCoordonneeX
+     */
+    int getaCoordonneeX() {
+        return aCoordonneeX;
     }
     
     /**
      * Mutateur
-     * @param pCoordonnee_X
+     * @param pCoordonneeX
      */
-    void setaCoordonnee_X(int pCoordonnee_X) {
-        aCoordonnee_X = pCoordonnee_X;
+    void setaCoordonneeX(int pCoordonneeX) {
+        aCoordonneeX = pCoordonneeX;
     }
     
     /**
      * Accesseur
-     * @return aCoordonnee_Y
+     * @return aCoordonneeY
      */
-    int getaCoordonnee_Y() {
-        return aCoordonnee_Y;
+    int getaCoordonneeY() {
+        return aCoordonneeY;
     }
     
     /**
      * Mutateur
-     * @param pCoordonnee_Y
+     * @param pCoordonneeY
      */
-    void setaCoordonnee_Y(int pCoordonnee_Y) {
-        aCoordonnee_Y = pCoordonnee_Y;
+    void setaCoordonneeY(int pCoordonneeY) {
+        aCoordonneeY = pCoordonneeY;
     }
     
     /**
@@ -85,4 +106,21 @@ public class Entite
     void setaJoueur(int pJoueur) {
         aJoueur = pJoueur;
     }
+    
+     /**
+     * Accesseur
+     * @return aPointDeVie
+     */
+    int getaPointDeVie() {
+        return aPointDeVie;
+    }
+    
+    /**
+     * Mutateur
+     * @param pPointDeVie
+     */
+    void setaPointDeVie(int pPointDeVie) {
+        aPointDeVie = pPointDeVie;
+    }
 }
+
