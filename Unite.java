@@ -91,7 +91,7 @@ public class Unite
      * @param pExperience
      */
     public void addExperience(final int pExperience){
-        aExperience+=pExeperience;
+        aExperience+=pExperience;
         // Une fois que l'unite gagne de l'experience, on regarde si elle peut monter de niveau
         upLvl();
     }
@@ -110,7 +110,7 @@ public class Unite
      * On part du principe que l'unite monte de niveau tous les 1000xp
      */
     private void upLvl(){
-        vExperience = (aLvl) * 1000; // On calcul l'experience a avoir pour le niveau suivant
+        int vExperience = (aLvl) * 1000; // On calcul l'experience a avoir pour le niveau suivant
         if(aExperience-vExperience>1){ // Si l'experience de l'unite est superieur au l'experience pour le niveau suivant, on monte le niveau de l'unite et ses caractéristique
             aLvl++;
             aAttaque*=aGain;
