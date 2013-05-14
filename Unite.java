@@ -13,6 +13,7 @@ public class Unite
     private String aType; // Correspond au type d'unité : Infanterie, Véhicule etc ...
     private int aAttaque; // Correspond à l'attaque au corps à corps
     private int aVie; //Correspond aux nombres de points de vie de l'unite
+    private int aPVMax; //Correspond aux nombres maximum de vie de l'unite
     private int aDeplacement; // Coresspond au déplacement maximum que peut effectuer l'unité
     private int aLvl; // Correspond au niveau de l'unité
     private int aExperience; // Correspond à l'expérience total de l'unité
@@ -33,6 +34,7 @@ public class Unite
        aDeplacement = pDeplacement;
        aGain = pGain;
        aVie = pVie;
+       aPVMax = pVie;
        aLvl = 0;
        aExperience = 0;
     }
@@ -117,6 +119,9 @@ public class Unite
         }
        aLvl++;
        aExperience=0;
+       aPVMax = (int)(aPVMax*aGain);
+       aAttaque= (int)(aAttaque *aGain);
+       aDeplacement = (int)(aDeplacement*aGain);
     }
        
 }
