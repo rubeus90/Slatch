@@ -1,11 +1,11 @@
 /****************************************
- * 
+ *
  * CLASSE UNITE
- * Gere les caractéritistiques des unitées 
- * 
+ * Gere les caractéritistiques des unitées
+ *
  * @author Thibault
  * @version 1.0
- * 
+ *
  */
 public class Unite
 {
@@ -16,7 +16,7 @@ public class Unite
     private int aDeplacement; // Coresspond au déplacement maximum que peut effectuer l'unité
     private int aLvl; // Correspond au niveau de l'unité
     private int aExperience; // Correspond à l'expérience total de l'unité
-    private int aGain; //Compris entre 1 et 2, correspondant au pourcentage d'augmentation des caractéristique à chaque monté de niveau
+    private double aGain; //Compris entre 1 et 2, correspondant au pourcentage d'augmentation des caractéristique à chaque monté de niveau
 
     /**
      * Constructeur de la classe Unite
@@ -26,7 +26,7 @@ public class Unite
      * Un int correspondant au déplacement maximum
      * Un int correspondant au gain de chaque monté de niveau
      */
-    public Unite(final String pType,final int pAttaque,final int pVie,final int pDeplacement, final int pGain)
+    public Unite(final String pType,final int pAttaque,final int pVie,final int pDeplacement, final double pGain)
     {
        aType = pType;
        aAttaque = pAttaque;
@@ -113,9 +113,9 @@ public class Unite
         int vExperience = (aLvl) * 1000; // On calcul l'experience a avoir pour le niveau suivant
         if(aExperience-vExperience>1){ // Si l'experience de l'unite est superieur au l'experience pour le niveau suivant, on monte le niveau de l'unite et ses caractéristique
             aLvl++;
-            aAttaque*=aGain;
-            aDeplacement*=aGain;
-            aVie*=aGain;
+            aAttaque=(int)(aAttaque*aGain);
+            aDeplacement=(int)(aDeplacement*aGain);
+            aVie=(int)(aVie*aGain);
         }
     }
        
