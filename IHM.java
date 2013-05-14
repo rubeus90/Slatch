@@ -35,4 +35,3 @@ public class IHM  {
         return Menu1;
     }
 }
-
