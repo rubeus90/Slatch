@@ -8,13 +8,13 @@ import java.awt.Image;
  */
 public class Entite 
 {
-    int aCoordonneeX;
-    int aCoordonneeY;
-    Image aImage;
-    String aNom;
-    String aDescription;
-    int aPointDeVie;
-    int aJoueur;
+    private int aCoordonneeX;
+    private int aCoordonneeY;
+    private Image aImage;
+    private String aNom;
+    private String aDescription;
+    private int aPointDeVie;
+    private int aJoueur;
     
     /**
      * Constructeur d'un Entite
@@ -27,21 +27,21 @@ public class Entite
      * @param pDescription
      */
     public Entite(
-        int pCoordonneeX,
-        int pCoordonneeY,
-        int pJoueur,
-        int pPointDeVie,
-        String pNom,
-        Image pImage,
-        String pDescription) 
+        final int pCoordonneeX,
+        final int pCoordonneeY,
+        final int pJoueur,
+        final int pPointDeVie,
+        final String pNom,
+        final Image pImage,
+        final String pDescription) 
     {
-        aCoordonneeX = pCoordonneeX;
-        aCoordonneeY = pCoordonneeY;
-        aImage = pImage;
-        aNom = pNom;
-        aDescription = pDescription;
-        aPointDeVie = pPointDeVie;
-        aJoueur = pJoueur;
+        this.aCoordonneeX = pCoordonneeX;
+        this.aCoordonneeY = pCoordonneeY;
+        this.aImage = pImage;
+        this.aNom = pNom;
+        this.aDescription = pDescription;
+        this.aPointDeVie = pPointDeVie;
+        this.aJoueur = pJoueur;
     }
     
     /**
@@ -49,7 +49,7 @@ public class Entite
      * @param pNouvX
      * @param pNouvY
      */
-    void deplacer (int pNouvX, int pNouvY) {
+    private void deplacer (final int pNouvX, final int pNouvY) {
         setaCoordonneeX(pNouvX);
         setaCoordonneeX(pNouvY);
     }
@@ -63,64 +63,111 @@ public class Entite
      * Accesseur
      * @return aCoordonneeX
      */
-    int getaCoordonneeX() {
-        return aCoordonneeX;
+    private int getaCoordonneeX() {
+        return this.aCoordonneeX;
     }
     
     /**
      * Mutateur
      * @param pCoordonneeX
      */
-    void setaCoordonneeX(int pCoordonneeX) {
-        aCoordonneeX = pCoordonneeX;
+    private void setaCoordonneeX(final int pCoordonneeX) {
+        this.aCoordonneeX = pCoordonneeX;
     }
     
     /**
      * Accesseur
      * @return aCoordonneeY
      */
-    int getaCoordonneeY() {
-        return aCoordonneeY;
+    private int getaCoordonneeY() {
+        return this.aCoordonneeY;
     }
     
     /**
      * Mutateur
      * @param pCoordonneeY
      */
-    void setaCoordonneeY(int pCoordonneeY) {
-        aCoordonneeY = pCoordonneeY;
+    private void setaCoordonneeY(final int pCoordonneeY) {
+        this.aCoordonneeY = pCoordonneeY;
     }
     
     /**
      * Accesseur
+     * @return aImage
+     */
+    private Image getaImage() {
+        return this.aImage;
+    }
+    
+    /**
+     * Mutateur
+     * @param pImage
+     */
+    private void setaImage(final Image pImage) {
+        this.aImage = pImage;
+    }
+
+    /**
+     * Accesseur
+     * @return aNom
+     */
+    private String getaNom() {
+        return this.aNom;
+    }
+    
+    /**
+     * Mutateur
+     * @param pDescription
+     */
+    private void setaDescription(final String pDescription) {
+        this.aDescription = pDescription;
+    }
+    
+     /**
+     * Accesseur
+     * @return aDescription
+     */
+    private String getaDescription() {
+        return this.aDescription;
+    }
+    
+    /**
+     * Mutateur
+     * @param pNom
+     */
+    private void setaNom(final String pNom) {
+        this.aNom = pNom;
+    }
+
+    /**
+     * Accesseur
      * @return aJoueur
      */
-    int getaJoueur() {
-        return aJoueur;
+    private int getaJoueur() {
+        return this.aJoueur;
     }
     
     /**
      * Mutateur
      * @param pJoueur
      */
-    void setaJoueur(int pJoueur) {
-        aJoueur = pJoueur;
+    private void setaJoueur(final int pJoueur) {
+        this.aJoueur = pJoueur;
     }
     
      /**
      * Accesseur
      * @return aPointDeVie
      */
-    int getaPointDeVie() {
-        return aPointDeVie;
+    private int getaPointDeVie() {
+        return this.aPointDeVie;
     }
     
     /**
      * Mutateur
      * @param pPointDeVie
      */
-    void setaPointDeVie(int pPointDeVie) {
-        aPointDeVie = pPointDeVie;
+    private void setaPointDeVie(final int pPointDeVie) {
+        this.aPointDeVie = pPointDeVie;
     }
 }
-
