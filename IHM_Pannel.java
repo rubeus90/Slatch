@@ -13,7 +13,7 @@ import java.awt.Color;
  * @author MERCANDALLI 
  * @version 01/2013
  */
-class IHM_Pannel extends JPanel {
+class IHM_Panel extends JPanel {
     
 
     private int NOMBRE_DE_CASE_X = 16;
@@ -48,7 +48,7 @@ class IHM_Pannel extends JPanel {
         tabString = pcoordclick.split(",");
         int clickX = Integer.parseInt(tabString[0]);
         int clickY = Integer.parseInt(tabString[1])-20;   //Decalage de 20 je sais pas pourquoi  
-        Graphics g = IHM.getMenu1().getGraphics();
+        Graphics g = Slatch.getIHM().getmyPanel().getGraphics();
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) {
             for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) {
                 // Selection
@@ -125,7 +125,7 @@ class IHM_Pannel extends JPanel {
         try {
             Image img = ImageIO.read(new File("Images/"+pURL));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, IHM.getMenu1());
+            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.getIHM().getmyPanel());
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -146,3 +146,4 @@ class IHM_Pannel extends JPanel {
         }
     } 
 }
+
