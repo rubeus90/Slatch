@@ -25,6 +25,7 @@ public class Unite
      * un string correspondant au type d'unité
      * Un int correspondant au dégat au corps à corps
      * Un int correspondant au déplacement maximum
+     * Un int correspondant au gain de chaque monté de niveau
      */
     public Unite(final String pType,final int pAttaque,final int pVie,final int pDeplacement, final int pGain)
     {
@@ -78,6 +79,14 @@ public class Unite
         return aDeplacement;
     }
     
+    /**
+     * Accesseur qui renvoi le type de l'unite
+     * @return aType
+     */
+    public String getType(){
+        return aType;
+    }
+    
      /**
      * Modificateur de l'Experience
      * Permet lorsque l'unite gagne un combat, d'augmenter son experience
@@ -92,7 +101,7 @@ public class Unite
     /*******
      * Modificateur de l attaque de l'unite
      * Permet lorsque l'unite monte de niveau d'augmenter son attaque
-     * @param pAttaque
+     * @param pVie
      */
     public void setVie(final int pVie){
         aVie+=pVie;
@@ -132,4 +141,3 @@ public class Unite
     }
        
 }
-
