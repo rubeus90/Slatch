@@ -1,7 +1,6 @@
 import javax.swing.JFrame;
 import java.awt.* ;
 
-
 /**
  * JFrame est l'IHM du jeu. (herite de JFrame)
  * (Ne definit que le nom de la fenetre, sa taille, si elle est redimenssionable...).
@@ -9,25 +8,24 @@ import java.awt.* ;
  * @author Jonathan
  * @version 01
  */
-public class IHM extends JFrame {
-    public static IHM_Pannel Menu1 = new IHM_Pannel();
-    private JFrame myMenu;
-    private static Menu newMenu;
+public class IHM  {
+    private static IHM_Pannel Menu1 = new IHM_Pannel();
+    private JFrame myPanel;
     
     /**
      * Constructeur qui instancie JFrame du Menu.
      */
-    public IHM(){
-        myMenu = new JFrame("Menu");
-        myMenu.setTitle("Menu");
-        myMenu.setSize(800,500);
-        myMenu.setResizable(false);
-        myMenu.setLocationRelativeTo(null);
-        myMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);             
-        myMenu.setContentPane(Menu1);    
-        myMenu.setVisible(true);
+    public IHM(final int pTailleX, final int pTailleY, final String pType){
+        myPanel = new JFrame("Menu");
+        myPanel.setTitle("Menu");
+        myPanel.setSize(pTailleX,pTailleY);
+        myPanel.setResizable(false);
+        myPanel.setLocationRelativeTo(null);
+        myPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        myPanel.setContentPane(Menu1);
+        myPanel.setVisible(true);
         Mouse lecteur = new Mouse();
-        myMenu.addMouseListener(lecteur);
+        myPanel.addMouseListener(lecteur);
     }
     
     /**
@@ -35,14 +33,6 @@ public class IHM extends JFrame {
      */
     public static IHM_Pannel getMenu1(){
         return Menu1;
-    }
-    
-    /**
-     * Permet d'etre (compilee et) executee sans Bluej :
-     * cette methode lance le jeu.
-     */
-    public static void main( String[] pArgs ) {
-        newMenu = new Menu();
     }
 }
 
