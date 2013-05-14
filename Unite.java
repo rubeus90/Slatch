@@ -1,10 +1,10 @@
-
 /****************************************
  * 
  * CLASSE UNITE
  * Gere les caractéritistiques des unitées 
  * 
- * 
+ * @author Thibault
+ * @version 1.0
  * 
  */
 public class Unite
@@ -99,8 +99,8 @@ public class Unite
      * On part du principe que l'unite monte de niveau tous les 1000xp
      */
     private void upLvl(){
-        vDiviseur = (aLvl) * 1000; // On calcul l'experience a avoir pour le niveau suivant
-        if(aExperience-vDiviseur>1){ // Si l'experience de l'unite est superieur au l'experience pour le niveau suivant, on monte le niveau de l'unite
+        vExperience = (aLvl) * 1000; // On calcul l'experience a avoir pour le niveau suivant
+        if(aExperience-vExperience>1){ // Si l'experience de l'unite est superieur au l'experience pour le niveau suivant, on monte le niveau de l'unite
             aLvl++;
         }
     }
