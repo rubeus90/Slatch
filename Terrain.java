@@ -74,7 +74,7 @@ public class Terrain{
     *@param degat
     */
     public void modifieVie(int degat){
-        aVie =- degat;
+        aVie -= degat;
     }
 }
 
