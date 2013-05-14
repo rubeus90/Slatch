@@ -14,14 +14,26 @@ public class Terrain{
     private String aType;
     private int aCouverture;
     private HashMap<String,Integer> aCoutDeplacement;
+    private int aVie;
     
     /**
-     * Constructeur de la classe Terrain
+     * Constructeur des terrains
      */
     public Terrain(String pType, int pCouverture, HashMap<String,Integer> pCoutDeplacement){
         aType = pType;
         aCouverture = pCouverture;
         aCoutDeplacement = pCoutDeplacement;
+    }
+    
+    /**
+    *Constructeur des batiments (les batiments ont un point de vie en plus comme attribut par rapport
+    *aux terrains
+    */
+    public Terrain(String pType, int pCouverture, HashMap<String, Integer> pCoutDeplacement, int pVie){
+        aType = pType;
+        aCouverture = pCouverture;
+        aCoutDeplacement = pCoutDeplacement;
+        aVie = pVie;
     }
     
     /**Retourner le type du terrain (son nom)
@@ -47,6 +59,22 @@ public class Terrain{
     */
     public HashMap<String,Integer> getCoutDeplacement(){
         return aCoutDeplacement;
-    }     
+    }   
+  
+    /**Retourner le point de vie des batiments
+    *
+    *@return aVie
+    */
+    public int getVie(){
+        return aVie;
+    }
+    
+    /**Modifier le point de vie des batiments lors des attaques
+    *
+    *@param degat
+    */
+    public void modifieVie(int degat){
+        aVie =- degat;
+    }
 }
 
