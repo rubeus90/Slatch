@@ -18,7 +18,7 @@ public class Joueur
      *          la faction (Faction)
      *          le nombre de batiment au depart (entier)
      */ 
-    public Joueur(final int pNumJoueur,final Faction pFaction,final pNbreBatiment)
+    public Joueur(final int pNumJoueur,final Faction pFaction,final int pNbreBatiment)
     {
         aNumJoueur = pNumJoueur;
         aFaction = pFaction;
