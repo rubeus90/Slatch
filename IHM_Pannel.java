@@ -16,15 +16,15 @@ import java.awt.Color;
 class IHM_Pannel extends JPanel {
     
 
-    private static int NOMBRE_DE_CASE_X = 16;
-    private static int NOMBRE_DE_CASE_Y = 9;
-    private static int[][] MATRICE_TEST = new int[NOMBRE_DE_CASE_X][NOMBRE_DE_CASE_Y];
-    private static int DECALAGE_PX_EN_Y = 50;
+    private int NOMBRE_DE_CASE_X = 16;
+    private int NOMBRE_DE_CASE_Y = 9;
+    private int[][] MATRICE_TEST = new int[NOMBRE_DE_CASE_X][NOMBRE_DE_CASE_Y];
+    private int DECALAGE_PX_EN_Y = 50;
     
     private int hauteurCarte;
     private int largeurCarte;
-    private static int vLargeurCarreau;
-    private static int vHauteurCarreau;
+    private int vLargeurCarreau;
+    private int vHauteurCarreau;
 
     /**
      * 
@@ -43,7 +43,7 @@ class IHM_Pannel extends JPanel {
     /**
      * Methode appelee lors d'un click
      */
-    public static void coordclick (String pcoordclick) {
+    public void coordclick (String pcoordclick) {
         String[] tabString = null;                      //tableau de chaînes
         tabString = pcoordclick.split(",");
         int clickX = Integer.parseInt(tabString[0]);
@@ -121,7 +121,7 @@ class IHM_Pannel extends JPanel {
     /**
      * Affiche une image en fond d'ecran
      */
-    private static void afficheImageRedim (final String pURL, final int pPosHautGaucheX, final int pPosHautGaucheY,final int pPosBasDroiteX, final int pPosBasDroiteY, final Graphics g) {
+    private void afficheImageRedim (final String pURL, final int pPosHautGaucheX, final int pPosHautGaucheY,final int pPosBasDroiteX, final int pPosBasDroiteY, final Graphics g) {
         try {
             Image img = ImageIO.read(new File("Images/"+pURL));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
@@ -146,5 +146,3 @@ class IHM_Pannel extends JPanel {
         }
     } 
 }
-
-
