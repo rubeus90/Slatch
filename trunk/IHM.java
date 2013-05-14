@@ -9,29 +9,29 @@ import java.awt.* ;
  * @version 01
  */
 public class IHM  {
-    private static IHM_Pannel Menu1 = new IHM_Pannel();
-    private JFrame myPanel;
+    private IHM_Panel myPanel = new IHM_Panel();
+    private JFrame myFrame;
     
     /**
      * Constructeur qui instancie JFrame du Menu.
      */
     public IHM(final int pTailleX, final int pTailleY, final String pType){
-        myPanel = new JFrame("Menu");
-        myPanel.setTitle("Menu");
-        myPanel.setSize(pTailleX,pTailleY);
-        myPanel.setResizable(false);
-        myPanel.setLocationRelativeTo(null);
-        myPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myPanel.setContentPane(Menu1);
-        myPanel.setVisible(true);
+        myFrame = new JFrame("Menu");
+        myFrame.setTitle("Menu");
+        myFrame.setSize(pTailleX,pTailleY);
+        myFrame.setResizable(false);
+        myFrame.setLocationRelativeTo(null);
+        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        myFrame.setContentPane(myPanel);
+        myFrame.setVisible(true);
         Mouse lecteur = new Mouse();
-        myPanel.addMouseListener(lecteur);
+        myFrame.addMouseListener(lecteur);
     }
     
     /**
-     * Accesseur du Panneau du Menu.
+     * Accesseur du Paneau du Menu.
      */
-    public static IHM_Pannel getMenu1(){
-        return Menu1;
+    public IHM_Panel getmyPanel(){
+        return myPanel;
     }
 }
