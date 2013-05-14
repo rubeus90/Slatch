@@ -6,10 +6,10 @@
  */
 public class Joueur
 {
-    private int aNumJoueur;
-    private Faction aFaction;
-    private int aNbreBatiment;
-    private int aArgent;
+    private int aNumJoueur; //Correspond au numéro du joueur lors d'une partie.
+    private Faction aFaction; //Correspond a la faction du joueur lors d'une partie.
+    private int aNbreBatiment; //Correspond aux nombres de batiment que possede un joueur. 
+    private int aArgent; //Correspond a l'argent que possede le joueur.
 
     /**
      * Créer un joueur
