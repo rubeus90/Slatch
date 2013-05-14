@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.lang.Integer;
+import java.awt.Image;
 
 /**
  * Cette classe gere les terrains du jeu, qui comporte les differents types de terrains et
@@ -10,30 +11,30 @@ import java.lang.Integer;
  */
 
 
-public class Terrain{
+public class Terrain extends Entite{
     private String aType;
     private int aCouverture;
     private HashMap<String,Integer> aCoutDeplacement;
-    private int aVie;
     
     /**
-     * Constructeur des terrains
+     * Constructeur des terrains et des batiment
      */
-    public Terrain(String pType, int pCouverture, HashMap<String,Integer> pCoutDeplacement){
+    public Terrain(
+        final int pX,
+        final int pY,
+        final int pJoueur,
+        final int pPointDeVie,
+        final String pNom,
+        final Image pImage,
+        final String pDescription,
+        final String pType, 
+        final int pCouverture, 
+        final HashMap<String,Integer> pCoutDeplacement) 
+    {
+        super(pX,pY,pJoueur,pPointDeVie,pNom,pImage,pDescription);
         aType = pType;
         aCouverture = pCouverture;
         aCoutDeplacement = pCoutDeplacement;
-    }
-    
-    /**
-    *Constructeur des batiments (les batiments ont un point de vie en plus comme attribut par rapport
-    *aux terrains
-    */
-    public Terrain(String pType, int pCouverture, HashMap<String, Integer> pCoutDeplacement, int pVie){
-        aType = pType;
-        aCouverture = pCouverture;
-        aCoutDeplacement = pCoutDeplacement;
-        aVie = pVie;
     }
     
     /**Retourner le type du terrain (son nom)
@@ -59,22 +60,6 @@ public class Terrain{
     */
     public HashMap<String,Integer> getCoutDeplacement(){
         return aCoutDeplacement;
-    }   
-  
-    /**Retourner le point de vie des batiments
-    *
-    *@return aVie
-    */
-    public int getVie(){
-        return aVie;
-    }
-    
-    /**Modifier le point de vie des batiments lors des attaques
-    *
-    *@param degat
-    */
-    public void modifieVie(int degat){
-        aVie -= degat;
-    }
+    }  
 }
 

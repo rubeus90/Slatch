@@ -63,7 +63,7 @@ public class Entite
      * Accesseur
      * @return aCoordonneeX
      */
-    private int getaCoordonneeX()
+    private int getCoordonneeX()
     {
         return this.aCoordonneeX;
     }
@@ -72,7 +72,7 @@ public class Entite
      * Mutateur
      * @param pCoordonneeX
      */
-    private void setaCoordonneeX(final int pCoordonneeX)
+    private void setCoordonneeX(final int pCoordonneeX)
     {
         this.aCoordonneeX = pCoordonneeX;
     }
@@ -81,7 +81,7 @@ public class Entite
      * Accesseur
      * @return aCoordonneeY
      */
-    private int getaCoordonneeY()
+    private int getCoordonneeY()
     {
         return this.aCoordonneeY;
     }
@@ -90,7 +90,7 @@ public class Entite
      * Mutateur
      * @param pCoordonneeY
      */
-    private void setaCoordonneeY(final int pCoordonneeY)
+    private void setCoordonneeY(final int pCoordonneeY)
     {
         this.aCoordonneeY = pCoordonneeY;
     }
@@ -99,7 +99,7 @@ public class Entite
      * Accesseur
      * @return aImage
      */
-    private Image getaImage()
+    private Image getImage()
     {
         return this.aImage;
     }
@@ -108,7 +108,7 @@ public class Entite
      * Mutateur
      * @param pImage
      */
-    private void setaImage(final Image pImage)
+    private void setImage(final Image pImage)
     {
         this.aImage = pImage;
     }
@@ -117,7 +117,7 @@ public class Entite
      * Accesseur
      * @return aNom
      */
-    private String getaNom()
+    private String getNom()
     {
         return this.aNom;
     }
@@ -126,7 +126,7 @@ public class Entite
      * Mutateur
      * @param pDescription
      */
-    private void setaDescription(final String pDescription)
+    private void setDescription(final String pDescription)
     {
         this.aDescription = pDescription;
     }
@@ -135,7 +135,7 @@ public class Entite
      * Accesseur
      * @return aDescription
      */
-    private String getaDescription()
+    private String getDescription()
     {
         return this.aDescription;
     }
@@ -144,7 +144,7 @@ public class Entite
      * Mutateur
      * @param pNom
      */
-    private void setaNom(final String pNom)
+    private void setNom(final String pNom)
     {
         this.aNom = pNom;
     }
@@ -153,7 +153,7 @@ public class Entite
      * Accesseur
      * @return aJoueur
      */
-    private int getaJoueur()
+    private int getJoueur()
     {
         return this.aJoueur;
     }
@@ -162,7 +162,7 @@ public class Entite
      * Mutateur
      * @param pJoueur
      */
-    private void setaJoueur(final int pJoueur)
+    private void setJoueur(final int pJoueur)
     {
         this.aJoueur = pJoueur;
     }
@@ -171,7 +171,7 @@ public class Entite
      * Accesseur
      * @return aPointDeVie
      */
-    private int getaPointDeVie()
+    private int getPointDeVie()
     {
         return this.aPointDeVie;
     }
@@ -180,7 +180,7 @@ public class Entite
      * Mutateur
      * @param pPointDeVie
      */
-    private void setaPointDeVie(final int pPointDeVie)
+    private void setPointDeVie(final int pPointDeVie)
     {
         this.aPointDeVie = pPointDeVie;
     }
