@@ -2,19 +2,18 @@ import java.awt.Image;
 
 /**
  * Classe Entite : Unite ou Terrain
- * 
  * @author Jonathan
  * @version 00
  */
 public class Entite 
 {
-    private int aCoordonneeX;
-    private int aCoordonneeY;
-    private Image aImage;
-    private String aNom;
-    private String aDescription;
-    private int aPointDeVie;
-    private int aJoueur;
+    private int aCoordonneeX;       //Coordonnee en X dans la matrice du Jeu
+    private int aCoordonneeY;       //Coordonnee en Y dans la matrice du Jeu
+    private Image aImage;           //Image de l'Entite affichee par l'IHM
+    private String aNom;            //Nom de l'Entite
+    private String aDescription;    //Description de l'Entite affichee par l'IHM
+    private int aPointDeVie;        //Point de vie de l'Entite : 0 par defaut
+    private int aJoueur;            //Numero du joueur
     
     /**
      * Constructeur d'un Entite
@@ -186,4 +185,3 @@ public class Entite
         this.aPointDeVie = pPointDeVie;
     }
 }
-
