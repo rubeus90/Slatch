@@ -1,10 +1,10 @@
 import java.awt.Image;
 
 /**
- * Write a description of class Entite here.
+ * Cette classe gere les entites du jeu, c'est-a-dire toutes les unites et les terrains
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jonathan
+ * @version 1.0
  */
 public class Entite 
 {
@@ -85,9 +85,4 @@ public class Entite
     void setaJoueur(int pJoueur) {
         aJoueur = pJoueur;
     }
-    
-
-    
-    
-
 }
