@@ -6,6 +6,7 @@ import java.lang.Integer;
  * les batiments
  *
  *@author Ngoc
+ *@version 1.0
  */
 
 
@@ -31,8 +32,8 @@ public class Terrain{
         return aType;
     }
     
-    /** Retourner la couverture du terrain, c'est à dire la capacite de chaque type de terrain d'augmenter ou de diminuer 
-    *certains proprietes de l'unite qui se trouve sur ce type de terrain
+    /** Retourner la couverture du terrain, c'est a dire la capacite de chaque type de terrain d'augmenter 
+    *ou de diminuer certains proprietes de l'unite qui se trouve sur ce type de terrain
     *
     *@return aCouverture
     */
