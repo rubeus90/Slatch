@@ -1,6 +1,5 @@
-
 /**
- * Un joueur posède un numéro de joueur (aNumJoueur), une faction (aFaction)
+ * Un joueur possede un numero de joueur (aNumJoueur), une faction (aFaction)
  * 
  * @author Mathieu Scala 
  * @version 14/05/13
@@ -14,8 +13,8 @@ public class Joueur
 
     /**
      * Créer un joueur
-     * Initialise le numero du joueur, la faction du joueur et son nombre de batiment avec les valeurs mise en paramètre et l'argent du joueur à 0.
-     * @Param : le numéro du joueur (entier)
+     * Initialise le numero du joueur, la faction du joueur et son nombre de batiment avec les valeurs mise en parametre et l'argent du joueur a 0.
+     * @Param : le numero du joueur (entier)
      *          la faction (Faction)
      *          le nombre de batiment au depart (entier)
      */ 
