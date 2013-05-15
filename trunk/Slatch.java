@@ -4,7 +4,7 @@
  */
 public class Slatch
 {
-    private static IHM myIHM;
+    private IHM myIHM;
     private static Slatch mySlatch;
     public Slatch () {
         myIHM = new IHM(800,500,"Partie");
@@ -14,7 +14,11 @@ public class Slatch
     {
         mySlatch=this;
     }
-    public static IHM getIHM() {
+    public static Slatch getSlatch()
+    {
+        return mySlatch;
+    }
+    public IHM getIHM() {
         return myIHM;
     }
 }
