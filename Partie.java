@@ -51,10 +51,6 @@ public class Partie
 		String tab[] = null;
 		
 		while(aMap.hasNextLine()){
-//			ligne = Integer.parseInt(aMap.nextLine());
-//			id = ligne / 1000000;
-//			x = (ligne - id*1000000) / 1000;
-//			y = ligne - id*1000000 - x*1000;
 			
 			ligne = aMap.nextLine();
 			tab = ligne.split(":");
