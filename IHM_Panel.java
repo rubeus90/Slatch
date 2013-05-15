@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import java.io.*;
 import java.awt.Color;
+import java.util.HashMap;
 
 /**
  * Panneau de l'IHM (herite de JPanel)
@@ -14,9 +15,9 @@ import java.awt.Color;
  * @version 01/2013
  */
 class IHM_Panel extends JPanel {
-    private int NOMBRE_DE_CASE_X; //= 16;
+    private int NOMBRE_DE_CASE_X;
     private int NOMBRE_DE_CASE_Y;
-    private int[][] MATRICE_TEST = new int[NOMBRE_DE_CASE_X][NOMBRE_DE_CASE_Y];
+    private Terrain[][] MATRICE_TEST;
     private int DECALAGE_PX_EN_Y;
     
     private int hauteurCarte;
@@ -31,6 +32,27 @@ class IHM_Panel extends JPanel {
         NOMBRE_DE_CASE_X = 16;//Slatch.myPartie.getLargeur();
         NOMBRE_DE_CASE_Y = 9;//Slatch.myPartie.getHauteur();
         DECALAGE_PX_EN_Y = pDecalageY;
+        HashMap<String,Integer> aCoutDeplacement = new HashMap<String,Integer>();
+        
+        MATRICE_TEST = new Terrain[NOMBRE_DE_CASE_X][NOMBRE_DE_CASE_Y];
+        
+        for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) {
+            for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) {
+                Terrain test;
+                test=new Terrain(
+                    i,
+                    j,
+                    0,
+                    0,
+                    "",
+                    "1.png",
+                    "",
+                    "", 
+                    1, 
+                    aCoutDeplacement);
+                MATRICE_TEST[i][j]=test;
+            }
+        }
     }
     
     /**
@@ -45,7 +67,9 @@ class IHM_Panel extends JPanel {
         
         aLargeurCarreau = vLargeurCarreau;
         aHauteurCarreau = vLargeurCarreau;
-        afficheTest(g);
+        
+        //afficheTest(g);
+        dessineMatrice(MATRICE_TEST, g);
         afficheBarreInfo(g);
     }    
 
@@ -65,6 +89,8 @@ class IHM_Panel extends JPanel {
                     afficheImageRedim("5.png",vLargeurCarreau*i, j*vHauteurCarreau+DECALAGE_PX_EN_Y,(i+1)*vLargeurCarreau,(j+1)*vHauteurCarreau+DECALAGE_PX_EN_Y,g);
                     
                     // Avertir Moteur
+                    
+                    //Slatch.myMoteur.caseSelectionne(i,j);
                     // en passant i et j
                     
                 }
@@ -75,7 +101,7 @@ class IHM_Panel extends JPanel {
     /**
      * Affiche Test
      */
-    private void afficheTest (Graphics g) {
+    private void afficheTest (final Graphics g) {
         for(int i = 0; i < NOMBRE_DE_CASE_X ; i++) {
             for(int j=0 ; j < NOMBRE_DE_CASE_Y ; j++) {
                 afficheImageRedim(""+(i%4+1)+".png",vLargeurCarreau*i, vHauteurCarreau*j+DECALAGE_PX_EN_Y, vLargeurCarreau*(i+1), vHauteurCarreau*(j+1)+DECALAGE_PX_EN_Y,g);
@@ -88,10 +114,21 @@ class IHM_Panel extends JPanel {
     /**
      * Affiche une matrice d'image sur la carte
      */
-    private void afficheMatriceTest(String[][] pStringURL, Graphics g) {
+    private void afficheMatrice(final String[][] pStringURL, final Graphics g) {
         for(int i=0; i<NOMBRE_DE_CASE_X; i++) {
             for(int j=0; j<NOMBRE_DE_CASE_Y; j++) {
                 afficheImageRedim(pStringURL[i][j], vLargeurCarreau*i, vHauteurCarreau*j+DECALAGE_PX_EN_Y, vLargeurCarreau*(i+1), vHauteurCarreau*(j+1)+DECALAGE_PX_EN_Y, g);
+            }
+        }
+    }
+    
+    /**
+     * Affiche une matrice d'image sur la carte
+     */
+    private void dessineMatrice(final Terrain[][] pMatrice, final Graphics g) {
+        for(int i=0; i<NOMBRE_DE_CASE_X; i++) {
+            for(int j=0; j<NOMBRE_DE_CASE_Y; j++) {
+                MATRICE_TEST[i][j].dessine(g);
             }
         }
     }
@@ -99,7 +136,7 @@ class IHM_Panel extends JPanel {
     /**
      * Affiche la barre d'informations en haut de l'ecran
      */
-    public void afficheBarreInfo (Graphics g) {
+    public void afficheBarreInfo (final Graphics g) {
         afficheImageRedim("4.png",0, 0,this.getWidth(),DECALAGE_PX_EN_Y,g);
         g.setColor(Color.white);
         g.drawString("Tour :"+"1", this.getWidth()/8, DECALAGE_PX_EN_Y/2);
