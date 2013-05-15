@@ -56,6 +56,7 @@ public class Partie
 //			x = (ligne - id*1000000) / 1000;
 //			y = ligne - id*1000000 - x*1000;
 			
+			ligne = aMap.nextLine();
 			tab = ligne.split(":");
 			id = Integer.parseInt(tab[0]);
 			x = Integer.parseInt(tab[1]);
