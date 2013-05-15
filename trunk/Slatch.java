@@ -12,8 +12,8 @@ public class Slatch {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-    partie = new Partie(2, 20, 30, null);
-    moteur = new Moteur();
-    ihm = new IHM(800,500);
+        partie = new Partie(2, 20, 30, null);
+        moteur = new Moteur();
+        ihm = new IHM(800,500);
 	}
 }

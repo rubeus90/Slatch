@@ -38,7 +38,7 @@ class IHM_Panel extends JPanel {
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) {
             for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) {
                 Terrain test;
-                test=new Terrain(i, j, 0, 0);
+                test=new Terrain(i, j, 0, 0,TypeTerrain.PLAINE);
                 MATRICE_TEST[i][j]=test;
             }
         }
