@@ -14,9 +14,13 @@ class Moteur
     {
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
-            for(int j=0; j<Slatch.partie.getLargeur(); j++)
+            for(int j=0; j<Slatch.partie.getHauteur(); j++)
             {
+                if(Slatch.partie.getTerrain()[i][j].getSurbrillance())
+                {
                 Slatch.partie.getTerrain()[i][j].setSurbrillance(false);
+                Slatch.ihm.getPanel().dessineTerrain(i,j);
+                }
             }
         }
     }
@@ -42,95 +46,94 @@ class Moteur
         //Need le tableau Unite[][] de Partie
     }
 
-        /*
-         * Appelee par l'IHM quand on clique sur une case, cette methode doit generer la liste des coordonnees accessibles par l'unite se trouvant sur la case selectionnee si elle ne s'est pas deja deplacee, et passer cette Liste a l'IHM.
-         */
-        public void caseSelectionnee(int pX, int pY)
-        {
-                this.enleverSurbrillance();
-                Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
-                Unite unite = Slatch.partie.getTerrain()[pX][pY].getUnite();
-                if(unite==null) // si une unité est présente sur la case
-                {
-                        if(uniteD==null) // si on a sélectioné aucune unité auparavant pour le déplacement
-                        {
-                                return;
-                        }
-                        //deplacement(uniteD, chemin);
-                }
-                else
-                {
-                        if(uniteA==null) // si on a sélectionné aucune unité auparavant pour l'attaque
-                        {
-                                if(uniteD==null)
-                                {
-                                        List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
-                                        if(uniteProche(pX,pY)){items.add("Attaque");}
-                                        /*if(unite.getType()==TypeUnite.INFANTERIE && Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT)
-                                        {
-                                                items.add("Assaut");
-                                        }*/
-                                        items.add("Deplacement");
-                                        Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
-                                        Slatch.ihm.getPanel().afficheMenu(items, pX, pY);
-                                }
-                        }
-                        else
-                        {
-                            if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.getType())) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
+    /*
+     * Appelee par l'IHM quand on clique sur une case, cette methode doit generer la liste des coordonnees accessibles par l'unite se trouvant sur la case selectionnee si elle ne s'est pas deja deplacee, et passer cette Liste a l'IHM.
+     */
+    public void caseSelectionnee(int pX, int pY)
+    {
+            this.enleverSurbrillance();
+            Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
+            Unite unite = Slatch.partie.getTerrain()[pX][pY].getUnite();
+            if(unite==null) // si une unité est présente sur la case
+            {
+                    if(uniteD==null) // si on a sélectioné aucune unité auparavant pour le déplacement
+                    {
+                            return;
+                    }
+                    //deplacement(uniteD, chemin);
+            }
+            else
+            {
+                    if(uniteA==null) // si on a sélectionné aucune unité auparavant pour l'attaque
+                    {
+                            if(uniteD==null)
                             {
-                                    attaque(unite, uniteA);
+                                    List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
+                                    if(uniteProche(pX,pY)){items.add("Attaque");}
+                                    /*if(unite.getType()==TypeUnite.INFANTERIE && Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT)
+                                    {
+                                            items.add("Assaut");
+                                    }*/
+                                    items.add("Deplacement");
+                                    Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
+                                    Slatch.ihm.getPanel().afficheMenu(items, pX, pY);
                             }
+                    }
+                    else
+                    {
+                        if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.getType())) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
+                        {
+                                attaque(unite, uniteA);
                         }
-                }
-        }
-       
-        /*public void deplacement(Unite unite, List<"String"> chemin)
+                    }
+            }
+    }
+   
+    /*public void deplacement(Unite unite, List<"String"> chemin)
+    {
+           
+    }*/
+    public boolean uniteProche(int pX, int pY) // vérifie si une unité se trouve à côté de la case passée en paramètre
+    {
+        if(pX<Slatch.partie.getLargeur())
         {
-               
-        }*/
-       
-        public boolean uniteProche(int pX, int pY) // vérifie si une unité se trouve à côté de la case passée en paramètre
-        {
-            if(pX<Slatch.partie.getLargeur())
-            {
-                if(Slatch.partie.getTerrain()[pX+1][pY].getUnite()!=null)
-                {return true;}
-            }
-            if(pY<Slatch.partie.getLargeur())
-            {                
-                if(Slatch.partie.getTerrain()[pX][pY+1].getUnite()!=null){return true;}
-            }
-            
-            if(pX>0)
-            {
-                if(Slatch.partie.getTerrain()[pX-1][pY].getUnite()!=null)
-                {
-                    return true;
-                }
-            }
-            if(pY>0)
-            {
-                if(Slatch.partie.getTerrain()[pX][pY-1].getUnite()!=null){return true;}
-            }
-            return false;
+            if(Slatch.partie.getTerrain()[pX+1][pY].getUnite()!=null)
+            {return true;}
         }
-       
-        /*
-         * Initialise tabDep afin d'utiliser checkPorteeDeplacement dans des conditions optimales
-         */
-        private void initialiseTabDep(int x, int y, int portee)
-        {
-            for(int i=0; i<Slatch.partie.getLargeur(); i++)
-            {
-                for(int j=0; j<Slatch.partie.getHauteur(); j++)
-                {
-                    if(Slatch.partie.getTerrain()[i][j].getUnite()!=null){tabDep[i][j]=300;} // quand on a déjà une unité sur la case, on ne peut pas y accéder
-                    else{tabDep[i][j]=0;} // au début, on suppose qu'on a 0 en portée de déplacement sur chacune des cases restantes
-                }
-            }
-           tabDep[x][y]=portee; // la position de départ de l'unité doit être initialisée avec le nombre de points de déplacement de base de l'unité
+        if(pY<Slatch.partie.getLargeur())
+        {                
+            if(Slatch.partie.getTerrain()[pX][pY+1].getUnite()!=null){return true;}
         }
+        
+        if(pX>0)
+        {
+            if(Slatch.partie.getTerrain()[pX-1][pY].getUnite()!=null)
+            {
+                return true;
+            }
+        }
+        if(pY>0)
+        {
+            if(Slatch.partie.getTerrain()[pX][pY-1].getUnite()!=null){return true;}
+        }
+        return false;
+    }
+   
+    /*
+     * Initialise tabDep afin d'utiliser checkPorteeDeplacement dans des conditions optimales
+     */
+    private void initialiseTabDep(int x, int y, int portee)
+    {
+        for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        {
+            for(int j=0; j<Slatch.partie.getHauteur(); j++)
+            {
+                if(Slatch.partie.getTerrain()[i][j].getUnite()!=null){tabDep[i][j]=300;} // quand on a déjà une unité sur la case, on ne peut pas y accéder
+                else{tabDep[i][j]=0;} // au début, on suppose qu'on a 0 en portée de déplacement sur chacune des cases restantes
+            }
+        }
+       tabDep[x][y]=portee; // la position de départ de l'unité doit être initialisée avec le nombre de points de déplacement de base de l'unité
+    }
         
     /*
      * Procedure recursive qui va déterminer les cases accessibles par une unité en focntion de sa portée de déplacement et de sa position de départ

@@ -154,8 +154,7 @@ public class Unite extends Entite
         catch (IOException e) {
             e.printStackTrace();
         }
-        
-        if(super.getSurbrillance()) {
+        if(getSurbrillance()) {
             try {
                 Image img = ImageIO.read(new File("Images/5.png"));
                 //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());

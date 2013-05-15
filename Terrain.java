@@ -67,6 +67,10 @@ public class Terrain extends Entite{
             e.printStackTrace();
         }
         
+        if(aUnite!=null){
+            aUnite.dessine(g);    
+        }
+        
         if(super.getSurbrillance()) {
             try {
                 Image img = ImageIO.read(new File("Images/5.png"));
@@ -77,6 +81,7 @@ public class Terrain extends Entite{
                 e.printStackTrace();
             }
         }
+        
     }
 }
 
