@@ -89,10 +89,11 @@ class IHM_Panel extends JPanel {
                 
                 
                 if(  pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) {
-                    MATRICE_TEST[i][j].setSurbrillance(true);
-                    MATRICE_TEST[i][j].dessine(g);
+                    //MATRICE_TEST[i][j].setSurbrillance(true);
+                    //MATRICE_TEST[i][j].dessine(g);
                     // Avertir Moteur
-                    //Slatch.moteur.caseSelectionnee(i,j);
+                    Slatch.moteur.caseSelectionnee(i,j);
+                    Slatch.partie.getTerrain()[i][j].dessine(g);
                 }
                 
                 
@@ -175,6 +176,11 @@ class IHM_Panel extends JPanel {
     //********************************/
     //**    Méthodes de dessin       */
     //********************************/
+    public void dessineTerrain(final int i, final int j)
+    {
+        Graphics g = this.getGraphics();
+        Slatch.partie.getTerrain()[i][j].dessine(g);
+    }
     
     /**
      * Affiche une image a la position desiree

@@ -3,7 +3,7 @@
  */
 public enum TypeUnite
 {
-    INFANTERIE("infanterie", "infanterie01.png","une infanterie"), 
+    INFANTERIE("infanterie", "une infanterie","infanterie01.png"), 
     VEHICULE("vehicule","1.png","un vehicule");
 
     private String aNom;
