@@ -16,7 +16,7 @@ class Moteur
         {
             for(int j=0; j<Slatch.partie.getLargeur(); j++)
             {
-                Slatch.partie.getTerrain()[i][j].setSurbrillance(true);
+                Slatch.partie.getTerrain()[i][j].setSurbrillance(false);
             }
         }
     }
