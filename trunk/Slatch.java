@@ -14,6 +14,6 @@ public class Slatch {
 	public static void main(String[] args) {
     partie = new Partie(2, 20, 30, null);
     moteur = new Moteur();
-    ihm = new IHM(800,500,"Partie");
+    ihm = new IHM(800,500);
 	}
 }
