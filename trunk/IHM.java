@@ -16,7 +16,7 @@ public class IHM  {
      * Constructeur qui instancie JFrame du Menu.
      */
     public IHM(final int pTailleX, final int pTailleY){
-        panel = new IHM_Panel(50);panel.setSize(pTailleX,pTailleY);
+        panel = new IHM_Panel(50);
         frame = new JFrame("SLATCH");
         frame.setTitle("SLATCH");
         frame.setSize(pTailleX,pTailleY);
