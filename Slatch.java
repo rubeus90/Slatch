@@ -5,7 +5,7 @@
 public class Slatch
 {
     private IHM myIHM;
-    private static Slatch mySlatch;
+    public static Slatch mySlatch;
     public Slatch () {
         myIHM = new IHM(800,500,"Partie");
         setSlatch();
