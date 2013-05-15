@@ -20,12 +20,13 @@ public class Unite extends Entite
     private TypeUnite aType; // Correspond au type d'unité : Infanterie, Véhicule etc ...
     private TypeAttaque aAttaque; // Correspond à l'attaque au corps à corps
     private int aVie; //Correspond aux nombres de points de vie de l'unite
-    private int aDeplacement; // Coresspond au déplacement maximum que peut effectuer l'unité
+    private int aPorteeDeplacement; // Coresspond au déplacement maximum que peut effectuer l'unité
     private int aLvl; // Correspond au niveau de l'unité
     private int aExperience; // Correspond à l'expérience total de l'unité
     private int aExperienceMax;
     private double aGain; //Compris entre 1 et 2, correspondant au pourcentage d'augmentation des caractéristique à chaque monté de niveau
-
+    private TypeDeplacement aTypeDeplacement;
+    
     /**
      * Constructeur de la classe Unite
      * Prend en paramètre :
@@ -39,7 +40,7 @@ public class Unite extends Entite
        super(pX,pY,pJoueur,pPointDeVie);
        aType = pType;
        aAttaque = pAttaque;
-       aDeplacement = pDeplacement;
+       aPorteeDeplacement = pDeplacement;
        aGain = pGain;
        aVie = pVie;
        aLvl = 0;
@@ -47,6 +48,13 @@ public class Unite extends Entite
        aExperienceMax=100;
     }
 
+    /**
+     * Accesseur qui renvoie la valeur du aTypeDeplacement
+     * @return aTypeDeplacement
+     */
+    public TypeDeplacement getTypeDeplacement(){
+        return aTypeDeplacement;
+    }
     
     /**
      * Accesseur qui renvoie l'attaque au corps à corps
@@ -82,10 +90,10 @@ public class Unite extends Entite
     
     /**
      * Accesseur qui renvoi le deplacement maximum de l'unite
-     * @return aDeplacement
+     * @return aPorteeDeplacement
      */
     public int getDeplacement(){
-        return aDeplacement;
+        return aPorteeDeplacement;
     }
     
     /**
@@ -129,7 +137,7 @@ public class Unite extends Entite
        aExperience-=aExperienceMax;
        setPointDeVie((int)(getPointDeVie()*aGain));
        aAttaque.degats= (int)(aAttaque.degats *aGain);
-       aDeplacement = (int)(aDeplacement*aGain);
+       aPorteeDeplacement = (int)(aPorteeDeplacement*aGain);
     }
     
     @Override
@@ -158,5 +166,5 @@ public class Unite extends Entite
             }
         }
     }
-       
+
 }

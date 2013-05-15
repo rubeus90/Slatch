@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import java.io.*;
 import java.awt.Color;
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Panneau de l'IHM (herite de JPanel)
@@ -111,7 +113,7 @@ class IHM_Panel extends JPanel {
     /**
      * Affiche Test
      */
-    private void afficheMenu(final int pX, final int pY, final String pS) {
+    public void afficheMenu(final List<String> pList, final int pX, final int pY) {
         if(pX<NOMBRE_DE_CASE_X/2) {
             // Meun à droite
             Graphics g = Slatch.ihm.getPanel().getGraphics();
