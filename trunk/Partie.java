@@ -44,6 +44,20 @@ public class Partie
 				aTerrain[i][j] = new Terrain(i, j, 0, 0, TypeTerrain.PLAINE);
 			}
 		}		
+		
+		int ligne, id, x, y;
+		
+		while(aMap.hasNextLine()){
+			ligne = Integer.parseInt(aMap.nextLine());
+			id = ligne / 1000000;
+			x = (ligne - id*1000000) / 1000;
+			y = ligne - id+1000000 - x*1000;
+			switch(id){
+			case 1: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.FORET);
+			case 2: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.MONTAGNE);
+			default: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.PLAINE);
+			}
+		}
     }
 
     
