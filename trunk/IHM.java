@@ -9,15 +9,16 @@ import java.awt.* ;
  * @version 01
  */
 public class IHM  {
-    private IHM_Panel myPanel = new IHM_Panel();
+    private IHM_Panel myPanel;
     private JFrame myFrame;
     
     /**
      * Constructeur qui instancie JFrame du Menu.
      */
     public IHM(final int pTailleX, final int pTailleY, final String pType){
-        myFrame = new JFrame("Menu");
-        myFrame.setTitle("Menu");
+        myPanel = new IHM_Panel(50);
+        myFrame = new JFrame("SLATCH");
+        myFrame.setTitle("SLATCH");
         myFrame.setSize(pTailleX,pTailleY);
         myFrame.setResizable(false);
         myFrame.setLocationRelativeTo(null);
