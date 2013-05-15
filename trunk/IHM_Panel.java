@@ -52,7 +52,7 @@ class IHM_Panel extends JPanel {
         tabString = pcoordclick.split(",");
         int clickX = Integer.parseInt(tabString[0]);
         int clickY = Integer.parseInt(tabString[1])-20;   //Decalage de 20 je sais pas pourquoi  
-        Graphics g = Slatch.getSlatch().getIHM().getmyPanel().getGraphics();
+        Graphics g = Slatch.getIHM().getmyPanel().getGraphics();
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) {
             for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) {
                 // Selection
@@ -129,7 +129,7 @@ class IHM_Panel extends JPanel {
         try {
             Image img = ImageIO.read(new File("Images/"+pURL));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.getSlatch().getIHM().getmyPanel());
+            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.getIHM().getmyPanel());
         }
         catch (IOException e) {
             e.printStackTrace();

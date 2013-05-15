@@ -58,14 +58,14 @@ public class Entite
     }
     
     public void dessine (final Graphics g) {
-        int pPosHautGaucheX = aCoordonneeX*Slatch.getSlatch().getIHM().getmyPanel().getaLargeurCarreau();
-        int pPosHautGaucheY = aCoordonneeY*Slatch.getSlatch().getIHM().getmyPanel().getaHauteurCarreau() + Slatch.getSlatch().getIHM().getmyPanel().getDECALAGE_PX_EN_Y();
-        int pPosBasDroiteX = aCoordonneeX*(Slatch.getSlatch().getIHM().getmyPanel().getaLargeurCarreau()+1);
-        int pPosBasDroiteY = aCoordonneeY*(Slatch.getSlatch().getIHM().getmyPanel().getaHauteurCarreau()+1) + Slatch.getSlatch().getIHM().getmyPanel().getDECALAGE_PX_EN_Y();
+        int pPosHautGaucheX = aCoordonneeX*Slatch.getIHM().getmyPanel().getaLargeurCarreau();
+        int pPosHautGaucheY = aCoordonneeY*Slatch.getIHM().getmyPanel().getaHauteurCarreau() + Slatch.getIHM().getmyPanel().getDECALAGE_PX_EN_Y();
+        int pPosBasDroiteX = aCoordonneeX*(Slatch.getIHM().getmyPanel().getaLargeurCarreau()+1);
+        int pPosBasDroiteY = aCoordonneeY*(Slatch.getIHM().getmyPanel().getaHauteurCarreau()+1) + Slatch.getIHM().getmyPanel().getDECALAGE_PX_EN_Y();
         try {
             Image img = ImageIO.read(new File("Images/"+aURLimage));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.getSlatch().getIHM().getmyPanel());
+            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.getIHM().getmyPanel());
         }
         catch (IOException e) {
             e.printStackTrace();
