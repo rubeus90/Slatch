@@ -59,14 +59,14 @@ public class Entite
     }
     
     public void dessine (final Graphics g) {
-        int pPosHautGaucheX = aCoordonneeX*Slatch.myIHM.getmyPanel().getaLargeurCarreau();
-        int pPosHautGaucheY = aCoordonneeY*Slatch.myIHM.getmyPanel().getaHauteurCarreau() + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
-        int pPosBasDroiteX = (aCoordonneeX+1)*Slatch.myIHM.getmyPanel().getaLargeurCarreau();
-        int pPosBasDroiteY = (aCoordonneeY+1)*Slatch.myIHM.getmyPanel().getaHauteurCarreau() + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
+        int pPosHautGaucheX = aCoordonneeX*Slatch.ihm.getpanel().getaLargeurCarreau();
+        int pPosHautGaucheY = aCoordonneeY*Slatch.ihm.getpanel().getaHauteurCarreau() + Slatch.ihm.getpanel().getDECALAGE_PX_EN_Y();
+        int pPosBasDroiteX = (aCoordonneeX+1)*Slatch.ihm.getpanel().getaLargeurCarreau();
+        int pPosBasDroiteY = (aCoordonneeY+1)*Slatch.ihm.getpanel().getaHauteurCarreau() + Slatch.ihm.getpanel().getDECALAGE_PX_EN_Y();
         try {
             Image img = ImageIO.read(new File("Images/"+aURLimage));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.myIHM.getmyPanel());
+            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getpanel());
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -76,7 +76,7 @@ public class Entite
             try {
                 Image img = ImageIO.read(new File("Images/5.png"));
                 //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-                g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.myIHM.getmyPanel());
+                g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.panel());
                 }
             catch (IOException e) {
                 e.printStackTrace();
