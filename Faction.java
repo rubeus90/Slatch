@@ -5,8 +5,8 @@ import java.util.List;
  */
 public enum Faction
 {
-   /* HUMAINS, ROBOTS, ALIENS;
-    List<Unite> listeUnites;
+   HUMAINS, ROBOTS, ALIENS;
+   /* List<Unite> listeUnites;
     
     Faction(List<Unite> pUnites)
     {
