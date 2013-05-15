@@ -3,7 +3,7 @@ import java.lang.Integer;
 
 public enum TypeTerrain {
 	FORET("foret", "1.png", "une foret", 2), 
-	PLAINE("plaine", "2.png", "une plaine", 1), 
+	PLAINE("plaine", "plaine.png", "une plaine", 1), 
 	MONTAGNE("montagne", "3.png", "une montagne", 3);
 	
 	private String aNom;
