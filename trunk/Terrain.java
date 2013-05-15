@@ -19,10 +19,6 @@ import javax.imageio.ImageIO;
 public class Terrain extends Entite{
     private TypeTerrain aType;
     private Unite aUnite;
-    private int aX;
-    private int aY;
-    private int aJoueur;
-    private int aPointDeVie;
     
     /**
      * Constructeur des terrains et des batiment
@@ -52,24 +48,24 @@ public class Terrain extends Entite{
     
     @Override
     public void dessine (final Graphics g) {
-        int pPosHautGaucheX = aX*Slatch.myIHM.getmyPanel().getaLargeurCarreau();
-        int pPosHautGaucheY = aY*Slatch.myIHM.getmyPanel().getaHauteurCarreau() + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
-        int pPosBasDroiteX = (aX+1)*Slatch.myIHM.getmyPanel().getaLargeurCarreau();
-        int pPosBasDroiteY = (aY+1)*Slatch.myIHM.getmyPanel().getaHauteurCarreau() + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
+        int pPosHautGaucheX = super.getCoordonneeX()*Slatch.ihm.getpanel().getaLargeurCarreau();
+        int pPosHautGaucheY = super.getCoordonneeY()*Slatch.ihm.getpanel().getaHauteurCarreau() + Slatch.ihm.getpanel().getDECALAGE_PX_EN_Y();
+        int pPosBasDroiteX = (super.getCoordonneeX()+1)*Slatch.ihm.getpanel().getaLargeurCarreau();
+        int pPosBasDroiteY = (super.getCoordonneeY()+1)*Slatch.ihm.getpanel().getaHauteurCarreau() + Slatch.ihm.getpanel().getDECALAGE_PX_EN_Y();
         try {
-            Image img = ImageIO.read(new File("Images/"+aURLimage));
+            Image img = ImageIO.read(new File("Images/"+null));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.myIHM.getmyPanel());
+            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getpanel());
         }
         catch (IOException e) {
             e.printStackTrace();
         }
         
-        if(aSurbrillance) {
+        if(super.getSurbrillance()) {
             try {
                 Image img = ImageIO.read(new File("Images/5.png"));
                 //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-                g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.myIHM.getmyPanel());
+                g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getpanel());
                 }
             catch (IOException e) {
                 e.printStackTrace();
