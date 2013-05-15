@@ -9,6 +9,17 @@ class Moteur
     Unite uniteA = null; // unite en attente d'attaque
     int[][] tabDep;
    
+   
+    public void enleverSurbrillance()
+    {
+        for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        {
+            for(int j=0; j<Slatch.partie.getLargeur(); j++)
+            {
+                Slatch.partie.getTerrain()[i][j].setSurbrillance(true);
+            }
+        }
+    }
         public void attaque(Unite pAttaquant, Unite pVictime)
     {
         double degatsAtt=0;
@@ -36,6 +47,7 @@ class Moteur
          */
         public void caseSelectionnee(int pX, int pY)
         {
+                this.enleverSurbrillance();
                 Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
                 Unite unite = Slatch.partie.getTerrain()[pX][pY].getUnite();
                 if(unite==null) // si une unité est présente sur la case
