@@ -53,7 +53,6 @@ class IHM_Panel extends JPanel {
         largeurCarte = this.getWidth();
         vLargeurCarreau = largeurCarte/NOMBRE_DE_CASE_X;
         vHauteurCarreau = hauteurCarte/NOMBRE_DE_CASE_Y;
-        System.out.println(vHauteurCarreau+" "+this.getHeight());
         aLargeurCarreau = vLargeurCarreau;
         aHauteurCarreau = vLargeurCarreau;
         
@@ -66,6 +65,10 @@ class IHM_Panel extends JPanel {
      * Methode appelee lors d'un click
      */
     public void coordclick (String pcoordclick) {
+
+     
+        
+        
         String[] tabString = null;                      //tableau de chaînes
         tabString = pcoordclick.split(",");
         int clickX = Integer.parseInt(tabString[0]);
@@ -74,12 +77,31 @@ class IHM_Panel extends JPanel {
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) {
             for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) {
                 // Selection
-                if( vLargeurCarreau*i<clickX && clickX<(i+1)*vLargeurCarreau && j*vHauteurCarreau+DECALAGE_PX_EN_Y<clickY && clickY<(j+1)*vHauteurCarreau+DECALAGE_PX_EN_Y) {
-                    afficheImageRedim("5.png",vLargeurCarreau*i, j*vHauteurCarreau+DECALAGE_PX_EN_Y,(i+1)*vLargeurCarreau,(j+1)*vHauteurCarreau+DECALAGE_PX_EN_Y,g);
-                    
+                
+                int pPosHautGaucheX = i*Slatch.ihm.getPanel().getaLargeurCarreau();
+                int pPosHautGaucheY = j*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
+                int pPosBasDroiteX = (i+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
+                int pPosBasDroiteY = (j+1)*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
+                
+                
+                if(  pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) {
+                    MATRICE_TEST[i][j].setSurbrillance(true);
+                    MATRICE_TEST[i][j].dessine(g);
                     // Avertir Moteur
                     //Slatch.moteur.caseSelectionnee(i,j);
                 }
+                
+                
+                
+                /*
+                if(  j*vHauteurCarreau+DECALAGE_PX_EN_Y<clickY && clickY<(j+1)*vHauteurCarreau+DECALAGE_PX_EN_Y && vLargeurCarreau*i<clickX && clickX<(i+1)*vLargeurCarreau) {
+                    MATRICE_TEST[i][j].setSurbrillance(true);
+                    MATRICE_TEST[i][j].dessine(g);
+                    // Avertir Moteur
+                    //Slatch.moteur.caseSelectionnee(i,j);
+                }
+                */
+                
             }
         }
     }
