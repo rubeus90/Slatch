@@ -17,6 +17,7 @@ public class Unite
     private int aDeplacement; // Coresspond au déplacement maximum que peut effectuer l'unité
     private int aLvl; // Correspond au niveau de l'unité
     private int aExperience; // Correspond à l'expérience total de l'unité
+    private int aExperienceMax;
     private double aGain; //Compris entre 1 et 2, correspondant au pourcentage d'augmentation des caractéristique à chaque monté de niveau
 
     /**
@@ -37,6 +38,7 @@ public class Unite
        aPVMax = pVie;
        aLvl = 0;
        aExperience = 0;
+       aExperienceMax=100;
     }
 
     
@@ -109,8 +111,8 @@ public class Unite
      * Methode qui permet a une unite de monter de niveau
      */
     public void upLvl(){
-        if(aExperience < 100 ){ 
-            System.out.println("Experience inferieur a 100");
+        if(aExperience < aExperienceMax ){ 
+            System.out.println("Experience inferieur a "+aExperienceMax);
             return;
         }
         else if(aLvl >=3){
@@ -118,7 +120,7 @@ public class Unite
              return;
         }
        aLvl++;
-       aExperience-=100;
+       aExperience-=aExperienceMax;
        aPVMax = (int)(aPVMax*aGain);
        aAttaque= (int)(aAttaque *aGain);
        aDeplacement = (int)(aDeplacement*aGain);
