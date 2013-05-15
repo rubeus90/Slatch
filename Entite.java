@@ -1,4 +1,7 @@
 import java.awt.Image;
+import java.awt.Graphics;
+import java.io.*;
+import javax.imageio.ImageIO;
 
 /**
  * Classe Entite : Unite ou Terrain
@@ -9,7 +12,7 @@ public class Entite
 {
     private int aCoordonneeX;       //Coordonnee en X dans la matrice du Jeu
     private int aCoordonneeY;       //Coordonnee en Y dans la matrice du Jeu
-    private Image aImage;           //Image de l'Entite affichee par l'IHM
+    private String aURLimage;       //URL de l'Image de l'Entite affichee par l'IHM
     private String aNom;            //Nom de l'Entite
     private String aDescription;    //Description de l'Entite affichee par l'IHM
     private int aPointDeVie;        //Point de vie de l'Entite : 0 par defaut
@@ -31,12 +34,12 @@ public class Entite
         final int pJoueur,
         final int pPointDeVie,
         final String pNom,
-        final Image pImage,
+        final String pURLimage,
         final String pDescription) 
     {
         this.aCoordonneeX = pCoordonneeX;
         this.aCoordonneeY = pCoordonneeY;
-        this.aImage = pImage;
+        this.aURLimage = pURLimage;
         this.aNom = pNom;
         this.aDescription = pDescription;
         this.aPointDeVie = pPointDeVie;
@@ -52,6 +55,21 @@ public class Entite
     {
         setCoordonneeX(pNouvX);
         setCoordonneeY(pNouvY);
+    }
+    
+    public void dessine (final Graphics g) {
+        int pPosHautGaucheX = aCoordonneeX*Slatch.getSlatch().getIHM().getmyPanel().getaLargeurCarreau();
+        int pPosHautGaucheY = aCoordonneeY*Slatch.getSlatch().getIHM().getmyPanel().getaHauteurCarreau() + Slatch.getSlatch().getIHM().getmyPanel().getDECALAGE_PX_EN_Y();
+        int pPosBasDroiteX = aCoordonneeX*(Slatch.getSlatch().getIHM().getmyPanel().getaLargeurCarreau()+1);
+        int pPosBasDroiteY = aCoordonneeY*(Slatch.getSlatch().getIHM().getmyPanel().getaHauteurCarreau()+1) + Slatch.getSlatch().getIHM().getmyPanel().getDECALAGE_PX_EN_Y();
+        try {
+            Image img = ImageIO.read(new File("Images/"+aURLimage));
+            //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
+            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.getSlatch().getIHM().getmyPanel());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     
@@ -99,18 +117,18 @@ public class Entite
      * Accesseur
      * @return aImage
      */
-    public Image getImage()
+    public String getImage()
     {
-        return this.aImage;
+        return this.aURLimage;
     }
     
     /**
      * Mutateur
      * @param pImage
      */
-    public void setImage(final Image pImage)
+    public void setImage(final String pURLimage)
     {
-        this.aImage = pImage;
+        this.aURLimage = pURLimage;
     }
 
     /**
