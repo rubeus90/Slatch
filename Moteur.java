@@ -45,10 +45,10 @@ class Moteur
 		}
 	}
 	
-	public void deplacement(Unite unite, List<"String"> chemin)
+	/*public void deplacement(Unite unite, List<"String"> chemin)
 	{
 		
-	}
+	}*/
 	
 	public boolean uniteProche(int pX, int pY) // vérifie si une unité se trouve à côté de la case passée en paramètre
 	{
