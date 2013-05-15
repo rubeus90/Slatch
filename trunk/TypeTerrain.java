@@ -10,7 +10,7 @@ public enum TypeTerrain {
 	private String aImage;
 	private String aDescription;
 	private int aCouverture;
-	private HashMap<String,Integer> aCoutDeplacement;
+	public HashMap<String,Integer> aCoutDeplacement;
 	
 	TypeTerrain(final String pNom, final String pImage, final String pDescription, final int pCouverture){
 		aNom = pNom;
