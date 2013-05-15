@@ -10,7 +10,7 @@
 public class Unite
 {
     // instance variables - replace the example below with your own
-    private String aType; // Correspond au type d'unité : Infanterie, Véhicule etc ...
+    private TypeUnite aType; // Correspond au type d'unité : Infanterie, Véhicule etc ...
     private int aAttaque; // Correspond à l'attaque au corps à corps
     private int aVie; //Correspond aux nombres de points de vie de l'unite
     private int aPVMax; //Correspond aux nombres maximum de vie de l'unite
@@ -27,7 +27,7 @@ public class Unite
      * Un int correspondant au déplacement maximum
      * Un int correspondant au gain de chaque monté de niveau
      */
-    public Unite(final String pType,final int pAttaque,final int pVie,final int pDeplacement, final double pGain)
+    public Unite(final TypeUnite pType,final int pAttaque,final int pVie,final int pDeplacement, final double pGain)
     {
        aType = pType;
        aAttaque = pAttaque;
@@ -84,7 +84,7 @@ public class Unite
      * Accesseur qui renvoi le type de l'unite
      * @return aType
      */
-    public String getType(){
+    public TypeUnite getType(){
         return aType;
     }
     
