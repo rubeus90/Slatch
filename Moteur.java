@@ -5,75 +5,157 @@ import java.util.ArrayList;
  */
 class Moteur
 {
-	Unite uniteD = null; // unite en attente de déplacement
-	Unite uniteA = null; // unite en attente d'attaque
-	
-	/*
-	 * Appelee par l'IHM quand on clique sur une case, cette methode doit generer la liste des coordonnees accessibles par l'unite se trouvant sur la case selectionnee si elle ne s'est pas deja deplacee, et passer cette Liste a l'IHM.
-	 */
-	public void caseSelectionnee(int pX, int pY)
-	{
-		Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
-		Unite unite = Slatch.partie.getTerrain()[pX][pY].getUnite();
-		if(unite==null) // si une unité est présente sur la case
-		{
-			if(uniteD==null) // si on a sélectioné aucune unité auparavant pour le déplacement
+        Unite uniteD = null; // unite en attente de déplacement
+        Unite uniteA = null; // unite en attente d'attaque
+        int[][] tabDep;
+        /*
+         * Appelee par l'IHM quand on clique sur une case, cette methode doit generer la liste des coordonnees accessibles par l'unite se trouvant sur la case selectionnee si elle ne s'est pas deja deplacee, et passer cette Liste a l'IHM.
+         */
+        public void caseSelectionnee(int pX, int pY)
+        {
+                Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
+                Unite unite = Slatch.partie.getTerrain()[pX][pY].getUnite();
+                if(unite==null) // si une unité est présente sur la case
+                {
+                        if(uniteD==null) // si on a sélectioné aucune unité auparavant pour le déplacement
+                        {
+                                return;
+                        }
+                        //deplacement(uniteD, chemin);
+                }
+                else
+                {
+                        if(uniteA==null) // si on a sélectionné aucune unité auparavant pour l'attaque
+                        {
+                                if(uniteD==null)
+                                {
+                                        List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
+                                        if(uniteProche(pX,pY)){items.add("Attaque");}
+                                        /*if(unite.getType()==TypeUnite.INFANTERIE && Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT)
+                                        {
+                                                items.add("Assaut");
+                                        }*/
+                                        items.add("Deplacement");
+                                        Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
+                                        Slatch.ihm.afficheMenu(items, pX, pY);
+                                }
+                        }
+                        if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.TypeUnite)) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
+                        {
+                                attaque(unite, uniteA);
+                        }
+                }
+        }
+       
+        /*public void deplacement(Unite unite, List<"String"> chemin)
+        {
+               
+        }*/
+       
+        public boolean uniteProche(int pX, int pY) // vérifie si une unité se trouve à côté de la case passée en paramètre
+        {
+			if(pX<Slatch.partie.getLargeur())
 			{
-				return;
+                if(Slatch.partie.getTerrain()[pX+1][pY].getUnite()!=null)
+                {return true;}
 			}
-			//deplacement(uniteD, chemin);
-		}
-		else
-		{
-			/*if(uniteA==null) // si on a sélectionné aucune unité auparavant pour l'attaque
+			if(pY<Slatch.partie.getLargeur())
+			{                
+                if(Slatch.partie.getTerrain()[pX][pY+1].getUnite()!=null){return true;}
+			}
+			
+			if(pX>0)
 			{
-				if(uniteD==null)
+				if(Slatch.partie.getTerrain()[pX-1][pY].getUnite()!=null)
 				{
-					List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
-					if(uniteProche(pX,pY)){items.add("Attaque");}
-					if(unite.getType()==TypeUnite.INFANTERIE && Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT)
-					{
-						items.add("Assaut");
-					}
-					items.add("Deplacement");
-					Slatch.ihm.afficheMenu(items);
+					return true;
 				}
 			}
-			if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.TypeUnite)) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
+			if(pY>0)
 			{
-				attaque(unite, uniteA);
-			}*/
-		}
-	}
-	
-	/*public void deplacement(Unite unite, List<"String"> chemin)
-	{
-		
-	}*/
-	
-	public boolean uniteProche(int pX, int pY) // vérifie si une unité se trouve à côté de la case passée en paramètre
-	{
-		if(Slatch.partie.getTerrain()[pX+1][pY].getUnite()!=null || Slatch.partie.getTerrain()[pX][pY+1].getUnite()!=null){return true;}
-		if(pX>0)
-		{
-			if(Slatch.partie.getTerrain()[pX-1][pY].getUnite()!=null)
-			{
-				return true;
+				if(Slatch.partie.getTerrain()[pX][pY-1].getUnite()!=null){return true;}
 			}
+			return false;
+        }
+       
+        
+        private void initialiseTabDep(int x, int y, int portee)
+        {
+			for(int i=0; i<Slatch.partie.getLargeur(); i++)
+			{
+				for(int j=0; j<Slatch.partie.getHauteur(); j++)
+				{
+					if(Slatch.partie.getTerrain[i][j].getUnite()!=null){tabDep[i][j]=300;}
+					else{tabDep[i][j]=0;}
+				}
+			}
+			tabDep[x][y]=portee;
 		}
-		if(pY>0)
-		{
-			if(Slatch.partie.getTerrain()[pX][pY-1].getUnite()!=null){return true;}
-		}
-		return false;
-	}
-	
-	/*public void checkPorteeDeplacement(Unite unite, int pX, int pY)
-	{
-		int[][] tab;
-		boolean fini = false;
 		
-		
-	}*/
+		public void checkPorteeDeplacement(Unite unite, int porteeDep, int[] tab)
+        {
+			int k;
+					if(tab[0]+1<Slatch.partie.getLargeur())
+					{
+						k= Slatch.partie.getTerrain[tab[0]+1][tab[1]].getType().aCoutDeplacement.get(unite.getTypeDeplacement());
+						if(porteeDep-k>=0)
+						{
+							if(porteeDep- k >tabDep[tab[0]+1][tab[1]])
+							{
+								int[] t = new int[2];
+								t[0]=tab[0]+1; t[1]=tab[1];
+								tabDep[tab[0]+1][tab[1]] = porteeDep -k;
+								Slatch.partie.getTerrain()[tab[0]+1][tab[1]].setSurbrillance(true);
+								checkPorteeDeplacement(unite, porteeDep-k, t);
+							}
+						}
+					}
+					if(tab[1]+1<Slatch.partie.getHauteur())
+					{
+						k= Slatch.partie.getTerrain[tab[0]][tab[1]+1].getType().aCoutDeplacement.get(unite.getTypeDeplacement());
+						if(porteeDep-k>=0)
+						{
+							if(porteeDep- k >tabDep[tab[0]][tab[1]+1])
+							{
+								int[] t = new int[2];
+								t[0]=tab[0]; t[1]=tab[1]+1;
+								tabDep[tab[0]][tab[1]+1] = porteeDep -k;
+								Slatch.partie.getTerrain()[tab[0]][tab[1]+1].setSurbrillance(true);
+								checkPorteeDeplacement(unite, porteeDep-k, t);
+							}
+						}
+					}
+					if(tab[0]>0)
+					{
+						k= Slatch.partie.getTerrain[tab[0]-1][tab[1]].getType().aCoutDeplacement.get(unite.getTypeDeplacement());
+						if(porteeDep-k>=0)
+						{
+							if(porteeDep- k >tabDep[tab[0]-1][tab[1]])
+							{
+								int[] t = new int[2];
+								t[0]=tab[0]-1; t[1]=tab[1];
+								tabDep[tab[0]-1][tab[1]] = porteeDep -k;
+								Slatch.partie.getTerrain()[tab[0]-1][tab[1]].setSurbrillance(true);
+								checkPorteeDeplacement(unite, porteeDep-k, t);
+							}
+						}
+					}
+					if(tab[1]>0)
+					{
+						k= Slatch.partie.getTerrain[tab[0]][tab[1]-1].getType().aCoutDeplacement.get(unite.getTypeDeplacement());
+						if(porteeDep-k>=0)
+						{
+							if(porteeDep- k >tabDep[tab[0]][tab[1]-1])
+							{
+								int[] t = new int[2];
+								t[0]=tab[0]; t[1]=tab[1]-1;
+								tabDep[tab[0]][tab[1]-1] = porteeDep -k;
+								Slatch.partie.getTerrain()[tab[0]][tab[1]-1].setSurbrillance(true);
+								checkPorteeDeplacement(unite, porteeDep-k, t);
+							}
+						}
+					}				
+					
+                
+        }
 }
-
