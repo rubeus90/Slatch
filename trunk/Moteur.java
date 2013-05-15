@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 /*
  * Possede presque toutes les methodes propres a la mecanique du jeu, il va travailler de paire avec Partie et IHM
  */
@@ -8,7 +9,17 @@ class Moteur
     Unite uniteD = null; // unite en attente de déplacement
     Unite uniteA = null; // unite en attente d'attaque
     int[][] tabDep;
-   
+    HashMap<String, TypeDeplacement> map;
+    
+    public Moteur()
+    {
+        tabDep = new int[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
+        map = new HashMap<String, TypeDeplacement>();
+        map.put("pied", TypeDeplacement.PIED);
+        map.put("roues", TypeDeplacement.ROUES);
+        map.put("chenilles", TypeDeplacement.CHENILLES);
+        map.put("naval", TypeDeplacement.NAVAL);
+    }
    
     public void enleverSurbrillance()
     {
@@ -76,6 +87,7 @@ class Moteur
                                     }*/
                                     items.add("Deplacement");
                                     Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
+                                    affichePorteeDep(unite);
                                     Slatch.ihm.getPanel().afficheMenu(items, pX, pY);
                             }
                     }
@@ -118,6 +130,14 @@ class Moteur
         }
         return false;
     }
+    
+    public void affichePorteeDep(Unite unite)
+    {
+        initialiseTabDep(unite.getCoordonneeX(), unite.getCoordonneeY(), unite.getPorteeDeplacement());
+        int[] tab = new int[2];
+        tab[0]=unite.getCoordonneeX(); tab[1]=unite.getCoordonneeY();
+        checkPorteeDeplacement(unite, unite.getPorteeDeplacement(), tab); 
+    }
    
     /*
      * Initialise tabDep afin d'utiliser checkPorteeDeplacement dans des conditions optimales
@@ -151,7 +171,8 @@ class Moteur
                                 int[] t = new int[2];
                                 t[0]=tab[0]+1; t[1]=tab[1]; 
                                 tabDep[tab[0]+1][tab[1]] = porteeDep -k;
-                                Slatch.partie.getTerrain()[tab[0]+1][tab[1]].setSurbrillance(true); // on met la case en question en surbrillance
+                                Slatch.partie.getTerrain()[tab[0]+1][tab[1]].setSurbrillance(true);// on met la case en question en surbrillance
+                                Slatch.ihm.getPanel().dessineTerrain(tab[0]+1,tab[1]);
                                 checkPorteeDeplacement(unite, porteeDep-k, t); // et on appelle à nouveau la procédure en changeant de place et en faisant décroître la portée de déplacement
                             }
                         }
@@ -167,6 +188,7 @@ class Moteur
                                 t[0]=tab[0]; t[1]=tab[1]+1;
                                 tabDep[tab[0]][tab[1]+1] = porteeDep -k;
                                 Slatch.partie.getTerrain()[tab[0]][tab[1]+1].setSurbrillance(true);
+                                Slatch.ihm.getPanel().dessineTerrain(tab[0],tab[1]+1);
                                 checkPorteeDeplacement(unite, porteeDep-k, t);
                             }
                         }
@@ -182,6 +204,7 @@ class Moteur
                                 t[0]=tab[0]-1; t[1]=tab[1];
                                 tabDep[tab[0]-1][tab[1]] = porteeDep -k;
                                 Slatch.partie.getTerrain()[tab[0]-1][tab[1]].setSurbrillance(true);
+                                Slatch.ihm.getPanel().dessineTerrain(tab[0]-1,tab[1]);
                                 checkPorteeDeplacement(unite, porteeDep-k, t);
                             }
                         }
@@ -197,6 +220,7 @@ class Moteur
                                 t[0]=tab[0]; t[1]=tab[1]-1;
                                 tabDep[tab[0]][tab[1]-1] = porteeDep -k;
                                 Slatch.partie.getTerrain()[tab[0]][tab[1]-1].setSurbrillance(true);
+                                Slatch.ihm.getPanel().dessineTerrain(tab[0],tab[1]-1);
                                 checkPorteeDeplacement(unite, porteeDep-k, t);
                             }
                         }
