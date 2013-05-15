@@ -26,7 +26,7 @@ public class Terrain extends Entite{
         final int pJoueur,
         final int pPointDeVie,
         final String pNom,
-        final Image pImage,
+        final String pImage,
         final String pDescription,
         final String pType, 
         final int pCouverture, 
