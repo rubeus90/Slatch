@@ -118,7 +118,7 @@ public class Unite
              return;
         }
        aLvl++;
-       aExperience=0;
+       aExperience-=100;
        aPVMax = (int)(aPVMax*aGain);
        aAttaque= (int)(aAttaque *aGain);
        aDeplacement = (int)(aDeplacement*aGain);
