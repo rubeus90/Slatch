@@ -11,7 +11,7 @@ public class Unite
 {
     // instance variables - replace the example below with your own
     private TypeUnite aType; // Correspond au type d'unité : Infanterie, Véhicule etc ...
-    private int aAttaque; // Correspond à l'attaque au corps à corps
+    private TypeAttaque aAttaque; // Correspond à l'attaque au corps à corps
     private int aVie; //Correspond aux nombres de points de vie de l'unite
     private int aPVMax; //Correspond aux nombres maximum de vie de l'unite
     private int aDeplacement; // Coresspond au déplacement maximum que peut effectuer l'unité
@@ -27,7 +27,7 @@ public class Unite
      * Un int correspondant au déplacement maximum
      * Un int correspondant au gain de chaque monté de niveau
      */
-    public Unite(final TypeUnite pType,final int pAttaque,final int pVie,final int pDeplacement, final double pGain)
+    public Unite(final TypeUnite pType,final TypeAttaque pAttaque,final int pVie,final int pDeplacement, final double pGain)
     {
        aType = pType;
        aAttaque = pAttaque;
@@ -41,15 +41,15 @@ public class Unite
 
     
     /**
-     * Accesseur qui renvoi la valeur de l'attaque au corps à corps
+     * Accesseur qui renvoie l'attaque au corps à corps
      * @return aAttaque
      */
-    public int getAttaque(){
+    public TypeAttaque getAttaque(){
         return aAttaque;
     }
     
     /**
-     * Accesseur qui renvoi la valeur du nombre de point de vie de l'unite
+     * Accesseur qui renvoie la valeur du nombre de point de vie de l'unite
      * @return aVie
      */
     public int getVie(){
@@ -57,7 +57,7 @@ public class Unite
     }
     
     /**
-     * Accesseur qui renvoi l'expérience total de l'unite
+     * Accesseur qui renvoie l'expérience total de l'unite
      * @return aExperience
      */
     public int getExperience(){
@@ -65,7 +65,7 @@ public class Unite
     }
     
     /**
-     * Accesseur qui renvoi le niveau de l'unite
+     * Accesseur qui renvoie le niveau de l'unite
      * @return aLvl
      */
     public int getLvl(){
