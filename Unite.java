@@ -122,7 +122,7 @@ public class Unite
        aLvl++;
        aExperience-=aExperienceMax;
        aPVMax = (int)(aPVMax*aGain);
-       aAttaque= (int)(aAttaque *aGain);
+       aAttaque.degats= (int)(aAttaque.degats *aGain);
        aDeplacement = (int)(aDeplacement*aGain);
     }
        
