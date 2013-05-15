@@ -193,7 +193,7 @@ class IHM_Panel extends JPanel {
      */
     private void afficheImageRedim (final String pURL, final int pPosHautGaucheX, final int pPosHautGaucheY,final int pPosBasDroiteX, final int pPosBasDroiteY, final Graphics g) {
         try {
-            Image img = ImageIO.read(new File("Images/"+pURL));
+            Image img = ImageIO.read(new File("./trunk/Images/"+pURL));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
         }
@@ -208,7 +208,7 @@ class IHM_Panel extends JPanel {
      */
     private void afficheImagePleinEcran (final String pURL, final Graphics g) {
         try {
-            Image img = ImageIO.read(new File("Images/"+pURL));
+            Image img = ImageIO.read(new File("./trunk/Images/"+pURL));
             g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
         }
         catch (IOException e) {
