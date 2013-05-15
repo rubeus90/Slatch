@@ -5,21 +5,21 @@ import java.io.FileNotFoundException;
 import java.lang.Integer;
 
 public enum TypeTerrain {
-	FORET("foret", "arbres02.png", "une foret", 2), 
-	PLAINE("plaine", "plaine02.png", "une plaine", 1), 
-	MONTAGNE("montagne", "Montagne01.png", "une montagne", 3);
+	FORET("foret", "foret02.png", "une foret", 2), 
+	PLAINE("plaine", "plaine03.png", "une plaine", 1), 
+	MONTAGNE("montagne", "Montagne02.png", "une montagne", 3);
 	
 	private String aNom;
 	private String aImage;
 	private String aDescription;
 	private int aCouverture;
-	public HashMap<TypeDeplacement,Integer> aCoutDeplacement;
+	public HashMap<String,Integer> aCoutDeplacement;
 	TypeTerrain(final String pNom, final String pImage, final String pDescription, final int pCouverture){
 		aNom = pNom;
 		aImage = pImage;
 		aDescription = pDescription;
 		aCouverture = pCouverture;
-		aCoutDeplacement = new HashMap<TypeDeplacement,Integer> ();
+		aCoutDeplacement = new HashMap<String,Integer> ();
 		
 		Scanner fichier = null;
 		
@@ -32,19 +32,21 @@ public enum TypeTerrain {
 		String ligne;
 		String[] tab;
 		
-		/*while(fichier.hasNextLine()){
+		while(fichier.hasNextLine()){
 			ligne = fichier.nextLine();
 			tab = ligne.split(",");
-			if(tab[0] == pNom){
-				aCoutDeplacement.put(Slatch.moteur.map.get(tab[1]),Integer.parseInt(tab[2]));
+			if(tab[0].equals(pNom)){
+				aCoutDeplacement.put(tab[1],Integer.parseInt(tab[2]));
 			}
-		}*/
-		switch(pNom)
+		}
+		
+		
+		/*switch(pNom)
 		{
 		    case "foret": aCoutDeplacement.put(TypeDeplacement.PIED,2); break;
 		    case "montagne": aCoutDeplacement.put(TypeDeplacement.PIED,3); break;
 		    default: aCoutDeplacement.put(TypeDeplacement.PIED,1);
-		}
+		}*/
 	}
 	
 	public String getNom(){

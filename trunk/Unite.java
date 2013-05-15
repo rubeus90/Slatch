@@ -25,7 +25,7 @@ public class Unite extends Entite
     private int aExperience; // Correspond à l'expérience total de l'unité
     private int aExperienceMax;
     private double aGain; //Compris entre 1 et 2, correspondant au pourcentage d'augmentation des caractéristique à chaque monté de niveau
-    private TypeDeplacement aTypeDeplacement;
+    private String aTypeDeplacement;
     
     /**
      * Constructeur de la classe Unite
@@ -35,7 +35,7 @@ public class Unite extends Entite
      * Un int correspondant au déplacement maximum
      * Un int correspondant au gain de chaque monté de niveau
      */
-    public Unite(final int pX,final int pY,final int pJoueur,final int pPointDeVie,final TypeUnite pType,final TypeAttaque pAttaque,final int pDeplacement, final double pGain, final TypeDeplacement typeDeplacement)
+    public Unite(final int pX,final int pY,final int pJoueur,final int pPointDeVie,final TypeUnite pType,final TypeAttaque pAttaque,final int pDeplacement, final double pGain, final String typeDeplacement)
     {
        super(pX,pY,pJoueur,pPointDeVie);
        aType = pType;
@@ -53,7 +53,7 @@ public class Unite extends Entite
      * Accesseur qui renvoie la valeur du aTypeDeplacement
      * @return aTypeDeplacement
      */
-    public TypeDeplacement getTypeDeplacement(){
+    public String getTypeDeplacement(){
         return aTypeDeplacement;
     }
     

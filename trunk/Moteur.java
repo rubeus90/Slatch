@@ -9,16 +9,11 @@ class Moteur
     Unite uniteD = null; // unite en attente de déplacement
     Unite uniteA = null; // unite en attente d'attaque
     int[][] tabDep;
-    HashMap<String, TypeDeplacement> map;
+
     
     public Moteur()
     {
         tabDep = new int[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
-        map = new HashMap<String, TypeDeplacement>();
-        map.put("pied", TypeDeplacement.PIED);
-        map.put("roues", TypeDeplacement.ROUES);
-        map.put("chenilles", TypeDeplacement.CHENILLES);
-        map.put("naval", TypeDeplacement.NAVAL);
     }
    
     public void enleverSurbrillance()
@@ -149,7 +144,7 @@ class Moteur
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
             {
                 if(Slatch.partie.getTerrain()[i][j].getUnite()!=null){tabDep[i][j]=300;} // quand on a déjà une unité sur la case, on ne peut pas y accéder
-                else{tabDep[i][j]=0;} // au début, on suppose qu'on a 0 en portée de déplacement sur chacune des cases restantes
+                else{tabDep[i][j]=-1;} // au début, on suppose qu'on a 0 en portée de déplacement sur chacune des cases restantes
             }
         }
        tabDep[x][y]=portee; // la position de départ de l'unité doit être initialisée avec le nombre de points de déplacement de base de l'unité
@@ -166,7 +161,7 @@ class Moteur
                         k= Slatch.partie.getTerrain()[tab[0]+1][tab[1]].getType().aCoutDeplacement.get(unite.getTypeDeplacement()); // k= coût de déplacement vers une case
                         if(porteeDep-k>=0) // si on peut se déplacer sur la case, condition d'arrêt de la récursion
                         {
-                    if(porteeDep- k >tabDep[tab[0]+1][tab[1]]) // évite des appels inutiles
+                            if(porteeDep- k >tabDep[tab[0]+1][tab[1]]) // évite des appels inutiles
                             {
                                 int[] t = new int[2];
                                 t[0]=tab[0]+1; t[1]=tab[1]; 
