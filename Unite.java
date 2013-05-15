@@ -35,7 +35,7 @@ public class Unite extends Entite
      * Un int correspondant au déplacement maximum
      * Un int correspondant au gain de chaque monté de niveau
      */
-    public Unite(final int pX,final int pY,final int pJoueur,final int pPointDeVie,final TypeUnite pType,final TypeAttaque pAttaque,final int pDeplacement, final double pGain)
+    public Unite(final int pX,final int pY,final int pJoueur,final int pPointDeVie,final TypeUnite pType,final TypeAttaque pAttaque,final int pDeplacement, final double pGain, final TypeDeplacement typeDeplacement)
     {
        super(pX,pY,pJoueur,pPointDeVie);
        aType = pType;
@@ -46,6 +46,7 @@ public class Unite extends Entite
        aLvl = 0;
        aExperience = 0;
        aExperienceMax=100;
+       aTypeDeplacement = typeDeplacement;
     }
 
     /**
@@ -92,7 +93,7 @@ public class Unite extends Entite
      * Accesseur qui renvoi le deplacement maximum de l'unite
      * @return aPorteeDeplacement
      */
-    public int getDeplacement(){
+    public int getPorteeDeplacement(){
         return aPorteeDeplacement;
     }
     

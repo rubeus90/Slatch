@@ -13,14 +13,13 @@ public enum TypeTerrain {
 	private String aImage;
 	private String aDescription;
 	private int aCouverture;
-	public HashMap<String,Integer> aCoutDeplacement;
-	
+	public HashMap<TypeDeplacement,Integer> aCoutDeplacement;
 	TypeTerrain(final String pNom, final String pImage, final String pDescription, final int pCouverture){
 		aNom = pNom;
 		aImage = pImage;
 		aDescription = pDescription;
 		aCouverture = pCouverture;
-		aCoutDeplacement = new HashMap<String,Integer> ();
+		aCoutDeplacement = new HashMap<TypeDeplacement,Integer> ();
 		
 		Scanner fichier = null;
 		
@@ -33,12 +32,18 @@ public enum TypeTerrain {
 		String ligne;
 		String[] tab;
 		
-		while(fichier.hasNextLine()){
+		/*while(fichier.hasNextLine()){
 			ligne = fichier.nextLine();
 			tab = ligne.split(",");
 			if(tab[0] == pNom){
-				aCoutDeplacement.put(tab[1],Integer.parseInt(tab[2]));
+				aCoutDeplacement.put(Slatch.moteur.map.get(tab[1]),Integer.parseInt(tab[2]));
 			}
+		}*/
+		switch(pNom)
+		{
+		    case "foret": aCoutDeplacement.put(TypeDeplacement.PIED,2); break;
+		    case "montagne": aCoutDeplacement.put(TypeDeplacement.PIED,3); break;
+		    default: aCoutDeplacement.put(TypeDeplacement.PIED,1);
 		}
 	}
 	
