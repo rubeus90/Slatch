@@ -9,7 +9,7 @@ import java.awt.* ;
  * @version 01
  */
 public class IHM  {
-    private IHM_Pannel myPanel = new IHM_Pannel();
+    private IHM_Panel myPanel = new IHM_Panel();
     private JFrame myFrame;
     
     /**
