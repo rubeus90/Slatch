@@ -45,6 +45,7 @@ public class Entite
         this.aDescription = pDescription;
         this.aPointDeVie = pPointDeVie;
         this.aJoueur = pJoueur;
+        this.aSurbrillance=false;
     }
     
     /**
@@ -219,7 +220,7 @@ public class Entite
      * Accesseur
      * @return aPointDeVie
      */
-    public boolean getaSurbrillance()
+    public boolean getSurbrillance()
     {
         return this.aSurbrillance;
     }
@@ -228,7 +229,7 @@ public class Entite
      * Mutateur
      * @param pPointDeVie
      */
-    public void setaSurbrillance(final boolean pSurbrillance)
+    public void setSurbrillance(final boolean pSurbrillance)
     {
         this.aSurbrillance = pSurbrillance;
     }
