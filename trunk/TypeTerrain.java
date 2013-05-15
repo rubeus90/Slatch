@@ -6,8 +6,6 @@ public enum TypeTerrain {
 	PLAINE("plaine", "2.png", "une plaine", 1), 
 	MONTAGNE("montagne", "3.png", "une montagne", 3);
 	
-	private int aJoueur;
-	private int aPointDeVie;
 	private String aNom;
 	private String aImage;
 	private String aDescription;
@@ -20,14 +18,6 @@ public enum TypeTerrain {
 		aDescription = pDescription;
 		aCouverture = pCouverture;
 		aCoutDeplacement = new HashMap<String,Integer> ();
-	}
-	
-	public int getJoueur(){
-		return aJoueur;
-	}
-	
-	public int getPointDeVie(){
-		return aPointDeVie;
 	}
 	
 	public String getNom(){
@@ -45,8 +35,4 @@ public enum TypeTerrain {
 	public int getCouverture(){
 		return aCouverture;
 	}
-	
-	/*public int getCoutDeplacement(){
-		return aCoutDeplacement;
-	}*/
 }

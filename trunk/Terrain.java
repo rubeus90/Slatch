@@ -27,9 +27,11 @@ public class Terrain extends Entite{
         final int pX,
         final int pY,
         final int pJoueur,
-        final int pPointDeVie) 
+        final int pPointDeVie,
+        final TypeTerrain pType) 
     {
         super(pX,pY,pJoueur,pPointDeVie);
+        aType = pType;
     }
     
     /**Retourner l'unite se trouvant sur le terrain
@@ -57,7 +59,7 @@ public class Terrain extends Entite{
         int pPosBasDroiteX = (super.getCoordonneeX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
         int pPosBasDroiteY = (super.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
         try {
-            Image img = ImageIO.read(new File("Images/"+null));
+            Image img = ImageIO.read(new File("Images/"+aType.getImage()));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
         }
