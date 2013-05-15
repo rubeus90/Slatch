@@ -14,8 +14,6 @@ import java.awt.Color;
  * @version 01/2013
  */
 class IHM_Panel extends JPanel {
-    
-
     private int NOMBRE_DE_CASE_X = 16;
     private int NOMBRE_DE_CASE_Y = 9;
     private int[][] MATRICE_TEST = new int[NOMBRE_DE_CASE_X][NOMBRE_DE_CASE_Y];
@@ -25,6 +23,9 @@ class IHM_Panel extends JPanel {
     private int largeurCarte;
     private int vLargeurCarreau;
     private int vHauteurCarreau;
+    
+    private int aLargeurCarreau;
+    private int aHauteurCarreau;
 
     /**
      * 
@@ -35,6 +36,9 @@ class IHM_Panel extends JPanel {
         largeurCarte = this.getWidth();
         vLargeurCarreau = largeurCarte/NOMBRE_DE_CASE_X;
         vHauteurCarreau = hauteurCarte/NOMBRE_DE_CASE_Y;
+        
+        aLargeurCarreau = vLargeurCarreau;
+        aHauteurCarreau = vLargeurCarreau;
         
         afficheTest(g);
         afficheBarreInfo(g);
@@ -145,6 +149,19 @@ class IHM_Panel extends JPanel {
             e.printStackTrace();
         }
     } 
+    
+    
+    public int getDECALAGE_PX_EN_Y() {
+        return DECALAGE_PX_EN_Y;
+    }
+    
+    public int getaLargeurCarreau() {
+        return aLargeurCarreau;
+    }
+    
+    public int getaHauteurCarreau() {
+        return aHauteurCarreau;
+    }
 }
 
 
