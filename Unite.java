@@ -36,7 +36,7 @@ public class Unite extends Entite
      */
     public Unite(final int pX,final int pY,final int pJoueur,final int pPointDeVie,final String pNom,final String pImage, final String pDescription,final TypeUnite pType,final TypeAttaque pAttaque,final int pVie,final int pDeplacement, final double pGain)
     {
-       super(pX,pY,pJoueur,pPointDeVie,pNom,pImage,pDescription);
+       super(pX,pY,pJoueur,pPointDeVie);
        aType = pType;
        aAttaque = pAttaque;
        aDeplacement = pDeplacement;
@@ -134,12 +134,12 @@ public class Unite extends Entite
     
     @Override
     public void dessine (final Graphics g) {
-        int pPosHautGaucheX = aCoordonneeX*Slatch.myIHM.getmyPanel().getaLargeurCarreau();
-        int pPosHautGaucheY = aCoordonneeY*Slatch.myIHM.getmyPanel().getaHauteurCarreau() + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
-        int pPosBasDroiteX = (aCoordonneeX+1)*Slatch.myIHM.getmyPanel().getaLargeurCarreau();
-        int pPosBasDroiteY = (aCoordonneeY+1)*Slatch.myIHM.getmyPanel().getaHauteurCarreau() + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
+       /* int pPosHautGaucheX = super.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosHautGaucheY = super.getCoordonneeY()*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
+        int pPosBasDroiteX = (super.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosBasDroiteY = (super.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
         try {
-            Image img = ImageIO.read(new File("Images/"+aURLimage));
+            Image img = ImageIO.read(new File("Images/"+aType.));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.myIHM.getmyPanel());
         }
@@ -156,7 +156,7 @@ public class Unite extends Entite
             catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
        
 }

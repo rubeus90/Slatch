@@ -11,7 +11,7 @@ public enum TypeAttaque
 	TypeAttaque(int pDegats, HashMap<TypeUnite, Double> pEfficacite, String pNom, String pDescription)
 	{
 		degats = pDegats;
-		efficacite.put(TypeUnite.NAVAL, 1.5);
+		//efficacite.put(TypeUnite.NAVAL, 1.5);
 		//efficacite = pEfficacite;
 		nom = pNom;
 		description = pDescription;

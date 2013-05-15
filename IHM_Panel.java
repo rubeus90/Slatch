@@ -38,7 +38,7 @@ class IHM_Panel extends JPanel {
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) {
             for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) {
                 Terrain test;
-                test=new Terrain(i, j, 0, 0, "", "plaine.png", "", 1, 1);
+                test=new Terrain(i, j, 0, 0);
                 MATRICE_TEST[i][j]=test;
             }
         }
@@ -70,7 +70,7 @@ class IHM_Panel extends JPanel {
         tabString = pcoordclick.split(",");
         int clickX = Integer.parseInt(tabString[0]);
         int clickY = Integer.parseInt(tabString[1])-20;   //Decalage de 20 je sais pas pourquoi  
-        Graphics g = Slatch.ihm.getpanel().getGraphics();
+        Graphics g = Slatch.ihm.getPanel().getGraphics();
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) {
             for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) {
                 // Selection
@@ -90,11 +90,11 @@ class IHM_Panel extends JPanel {
     private void afficheMenu(final int pX, final int pY, final String pS) {
         if(pX<NOMBRE_DE_CASE_X/2) {
             // Meun à droite
-            Graphics g = Slatch.ihm.getpanel().getGraphics();
+            Graphics g = Slatch.ihm.getPanel().getGraphics();
         }
         else {
             // Meun à droite
-            Graphics g = Slatch.ihm.getpanel().getGraphics();
+            Graphics g = Slatch.ihm.getPanel().getGraphics();
         }
     }
 
@@ -171,7 +171,7 @@ class IHM_Panel extends JPanel {
         try {
             Image img = ImageIO.read(new File("Images/"+pURL));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getpanel());
+            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
         }
         catch (IOException e) {
             e.printStackTrace();

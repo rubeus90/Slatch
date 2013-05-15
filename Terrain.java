@@ -46,16 +46,20 @@ public class Terrain extends Entite{
         aUnite = pUnite;
     }  
     
+    public TypeTerrain getType(){
+        return aType;
+    }
+    
     @Override
     public void dessine (final Graphics g) {
-        int pPosHautGaucheX = super.getCoordonneeX()*Slatch.ihm.getpanel().getaLargeurCarreau();
-        int pPosHautGaucheY = super.getCoordonneeY()*Slatch.ihm.getpanel().getaHauteurCarreau() + Slatch.ihm.getpanel().getDECALAGE_PX_EN_Y();
-        int pPosBasDroiteX = (super.getCoordonneeX()+1)*Slatch.ihm.getpanel().getaLargeurCarreau();
-        int pPosBasDroiteY = (super.getCoordonneeY()+1)*Slatch.ihm.getpanel().getaHauteurCarreau() + Slatch.ihm.getpanel().getDECALAGE_PX_EN_Y();
+        int pPosHautGaucheX = super.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosHautGaucheY = super.getCoordonneeY()*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
+        int pPosBasDroiteX = (super.getCoordonneeX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosBasDroiteY = (super.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
         try {
             Image img = ImageIO.read(new File("Images/"+null));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getpanel());
+            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -65,7 +69,7 @@ public class Terrain extends Entite{
             try {
                 Image img = ImageIO.read(new File("Images/5.png"));
                 //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-                g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getpanel());
+                g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
                 }
             catch (IOException e) {
                 e.printStackTrace();
