@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 
 /**
  * Write a description of class Partie here.
@@ -14,20 +18,36 @@ public class Partie
     private int aHauteur;
     private int aTourMax;
     private int aTour;
+    private Scanner aMap;
+    private aTerrain[][];
     
 
     /**
      * Constructor for objects of class Partie
      */
-    public Partie(final int pNbrJoueur,final int pRevenuBatiment,final int pTourMax,final int pLargeur, final int pHauteur)
+    public Partie(final int pNbrJoueur,final int pRevenuBatiment,final int pTourMax, final Scanner pMap)
     {
         aNbrJoueur = pNbrJoueur;
         aTourMax = pTourMax;
         aTour = 1;
         aRevenuBatiment = pRevenuBatiment;
-        aLargeur = pLargeur;
-        aHauteur = pHauteur;
-        
+        aMap = pMap;
+    }
+    
+    public void chargerMap(){
+    	aLargeur = aMap.nextLine();
+		aHauteur = aMap.nextLine();
+		aTerrain = new Terrain[aLargeur][aHauteur];
+		
+		Terrain plaine = TypeTerrain.PLAINE;
+		
+		for(int i=0; i<aLargeur; i++){
+			for(int j=0; j<aHauteur; j++){
+				aTerrain[i][j] = new Terrain(i, j, plaine.getJoueur(), plaine.getPointDeVie(), plaine.getNom(), plaine.getImage(), plaine.getDescription(), plaine.getCouverture(), plaine.getCoutDeplacement);
+			}
+		}
+		
+		
     }
 
     
