@@ -1,7 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
+import java.lang.Integer;
 
 /**
  * Write a description of class Partie here.
@@ -35,15 +35,15 @@ public class Partie
     }
     
     public void chargerMap(){
-    	aLargeur = aMap.nextLine();
-		aHauteur = aMap.nextLine();
+    	aLargeur = Integer.parseInt(aMap.nextLine());
+		aHauteur = Integer.parseInt(aMap.nextLine());
 		aTerrain = new Terrain[aLargeur][aHauteur];
 		
-		Terrain plaine = TypeTerrain.PLAINE;
+		TypeTerrain plaine = TypeTerrain.PLAINE;
 		
 		for(int i=0; i<aLargeur; i++){
 			for(int j=0; j<aHauteur; j++){
-				aTerrain[i][j] = new Terrain(i, j, plaine.getJoueur(), plaine.getPointDeVie(), plaine.getNom(), plaine.getImage(), plaine.getDescription(), plaine.getCouverture(), plaine.getCoutDeplacement);
+				aTerrain[i][j] = new Terrain(i, j, plaine.getJoueur(), plaine.getPointDeVie());
 			}
 		}
 		
