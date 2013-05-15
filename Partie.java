@@ -59,7 +59,7 @@ public class Partie
      * Accesseur qui renvoi la valeur de la hauteur du plateau
      * @return aHauteur 
      */
-    public int getLargeur()
+    public int getHauteur()
     {
         return aHauteur;
     }
@@ -68,7 +68,7 @@ public class Partie
      * Accesseur qui renvoi la valeur de la largeur du plateau
      * @return aLargeur 
      */
-    public int getLongueur()
+    public int getLargeur()
     {
         return aLargeur;
     }
