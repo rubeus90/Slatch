@@ -53,9 +53,12 @@ public class Partie
 			id = ligne / 1000000;
 			x = (ligne - id*1000000) / 1000;
 			y = ligne - id+1000000 - x*1000;
+			
+			System.out.println("Coucou" + x + "  " + y + "  " + id);
+			
 			switch(id){
-			case 1: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.FORET);
-			case 2: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.MONTAGNE);
+			case 1: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.FORET); break;
+			case 2: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.MONTAGNE); break;
 			default: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.PLAINE);
 			}
 		}
