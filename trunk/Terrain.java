@@ -1,6 +1,11 @@
 import java.util.HashMap;
+import java.io.File;
+import java.io.IOException;
 import java.lang.Integer;
+import java.awt.Graphics;
 import java.awt.Image;
+
+import javax.imageio.ImageIO;
 
 /**
  * Cette classe gere les terrains du jeu, qui comporte les differents types de terrains et
@@ -13,9 +18,11 @@ import java.awt.Image;
 
 public class Terrain extends Entite{
     private TypeTerrain aType;
-    private int aCouverture;
     private Unite aUnite;
-    private int aCoutDeplacement;
+    private int aX;
+    private int aY;
+    private int aJoueur;
+    private int aPointDeVie;
     
     /**
      * Constructeur des terrains et des batiment
@@ -24,16 +31,9 @@ public class Terrain extends Entite{
         final int pX,
         final int pY,
         final int pJoueur,
-        final int pPointDeVie,
-        final String pNom,
-        final String pImage,
-        final String pDescription,
-        final int pCouverture, 
-        final int pCoutDeplacement) 
+        final int pPointDeVie) 
     {
-        super(pX,pY,pJoueur,pPointDeVie,pNom,pImage,pDescription);
-        aCouverture = pCouverture;
-        aCoutDeplacement = pCoutDeplacement;
+        super(pX,pY,pJoueur,pPointDeVie);
     }
     
     /**Retourner l'unite se trouvant sur le terrain
@@ -43,26 +43,38 @@ public class Terrain extends Entite{
         return aUnite;
     }
     
-    /** Retourner la couverture du terrain, c'est a dire la capacite de chaque type de terrain d'augmenter 
-    *ou de diminuer certains proprietes de l'unite qui se trouve sur ce type de terrain 
-    **@return aCouverture
-    */
-    public int getCouverture(){
-        return aCouverture;
-    }
-    
     /**Attribut une unite à un terrain
     *@return aUnite
     */
     public void setUnite(final Unite pUnite){
         aUnite = pUnite;
-    }
-    
-    /**Retourner le cout de deplacement du terrain. Ce cout varie selon le type du terrain
-    *@return aCoutDeplacement
-    */
-    public int getCoutDeplacement(){
-        return aCoutDeplacement;
     }  
+    
+    @Override
+    public void dessine (final Graphics g) {
+        int pPosHautGaucheX = aX*Slatch.myIHM.getmyPanel().getaLargeurCarreau();
+        int pPosHautGaucheY = aY*Slatch.myIHM.getmyPanel().getaHauteurCarreau() + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
+        int pPosBasDroiteX = (aX+1)*Slatch.myIHM.getmyPanel().getaLargeurCarreau();
+        int pPosBasDroiteY = (aY+1)*Slatch.myIHM.getmyPanel().getaHauteurCarreau() + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
+        try {
+            Image img = ImageIO.read(new File("Images/"+aURLimage));
+            //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
+            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.myIHM.getmyPanel());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        if(aSurbrillance) {
+            try {
+                Image img = ImageIO.read(new File("Images/5.png"));
+                //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
+                g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.myIHM.getmyPanel());
+                }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
 
