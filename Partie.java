@@ -52,9 +52,9 @@ public class Partie
 			ligne = Integer.parseInt(aMap.nextLine());
 			id = ligne / 1000000;
 			x = (ligne - id*1000000) / 1000;
-			y = ligne - id+1000000 - x*1000;
+			y = ligne - id*1000000 - x*1000;
 			
-			System.out.println("Coucou" + x + "  " + y + "  " + id);
+			System.out.println("Coucou "+ligne+" " + x + "  " + y + "  " + id);
 			
 			switch(id){
 			case 1: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.FORET); break;

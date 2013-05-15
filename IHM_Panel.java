@@ -29,11 +29,11 @@ class IHM_Panel extends JPanel {
     private int aHauteurCarreau;
     
     public IHM_Panel(final int pDecalageY){
-        NOMBRE_DE_CASE_X = 16;//Slatch.myPartie.getLargeur();
-        NOMBRE_DE_CASE_Y = 9;//Slatch.myPartie.getHauteur();
+        NOMBRE_DE_CASE_X = Slatch.partie.getLargeur();
+        NOMBRE_DE_CASE_Y = Slatch.partie.getHauteur();
         DECALAGE_PX_EN_Y = pDecalageY;
         
-        MATRICE_TEST = new Terrain[NOMBRE_DE_CASE_X][NOMBRE_DE_CASE_Y];
+        /*MATRICE_TEST = new Terrain[NOMBRE_DE_CASE_X][NOMBRE_DE_CASE_Y];
         
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) {
             for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) {
@@ -41,7 +41,9 @@ class IHM_Panel extends JPanel {
                 test=new Terrain(i, j, 0, 0,TypeTerrain.PLAINE);
                 MATRICE_TEST[i][j]=test;
             }
-        }
+        }*/
+        
+         MATRICE_TEST=Slatch.partie.getTerrain();
     }
     
     /**
