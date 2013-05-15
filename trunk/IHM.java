@@ -20,7 +20,7 @@ public class IHM  {
         frame = new JFrame("SLATCH");
         frame.setTitle("SLATCH");
         frame.setSize(pTailleX,pTailleY);
-        frame.setResizable(false);
+        //frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(panel);
