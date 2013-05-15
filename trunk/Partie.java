@@ -32,9 +32,10 @@ public class Partie
         aTour = 1;
         aRevenuBatiment = pRevenuBatiment;
         aMap = pMap;
+        chargerMap();
     }
     
-    public Terrain[][] chargerMap(){
+    public void chargerMap(){
     	aLargeur = Integer.parseInt(aMap.nextLine());
 		aHauteur = Integer.parseInt(aMap.nextLine());
 		aTerrain = new Terrain[aLargeur][aHauteur];
@@ -58,8 +59,6 @@ public class Partie
 			default: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.PLAINE);
 			}
 		}
-		
-		return aTerrain;
     }
 
     
