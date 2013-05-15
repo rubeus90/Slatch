@@ -1,3 +1,10 @@
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 /****************************************
  *
  * CLASSE UNITE
@@ -123,6 +130,33 @@ public class Unite extends Entite
        setPointDeVie((int)(getPointDeVie()*aGain));
        aAttaque.degats= (int)(aAttaque.degats *aGain);
        aDeplacement = (int)(aDeplacement*aGain);
+    }
+    
+    @Override
+    public void dessine (final Graphics g) {
+        int pPosHautGaucheX = aCoordonneeX*Slatch.myIHM.getmyPanel().getaLargeurCarreau();
+        int pPosHautGaucheY = aCoordonneeY*Slatch.myIHM.getmyPanel().getaHauteurCarreau() + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
+        int pPosBasDroiteX = (aCoordonneeX+1)*Slatch.myIHM.getmyPanel().getaLargeurCarreau();
+        int pPosBasDroiteY = (aCoordonneeY+1)*Slatch.myIHM.getmyPanel().getaHauteurCarreau() + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
+        try {
+            Image img = ImageIO.read(new File("Images/"+aURLimage));
+            //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
+            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.myIHM.getmyPanel());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        if(aSurbrillance) {
+            try {
+                Image img = ImageIO.read(new File("Images/5.png"));
+                //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
+                g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.myIHM.getmyPanel());
+                }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
        
 }

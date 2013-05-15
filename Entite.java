@@ -8,13 +8,10 @@ import javax.imageio.ImageIO;
  * @author Jonathan
  * @version 1.0
  */
-public class Entite 
+public abstract class Entite 
 {
     private int aCoordonneeX;       //Coordonnee en X dans la matrice du Jeu
     private int aCoordonneeY;       //Coordonnee en Y dans la matrice du Jeu
-    private String aURLimage;       //URL de l'Image de l'Entite affichee par l'IHM
-    private String aNom;            //Nom de l'Entite
-    private String aDescription;    //Description de l'Entite affichee par l'IHM
     private int aPointDeVie;        //Point de vie de l'Entite : 0 par defaut
     private int aJoueur;            //Numero du joueur
     private boolean aSurbrillance;            //Numero du joueur
@@ -33,16 +30,10 @@ public class Entite
         final int pCoordonneeX,
         final int pCoordonneeY,
         final int pJoueur,
-        final int pPointDeVie,
-        final String pNom,
-        final String pURLimage,
-        final String pDescription) 
+        final int pPointDeVie) 
     {
         this.aCoordonneeX = pCoordonneeX;
         this.aCoordonneeY = pCoordonneeY;
-        this.aURLimage = pURLimage;
-        this.aNom = pNom;
-        this.aDescription = pDescription;
         this.aPointDeVie = pPointDeVie;
         this.aJoueur = pJoueur;
         this.aSurbrillance=false;
@@ -59,31 +50,7 @@ public class Entite
         setCoordonneeY(pNouvY);
     }
     
-    public void dessine (final Graphics g) {
-        int pPosHautGaucheX = aCoordonneeX*Slatch.ihm.getpanel().getaLargeurCarreau();
-        int pPosHautGaucheY = aCoordonneeY*Slatch.ihm.getpanel().getaHauteurCarreau() + Slatch.ihm.getpanel().getDECALAGE_PX_EN_Y();
-        int pPosBasDroiteX = (aCoordonneeX+1)*Slatch.ihm.getpanel().getaLargeurCarreau();
-        int pPosBasDroiteY = (aCoordonneeY+1)*Slatch.ihm.getpanel().getaHauteurCarreau() + Slatch.ihm.getpanel().getDECALAGE_PX_EN_Y();
-        try {
-            Image img = ImageIO.read(new File("Images/"+aURLimage));
-            //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getpanel());
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-        if(aSurbrillance) {
-            try {
-                Image img = ImageIO.read(new File("Images/5.png"));
-                //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-                g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getpanel());
-                }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+    public abstract void dessine (final Graphics g);
     
     
     //***********************************/
@@ -126,61 +93,7 @@ public class Entite
         this.aCoordonneeY = pCoordonneeY;
     }
     
-    /**
-     * Accesseur
-     * @return aImage
-     */
-    public String getImage()
-    {
-        return this.aURLimage;
-    }
-    
-    /**
-     * Mutateur
-     * @param pImage
-     */
-    public void setImage(final String pURLimage)
-    {
-        this.aURLimage = pURLimage;
-    }
-
-    /**
-     * Accesseur
-     * @return aNom
-     */
-    public String getNom()
-    {
-        return this.aNom;
-    }
-    
-    /**
-     * Mutateur
-     * @param pDescription
-     */
-    public void setDescription(final String pDescription)
-    {
-        this.aDescription = pDescription;
-    }
-    
-     /**
-     * Accesseur
-     * @return aDescription
-     */
-    public String getDescription()
-    {
-        return this.aDescription;
-    }
-    
-    /**
-     * Mutateur
-     * @param pNom
-     */
-    public void setNom(final String pNom)
-    {
-        this.aNom = pNom;
-    }
-
-    /**
+        /**
      * Accesseur
      * @return aJoueur
      */
