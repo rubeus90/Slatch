@@ -64,6 +64,8 @@ public class Partie
 			default: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.PLAINE);
 			}
 		}
+				
+		aTerrain[5][5].setUnite(new Unite(5,5,1,100,TypeUnite.INFANTERIE,TypeAttaque.OMEGA_SLASH_DE_L_ULTIME_APOLLON,10,1.0));
     }
 
     

@@ -1,4 +1,7 @@
 import java.util.HashMap;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.Integer;
 
 public enum TypeTerrain {
@@ -18,6 +21,25 @@ public enum TypeTerrain {
 		aDescription = pDescription;
 		aCouverture = pCouverture;
 		aCoutDeplacement = new HashMap<String,Integer> ();
+		
+		Scanner fichier = null;
+		
+		try {
+			fichier = new Scanner(new File("CoutDeplacement.txt"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		String ligne;
+		String[] tab;
+		
+		while(fichier.hasNextLine()){
+			ligne = fichier.nextLine();
+			tab = ligne.split(",");
+			if(tab[0] == pNom){
+				aCoutDeplacement.put(tab[1],Integer.parseInt(tab[2]));
+			}
+		}
 	}
 	
 	public String getNom(){

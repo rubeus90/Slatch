@@ -19,7 +19,7 @@ public class Unite extends Entite
     // instance variables - replace the example below with your own
     private TypeUnite aType; // Correspond au type d'unité : Infanterie, Véhicule etc ...
     private TypeAttaque aAttaque; // Correspond à l'attaque au corps à corps
-    private int aVie; //Correspond aux nombres de points de vie de l'unite
+    private int aVieActuelle; //Correspond aux nombres de points de vie de l'unite
     private int aPorteeDeplacement; // Coresspond au déplacement maximum que peut effectuer l'unité
     private int aLvl; // Correspond au niveau de l'unité
     private int aExperience; // Correspond à l'expérience total de l'unité
@@ -35,14 +35,14 @@ public class Unite extends Entite
      * Un int correspondant au déplacement maximum
      * Un int correspondant au gain de chaque monté de niveau
      */
-    public Unite(final int pX,final int pY,final int pJoueur,final int pPointDeVie,final String pNom,final String pImage, final String pDescription,final TypeUnite pType,final TypeAttaque pAttaque,final int pVie,final int pDeplacement, final double pGain)
+    public Unite(final int pX,final int pY,final int pJoueur,final int pPointDeVie,final TypeUnite pType,final TypeAttaque pAttaque,final int pDeplacement, final double pGain)
     {
        super(pX,pY,pJoueur,pPointDeVie);
        aType = pType;
        aAttaque = pAttaque;
        aPorteeDeplacement = pDeplacement;
        aGain = pGain;
-       aVie = pVie;
+       aVieActuelle = pPointDeVie;
        aLvl = 0;
        aExperience = 0;
        aExperienceMax=100;
@@ -69,7 +69,7 @@ public class Unite extends Entite
      * @return aVie
      */
     public int getVie(){
-        return aVie;
+        return aVieActuelle;
     }
     
     /**
@@ -117,7 +117,7 @@ public class Unite extends Entite
      * @param pVie
      */
     public void addVie(final int pVie){
-        aVie+=pVie;
+        aVieActuelle+=pVie;
     }
     
     
