@@ -39,15 +39,11 @@ public class Partie
 		aHauteur = Integer.parseInt(aMap.nextLine());
 		aTerrain = new Terrain[aLargeur][aHauteur];
 		
-		TypeTerrain plaine = TypeTerrain.PLAINE;
-		
 		for(int i=0; i<aLargeur; i++){
 			for(int j=0; j<aHauteur; j++){
-				aTerrain[i][j] = new Terrain(i, j, plaine.getJoueur(), plaine.getPointDeVie());
+				aTerrain[i][j] = new Terrain(i, j, 0, 0, TypeTerrain.PLAINE);
 			}
-		}
-		
-		
+		}		
     }
 
     
