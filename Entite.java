@@ -22,9 +22,6 @@ public abstract class Entite
      * @param pCoordonneeY
      * @param pJoueur
      * @param pPointDeVie
-     * @param pNom
-     * @param pImage
-     * @param pDescription
      */
     public Entite(
         final int pCoordonneeX,
