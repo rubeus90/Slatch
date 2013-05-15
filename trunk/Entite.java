@@ -50,8 +50,8 @@ public class Entite
      */
     private void deplacer (final int pNouvX, final int pNouvY)
     {
-        setaCoordonneeX(pNouvX);
-        setaCoordonneeX(pNouvY);
+        setCoordonneeX(pNouvX);
+        setCoordonneeY(pNouvY);
     }
     
     
