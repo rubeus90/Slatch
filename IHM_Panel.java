@@ -78,7 +78,7 @@ class IHM_Panel extends JPanel {
                     afficheImageRedim("5.png",vLargeurCarreau*i, j*vHauteurCarreau+DECALAGE_PX_EN_Y,(i+1)*vLargeurCarreau,(j+1)*vHauteurCarreau+DECALAGE_PX_EN_Y,g);
                     
                     // Avertir Moteur
-                    Slatch.moteur.caseSelectionnee(i,j);
+                    //Slatch.moteur.caseSelectionnee(i,j);
                 }
             }
         }
