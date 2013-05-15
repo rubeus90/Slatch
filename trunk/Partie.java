@@ -113,6 +113,15 @@ public class Partie
         return aNbrJoueur;
     }
     
+    /**
+     * Accesseur qui renvoi le nombre de jouer
+     * @return aNbrJoueur
+     */
+    public Terrain[][] getTerrain()
+    {
+        return aTerrain;
+    }
+    
     /*************************************************************
      * 
      * 
