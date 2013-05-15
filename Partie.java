@@ -19,7 +19,7 @@ public class Partie
     private int aTourMax;
     private int aTour;
     private Scanner aMap;
-    private aTerrain[][];
+    private Terrain[][] aTerrain;
     
 
     /**
