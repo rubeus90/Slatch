@@ -47,9 +47,8 @@ class IHM_Panel extends JPanel {
                     "",
                     "1.png",
                     "",
-                    "", 
                     1, 
-                    aCoutDeplacement);
+                    1);
                 MATRICE_TEST[i][j]=test;
             }
         }
@@ -81,7 +80,7 @@ class IHM_Panel extends JPanel {
         tabString = pcoordclick.split(",");
         int clickX = Integer.parseInt(tabString[0]);
         int clickY = Integer.parseInt(tabString[1])-20;   //Decalage de 20 je sais pas pourquoi  
-        Graphics g = Slatch.myIHM.getmyPanel().getGraphics();
+        Graphics g = Slatch.ihm.getpanel().getGraphics();
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) {
             for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) {
                 // Selection
@@ -89,14 +88,28 @@ class IHM_Panel extends JPanel {
                     afficheImageRedim("5.png",vLargeurCarreau*i, j*vHauteurCarreau+DECALAGE_PX_EN_Y,(i+1)*vLargeurCarreau,(j+1)*vHauteurCarreau+DECALAGE_PX_EN_Y,g);
                     
                     // Avertir Moteur
-                    
-                    //Slatch.myMoteur.caseSelectionne(i,j);
-                    // en passant i et j
+                    Slatch.moteur.caseSelectionnee(i,j);
                     
                 }
             }
         }
     }
+    
+    /**
+     * Affiche Test
+     */
+    private void afficheMenu(final int pX, final int pY, final String pS) {
+        if(pX<NOMBRE_DE_CASE_X/2) {
+            // Meun à droite
+            Graphics g = Slatch.ihm.getpanel().getGraphics();
+        }
+        else {
+            // Meun à droite
+            Graphics g = Slatch.ihm.getpanel().getGraphics();
+        }
+    }
+    
+    
     
     /**
      * Affiche Test
@@ -171,7 +184,7 @@ class IHM_Panel extends JPanel {
         try {
             Image img = ImageIO.read(new File("Images/"+pURL));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.myIHM.getmyPanel());
+            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getpanel());
         }
         catch (IOException e) {
             e.printStackTrace();
