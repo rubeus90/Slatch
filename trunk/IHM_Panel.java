@@ -53,7 +53,7 @@ class IHM_Panel extends JPanel {
         largeurCarte = this.getWidth();
         vLargeurCarreau = largeurCarte/NOMBRE_DE_CASE_X;
         vHauteurCarreau = hauteurCarte/NOMBRE_DE_CASE_Y;
-        
+        System.out.println(vHauteurCarreau+" "+this.getHeight());
         aLargeurCarreau = vLargeurCarreau;
         aHauteurCarreau = vLargeurCarreau;
         
@@ -69,7 +69,7 @@ class IHM_Panel extends JPanel {
         String[] tabString = null;                      //tableau de chaînes
         tabString = pcoordclick.split(",");
         int clickX = Integer.parseInt(tabString[0]);
-        int clickY = Integer.parseInt(tabString[1])-20;   //Decalage de 20 je sais pas pourquoi  
+        int clickY = Integer.parseInt(tabString[1])-20;   //Decalage de 20 car la barre de la fenete fait 20 px
         Graphics g = Slatch.ihm.getPanel().getGraphics();
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) {
             for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) {

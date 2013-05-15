@@ -22,6 +22,6 @@ public class Slatch {
     public Slatch() {
         partie = new Partie(2, 20, 30, null);
         moteur = new Moteur();
-        ihm = new IHM(800,500);
+        ihm = new IHM(802,524);
     }
 }
