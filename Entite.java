@@ -17,6 +17,7 @@ public class Entite
     private String aDescription;    //Description de l'Entite affichee par l'IHM
     private int aPointDeVie;        //Point de vie de l'Entite : 0 par defaut
     private int aJoueur;            //Numero du joueur
+    private boolean selectionne;            //Numero du joueur
     
     /**
      * Constructeur d'une Entite
@@ -58,17 +59,28 @@ public class Entite
     }
     
     public void dessine (final Graphics g) {
-        int pPosHautGaucheX = aCoordonneeX*Slatch.getIHM().getmyPanel().getaLargeurCarreau();
-        int pPosHautGaucheY = aCoordonneeY*Slatch.getIHM().getmyPanel().getaHauteurCarreau() + Slatch.getIHM().getmyPanel().getDECALAGE_PX_EN_Y();
-        int pPosBasDroiteX = aCoordonneeX*(Slatch.getIHM().getmyPanel().getaLargeurCarreau()+1);
-        int pPosBasDroiteY = aCoordonneeY*(Slatch.getIHM().getmyPanel().getaHauteurCarreau()+1) + Slatch.getIHM().getmyPanel().getDECALAGE_PX_EN_Y();
+        int pPosHautGaucheX = aCoordonneeX*Slatch.myIHM.getmyPanel().getaLargeurCarreau();
+        int pPosHautGaucheY = aCoordonneeY*Slatch.myIHM.getmyPanel().getaHauteurCarreau() + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
+        int pPosBasDroiteX = aCoordonneeX*(Slatch.myIHM.getmyPanel().getaLargeurCarreau()+1);
+        int pPosBasDroiteY = aCoordonneeY*(Slatch.myIHM.getmyPanel().getaHauteurCarreau()+1) + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
         try {
             Image img = ImageIO.read(new File("Images/"+aURLimage));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.getIHM().getmyPanel());
+            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.myIHM.getmyPanel());
         }
         catch (IOException e) {
             e.printStackTrace();
+        }
+        
+        if(selectionne) {
+            try {
+                Image img = ImageIO.read(new File("Images/5.png"));
+                //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
+                g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.myIHM.getmyPanel());
+                }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     

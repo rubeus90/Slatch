@@ -14,10 +14,10 @@ import java.awt.Color;
  * @version 01/2013
  */
 class IHM_Panel extends JPanel {
-    private int NOMBRE_DE_CASE_X = 16;
-    private int NOMBRE_DE_CASE_Y = 9;
+    private int NOMBRE_DE_CASE_X; //= 16;
+    private int NOMBRE_DE_CASE_Y;
     private int[][] MATRICE_TEST = new int[NOMBRE_DE_CASE_X][NOMBRE_DE_CASE_Y];
-    private int DECALAGE_PX_EN_Y = 50;
+    private int DECALAGE_PX_EN_Y;
     
     private int hauteurCarte;
     private int largeurCarte;
@@ -26,7 +26,13 @@ class IHM_Panel extends JPanel {
     
     private int aLargeurCarreau;
     private int aHauteurCarreau;
-
+    
+    public IHM_Panel(final int pDecalageY){
+        NOMBRE_DE_CASE_X = 16;//Slatch.myPartie.getLargeur();
+        NOMBRE_DE_CASE_Y = 9;//Slatch.myPartie.getHauteur();
+        DECALAGE_PX_EN_Y = pDecalageY;
+    }
+    
     /**
      * 
      */
@@ -39,7 +45,6 @@ class IHM_Panel extends JPanel {
         
         aLargeurCarreau = vLargeurCarreau;
         aHauteurCarreau = vLargeurCarreau;
-        
         afficheTest(g);
         afficheBarreInfo(g);
     }    
@@ -52,7 +57,7 @@ class IHM_Panel extends JPanel {
         tabString = pcoordclick.split(",");
         int clickX = Integer.parseInt(tabString[0]);
         int clickY = Integer.parseInt(tabString[1])-20;   //Decalage de 20 je sais pas pourquoi  
-        Graphics g = Slatch.getIHM().getmyPanel().getGraphics();
+        Graphics g = Slatch.myIHM.getmyPanel().getGraphics();
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) {
             for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) {
                 // Selection
@@ -129,7 +134,7 @@ class IHM_Panel extends JPanel {
         try {
             Image img = ImageIO.read(new File("Images/"+pURL));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.getIHM().getmyPanel());
+            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.myIHM.getmyPanel());
         }
         catch (IOException e) {
             e.printStackTrace();
