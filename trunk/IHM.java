@@ -23,7 +23,7 @@ public class IHM  {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(myPanel);
+        frame.setContentPane(panel);
         frame.setVisible(true);
         Mouse lecteur = new Mouse();
         frame.addMouseListener(lecteur);
