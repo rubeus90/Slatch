@@ -61,8 +61,8 @@ public class Entite
     public void dessine (final Graphics g) {
         int pPosHautGaucheX = aCoordonneeX*Slatch.myIHM.getmyPanel().getaLargeurCarreau();
         int pPosHautGaucheY = aCoordonneeY*Slatch.myIHM.getmyPanel().getaHauteurCarreau() + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
-        int pPosBasDroiteX = aCoordonneeX*(Slatch.myIHM.getmyPanel().getaLargeurCarreau()+1);
-        int pPosBasDroiteY = aCoordonneeY*(Slatch.myIHM.getmyPanel().getaHauteurCarreau()+1) + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
+        int pPosBasDroiteX = (aCoordonneeX+1)*Slatch.myIHM.getmyPanel().getaLargeurCarreau();
+        int pPosBasDroiteY = (aCoordonneeY+1)*Slatch.myIHM.getmyPanel().getaHauteurCarreau() + Slatch.myIHM.getmyPanel().getDECALAGE_PX_EN_Y();
         try {
             Image img = ImageIO.read(new File("Images/"+aURLimage));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
