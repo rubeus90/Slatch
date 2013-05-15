@@ -32,23 +32,13 @@ class IHM_Panel extends JPanel {
         NOMBRE_DE_CASE_X = 16;//Slatch.myPartie.getLargeur();
         NOMBRE_DE_CASE_Y = 9;//Slatch.myPartie.getHauteur();
         DECALAGE_PX_EN_Y = pDecalageY;
-        HashMap<String,Integer> aCoutDeplacement = new HashMap<String,Integer>();
         
         MATRICE_TEST = new Terrain[NOMBRE_DE_CASE_X][NOMBRE_DE_CASE_Y];
         
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) {
             for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) {
                 Terrain test;
-                test=new Terrain(
-                    i,
-                    j,
-                    0,
-                    0,
-                    "",
-                    "1.png",
-                    "",
-                    1, 
-                    1);
+                test=new Terrain(i, j, 0, 0, "", "plaine.png", "", 1, 1);
                 MATRICE_TEST[i][j]=test;
             }
         }
@@ -89,7 +79,6 @@ class IHM_Panel extends JPanel {
                     
                     // Avertir Moteur
                     Slatch.moteur.caseSelectionnee(i,j);
-                    
                 }
             }
         }
@@ -108,9 +97,7 @@ class IHM_Panel extends JPanel {
             Graphics g = Slatch.ihm.getpanel().getGraphics();
         }
     }
-    
-    
-    
+
     /**
      * Affiche Test
      */
