@@ -75,9 +75,12 @@ class Moteur
                                         Slatch.ihm.getPanel().afficheMenu(items, pX, pY);
                                 }
                         }
-                        if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.getType())) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
+                        else
                         {
-                                attaque(unite, uniteA);
+                            if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.getType())) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
+                            {
+                                    attaque(unite, uniteA);
+                            }
                         }
                 }
         }
