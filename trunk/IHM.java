@@ -3,7 +3,7 @@ import java.awt.* ;
 
 /**
  * JFrame est l'IHM du jeu. (herite de JFrame)
- * (Ne definit que le nom de la fenetre, sa taille, si elle est redimenssionable...).
+ * (Ne definie que le nom de la fenetre, sa taille, si elle est redimenssionable...).
  * 
  * @author Jonathan
  * @version 01

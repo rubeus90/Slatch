@@ -17,7 +17,7 @@ public class Entite
     private String aDescription;    //Description de l'Entite affichee par l'IHM
     private int aPointDeVie;        //Point de vie de l'Entite : 0 par defaut
     private int aJoueur;            //Numero du joueur
-    private boolean selectionne;            //Numero du joueur
+    private boolean aSurbrillance;            //Numero du joueur
     
     /**
      * Constructeur d'une Entite
@@ -72,7 +72,7 @@ public class Entite
             e.printStackTrace();
         }
         
-        if(selectionne) {
+        if(aSurbrillance) {
             try {
                 Image img = ImageIO.read(new File("Images/5.png"));
                 //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
@@ -213,5 +213,23 @@ public class Entite
     public void setPointDeVie(final int pPointDeVie)
     {
         this.aPointDeVie = pPointDeVie;
+    }
+    
+     /**
+     * Accesseur
+     * @return aPointDeVie
+     */
+    public boolean getaSurbrillance()
+    {
+        return this.aSurbrillance;
+    }
+    
+    /**
+     * Mutateur
+     * @param pPointDeVie
+     */
+    public void setaSurbrillance(final boolean pSurbrillance)
+    {
+        this.aSurbrillance = pSurbrillance;
     }
 }

@@ -11,7 +11,7 @@ public class Mouse implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
        //IHM_Pannel.clikcount(e.getClickCount()); pour le double click
-       Slatch.myIHM.getmyPanel().coordclick(e.getX()+","+e.getY());
+       
     }
   
     @Override
@@ -31,5 +31,6 @@ public class Mouse implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent event) {
+        Slatch.myIHM.getmyPanel().coordclick(event.getX()+","+event.getY());
     }  
 }
