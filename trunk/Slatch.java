@@ -4,16 +4,16 @@
  */
 public class Slatch {
 
-	public static IHM myIHM;
-    public static Partie myPartie;
-    public static Moteur myMoteur;
+	public static IHM ihm;
+  public static Partie partie;
+  public static Moteur moteur;
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		myPartie = new Partie();
-        myMoteur = new Moteur();
-        myIHM = new IHM(800,500,"Partie");
+    partie = new Partie();
+    moteur = new Moteur();
+    ihm = new IHM(800,500,"Partie");
 	}
 }
