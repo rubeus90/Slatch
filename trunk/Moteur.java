@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 /*
  * Possede presque toutes les methodes propres a la mecanique du jeu, il va travailler de paire avec Partie et IHM
  */
@@ -20,11 +21,11 @@ class Moteur
 			{
 				return;
 			}
-			deplacement(uniteD, chemin);
+			//deplacement(uniteD, chemin);
 		}
 		else
 		{
-			if(uniteA==null) // si on a sélectionné aucune unité auparavant pour l'attaque
+			/*if(uniteA==null) // si on a sélectionné aucune unité auparavant pour l'attaque
 			{
 				if(uniteD==null)
 				{
@@ -41,7 +42,7 @@ class Moteur
 			if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.TypeUnite)) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
 			{
 				attaque(unite, uniteA);
-			}
+			}*/
 		}
 	}
 	

@@ -31,6 +31,6 @@ public class Mouse implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent event) {
-        Slatch.myIHM.getmyPanel().coordclick(event.getX()+","+event.getY());
+        Slatch.ihm.getPanel().coordclick(event.getX()+","+event.getY());
     }  
 }

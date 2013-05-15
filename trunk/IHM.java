@@ -32,7 +32,7 @@ public class IHM  {
     /**
      * Accesseur du Paneau du Menu.
      */
-    public IHM_Panel getpanel(){
+    public IHM_Panel getPanel(){
         return panel;
     }
 }
