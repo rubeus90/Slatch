@@ -26,7 +26,7 @@ public class Slatch {
      */
     public Slatch() {
         try {
-			partie = new Partie(2, 20, 30, new Scanner(new File("map.txt")));
+			partie = new Partie(2, 20, 30, new Scanner(new File("./trunk/map.txt")));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
