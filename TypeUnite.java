@@ -16,14 +16,26 @@ public enum TypeUnite
         aImage = pImage;
     }
     
+    /**
+     * Accesseur pour aNom
+     * @return aNom
+     */
     public String getNom(){
         return aNom;
     }
     
+    /**
+     * Accesseur pour l'attribut aDescription
+     * @return aDescription
+     */
     public String getDescription(){
         return aDescription;
     }
     
+    /**
+     * Accesseur pour l'attribut aImage
+     * @return aImage
+     */
     public String getImage(){
         return aImage;
     }
