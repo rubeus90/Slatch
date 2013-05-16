@@ -14,15 +14,23 @@ public enum TypeDeplacement
 	 private String aDescription;
 	 
 	 
-	 TypeDeplacement(final String pNom,final String pDescription){
+	public TypeDeplacement(final String pNom,final String pDescription){
         aNom=pNom;
         aDescription =pDescription;
     }
     
+    /**
+     * Accesseur pour l'attribut aNom
+     * @return aNom
+     */
     public String getNom(){
         return aNom;
     }
     
+    /**
+     * Accesseur pour l'attribut aDescription
+     * @return aDescription
+     */
     public String getDescription(){
         return aDescription;
     }
