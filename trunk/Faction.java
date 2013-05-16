@@ -46,4 +46,9 @@ public enum Faction
     {
         return aListeUnites;
     }
+    
+    public String getNom()
+    {
+        return aNom;
+    }
 }
