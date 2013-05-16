@@ -78,6 +78,16 @@ public class Terrain extends Entite{
             aUnite.dessine(g);    
         }
         
+        
+        try {
+            Image img = ImageIO.read(new File("Images/joueur" + getJoueur() + ".png"));
+            //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
+            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
+            }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        
         if(super.getSurbrillance()) {
             try {
                 Image img = ImageIO.read(new File("Images/5.png"));
