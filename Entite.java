@@ -22,7 +22,7 @@ public abstract class Entite
      * @param pCoordonneeX
      * @param pCoordonneeY
      * @param pJoueur
-     * @param pPointDeVie
+     * @param pPVMax
      */
     public Entite(
         final int pCoordonneeX,
@@ -37,19 +37,8 @@ public abstract class Entite
         this.aJoueur = pJoueur;
         this.aSurbrillance=false;
     }
-    
-    /**
-     * Permet de deplacer une unite en modifiant ses coordonnées
-     * @param pNouvX
-     * @param pNouvY
-     */
-    private void deplacer (final int pNouvX, final int pNouvY)
-    {
-        setCoordonneeX(pNouvX);
-        setCoordonneeY(pNouvY);
-    }
-    
-    public abstract void dessine (final Graphics g);
+       
+    public abstract void dessine(final Graphics g);
     
     
     //***********************************/
@@ -76,7 +65,7 @@ public abstract class Entite
     
     /**
      * Accesseur
-     * @return aCoordonneeY
+     * @return pCoordonneeY
      */
     public int getCoordonneeY()
     {
@@ -112,33 +101,42 @@ public abstract class Entite
     
      /**
      * Accesseur
-     * @return aPointDeVie
+     * @return aPV
      */
     public int getPointDeVie()
     {
         return this.aPV;
     }
     
-    public int getPVMax(){
-    	return aPVMax;
-    }
     
     /**
      * Mutateur
-     * @param pPointDeVie
+     * @param pPV
      */
     public void setPointDeVie(final int pPV)
     {
         this.aPV = pPV;
     }
     
+     /**
+     * Accesseur
+     * @return aPVMax
+     */
+    public int getPVMax(){
+    	return this.aPVMax;
+    }
+    
+    /**
+     * Mutateur
+     * @param pPVMax
+     */
     public void setPVMax(final int pPVMax){
     	aPVMax = pPVMax;
     }
     
      /**
      * Accesseur
-     * @return aPointDeVie
+     * @return aSurbrillance
      */
     public boolean getSurbrillance()
     {
@@ -147,7 +145,7 @@ public abstract class Entite
     
     /**
      * Mutateur
-     * @param pPointDeVie
+     * @param pSurbrillance
      */
     public void setSurbrillance(final boolean pSurbrillance)
     {
