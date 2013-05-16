@@ -21,7 +21,7 @@ public class Partie
     private int aHauteur;
     private int aTourMax;
     private int aTour;
-    private int[] batimentJoueur;
+    private int batimentJoueur[];
     private Scanner aMap;
     private Terrain[][] aTerrain;
     
@@ -44,7 +44,7 @@ public class Partie
         int i;
         for(i=1;i<=aNbrJoueur;i++)
         {
-            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,0));
+            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,batimentJoueur[i]));
         }        
         
         aTourMax = pTourMax;
@@ -70,7 +70,9 @@ public class Partie
 		String id;
 		String ligne = "";
 		String tab[] = null;
-		int batimentJoueur[] = new int[aNbrJoueur+1];
+
+		batimentJoueur = new int[aNbrJoueur+1];
+
 		for(int i=0; i<aNbrJoueur; i++){
 			batimentJoueur[i] = 0;
 		}
