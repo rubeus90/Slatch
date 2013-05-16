@@ -70,9 +70,6 @@ class IHM_Panel extends JPanel {
      */
     public void coordclick (String pcoordclick) {
 
-     
-        
-        
         String[] tabString = null;                      //tableau de chaînes
         tabString = pcoordclick.split(",");
         int clickX = Integer.parseInt(tabString[0]);
@@ -119,11 +116,18 @@ class IHM_Panel extends JPanel {
         int vHauteurMenuEnCase=6;
         Graphics g = Slatch.ihm.getPanel().getGraphics();
         
+        if(pX+vLargeurMenuEnCase+1>NOMBRE_DE_CASE_X && pY+vHauteurMenuEnCase+1>NOMBRE_DE_CASE_Y) {
+            //Dessine en haut à gauche
+            afficheImageRedim ("noir80.png", (pX-vLargeurMenuEnCase)*aLargeurCarreau, (pY-vHauteurMenuEnCase-1)*aHauteurCarreau+DECALAGE_PX_EN_Y,pX*aLargeurCarreau, (pY-1)*aHauteurCarreau+DECALAGE_PX_EN_Y, g);
+            return;
+        }
+        
+        
         
         if(pX+vLargeurMenuEnCase+1>NOMBRE_DE_CASE_X) {
             //Dessine en bas à gauche
-            afficheImageRedim ("noir80.png", (pX-1-vLargeurMenuEnCase)*aLargeurCarreau, (pY+1)*aHauteurCarreau+DECALAGE_PX_EN_Y,(pX-1)*aLargeurCarreau, (pY+vHauteurMenuEnCase+1)*aHauteurCarreau+DECALAGE_PX_EN_Y, g);
-            
+            afficheImageRedim ("noir80.png", (pX-vLargeurMenuEnCase)*aLargeurCarreau, (pY+1)*aHauteurCarreau+DECALAGE_PX_EN_Y,pX*aLargeurCarreau, (pY+vHauteurMenuEnCase+1)*aHauteurCarreau+DECALAGE_PX_EN_Y, g);
+            return;
         }
         
         // Meun en bas a droite par default
