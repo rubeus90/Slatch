@@ -66,7 +66,17 @@ class Moteur
      */
     public void caseSelectionnee(int pX, int pY)
     {
+        
+        if(Slatch.partie.getTerrain()[pX][pY].getSurbrillance() && uniteA==null && uniteD == null)
+        {
+            this.enleverSurbrillance();
+            return;
+        }
+        
         this.enleverSurbrillance();
+        
+        
+        
         if(uniteA==null && uniteD == null)
         {
             Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
@@ -100,14 +110,7 @@ class Moteur
                 }
                 else
                 {
-                    if(unite == uniteD)
-                    {
-                        annulerDeplacement();
-                    }
-                    else
-                    {
-                        affichePorteeDep(uniteD);
-                    }
+                    annulerDeplacement();
                 }
             }
             else
