@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 
 
 public class Terrain extends Entite{
+
     private TypeTerrain aType;
     private Unite aUnite;
     
@@ -34,20 +35,26 @@ public class Terrain extends Entite{
         aType = pType;
     }
     
-    /**Retourner l'unite se trouvant sur le terrain
-    *@return aUnite
-    */
+    /**
+     * Retourner l'unite se trouvant sur le terrain
+     * @return aUnite
+     */
     public Unite getUnite(){
         return aUnite;
     }
     
-    /**Attribut une unite à un terrain
-    *@return aUnite
-    */
+    /**
+     * Attribut une unite à un terrain
+     * @return aUnite
+     */
     public void setUnite(final Unite pUnite){
         aUnite = pUnite;
     }  
     
+    /**
+     * Retourner le type de terrain
+     * @return aType
+     */
     public TypeTerrain getType(){
         return aType;
     }
