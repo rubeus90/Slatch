@@ -195,7 +195,53 @@ class Moteur
     
     public void affichePorteeAttaque(Unite unite)
     {
+        //unite.getCoordonneeX()
+        //Slatch.partie.getTerrain()[x][y].setSurbrillance(true)
+        int x = unite.getCoordonneeX();
+        int y = unite.getCoordonneeY();
         
+        // Boucle qui fait la ligne
+        /*for(int i=unite.getAttaque().aTypePortee.getPorteeMin(); i<unite.getAttaque().aTypePortee.getPorteeMax()+1; i++)
+        {
+            // Boucle qui fait la ligne
+            for(int j=unite.getAttaque().aTypePortee.getPorteeMin(); j<unite.getAttaque().aTypePortee.getPorteeMax()+1; j++)
+            {
+                
+            }
+        }*/
+        
+        for(int i=1; i<=unite.getAttaque().aTypePortee.getPorteeMax();i++)
+        {
+            for(int j=1; j<=unite.getAttaque().aTypePortee.getPorteeMax();j++)
+            {
+                if(distance(x+i, y+j, x,y)<=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+i, y+j, x,y)>=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x+i][y+j].getUnite()!=null)
+                {
+                    Slatch.partie.getTerrain()[x+i][y+j].setSurbrillance(true);
+                    Slatch.ihm.getPanel().dessineTerrain(x+i,y+j);
+                }
+                if(distance(x-i, y-j, x,y)<=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x-i, y-j, x,y)>=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x-i][y-j].getUnite()!=null)
+                {
+                    Slatch.partie.getTerrain()[x-i][y-j].setSurbrillance(true);
+                    Slatch.ihm.getPanel().dessineTerrain(x-i,y-j);
+                }
+                if(distance(x+i, y-j, x,y)<=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+i, y-j, x,y)>=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x+i][y-j].getUnite()!=null)
+                {
+                    Slatch.partie.getTerrain()[x+i][y-j].setSurbrillance(true);
+                    Slatch.ihm.getPanel().dessineTerrain(x+i,y-j);
+                }
+                if(distance(x-i, y+j, x,y)<=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x-i, y+j, x,y)>=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x-i][y+j].getUnite()!=null)
+                {
+                    Slatch.partie.getTerrain()[x-i][y+j].setSurbrillance(true);
+                    Slatch.ihm.getPanel().dessineTerrain(x-i,y+j);
+                }
+            }
+        }
+        
+    }
+    
+    public int distance(int dX, int dY, int aX, int aY) // renvoie la distance entre (dX,dY) et (aX,aY)
+    {
+        return Math.abs(dX-aX) + Math.abs(dY-aY);
     }
     
     public void affichePorteeDep(Unite unite)
