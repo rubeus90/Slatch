@@ -67,7 +67,10 @@ class Moteur
     public void caseSelectionnee(int pX, int pY)
     {
         this.enleverSurbrillance();
-        Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
+        if(uniteA==null && uniteD == null)
+        {
+            Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
+        }
         Unite unite = Slatch.partie.getTerrain()[pX][pY].getUnite();
         if(unite==null) // si aucune unité n'est présente sur la case
         {
