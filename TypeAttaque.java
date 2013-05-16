@@ -46,4 +46,32 @@ public enum TypeAttaque
             }
         }
     }
+     /**
+     * Accesseurs et Mutateurs.
+     */
+    public String getNom()
+    {
+        return this.aNom;
+    }
+    
+    public String getDescription()
+    {
+        return this.aDescription;
+    }
+    
+    public int getDegats()
+    {
+        return aDegats; 
+    }
+    
+    public void setNom(String pNom)
+    {
+        this.aNom = pNom;
+    }
+    
+    public void setDescription(String pDescription)
+    {
+        this.aDescription = pDescription;
+    }
+
 }
