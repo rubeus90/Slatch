@@ -155,7 +155,7 @@ class IHM_Panel extends JPanel
     {
         Graphics g = Slatch.ihm.getPanel().getGraphics();
         aUniteMemCaseX = pX;
-        aUniteMemCaseX = pY;
+        aUniteMemCaseY = pY;
         modeMenu = true;
         if(pX+aLargeurMenuEnCase+1>NOMBRE_DE_CASE_X && pY+aHauteurMenuEnCase+1>NOMBRE_DE_CASE_Y) 
         {

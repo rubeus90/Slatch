@@ -32,6 +32,12 @@ class Moteur
             }
         }
     }
+    
+    public void modeAttaque(int pX, int pY)
+    {
+        
+    }
+    
     public void attaque(Unite pAttaquant, Unite pVictime)
     {
         double degatsAtt=0;
@@ -85,9 +91,12 @@ class Moteur
                                 items.add("Capture");
                         }
                         Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
-                        uniteD = unite;
                         Slatch.ihm.getPanel().afficheMenu(items, pX, pY);
                     //}
+                }
+                else
+                {
+                    affichePorteeDep(uniteD);
                 }
             }
             else
@@ -102,7 +111,7 @@ class Moteur
     
     public void modeDeplacement(int pX, int pY)
     {
-        //uniteD = Slatch.partie.getTerrain()[pX][pY].getUnite();
+        uniteD = Slatch.partie.getTerrain()[pX][pY].getUnite();
         affichePorteeDep(uniteD);
     }
     
@@ -122,7 +131,7 @@ class Moteur
                 t=chemin.get(i).split(",");
                 changerCase(unite, Integer.parseInt(t[0]), Integer.parseInt(t[1]));
                 try{
-                    Thread.sleep(500/unite.getPorteeDeplacement());
+                    Thread.sleep(250/chemin.size()+50);
                 }
                 catch(InterruptedException e)
                 {
