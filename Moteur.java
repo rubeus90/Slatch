@@ -32,7 +32,8 @@ class Moteur
             }
         }
     }
-    public void attaque(Unite pAttaquant, Unite pVictime)
+    
+    /*public void attaque(Unite pAttaquant, Unite pVictime)
     {
         double degatsAtt=0;
         degatsAtt=pAttaquant.getAttaque().getDegats()*pAttaquant.getAttaque().efficacite.get(pVictime.getType());
@@ -47,7 +48,7 @@ class Moteur
             estMort(pVictime);
         }    
        
-    }
+    }*/
    
     public void estMort(Unite pUnite)
     {
@@ -91,7 +92,7 @@ class Moteur
             {
                 if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.getType())) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
                 {
-                        attaque(unite, uniteA);
+                        //attaque(unite, uniteA);
                 }
             }
         }

@@ -4,17 +4,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 public enum TypeAttaque
 {
-    OMEGA_SLASH_DE_L_ULTIME_APOLLON(250, "Omega Slash de l'ultime Apollon", "Une série de coups frénétiques qui laisseront tous les ennemis sur le tapis"), // en attente de créer les vraies attaques
-    CANON(400, "Tir de canon", "Envoie un obus sur votre ennemi. Efficace contre l'infanterie."),
-    FUSIL(250, "Tir de fusil", "Envoie une salve de balles sur votre ennemi.");
+    OMEGA_SLASH_DE_L_ULTIME_APOLLON(250, "Omega Slash de l'ultime Apollon", "Une série de coups frénétiques qui laisseront tous les ennemis sur le tapis",PorteeAttaque.COURTE), // en attente de créer les vraies attaques
+    CANON(400, "Tir de canon", "Envoie un obus sur votre ennemi. Efficace contre l'infanterie.",PorteeAttaque.COURTE),
+    FUSIL(250, "Tir de fusil", "Envoie une salve de balles sur votre ennemi.",PorteeAttaque.COURTE);
     
-    private int aDegats; // dégâts de base de l'attaque
+    private int degats; // dégâts de base de l'attaque
     private String aNom;
     private String aDescription;
+    private PorteeAttaque aTypePortee; 
     public HashMap<TypeUnite, Double> efficacite;// on multipliera l'attaque par ce nombre, donc 1 est l'élément neutre, quand c'est plus grand que 1 on a une efficacité plus grande, et réciproquement
     
     
-    TypeAttaque(int pDegats, String pNom, String pDescription ) // ajouter PorteeAttaque pPortee
+    TypeAttaque(int pDegats, String pNom, String pDescription ,final PorteeAttaque pTypePortee ) // ajouter PorteeAttaque pPortee
     {
         aDegats = pDegats;
         //efficacite.put(TypeUnite.NAVAL, 1.5);
@@ -22,7 +23,7 @@ public enum TypeAttaque
         aNom = pNom;
         aDescription = pDescription;
         efficacite= new HashMap<TypeUnite,Double> ();
-        
+        aTypePortee = pTypePortee;
         Scanner fichier = null;
         
         try {
@@ -61,7 +62,12 @@ public enum TypeAttaque
     
     public int getDegats()
     {
-        return aDegats; 
+        return degats; 
+    }
+    
+    public void setDegats(int pDegat)
+    {
+        degats=pDegat; 
     }
     
     public void setNom(String pNom)
