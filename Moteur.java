@@ -64,27 +64,30 @@ class Moteur
         Unite unite = Slatch.partie.getTerrain()[pX][pY].getUnite();
         if(unite==null) // si aucune unité n'est présente sur la case
         {
-            if(uniteD!=null) // si on a sélectioné aucune unité auparavant pour le déplacement
+            if(uniteD!=null && tabDep[pX][pY]>-1) // si on a sélectioné aucune unité auparavant pour le déplacement
             {
                 deplacement(uniteD, chemins.get(pX+","+pY), pX, pY);
             }
+            annulerDeplacement();
         }
         else
         {
             if(uniteA==null) // si on a sélectionné aucune unité auparavant pour l'attaque
             {
                 if(uniteD==null)
-                {
+                {   //if(Slatch.partie.getJoueurActuel()==unite.getJoueur())
+                    //{
                         List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
+                        items.add("Deplace");
                         if(uniteProche(pX,pY)){items.add("Attaque");}
                         if(unite.getType()==TypeUnite.INFANTERIE && Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT)
                         {
                                 items.add("Capture");
                         }
-                        items.add("Deplace");
                         Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
                         uniteD = unite;
                         Slatch.ihm.getPanel().afficheMenu(items, pX, pY);
+                    //}
                 }
             }
             else
@@ -113,15 +116,13 @@ class Moteur
     */
     public void deplacement(Unite unite, final List<String> chemin, int pX, int pY)
     {
-        if(tabDep[pX][pY]>-1)
-        {
             String[] t;
             for(int i=0; i<chemin.size(); i++)
             {
                 t=chemin.get(i).split(",");
                 changerCase(unite, Integer.parseInt(t[0]), Integer.parseInt(t[1]));
                 try{
-                    Thread.sleep(200);
+                    Thread.sleep(500/unite.getPorteeDeplacement());
                 }
                 catch(InterruptedException e)
                 {
@@ -129,8 +130,6 @@ class Moteur
                 }
             }
             changerCase(unite, pX, pY);
-        }
-        annulerDeplacement();
     }
     
     private void changerCase(Unite unite, int destX, int destY)
@@ -225,12 +224,12 @@ class Moteur
                     tabDep[tab[0]+1][tab[1]] = porteeDep -k;// actualise la portée de deplacement restante sur la case correspondante de la matrice tabDep
                     
                     chemins.remove((tab[0]+1)+","+tab[1]); // on supprime l'ancien chemin
-                    List<String> memL = new ArrayList<String>();
+                    List<String> memL = new ArrayList<String>(); // on fait une liste intermédiaire
                     for(String s: chemins.get(tab[0]+","+tab[1]))
                     {
-                        memL.add(s);
+                        memL.add(s); // on copie le chemin précédent dedans
                     }
-                    chemins.put((tab[0]+1)+","+tab[1],memL);
+                    chemins.put((tab[0]+1)+","+tab[1],memL); // on définit ce chemin comme celui de la case suivante
                     chemins.get((tab[0]+1)+","+tab[1]).add(tab[0]+","+tab[1]); // on y rajoute l'étape actuelle
                     
                     if(!Slatch.partie.getTerrain()[tab[0]+1][tab[1]].getSurbrillance()) // si la case n'a pas déjà été mise en valeur
