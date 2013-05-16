@@ -14,7 +14,7 @@ public enum TypeDeplacement
 	 private String aDescription;
 	 
 	 
-	public TypeDeplacement(final String pNom,final String pDescription){
+	TypeDeplacement(final String pNom,final String pDescription){
         aNom=pNom;
         aDescription =pDescription;
     }
