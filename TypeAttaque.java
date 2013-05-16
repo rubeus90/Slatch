@@ -8,19 +8,19 @@ public enum TypeAttaque
     CANON(400, "Tir de canon", "Envoie un obus sur votre ennemi. Efficace contre l'infanterie."),
     FUSIL(250, "Tir de fusil", "Envoie une salve de balles sur votre ennemi.");
     
-    private int degats; // dégâts de base de l'attaque
-    private String nom;
-    private String description;
+    private int aDegats; // dégâts de base de l'attaque
+    private String aNom;
+    private String aDescription;
     public HashMap<TypeUnite, Double> efficacite;// on multipliera l'attaque par ce nombre, donc 1 est l'élément neutre, quand c'est plus grand que 1 on a une efficacité plus grande, et réciproquement
     
     
     TypeAttaque(int pDegats, String pNom, String pDescription ) // ajouter PorteeAttaque pPortee
     {
-        degats = pDegats;
+        aDegats = pDegats;
         //efficacite.put(TypeUnite.NAVAL, 1.5);
         //efficacite = pEfficacite;
-        nom = pNom;
-        description = pDescription;
+        aNom = pNom;
+        aDescription = pDescription;
         efficacite= new HashMap<TypeUnite,Double> ();
         
         Scanner fichier = null;
