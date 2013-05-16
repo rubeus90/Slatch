@@ -9,11 +9,13 @@ class Moteur
     Unite uniteD; // unite en attente de déplacement
     Unite uniteA; // unite en attente d'attaque
     int[][] tabDep; // matrice de la portée de déplacement qu'il nous reste lorsqu'on se situe sur une case, utilisée par checkPorteeDeplacement
+    boolean[][] tabAtt;
     HashMap<String, List<String>> chemins; // contient la liste des chemins pour arriver à la case définie par le premier String
     
     public Moteur()
     {
         tabDep = new int[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
+        tabAtt= new boolean[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
         uniteD = null;
         uniteA = null;
     }
@@ -99,7 +101,7 @@ class Moteur
                     //{
                         List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
                         items.add("Deplace");
-                        if(uniteProche(pX,pY)){items.add("Attaque");}
+                        if(uniteProche(unite, pX,pY)){items.add("Attaque");}
                         if(unite.getType()==TypeUnite.INFANTERIE && Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT)
                         {
                                 items.add("Capture");
@@ -115,9 +117,16 @@ class Moteur
             }
             else
             {
-                if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.getType())) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
+                if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.getType()) && tabAtt[pX][pY]) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
                 {
                         attaque(unite);
+                }
+                else
+                {
+                    if(unite.getJoueur()==uniteA.getJoueur())
+                    {
+                        annulerAttaque();
+                    }
                 }
             }
         }
@@ -132,6 +141,11 @@ class Moteur
     public void annulerDeplacement()
     {
         uniteD=null;
+    }
+    
+    public void annulerAttaque()
+    {
+        uniteA=null;
     }
     
     /*
@@ -167,28 +181,48 @@ class Moteur
     /*
      * vérifie si une unité se trouve à côté de la case passée en paramètre
      */
-    public boolean uniteProche(int pX, int pY)
+    public boolean uniteProche(Unite unite, int pX, int pY)
     {
         if(pX+1<Slatch.partie.getLargeur())
         {
             if(Slatch.partie.getTerrain()[pX+1][pY].getUnite()!=null)
-            {return true;}
+            {
+                if(Slatch.partie.getTerrain()[pX+1][pY].getUnite().getJoueur()!=unite.getJoueur())
+                {
+                    return true;
+                }
+            }
         }
         if(pY+1<Slatch.partie.getHauteur())
         {                
-            if(Slatch.partie.getTerrain()[pX][pY+1].getUnite()!=null){return true;}
+            if(Slatch.partie.getTerrain()[pX][pY+1].getUnite()!=null)
+            {
+                if(Slatch.partie.getTerrain()[pX][pY+1].getUnite().getJoueur()!=unite.getJoueur())
+                {
+                    return true;
+                }
+            }
         }
         
         if(pX>0)
         {
             if(Slatch.partie.getTerrain()[pX-1][pY].getUnite()!=null)
             {
-                return true;
+                if(Slatch.partie.getTerrain()[pX-1][pY].getUnite().getJoueur()!=unite.getJoueur())
+                {
+                    return true;
+                }
             }
         }
         if(pY>0)
         {
-            if(Slatch.partie.getTerrain()[pX][pY-1].getUnite()!=null){return true;}
+            if(Slatch.partie.getTerrain()[pX][pY-1].getUnite()!=null)
+            {
+                if(Slatch.partie.getTerrain()[pX][pY-1].getUnite().getJoueur()!=unite.getJoueur())
+                {
+                    return true;
+                }
+            }
         }
         return false;
     }
@@ -198,6 +232,13 @@ class Moteur
         int x = unite.getCoordonneeX();
         int y = unite.getCoordonneeY();
 
+        for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        {
+            for(int j=0; j<Slatch.partie.getHauteur(); j++)
+            {
+                tabAtt[i][j] = false;
+            }
+        }
         
         for(int i=0; i<=unite.getAttaque().aTypePortee.getPorteeMax();i++)
         {
@@ -209,6 +250,7 @@ class Moteur
                     {
                         Slatch.partie.getTerrain()[x+i][y+j].setSurbrillance(true);
                         Slatch.ihm.getPanel().dessineTerrain(x+i,y+j);
+                        tabAtt[x+i][y+j] = true;
                     }
                 }
                 if(x-i>=0 && y-j>=0)
@@ -217,6 +259,7 @@ class Moteur
                     {
                         Slatch.partie.getTerrain()[x-i][y-j].setSurbrillance(true);
                         Slatch.ihm.getPanel().dessineTerrain(x-i,y-j);
+                        tabAtt[x-i][y-j] = true;
                     }
                 }
                 if(x+i<Slatch.partie.getLargeur() && y-j>=0)
@@ -225,6 +268,7 @@ class Moteur
                     {
                         Slatch.partie.getTerrain()[x+i][y-j].setSurbrillance(true);
                         Slatch.ihm.getPanel().dessineTerrain(x+i,y-j);
+                        tabAtt[x+i][y-j] = true;
                     }
                 }
                 if(x-i>=0 && y+j<Slatch.partie.getHauteur())
@@ -233,6 +277,7 @@ class Moteur
                     {
                         Slatch.partie.getTerrain()[x-i][y+j].setSurbrillance(true);
                         Slatch.ihm.getPanel().dessineTerrain(x-i,y+j);
+                        tabAtt[x-i][y+j] = true;
                     }
                 }
             }

@@ -40,6 +40,7 @@ class IHM_Panel extends JPanel
     private int aHauteurMenuEnCase=6;
     
     private boolean modeMenu;
+    private boolean aAttaquePossible=false;
     
     /**
      * Constructeur
@@ -105,7 +106,7 @@ class IHM_Panel extends JPanel
                             }
                             
                             //Bouton 2 : Attaque
-                            if( (aMenuHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuHautGauche_Ypx+2*aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx ) 
+                            if(aAttaquePossible && (aMenuHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuHautGauche_Ypx+2*aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx ) 
                             {
                                 Slatch.moteur.modeAttaque(aUniteMemCaseX, aUniteMemCaseY);
                                 effaceMenu(g);
@@ -209,6 +210,7 @@ class IHM_Panel extends JPanel
             }
             if(pList.get(vVar).equals("Attaque")) {
                 g.drawString("Attaque", aMenuHautGauche_Xpx+aLargeurCarreau/3, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
+                aAttaquePossible=true;
             }
             if(pList.get(vVar).equals("Capture")) {
                 g.drawString("Capture", aMenuHautGauche_Xpx+aLargeurCarreau/3, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);

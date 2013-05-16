@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 public enum TypeAttaque
 {
     OMEGA_SLASH_DE_L_ULTIME_APOLLON(250, "Omega Slash de l'ultime Apollon", "Une série de coups frénétiques qui laisseront tous les ennemis sur le tapis",PorteeAttaque.COURTE), // en attente de créer les vraies attaques
-    CANON(400, "Tir de canon", "Envoie un obus sur votre ennemi. Efficace contre l'infanterie.",PorteeAttaque.COURTE),
-    FUSIL(250, "Tir de fusil", "Envoie une salve de balles sur votre ennemi.",PorteeAttaque.COURTE);
+    CANON(15, "Tir de canon", "Envoie un obus sur votre ennemi. Efficace contre l'infanterie.",PorteeAttaque.COURTE),
+    FUSIL(10, "Tir de fusil", "Envoie une salve de balles sur votre ennemi.",PorteeAttaque.COURTE);
     
     private int aDegats; // dégâts de base de l'attaque
     private String aNom;
