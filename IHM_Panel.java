@@ -37,6 +37,9 @@ class IHM_Panel extends JPanel
     private int aLargeurMenuEnCase=3;
     private int aHauteurMenuEnCase=6;
     
+    /**
+     * Constructeur
+     */
     public IHM_Panel(final int pDecalageY)
     {
         NOMBRE_DE_CASE_X = Slatch.partie.getLargeur();
@@ -46,7 +49,7 @@ class IHM_Panel extends JPanel
     }
     
     /**
-     * 
+     * Affiche le decor (appelé lors des repaint : a eviter)
      */
     @Override
     public void paintComponent (final Graphics g) 
@@ -108,17 +111,15 @@ class IHM_Panel extends JPanel
                         if(aMenuHautGauche_Xpx!=0 ||aMenuHautGauche_Ypx!=0 ||aMenuBasDroite_Xpx!=0 || aMenuBasDroite_Ypx!=0) 
                         {
                             int aMenuHautGauche_X=aMenuHautGauche_Xpx/aLargeurCarreau;
-                            int aMenuHautGauche_Y=(aMenuHautGauche_Ypx-DECALAGE_PX_EN_Y)/aMenuHautGauche_Ypx;
+                            int aMenuHautGauche_Y=(aMenuHautGauche_Ypx-DECALAGE_PX_EN_Y)/aHauteurCarreau;
                             int aMenuBasDroite_X=aMenuBasDroite_Xpx/aLargeurCarreau;
-                            int aMenuBasDroite_Y=(aMenuBasDroite_Ypx-DECALAGE_PX_EN_Y)/aMenuBasDroite_Ypx;
-                            
+                            int aMenuBasDroite_Y=(aMenuBasDroite_Ypx-DECALAGE_PX_EN_Y)/aHauteurCarreau;
                             for(int u=aMenuHautGauche_X; u<aMenuBasDroite_X; u++) {
                                 for(int v=aMenuHautGauche_Y; v<aMenuBasDroite_Y; v++) {
                                     MATRICE_TEST[u][v].dessine(g);
                                 }
                             }
                         }
-                        
                         aMenuHautGauche_Xpx=0;
                         aMenuHautGauche_Ypx=0;
                         aMenuBasDroite_Xpx=0;
@@ -252,7 +253,6 @@ class IHM_Panel extends JPanel
         }
     } 
     
-    
     /**
      * Affiche une image en fond d'ecran
      */
@@ -279,15 +279,10 @@ class IHM_Panel extends JPanel
         }
     } 
     
-    public int getDECALAGE_PX_EN_Y() {
-        return DECALAGE_PX_EN_Y;
-    }
+    public int getDECALAGE_PX_EN_Y() {return DECALAGE_PX_EN_Y;}
     
-    public int getaLargeurCarreau() {
-        return aLargeurCarreau;
-    }
+    public int getaLargeurCarreau() {return aLargeurCarreau;}
     
-    public int getaHauteurCarreau() {
-        return aHauteurCarreau;
-    }
+    public int getaHauteurCarreau() {return aHauteurCarreau;}
 }
+
