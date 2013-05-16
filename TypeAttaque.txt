@@ -1,0 +1,5 @@
+Tir de fusil:INFANTERIE:1
+Tir de fusil:INFANTERIE:0,7
+Tir de canon:INFANTERIE:1,5
+Tir de canon:VEHICULE:1
+
