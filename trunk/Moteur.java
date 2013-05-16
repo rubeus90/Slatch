@@ -147,12 +147,12 @@ class Moteur
      */
     public boolean uniteProche(int pX, int pY)
     {
-        if(pX<Slatch.partie.getLargeur())
+        if(pX+1<Slatch.partie.getLargeur())
         {
             if(Slatch.partie.getTerrain()[pX+1][pY].getUnite()!=null)
             {return true;}
         }
-        if(pY<Slatch.partie.getLargeur())
+        if(pY+1<Slatch.partie.getHauteur())
         {                
             if(Slatch.partie.getTerrain()[pX][pY+1].getUnite()!=null){return true;}
         }
