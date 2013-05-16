@@ -78,6 +78,7 @@ class IHM_Panel extends JPanel
         int clickX = Integer.parseInt(tabString[0]);
         int clickY = Integer.parseInt(tabString[1])-20;   //Decalage de 20 car la barre de la fenete fait + ou - : 20 px
         Graphics g = Slatch.ihm.getPanel().getGraphics();
+        
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) 
         {
             for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) 
@@ -90,7 +91,8 @@ class IHM_Panel extends JPanel
 
                 if(pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) 
                 {
-                    if(modeMenu)
+                	System.out.println("vehicule:"+i+":"+j+":0");
+                	if(modeMenu)
                     {
                         if( aMenuHautGauche_Ypx<clickY && clickY<aMenuBasDroite_Ypx && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx )//Si tu es dans menu
                         {
