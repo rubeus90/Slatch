@@ -17,3 +17,7 @@ montagne:7:7:0
 batiment:4:4:0
 batiment:10:10:1
 batiment:2:8:2
+infanterie:5:5:1
+infanterie:20:12:2
+vehicule:25:15:1
+vehicule:25:4:2
