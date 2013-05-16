@@ -172,6 +172,21 @@ public class Unite extends Entite
             catch (IOException e) {
                 e.printStackTrace();
             }
+            
+            try {
+                int vUnite = getPointDeVie()%10;
+                int vDizaine = (int)getPointDeVie()/10;
+                System.out.println(vUnite+";"+vDizaine);
+                
+                Image unite = ImageIO.read(new File("Images/pvUnite"+vUnite+".png"));
+                Image dizaine = ImageIO.read(new File("Images/pvDizaine"+vDizaine+".png"));
+                //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
+                g.drawImage(unite, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
+                g.drawImage(dizaine, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
+                }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
 //        }
     }
 
