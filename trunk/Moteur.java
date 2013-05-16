@@ -26,17 +26,16 @@ class Moteur
             {
                 if(Slatch.partie.getTerrain()[i][j].getSurbrillance())
                 {
-                Slatch.partie.getTerrain()[i][j].setSurbrillance(false);
-                Slatch.ihm.getPanel().dessineTerrain(i,j);
+                    Slatch.partie.getTerrain()[i][j].setSurbrillance(false);
+                    Slatch.ihm.getPanel().dessineTerrain(i,j);
                 }
             }
         }
     }
-    
-    /*public void attaque(Unite pAttaquant, Unite pVictime)
+    public void attaque(Unite pAttaquant, Unite pVictime)
     {
         double degatsAtt=0;
-        degatsAtt=pAttaquant.getAttaque().getDegats()*pAttaquant.getAttaque().efficacite.get(pVictime.getType());
+        degatsAtt=pAttaquant.getAttaque().degats*pAttaquant.getAttaque().efficacite.get(pVictime.getType());
         pVictime.addVie((int)-degatsAtt);
         if(pVictime.getVie()<=0)
         {
@@ -48,7 +47,7 @@ class Moteur
             estMort(pVictime);
         }    
        
-    }*/
+    }
    
     public void estMort(Unite pUnite)
     {
@@ -92,7 +91,7 @@ class Moteur
             {
                 if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.getType())) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
                 {
-                        //attaque(unite, uniteA);
+                        attaque(unite, uniteA);
                 }
             }
         }
@@ -117,13 +116,12 @@ class Moteur
         if(tabDep[pX][pY]>-1)
         {
             String[] t;
-            for(String s:chemin)
+            for(int i=0; i<chemin.size(); i++)
             {
-                t=s.split(",");
+                t=chemin.get(i).split(",");
                 changerCase(unite, Integer.parseInt(t[0]), Integer.parseInt(t[1]));
                 try{
-                    System.out.println("Je m'endors");
-                    Thread.sleep(1000);
+                    Thread.sleep(200);
                 }
                 catch(InterruptedException e)
                 {
@@ -137,7 +135,7 @@ class Moteur
     
     private void changerCase(Unite unite, int destX, int destY)
     {
-        Slatch.partie.getTerrain()[destX][destY].setUnite(null);
+        Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
         Slatch.ihm.getPanel().dessineTerrain(unite.getCoordonneeX(),unite.getCoordonneeY());
         unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
         Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
@@ -176,9 +174,17 @@ class Moteur
     public void affichePorteeDep(Unite unite)
     {
         initialiseTabDep(unite.getCoordonneeX(), unite.getCoordonneeY(), unite.getPorteeDeplacement());
+        chemins = new HashMap<String, List<String>>(); // instancie la hashmap des chemins
+        for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        {
+            for(int j=0; j<Slatch.partie.getHauteur(); j++)
+            {
+                chemins.put(i+","+j, new ArrayList<String>()); // instancie chaque chemin
+            }
+        }
         int[] tab = new int[2];
         tab[0]=unite.getCoordonneeX(); tab[1]=unite.getCoordonneeY();
-        checkPorteeDeplacement(unite, unite.getPorteeDeplacement(), tab); 
+        checkPorteeDeplacement(unite, unite.getPorteeDeplacement(), tab);
     }
    
     /*
@@ -203,15 +209,7 @@ class Moteur
     public void checkPorteeDeplacement(Unite unite, int porteeDep, int[] tab)
     {
         int k;
-        chemins = new HashMap<String, List<String>>(); // instancie la hashmap des chemins
-        for(int i=0; i<Slatch.partie.getLargeur(); i++)
-        {
-            for(int j=0; j<Slatch.partie.getHauteur(); j++)
-            {
-                chemins.put(i+","+j, new ArrayList<String>()); // instancie chaque chemin
-            }
-        }
-        
+    
         /*
          * Vers la droite
          */
@@ -225,9 +223,16 @@ class Moteur
                     int[] t = new int[2];
                     t[0]=tab[0]+1; t[1]=tab[1]; 
                     tabDep[tab[0]+1][tab[1]] = porteeDep -k;// actualise la portée de deplacement restante sur la case correspondante de la matrice tabDep
+                    
                     chemins.remove((tab[0]+1)+","+tab[1]); // on supprime l'ancien chemin
-                    chemins.put((tab[0]+1)+","+tab[1], chemins.get(tab[0]+","+tab[1])); // on y met le nouveau chemin plus rapide
+                    List<String> memL = new ArrayList<String>();
+                    for(String s: chemins.get(tab[0]+","+tab[1]))
+                    {
+                        memL.add(s);
+                    }
+                    chemins.put((tab[0]+1)+","+tab[1],memL);
                     chemins.get((tab[0]+1)+","+tab[1]).add(tab[0]+","+tab[1]); // on y rajoute l'étape actuelle
+                    
                     if(!Slatch.partie.getTerrain()[tab[0]+1][tab[1]].getSurbrillance()) // si la case n'a pas déjà été mise en valeur
                     {
                         Slatch.partie.getTerrain()[tab[0]+1][tab[1]].setSurbrillance(true);// on met la case en question en surbrillance
@@ -250,9 +255,17 @@ class Moteur
                     int[] t = new int[2];
                     t[0]=tab[0]; t[1]=tab[1]+1;
                     tabDep[tab[0]][tab[1]+1] = porteeDep -k;
+                    
                     chemins.remove(tab[0]+","+(tab[1]+1));
-                    chemins.put(tab[0]+","+(tab[1]+1),chemins.get(tab[0]+","+tab[1]));
+                    
+                    List<String> memL = new ArrayList<String>();
+                    for(String s: chemins.get(tab[0]+","+tab[1]))
+                    {
+                        memL.add(s);
+                    }
+                    chemins.put(tab[0]+","+(tab[1]+1),memL);
                     chemins.get(tab[0]+","+(tab[1]+1)).add(tab[0]+","+tab[1]);
+                    
                     if(!Slatch.partie.getTerrain()[tab[0]][tab[1]+1].getSurbrillance())
                     {
                         Slatch.partie.getTerrain()[tab[0]][tab[1]+1].setSurbrillance(true);
@@ -275,9 +288,16 @@ class Moteur
                     int[] t = new int[2];
                     t[0]=tab[0]-1; t[1]=tab[1];
                     tabDep[tab[0]-1][tab[1]] = porteeDep -k;
+                    
                     chemins.remove((tab[0]-1)+","+tab[1]);
-                    chemins.put((tab[0]-1)+","+tab[1],chemins.get(tab[0]+","+tab[1]));
+                    List<String> memL = new ArrayList<String>();
+                    for(String s: chemins.get(tab[0]+","+tab[1]))
+                    {
+                        memL.add(s);
+                    }
+                    chemins.put((tab[0]-1)+","+tab[1],memL);
                     chemins.get((tab[0]-1)+","+tab[1]).add(tab[0]+","+tab[1]);
+                
                     if(!Slatch.partie.getTerrain()[tab[0]-1][tab[1]].getSurbrillance())
                     {
                         Slatch.partie.getTerrain()[tab[0]-1][tab[1]].setSurbrillance(true);
@@ -300,9 +320,16 @@ class Moteur
                     int[] t = new int[2];
                     t[0]=tab[0]; t[1]=tab[1]-1;
                     tabDep[tab[0]][tab[1]-1] = porteeDep -k;
+                    
                     chemins.remove(tab[0]+","+(tab[1]-1));
-                    chemins.put(tab[0]+","+(tab[1]-1), chemins.get(tab[0]+","+tab[1]));
+                    List<String> memL = new ArrayList<String>();
+                    for(String s: chemins.get(tab[0]+","+tab[1]))
+                    {
+                        memL.add(s);
+                    }
+                    chemins.put(tab[0]+","+(tab[1]-1), memL);
                     chemins.get(tab[0]+","+(tab[1]-1)).add(tab[0]+","+tab[1]);
+                    
                     if(!Slatch.partie.getTerrain()[tab[0]][tab[1]-1].getSurbrillance())
                     {
                         Slatch.partie.getTerrain()[tab[0]][tab[1]-1].setSurbrillance(true);
@@ -310,7 +337,7 @@ class Moteur
                     }
                     checkPorteeDeplacement(unite, porteeDep-k, t);
                 }
-            }
-        }                
+            }          
+        }
     }
 }
