@@ -8,7 +8,7 @@ public enum TypeAttaque
     CANON(400, "Tir de canon", "Envoie un obus sur votre ennemi. Efficace contre l'infanterie.",PorteeAttaque.COURTE),
     FUSIL(250, "Tir de fusil", "Envoie une salve de balles sur votre ennemi.",PorteeAttaque.COURTE);
     
-    private int degats; // dégâts de base de l'attaque
+    private int aDegats; // dégâts de base de l'attaque
     private String aNom;
     private String aDescription;
     private PorteeAttaque aTypePortee; 
@@ -17,7 +17,7 @@ public enum TypeAttaque
     
     TypeAttaque(int pDegats, String pNom, String pDescription ,final PorteeAttaque pTypePortee ) // ajouter PorteeAttaque pPortee
     {
-        degats = pDegats;
+        aDegats = pDegats;
         //efficacite.put(TypeUnite.NAVAL, 1.5);
         //efficacite = pEfficacite;
         aNom = pNom;
@@ -48,33 +48,54 @@ public enum TypeAttaque
         }
     }
      /**
-     * Accesseurs et Mutateurs.
+     * Accesseur pour l'attribut aNom
+     * @return aNom
      */
     public String getNom()
     {
         return this.aNom;
     }
     
+    /**
+     * Accesseur pour l'attribut aDescription
+     * @return aDescription
+     */
     public String getDescription()
     {
         return this.aDescription;
     }
     
+    /**
+     * Accesseur pour l'attribut aDegat
+     * @return aDegat
+     */
     public int getDegats()
     {
-        return degats; 
+        return aDegats; 
     }
     
+    /**
+     * Mutateur pour l'attribut aDegat
+     * @param pDegat
+     */
     public void setDegats(int pDegat)
     {
-        degats=pDegat; 
+        aDegats=pDegat; 
     }
     
+    /**
+     * Mutateur pour l'attribut aNom
+     * @param pNom
+     */
     public void setNom(String pNom)
     {
         this.aNom = pNom;
     }
     
+    /**
+     * Mutateur pour l'attribut aDescription
+     * @param pDescription
+     */
     public void setDescription(String pDescription)
     {
         this.aDescription = pDescription;

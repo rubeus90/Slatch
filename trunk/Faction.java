@@ -9,7 +9,10 @@ import java.io.FileNotFoundException;
  */
 public enum Faction
 {
-   HUMAINS("HUMAINS"), ROBOTS("ROBOTS"), ALIENS("ALIENS"), NEUTRE("NEUTRE");
+   HUMAINS("HUMAINS"), 
+   ROBOTS("ROBOTS"), 
+   ALIENS("ALIENS"), 
+   NEUTRE("NEUTRE");
    
     public String aNom;
     private List<TypeUnite> aListeUnites;
@@ -42,11 +45,19 @@ public enum Faction
 
     }
     
+    /**
+     * Accesseur pour l'attribut aListeUnites contenant la liste des Unite
+     * @return aListeUnites
+     */
     public List<TypeUnite> getListe()
     {
         return aListeUnites;
     }
     
+    /**
+     * Accesseur pour l'attribut aNom
+     * @return aNom
+     */
     public String getNom()
     {
         return aNom;
