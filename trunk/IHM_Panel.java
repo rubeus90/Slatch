@@ -136,7 +136,12 @@ class IHM_Panel extends JPanel
         }
             
         afficheImageRedim ("noir80.png", vHautGauche_X, vHautGauche_Y, vBasDroite_X, vBasDroite_Y, g);
-        
+        g.setColor(Color.white);
+        g.drawString(pList.get(0), (vHautGauche_X+vBasDroite_X)/2-3*aLargeurCarreau/2, vHautGauche_Y+aHauteurCarreau/2);
+        //g.drawString(pList.get(1), (vHautGauche_X+vBasDroite_X)/2-3*aLargeurCarreau/2, vHautGauche_Y+3*aHauteurCarreau/2);
+        //g.drawString(pList.get(2), (vHautGauche_X+vBasDroite_X)/2-3*aLargeurCarreau/2, vHautGauche_Y+5*aHauteurCarreau/2);
+        g.drawLine(vHautGauche_X, vHautGauche_Y+(vHauteurMenuEnCase/vHauteurMenuEnCase)*aHauteurCarreau, vBasDroite_X, vHautGauche_Y+(vHauteurMenuEnCase/vHauteurMenuEnCase)*aHauteurCarreau);
+        g.drawLine(vHautGauche_X, vHautGauche_Y+(2*vHauteurMenuEnCase/vHauteurMenuEnCase)*aHauteurCarreau, vBasDroite_X, vHautGauche_Y+(2*vHauteurMenuEnCase/vHauteurMenuEnCase)*aHauteurCarreau);
     }
 
     /**
@@ -216,14 +221,12 @@ class IHM_Panel extends JPanel
     private void afficheImageRedim (final String pURL, final int pPosHautGaucheX, final int pPosHautGaucheY,final int pPosBasDroiteX, final int pPosBasDroiteY, final Graphics g) {
         try {
             Image img = ImageIO.read(new File("Images/"+pURL));
-            //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
         }
         catch (IOException e) {
             e.printStackTrace();
         }
     } 
-    
     
     /**
      * Affiche une image en fond d'ecran
@@ -237,7 +240,6 @@ class IHM_Panel extends JPanel
             e.printStackTrace();
         }
     } 
-    
     
     public int getDECALAGE_PX_EN_Y() {
         return DECALAGE_PX_EN_Y;
