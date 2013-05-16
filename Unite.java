@@ -19,7 +19,6 @@ public class Unite extends Entite
     // instance variables - replace the example below with your own
     private TypeUnite aType; // Correspond au type d'unité : Infanterie, Véhicule etc ...
     private TypeAttaque aAttaque; // Correspond à l'attaque au corps à corps
-    private int aVieActuelle; //Correspond aux nombres de points de vie de l'unite
     private int aPorteeDeplacement; // Coresspond au déplacement maximum que peut effectuer l'unité
     private int aLvl; // Correspond au niveau de l'unité
     private int aExperience; // Correspond à l'expérience total de l'unité
@@ -35,14 +34,13 @@ public class Unite extends Entite
      * Un int correspondant au déplacement maximum
      * Un int correspondant au gain de chaque monté de niveau
      */
-    public Unite(final int pX,final int pY,final int pJoueur,final int pPointDeVie,final TypeUnite pType,final TypeAttaque pAttaque,final int pDeplacement, final double pGain, final String typeDeplacement)
+    public Unite(final int pX,final int pY,final int pJoueur,final int pPVMax,final TypeUnite pType,final TypeAttaque pAttaque,final int pDeplacement, final double pGain, final String typeDeplacement)
     {
-       super(pX,pY,pJoueur,pPointDeVie);
+       super(pX,pY,pJoueur,pPVMax);
        aType = pType;
        aAttaque = pAttaque;
        aPorteeDeplacement = pDeplacement;
        aGain = pGain;
-       aVieActuelle = pPointDeVie;
        aLvl = 0;
        aExperience = 0;
        aExperienceMax=100;
@@ -64,14 +62,7 @@ public class Unite extends Entite
     public TypeAttaque getAttaque(){
         return aAttaque;
     }
-    
-    /**
-     * Accesseur qui renvoie la valeur du nombre de point de vie de l'unite
-     * @return aVie
-     */
-    public int getVie(){
-        return aVieActuelle;
-    }
+
     
     /**
      * Accesseur qui renvoie l'expérience total de l'unite
@@ -111,14 +102,6 @@ public class Unite extends Entite
      */
     public void addExperience(final int pExperience){
         aExperience+=pExperience;
-    }
-    
-    /*******
-     * Methode qui permet l'augmentation ou la diminution de la vie
-     * @param pVie
-     */
-    public void addVie(final int pVie){
-        aVieActuelle+=pVie;
     }
     
     

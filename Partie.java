@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.lang.Integer;
+import java.util.ArrayList;
 
 /**
  * Write a description of class Partie here.
@@ -18,6 +19,7 @@ public class Partie
     private int aHauteur;
     private int aTourMax;
     private int aTour;
+    private int[] batimentJoueur;
     private Scanner aMap;
     private Terrain[][] aTerrain;
     
@@ -25,19 +27,35 @@ public class Partie
     /**
      * Constructor for objects of class Partie
      */
-    public Partie(final int pNbrJoueur,final int pRevenuBatiment,final int pTourMax, final Scanner pMap)
+    public Partie(final int pRevenuBatiment,final int pTourMax, final String pMap)
     {
-        aNbrJoueur = pNbrJoueur;
+    	try {
+			aMap = new Scanner(new File(pMap));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+        chargerMap();
+         
+        ArrayList<Joueur> ListeJoueur = new ArrayList<Joueur>();
+        Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
+        ListeJoueur.add(JoueurNeutre);
+        int i;
+        for(i=1;i<=aNbrJoueur;i++)
+        {
+            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,batimentJoueur[i]));
+        }        
+        
         aTourMax = pTourMax;
         aTour = 1;
         aRevenuBatiment = pRevenuBatiment;
-        aMap = pMap;
-        chargerMap();
+       
     }
     
     public void chargerMap(){
     	aLargeur = Integer.parseInt(aMap.nextLine());
 		aHauteur = Integer.parseInt(aMap.nextLine());
+		aNbrJoueur = Integer.parseInt(aMap.nextLine());
+		
 		aTerrain = new Terrain[aLargeur][aHauteur];
 		
 		for(int i=0; i<aLargeur; i++){
@@ -46,22 +64,33 @@ public class Partie
 			}
 		}		
 		
-		int id, x, y;
+		int x, y, joueur;
+		String id;
 		String ligne = "";
 		String tab[] = null;
+		int batimentJoueur[] = new int[aNbrJoueur];
+		for(int i=0; i<aNbrJoueur; i++){
+			batimentJoueur[i] = 0;
+		}
 		
 		while(aMap.hasNextLine()){
 			
 			ligne = aMap.nextLine();
 			tab = ligne.split(":");
-			id = Integer.parseInt(tab[0]);
+			id = tab[0];
 			x = Integer.parseInt(tab[1]);
-			y = Integer.parseInt(tab[2]);			
+			y = Integer.parseInt(tab[2]);	
+			joueur = Integer.parseInt(tab[3]);
 			
 			switch(id){
-			case 1: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.FORET); break;
-			case 2: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.MONTAGNE); break;
-			default: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.PLAINE);
+			case "foret": aTerrain[x][y] = new Terrain(x, y, joueur, 0, TypeTerrain.FORET); break;
+			case "montagne": aTerrain[x][y] = new Terrain(x, y, joueur, 0, TypeTerrain.MONTAGNE); break;
+			case "batiment": {
+				aTerrain[x][y] = new Terrain(x, y, joueur, 10, TypeTerrain.BATIMENT); 
+				batimentJoueur[joueur]++;
+				break;
+			}
+			default: aTerrain[x][y] = new Terrain(x, y, joueur, 0, TypeTerrain.PLAINE);
 			}
 		}
 				
@@ -129,6 +158,16 @@ public class Partie
     public int getNbrJoueur()
     {
         return aNbrJoueur;
+    }
+    
+    /*
+     *Retourne un tableau comportant le nombre de batiment par joueur 
+     * tab[0] correspond au joueur neutre
+     * tab[1] au joueur 1
+     * etc ...
+     */
+    public int[] getBatimentJoueur(){
+    	return batimentJoueur;
     }
     
     /**

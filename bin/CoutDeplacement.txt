@@ -1,9 +1,0 @@
-plaine,roues,1
-plaine,chenilles,1
-plaine,pied,1
-foret,roues,3
-foret,chenilles,80
-foret,pied,2
-montagne,roues,80
-montagne,chenilles,90
-montagne,pied,3

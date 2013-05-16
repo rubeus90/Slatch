@@ -27,10 +27,10 @@ public class Terrain extends Entite{
         final int pX,
         final int pY,
         final int pJoueur,
-        final int pPointDeVie,
+        final int pPVMax,
         final TypeTerrain pType) 
     {
-        super(pX,pY,pJoueur,pPointDeVie);
+        super(pX,pY,pJoueur,pPVMax);
         aType = pType;
     }
     

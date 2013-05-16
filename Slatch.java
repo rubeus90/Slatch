@@ -1,8 +1,3 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.io.File;
-
 /**
  * @author rubeus
  *
@@ -25,11 +20,7 @@ public class Slatch {
      * @param args
      */
     public Slatch() {
-        try {
-			partie = new Partie(2, 20, 30, new Scanner(new File("map.txt")));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+        partie = new Partie(20, 30, "map.txt");
         moteur = new Moteur();
         ihm = new IHM(802,524);
     }
