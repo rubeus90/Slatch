@@ -35,7 +35,7 @@ class Moteur
     public void attaque(Unite pAttaquant, Unite pVictime)
     {
         double degatsAtt=0;
-        degatsAtt=pAttaquant.getAttaque().degats*pAttaquant.getAttaque().efficacite.get(pVictime.getType());
+        degatsAtt=pAttaquant.getAttaque().getDegats()*pAttaquant.getAttaque().efficacite.get(pVictime.getType());
         pVictime.addVie((int)-degatsAtt);
         if(pVictime.getVie()<=0)
         {
