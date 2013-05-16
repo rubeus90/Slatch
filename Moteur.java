@@ -35,9 +35,9 @@ class Moteur
     public void attaque(Unite pAttaquant, Unite pVictime)
     {
         double degatsAtt=0;
-        degatsAtt=pAttaquant.getAttaque().degats*pAttaquant.getAttaque().efficacite.get(pVictime.getType());
-        pVictime.addVie((int)-degatsAtt);
-        if(pVictime.getVie()<=0)
+        degatsAtt=pAttaquant.getAttaque().getDegats()*pAttaquant.getAttaque().efficacite.get(pVictime.getType());
+        pVictime.setPointDeVie(pVictime.getPointDeVie() - (int)degatsAtt);
+        if(pVictime.getPointDeVie()<=0)
         {
             pAttaquant.addExperience(60);
             if(pAttaquant.getExperience()>=100 && pAttaquant.getLvl()<=3)
