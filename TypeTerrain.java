@@ -39,14 +39,6 @@ public enum TypeTerrain {
 				aCoutDeplacement.put(tab[1],Integer.parseInt(tab[2]));
 			}
 		}
-		
-		
-		/*switch(pNom)
-		{
-		    case "foret": aCoutDeplacement.put(TypeDeplacement.PIED,2); break;
-		    case "montagne": aCoutDeplacement.put(TypeDeplacement.PIED,3); break;
-		    default: aCoutDeplacement.put(TypeDeplacement.PIED,1);
-		}*/
 	}
 	
 	public String getNom(){

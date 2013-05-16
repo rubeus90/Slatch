@@ -65,7 +65,7 @@ public class Partie
 			}
 		}
 				
-		aTerrain[5][5].setUnite(new Unite(5,5,1,100,TypeUnite.INFANTERIE,TypeAttaque.OMEGA_SLASH_DE_L_ULTIME_APOLLON,7,1.0, "pied"));
+		aTerrain[30][10].setUnite(new Unite(30,10,1,100,TypeUnite.INFANTERIE,TypeAttaque.OMEGA_SLASH_DE_L_ULTIME_APOLLON,7,1.0, "pied"));
     }
 
     
