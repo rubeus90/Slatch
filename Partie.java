@@ -104,8 +104,8 @@ public class Partie
                 	batimentJoueur[joueur]+=1;
                 	break;
                 }
-                case "infanterie": aTerrain[x][y].setUnite(new Unite(x,y,joueur,100,TypeUnite.INFANTERIE,TypeAttaque.CANON,3,1.0, "pied")); break;
-                case "vehicule": aTerrain[x][y].setUnite(new Unite(x,y,joueur,100,TypeUnite.VEHICULE,TypeAttaque.CANON,7,1.0, "chenilles")); break;
+                case "infanterie": aTerrain[x][y].setUnite(new Unite(x,y,joueur,20,TypeUnite.INFANTERIE,TypeAttaque.CANON,3,1.0, "pied")); break;
+                case "vehicule": aTerrain[x][y].setUnite(new Unite(x,y,joueur,30,TypeUnite.VEHICULE,TypeAttaque.CANON,7,1.0, "chenilles")); break;
             default: aTerrain[x][y] = new Terrain(x, y, joueur, 0, TypeTerrain.PLAINE);
             }
         }
