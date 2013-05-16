@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.lang.Integer;
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -14,6 +15,7 @@ public class Partie
 {
     // instance variables - replace the example below with your own
     private int aNbrJoueur;
+    private List<Joueur> ListeJoueur;
     private int aRevenuBatiment;
     private int aLargeur;
     private int aHauteur;
@@ -36,13 +38,13 @@ public class Partie
 		}
         chargerMap();
          
-        ArrayList<Joueur> ListeJoueur = new ArrayList<Joueur>();
+        ListeJoueur = new ArrayList<Joueur>();
         Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
         ListeJoueur.add(JoueurNeutre);
         int i;
         for(i=1;i<=aNbrJoueur;i++)
         {
-            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,batimentJoueur[i]));
+            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,0));
         }        
         
         aTourMax = pTourMax;
