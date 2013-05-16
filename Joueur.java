@@ -30,14 +30,14 @@ public class Joueur
      * ACCESSEUR & MODIFICATEUR
      */
      
-    int getNumJoueur()      {return aNumJoueur;}
-    Faction getFaction()    {return aFaction;}   
-    int getNbreBatiment()   {return aNbreBatiment;}    
-    int getArgent()         {return aArgent;}
+    public int getNumJoueur()      {return aNumJoueur;}
+    public Faction getFaction()    {return aFaction;}   
+    public int getNbreBatiment()   {return aNbreBatiment;}    
+    public int getArgent()         {return aArgent;}
     
     
-    void setNumJoueur(final int pNum) {aNumJoueur = pNum;}
-    void setFaction(final Faction pFaction) {aFaction = pFaction;}
-    void setNbreBatiment(final int pNbre) {aNbreBatiment = pNbre;}
-    void setArgent(final int pArgent) {aArgent = pArgent;}
+    public void setNumJoueur(final int pNum) {aNumJoueur = pNum;}
+    public void setFaction(final Faction pFaction) {aFaction = pFaction;}
+    public void setNbreBatiment(final int pNbre) {aNbreBatiment = pNbre;}
+    public void setArgent(final int pArgent) {aArgent = pArgent;}
 }
