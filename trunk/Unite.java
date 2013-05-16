@@ -110,11 +110,11 @@ public class Unite extends Entite
      */
     public void upLvl(){
         if(aExperience < aExperienceMax ){ 
-            System.out.println("Experience inferieur a "+aExperienceMax);
+            System.out.println("Experience inferieur a "+aExperienceMax); // Debogage
             return;
         }
         else if(aLvl >=3){
-             System.out.println("Niveau superieur ou egal a 3");
+             System.out.println("Niveau superieur ou egal a 3"); // Debogage
              return;
         }
        aLvl++;
