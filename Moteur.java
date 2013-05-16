@@ -73,19 +73,19 @@ class Moteur
         {
             if(uniteA==null) // si on a sélectionné aucune unité auparavant pour l'attaque
             {
-                    if(uniteD==null)
-                    {
-                            List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
-                            if(uniteProche(pX,pY)){items.add("Attaque");}
-                            /*if(unite.getType()==TypeUnite.INFANTERIE && Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT)
-                            {
-                                    items.add("Assaut");
-                            }*/
-                            items.add("Deplace");
-                            Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
-                            uniteD = unite;
-                            Slatch.ihm.getPanel().afficheMenu(items, pX, pY);
-                    }
+                if(uniteD==null)
+                {
+                        List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
+                        if(uniteProche(pX,pY)){items.add("Attaque");}
+                        if(unite.getType()==TypeUnite.INFANTERIE && Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT)
+                        {
+                                items.add("Capture");
+                        }
+                        items.add("Deplace");
+                        Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
+                        uniteD = unite;
+                        Slatch.ihm.getPanel().afficheMenu(items, pX, pY);
+                }
             }
             else
             {
