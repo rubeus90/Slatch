@@ -176,7 +176,6 @@ public class Unite extends Entite
             try {
                 int vUnite = getPointDeVie()%10;
                 int vDizaine = (int)getPointDeVie()/10;
-                System.out.println(vUnite+";"+vDizaine);
                 
                 Image unite = ImageIO.read(new File("Images/pvUnite"+vUnite+".png"));
                 Image dizaine = ImageIO.read(new File("Images/pvDizaine"+vDizaine+".png"));
