@@ -7,3 +7,6 @@ foret,pied,2
 montagne,roues,80
 montagne,chenilles,90
 montagne,pied,3
+batiment,roues,1
+batiment,chenilles,1
+batiment,pied,1
