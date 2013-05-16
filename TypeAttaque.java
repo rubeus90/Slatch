@@ -17,7 +17,7 @@ public enum TypeAttaque
     
     TypeAttaque(int pDegats, String pNom, String pDescription ,final PorteeAttaque pTypePortee ) // ajouter PorteeAttaque pPortee
     {
-        aDegats = pDegats;
+        degats = pDegats;
         //efficacite.put(TypeUnite.NAVAL, 1.5);
         //efficacite = pEfficacite;
         aNom = pNom;
@@ -79,10 +79,6 @@ public enum TypeAttaque
     {
         this.aDescription = pDescription;
     }
-    
-    public void setDegats(int pDegats)
-    {
-        aDegats=pDegats;
-    }
+
 
 }
