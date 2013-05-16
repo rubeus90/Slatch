@@ -190,15 +190,30 @@ class IHM_Panel extends JPanel
         }
             
         afficheImageRedim ("noir80.png", aMenuHautGauche_Xpx, aMenuHautGauche_Ypx, aMenuBasDroite_Xpx, aMenuBasDroite_Ypx, g);
-        g.setColor(Color.white);
         
-        // Ecrie les boutons
+        // Ecrie les boutons en rouge
+        g.setColor(Color.red);
+        g.drawString("Deplace", (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3);
+        g.drawString("Attaque", (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
+        g.drawString("Capture", (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+        
+        // Ecrie les boutons en vert
         for(int vVar=0;vVar<pList.size();vVar++) {
-            g.drawString(pList.get(vVar), (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+aHauteurCarreau/2+aHauteurCarreau*vVar);
+            g.setColor(Color.green);
+            if(pList.get(vVar).equals("Deplace")) {
+                g.drawString("Deplace", (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3);
+            }
+            if(pList.get(vVar).equals("Attaque")) {
+                g.drawString("Attaque", (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
+            }
+            if(pList.get(vVar).equals("Capture")) {
+                g.drawString("Capture", (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+            }
         }
         
         // Trace les lignes
         for(int vVar=1;vVar<4;vVar++) {
+            g.setColor(Color.white);
             g.drawLine(aMenuHautGauche_Xpx, aMenuHautGauche_Ypx+(vVar*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau, aMenuBasDroite_Xpx-1, aMenuHautGauche_Ypx+(vVar*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau);
         }
     }
@@ -304,3 +319,4 @@ class IHM_Panel extends JPanel
     
     public int getaHauteurCarreau() {return aHauteurCarreau;}
 }
+
