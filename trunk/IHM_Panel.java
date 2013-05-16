@@ -114,7 +114,8 @@ class IHM_Panel extends JPanel
                         }
                         else {
                             
-        
+                        
+                            effaceMenu(g);
                             // Avertir Moteur
                             Slatch.moteur.annulerDeplacement();
                             Slatch.moteur.caseSelectionnee(i,j);
