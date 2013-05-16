@@ -85,16 +85,16 @@ public class Partie
 			switch(id){
 			case "foret": aTerrain[x][y] = new Terrain(x, y, joueur, 0, TypeTerrain.FORET); break;
 			case "montagne": aTerrain[x][y] = new Terrain(x, y, joueur, 0, TypeTerrain.MONTAGNE); break;
-			case "batiment": {
+			/*case "batiment": {
 				aTerrain[x][y] = new Terrain(x, y, joueur, 10, TypeTerrain.BATIMENT); 
-				batimentJoueur[joueur]++;
+				batimentJoueur[joueur]+=1;
 				break;
-			}
+			}*/
 			default: aTerrain[x][y] = new Terrain(x, y, joueur, 0, TypeTerrain.PLAINE);
 			}
 		}
 				
-		aTerrain[5][5].setUnite(new Unite(5,5,1,100,TypeUnite.INFANTERIE,TypeAttaque.OMEGA_SLASH_DE_L_ULTIME_APOLLON,7,1.0, "pied"));
+		aTerrain[5][5].setUnite(new Unite(5,5,1,100,TypeUnite.INFANTERIE,TypeAttaque.CANON,7,1.0, "pied"));
     }
 
     
