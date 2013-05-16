@@ -34,13 +34,13 @@ public enum TypeAttaque
         
         String ligne;
         String[] tab;
-        
         while(fichier.hasNextLine()){
             ligne = fichier.nextLine();
             tab = ligne.split(":");
             if(tab[0].equals(pNom)){
                 for(TypeUnite type : TypeUnite.values()) {
-                    if(type.getNom() == tab[1]) {
+                    
+                    if(type.getNom().equals(tab[1])) {
                         efficacite.put(type,Double.parseDouble(tab[2]));break;
                     }
                 }
