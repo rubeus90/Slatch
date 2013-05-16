@@ -2,7 +2,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-
+import java.util.List;
 import javax.imageio.ImageIO;
 
 /****************************************
@@ -25,7 +25,9 @@ public class Unite extends Entite
     private int aExperienceMax;
     private double aGain; //Compris entre 1 et 2, correspondant au pourcentage d'augmentation des caractéristique à chaque monté de niveau
     private String aTypeDeplacement;
-    
+    private boolean dejaAttaque;
+    private boolean dejaDeplacee;
+   
     /**
      * Constructeur de la classe Unite
      * Prend en paramètre :
@@ -46,6 +48,8 @@ public class Unite extends Entite
        aExperience = 0;
        aExperienceMax=100;
        aTypeDeplacement = pTypeDeplacement;
+       dejaAttaque=false;
+       dejaDeplacee = false;
     }
 
     /**
@@ -55,7 +59,7 @@ public class Unite extends Entite
     public String getTypeDeplacement(){
         return aTypeDeplacement;
     }
-    
+   
     /**
      * Accesseur qui renvoie l'attaque au corps à corps
      * @return aAttaque
@@ -63,8 +67,28 @@ public class Unite extends Entite
     public TypeAttaque getAttaque(){
         return aAttaque;
     }
-
     
+    public void deplacee(boolean b)
+    {
+        dejaDeplacee = b;
+    }
+    
+    public boolean dejaDeplacee()
+    {
+        return dejaDeplacee;
+    }
+    
+    public void attaque(boolean b)
+    {
+        dejaAttaque = b;
+    }
+    
+    public boolean dejaAttaque()
+    {
+        return dejaAttaque;
+    }
+
+   
     /**
      * Accesseur qui renvoie l'expérience total de l'unite
      * @return aExperience
@@ -72,7 +96,7 @@ public class Unite extends Entite
     public int getExperience(){
         return aExperience;
     }
-    
+   
     /**
      * Accesseur qui renvoie le niveau de l'unite
      * @return aLvl
@@ -80,7 +104,7 @@ public class Unite extends Entite
     public int getLvl(){
         return aLvl;
     }
-    
+   
     /**
      * Accesseur qui renvoi le deplacement maximum de l'unite
      * @return aPorteeDeplacement
@@ -88,7 +112,7 @@ public class Unite extends Entite
     public int getPorteeDeplacement(){
         return aPorteeDeplacement;
     }
-    
+   
     /**
      * Accesseur qui renvoi le type de l'unite
      * @return aType
@@ -96,7 +120,7 @@ public class Unite extends Entite
     public TypeUnite getType(){
         return aType;
     }
-    
+   
      /**
      * Methode qui permet l'augmentation ou la diminution de l'experience
      * @param pExperience
@@ -110,7 +134,7 @@ public class Unite extends Entite
      * Methode qui permet a une unite de monter de niveau
      */
     public void upLvl(){
-        if(aExperience < aExperienceMax ){ 
+        if(aExperience < aExperienceMax ){
             System.out.println("Experience inferieur a "+aExperienceMax); // Debogage
             return;
         }
@@ -124,7 +148,7 @@ public class Unite extends Entite
        aAttaque.setDegats((int)(aAttaque.getDegats()*aGain));
        aPorteeDeplacement = (int)(aPorteeDeplacement*aGain);
     }
-    
+   
     @Override
     public void dessine (final Graphics g) {
         int pPosHautGaucheX = super.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
