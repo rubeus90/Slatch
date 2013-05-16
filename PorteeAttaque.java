@@ -20,14 +20,26 @@ public enum PorteeAttaque {
         aPortee = pPortee;
     }
     
+    /**
+     * Accesseur pour l'attribut aNom
+     * @return aNom
+     */
     public String getNom(){
         return aNom;
     }
     
+    /**
+     * Accesseur pour l'attribut aPortee
+     * @return aPortee
+     */
     public int getPortee(){
         return aPortee;
     }
     
+    /**
+     * Accesseur pour l'attribut aDescription
+     * @return aDescription
+     */
     public String getDescription(){
         return aDescription;
     }
