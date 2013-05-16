@@ -105,6 +105,13 @@ public class Unite extends Entite
         aExperience+=pExperience;
     }
     
+     /**
+     * Methode qui permet l'augmentation ou la diminution de l'experience
+     * @param pExperience
+     */
+    public void addVie(final int pVie){
+        aExperience+=pExperience;
+    }
     
     /*******
      * Methode qui permet a une unite de monter de niveau
