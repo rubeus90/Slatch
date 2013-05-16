@@ -35,7 +35,8 @@ class Moteur
     
     public void modeAttaque(int pX, int pY)
     {
-        
+        uniteA = Slatch.partie.getTerrain()[pX][pY].getUnite();
+        affichePorteeAttaque(uniteA);
     }
     
     public void attaque(Unite pAttaquant, Unite pVictime)
@@ -96,7 +97,14 @@ class Moteur
                 }
                 else
                 {
-                    affichePorteeDep(uniteD);
+                    if(unite == uniteD)
+                    {
+                        annulerDeplacement();
+                    }
+                    else
+                    {
+                        affichePorteeDep(uniteD);
+                    }
                 }
             }
             else
@@ -177,6 +185,11 @@ class Moteur
             if(Slatch.partie.getTerrain()[pX][pY-1].getUnite()!=null){return true;}
         }
         return false;
+    }
+    
+    public void affichePorteeAttaque(Unite unite)
+    {
+        
     }
     
     public void affichePorteeDep(Unite unite)
