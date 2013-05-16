@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.lang.Integer;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Write a description of class Partie here.
@@ -13,6 +15,7 @@ public class Partie
 {
     // instance variables - replace the example below with your own
     private int aNbrJoueur;
+    private List<Joueur> ListeJoueur;
     private int aRevenuBatiment;
     private int aLargeur;
     private int aHauteur;
@@ -27,7 +30,14 @@ public class Partie
      */
     public Partie(final int pNbrJoueur,final int pRevenuBatiment,final int pTourMax, final Scanner pMap)
     {
-        aNbrJoueur = pNbrJoueur;
+        aNbrJoueur = pNbrJoueur; // DOIS ETRE DEFINI AU CHARGEMENT DE LA CARTE
+        ListeJoueur = new ArrayList<Joueur>();
+        Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
+        int i;
+        for(i=1;i<=aNbrJoueur;i++)
+        {
+            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,0));
+        }
         aTourMax = pTourMax;
         aTour = 1;
         aRevenuBatiment = pRevenuBatiment;
@@ -36,36 +46,36 @@ public class Partie
     }
     
     public void chargerMap(){
-    	aLargeur = Integer.parseInt(aMap.nextLine());
-		aHauteur = Integer.parseInt(aMap.nextLine());
-		aTerrain = new Terrain[aLargeur][aHauteur];
-		
-		for(int i=0; i<aLargeur; i++){
-			for(int j=0; j<aHauteur; j++){
-				aTerrain[i][j] = new Terrain(i, j, 0, 0, TypeTerrain.PLAINE);
-			}
-		}		
-		
-		int id, x, y;
-		String ligne = "";
-		String tab[] = null;
-		
-		while(aMap.hasNextLine()){
-			
-			ligne = aMap.nextLine();
-			tab = ligne.split(":");
-			id = Integer.parseInt(tab[0]);
-			x = Integer.parseInt(tab[1]);
-			y = Integer.parseInt(tab[2]);			
-			
-			switch(id){
-			case 1: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.FORET); break;
-			case 2: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.MONTAGNE); break;
-			default: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.PLAINE);
-			}
-		}
-				
-		aTerrain[30][10].setUnite(new Unite(30,10,1,100,TypeUnite.INFANTERIE,TypeAttaque.OMEGA_SLASH_DE_L_ULTIME_APOLLON,7,1.0, "pied"));
+        aLargeur = Integer.parseInt(aMap.nextLine());
+        aHauteur = Integer.parseInt(aMap.nextLine());
+        aTerrain = new Terrain[aLargeur][aHauteur];
+        
+        for(int i=0; i<aLargeur; i++){
+            for(int j=0; j<aHauteur; j++){
+                aTerrain[i][j] = new Terrain(i, j, 0, 0, TypeTerrain.PLAINE);
+            }
+        }       
+        
+        int id, x, y;
+        String ligne = "";
+        String tab[] = null;
+        
+        while(aMap.hasNextLine()){
+            
+            ligne = aMap.nextLine();
+            tab = ligne.split(":");
+            id = Integer.parseInt(tab[0]);
+            x = Integer.parseInt(tab[1]);
+            y = Integer.parseInt(tab[2]);           
+            
+            switch(id){
+            case 1: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.FORET); break;
+            case 2: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.MONTAGNE); break;
+            default: aTerrain[x][y] = new Terrain(x, y, 0, 0, TypeTerrain.PLAINE);
+            }
+        }
+                
+        aTerrain[30][10].setUnite(new Unite(30,10,1,100,TypeUnite.INFANTERIE,TypeAttaque.OMEGA_SLASH_DE_L_ULTIME_APOLLON,7,1.0, "pied"));
     }
 
     
