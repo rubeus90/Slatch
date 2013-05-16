@@ -73,5 +73,10 @@ public enum TypeAttaque
     {
         this.aDescription = pDescription;
     }
+    
+    public void setDegats(int pDegats)
+    {
+        aDegats=pDegats;
+    }
 
 }
