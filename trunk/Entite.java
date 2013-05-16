@@ -12,7 +12,8 @@ public abstract class Entite
 {
     private int aCoordonneeX;       //Coordonnee en X dans la matrice du Jeu
     private int aCoordonneeY;       //Coordonnee en Y dans la matrice du Jeu
-    private int aPointDeVie;        //Point de vie de l'Entite : 0 par defaut
+    private int aPVMax; //Point de vie de l'Entite : 0 par defaut
+    private int aPV; //Point de vie actuelle de l'entite
     private int aJoueur;            //Numero du joueur
     private boolean aSurbrillance;            //Numero du joueur
     
@@ -27,11 +28,12 @@ public abstract class Entite
         final int pCoordonneeX,
         final int pCoordonneeY,
         final int pJoueur,
-        final int pPointDeVie) 
+        final int pPVMax) 
     {
         this.aCoordonneeX = pCoordonneeX;
         this.aCoordonneeY = pCoordonneeY;
-        this.aPointDeVie = pPointDeVie;
+        this.aPVMax = pPVMax;
+        this.aPV = aPVMax;
         this.aJoueur = pJoueur;
         this.aSurbrillance=false;
     }
@@ -114,16 +116,24 @@ public abstract class Entite
      */
     public int getPointDeVie()
     {
-        return this.aPointDeVie;
+        return this.aPV;
+    }
+    
+    public int getPVMax(){
+    	return aPVMax;
     }
     
     /**
      * Mutateur
      * @param pPointDeVie
      */
-    public void setPointDeVie(final int pPointDeVie)
+    public void setPointDeVie(final int pPV)
     {
-        this.aPointDeVie = pPointDeVie;
+        this.aPV = pPV;
+    }
+    
+    public void setPVMax(final int pPVMax){
+    	aPVMax = pPVMax;
     }
     
      /**
