@@ -94,13 +94,12 @@ class IHM_Panel extends JPanel
                         //Bouton 1
                         if( aMenuHautGauche_Ypx<clickY && clickY<(aMenuHautGauche_Ypx+aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx ) 
                         {
-                            System.out.println("Bouton 1");
+                            Slatch.moteur.modeDeplacement(i,j);
                         }
                         
                         //Bouton 2
                         if( (aMenuHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuHautGauche_Ypx+2*aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx ) 
                         {
-                            System.out.println("Bouton 2");
                         }
                         
                     }
@@ -179,8 +178,8 @@ class IHM_Panel extends JPanel
         g.drawString(pList.get(0), (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+aHauteurCarreau/2);
         //g.drawString(pList.get(1), (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+3*aHauteurCarreau/2);
         //g.drawString(pList.get(2), (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+5*aHauteurCarreau/2);
-        g.drawLine(aMenuHautGauche_Xpx, aMenuHautGauche_Ypx+(aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau, aMenuBasDroite_Xpx, aMenuHautGauche_Ypx+(aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau);
-        g.drawLine(aMenuHautGauche_Xpx, aMenuHautGauche_Ypx+(2*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau, aMenuBasDroite_Xpx, aMenuHautGauche_Ypx+(2*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau);
+        g.drawLine(aMenuHautGauche_Xpx, aMenuHautGauche_Ypx+(aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau, aMenuBasDroite_Xpx-1, aMenuHautGauche_Ypx+(aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau);
+        g.drawLine(aMenuHautGauche_Xpx, aMenuHautGauche_Ypx+(2*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau, aMenuBasDroite_Xpx-1, aMenuHautGauche_Ypx+(2*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau);
     }
 
     /**
