@@ -28,5 +28,4 @@ public enum TypeUnite
         return aImage;
     }
 
-
 }
