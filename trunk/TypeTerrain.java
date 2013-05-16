@@ -8,7 +8,6 @@ public enum TypeTerrain {
 	FORET("foret", "foret02.png", "une foret", 2), 
 	PLAINE("plaine", "plaine03.png", "une plaine", 1), 
 	MONTAGNE("montagne", "Montagne02.png", "une montagne", 3),
-	
 	BATIMENT("batiment", "5.png", "un batiment au pif pour l'instant", 2);
 	
 	private String aNom;
@@ -16,6 +15,7 @@ public enum TypeTerrain {
 	private String aDescription;
 	private int aCouverture;
 	public HashMap<String,Integer> aCoutDeplacement;
+	
 	TypeTerrain(final String pNom, final String pImage, final String pDescription, final int pCouverture){
 		aNom = pNom;
 		aImage = pImage;
@@ -43,18 +43,34 @@ public enum TypeTerrain {
 		}
 	}
 	
+	/***
+	 * Accesseur pour l'attribut aNom
+	 * @return aNom
+	 */
 	public String getNom(){
 		return aNom;
 	}
 	
+	/***
+	 * Accesseur pour l'attribut aImage
+	 * @return aImage
+	 */
 	public String getImage(){
 		return aImage;
 	}
 	
+	/***
+	 * Accesseur pour l'attribut aDescription
+	 * @return aDescription
+	 */
 	public String getDescription(){
 		return aDescription;
 	}
 	
+	/***
+	 * Accesseur pour l'attribut aCouverture
+	 * @return aCouverture
+	 */
 	public int getCouverture(){
 		return aCouverture;
 	}
