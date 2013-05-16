@@ -25,11 +25,17 @@ class IHM_Panel extends JPanel
     
     private int hauteurCarte;
     private int largeurCarte;
-    private int vLargeurCarreau;
-    private int vHauteurCarreau;
     
     private int aLargeurCarreau;
     private int aHauteurCarreau;
+    
+    private int aMenuHautGauche_Xpx;
+    private int aMenuHautGauche_Ypx;
+    private int aMenuBasDroite_Xpx;
+    private int aMenuBasDroite_Ypx;
+    
+    private int aLargeurMenuEnCase=3;
+    private int aHauteurMenuEnCase=6;
     
     public IHM_Panel(final int pDecalageY)
     {
@@ -47,10 +53,8 @@ class IHM_Panel extends JPanel
     {
         hauteurCarte = this.getHeight()-DECALAGE_PX_EN_Y;
         largeurCarte = this.getWidth();
-        vLargeurCarreau = largeurCarte/NOMBRE_DE_CASE_X;
-        vHauteurCarreau = hauteurCarte/NOMBRE_DE_CASE_Y;
-        aLargeurCarreau = vLargeurCarreau;
-        aHauteurCarreau = vLargeurCarreau;
+        aLargeurCarreau = largeurCarte/NOMBRE_DE_CASE_X;
+        aHauteurCarreau = hauteurCarte/NOMBRE_DE_CASE_Y;
         
         //afficheTest(g);
         dessineMatrice(MATRICE_TEST, g);
@@ -65,24 +69,65 @@ class IHM_Panel extends JPanel
         String[] tabString = null;                      //tableau de chaînes
         tabString = pcoordclick.split(",");
         int clickX = Integer.parseInt(tabString[0]);
-        int clickY = Integer.parseInt(tabString[1])-20;   //Decalage de 20 car la barre de la fenete fait 20 px
+        int clickY = Integer.parseInt(tabString[1])-20;   //Decalage de 20 car la barre de la fenete fait + ou - : 20 px
         Graphics g = Slatch.ihm.getPanel().getGraphics();
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) 
         {
             for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) 
             {
-                // Selection
+                // Position de la case selectionnee
                 int pPosHautGaucheX = i*Slatch.ihm.getPanel().getaLargeurCarreau();
                 int pPosHautGaucheY = j*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
                 int pPosBasDroiteX = (i+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
                 int pPosBasDroiteY = (j+1)*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
-                
-                
+
                 if(pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) 
                 {
-                    // Avertir Moteur
-                    Slatch.moteur.caseSelectionnee(i,j);
-                    Slatch.partie.getTerrain()[i][j].dessine(g);
+                    //Si tu es dans menu
+                    if( aMenuHautGauche_Ypx<clickY && clickY<aMenuBasDroite_Ypx && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx )
+                    {
+                        //Action a differencier
+                        
+                        //Bouton 1
+                        if( aMenuHautGauche_Ypx<clickY && clickY<(aMenuHautGauche_Ypx+aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx ) 
+                        {
+                            System.out.println("Bouton 1");
+                        }
+                        
+                        //Bouton 2
+                        if( (aMenuHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuHautGauche_Ypx+2*aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx ) 
+                        {
+                            System.out.println("Bouton 2");
+                        }
+                        
+                    }
+                    else {
+                        //Si tu n'es pas dans menu
+                        
+                        //Efface Menu si present
+                        if(aMenuHautGauche_Xpx!=0 ||aMenuHautGauche_Ypx!=0 ||aMenuBasDroite_Xpx!=0 || aMenuBasDroite_Ypx!=0) 
+                        {
+                            int aMenuHautGauche_X=aMenuHautGauche_Xpx/aLargeurCarreau;
+                            int aMenuHautGauche_Y=(aMenuHautGauche_Ypx-DECALAGE_PX_EN_Y)/aMenuHautGauche_Ypx;
+                            int aMenuBasDroite_X=aMenuBasDroite_Xpx/aLargeurCarreau;
+                            int aMenuBasDroite_Y=(aMenuBasDroite_Ypx-DECALAGE_PX_EN_Y)/aMenuBasDroite_Ypx;
+                            
+                            for(int u=aMenuHautGauche_X; u<aMenuBasDroite_X; u++) {
+                                for(int v=aMenuHautGauche_Y; v<aMenuBasDroite_Y; v++) {
+                                    MATRICE_TEST[u][v].dessine(g);
+                                }
+                            }
+                        }
+                        
+                        aMenuHautGauche_Xpx=0;
+                        aMenuHautGauche_Ypx=0;
+                        aMenuBasDroite_Xpx=0;
+                        aMenuBasDroite_Ypx=0;
+
+                        // Avertir Moteur
+                        Slatch.moteur.caseSelectionnee(i,j);
+                        Slatch.partie.getTerrain()[i][j].dessine(g);
+                    }
                 }
             }
         }
@@ -93,55 +138,48 @@ class IHM_Panel extends JPanel
      */
     public void afficheMenu(final List<String> pList, final int pX, final int pY) 
     {
-        int vLargeurMenuEnCase=3;
-        int vHauteurMenuEnCase=6;
-        int vHautGauche_X;
-        int vHautGauche_Y;
-        int vBasDroite_X;
-        int vBasDroite_Y;
         Graphics g = Slatch.ihm.getPanel().getGraphics();
-
-        if(pX+vLargeurMenuEnCase+1>NOMBRE_DE_CASE_X && pY+vHauteurMenuEnCase+1>NOMBRE_DE_CASE_Y) 
+        if(pX+aLargeurMenuEnCase+1>NOMBRE_DE_CASE_X && pY+aHauteurMenuEnCase+1>NOMBRE_DE_CASE_Y) 
         {
             //Dessine en haut à gauche
-            vHautGauche_X = (pX-vLargeurMenuEnCase)*aLargeurCarreau;
-            vHautGauche_Y = (pY-vHauteurMenuEnCase)*aHauteurCarreau+DECALAGE_PX_EN_Y;
-            vBasDroite_X = pX*aLargeurCarreau;
-            vBasDroite_Y = pY*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuHautGauche_Xpx = (pX-aLargeurMenuEnCase)*aLargeurCarreau;
+            aMenuHautGauche_Ypx = (pY-aHauteurMenuEnCase)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuBasDroite_Xpx = pX*aLargeurCarreau;
+            aMenuBasDroite_Ypx = pY*aHauteurCarreau+DECALAGE_PX_EN_Y;
         }
 
-        else if(pX+vLargeurMenuEnCase+1>NOMBRE_DE_CASE_X) 
+        else if(pX+aLargeurMenuEnCase+1>NOMBRE_DE_CASE_X) 
         {
             //Dessine en bas à gauche
-            vHautGauche_X = (pX-vLargeurMenuEnCase)*aLargeurCarreau;
-            vHautGauche_Y = (pY+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
-            vBasDroite_X = pX*aLargeurCarreau;
-            vBasDroite_Y = (pY+vHauteurMenuEnCase+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuHautGauche_Xpx = (pX-aLargeurMenuEnCase)*aLargeurCarreau;
+            aMenuHautGauche_Ypx = (pY+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuBasDroite_Xpx = pX*aLargeurCarreau;
+            aMenuBasDroite_Ypx = (pY+aHauteurMenuEnCase+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
         }
         
-        else if(pY+vHauteurMenuEnCase+1>NOMBRE_DE_CASE_Y) {
+        else if(pY+aHauteurMenuEnCase+1>NOMBRE_DE_CASE_Y) {
             //Dessine en haut à droite
-            vHautGauche_X = (pX+1)*aLargeurCarreau;
-            vHautGauche_Y = (pY-vHauteurMenuEnCase)*aHauteurCarreau+DECALAGE_PX_EN_Y;
-            vBasDroite_X = (pX+vLargeurMenuEnCase+1)*aLargeurCarreau;
-            vBasDroite_Y = pY*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuHautGauche_Xpx = (pX+1)*aLargeurCarreau;
+            aMenuHautGauche_Ypx = (pY-aHauteurMenuEnCase)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuBasDroite_Xpx = (pX+aLargeurMenuEnCase+1)*aLargeurCarreau;
+            aMenuBasDroite_Ypx = pY*aHauteurCarreau+DECALAGE_PX_EN_Y;
         }
         
         else {
             // Meun en bas a droite par default
-            vHautGauche_X = (pX+1)*aLargeurCarreau;
-            vHautGauche_Y = (pY+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
-            vBasDroite_X = (pX+vLargeurMenuEnCase+1)*aLargeurCarreau;
-            vBasDroite_Y = (pY+vHauteurMenuEnCase+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuHautGauche_Xpx = (pX+1)*aLargeurCarreau;
+            aMenuHautGauche_Ypx = (pY+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuBasDroite_Xpx = (pX+aLargeurMenuEnCase+1)*aLargeurCarreau;
+            aMenuBasDroite_Ypx = (pY+aHauteurMenuEnCase+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
         }
             
-        afficheImageRedim ("noir80.png", vHautGauche_X, vHautGauche_Y, vBasDroite_X, vBasDroite_Y, g);
+        afficheImageRedim ("noir80.png", aMenuHautGauche_Xpx, aMenuHautGauche_Ypx, aMenuBasDroite_Xpx, aMenuBasDroite_Ypx, g);
         g.setColor(Color.white);
-        g.drawString(pList.get(0), (vHautGauche_X+vBasDroite_X)/2-3*aLargeurCarreau/2, vHautGauche_Y+aHauteurCarreau/2);
-        //g.drawString(pList.get(1), (vHautGauche_X+vBasDroite_X)/2-3*aLargeurCarreau/2, vHautGauche_Y+3*aHauteurCarreau/2);
-        //g.drawString(pList.get(2), (vHautGauche_X+vBasDroite_X)/2-3*aLargeurCarreau/2, vHautGauche_Y+5*aHauteurCarreau/2);
-        g.drawLine(vHautGauche_X, vHautGauche_Y+(vHauteurMenuEnCase/vHauteurMenuEnCase)*aHauteurCarreau, vBasDroite_X, vHautGauche_Y+(vHauteurMenuEnCase/vHauteurMenuEnCase)*aHauteurCarreau);
-        g.drawLine(vHautGauche_X, vHautGauche_Y+(2*vHauteurMenuEnCase/vHauteurMenuEnCase)*aHauteurCarreau, vBasDroite_X, vHautGauche_Y+(2*vHauteurMenuEnCase/vHauteurMenuEnCase)*aHauteurCarreau);
+        g.drawString(pList.get(0), (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+aHauteurCarreau/2);
+        //g.drawString(pList.get(1), (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+3*aHauteurCarreau/2);
+        //g.drawString(pList.get(2), (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+5*aHauteurCarreau/2);
+        g.drawLine(aMenuHautGauche_Xpx, aMenuHautGauche_Ypx+(aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau, aMenuBasDroite_Xpx, aMenuHautGauche_Ypx+(aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau);
+        g.drawLine(aMenuHautGauche_Xpx, aMenuHautGauche_Ypx+(2*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau, aMenuBasDroite_Xpx, aMenuHautGauche_Ypx+(2*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau);
     }
 
     /**
@@ -150,9 +188,9 @@ class IHM_Panel extends JPanel
     private void afficheTest (final Graphics g) {
         for(int i = 0; i < NOMBRE_DE_CASE_X ; i++) {
             for(int j=0 ; j < NOMBRE_DE_CASE_Y ; j++) {
-                afficheImageRedim(""+(i%4+1)+".png",vLargeurCarreau*i, vHauteurCarreau*j+DECALAGE_PX_EN_Y, vLargeurCarreau*(i+1), vHauteurCarreau*(j+1)+DECALAGE_PX_EN_Y,g);
+                afficheImageRedim(""+(i%4+1)+".png",aLargeurCarreau*i, aHauteurCarreau*j+DECALAGE_PX_EN_Y, aLargeurCarreau*(i+1), aHauteurCarreau*(j+1)+DECALAGE_PX_EN_Y,g);
                 g.setColor(Color.white);
-                g.drawRect(vLargeurCarreau*i, j*vHauteurCarreau+DECALAGE_PX_EN_Y, vLargeurCarreau+vLargeurCarreau*i, vHauteurCarreau+j*vHauteurCarreau+DECALAGE_PX_EN_Y);
+                g.drawRect(aLargeurCarreau*i, j*aHauteurCarreau+DECALAGE_PX_EN_Y, aLargeurCarreau+aLargeurCarreau*i, aHauteurCarreau+j*aHauteurCarreau+DECALAGE_PX_EN_Y);
             }
         }
     }
@@ -163,7 +201,7 @@ class IHM_Panel extends JPanel
     private void afficheMatrice(final String[][] pStringURL, final Graphics g) {
         for(int i=0; i<NOMBRE_DE_CASE_X; i++) {
             for(int j=0; j<NOMBRE_DE_CASE_Y; j++) {
-                afficheImageRedim(pStringURL[i][j], vLargeurCarreau*i, vHauteurCarreau*j+DECALAGE_PX_EN_Y, vLargeurCarreau*(i+1), vHauteurCarreau*(j+1)+DECALAGE_PX_EN_Y, g);
+                afficheImageRedim(pStringURL[i][j], aLargeurCarreau*i, aHauteurCarreau*j+DECALAGE_PX_EN_Y, aLargeurCarreau*(i+1), aHauteurCarreau*(j+1)+DECALAGE_PX_EN_Y, g);
             }
         }
     }
