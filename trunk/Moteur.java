@@ -39,26 +39,27 @@ class Moteur
         affichePorteeAttaque(uniteA);
     }
     
-    public void attaque(Unite pAttaquant, Unite pVictime)
+    public void attaque(Unite pVictime)
     {
         double degatsAtt=0;
-        degatsAtt=pAttaquant.getAttaque().getDegats()*pAttaquant.getAttaque().efficacite.get(pVictime.getType());
+        degatsAtt=uniteA.getAttaque().getDegats()*uniteA.getAttaque().efficacite.get(pVictime.getType());
         pVictime.setPointDeVie(pVictime.getPointDeVie() - (int)degatsAtt);
         if(pVictime.getPointDeVie()<=0)
         {
-            pAttaquant.addExperience(60);
-            if(pAttaquant.getExperience()>=100 && pAttaquant.getLvl()<=3)
+            uniteA.addExperience(60);
+            if(uniteA.getExperience()>=100 && uniteA.getLvl()<=3)
             {
-                pAttaquant.upLvl();
+                uniteA.upLvl();
             }
             estMort(pVictime);
         }    
-       
+        uniteA=null;
     }
    
-    public void estMort(Unite pUnite)
+    public void estMort(Unite unite)
     {
-        //Need le tableau Unite[][] de Partie
+        Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
+        Slatch.ihm.getPanel().dessineTerrain(unite.getCoordonneeX(),unite.getCoordonneeY());
     }
 
     /*
@@ -74,7 +75,6 @@ class Moteur
         }
         
         this.enleverSurbrillance();
-        
         
         
         if(uniteA==null && uniteD == null)
@@ -117,7 +117,7 @@ class Moteur
             {
                 if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.getType())) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
                 {
-                        attaque(unite, uniteA);
+                        attaque(unite);
                 }
             }
         }
