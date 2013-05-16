@@ -111,6 +111,7 @@ public class Partie
         
         //Ajout d'une unite
         aTerrain[5][5].setUnite(new Unite(5,5,1,100,TypeUnite.INFANTERIE,TypeAttaque.CANON,7,1.0, "pied"));
+        aTerrain[20][15].setUnite(new Unite(20,15,1,200,TypeUnite.VEHICULE,TypeAttaque.CANON,3,1.0,"chenilles"));
     }
 
     /**********
