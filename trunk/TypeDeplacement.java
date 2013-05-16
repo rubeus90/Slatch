@@ -3,8 +3,8 @@
  */
 public enum TypeDeplacement
 {
-	 ROUES("roues","Les vehicules à roues ne peuvent pas aller dans les montagnes"), 
-	 CHENILLES("chenilles","Les vehicules à chenilles ne peuvent ni aller dans les montagnes ni dans les forêt"),
+	 ROUES("roues","Les Unités à roues ne peuvent pas aller dans les montagnes"), 
+	 CHENILLES("chenilles","Les Unités à chenilles ne peuvent ni aller dans les montagnes ni dans les forêt"),
 	 PIED("pied","Les Unités à pied peuvent aller de partout sur terre"), 
 	 NAVAL("naval","Les Unités navales ne peuvent aller que sur l'eau"),
 	 AERIEN("aerien","Les unités aériennes peuvent aller de partout et ne sont pas influés par le terrain"), 
