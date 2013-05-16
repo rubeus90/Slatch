@@ -96,16 +96,18 @@ class IHM_Panel extends JPanel
                         {
                             //Action a differencier
                             
-                            //Bouton 1
+                            //Bouton 1 : Deplace
                             if( aMenuHautGauche_Ypx<clickY && clickY<(aMenuHautGauche_Ypx+aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx ) 
                             {
                                 Slatch.moteur.modeDeplacement(aUniteMemCaseX, aUniteMemCaseY);
                                 effaceMenu(g);
                             }
                             
-                            //Bouton 2
+                            //Bouton 2 : Attaque
                             if( (aMenuHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuHautGauche_Ypx+2*aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx ) 
                             {
+                                Slatch.moteur.modeAttaque(aUniteMemCaseX, aUniteMemCaseY);
+                                effaceMenu(g);
                             }
                             
                         }
@@ -319,4 +321,3 @@ class IHM_Panel extends JPanel
     
     public int getaHauteurCarreau() {return aHauteurCarreau;}
 }
-
