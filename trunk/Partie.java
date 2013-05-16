@@ -70,7 +70,7 @@ public class Partie
 		String id;
 		String ligne = "";
 		String tab[] = null;
-		int batimentJoueur[] = new int[aNbrJoueur];
+		int batimentJoueur[] = new int[aNbrJoueur+1];
 		for(int i=0; i<aNbrJoueur; i++){
 			batimentJoueur[i] = 0;
 		}
@@ -87,11 +87,11 @@ public class Partie
 			switch(id){
 			case "foret": aTerrain[x][y] = new Terrain(x, y, joueur, 0, TypeTerrain.FORET); break;
 			case "montagne": aTerrain[x][y] = new Terrain(x, y, joueur, 0, TypeTerrain.MONTAGNE); break;
-			/*case "batiment": {
+			case "batiment": {
 				aTerrain[x][y] = new Terrain(x, y, joueur, 10, TypeTerrain.BATIMENT); 
 				batimentJoueur[joueur]+=1;
 				break;
-			}*/
+			}
 			default: aTerrain[x][y] = new Terrain(x, y, joueur, 0, TypeTerrain.PLAINE);
 			}
 		}
