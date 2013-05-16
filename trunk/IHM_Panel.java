@@ -115,14 +115,20 @@ class IHM_Panel extends JPanel {
      * Affiche Test
      */
     public void afficheMenu(final List<String> pList, final int pX, final int pY) {
-        if(pX<NOMBRE_DE_CASE_X/2) {
-            // Meun à droite
-            Graphics g = Slatch.ihm.getPanel().getGraphics();
+        int vLargeurMenuEnCase=3;
+        int vHauteurMenuEnCase=6;
+        Graphics g = Slatch.ihm.getPanel().getGraphics();
+        
+        
+        if(pX+vLargeurMenuEnCase+1>NOMBRE_DE_CASE_X) {
+            //Dessine en bas à gauche
+            afficheImageRedim ("noir80.png", (pX-1-vLargeurMenuEnCase)*aLargeurCarreau, (pY+1)*aHauteurCarreau+DECALAGE_PX_EN_Y,(pX-1)*aLargeurCarreau, (pY+vHauteurMenuEnCase+1)*aHauteurCarreau+DECALAGE_PX_EN_Y, g);
+            
         }
-        else {
-            // Meun à droite
-            Graphics g = Slatch.ihm.getPanel().getGraphics();
-        }
+        
+        // Meun en bas a droite par default
+        afficheImageRedim ("noir80.png", (pX+1)*aLargeurCarreau, (pY+1)*aHauteurCarreau+DECALAGE_PX_EN_Y,(pX+vLargeurMenuEnCase+1)*aLargeurCarreau, (pY+vHauteurMenuEnCase+1)*aHauteurCarreau+DECALAGE_PX_EN_Y, g);
+        
     }
 
     /**

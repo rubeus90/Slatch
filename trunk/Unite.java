@@ -145,7 +145,7 @@ public class Unite extends Entite
     public void dessine (final Graphics g) {
         int pPosHautGaucheX = super.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
         int pPosHautGaucheY = super.getCoordonneeY()*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
-        int pPosBasDroiteX = (super.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosBasDroiteX = (super.getCoordonneeX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
         int pPosBasDroiteY = (super.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
         try {
             Image img = ImageIO.read(new File("Images/"+aType.getImage()));
