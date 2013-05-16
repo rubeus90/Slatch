@@ -120,7 +120,7 @@ public class Unite extends Entite
        aLvl++;
        aExperience-=aExperienceMax;
        setPointDeVie((int)(getPointDeVie()*aGain));
-       aAttaque.degats= (int)(aAttaque.degats *aGain);
+       aAttaque.setDegats((int)(aAttaque.getDegats()*aGain));
        aPorteeDeplacement = (int)(aPorteeDeplacement*aGain);
     }
     
