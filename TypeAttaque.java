@@ -11,7 +11,7 @@ public enum TypeAttaque
     private int aDegats; // dégâts de base de l'attaque
     private String aNom;
     private String aDescription;
-    private PorteeAttaque aTypePortee; 
+    public PorteeAttaque aTypePortee; 
     public HashMap<TypeUnite, Double> efficacite;// on multipliera l'attaque par ce nombre, donc 1 est l'élément neutre, quand c'est plus grand que 1 on a une efficacité plus grande, et réciproquement
     
     
