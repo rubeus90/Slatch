@@ -41,8 +41,6 @@ class IHM_Panel extends JPanel
     
     private boolean modeMenu;
     
-    
-    
     /**
      * Constructeur
      */
@@ -65,8 +63,7 @@ class IHM_Panel extends JPanel
         largeurCarte = this.getWidth();
         aLargeurCarreau = largeurCarte/NOMBRE_DE_CASE_X;
         aHauteurCarreau = hauteurCarte/NOMBRE_DE_CASE_Y;
-        
-        //afficheTest(g);
+
         dessineMatrice(MATRICE_TEST, g);
         afficheBarreInfo(g);
     }    
@@ -113,8 +110,6 @@ class IHM_Panel extends JPanel
                             
                         }
                         else {
-                            
-                        
                             effaceMenu(g);
                             // Avertir Moteur
                             Slatch.moteur.annulerDeplacement();
@@ -196,11 +191,16 @@ class IHM_Panel extends JPanel
             
         afficheImageRedim ("noir80.png", aMenuHautGauche_Xpx, aMenuHautGauche_Ypx, aMenuBasDroite_Xpx, aMenuBasDroite_Ypx, g);
         g.setColor(Color.white);
-        g.drawString(pList.get(0), (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+aHauteurCarreau/2);
-        //g.drawString(pList.get(1), (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+3*aHauteurCarreau/2);
-        //g.drawString(pList.get(2), (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+5*aHauteurCarreau/2);
-        g.drawLine(aMenuHautGauche_Xpx, aMenuHautGauche_Ypx+(aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau, aMenuBasDroite_Xpx-1, aMenuHautGauche_Ypx+(aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau);
-        g.drawLine(aMenuHautGauche_Xpx, aMenuHautGauche_Ypx+(2*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau, aMenuBasDroite_Xpx-1, aMenuHautGauche_Ypx+(2*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau);
+        
+        // Ecrie les boutons
+        for(int vVar=0;vVar<pList.size();vVar++) {
+            g.drawString(pList.get(vVar), (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+aHauteurCarreau/2+aHauteurCarreau*vVar);
+        }
+        
+        // Trace les lignes
+        for(int vVar=1;vVar<4;vVar++) {
+            g.drawLine(aMenuHautGauche_Xpx, aMenuHautGauche_Ypx+(vVar*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau, aMenuBasDroite_Xpx-1, aMenuHautGauche_Ypx+(vVar*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau);
+        }
     }
 
     /**
@@ -244,12 +244,11 @@ class IHM_Panel extends JPanel
     public void afficheBarreInfo (final Graphics g) {
         afficheImageRedim("4.png",0, 0,this.getWidth(),DECALAGE_PX_EN_Y,g);
         g.setColor(Color.white);
-        g.drawString("Tour :"+"1", this.getWidth()/8, DECALAGE_PX_EN_Y/2);
+        g.drawString("Tour : "+Slatch.partie.getTour(), this.getWidth()/8, DECALAGE_PX_EN_Y/2);
         g.drawString("Argent :"+"1000", this.getWidth()/4, DECALAGE_PX_EN_Y/2);
         g.drawString("SUIVANT", this.getWidth()-this.getWidth()/8, DECALAGE_PX_EN_Y/2);
     }
     
-
     
     //********************************/
     //**    Méthodes de dessin       */
@@ -305,4 +304,3 @@ class IHM_Panel extends JPanel
     
     public int getaHauteurCarreau() {return aHauteurCarreau;}
 }
-
