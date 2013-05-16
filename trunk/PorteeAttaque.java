@@ -5,19 +5,21 @@ import java.io.FileNotFoundException;
 import java.lang.Integer;
 
 public enum PorteeAttaque {
-    COURTE("courte","ne peut attaquer que les unités etant sur les cases adjacentes",1 ), 
-    MOYENNE("moyenne","peut attaquer les unités à moyenne distance",3), 
-    LONGUE("longue","peut attaquer les unités à longues distance", 6);
+    COURTE("courte","ne peut attaquer que les unités etant sur les cases adjacentes",1, 1 ), 
+    MOYENNE("moyenne","peut attaquer les unités à moyenne distance",1,3), 
+    LONGUE("longue","peut attaquer les unités à longues distance",2, 6);
     
     private String aNom;
     private String aDescription;
-    private int aPortee;
+    private int aPorteeMax;
+    private int aPorteeMin;
     
     
-    PorteeAttaque(final String pNom,final String pDescription,final int pPortee){
+    PorteeAttaque(final String pNom,final String pDescription,final int pPorteeMin, final int pPorteeMax){
         aNom = pNom;
         aDescription = pDescription;
-        aPortee = pPortee;
+        aPorteeMax = pPorteeMax;
+        aPorteeMin = pPorteeMin;
     }
     
     /**
@@ -29,11 +31,19 @@ public enum PorteeAttaque {
     }
     
     /**
-     * Accesseur pour l'attribut aPortee
-     * @return aPortee
+     * Accesseur pour l'attribut aPorteeMax
+     * @return aPorteeMax
      */
-    public int getPortee(){
-        return aPortee;
+    public int getPorteeMax(){
+        return aPorteeMax;
+    }
+    
+    /**
+     * Accesseur pour l'attribut aPorteeMin
+     * @return aPorteeMin
+     */
+    public int getPorteeMin(){
+        return aPorteeMin;
     }
     
     /**
