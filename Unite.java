@@ -33,8 +33,9 @@ public class Unite extends Entite
      * Un int correspondant au dégat au corps à corps
      * Un int correspondant au déplacement maximum
      * Un int correspondant au gain de chaque monté de niveau
+     * @param pX pY pJoueur pPVMax pType pAttaque pDeplacement pGain pTypeDeplacement
      */
-    public Unite(final int pX,final int pY,final int pJoueur,final int pPVMax,final TypeUnite pType,final TypeAttaque pAttaque,final int pDeplacement, final double pGain, final String typeDeplacement)
+    public Unite(final int pX,final int pY,final int pJoueur,final int pPVMax,final TypeUnite pType,final TypeAttaque pAttaque,final int pDeplacement, final double pGain, final String pTypeDeplacement)
     {
        super(pX,pY,pJoueur,pPVMax);
        aType = pType;
@@ -44,7 +45,7 @@ public class Unite extends Entite
        aLvl = 0;
        aExperience = 0;
        aExperienceMax=100;
-       aTypeDeplacement = typeDeplacement;
+       aTypeDeplacement = pTypeDeplacement;
     }
 
     /**
