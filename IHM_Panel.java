@@ -33,9 +33,15 @@ class IHM_Panel extends JPanel
     private int aMenuHautGauche_Ypx;
     private int aMenuBasDroite_Xpx;
     private int aMenuBasDroite_Ypx;
+    private int aUniteMemCaseX;
+    private int aUniteMemCaseY;
     
     private int aLargeurMenuEnCase=3;
     private int aHauteurMenuEnCase=6;
+    
+    private boolean modeMenu;
+    
+    
     
     /**
      * Constructeur
@@ -46,6 +52,7 @@ class IHM_Panel extends JPanel
         NOMBRE_DE_CASE_Y = Slatch.partie.getHauteur();
         DECALAGE_PX_EN_Y = pDecalageY;
         MATRICE_TEST=Slatch.partie.getTerrain();
+        modeMenu=false;
     }
     
     /**
@@ -86,45 +93,36 @@ class IHM_Panel extends JPanel
 
                 if(pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) 
                 {
-                    //Si tu es dans menu
-                    if( aMenuHautGauche_Ypx<clickY && clickY<aMenuBasDroite_Ypx && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx )
+                    if(modeMenu)
                     {
-                        //Action a differencier
-                        
-                        //Bouton 1
-                        if( aMenuHautGauche_Ypx<clickY && clickY<(aMenuHautGauche_Ypx+aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx ) 
+                        if( aMenuHautGauche_Ypx<clickY && clickY<aMenuBasDroite_Ypx && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx )//Si tu es dans menu
                         {
-                            Slatch.moteur.modeDeplacement(i,j);
-                        }
-                        
-                        //Bouton 2
-                        if( (aMenuHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuHautGauche_Ypx+2*aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx ) 
-                        {
-                        }
-                        
-                    }
-                    else {
-                        //Si tu n'es pas dans menu
-                        
-                        //Efface Menu si present
-                        if(aMenuHautGauche_Xpx!=0 ||aMenuHautGauche_Ypx!=0 ||aMenuBasDroite_Xpx!=0 || aMenuBasDroite_Ypx!=0) 
-                        {
-                            int aMenuHautGauche_X=aMenuHautGauche_Xpx/aLargeurCarreau;
-                            int aMenuHautGauche_Y=(aMenuHautGauche_Ypx-DECALAGE_PX_EN_Y)/aHauteurCarreau;
-                            int aMenuBasDroite_X=aMenuBasDroite_Xpx/aLargeurCarreau;
-                            int aMenuBasDroite_Y=(aMenuBasDroite_Ypx-DECALAGE_PX_EN_Y)/aHauteurCarreau;
-                            for(int u=aMenuHautGauche_X; u<aMenuBasDroite_X; u++) {
-                                for(int v=aMenuHautGauche_Y; v<aMenuBasDroite_Y; v++) {
-                                    MATRICE_TEST[u][v].dessine(g);
-                                }
+                            //Action a differencier
+                            
+                            //Bouton 1
+                            if( aMenuHautGauche_Ypx<clickY && clickY<(aMenuHautGauche_Ypx+aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx ) 
+                            {
+                                Slatch.moteur.modeDeplacement(aUniteMemCaseX, aUniteMemCaseY);
+                                effaceMenu(g);
                             }
+                            
+                            //Bouton 2
+                            if( (aMenuHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuHautGauche_Ypx+2*aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx ) 
+                            {
+                            }
+                            
                         }
-                        aMenuHautGauche_Xpx=0;
-                        aMenuHautGauche_Ypx=0;
-                        aMenuBasDroite_Xpx=0;
-                        aMenuBasDroite_Ypx=0;
-
-                        // Avertir Moteur
+                        else {
+                            
+        
+                            // Avertir Moteur
+                            Slatch.moteur.annulerDeplacement();
+                            Slatch.moteur.caseSelectionnee(i,j);
+                            Slatch.partie.getTerrain()[i][j].dessine(g);
+                        }
+                    }
+                    else
+                    {
                         Slatch.moteur.caseSelectionnee(i,j);
                         Slatch.partie.getTerrain()[i][j].dessine(g);
                     }
@@ -133,12 +131,34 @@ class IHM_Panel extends JPanel
         }
     }
     
+    private void effaceMenu(Graphics g)
+    {
+        int aMenuHautGauche_X=aMenuHautGauche_Xpx/aLargeurCarreau;
+        int aMenuHautGauche_Y=(aMenuHautGauche_Ypx-DECALAGE_PX_EN_Y)/aHauteurCarreau;
+        int aMenuBasDroite_X=aMenuBasDroite_Xpx/aLargeurCarreau;
+        int aMenuBasDroite_Y=(aMenuBasDroite_Ypx-DECALAGE_PX_EN_Y)/aHauteurCarreau;
+        for(int u=aMenuHautGauche_X; u<aMenuBasDroite_X; u++) {
+            for(int v=aMenuHautGauche_Y; v<aMenuBasDroite_Y; v++) {
+                MATRICE_TEST[u][v].dessine(g);
+            }
+        }
+        
+        aMenuHautGauche_Xpx=0;
+        aMenuHautGauche_Ypx=0;
+        aMenuBasDroite_Xpx=0;
+        aMenuBasDroite_Ypx=0;
+        modeMenu = false;
+    }
+    
     /**
      * Affiche Test
      */
     public void afficheMenu(final List<String> pList, final int pX, final int pY) 
     {
         Graphics g = Slatch.ihm.getPanel().getGraphics();
+        aUniteMemCaseX = pX;
+        aUniteMemCaseX = pY;
+        modeMenu = true;
         if(pX+aLargeurMenuEnCase+1>NOMBRE_DE_CASE_X && pY+aHauteurMenuEnCase+1>NOMBRE_DE_CASE_Y) 
         {
             //Dessine en haut à gauche

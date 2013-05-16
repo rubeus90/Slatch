@@ -6,14 +6,16 @@ import java.util.HashMap;
  */
 class Moteur
 {  
-    Unite uniteD = null; // unite en attente de déplacement
-    Unite uniteA = null; // unite en attente d'attaque
+    Unite uniteD; // unite en attente de déplacement
+    Unite uniteA; // unite en attente d'attaque
     int[][] tabDep; // matrice de la portée de déplacement qu'il nous reste lorsqu'on se situe sur une case, utilisée par checkPorteeDeplacement
     HashMap<String, List<String>> chemins; // contient la liste des chemins pour arriver à la case définie par le premier String
     
     public Moteur()
     {
         tabDep = new int[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
+        uniteD = null;
+        uniteA = null;
     }
    
     public void enleverSurbrillance()
@@ -60,13 +62,12 @@ class Moteur
         this.enleverSurbrillance();
         Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
         Unite unite = Slatch.partie.getTerrain()[pX][pY].getUnite();
-        if(unite==null) // si une unité est présente sur la case
+        if(unite==null) // si aucune unité n'est présente sur la case
         {
-            if(uniteD==null) // si on a sélectioné aucune unité auparavant pour le déplacement
+            if(uniteD!=null) // si on a sélectioné aucune unité auparavant pour le déplacement
             {
-                    return;
+                deplacement(uniteD, chemins.get(pX+","+pY), pX, pY);
             }
-            deplacement(uniteD, chemins.get(pX+","+pY));
         }
         else
         {
@@ -80,9 +81,9 @@ class Moteur
                             {
                                     items.add("Assaut");
                             }*/
-                            items.add("Deplacement");
+                            items.add("Deplace");
                             Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
-                            affichePorteeDep(unite);
+                            uniteD = unite;
                             Slatch.ihm.getPanel().afficheMenu(items, pX, pY);
                     }
             }
@@ -96,12 +97,50 @@ class Moteur
         }
     }
     
+    public void modeDeplacement(int pX, int pY)
+    {
+        //uniteD = Slatch.partie.getTerrain()[pX][pY].getUnite();
+        affichePorteeDep(uniteD);
+    }
+    
+    public void annulerDeplacement()
+    {
+        uniteD=null;
+    }
+    
     /*
     * permet de déplacer une unité en fonction du chemin passé en paramètre
     */
-    public void deplacement(Unite unite, List<String> chemin)
+    public void deplacement(Unite unite, final List<String> chemin, int pX, int pY)
     {
-        
+        if(tabDep[pX][pY]>-1)
+        {
+            String[] t;
+            for(String s:chemin)
+            {
+                t=s.split(",");
+                changerCase(unite, Integer.parseInt(t[0]), Integer.parseInt(t[1]));
+                try{
+                    System.out.println("Je m'endors");
+                    Thread.sleep(1000);
+                }
+                catch(InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            changerCase(unite, pX, pY);
+        }
+        annulerDeplacement();
+    }
+    
+    private void changerCase(Unite unite, int destX, int destY)
+    {
+        Slatch.partie.getTerrain()[destX][destY].setUnite(null);
+        Slatch.ihm.getPanel().dessineTerrain(unite.getCoordonneeX(),unite.getCoordonneeY());
+        unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
+        Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
+        Slatch.ihm.getPanel().dessineTerrain(destX,destY);
     }
     
     /*
@@ -185,7 +224,9 @@ class Moteur
                     int[] t = new int[2];
                     t[0]=tab[0]+1; t[1]=tab[1]; 
                     tabDep[tab[0]+1][tab[1]] = porteeDep -k;// actualise la portée de deplacement restante sur la case correspondante de la matrice tabDep
-                    chemins.get((tab[0]+1)+","+tab[1]).add(tab[0]+","+tab[1]);
+                    chemins.remove((tab[0]+1)+","+tab[1]); // on supprime l'ancien chemin
+                    chemins.put((tab[0]+1)+","+tab[1], chemins.get(tab[0]+","+tab[1])); // on y met le nouveau chemin plus rapide
+                    chemins.get((tab[0]+1)+","+tab[1]).add(tab[0]+","+tab[1]); // on y rajoute l'étape actuelle
                     if(!Slatch.partie.getTerrain()[tab[0]+1][tab[1]].getSurbrillance()) // si la case n'a pas déjà été mise en valeur
                     {
                         Slatch.partie.getTerrain()[tab[0]+1][tab[1]].setSurbrillance(true);// on met la case en question en surbrillance
@@ -208,6 +249,8 @@ class Moteur
                     int[] t = new int[2];
                     t[0]=tab[0]; t[1]=tab[1]+1;
                     tabDep[tab[0]][tab[1]+1] = porteeDep -k;
+                    chemins.remove(tab[0]+","+(tab[1]+1));
+                    chemins.put(tab[0]+","+(tab[1]+1),chemins.get(tab[0]+","+tab[1]));
                     chemins.get(tab[0]+","+(tab[1]+1)).add(tab[0]+","+tab[1]);
                     if(!Slatch.partie.getTerrain()[tab[0]][tab[1]+1].getSurbrillance())
                     {
@@ -231,6 +274,8 @@ class Moteur
                     int[] t = new int[2];
                     t[0]=tab[0]-1; t[1]=tab[1];
                     tabDep[tab[0]-1][tab[1]] = porteeDep -k;
+                    chemins.remove((tab[0]-1)+","+tab[1]);
+                    chemins.put((tab[0]-1)+","+tab[1],chemins.get(tab[0]+","+tab[1]));
                     chemins.get((tab[0]-1)+","+tab[1]).add(tab[0]+","+tab[1]);
                     if(!Slatch.partie.getTerrain()[tab[0]-1][tab[1]].getSurbrillance())
                     {
@@ -254,6 +299,8 @@ class Moteur
                     int[] t = new int[2];
                     t[0]=tab[0]; t[1]=tab[1]-1;
                     tabDep[tab[0]][tab[1]-1] = porteeDep -k;
+                    chemins.remove(tab[0]+","+(tab[1]-1));
+                    chemins.put(tab[0]+","+(tab[1]-1), chemins.get(tab[0]+","+tab[1]));
                     chemins.get(tab[0]+","+(tab[1]-1)).add(tab[0]+","+tab[1]);
                     if(!Slatch.partie.getTerrain()[tab[0]][tab[1]-1].getSurbrillance())
                     {
