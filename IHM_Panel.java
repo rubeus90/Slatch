@@ -16,7 +16,8 @@ import java.util.ArrayList;
  * @author MERCANDALLI 
  * @version 01/2013
  */
-class IHM_Panel extends JPanel {
+class IHM_Panel extends JPanel 
+{
     private int NOMBRE_DE_CASE_X;
     private int NOMBRE_DE_CASE_Y;
     private Terrain[][] MATRICE_TEST;
@@ -30,29 +31,20 @@ class IHM_Panel extends JPanel {
     private int aLargeurCarreau;
     private int aHauteurCarreau;
     
-    public IHM_Panel(final int pDecalageY){
+    public IHM_Panel(final int pDecalageY)
+    {
         NOMBRE_DE_CASE_X = Slatch.partie.getLargeur();
         NOMBRE_DE_CASE_Y = Slatch.partie.getHauteur();
         DECALAGE_PX_EN_Y = pDecalageY;
-        
-        /*MATRICE_TEST = new Terrain[NOMBRE_DE_CASE_X][NOMBRE_DE_CASE_Y];
-        
-        for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) {
-            for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) {
-                Terrain test;
-                test=new Terrain(i, j, 0, 0,TypeTerrain.PLAINE);
-                MATRICE_TEST[i][j]=test;
-            }
-        }*/
-        
-         MATRICE_TEST=Slatch.partie.getTerrain();
+        MATRICE_TEST=Slatch.partie.getTerrain();
     }
     
     /**
      * 
      */
     @Override
-    public void paintComponent (final Graphics g) {
+    public void paintComponent (final Graphics g) 
+    {
         hauteurCarte = this.getHeight()-DECALAGE_PX_EN_Y;
         largeurCarte = this.getWidth();
         vLargeurCarreau = largeurCarte/NOMBRE_DE_CASE_X;
@@ -68,42 +60,30 @@ class IHM_Panel extends JPanel {
     /**
      * Methode appelee lors d'un click
      */
-    public void coordclick (String pcoordclick) {
-
+    public void coordclick (String pcoordclick) 
+    {
         String[] tabString = null;                      //tableau de chaînes
         tabString = pcoordclick.split(",");
         int clickX = Integer.parseInt(tabString[0]);
         int clickY = Integer.parseInt(tabString[1])-20;   //Decalage de 20 car la barre de la fenete fait 20 px
         Graphics g = Slatch.ihm.getPanel().getGraphics();
-        for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) {
-            for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) {
+        for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) 
+        {
+            for(int j = 0 ; j < NOMBRE_DE_CASE_Y ; j++) 
+            {
                 // Selection
-                
                 int pPosHautGaucheX = i*Slatch.ihm.getPanel().getaLargeurCarreau();
                 int pPosHautGaucheY = j*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
                 int pPosBasDroiteX = (i+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
                 int pPosBasDroiteY = (j+1)*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
                 
                 
-                if(  pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) {
-                    //MATRICE_TEST[i][j].setSurbrillance(true);
-                    //MATRICE_TEST[i][j].dessine(g);
+                if(pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) 
+                {
                     // Avertir Moteur
                     Slatch.moteur.caseSelectionnee(i,j);
                     Slatch.partie.getTerrain()[i][j].dessine(g);
                 }
-                
-                
-                
-                /*
-                if(  j*vHauteurCarreau+DECALAGE_PX_EN_Y<clickY && clickY<(j+1)*vHauteurCarreau+DECALAGE_PX_EN_Y && vLargeurCarreau*i<clickX && clickX<(i+1)*vLargeurCarreau) {
-                    MATRICE_TEST[i][j].setSurbrillance(true);
-                    MATRICE_TEST[i][j].dessine(g);
-                    // Avertir Moteur
-                    //Slatch.moteur.caseSelectionnee(i,j);
-                }
-                */
-                
             }
         }
     }
@@ -111,27 +91,51 @@ class IHM_Panel extends JPanel {
     /**
      * Affiche Test
      */
-    public void afficheMenu(final List<String> pList, final int pX, final int pY) {
+    public void afficheMenu(final List<String> pList, final int pX, final int pY) 
+    {
         int vLargeurMenuEnCase=3;
         int vHauteurMenuEnCase=6;
+        int vHautGauche_X;
+        int vHautGauche_Y;
+        int vBasDroite_X;
+        int vBasDroite_Y;
         Graphics g = Slatch.ihm.getPanel().getGraphics();
-        
-        if(pX+vLargeurMenuEnCase+1>NOMBRE_DE_CASE_X && pY+vHauteurMenuEnCase+1>NOMBRE_DE_CASE_Y) {
+
+        if(pX+vLargeurMenuEnCase+1>NOMBRE_DE_CASE_X && pY+vHauteurMenuEnCase+1>NOMBRE_DE_CASE_Y) 
+        {
             //Dessine en haut à gauche
-            afficheImageRedim ("noir80.png", (pX-vLargeurMenuEnCase)*aLargeurCarreau, (pY-vHauteurMenuEnCase-1)*aHauteurCarreau+DECALAGE_PX_EN_Y,pX*aLargeurCarreau, (pY-1)*aHauteurCarreau+DECALAGE_PX_EN_Y, g);
-            return;
+            vHautGauche_X = (pX-vLargeurMenuEnCase)*aLargeurCarreau;
+            vHautGauche_Y = (pY-vHauteurMenuEnCase)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            vBasDroite_X = pX*aLargeurCarreau;
+            vBasDroite_Y = pY*aHauteurCarreau+DECALAGE_PX_EN_Y;
         }
-        
-        
-        
-        if(pX+vLargeurMenuEnCase+1>NOMBRE_DE_CASE_X) {
+
+        else if(pX+vLargeurMenuEnCase+1>NOMBRE_DE_CASE_X) 
+        {
             //Dessine en bas à gauche
-            afficheImageRedim ("noir80.png", (pX-vLargeurMenuEnCase)*aLargeurCarreau, (pY+1)*aHauteurCarreau+DECALAGE_PX_EN_Y,pX*aLargeurCarreau, (pY+vHauteurMenuEnCase+1)*aHauteurCarreau+DECALAGE_PX_EN_Y, g);
-            return;
+            vHautGauche_X = (pX-vLargeurMenuEnCase)*aLargeurCarreau;
+            vHautGauche_Y = (pY+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            vBasDroite_X = pX*aLargeurCarreau;
+            vBasDroite_Y = (pY+vHauteurMenuEnCase+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
         }
         
-        // Meun en bas a droite par default
-        afficheImageRedim ("noir80.png", (pX+1)*aLargeurCarreau, (pY+1)*aHauteurCarreau+DECALAGE_PX_EN_Y,(pX+vLargeurMenuEnCase+1)*aLargeurCarreau, (pY+vHauteurMenuEnCase+1)*aHauteurCarreau+DECALAGE_PX_EN_Y, g);
+        else if(pY+vHauteurMenuEnCase+1>NOMBRE_DE_CASE_Y) {
+            //Dessine en haut à droite
+            vHautGauche_X = (pX+1)*aLargeurCarreau;
+            vHautGauche_Y = (pY-vHauteurMenuEnCase)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            vBasDroite_X = (pX+vLargeurMenuEnCase+1)*aLargeurCarreau;
+            vBasDroite_Y = pY*aHauteurCarreau+DECALAGE_PX_EN_Y;
+        }
+        
+        else {
+            // Meun en bas a droite par default
+            vHautGauche_X = (pX+1)*aLargeurCarreau;
+            vHautGauche_Y = (pY+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            vBasDroite_X = (pX+vLargeurMenuEnCase+1)*aLargeurCarreau;
+            vBasDroite_Y = (pY+vHauteurMenuEnCase+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+        }
+            
+        afficheImageRedim ("noir80.png", vHautGauche_X, vHautGauche_Y, vBasDroite_X, vBasDroite_Y, g);
         
     }
 
@@ -247,6 +251,3 @@ class IHM_Panel extends JPanel {
         return aHauteurCarreau;
     }
 }
-
-
-
