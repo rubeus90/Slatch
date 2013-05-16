@@ -89,7 +89,6 @@ public class Partie
         
         //On lit le fichier et on l'analyse
         while(aMap.hasNextLine()){
-            
             ligne = aMap.nextLine();
             tab = ligne.split(":");
             id = tab[0];
@@ -101,18 +100,15 @@ public class Partie
                 case "foret": aTerrain[x][y] = new Terrain(x, y, joueur, 0, TypeTerrain.FORET); break;
                 case "montagne": aTerrain[x][y] = new Terrain(x, y, joueur, 0, TypeTerrain.MONTAGNE); break;
                 case "batiment": {
-                aTerrain[x][y] = new Terrain(x, y, joueur, 10, TypeTerrain.BATIMENT); 
-                batimentJoueur[joueur]+=1;
-                break;
-            }
+                	aTerrain[x][y] = new Terrain(x, y, joueur, 10, TypeTerrain.BATIMENT); 
+                	batimentJoueur[joueur]+=1;
+                	break;
+                }
+                case "infanterie": aTerrain[x][y].setUnite(new Unite(x,y,joueur,100,TypeUnite.INFANTERIE,TypeAttaque.CANON,7,1.0, "pied")); break;
+                case "vehicule": aTerrain[x][y].setUnite(new Unite(x,y,joueur,100,TypeUnite.VEHICULE,TypeAttaque.CANON,7,1.0, "chenilles")); break;
             default: aTerrain[x][y] = new Terrain(x, y, joueur, 0, TypeTerrain.PLAINE);
             }
         }
-        
-        //Ajout d'une unite
-        aTerrain[5][5].setUnite(new Unite(5,5,1,100,TypeUnite.INFANTERIE,TypeAttaque.CANON,7,1.0, "pied"));
-        aTerrain[25][12].setUnite(new Unite(25,12,2,100,TypeUnite.INFANTERIE,TypeAttaque.CANON,7,1.0, "pied"));
-        aTerrain[20][15].setUnite(new Unite(20,15,1,200,TypeUnite.VEHICULE,TypeAttaque.CANON,3,1.0,"chenilles"));
     }
 
     /**********
