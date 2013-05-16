@@ -194,10 +194,11 @@ class IHM_Panel extends JPanel
         afficheImageRedim ("noir80.png", aMenuHautGauche_Xpx, aMenuHautGauche_Ypx, aMenuBasDroite_Xpx, aMenuBasDroite_Ypx, g);
         
         // Ecrie les boutons en rouge
-        g.setColor(Color.red);
+        g.setColor(Color.gray);
         g.drawString("Deplace", (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3);
         g.drawString("Attaque", (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
         g.drawString("Capture", (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+        g.drawString("Evolue", (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
         
         // Ecrie les boutons en vert
         for(int vVar=0;vVar<pList.size();vVar++) {
@@ -210,6 +211,9 @@ class IHM_Panel extends JPanel
             }
             if(pList.get(vVar).equals("Capture")) {
                 g.drawString("Capture", (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+            }
+            if(pList.get(vVar).equals("Evolue")) {
+                g.drawString("Evolue", (aMenuHautGauche_Xpx+aMenuBasDroite_Xpx)/2-3*aLargeurCarreau/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
             }
         }
         
