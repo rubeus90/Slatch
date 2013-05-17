@@ -116,7 +116,7 @@ public class Partie
         else
             aJoueurActuel++;
         aTour++;
-        ListeJoueur.get(aJoueurActuel).benefTour();
+        ListeJoueur.get(aJoueurActuel).benefTour(aRevenuBatiment);
                 
     }
 
