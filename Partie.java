@@ -24,6 +24,7 @@ public class Partie
     private int batimentJoueur[];
     private Scanner aMap;
     private Terrain[][] aTerrain;
+    private int aJoueurActuel;
     
 
     /**
@@ -32,6 +33,7 @@ public class Partie
     public Partie(final int pRevenuBatiment,final int pTourMax, final String pMap)
     {
         //Dans le cas ou le fichier map n'existe pas
+        aJoueurActuel= 1;
         try {
             aMap = new Scanner(new File(pMap));
         } catch (FileNotFoundException e) {
@@ -188,6 +190,14 @@ public class Partie
         return aTerrain;
     }
     
+    /**
+     * Accesseur qui renvoi le joueur actuel
+     * @return aJoueurActuel
+     */
+    public int getJoueurActuel(){
+        return aJoueurActuel;
+    }
+    
     
      /**
      * Mutateur qui modifie la valeur du tour actuel
@@ -206,6 +216,13 @@ public class Partie
     {
         aRevenuBatiment = pRevenuBatiment;
     }
-         
+    
+    /**
+     * Mutateur qui modifie la valeur de l'attribut aJoueurActuel
+     * @param pJoueurActuel
+     */
+    public void setJoueurActuel(final int pJoueurActuel){
+        aJoueurActuel = pJoueurActuel;
+    }
     
 }
