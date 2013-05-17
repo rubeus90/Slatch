@@ -195,6 +195,13 @@ public class Partie
         return aJoueurActuel;
     }
     
+    /**
+     * Accesseur qui prend en parametre un id de joueur et renvoi un joueur
+     * @return aJoueurActuel
+     */
+    public Joueur getJoueurActuel(final int pJoueurActuel){
+        return  ListeJoueur.get(pJoueurActuel);
+    }
     
      /**
      * Mutateur qui modifie la valeur du tour actuel
