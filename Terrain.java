@@ -66,7 +66,7 @@ public class Terrain extends Entite{
         int pPosBasDroiteX = (super.getCoordonneeX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
         int pPosBasDroiteY = (super.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
         try {
-            Image img = ImageIO.read(new File("Images/" + aType.getImage() + getJoueur() + ".png"));
+            Image img = ImageIO.read(getClass().getClassLoader().getResource("Images/" + aType.getImage() + getJoueur() + ".png"));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
         }
@@ -90,7 +90,7 @@ public class Terrain extends Entite{
         
         if(super.getSurbrillance()) {
             try {
-                Image img = ImageIO.read(new File("Images/5.png"));
+            	Image img = ImageIO.read(getClass().getClassLoader().getResource("Images/5.png"));
                 //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
                 g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
                 }

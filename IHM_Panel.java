@@ -469,8 +469,9 @@ class IHM_Panel extends JPanel
      * Affiche une image en fond d'ecran
      */
     private void afficheImageRedim (final String pURL, final int pPosHautGaucheX, final int pPosHautGaucheY,final int pPosBasDroiteX, final int pPosBasDroiteY, final Graphics g) {
-        try {
-            Image img = ImageIO.read(new File("Images/"+pURL));
+        try {            
+            Image img = ImageIO.read(getClass().getClassLoader().getResource("Images/"+pURL));
+            
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
         }
         catch (IOException e) {
