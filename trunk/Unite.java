@@ -19,12 +19,12 @@ public class Unite extends Entite
     // instance variables - replace the example below with your own
     private TypeUnite aType; // Correspond au type d'unité : Infanterie, Véhicule etc ...
     private TypeAttaque aAttaque; // Correspond à l'attaque au corps à corps
+    private TypeDeplacement aTypeDeplacement;
     private int aPorteeDeplacement; // Coresspond au déplacement maximum que peut effectuer l'unité
     private int aLvl; // Correspond au niveau de l'unité
     private int aExperience; // Correspond à l'expérience total de l'unité
     private int aExperienceMax;
     private double aGain; //Compris entre 1 et 2, correspondant au pourcentage d'augmentation des caractéristique à chaque monté de niveau
-    private String aTypeDeplacement;
     private boolean dejaAttaque;
     private boolean dejaDeplacee;
    
@@ -37,7 +37,7 @@ public class Unite extends Entite
      * Un int correspondant au gain de chaque monté de niveau
      * @param pX pY pJoueur pPVMax pType pAttaque pDeplacement pGain pTypeDeplacement
      */
-    public Unite(final int pX,final int pY,final int pJoueur,final int pPVMax,final TypeUnite pType,final TypeAttaque pAttaque,final int pDeplacement, final double pGain, final String pTypeDeplacement)
+    public Unite(final int pX,final int pY,final int pJoueur,final int pPVMax,final TypeUnite pType,final TypeAttaque pAttaque,final int pDeplacement, final double pGain, final TypeDeplacement pTypeDeplacement)
     {
        super(pX,pY,pJoueur,pPVMax);
        aType = pType;
@@ -56,7 +56,7 @@ public class Unite extends Entite
      * Accesseur qui renvoie la valeur du aTypeDeplacement
      * @return aTypeDeplacement
      */
-    public String getTypeDeplacement(){
+    public TypeDeplacement getTypeDeplacement(){
         return aTypeDeplacement;
     }
    
@@ -68,27 +68,24 @@ public class Unite extends Entite
         return aAttaque;
     }
     
-    public void deplacee(boolean b)
-    {
-        dejaDeplacee = b;
-    }
-    
+    /**
+     * Accesseur qui renvoie la valeur du boolean dejaDeplacee
+     * @return dejaDeplacee
+     */
     public boolean dejaDeplacee()
     {
         return dejaDeplacee;
     }
     
-    public void attaque(boolean b)
-    {
-        dejaAttaque = b;
-    }
-    
+    /**
+     * Accesseur qui renvoie la valeur du boolean dejaAttaque
+     * @return dejaAttaque
+     */
     public boolean dejaAttaque()
     {
         return dejaAttaque;
     }
 
-   
     /**
      * Accesseur qui renvoie l'expérience total de l'unite
      * @return aExperience
@@ -120,7 +117,25 @@ public class Unite extends Entite
     public TypeUnite getType(){
         return aType;
     }
-   
+    
+     /**
+     * Mutateur de la valeur du boolean dejaDeplacee
+     * @param pBoolean
+     */
+    public void deplacee(final boolean pBoolean)
+    {
+        dejaDeplacee = pBoolean;
+    }
+    
+     /**
+     * Mutateur de la valeur du boolean dejaAttaque
+     * @param pBoolean
+     */
+    public void attaque(final boolean pBoolean)
+    {
+        dejaAttaque = pBoolean;
+    }
+    
      /**
      * Methode qui permet l'augmentation ou la diminution de l'experience
      * @param pExperience
