@@ -94,7 +94,7 @@ class IHM_Panel extends JPanel
         // Bouton MENU affichage
         if(0<clickY && clickY<DECALAGE_PX_EN_Y && 0<clickX && clickX<6*aLargeurCarreau) 
         {
-            afficheImageRedim ("menuAppui.png", 0, 0,6*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+            afficheImageRedim ("menuAppui.png", 0, 0,4*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
         }
     }
     
@@ -115,9 +115,8 @@ class IHM_Panel extends JPanel
         afficheImageRedim ("suivant.png", this.getWidth()-6*aLargeurCarreau, 0,this.getWidth(), DECALAGE_PX_EN_Y, g);
         
         // Bouton MENU affichage : Remet suivant blanc
-        afficheImageRedim ("menu.png", 0, 0,6*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
-        
-        
+        afficheImageRedim ("menu.png", 0, 0,4*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+
         if(modeMenu) {
             effaceMenu(g);modeMenu=false;
         }
@@ -133,36 +132,72 @@ class IHM_Panel extends JPanel
             // Avertir Moteur
             Slatch.moteur.passeTour();
             
-            g.setColor(Color.white);
-            //g.drawString("Tour : "+Slatch.partie.getTour(), 7*aLargeurCarreau, DECALAGE_PX_EN_Y/2);
-            
-            afficheImageRedim ("jour.png", 6*aLargeurCarreau, 0,12*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+            // Joueur Actuel affichage
+            afficheImageRedim ("joueur.png", 18*aLargeurCarreau, 0,19*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
             for(int i=0; i<10;i++) {
-                if(Slatch.partie.getTour()%10==i) {
-                    afficheImageRedim ("numero"+i+".png", 12*aLargeurCarreau, DECALAGE_PX_EN_Y/4,13*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+                if(Slatch.partie.getJoueurActuel()%10==i) {
+                    afficheImageRedim ("numero"+i+".png", 19*aLargeurCarreau, DECALAGE_PX_EN_Y/4,20*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
                 }
             }
             
+            // Jour Actuel affichage
+            afficheImageRedim ("jour.png", 3*aLargeurCarreau, 0,7*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+            afficheImageRedim ("menu.png", 0, 0,4*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+            // Affiche les dizaines
+            for(int i=0; i<10;i++) {
+                if(Slatch.partie.getTour()%10==i) {
+                    afficheImageRedim ("numero"+i+".png", 8*aLargeurCarreau, DECALAGE_PX_EN_Y/4,9*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+                }
+            }
+            // Affiche les unites
             for(int i=0; i<10;i++) {
                 if(Slatch.partie.getTour()/10%10==i) {
-                    afficheImageRedim ("numero"+i+".png", 11*aLargeurCarreau,DECALAGE_PX_EN_Y/4,12*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+                    afficheImageRedim ("numero"+i+".png", 7*aLargeurCarreau,DECALAGE_PX_EN_Y/4,8*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+                }
+            }
+            
+            
+            // Argent du joueur actuel affichage
+            afficheImageRedim ("argent.png", 9*aLargeurCarreau, 0,13*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+            // Affiche les unites
+            for(int u=0; u<10;u++) {
+                if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()%10==u) {
+                    afficheImageRedim ("numero"+u+".png", 16*aLargeurCarreau, DECALAGE_PX_EN_Y/4,17*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+                }
+            }
+            // Affiche les dizaines
+            for(int v=0; v<10;v++) {
+                if((Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()/10)%10==v) {
+                    afficheImageRedim ("numero"+v+".png", 15*aLargeurCarreau,DECALAGE_PX_EN_Y/4,16*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+                }
+            }
+            // Affiche les centaines
+            for(int v=0; v<10;v++) {
+                if((Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()/100)%10==v) {
+                    afficheImageRedim ("numero"+v+".png", 14*aLargeurCarreau,DECALAGE_PX_EN_Y/4,15*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+                }
+            }
+            // Affiche les milliemes
+            for(int v=0; v<10;v++) {
+                if((Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()/1000)%10==v) {
+                    afficheImageRedim ("numero"+v+".png", 13*aLargeurCarreau,DECALAGE_PX_EN_Y/4,14*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
                 }
             }
         }
         
         // Bouton MENU fonctionnement
-        if(0<clickY && clickY<DECALAGE_PX_EN_Y && 0<clickX && clickX<6*aLargeurCarreau) 
+        if(0<clickY && clickY<DECALAGE_PX_EN_Y && 0<clickX && clickX<4*aLargeurCarreau) 
         {
             // Efface le petit menu
             modeMenuUnite=false;
             effaceMenuUnite(g);
 
             modeMenu=true;
-            afficheImageRedim ("noir80.png", 0, DECALAGE_PX_EN_Y,6*aLargeurCarreau, 2*aLargeurCarreau+DECALAGE_PX_EN_Y, g);
+            afficheImageRedim ("noir80.png", 0, DECALAGE_PX_EN_Y,4*aLargeurCarreau, 2*aHauteurCarreau+DECALAGE_PX_EN_Y, g);
             
             // Trace les lignes
             g.setColor(Color.white);
-            g.drawLine(0, aLargeurCarreau+DECALAGE_PX_EN_Y, 6*aLargeurCarreau-1, aLargeurCarreau+DECALAGE_PX_EN_Y);
+            g.drawLine(0, aLargeurCarreau+DECALAGE_PX_EN_Y, 4*aLargeurCarreau-1, aLargeurCarreau+DECALAGE_PX_EN_Y);
         }
         
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) 
@@ -365,15 +400,46 @@ class IHM_Panel extends JPanel
     public void afficheBarreInfo (final Graphics g) {
         afficheImageRedim("4.png",0, 0,this.getWidth(),DECALAGE_PX_EN_Y,g);
         g.setColor(Color.white);
-        afficheImageRedim ("jour.png", 6*aLargeurCarreau, 0,12*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
-        afficheImageRedim ("numero0.png", 11*aLargeurCarreau, DECALAGE_PX_EN_Y/4,12*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
-        afficheImageRedim ("numero1.png", 12*aLargeurCarreau, DECALAGE_PX_EN_Y/4,13*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+        afficheImageRedim ("jour.png", 3*aLargeurCarreau, 0,7*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+        afficheImageRedim ("numero0.png", 7*aLargeurCarreau, DECALAGE_PX_EN_Y/4,8*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+        afficheImageRedim ("numero1.png", 8*aLargeurCarreau, DECALAGE_PX_EN_Y/4,9*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
         
+        // Argent de base du primier joueur
+        afficheImageRedim ("argent.png", 9*aLargeurCarreau, 0,13*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+        // Affiche les unites
+        for(int u=0; u<10;u++) {
+            if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()%10==u) {
+                afficheImageRedim ("numero"+u+".png", 16*aLargeurCarreau, DECALAGE_PX_EN_Y/4,17*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+            }
+        }
+        // Affiche les dizaines
+        for(int v=0; v<10;v++) {
+            if((Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()/10)%10==v) {
+                afficheImageRedim ("numero"+v+".png", 15*aLargeurCarreau,DECALAGE_PX_EN_Y/4,16*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+            }
+        }
+        // Affiche les centaines
+        for(int v=0; v<10;v++) {
+            if((Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()/100)%10==v) {
+                afficheImageRedim ("numero"+v+".png", 14*aLargeurCarreau,DECALAGE_PX_EN_Y/4,15*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+            }
+        }
+        // Affiche les milliemes
+        for(int v=0; v<10;v++) {
+            if((Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()/1000)%10==v) {
+                afficheImageRedim ("numero"+v+".png", 13*aLargeurCarreau,DECALAGE_PX_EN_Y/4,14*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+            }
+        }
+
         // Bouton SUIVANT
         afficheImageRedim ("suivant.png", this.getWidth()-6*aLargeurCarreau, 0,this.getWidth(), DECALAGE_PX_EN_Y, g);
         
         // Bouton MENU
-        afficheImageRedim ("menu.png", 0, 0,6*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+        afficheImageRedim ("menu.png", 0, 0,4*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+        
+        // Joueur Actuel de base
+        afficheImageRedim ("joueur.png", 18*aLargeurCarreau, 0,19*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+        afficheImageRedim ("numero1.png", 19*aLargeurCarreau, DECALAGE_PX_EN_Y/4,20*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
     }
     
     
