@@ -44,9 +44,9 @@ public class Joueur
     public void setNbreBatiment(final int pNbre) {aNbreBatiment = pNbre;}
     public void setArgent(final int pArgent) {aArgent = pArgent;}
     
-    public void benefTour()
+    public void benefTour(final int pRevenuBatiment)
     {
-        int gain = aNbreBatiment*1000;
+        int gain = aNbreBatiment*pRevenuBatiment;
         aArgent = aArgent+gain;
     }
     
