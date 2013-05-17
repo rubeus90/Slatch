@@ -5,10 +5,10 @@ import java.io.FileNotFoundException;
 import java.lang.Integer;
 
 public enum TypeTerrain {
-	FORET("foret", "arbres02.png", "une foret", 2), 
-	PLAINE("plaine", "plaine02.png", "une plaine", 1), 
-	MONTAGNE("montagne", "Montagne04.png", "une montagne", 3),
-	BATIMENT("batiment", "batiment01.png", "un batiment au pif pour l'instant", 2);
+	FORET("foret", "arbres", "une foret", 2), 
+	PLAINE("plaine", "plaine", "une plaine", 1), 
+	MONTAGNE("montagne", "montagne", "une montagne", 3),
+	BATIMENT("batiment", "batiment", "un batiment au pif pour l'instant", 2);
 	
 	private String aNom;
 	private String aImage;
