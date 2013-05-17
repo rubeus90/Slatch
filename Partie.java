@@ -118,7 +118,7 @@ public class Partie
             ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i]));
             ListeJoueur.get(i).benefTour(aRevenuBatiment);
         }
-        
+        ListeJoueur.get(1).benefTour(aRevenuBatiment);
        for(Unite vUniteActuel : lUnite){
            int vJ = vUniteActuel.getJoueur();
             ListeJoueur.get(vJ).getListeUnite().add(vUniteActuel);
