@@ -72,13 +72,44 @@ class IHM_Panel extends JPanel
     /**
      * Methode appelee lors d'un click
      */
-    public void coordclick (String pcoordclick) 
+    public void coordclickAppui (String pcoordclick) 
     {
+        // Decoupe String pour récupérer les coord
         String[] tabString = null;                      //tableau de chaînes
         tabString = pcoordclick.split(",");
         int clickX = Integer.parseInt(tabString[0]);
         int clickY = Integer.parseInt(tabString[1])-20;   //Decalage de 20 car la barre de la fenete fait + ou - : 20 px
         Graphics g = Slatch.ihm.getPanel().getGraphics();
+        
+        // Bouton SUIVANT affichage
+        if(0<clickY && clickY<DECALAGE_PX_EN_Y && this.getWidth()-6*aLargeurCarreau<clickX && clickX<this.getWidth()) 
+        {
+            afficheImageRedim ("suivantAppui.png", this.getWidth()-6*aLargeurCarreau, 0,this.getWidth(), DECALAGE_PX_EN_Y, g);
+        }
+    }
+    
+    
+    /**
+     * Methode appelee lors d'un click
+     */
+    public void coordclickUnite (String pcoordclick) 
+    {
+        // Decoupe String pour récupérer les coord
+        String[] tabString = null;                      //tableau de chaînes
+        tabString = pcoordclick.split(",");
+        int clickX = Integer.parseInt(tabString[0]);
+        int clickY = Integer.parseInt(tabString[1])-20;   //Decalage de 20 car la barre de la fenete fait + ou - : 20 px
+        Graphics g = Slatch.ihm.getPanel().getGraphics();
+        
+        // Bouton SUIVANT affichage : Remet suivant blanc
+        afficheImageRedim ("suivant.png", this.getWidth()-6*aLargeurCarreau, 0,this.getWidth(), DECALAGE_PX_EN_Y, g);
+        
+        // Bouton SUIVANT fonctionnement
+        if(0<clickY && clickY<DECALAGE_PX_EN_Y && this.getWidth()-6*aLargeurCarreau<clickX && clickX<this.getWidth()) 
+        {
+            // Avertir Moteur
+            System.out.println("suivant");
+        }
         
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) 
         {
@@ -270,7 +301,9 @@ class IHM_Panel extends JPanel
         g.setColor(Color.white);
         g.drawString("Tour : "+Slatch.partie.getTour(), this.getWidth()/8, DECALAGE_PX_EN_Y/2);
         g.drawString("Argent :"+"1000", this.getWidth()/4, DECALAGE_PX_EN_Y/2);
-        g.drawString("SUIVANT", this.getWidth()-this.getWidth()/8, DECALAGE_PX_EN_Y/2);
+        
+        // Bouton SUIVANT
+        afficheImageRedim ("suivant.png", this.getWidth()-6*aLargeurCarreau, 0,this.getWidth(), DECALAGE_PX_EN_Y, g);
     }
     
     

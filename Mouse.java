@@ -9,9 +9,8 @@ import java.awt.event.MouseListener;
  */
 public class Mouse implements MouseListener {    
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent event) {
        //IHM_Pannel.clikcount(e.getClickCount()); pour le double click
-       
     }
   
     @Override
@@ -26,12 +25,13 @@ public class Mouse implements MouseListener {
   
     @Override
     public void mousePressed(MouseEvent event) {
-          
+ 
+        Slatch.ihm.getPanel().coordclickAppui(event.getX()+","+event.getY());
     }
 
     @Override
     public void mouseReleased(MouseEvent event) {
-        Slatch.ihm.getPanel().coordclick(event.getX()+","+event.getY());
+        Slatch.ihm.getPanel().coordclickUnite(event.getX()+","+event.getY());
         
     }  
 }
