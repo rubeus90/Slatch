@@ -132,8 +132,22 @@ class IHM_Panel extends JPanel
             modeMenu=false;
             // Avertir Moteur
             Slatch.moteur.passeTour();
+            
             g.setColor(Color.white);
-            g.drawString("Tour : "+Slatch.partie.getTour(), 7*aLargeurCarreau, DECALAGE_PX_EN_Y/2);
+            //g.drawString("Tour : "+Slatch.partie.getTour(), 7*aLargeurCarreau, DECALAGE_PX_EN_Y/2);
+            
+            afficheImageRedim ("jour.png", 6*aLargeurCarreau, 0,12*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+            for(int i=0; i<10;i++) {
+                if(Slatch.partie.getTour()%10==i) {
+                    afficheImageRedim ("numero"+i+".png", 12*aLargeurCarreau, DECALAGE_PX_EN_Y/4,13*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+                }
+            }
+            
+            for(int i=0; i<10;i++) {
+                if(Slatch.partie.getTour()/10%10==i) {
+                    afficheImageRedim ("numero"+i+".png", 11*aLargeurCarreau,DECALAGE_PX_EN_Y/4,12*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+                }
+            }
         }
         
         // Bouton MENU fonctionnement
@@ -351,8 +365,9 @@ class IHM_Panel extends JPanel
     public void afficheBarreInfo (final Graphics g) {
         afficheImageRedim("4.png",0, 0,this.getWidth(),DECALAGE_PX_EN_Y,g);
         g.setColor(Color.white);
-        g.drawString("Tour : "+Slatch.partie.getTour(), 7*aLargeurCarreau, DECALAGE_PX_EN_Y/2);
-        g.drawString("Argent :"+"1000", 12*aLargeurCarreau, DECALAGE_PX_EN_Y/2);
+        afficheImageRedim ("jour.png", 6*aLargeurCarreau, 0,12*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+        afficheImageRedim ("numero0.png", 11*aLargeurCarreau, DECALAGE_PX_EN_Y/4,12*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
+        afficheImageRedim ("numero1.png", 12*aLargeurCarreau, DECALAGE_PX_EN_Y/4,13*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
         
         // Bouton SUIVANT
         afficheImageRedim ("suivant.png", this.getWidth()-6*aLargeurCarreau, 0,this.getWidth(), DECALAGE_PX_EN_Y, g);
