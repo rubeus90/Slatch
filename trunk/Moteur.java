@@ -56,6 +56,7 @@ class Moteur
             estMort(pVictime);
         }    
         uniteA.attaque(true);
+        uniteA.deplacee(true);
         uniteA=null;
     }
    

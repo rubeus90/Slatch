@@ -126,10 +126,13 @@ public class Partie
     
     public void tourSuivant(){
         if(aJoueurActuel == aNbrJoueur)
+        {
             aJoueurActuel = 1;
+            aTour++;
+        }
         else
             aJoueurActuel++;
-        aTour++;
+        
         ListeJoueur.get(aJoueurActuel).benefTour(aRevenuBatiment);            
     }
 
