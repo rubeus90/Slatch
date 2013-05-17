@@ -20,10 +20,10 @@ public class Partie
     private int aLargeur;
     private int aHauteur;
     private int aTourMax;
-    private int aTour;
     private Scanner aMap;
     private Terrain[][] aTerrain;
     private int aJoueurActuel;
+    private int aTour;
     
 
     /**
@@ -113,8 +113,10 @@ public class Partie
     public void tourSuivant(){
         if(aJoueurActuel == aNbrJoueur)
             aJoueurActuel = 1;
-         else
+        else
             aJoueurActuel++;
+        aTour++;
+        ListeJoueur.get(aJoueurActuel).benefTour();
                 
     }
 
