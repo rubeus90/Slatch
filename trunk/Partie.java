@@ -75,7 +75,7 @@ public class Partie
         for(int i=0; i<aNbrJoueur; i++){
             vBatimentJoueur[i] = 0;
         }
-        
+        List<Unite> lUnite = new ArrayList<Unite>();
         //On lit le fichier et on l'analyse
         while(aMap.hasNextLine()){
             ligne = aMap.nextLine();
@@ -93,7 +93,11 @@ public class Partie
                     vBatimentJoueur[vJoueur]+=1;
                     break;
                 }
-                case "infanterie": aTerrain[vX][vY].setUnite(new Unite(vX,vY,vJoueur,20,TypeUnite.INFANTERIE,TypeAttaque.CANON,3,1.0, TypeDeplacement.PIED)); break;
+                case "infanterie": 
+                Unite u = new Unite(vX,vY,vJoueur,20,TypeUnite.INFANTERIE,TypeAttaque.CANON,3,1.0, TypeDeplacement.PIED);
+                lUnite.add(u);
+                aTerrain[vX][vY].setUnite(u); break;
+                //aTerrain[vX][vY].setUnite(new Unite(vX,vY,vJoueur,20,TypeUnite.INFANTERIE,TypeAttaque.CANON,3,1.0, TypeDeplacement.PIED)); break;
                 case "vehicule": aTerrain[vX][vY].setUnite(new Unite(vX,vY,vJoueur,30,TypeUnite.VEHICULE,TypeAttaque.CANON,7,1.0, TypeDeplacement.CHENILLES)); break;
             default: aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.PLAINE);
             }

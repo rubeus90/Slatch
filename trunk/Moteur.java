@@ -108,7 +108,7 @@ class Moteur
                                 items.add("Capture");
                         }
                         Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
-                        Slatch.ihm.getPanel().afficheMenu(items, pX, pY);
+                        if(!items.isEmpty()){Slatch.ihm.getPanel().afficheMenu(items, pX, pY);}
                     }
                 }
                 else
@@ -470,6 +470,10 @@ class Moteur
         Slatch.partie.tourSuivant();
         List<Unite> l = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getListeUnite();
         
-        
+        for(Unite u: l)
+        {
+            u.attaque(false);
+            u.deplacee(false);
+        }
     }
 }
