@@ -119,10 +119,10 @@ public class Partie
             ListeJoueur.get(i).benefTour(aRevenuBatiment);
         }
         ListeJoueur.get(1).benefTour(aRevenuBatiment);
-       for(Unite vUniteActuel : lUnite){
-           int vJ = vUniteActuel.getJoueur();
+        for(Unite vUniteActuel : lUnite){
+        	int vJ = vUniteActuel.getJoueur();
             ListeJoueur.get(vJ).getListeUnite().add(vUniteActuel);
-       }
+        }
     }
     
     public void tourSuivant(){
