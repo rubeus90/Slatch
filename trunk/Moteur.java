@@ -55,7 +55,6 @@ class Moteur
         else if(distance(uniteA, pVictime)==1)
         {
             degatsAtt= (70*getDegats(pVictime, uniteA))/100;
-            System.out.println(degatsAtt);
             if(faireDegats(uniteA, degatsAtt))
             {
                 uniteA.addExperience(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*uniteA.getLvl());
