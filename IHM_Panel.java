@@ -86,6 +86,12 @@ class IHM_Panel extends JPanel
         {
             afficheImageRedim ("suivantAppui.png", this.getWidth()-6*aLargeurCarreau, 0,this.getWidth(), DECALAGE_PX_EN_Y, g);
         }
+        
+        // Bouton MENU affichage
+        if(0<clickY && clickY<DECALAGE_PX_EN_Y && 0<clickX && clickX<6*aLargeurCarreau) 
+        {
+            afficheImageRedim ("menuAppui.png", 0, 0,6*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+        }
     }
     
     
@@ -104,11 +110,19 @@ class IHM_Panel extends JPanel
         // Bouton SUIVANT affichage : Remet suivant blanc
         afficheImageRedim ("suivant.png", this.getWidth()-6*aLargeurCarreau, 0,this.getWidth(), DECALAGE_PX_EN_Y, g);
         
+        // Bouton MENU affichage : Remet suivant blanc
+        afficheImageRedim ("menu.png", 0, 0,6*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
+        
         // Bouton SUIVANT fonctionnement
         if(0<clickY && clickY<DECALAGE_PX_EN_Y && this.getWidth()-6*aLargeurCarreau<clickX && clickX<this.getWidth()) 
         {
+            modeMenu=false;
+            effaceMenu(g);
+            
             // Avertir Moteur
             Slatch.moteur.passeTour();
+            g.setColor(Color.white);
+            g.drawString("Tour : "+Slatch.partie.getTour(), 7*aLargeurCarreau, DECALAGE_PX_EN_Y/2);
         }
         
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) 
@@ -123,7 +137,7 @@ class IHM_Panel extends JPanel
 
                 if(pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) 
                 {
-                	if(modeMenu)
+                    if(modeMenu)
                     {
                         if( aMenuHautGauche_Ypx<clickY && clickY<aMenuBasDroite_Ypx && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx )//Si tu es dans menu
                         {
@@ -299,11 +313,14 @@ class IHM_Panel extends JPanel
     public void afficheBarreInfo (final Graphics g) {
         afficheImageRedim("4.png",0, 0,this.getWidth(),DECALAGE_PX_EN_Y,g);
         g.setColor(Color.white);
-        g.drawString("Tour : "+Slatch.partie.getTour(), this.getWidth()/8, DECALAGE_PX_EN_Y/2);
-        g.drawString("Argent :"+"1000", this.getWidth()/4, DECALAGE_PX_EN_Y/2);
+        g.drawString("Tour : "+Slatch.partie.getTour(), 7*aLargeurCarreau, DECALAGE_PX_EN_Y/2);
+        g.drawString("Argent :"+"1000", 12*aLargeurCarreau, DECALAGE_PX_EN_Y/2);
         
         // Bouton SUIVANT
         afficheImageRedim ("suivant.png", this.getWidth()-6*aLargeurCarreau, 0,this.getWidth(), DECALAGE_PX_EN_Y, g);
+        
+        // Bouton MENU
+        afficheImageRedim ("menu.png", 0, 0,6*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
     }
     
     
