@@ -89,9 +89,9 @@ public class Partie
                 case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.FORET); break;
                 case "montagne": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.MONTAGNE); break;
                 case "batiment": {
-                	aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 10, TypeTerrain.BATIMENT); 
-                	vBatimentJoueur[vJoueur]+=1;
-                	break;
+                    aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 10, TypeTerrain.BATIMENT); 
+                    vBatimentJoueur[vJoueur]+=1;
+                    break;
                 }
                 case "infanterie": aTerrain[vX][vY].setUnite(new Unite(vX,vY,vJoueur,20,TypeUnite.INFANTERIE,TypeAttaque.CANON,3,1.0, "pied")); break;
                 case "vehicule": aTerrain[vX][vY].setUnite(new Unite(vX,vY,vJoueur,30,TypeUnite.VEHICULE,TypeAttaque.CANON,7,1.0, "chenilles")); break;
@@ -108,6 +108,14 @@ public class Partie
         {
             ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i]));
         }    
+    }
+    
+    public void tourSuivant(){
+        if(aJoueurActuel == aNbrJoueur)
+            aJoueurActuel = 1;
+         else
+            aJoueurActuel++;
+                
     }
 
     /**********
