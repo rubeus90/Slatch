@@ -27,6 +27,8 @@ public class Unite extends Entite
     private double aGain; //Compris entre 1 et 2, correspondant au pourcentage d'augmentation des caractéristique à chaque monté de niveau
     private boolean dejaAttaque;
     private boolean dejaDeplacee;
+    static final int pallierExperience =100;
+    static final int EXPERIENCE_DONNEE_PAR_NIVEAU = 20;
    
     /**
      * Constructeur de la classe Unite
@@ -141,7 +143,15 @@ public class Unite extends Entite
      * @param pExperience
      */
     public void addExperience(final int pExperience){
-        aExperience+=pExperience;
+        //aExperience+=pExperience;
+        for(int i=0; i<pExperience; i++)
+        {
+            aExperience++;
+            if(this.aExperience >= pallierExperience && this.aLvl<=3)
+            {
+                this.upLvl();
+            }
+        }
     }
     
     
