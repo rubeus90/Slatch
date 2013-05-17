@@ -174,6 +174,7 @@ class IHM_Panel extends JPanel
                             {
                                 Slatch.moteur.modeDeplacement(aUniteMemCaseX, aUniteMemCaseY);
                                 effaceMenuUnite(g);
+                                aDeplacePossible=false;
                             }
                             
                             //Bouton 2 : Attaque
@@ -181,6 +182,7 @@ class IHM_Panel extends JPanel
                             {
                                 Slatch.moteur.modeAttaque(aUniteMemCaseX, aUniteMemCaseY);
                                 effaceMenuUnite(g);
+                                aAttaquePossible=false;
                             }
                             
                         }
