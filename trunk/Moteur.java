@@ -55,6 +55,7 @@ class Moteur
             }
             estMort(pVictime);
         }    
+        uniteA.attaque(true);
         uniteA=null;
     }
    
@@ -97,18 +98,18 @@ class Moteur
             if(uniteA==null) // si on a sélectionné aucune unité auparavant pour l'attaque
             {
                 if(uniteD==null)
-                {   //if(Slatch.partie.getJoueurActuel()==unite.getJoueur())
-                    //{
+                {   if(Slatch.partie.getJoueurActuel()==unite.getJoueur())
+                    {
                         List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
                         items.add("Deplace");
                         if(uniteProche(unite, pX,pY)){items.add("Attaque");}
-                        if(unite.getType()==TypeUnite.INFANTERIE && Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT)
+                        if(unite.getType()==TypeUnite.INFANTERIE && Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT && Slatch.partie.getJoueurActuel()!=Slatch.partie.getTerrain()[pX][pY].getJoueur())
                         {
                                 items.add("Capture");
                         }
                         Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
                         Slatch.ihm.getPanel().afficheMenu(items, pX, pY);
-                    //}
+                    }
                 }
                 else
                 {
@@ -166,6 +167,7 @@ class Moteur
                     e.printStackTrace();
                 }
             }
+            unite.deplacee(true);
             changerCase(unite, pX, pY);
     }
     
@@ -315,7 +317,10 @@ class Moteur
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
             {
-                if(Slatch.partie.getTerrain()[i][j].getUnite()!=null){tabDep[i][j]=300;} // quand on a déjà une unité sur la case, on ne peut pas y accéder
+                if(Slatch.partie.getTerrain()[i][j].getUnite()!=null)  // quand on a déjà une unité sur la case, on ne peut pas y accéder
+                {
+                    tabDep[i][j]=300;
+                }
                 else{tabDep[i][j]=-1;} // au début, on suppose qu'on a 0 en portée de déplacement sur chacune des cases restantes
             }
         }
@@ -334,7 +339,7 @@ class Moteur
          */
         if(tab[0]+1<Slatch.partie.getLargeur()) // on vérifie qu'on ne dépasse pas un bord
         {
-            k= Slatch.partie.getTerrain()[tab[0]+1][tab[1]].getType().aCoutDeplacement.get(unite.getTypeDeplacement()); // k= coût de déplacement vers une case
+            k= Slatch.partie.getTerrain()[tab[0]+1][tab[1]].getType().aCoutDeplacement.get(unite.getTypeDeplacement().getNom()); // k= coût de déplacement vers une case
             if(porteeDep-k>=0) // si on peut se déplacer sur la case, condition d'arrêt de la récursion
             {
                 if(porteeDep- k >tabDep[tab[0]+1][tab[1]]) // évite des appels inutiles
@@ -366,7 +371,7 @@ class Moteur
          */
         if(tab[1]+1<Slatch.partie.getHauteur())// on vérifie qu'on ne dépasse pas un bord
         {
-            k= Slatch.partie.getTerrain()[tab[0]][tab[1]+1].getType().aCoutDeplacement.get(unite.getTypeDeplacement());
+            k= Slatch.partie.getTerrain()[tab[0]][tab[1]+1].getType().aCoutDeplacement.get(unite.getTypeDeplacement().getNom());
             if(porteeDep-k>=0) // si on peut se déplacer sur la case
             {
                 if(porteeDep- k >tabDep[tab[0]][tab[1]+1])
@@ -399,7 +404,7 @@ class Moteur
          */
         if(tab[0]>0)// on vérifie qu'on ne dépasse pas un bord
         {
-            k= Slatch.partie.getTerrain()[tab[0]-1][tab[1]].getType().aCoutDeplacement.get(unite.getTypeDeplacement());
+            k= Slatch.partie.getTerrain()[tab[0]-1][tab[1]].getType().aCoutDeplacement.get(unite.getTypeDeplacement().getNom());
             if(porteeDep-k>=0) // si on peut se déplacer sur la case
             {
                 if(porteeDep- k >tabDep[tab[0]-1][tab[1]])
@@ -431,7 +436,7 @@ class Moteur
          */
         if(tab[1]>0)// on vérifie qu'on ne dépasse pas un bord
         {
-            k= Slatch.partie.getTerrain()[tab[0]][tab[1]-1].getType().aCoutDeplacement.get(unite.getTypeDeplacement());
+            k= Slatch.partie.getTerrain()[tab[0]][tab[1]-1].getType().aCoutDeplacement.get(unite.getTypeDeplacement().getNom());
             if(porteeDep-k>=0) // si on peut se déplacer sur la case
             {
                 if(porteeDep- k >tabDep[tab[0]][tab[1]-1])
@@ -458,5 +463,11 @@ class Moteur
                 }
             }          
         }
+    }
+    
+    public void passeTour()
+    {
+        Slatch.partie.tourSuivant();
+        //Slatch.partie.getTerrain
     }
 }

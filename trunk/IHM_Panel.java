@@ -108,7 +108,7 @@ class IHM_Panel extends JPanel
         if(0<clickY && clickY<DECALAGE_PX_EN_Y && this.getWidth()-6*aLargeurCarreau<clickX && clickX<this.getWidth()) 
         {
             // Avertir Moteur
-            System.out.println("suivant");
+            Slatch.moteur.passeTour();
         }
         
         for(int i = 0 ; i < NOMBRE_DE_CASE_X ; i++) 
