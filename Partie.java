@@ -50,7 +50,7 @@ public class Partie
      * Methode qui permet le chargement d'une carte depuis un fichier texte et créé les Joueurs
      * 
      */
-    public void initMap(){
+    private void initMap(){
         aLargeur = Integer.parseInt(aMap.nextLine());
         aHauteur = Integer.parseInt(aMap.nextLine());
         aNbrJoueur = Integer.parseInt(aMap.nextLine());
