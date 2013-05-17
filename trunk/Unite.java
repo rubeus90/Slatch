@@ -181,7 +181,7 @@ public class Unite extends Entite
         int pPosBasDroiteX = (super.getCoordonneeX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
         int pPosBasDroiteY = (super.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
         try {
-            Image img = ImageIO.read(new File("Images/"+ aType.getImage() + getJoueur() + ".png"));
+        	Image img = ImageIO.read(getClass().getClassLoader().getResource("Images/"+ aType.getImage() + getJoueur() + ".png"));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
         }
@@ -202,8 +202,9 @@ public class Unite extends Entite
                 int vUnite = getPointDeVie()%10;
                 int vDizaine = (int)getPointDeVie()/10;
                 
-                Image unite = ImageIO.read(new File("Images/pvUnite"+vUnite+".png"));
-                Image dizaine = ImageIO.read(new File("Images/pvDizaine"+vDizaine+".png"));
+                Image unite = ImageIO.read(getClass().getClassLoader().getResource("Images/pvUnite"+vUnite+".png"));
+                Image dizaine = ImageIO.read(getClass().getClassLoader().getResource("Images/pvDizaine"+vDizaine+".png"));
+                
                 //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
                 g.drawImage(unite, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
                 g.drawImage(dizaine, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());

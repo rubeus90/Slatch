@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Faction désigne un ensemble d'unités qui sont dans le même camp. Elle permet de les retrouver facilement lorsqu'on recrute.
@@ -22,11 +23,12 @@ public enum Faction
         Scanner fichier = null;
         aListeUnites = new ArrayList<TypeUnite>();
         aNom=pNom;
+        
         try {
-            fichier = new Scanner(new File("Faction.txt"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+			fichier = new Scanner(getClass().getResource("Config/Faction.txt").openStream());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
         
         String ligne;
         String[] tab;

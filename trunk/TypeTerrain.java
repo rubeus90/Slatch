@@ -2,7 +2,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.Integer;
+import java.net.URL;
 
 public enum TypeTerrain {
 	FORET("foret", "arbres", "une foret", 2), 
@@ -27,8 +29,8 @@ public enum TypeTerrain {
 		Scanner fichier = null;
 		
 		try {
-			fichier = new Scanner(new File("CoutDeplacement.txt"));
-		} catch (FileNotFoundException e) {
+			fichier = new Scanner(getClass().getResource("Config/CoutDeplacement.txt").openStream());
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		

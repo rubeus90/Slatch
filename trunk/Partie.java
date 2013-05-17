@@ -1,7 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 import java.lang.Integer;
+import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -37,11 +39,13 @@ public class Partie
         aTour = 1;
         aRevenuBatiment = pRevenuBatiment;
         
+        
+//            aMap = new Scanner(new File(pMap));
         try {
-            aMap = new Scanner(new File(pMap));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+			aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}        
         
         initMap();
     } 
