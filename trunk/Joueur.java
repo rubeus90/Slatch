@@ -50,5 +50,7 @@ public class Joueur
         aArgent = aArgent+gain;
     }
     
+
+    
     
 }

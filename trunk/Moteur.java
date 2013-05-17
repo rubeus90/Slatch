@@ -101,8 +101,8 @@ class Moteur
                 {   if(Slatch.partie.getJoueurActuel()==unite.getJoueur())
                     {
                         List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
-                        items.add("Deplace");
-                        if(uniteProche(unite, pX,pY)){items.add("Attaque");}
+                        if(!unite.dejaDeplacee()){items.add("Deplace");}
+                        if(uniteProche(unite, pX,pY) && !unite.dejaAttaque()){items.add("Attaque");}
                         if(unite.getType()==TypeUnite.INFANTERIE && Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT && Slatch.partie.getJoueurActuel()!=Slatch.partie.getTerrain()[pX][pY].getJoueur())
                         {
                                 items.add("Capture");
@@ -468,6 +468,8 @@ class Moteur
     public void passeTour()
     {
         Slatch.partie.tourSuivant();
-        //Slatch.partie.getTerrain
+        List<Unite> l = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getListeUnite();
+        
+        
     }
 }

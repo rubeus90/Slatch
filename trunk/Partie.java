@@ -197,10 +197,10 @@ public class Partie
     
     /**
      * Accesseur qui prend en parametre un id de joueur et renvoi un joueur
-     * @return aJoueurActuel
+     * @return aJoueur
      */
-    public Joueur getJoueurActuel(final int pJoueurActuel){
-        return  ListeJoueur.get(pJoueurActuel);
+    public Joueur getJoueur(final int pJoueur){
+        return  ListeJoueur.get(pJoueur);
     }
     
      /**
