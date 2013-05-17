@@ -44,7 +44,7 @@ public class Partie
         }
         
         initMap();
-    }
+    } 
     
     /**
      * Methode qui permet le chargement d'une carte depuis un fichier texte et créé les Joueurs

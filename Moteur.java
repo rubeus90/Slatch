@@ -33,7 +33,7 @@ class Moteur
                 }
             }
         }
-    }
+    } 
     
     public void modeAttaque(int pX, int pY)
     {
@@ -44,7 +44,7 @@ class Moteur
     public void attaque(Unite pVictime)
     {
         double degatsAtt=0;
-        degatsAtt=uniteA.getAttaque().getDegats()*uniteA.getAttaque().efficacite.get(pVictime.getType());
+        degatsAtt=(uniteA.getAttaque().getDegats()*uniteA.getAttaque().efficacite.get(pVictime.getType()))*(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[pVictime.getCoordonneeX()][pVictime.getCoordonneeY()].getType().getCouverture()))/100;
         pVictime.setPointDeVie(pVictime.getPointDeVie() - (int)degatsAtt);
         if(pVictime.getPointDeVie()<=0)
         {
@@ -64,6 +64,11 @@ class Moteur
     {
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
         Slatch.ihm.getPanel().dessineTerrain(unite.getCoordonneeX(),unite.getCoordonneeY());
+        Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
+        if(Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty())
+        {
+            System.out.println("Le joueur "+unite.getJoueur()+" est vaincu");
+        }
     }
 
     /*
@@ -251,36 +256,48 @@ class Moteur
                 {
                     if(distance(x+i, y+j, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+i, y+j, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x+i][y+j].getUnite()!=null)
                     {
-                        Slatch.partie.getTerrain()[x+i][y+j].setSurbrillance(true);
-                        Slatch.ihm.getPanel().dessineTerrain(x+i,y+j);
-                        tabAtt[x+i][y+j] = true;
+                        if(Slatch.partie.getTerrain()[x+i][y+j].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel())
+                        {
+                            Slatch.partie.getTerrain()[x+i][y+j].setSurbrillance(true);
+                            Slatch.ihm.getPanel().dessineTerrain(x+i,y+j);
+                            tabAtt[x+i][y+j] = true;
+                        }
                     }
                 }
                 if(x-i>=0 && y-j>=0)
                 {
                     if(distance(x-i, y-j, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x-i, y-j, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x-i][y-j].getUnite()!=null)
                     {
-                        Slatch.partie.getTerrain()[x-i][y-j].setSurbrillance(true);
-                        Slatch.ihm.getPanel().dessineTerrain(x-i,y-j);
-                        tabAtt[x-i][y-j] = true;
+                        if(Slatch.partie.getTerrain()[x-i][y-j].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel())
+                        {
+                            Slatch.partie.getTerrain()[x-i][y-j].setSurbrillance(true);
+                            Slatch.ihm.getPanel().dessineTerrain(x-i,y-j);
+                            tabAtt[x-i][y-j] = true;
+                        }
                     }
                 }
                 if(x+i<Slatch.partie.getLargeur() && y-j>=0)
                 {
                     if(distance(x+i, y-j, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+i, y-j, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x+i][y-j].getUnite()!=null)
                     {
-                        Slatch.partie.getTerrain()[x+i][y-j].setSurbrillance(true);
-                        Slatch.ihm.getPanel().dessineTerrain(x+i,y-j);
-                        tabAtt[x+i][y-j] = true;
+                        if(Slatch.partie.getTerrain()[x+i][y-j].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel())
+                        {
+                            Slatch.partie.getTerrain()[x+i][y-j].setSurbrillance(true);
+                            Slatch.ihm.getPanel().dessineTerrain(x+i,y-j);
+                            tabAtt[x+i][y-j] = true;
+                        }
                     }
                 }
                 if(x-i>=0 && y+j<Slatch.partie.getHauteur())
                 {
                     if(distance(x-i, y+j, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x-i, y+j, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x-i][y+j].getUnite()!=null)
                     {
-                        Slatch.partie.getTerrain()[x-i][y+j].setSurbrillance(true);
-                        Slatch.ihm.getPanel().dessineTerrain(x-i,y+j);
-                        tabAtt[x-i][y+j] = true;
+                        if(Slatch.partie.getTerrain()[x-i][y+j].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel())
+                        {
+                            Slatch.partie.getTerrain()[x-i][y+j].setSurbrillance(true);
+                            Slatch.ihm.getPanel().dessineTerrain(x-i,y+j);
+                            tabAtt[x-i][y+j] = true;
+                        }
                     }
                 }
             }
