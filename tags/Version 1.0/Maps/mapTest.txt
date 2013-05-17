@@ -1,0 +1,17 @@
+32
+18
+2
+foret:14:5:0
+foret:15:5:0
+foret:14:8:0
+foret:15:8:0
+montagne:14:6:0
+montagne:15:6:0
+batiment:14:7:2
+batiment:15:7:1
+infanterie:13:5:1
+infanterie:13:6:1
+infanterie:16:5:2
+infanterie:16:6:2
+vehicule:12:5:1
+vehicule:17:5:2
