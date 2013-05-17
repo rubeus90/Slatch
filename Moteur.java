@@ -42,22 +42,40 @@ class Moteur
     }
     
     public void attaque(Unite pVictime)
-    {
+    { 
         double degatsAtt=0;
-        degatsAtt=(uniteA.getAttaque().getDegats()*uniteA.getAttaque().efficacite.get(pVictime.getType()))*(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[pVictime.getCoordonneeX()][pVictime.getCoordonneeY()].getType().getCouverture()))/100;
-        pVictime.setPointDeVie(pVictime.getPointDeVie() - (int)degatsAtt);
-        if(pVictime.getPointDeVie()<=0)
+        //degatsAtt=(uniteA.getAttaque().getDegats()*uniteA.getAttaque().efficacite.get(pVictime.getType()))*(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[pVictime.getCoordonneeX()][pVictime.getCoordonneeY()].getType().getCouverture()))/100;
+        degatsAtt = getDegats(uniteA, pVictime);
+        //pVictime.setPointDeVie(pVictime.getPointDeVie() - (int)degatsAtt);
+        if(faireDegats(pVictime, degatsAtt))
         {
-            uniteA.addExperience(60);
-            if(uniteA.getExperience()>=100 && uniteA.getLvl()<=3)
-            {
-                uniteA.upLvl();
-            }
+            uniteA.addExperience(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*pVictime.getLvl());
             estMort(pVictime);
         }    
+        else if(distance(uniteA, pVictime)==1)
+        {
+            degatsAtt= (70*getDegats(pVictime, uniteA))/100;
+            System.out.println(degatsAtt);
+            if(faireDegats(uniteA, degatsAtt))
+            {
+                uniteA.addExperience(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*uniteA.getLvl());
+                estMort(uniteA);
+            }
+        }
         uniteA.attaque(true);
         uniteA.deplacee(true);
         uniteA=null;
+    }
+    
+    public boolean faireDegats(Unite cible, double degats) // retourne vrai si la cible meurt
+    {
+        cible.setPointDeVie(cible.getPointDeVie() - (int)degats);
+        if(cible.getPointDeVie()<=0){return true;}else{return false;}
+    }
+    
+    public double getDegats(Unite a, Unite v) // a= attaquant, v= cible
+    {
+        return ((a.getAttaque().getDegats()*a.getAttaque().efficacite.get(v.getType()))*(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getCoordonneeX()][v.getCoordonneeY()].getType().getCouverture()))/100)*((double)a.getPointDeVie()/(double)a.getPVMax());
     }
    
     public void estMort(Unite unite)
@@ -310,6 +328,11 @@ class Moteur
         return Math.abs(dX-aX) + Math.abs(dY-aY);
     }
     
+    public int distance(Unite u1, Unite u2)
+    {
+        return distance(u1.getCoordonneeX(), u1.getCoordonneeY(), u2.getCoordonneeX(), u2.getCoordonneeY());
+    }
+    
     public void affichePorteeDep(Unite unite)
     {
         initialiseTabDep(unite.getCoordonneeX(), unite.getCoordonneeY(), unite.getPorteeDeplacement());
@@ -493,5 +516,15 @@ class Moteur
             u.attaque(false);
             u.deplacee(false);
         }
+    }
+    
+    public boolean estAuJoueurActuel(Unite unite)
+    {
+        return unite.getJoueur()==Slatch.partie.getJoueurActuel();
+    }
+    
+    public boolean estAuJoueurActuel(int pX, int pY)
+    {
+        return estAuJoueurActuel(Slatch.partie.getTerrain()[pX][pY].getUnite());
     }
 }
