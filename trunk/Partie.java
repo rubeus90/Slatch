@@ -98,15 +98,40 @@ public class Partie
                     aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 10, TypeTerrain.BATIMENT); 
                     vBatimentJoueur[vJoueur]+=1;
                     break;
-                case "infanterie": 
-                    Unite vUnite = new Unite(vX,vY,vJoueur,20,TypeUnite.INFANTERIE,TypeAttaque.CANON,3,1.0, TypeDeplacement.PIED);
-                    lUnite.add(vUnite);
-                    aTerrain[vX][vY].setUnite(vUnite); 
+                case "commando": 
+                    Unite commando = new Unite(vX,vY,vJoueur,20,TypeUnite.COMMANDO,TypeAttaque.CANON,4,1.0, TypeDeplacement.PIED);
+                    lUnite.add(commando);
+                    aTerrain[vX][vY].setUnite(commando); 
                     break;
-                case "vehicule":
-                    Unite vVehicule = new Unite(vX,vY,vJoueur,30,TypeUnite.VEHICULE,TypeAttaque.CANON,7,1.0, TypeDeplacement.CHENILLES);
-                    lUnite.add(vVehicule);
-                    aTerrain[vX][vY].setUnite(vVehicule); 
+                case "demolisseur": 
+                    Unite demolisseur = new Unite(vX,vY,vJoueur,20,TypeUnite.DEMOLISSEUR,TypeAttaque.CANON,3,1.0, TypeDeplacement.PIED);
+                    lUnite.add(demolisseur);
+                    aTerrain[vX][vY].setUnite(demolisseur); 
+                    break;
+                case "tank":
+                    Unite tank = new Unite(vX,vY,vJoueur,65,TypeUnite.TANK,TypeAttaque.CANON,4,1.0, TypeDeplacement.CHENILLES);
+                    lUnite.add(tank);
+                    aTerrain[vX][vY].setUnite(tank); 
+                    break;
+                case "char":
+                    Unite vchar = new Unite(vX,vY,vJoueur,40,TypeUnite.CHAR,TypeAttaque.CANON,6,1.0, TypeDeplacement.CHENILLES);
+                    lUnite.add(vchar);
+                    aTerrain[vX][vY].setUnite(vchar); 
+                    break;
+                case "ingenieur":
+                    Unite ingenieur = new Unite(vX,vY,vJoueur,15,TypeUnite.INGENIEUR,TypeAttaque.CANON,4,1.0, TypeDeplacement.CHENILLES);
+                    lUnite.add(ingenieur);
+                    aTerrain[vX][vY].setUnite(ingenieur); 
+                    break;
+                case "distance":
+                    Unite distance = new Unite(vX,vY,vJoueur,35,TypeUnite.DISTANCE,TypeAttaque.CANON,5,1.0, TypeDeplacement.CHENILLES);
+                    lUnite.add(distance);
+                    aTerrain[vX][vY].setUnite(distance); 
+                    break;
+                case "uml":
+                    Unite uml = new Unite(vX,vY,vJoueur,30,TypeUnite.UML,TypeAttaque.CANON,5,1.0, TypeDeplacement.CHENILLES);
+                    lUnite.add(uml);
+                    aTerrain[vX][vY].setUnite(uml); 
                     break;
             default: aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.PLAINE);
             }

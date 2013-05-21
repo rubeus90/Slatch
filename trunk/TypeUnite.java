@@ -3,8 +3,13 @@
  */
 public enum TypeUnite
 {
-    INFANTERIE("infanterie", "une infanterie","infanterie"), 
-    VEHICULE("vehicule","un tank","tank");
+    COMMANDO("commando", "une infanterie","commando"), 
+    DEMOLISSEUR("demolisseur", "une infanterie","demolisseur"), 
+    CHAR("char","un char","char"),
+    TANK("tank","un tank","tank"),
+    INGENIEUR("ingenieur","un ingenieur formidable","ingenieur"),
+    DISTANCE("distance","un vehicule a moyenne distance","distance"),
+    UML("uml","Ultmiate missile launcher","uml");
 
     private String aNom;
     private String aDescription;
