@@ -128,7 +128,7 @@ class Moteur
                         List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
                         if(!unite.dejaDeplacee()){items.add("Deplace");}
                         if(cibleEnVue(unite) && !unite.dejaAttaque()){items.add("Attaque");}
-                        if(unite.getType()==TypeUnite.INFANTERIE && Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT && Slatch.partie.getJoueurActuel()!=Slatch.partie.getTerrain()[pX][pY].getJoueur())
+                        if((unite.getType()==TypeUnite.COMMANDO || unite.getType()==TypeUnite.DEMOLISSEUR) && Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT && Slatch.partie.getJoueurActuel()!=Slatch.partie.getTerrain()[pX][pY].getJoueur())
                         {
                                 items.add("Capture");
                         }
