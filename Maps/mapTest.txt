@@ -13,5 +13,5 @@ commando:13:5:1
 commando:13:6:1
 commando:16:5:2
 commando:16:6:2
-char:12:5:1
-char:17:5:2
+tank:12:5:1
+tank:17:5:2
