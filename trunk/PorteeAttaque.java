@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.lang.Integer;
 
 public enum PorteeAttaque {
-    COURTE("courte","ne peut attaquer que les unités etant sur les cases adjacentes",1, 1 ), 
+    COURTE("courte","ne peut attaquer que les unités etant sur les cases adjacentes",1, 5 ), 
     MOYENNE("moyenne","peut attaquer les unités à moyenne distance",1,3), 
     LONGUE("longue","peut attaquer les unités à longues distance",2, 6);
     

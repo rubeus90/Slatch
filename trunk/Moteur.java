@@ -12,6 +12,7 @@ class Moteur
     boolean[][] tabAtt;
     HashMap<String, List<String>> chemins; // contient la liste des chemins pour arriver à la case définie par le premier String
     
+    
     public Moteur()
     {
         tabDep = new int[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
@@ -361,7 +362,7 @@ class Moteur
         int x = unite.getCoordonneeX();
         int y = unite.getCoordonneeY();
         
-        if(x+decX<Slatch.partie.getLargeur() && y+decY<Slatch.partie.getHauteur())
+        if(x+decX<Slatch.partie.getLargeur() && y+decY<Slatch.partie.getHauteur() && x+decX>=0 && y+decY>=0)
         {
             if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x+decX][y+decY].getUnite()!=null)
             {
