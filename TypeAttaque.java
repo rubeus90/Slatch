@@ -48,6 +48,8 @@ public enum TypeAttaque
                 }
             }
         }
+        
+        fichier.close();
     }
      /**
      * Accesseur pour l'attribut aNom
