@@ -88,7 +88,7 @@ class Moteur
         }
     }
 
-    /*
+    /**
      * Appelee par l'IHM quand on clique sur une case, cette methode doit generer la liste des coordonnees accessibles par l'unite se trouvant sur la case selectionnee si elle ne s'est pas deja deplacee, et passer cette Liste a l'IHM.
      */
     public void caseSelectionnee(int pX, int pY)
@@ -110,6 +110,7 @@ class Moteur
         Unite unite = Slatch.partie.getTerrain()[pX][pY].getUnite();
         if(unite==null) // si aucune unité n'est présente sur la case
         {
+            annulerAttaque();
             if(uniteD!=null && tabDep[pX][pY]>-1) // si on a sélectioné aucune unité auparavant pour le déplacement
             {
                 deplacement(uniteD, chemins.get(pX+","+pY), pX, pY);
@@ -125,7 +126,7 @@ class Moteur
                     {
                         List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
                         if(!unite.dejaDeplacee()){items.add("Deplace");}
-                        if(uniteProche(unite, pX,pY) && !unite.dejaAttaque()){items.add("Attaque");}
+                        if(cibleEnVue(unite) && !unite.dejaAttaque()){items.add("Attaque");}
                         if(unite.getType()==TypeUnite.INFANTERIE && Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT && Slatch.partie.getJoueurActuel()!=Slatch.partie.getTerrain()[pX][pY].getJoueur())
                         {
                                 items.add("Capture");
@@ -172,8 +173,12 @@ class Moteur
         uniteA=null;
     }
     
-    /*
+    /**
     * permet de déplacer une unité en fonction du chemin passé en paramètre
+    * @param unite unite a deplacer
+    * @param chemin liste de coordonnees formant le chemin menant vers la destination
+    * @param pX abscisse de l'arrivee
+    * @param pY ordonnee de l'arrivee
     */
     public void deplacement(Unite unite, final List<String> chemin, int pX, int pY)
     {
@@ -194,6 +199,12 @@ class Moteur
             changerCase(unite, pX, pY);
     }
     
+    /**
+     * Deplace une unite vers sa destination
+     * @param unite unite a deplacer
+     * @param pX abscisse de l'arrivee
+     * @param pY ordonnee de l'arrivee
+     */
     private void changerCase(Unite unite, int destX, int destY)
     {
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
@@ -203,8 +214,8 @@ class Moteur
         Slatch.ihm.getPanel().dessineTerrain(destX,destY);
     }
     
-    /*
-     * vérifie si une unité se trouve à côté de la case passée en paramètre
+    /**
+     * Vérifie si une unité se trouve à côté de la case passée en paramètre
      */
     public boolean uniteProche(Unite unite, int pX, int pY)
     {
@@ -228,7 +239,6 @@ class Moteur
                 }
             }
         }
-        
         if(pX>0)
         {
             if(Slatch.partie.getTerrain()[pX-1][pY].getUnite()!=null)
@@ -252,6 +262,43 @@ class Moteur
         return false;
     }
     
+    /**
+     * Verifie si une unite se trouve a portee de tir de l'unite passee en parametre
+     * @param unite unite qui cherche une autre unite a frapper
+     * @return true si une unite est a portee de tir, false sinon
+     */
+    private boolean cibleEnVue(Unite unite)
+    {
+        int x = unite.getCoordonneeX(), y = unite.getCoordonneeY();
+        for(int i=0; i<=unite.getAttaque().aTypePortee.getPorteeMax();i++)
+        {
+            for(int j=0; j<=unite.getAttaque().aTypePortee.getPorteeMax();j++)
+            {
+                if(ciblePresente(unite, i,j))
+                {
+                    return true;
+                }
+                if(ciblePresente(unite, -i,-j))
+                {
+                    return true;
+                }
+                if(ciblePresente(unite, i,-j))
+                {
+                    return true;
+                }
+                if(ciblePresente(unite, -i,j))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * Affiche la portee d'attaque en mettant en surbrillance les cibles potentielles
+     * @param unite unite qui cherche une autre unite a frapper
+     */
     public void affichePorteeAttaque(Unite unite)
     {
         int x = unite.getCoordonneeX();
@@ -269,69 +316,81 @@ class Moteur
         {
             for(int j=0; j<=unite.getAttaque().aTypePortee.getPorteeMax();j++)
             {
-                if(x+i<Slatch.partie.getLargeur() && y+j<Slatch.partie.getHauteur())
+                
+                if(ciblePresente(unite, i,j))
                 {
-                    if(distance(x+i, y+j, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+i, y+j, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x+i][y+j].getUnite()!=null)
-                    {
-                        if(Slatch.partie.getTerrain()[x+i][y+j].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel())
-                        {
-                            Slatch.partie.getTerrain()[x+i][y+j].setSurbrillance(true);
-                            Slatch.ihm.getPanel().dessineTerrain(x+i,y+j);
-                            tabAtt[x+i][y+j] = true;
-                        }
-                    }
+                    Slatch.partie.getTerrain()[x+i][y+j].setSurbrillance(true);
+                    Slatch.ihm.getPanel().dessineTerrain(x+i,y+j);
+                    tabAtt[x+i][y+j] = true;
                 }
-                if(x-i>=0 && y-j>=0)
+        
+        
+                if(ciblePresente(unite, -i,-j))
                 {
-                    if(distance(x-i, y-j, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x-i, y-j, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x-i][y-j].getUnite()!=null)
-                    {
-                        if(Slatch.partie.getTerrain()[x-i][y-j].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel())
-                        {
-                            Slatch.partie.getTerrain()[x-i][y-j].setSurbrillance(true);
-                            Slatch.ihm.getPanel().dessineTerrain(x-i,y-j);
-                            tabAtt[x-i][y-j] = true;
-                        }
-                    }
+                    Slatch.partie.getTerrain()[x-i][y-j].setSurbrillance(true);
+                    Slatch.ihm.getPanel().dessineTerrain(x-i,y-j);
+                    tabAtt[x-i][y-j] = true;
                 }
-                if(x+i<Slatch.partie.getLargeur() && y-j>=0)
+        
+        
+                if(ciblePresente(unite, i,-j))
                 {
-                    if(distance(x+i, y-j, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+i, y-j, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x+i][y-j].getUnite()!=null)
-                    {
-                        if(Slatch.partie.getTerrain()[x+i][y-j].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel())
-                        {
-                            Slatch.partie.getTerrain()[x+i][y-j].setSurbrillance(true);
-                            Slatch.ihm.getPanel().dessineTerrain(x+i,y-j);
-                            tabAtt[x+i][y-j] = true;
-                        }
-                    }
+                    Slatch.partie.getTerrain()[x+i][y-j].setSurbrillance(true);
+                    Slatch.ihm.getPanel().dessineTerrain(x+i,y-j);
+                    tabAtt[x+i][y-j] = true;
                 }
-                if(x-i>=0 && y+j<Slatch.partie.getHauteur())
+        
+        
+                if(ciblePresente(unite, -i,j))
                 {
-                    if(distance(x-i, y+j, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x-i, y+j, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x-i][y+j].getUnite()!=null)
-                    {
-                        if(Slatch.partie.getTerrain()[x-i][y+j].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel())
-                        {
-                            Slatch.partie.getTerrain()[x-i][y+j].setSurbrillance(true);
-                            Slatch.ihm.getPanel().dessineTerrain(x-i,y+j);
-                            tabAtt[x-i][y+j] = true;
-                        }
-                    }
+                    Slatch.partie.getTerrain()[x-i][y+j].setSurbrillance(true);
+                    Slatch.ihm.getPanel().dessineTerrain(x-i,y+j);
+                    tabAtt[x-i][y+j] = true;
                 }
+                
             }
         }
         
     }
     
-    public int distance(int dX, int dY, int aX, int aY) // renvoie la distance entre (dX,dY) et (aX,aY)
+    /**
+     * vérifie si une cible est présente en (x+decX, y+decY)
+     */
+    private boolean ciblePresente(Unite unite, int decX, int decY)
+    {
+        int x = unite.getCoordonneeX();
+        int y = unite.getCoordonneeY();
+        
+        if(x+decX<Slatch.partie.getLargeur() && y+decY<Slatch.partie.getHauteur())
+        {
+            if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x+decX][y+decY].getUnite()!=null)
+            {
+                return (Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel());
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * renvoie la distance entre (dX,dY) et (aX,aY)
+     */
+    public int distance(int dX, int dY, int aX, int aY)
     {
         return Math.abs(dX-aX) + Math.abs(dY-aY);
     }
     
-    public int distance(Unite u1, Unite u2)
+    /**
+     * renvoie la distance entre e1 et e2
+     */
+    public int distance(Entite e1, Entite e2)
     {
-        return distance(u1.getCoordonneeX(), u1.getCoordonneeY(), u2.getCoordonneeX(), u2.getCoordonneeY());
+        return distance(e1.getCoordonneeX(), e1.getCoordonneeY(), e2.getCoordonneeX(), e2.getCoordonneeY());
     }
     
+    /**
+     * va appeler les methodes pour afficher la portee de deplacement d'une unite
+     * @param unite unite qui a envie de bouger
+     */
     public void affichePorteeDep(Unite unite)
     {
         initialiseTabDep(unite.getCoordonneeX(), unite.getCoordonneeY(), unite.getPorteeDeplacement());
@@ -348,7 +407,7 @@ class Moteur
         checkPorteeDeplacement(unite, unite.getPorteeDeplacement(), tab);
     }
    
-    /*
+    /**
      * Initialise tabDep afin d'utiliser checkPorteeDeplacement dans des conditions optimales
      */
     private void initialiseTabDep(int x, int y, int portee)
@@ -367,7 +426,7 @@ class Moteur
         tabDep[x][y]=portee; // la position de départ de l'unité doit être initialisée avec le nombre de points de déplacement de base de l'unité
     }
         
-    /*
+    /**
      * Procedure recursive qui va déterminer les cases accessibles par une unité en focntion de sa portée de déplacement et de sa position de départ
      */
     public void checkPorteeDeplacement(Unite unite, int porteeDep, int[] tab)
