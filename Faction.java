@@ -10,29 +10,29 @@ import java.io.IOException;
  */
 public enum Faction
 {
-   HUMAINS("HUMAINS"), 
-   ROBOTS("ROBOTS"), 
-   ALIENS("ALIENS"), 
+   HUMAINS("HUMAINS"),
+   ROBOTS("ROBOTS"),
+   ALIENS("ALIENS"),
    NEUTRE("NEUTRE");
    
     public String aNom;
     private List<TypeUnite> aListeUnites;
-    
+   
     Faction(final String pNom)
     {
         Scanner fichier = null;
         aListeUnites = new ArrayList<TypeUnite>();
         aNom=pNom;
-        
+       
         try {
-			fichier = new Scanner(getClass().getResource("Config/Faction.txt").openStream());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        
+                        fichier = new Scanner(getClass().getResource("Config/Faction.txt").openStream());
+                } catch (IOException e) {
+                        e.printStackTrace();
+                }
+       
         String ligne;
         String[] tab;
-        
+       
         while(fichier.hasNextLine()){
             ligne = fichier.nextLine();
             tab = ligne.    split(":");
@@ -44,11 +44,9 @@ public enum Faction
                 }
             }
         }
-        
-        fichier.close();
 
     }
-    
+   
     /**
      * Accesseur pour l'attribut aListeUnites contenant la liste des Unite
      * @return aListeUnites
@@ -57,7 +55,7 @@ public enum Faction
     {
         return aListeUnites;
     }
-    
+   
     /**
      * Accesseur pour l'attribut aNom
      * @return aNom

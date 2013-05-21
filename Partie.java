@@ -91,7 +91,6 @@ public class Partie
             vY = Integer.parseInt(tab[2]);   
             vJoueur = Integer.parseInt(tab[3]);
             
-            System.out.println(vId);
             
             switch(vId){
                 case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.FORET); break;

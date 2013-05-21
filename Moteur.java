@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.awt.Point;
 /*
  * Possede presque toutes les methodes propres a la mecanique du jeu, il va travailler de paire avec Partie et IHM
  */
@@ -11,7 +12,7 @@ class Moteur
     int[][] tabDep; // matrice de la portée de déplacement qu'il nous reste lorsqu'on se situe sur une case, utilisée par checkPorteeDeplacement
     boolean[][] tabAtt;
     HashMap<String, List<String>> chemins; // contient la liste des chemins pour arriver à la case définie par le premier String
-    
+    Point[] voisins = {new Point(0,1), new Point(0,-1),new Point(1,0),new Point(-1,0)};
     
     public Moteur()
     {
@@ -183,21 +184,21 @@ class Moteur
     */
     public void deplacement(Unite unite, final List<String> chemin, int pX, int pY)
     {
-            String[] t;
-            for(int i=0; i<chemin.size(); i++)
-            {
-                t=chemin.get(i).split(",");
-                changerCase(unite, Integer.parseInt(t[0]), Integer.parseInt(t[1]));
-                try{
-                    Thread.sleep(250/chemin.size()+50);
-                }
-                catch(InterruptedException e)
-                {
-                    e.printStackTrace();
-                }
+        String[] t;
+        for(int i=0; i<chemin.size(); i++)
+        {
+            t=chemin.get(i).split(",");
+            changerCase(unite, Integer.parseInt(t[0]), Integer.parseInt(t[1]));
+            try{
+                Thread.sleep(250/chemin.size()+50);
             }
-            unite.deplacee(true);
-            changerCase(unite, pX, pY);
+            catch(InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        unite.deplacee(true);
+        changerCase(unite, pX, pY);
     }
     
     /**
@@ -220,6 +221,21 @@ class Moteur
      */
     public boolean uniteProche(Unite unite, int pX, int pY)
     {
+//         for(Point p: voisins)
+//         {
+//             int decX = (int)p.getX();
+//             int decY = (int)p.getY();
+//             if(pX+decX<Slatch.partie.getLargeur() && pX+decX>=0 && pY+decY<Slatch.partie.getHauteur() && pY+decY>=0)
+//             {
+//                 if(Slatch.partie.getTerrain()[pX+decX][pY+decY].getUnite()!=null)
+//                 {
+//                     if(Slatch.partie.getTerrain()[pX+decX][pY+decY].getUnite().getJoueur()!=unite.getJoueur())
+//                     {
+//                         return true;
+//                     }
+//                 }
+//             }
+//         }
         if(pX+1<Slatch.partie.getLargeur())
         {
             if(Slatch.partie.getTerrain()[pX+1][pY].getUnite()!=null)
@@ -317,38 +333,33 @@ class Moteur
         {
             for(int j=0; j<=unite.getAttaque().aTypePortee.getPorteeMax();j++)
             {
-                
-                if(ciblePresente(unite, i,j))
-                {
-                    Slatch.partie.getTerrain()[x+i][y+j].setSurbrillance(true);
-                    Slatch.ihm.getPanel().dessineTerrain(x+i,y+j);
-                    tabAtt[x+i][y+j] = true;
-                }
-        
-        
-                if(ciblePresente(unite, -i,-j))
-                {
-                    Slatch.partie.getTerrain()[x-i][y-j].setSurbrillance(true);
-                    Slatch.ihm.getPanel().dessineTerrain(x-i,y-j);
-                    tabAtt[x-i][y-j] = true;
-                }
-        
-        
-                if(ciblePresente(unite, i,-j))
-                {
-                    Slatch.partie.getTerrain()[x+i][y-j].setSurbrillance(true);
-                    Slatch.ihm.getPanel().dessineTerrain(x+i,y-j);
-                    tabAtt[x+i][y-j] = true;
-                }
-        
-        
-                if(ciblePresente(unite, -i,j))
-                {
-                    Slatch.partie.getTerrain()[x-i][y+j].setSurbrillance(true);
-                    Slatch.ihm.getPanel().dessineTerrain(x-i,y+j);
-                    tabAtt[x-i][y+j] = true;
-                }
-                
+                    if(ciblePresente(unite, i,j))
+                    {
+                        Slatch.partie.getTerrain()[x+i][y+j].setSurbrillance(true);
+                        Slatch.ihm.getPanel().dessineTerrain(x+i,y+j);
+                        tabAtt[x+i][y+j] = true;
+                    }
+            
+                    if(ciblePresente(unite, -i,-j))
+                    {
+                        Slatch.partie.getTerrain()[x-i][y-j].setSurbrillance(true);
+                        Slatch.ihm.getPanel().dessineTerrain(x-i,y-j);
+                        tabAtt[x-i][y-j] = true;
+                    }
+            
+                    if(ciblePresente(unite, i,-j))
+                    {
+                        Slatch.partie.getTerrain()[x+i][y-j].setSurbrillance(true);
+                        Slatch.ihm.getPanel().dessineTerrain(x+i,y-j);
+                        tabAtt[x+i][y-j] = true;
+                    }
+            
+                    if(ciblePresente(unite, -i,j))
+                    {
+                        Slatch.partie.getTerrain()[x-i][y+j].setSurbrillance(true);
+                        Slatch.ihm.getPanel().dessineTerrain(x-i,y+j);
+                        tabAtt[x-i][y+j] = true;
+                    }
             }
         }
         
