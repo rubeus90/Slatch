@@ -47,14 +47,14 @@ class Moteur
         //degatsAtt=(uniteA.getAttaque().getDegats()*uniteA.getAttaque().efficacite.get(pVictime.getType()))*(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[pVictime.getCoordonneeX()][pVictime.getCoordonneeY()].getType().getCouverture()))/100;
         degatsAtt = getDegats(uniteA, pVictime);
         //pVictime.setPointDeVie(pVictime.getPointDeVie() - (int)degatsAtt);
-        if(faireDegats(pVictime, degatsAtt))
+        if(faireDegats(pVictime, degatsAtt)) // si la victime meurt
         {
             uniteA.addExperience(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*pVictime.getLvl());
             estMort(pVictime);
         }    
-        else if(distance(uniteA, pVictime)==1)
+        else if(distance(uniteA, pVictime)==1) //sinon + si attaque au CAC, on riposte
         {
-            degatsAtt= (70*getDegats(pVictime, uniteA))/100;
+            degatsAtt= 0.7*getDegats(pVictime, uniteA);
             if(faireDegats(uniteA, degatsAtt))
             {
                 uniteA.addExperience(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*uniteA.getLvl());
@@ -69,7 +69,7 @@ class Moteur
     public boolean faireDegats(Unite cible, double degats) // retourne vrai si la cible meurt
     {
         cible.setPointDeVie(cible.getPointDeVie() - (int)degats);
-        if(cible.getPointDeVie()<=0){return true;}else{return false;}
+        if(cible.getPointDeVie()<=0){return true;}else{cible.dessine(Slatch.ihm.getPanel().getGraphics()); return false;}
     }
     
     public double getDegats(Unite a, Unite v) // a= attaquant, v= cible
