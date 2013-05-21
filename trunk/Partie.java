@@ -91,6 +91,8 @@ public class Partie
             vY = Integer.parseInt(tab[2]);   
             vJoueur = Integer.parseInt(tab[3]);
             
+            System.out.println(vId);
+            
             switch(vId){
                 case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.FORET); break;
                 case "montagne": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.MONTAGNE); break;
@@ -99,9 +101,9 @@ public class Partie
                     vBatimentJoueur[vJoueur]+=1;
                     break;
                 case "commando": 
-                    Unite commando = new Unite(vX,vY,vJoueur,20,TypeUnite.COMMANDO,TypeAttaque.CANON,4,1.0, TypeDeplacement.PIED);
-                    lUnite.add(commando);
-                    aTerrain[vX][vY].setUnite(commando); 
+                    Unite vcommando = new Unite(vX,vY,vJoueur,20,TypeUnite.COMMANDO,TypeAttaque.CANON,4,1.0, TypeDeplacement.PIED);
+                    lUnite.add(vcommando);
+                    aTerrain[vX][vY].setUnite(vcommando); 
                     break;
                 case "demolisseur": 
                     Unite demolisseur = new Unite(vX,vY,vJoueur,20,TypeUnite.DEMOLISSEUR,TypeAttaque.CANON,3,1.0, TypeDeplacement.PIED);
@@ -109,9 +111,9 @@ public class Partie
                     aTerrain[vX][vY].setUnite(demolisseur); 
                     break;
                 case "tank":
-                    Unite tank = new Unite(vX,vY,vJoueur,65,TypeUnite.TANK,TypeAttaque.CANON,4,1.0, TypeDeplacement.CHENILLES);
-                    lUnite.add(tank);
-                    aTerrain[vX][vY].setUnite(tank); 
+                    Unite vtank = new Unite(vX,vY,vJoueur,65,TypeUnite.TANK,TypeAttaque.CANON,4,1.0, TypeDeplacement.CHENILLES);
+                    lUnite.add(vtank);
+                    aTerrain[vX][vY].setUnite(vtank); 
                     break;
                 case "char":
                     Unite vchar = new Unite(vX,vY,vJoueur,40,TypeUnite.CHAR,TypeAttaque.CANON,6,1.0, TypeDeplacement.CHENILLES);
@@ -133,7 +135,7 @@ public class Partie
                     lUnite.add(uml);
                     aTerrain[vX][vY].setUnite(uml); 
                     break;
-            default: aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.PLAINE);
+            default: aTerrain[vX][vY] = new Terrain(vX, vY, 0, 0, TypeTerrain.PLAINE);
             }
         }
         
