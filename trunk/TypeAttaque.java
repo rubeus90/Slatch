@@ -8,14 +8,14 @@ public enum TypeAttaque
     OMEGA_SLASH_DE_L_ULTIME_APOLLON(250, "Omega Slash de l'ultime Apollon", "Une série de coups frénétiques qui laisseront tous les ennemis sur le tapis",PorteeAttaque.COURTE), // en attente de créer les vraies attaques
     CANON(15, "Tir de canon", "Envoie un obus sur votre ennemi. Efficace contre l'infanterie.",PorteeAttaque.COURTE),
     FUSIL(10, "Tir de fusil", "Envoie une salve de balles sur votre ennemi.",PorteeAttaque.COURTE);
-    
+   
     private int aDegats; // dégâts de base de l'attaque
     private String aNom;
     private String aDescription;
-    public PorteeAttaque aTypePortee; 
+    public PorteeAttaque aTypePortee;
     public HashMap<TypeUnite, Double> efficacite;// on multipliera l'attaque par ce nombre, donc 1 est l'élément neutre, quand c'est plus grand que 1 on a une efficacité plus grande, et réciproquement
-    
-    
+   
+   
     TypeAttaque(int pDegats, String pNom, String pDescription ,final PorteeAttaque pTypePortee ) // ajouter PorteeAttaque pPortee
     {
         aDegats = pDegats;
@@ -26,14 +26,14 @@ public enum TypeAttaque
         efficacite= new HashMap<TypeUnite,Double> ();
         aTypePortee = pTypePortee;
         Scanner fichier = null;
-        
-        
+       
+       
         try {
-        	fichier = new Scanner(getClass().getClassLoader().getResource("Config/TypeAttaque.txt").openStream());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}  
-        
+                fichier = new Scanner(getClass().getClassLoader().getResource("Config/TypeAttaque.txt").openStream());
+                } catch (IOException e) {
+                        e.printStackTrace();
+                }  
+       
         String ligne;
         String[] tab;
         while(fichier.hasNextLine()){
@@ -41,15 +41,13 @@ public enum TypeAttaque
             tab = ligne.split(":");
             if(tab[0].equals(pNom)){
                 for(TypeUnite type : TypeUnite.values()) {
-                    
+                   
                     if(type.getNom().equals(tab[1])) {
                         efficacite.put(type,Double.parseDouble(tab[2]));break;
                     }
                 }
             }
         }
-        
-        fichier.close();
     }
      /**
      * Accesseur pour l'attribut aNom
@@ -59,7 +57,7 @@ public enum TypeAttaque
     {
         return this.aNom;
     }
-    
+   
     /**
      * Accesseur pour l'attribut aDescription
      * @return aDescription
@@ -68,25 +66,25 @@ public enum TypeAttaque
     {
         return this.aDescription;
     }
-    
+   
     /**
      * Accesseur pour l'attribut aDegat
      * @return aDegat
      */
     public int getDegats()
     {
-        return aDegats; 
+        return aDegats;
     }
-    
+   
     /**
      * Mutateur pour l'attribut aDegat
      * @param pDegat
      */
     public void setDegats(int pDegat)
     {
-        aDegats=pDegat; 
+        aDegats=pDegat;
     }
-    
+   
     /**
      * Mutateur pour l'attribut aNom
      * @param pNom
@@ -95,7 +93,7 @@ public enum TypeAttaque
     {
         this.aNom = pNom;
     }
-    
+   
     /**
      * Mutateur pour l'attribut aDescription
      * @param pDescription
