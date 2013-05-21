@@ -40,7 +40,7 @@ public class Partie
         aRevenuBatiment = pRevenuBatiment;
         
         
-//            aMap = new Scanner(new File(pMap));
+         //            aMap = new Scanner(new File(pMap));
         try {
 			aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
 		} catch (IOException e) {
