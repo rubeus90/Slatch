@@ -431,136 +431,57 @@ class Moteur
      */
     public void checkPorteeDeplacement(Unite unite, int porteeDep, int[] tab)
     {
-        int k;
-    
         /*
          * Vers la droite
          */
-        if(tab[0]+1<Slatch.partie.getLargeur()) // on vérifie qu'on ne dépasse pas un bord
+        checkDeplacementCase(unite, porteeDep, tab, 1, 0);
+        /*
+         * Vers le bas
+         */
+        checkDeplacementCase(unite, porteeDep, tab, 0, 1);
+        /*
+         * Vers la gauche
+         */
+        checkDeplacementCase(unite, porteeDep, tab, -1, 0);
+        /*
+         * Vers le haut
+         */
+        checkDeplacementCase(unite, porteeDep, tab, 0, -1);
+    }
+    
+    private void checkDeplacementCase(Unite unite, int porteeDep, int[] tab, int decX, int decY)
+    {
+        int k;
+        int x = tab[0]+decX;
+        int y = tab[1]+decY;
+        if(x<Slatch.partie.getLargeur() && x>=0 && y<Slatch.partie.getHauteur() && y>=0) // on vérifie qu'on ne dépasse pas un bord
         {
-            k= Slatch.partie.getTerrain()[tab[0]+1][tab[1]].getType().aCoutDeplacement.get(unite.getTypeDeplacement().getNom()); // k= coût de déplacement vers une case
+            k= Slatch.partie.getTerrain()[x][y].getType().aCoutDeplacement.get(unite.getTypeDeplacement().getNom()); // k= coût de déplacement vers une case
             if(porteeDep-k>=0) // si on peut se déplacer sur la case, condition d'arrêt de la récursion
             {
-                if(porteeDep- k >tabDep[tab[0]+1][tab[1]]) // évite des appels inutiles
+                if(porteeDep- k >tabDep[x][y]) // évite des appels inutiles
                 {
                     int[] t = new int[2];
-                    t[0]=tab[0]+1; t[1]=tab[1]; 
-                    tabDep[tab[0]+1][tab[1]] = porteeDep -k;// actualise la portée de deplacement restante sur la case correspondante de la matrice tabDep
+                    t[0]=x; t[1]=y; 
+                    tabDep[x][y] = porteeDep -k;// actualise la portée de deplacement restante sur la case correspondante de la matrice tabDep
                     
-                    chemins.remove((tab[0]+1)+","+tab[1]); // on supprime l'ancien chemin
+                    chemins.remove((x)+","+(y)); // on supprime l'ancien chemin
                     List<String> memL = new ArrayList<String>(); // on fait une liste intermédiaire
                     for(String s: chemins.get(tab[0]+","+tab[1]))
                     {
                         memL.add(s); // on copie le chemin précédent dedans
                     }
-                    chemins.put((tab[0]+1)+","+tab[1],memL); // on définit ce chemin comme celui de la case suivante
-                    chemins.get((tab[0]+1)+","+tab[1]).add(tab[0]+","+tab[1]); // on y rajoute l'étape actuelle
+                    chemins.put((x)+","+(y),memL); // on définit ce chemin comme celui de la case suivante
+                    chemins.get((x)+","+(y)).add(tab[0]+","+tab[1]); // on y rajoute l'étape actuelle
                     
-                    if(!Slatch.partie.getTerrain()[tab[0]+1][tab[1]].getSurbrillance()) // si la case n'a pas déjà été mise en valeur
+                    if(!Slatch.partie.getTerrain()[x][y].getSurbrillance()) // si la case n'a pas déjà été mise en valeur
                     {
-                        Slatch.partie.getTerrain()[tab[0]+1][tab[1]].setSurbrillance(true);// on met la case en question en surbrillance
-                        Slatch.ihm.getPanel().dessineTerrain(tab[0]+1,tab[1]);
+                        Slatch.partie.getTerrain()[x][y].setSurbrillance(true);// on met la case en question en surbrillance
+                        Slatch.ihm.getPanel().dessineTerrain(x,y);
                     }
                     checkPorteeDeplacement(unite, porteeDep-k, t); // et on appelle à nouveau la procédure en changeant de place et en faisant décroître la portée de déplacement
                 }
             }
-        }
-        /*
-         * Vers le bas
-         */
-        if(tab[1]+1<Slatch.partie.getHauteur())// on vérifie qu'on ne dépasse pas un bord
-        {
-            k= Slatch.partie.getTerrain()[tab[0]][tab[1]+1].getType().aCoutDeplacement.get(unite.getTypeDeplacement().getNom());
-            if(porteeDep-k>=0) // si on peut se déplacer sur la case
-            {
-                if(porteeDep- k >tabDep[tab[0]][tab[1]+1])
-                {
-                    int[] t = new int[2];
-                    t[0]=tab[0]; t[1]=tab[1]+1;
-                    tabDep[tab[0]][tab[1]+1] = porteeDep -k;
-                    
-                    chemins.remove(tab[0]+","+(tab[1]+1));
-                    
-                    List<String> memL = new ArrayList<String>();
-                    for(String s: chemins.get(tab[0]+","+tab[1]))
-                    {
-                        memL.add(s);
-                    }
-                    chemins.put(tab[0]+","+(tab[1]+1),memL);
-                    chemins.get(tab[0]+","+(tab[1]+1)).add(tab[0]+","+tab[1]);
-                    
-                    if(!Slatch.partie.getTerrain()[tab[0]][tab[1]+1].getSurbrillance())
-                    {
-                        Slatch.partie.getTerrain()[tab[0]][tab[1]+1].setSurbrillance(true);
-                        Slatch.ihm.getPanel().dessineTerrain(tab[0],tab[1]+1);
-                    }
-                    checkPorteeDeplacement(unite, porteeDep-k, t);
-                }
-            }
-        }
-        /*
-         * Vers la gauche
-         */
-        if(tab[0]>0)// on vérifie qu'on ne dépasse pas un bord
-        {
-            k= Slatch.partie.getTerrain()[tab[0]-1][tab[1]].getType().aCoutDeplacement.get(unite.getTypeDeplacement().getNom());
-            if(porteeDep-k>=0) // si on peut se déplacer sur la case
-            {
-                if(porteeDep- k >tabDep[tab[0]-1][tab[1]])
-                {
-                    int[] t = new int[2];
-                    t[0]=tab[0]-1; t[1]=tab[1];
-                    tabDep[tab[0]-1][tab[1]] = porteeDep -k;
-                    
-                    chemins.remove((tab[0]-1)+","+tab[1]);
-                    List<String> memL = new ArrayList<String>();
-                    for(String s: chemins.get(tab[0]+","+tab[1]))
-                    {
-                        memL.add(s);
-                    }
-                    chemins.put((tab[0]-1)+","+tab[1],memL);
-                    chemins.get((tab[0]-1)+","+tab[1]).add(tab[0]+","+tab[1]);
-                
-                    if(!Slatch.partie.getTerrain()[tab[0]-1][tab[1]].getSurbrillance())
-                    {
-                        Slatch.partie.getTerrain()[tab[0]-1][tab[1]].setSurbrillance(true);
-                        Slatch.ihm.getPanel().dessineTerrain(tab[0]-1,tab[1]);
-                    }
-                    checkPorteeDeplacement(unite, porteeDep-k, t);
-                }
-            }
-        }
-        /*
-         * Vers le haut
-         */
-        if(tab[1]>0)// on vérifie qu'on ne dépasse pas un bord
-        {
-            k= Slatch.partie.getTerrain()[tab[0]][tab[1]-1].getType().aCoutDeplacement.get(unite.getTypeDeplacement().getNom());
-            if(porteeDep-k>=0) // si on peut se déplacer sur la case
-            {
-                if(porteeDep- k >tabDep[tab[0]][tab[1]-1])
-                {
-                    int[] t = new int[2];
-                    t[0]=tab[0]; t[1]=tab[1]-1;
-                    tabDep[tab[0]][tab[1]-1] = porteeDep -k;
-                    
-                    chemins.remove(tab[0]+","+(tab[1]-1));
-                    List<String> memL = new ArrayList<String>();
-                    for(String s: chemins.get(tab[0]+","+tab[1]))
-                    {
-                        memL.add(s);
-                    }
-                    chemins.put(tab[0]+","+(tab[1]-1), memL);
-                    chemins.get(tab[0]+","+(tab[1]-1)).add(tab[0]+","+tab[1]);
-                    
-                    if(!Slatch.partie.getTerrain()[tab[0]][tab[1]-1].getSurbrillance())
-                    {
-                        Slatch.partie.getTerrain()[tab[0]][tab[1]-1].setSurbrillance(true);
-                        Slatch.ihm.getPanel().dessineTerrain(tab[0],tab[1]-1);
-                    }
-                    checkPorteeDeplacement(unite, porteeDep-k, t);
-                }
-            }          
         }
     }
     
