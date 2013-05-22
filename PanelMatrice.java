@@ -193,7 +193,7 @@ public class PanelMatrice extends JPanel
         
         for(int i=0; i<Slatch.partie.getLargeur(); i++) {
             for(int j=0; j<Slatch.partie.getHauteur(); j++) {
-                Slatch.partie.getTerrain()[i][j].dessine(g);
+                Slatch.partie.getTerrain()[i][j].dessine(g, this);
             }
         }
     }
