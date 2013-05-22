@@ -93,6 +93,12 @@ public class Partie
             switch(vId){
                 case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.FORET); break;
                 case "montagne": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.MONTAGNE); break;
+                case "routehorizontal": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.ROUTEHORIZONTAL); break;
+                case "routevertical": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.ROUTEVERTICAL); break;
+                case "routedroitebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.VIRAGEDROITEBAS); break;
+                case "routedroitehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.VIRAGEDROITHAUT); break;
+                case "routegauchebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.VIRAGEGAUCHEBAS); break;
+                case "routegauchehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.VIRAGEGAUCHEHAUT); break;
                 case "batiment":
                     aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 10, TypeTerrain.BATIMENT); 
                     vBatimentJoueur[vJoueur]+=1;
