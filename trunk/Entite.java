@@ -38,7 +38,7 @@ public abstract class Entite
         this.aSurbrillance=false;
     }
        
-    public abstract void dessine(final Graphics g);
+    public abstract void dessine(final Graphics g, PanelMatrice pPanel);
     
     
     //***********************************/
