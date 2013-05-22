@@ -41,5 +41,5 @@ commando:16:5:2
 commando:16:6:2
 tank:12:5:1
 tank:17:5:2
-uml:12:6:2
-uml:17:6:1
+uml:12:6:1
+uml:17:6:2
