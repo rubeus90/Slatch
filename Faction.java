@@ -44,6 +44,7 @@ public enum Faction
                 }
             }
         }
+        fichier.close();
 
     }
    
