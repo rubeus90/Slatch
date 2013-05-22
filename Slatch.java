@@ -9,7 +9,7 @@ import java.io.IOException;
  */
 public class Slatch {
     public static Slatch slatch;
-    public static IHM ihm;
+    public static IHM_NEW ihm;
     public static Partie partie;
     public static Moteur moteur;
     public static HashMap<String,Image> aImages; // Se trouvera dans Le moteur du jeu quand il y sera avec tout les load
@@ -30,7 +30,7 @@ public class Slatch {
         loadImage();
         partie = new Partie(20, 30, "Maps/mapTest.txt");
         moteur = new Moteur();
-        ihm = new IHM(802,524);
+        ihm = new IHM_NEW();
         
     }
     
@@ -123,6 +123,10 @@ public class Slatch {
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("5",image);
                 
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/4.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("4",image);
+                
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/joueur.png"));
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("joueur",image);
@@ -130,6 +134,14 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/argent.png"));
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("argent",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/noir80.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("noir80",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/jour.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("jour",image);
         }
         catch (IOException e) {
             e.printStackTrace();

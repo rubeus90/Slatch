@@ -39,7 +39,7 @@ class Moteur
                 if(Slatch.partie.getTerrain()[i][j].getSurbrillance())
                 {
                     Slatch.partie.getTerrain()[i][j].setSurbrillance(false);
-                    Slatch.ihm.getPanel().dessineTerrain(i,j);
+                    Slatch.ihm.getPanel().repaint();
                 }
             }
         }
@@ -156,7 +156,7 @@ class Moteur
     public void estMort(Unite unite)
     {
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
-        Slatch.ihm.getPanel().dessineTerrain(unite.getCoordonneeX(),unite.getCoordonneeY());
+        Slatch.ihm.getPanel().repaint();
         Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
         if(Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty())
         {
@@ -277,6 +277,8 @@ class Moteur
         {
             Point p = chemin.pop();
             changerCase(unite, (int)p.getX(), (int)p.getY());
+            
+            
             try{
                 Thread.sleep(250/k+50);
             }
@@ -297,10 +299,10 @@ class Moteur
     public void changerCase(Unite unite, int destX, int destY)
     {
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
-        Slatch.ihm.getPanel().dessineTerrain(unite.getCoordonneeX(),unite.getCoordonneeY());
         unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
         Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
-        Slatch.ihm.getPanel().dessineTerrain(destX,destY);
+        //System.out.println(destX+" "+destY);
+        Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
     }
     
     /**
@@ -377,7 +379,7 @@ class Moteur
                     if(ciblePresente(unite, i*decX,j*decY))
                     {
                         Slatch.partie.getTerrain()[x+i*decX][y+j*decY].setSurbrillance(true);
-                        Slatch.ihm.getPanel().dessineTerrain(x+i*decX,y+j*decY);
+                        Slatch.ihm.getPanel().repaint();
                         tabAtt[x+i*decX][y+j*decY] = true;
                     }
                 }
