@@ -13,6 +13,7 @@ class Moteur
     boolean[][] tabAtt;
     HashMap<String, List<String>> chemins; // contient la liste des chemins pour arriver à la case définie par le premier String
     Point[] voisins = {new Point(0,1), new Point(0,-1),new Point(1,0),new Point(-1,0)};
+    Point[] signes = {new Point(1,1), new Point(1,-1),new Point(-1,-1),new Point(-1,1)};
     
     public Moteur()
     {
@@ -36,6 +37,53 @@ class Moteur
             }
         }
     } 
+      
+    /**
+     * Methode a deplacer dans Moteur Une fois moteur safe
+     * Methode qui permet a un ingenieur de soigner une unite
+     * @param pUnite
+     */
+    public void soin(Unite pUnite)
+    { 
+        int vPV=pUnite.getPointDeVie();
+        int vPVMax = pUnite.getPVMax();
+        
+        if(vPV<vPVMax){ // On verifie que le nbr de PV est inferieur au nbr de PV max
+            
+           if(vPV+5>vPVMax){ // Si lorsqu'on soigne on depasse le nbr de PV max, alors Vie de l'unite = PVmax
+               pUnite.setPointDeVie(vPVMax);
+            }
+           else{ //Sinon on ajoute 5
+               pUnite.setPointDeVie(vPV+5);
+           }
+            
+           //On "grise" l'unite
+           uniteA.attaque(true);
+           uniteA.deplacee(true);
+           uniteA=null; 
+        }
+    }
+    
+    /**
+     * Methode a deplacer dans Moteur Une fois moteur safe
+     * Methode qui permet a un ingenieur de faire evoluer une methode
+     * @param pUnite
+     */
+    public void evoluer(Unite pUnite){
+        if(pUnite.getExperience()>Unite.pallierExperience){ //On verifie que l'XP de l'unite est superieur au pallier pour monter d'XP
+            pUnite.upLvl();
+            
+            //Ingenieur grisee
+            uniteA.attaque(true);
+            uniteA.deplacee(true);
+            uniteA=null;
+            
+            //Unite evoluer grisee
+            pUnite.attaque(true);
+            pUnite.deplacee(true);
+            pUnite=null;
+        }
+    }
     
     public void modeAttaque(int pX, int pY)
     {
@@ -233,46 +281,6 @@ class Moteur
                 }
             }
         }
-//         if(pX+1<Slatch.partie.getLargeur())
-//         {
-//             if(Slatch.partie.getTerrain()[pX+1][pY].getUnite()!=null)
-//             {
-//                 if(Slatch.partie.getTerrain()[pX+1][pY].getUnite().getJoueur()!=unite.getJoueur())
-//                 {
-//                     return true;
-//                 }
-//             }
-//         }
-//         if(pY+1<Slatch.partie.getHauteur())
-//         {                
-//             if(Slatch.partie.getTerrain()[pX][pY+1].getUnite()!=null)
-//             {
-//                 if(Slatch.partie.getTerrain()[pX][pY+1].getUnite().getJoueur()!=unite.getJoueur())
-//                 {
-//                     return true;
-//                 }
-//             }
-//         }
-//         if(pX>0)
-//         {
-//             if(Slatch.partie.getTerrain()[pX-1][pY].getUnite()!=null)
-//             {
-//                 if(Slatch.partie.getTerrain()[pX-1][pY].getUnite().getJoueur()!=unite.getJoueur())
-//                 {
-//                     return true;
-//                 }
-//             }
-//         }
-//         if(pY>0)
-//         {
-//             if(Slatch.partie.getTerrain()[pX][pY-1].getUnite()!=null)
-//             {
-//                 if(Slatch.partie.getTerrain()[pX][pY-1].getUnite().getJoueur()!=unite.getJoueur())
-//                 {
-//                     return true;
-//                 }
-//             }
-//         }
         return false;
     }
     
@@ -288,21 +296,11 @@ class Moteur
         {
             for(int j=0; j<=unite.getAttaque().aTypePortee.getPorteeMax();j++)
             {
-                if(ciblePresente(unite, i,j))
+                for(Point p: signes)
                 {
-                    return true;
-                }
-                if(ciblePresente(unite, -i,-j))
-                {
-                    return true;
-                }
-                if(ciblePresente(unite, i,-j))
-                {
-                    return true;
-                }
-                if(ciblePresente(unite, -i,j))
-                {
-                    return true;
+                    int decX = (int)p.getX();
+                    int decY = (int)p.getY();
+                    if(ciblePresente(unite, i*decX,j*decY)){return true;}
                 }
             }
         }
@@ -330,33 +328,17 @@ class Moteur
         {
             for(int j=0; j<=unite.getAttaque().aTypePortee.getPorteeMax();j++)
             {
-                    if(ciblePresente(unite, i,j))
+                for(Point p: signes)
+                {
+                    int decX = (int)p.getX();
+                    int decY = (int)p.getY();
+                    if(ciblePresente(unite, i*decX,j*decY))
                     {
-                        Slatch.partie.getTerrain()[x+i][y+j].setSurbrillance(true);
-                        Slatch.ihm.getPanel().dessineTerrain(x+i,y+j);
-                        tabAtt[x+i][y+j] = true;
+                        Slatch.partie.getTerrain()[x+i*decX][y+j*decY].setSurbrillance(true);
+                        Slatch.ihm.getPanel().dessineTerrain(x+i*decX,y+j*decY);
+                        tabAtt[x+i*decX][y+j*decY] = true;
                     }
-            
-                    if(ciblePresente(unite, -i,-j))
-                    {
-                        Slatch.partie.getTerrain()[x-i][y-j].setSurbrillance(true);
-                        Slatch.ihm.getPanel().dessineTerrain(x-i,y-j);
-                        tabAtt[x-i][y-j] = true;
-                    }
-            
-                    if(ciblePresente(unite, i,-j))
-                    {
-                        Slatch.partie.getTerrain()[x+i][y-j].setSurbrillance(true);
-                        Slatch.ihm.getPanel().dessineTerrain(x+i,y-j);
-                        tabAtt[x+i][y-j] = true;
-                    }
-            
-                    if(ciblePresente(unite, -i,j))
-                    {
-                        Slatch.partie.getTerrain()[x-i][y+j].setSurbrillance(true);
-                        Slatch.ihm.getPanel().dessineTerrain(x-i,y+j);
-                        tabAtt[x-i][y+j] = true;
-                    }
+                }
             }
         }
         
@@ -440,22 +422,10 @@ class Moteur
      */
     public void checkPorteeDeplacement(Unite unite, int porteeDep, int[] tab)
     {
-        /*
-         * Vers la droite
-         */
-        checkDeplacementCase(unite, porteeDep, tab, 1, 0);
-        /*
-         * Vers le bas
-         */
-        checkDeplacementCase(unite, porteeDep, tab, 0, 1);
-        /*
-         * Vers la gauche
-         */
-        checkDeplacementCase(unite, porteeDep, tab, -1, 0);
-        /*
-         * Vers le haut
-         */
-        checkDeplacementCase(unite, porteeDep, tab, 0, -1);
+        for(Point p: voisins)
+        {
+            checkDeplacementCase(unite, porteeDep, tab, (int)p.getX(), (int)p.getY());
+        }
     }
     
     private void checkDeplacementCase(Unite unite, int porteeDep, int[] tab, int decX, int decY)
