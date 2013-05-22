@@ -525,4 +525,46 @@ class Moteur
     {
         return estAuJoueurActuel(Slatch.partie.getTerrain()[pX][pY].getUnite());
     }
+    
+    public void creationUnite(final int pX,final int pY, final String pUnite){
+        int vNumJoueur = Slatch.partie.getJoueurActuel();
+        Joueur vJoueur = Slatch.partie.getJoueur(vNumJoueur);
+        int vArgentJv = vJoueur.getArgent();
+        
+        switch(pUnite){
+            case "commando": 
+                if(vArgentJv>TypeUnite.COMMANDO.getPrix()){
+                    Unite vcommando = new Unite(pX,pY,vNumJoueur,20,TypeUnite.COMMANDO,TypeAttaque.FUSIL,40,1.0, TypeDeplacement.PIED);
+                    Slatch.partie.getJoueur(vNumJoueur).getListeUnite().add(vcommando);
+                    Slatch.partie.getTerrain()[pX][pY].setUnite(vcommando);
+                    vJoueur.setArgent(vArgentJv + TypeUnite.COMMANDO.getPrix());
+                    vcommando.attaque(true);
+                    vcommando.deplacee(true);
+                    vcommando=null;
+                }
+                break;
+            case "tank":
+                if(vArgentJv>TypeUnite.TANK.getPrix()){
+                   Unite vtank = new Unite(pX,pY,vNumJoueur,65,TypeUnite.TANK,TypeAttaque.CANON,40,1.0, TypeDeplacement.CHENILLES);
+                   Slatch.partie.getJoueur(vNumJoueur).getListeUnite().add(vtank);
+                   Slatch.partie.getTerrain()[pX][pY].setUnite(vtank);
+                   vJoueur.setArgent(vArgentJv + TypeUnite.TANK.getPrix());
+                   vtank.attaque(true);
+                   vtank.deplacee(true);
+                   vtank=null;
+                }
+                break;
+            case "uml":
+                if(vArgentJv>TypeUnite.UML.getPrix()){
+                    Unite vuml = new Unite(pX,pY,vNumJoueur,30,TypeUnite.UML,TypeAttaque.MISSILE,50,1.0, TypeDeplacement.CHENILLES);
+                    Slatch.partie.getJoueur(vNumJoueur).getListeUnite().add(vuml);
+                    Slatch.partie.getTerrain()[pX][pY].setUnite(vuml);
+                    vJoueur.setArgent(vArgentJv + TypeUnite.UML.getPrix());
+                    vuml.attaque(true);
+                    vuml.deplacee(true);
+                    vuml=null;
+                }
+                break;
+            }
+    }
 }
