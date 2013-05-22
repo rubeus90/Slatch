@@ -14,7 +14,7 @@ public enum TypeUnite
     private String aNom;
     private String aDescription;
     private String aImage;
-    private int aPrix
+    private int aPrix;
     
     TypeUnite(final String pNom,final String pDescription,final String pImage,final int pPrix){
         aNom=pNom;
