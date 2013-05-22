@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @author Mathieu Scala 
  * @version 14/05/13
  */
-public class Joueur
+public class Joueur 
 {
     private int aNumJoueur; //Correspond au numéro du joueur lors d'une partie.
     private Faction aFaction; //Correspond a la faction du joueur lors d'une partie.

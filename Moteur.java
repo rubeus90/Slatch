@@ -1,7 +1,10 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Stack;
 import java.awt.Point;
+import java.util.PriorityQueue;
+
 /*
  * Possede presque toutes les methodes propres a la mecanique du jeu, il va travailler de paire avec Partie et IHM
  */
@@ -9,16 +12,21 @@ class Moteur
 {  
     Unite uniteD; // unite en attente de déplacement
     Unite uniteA; // unite en attente d'attaque
-    int[][] tabDep; // matrice de la portée de déplacement qu'il nous reste lorsqu'on se situe sur une case, utilisée par checkPorteeDeplacement
     boolean[][] tabAtt;
+    int[][] tabDist;
+    Point[][] pred;
     HashMap<String, List<String>> chemins; // contient la liste des chemins pour arriver à la case définie par le premier String
     Point[] voisins = {new Point(0,1), new Point(0,-1),new Point(1,0),new Point(-1,0)};
     Point[] signes = {new Point(1,1), new Point(1,-1),new Point(-1,-1),new Point(-1,1)};
     
+    
+    
     public Moteur()
     {
-        tabDep = new int[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
+        tabDist = new int[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
+        pred = new Point[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
         tabAtt= new boolean[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
+       
         uniteD = null;
         uniteA = null;
     }
@@ -161,9 +169,9 @@ class Moteur
         if(unite==null) // si aucune unité n'est présente sur la case
         {
             annulerAttaque();
-            if(uniteD!=null && tabDep[pX][pY]>-1) // si on a sélectioné aucune unité auparavant pour le déplacement
+            if(uniteD!=null && tabDist[pX][pY]>-1) // si on a sélectioné aucune unité auparavant pour le déplacement
             {
-                deplacement(uniteD, chemins.get(pX+","+pY), pX, pY);
+                deplacement(uniteD, pX, pY);
             }
             annulerDeplacement();
         }
@@ -227,23 +235,40 @@ class Moteur
     * @param pX abscisse de l'arrivee
     * @param pY ordonnee de l'arrivee
     */
-    public void deplacement(Unite unite, final List<String> chemin, int pX, int pY)
+    public void deplacement(Unite unite, int pX, int pY)
     {
-        String[] t;
-        for(int i=0; i<chemin.size(); i++)
+        boolean fini = false;
+        int x = pX, y =pY;
+        Stack<Point> chemin = new Stack<Point>();
+        chemin.push(new Point(pX,pY));
+        while(!fini)
         {
-            t=chemin.get(i).split(",");
-            changerCase(unite, Integer.parseInt(t[0]), Integer.parseInt(t[1]));
+            Point p = pred[x][y];
+            x=(int)p.getX();
+            y=(int)p.getY();
+            if(unite.getCoordonneeX()==x && unite.getCoordonneeY()==y)
+            {
+                fini = true;
+            }
+            else
+            {
+                chemin.push(p);
+            }
+        }
+        int k = chemin.size();
+        while(!chemin.isEmpty())
+        {
+            Point p = chemin.pop();
+            changerCase(unite, (int)p.getX(), (int)p.getY());
             try{
-                Thread.sleep(250/chemin.size()+50);
+                Thread.sleep(250/k+50);
             }
             catch(InterruptedException e)
             {
                 e.printStackTrace();
             }
+
         }
-        unite.deplacee(true);
-        changerCase(unite, pX, pY);
     }
     
     /**
@@ -384,24 +409,25 @@ class Moteur
      */
     public void affichePorteeDep(Unite unite)
     {
-        initialiseTabDep(unite.getCoordonneeX(), unite.getCoordonneeY(), unite.getPorteeDeplacement());
-        chemins = new HashMap<String, List<String>>(); // instancie la hashmap des chemins
+        initialiseTabDist(unite.getCoordonneeX(), unite.getCoordonneeY());
+        algoDeplacement(unite);
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
             {
-                chemins.put(i+","+j, new ArrayList<String>()); // instancie chaque chemin
+                if(tabDist[i][j]>0)
+                {
+                    Slatch.partie.getTerrain()[i][j].setSurbrillance(true);
+                    Slatch.ihm.getPanel().dessineTerrain(i,j);
+                }
             }
         }
-        int[] tab = new int[2];
-        tab[0]=unite.getCoordonneeX(); tab[1]=unite.getCoordonneeY();
-        checkPorteeDeplacement(unite, unite.getPorteeDeplacement(), tab);
     }
    
     /**
-     * Initialise tabDep afin d'utiliser checkPorteeDeplacement dans des conditions optimales
+     * Initialise tabDist afin d'utiliser algoDeplacement dans des conditions optimales
      */
-    private void initialiseTabDep(int x, int y, int portee)
+    private void initialiseTabDist(int x, int y)
     {
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
@@ -409,56 +435,37 @@ class Moteur
             {
                 if(Slatch.partie.getTerrain()[i][j].getUnite()!=null)  // quand on a déjà une unité sur la case, on ne peut pas y accéder
                 {
-                    tabDep[i][j]=300;
+                    tabDist[i][j] = -2;
                 }
-                else{tabDep[i][j]=-1;} // au début, on suppose qu'on a 0 en portée de déplacement sur chacune des cases restantes
+                else{tabDist[i][j] = -1;} // au début, on suppose qu'on a une distance infinie représentée par -1 sur chacune des cases restantes
             }
         }
-        tabDep[x][y]=portee; // la position de départ de l'unité doit être initialisée avec le nombre de points de déplacement de base de l'unité
-    }
-        
-    /**
-     * Procedure recursive qui va déterminer les cases accessibles par une unité en focntion de sa portée de déplacement et de sa position de départ
-     */
-    public void checkPorteeDeplacement(Unite unite, int porteeDep, int[] tab)
-    {
-        for(Point p: voisins)
-        {
-            checkDeplacementCase(unite, porteeDep, tab, (int)p.getX(), (int)p.getY());
-        }
+        tabDist[x][y]=-2;
     }
     
-    private void checkDeplacementCase(Unite unite, int porteeDep, int[] tab, int decX, int decY)
+    private void algoDeplacement(Unite unite)
     {
-        int k;
-        int x = tab[0]+decX;
-        int y = tab[1]+decY;
-        if(x<Slatch.partie.getLargeur() && x>=0 && y<Slatch.partie.getHauteur() && y>=0) // on vérifie qu'on ne dépasse pas un bord
+        PriorityQueue<Triplet> pq = new PriorityQueue<Triplet>();
+        pq.add(new Triplet(0,unite.getCoordonneeX(),unite.getCoordonneeY()));
+        while(!pq.isEmpty())
         {
-            k= Slatch.partie.getTerrain()[x][y].getType().aCoutDeplacement.get(unite.getTypeDeplacement().getNom()); // k= coût de déplacement vers une case
-            if(porteeDep-k>=0) // si on peut se déplacer sur la case, condition d'arrêt de la récursion
+            Triplet t = pq.poll();
+            for(Point p: voisins)
             {
-                if(porteeDep- k >tabDep[x][y]) // évite des appels inutiles
+                int x = t.x+(int)p.getX();
+                int y = t.y+(int)p.getY();
+                if(x>=0 && y>=0 && x<Slatch.partie.getLargeur() && y<Slatch.partie.getHauteur())
                 {
-                    int[] t = new int[2];
-                    t[0]=x; t[1]=y; 
-                    tabDep[x][y] = porteeDep -k;// actualise la portée de deplacement restante sur la case correspondante de la matrice tabDep
-                    
-                    chemins.remove((x)+","+(y)); // on supprime l'ancien chemin
-                    List<String> memL = new ArrayList<String>(); // on fait une liste intermédiaire
-                    for(String s: chemins.get(tab[0]+","+tab[1]))
+                    int d = t.d+Slatch.partie.getTerrain()[x][y].getCout(unite);
+                    if(d<=unite.getPorteeDeplacement())
                     {
-                        memL.add(s); // on copie le chemin précédent dedans
+                        if(d<tabDist[x][y] || tabDist[x][y]==-1)
+                        {
+                            tabDist[x][y] = d;
+                            pred[x][y] = new Point(t.x, t.y);
+                            pq.offer(new Triplet(d, x, y));
+                        }
                     }
-                    chemins.put((x)+","+(y),memL); // on définit ce chemin comme celui de la case suivante
-                    chemins.get((x)+","+(y)).add(tab[0]+","+tab[1]); // on y rajoute l'étape actuelle
-                    
-                    if(!Slatch.partie.getTerrain()[x][y].getSurbrillance()) // si la case n'a pas déjà été mise en valeur
-                    {
-                        Slatch.partie.getTerrain()[x][y].setSurbrillance(true);// on met la case en question en surbrillance
-                        Slatch.ihm.getPanel().dessineTerrain(x,y);
-                    }
-                    checkPorteeDeplacement(unite, porteeDep-k, t); // et on appelle à nouveau la procédure en changeant de place et en faisant décroître la portée de déplacement
                 }
             }
         }
