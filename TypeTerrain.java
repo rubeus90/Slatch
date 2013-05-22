@@ -15,10 +15,15 @@ public enum TypeTerrain {
         //Route
         ROUTEHORIZONTAL("route","routehorizontale","une route",1),
         ROUTEVERTICAL("route","routeverticale","une route",1),
-        VIRAGEDROITEBAS("un virage","routedroitebas","un virage",1),
-        VIRAGEDROITHAUT("une virage","routedroitehaut","un virage",1),
-        VIRAGEGAUCHEBAS("une virage","routegauchebas","un virage",1),
-        VIRAGEGAUCHEHAUT("une virage","routegauchehaut","un virage",1);
+        VIRAGEDROITEBAS("virage","routedroitebas","un virage",1),
+        VIRAGEDROITHAUT("virage","routedroitehaut","un virage",1),
+        VIRAGEGAUCHEBAS("virage","routegauchebas","un virage",1),
+        VIRAGEGAUCHEHAUT("virage","routegauchehaut","un virage",1),
+        ROUTETHAUT("carrefour","routeThaut","une route en t",1),
+        ROUTETBAS("carrefour","routeTbas","une route en t",1),
+        ROUTETDROITE("carrefour","routeTdroite","une route en t",1),
+        ROUTETGAUCHE("carrefour","routeTgauche","une route en t",1),
+        CARREFOUR("carrefour","routecroissement","un croissemtn",1);
         
         private String aNom;
         private String aImage;

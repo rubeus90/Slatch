@@ -99,6 +99,11 @@ public class Partie
                 case "routedroitehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.VIRAGEDROITHAUT); break;
                 case "routegauchebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.VIRAGEGAUCHEBAS); break;
                 case "routegauchehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.VIRAGEGAUCHEHAUT); break;
+                case "routethaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.ROUTETHAUT); break;
+                case "routetbas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.ROUTETBAS); break;
+                case "routetdroite": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.ROUTETDROITE); break;
+                case "routetgauche": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.ROUTETGAUCHE); break;
+                case "carrefour": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.CARREFOUR); break;
                 case "batiment":
                     aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 10, TypeTerrain.BATIMENT); 
                     vBatimentJoueur[vJoueur]+=1;
