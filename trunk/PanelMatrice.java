@@ -44,7 +44,7 @@ public class PanelMatrice extends JPanel
     
     private boolean aAttaquePossible=false;
     private boolean aDeplacePossible=false;
-    
+    private boolean aCapturePossible=false;
     
     private List<String> aListeAction;
 
@@ -99,6 +99,7 @@ public class PanelMatrice extends JPanel
                 }
                 if(aListeAction.get(vVar).equals("Capture")) {
                     g.drawString("Capture", aMenuHautGauche_Xpx+aLargeurCarreau/3, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+                    aCapturePossible=true;
                 }
                 if(aListeAction.get(vVar).equals("Evolue")) {
                     g.drawString("Evolue", aMenuHautGauche_Xpx+aLargeurCarreau/3, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
@@ -164,6 +165,14 @@ public class PanelMatrice extends JPanel
                                 effaceMenuUnite();
                                 aAttaquePossible=false;
                                 this.repaint();
+                            }
+                            
+                            //Bouton 3 : Capture
+                            if(aCapturePossible && (aMenuHautGauche_Ypx+2*aHauteurCarreau)<clickY && clickY<(aMenuHautGauche_Ypx+3*aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx )
+                            {
+                                Slatch.moteur.capture(aUniteMemCaseX, aUniteMemCaseY);
+                                effaceMenuUnite();
+                                aCapturePossible=false;
                             }
                             
                         }
