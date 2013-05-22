@@ -100,19 +100,6 @@ class Moteur
         affichePorteeAttaque(uniteA);
     }
     
-    public void modeCapture(int pX, int pY)
-    {
-        Terrain vBatiment= Slatch.partie.getTerrain()[pX][pY];
-        uniteA=Slatch.partie.getTerrain()[pX][pY].getUnite();
-        
-        
-        vBatiment.setPointDeVie(vBatiment.getPointDeVie()-10);//Bon... ça va capturer la batiment directement...Valeur à changer
-        if(vBatiment.getPointDeVie()<=0)
-        {
-            capture(vBatiment);
-        }
-    }
-    
     public void attaque(Unite pVictime)
     { 
         double degatsAtt=0;
