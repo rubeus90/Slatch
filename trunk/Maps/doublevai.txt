@@ -139,7 +139,7 @@ routehorizontal:12:8:0
 routehorizontal:13:8:0
 routehorizontal:14:8:0
 routehorizontal:15:8:0
-routehorizontal:16:8:0
+routethaut:16:8:0
 routehorizontal:18:8:0
 routehorizontal:17:8:0
 routehorizontal:19:8:0
@@ -156,3 +156,12 @@ routedroitehaut:23:14:0
 routehorizontal:24:14:0
 routehorizontal:25:14:0
 routehorizontal:26:14:0
+routehorizontal:14:2:0
+routehorizontal:15:2:0
+routehorizontal:16:2:0
+routevertical:16:3:0
+routevertical:16:4:0
+routevertical:16:5:0
+routevertical:16:6:0
+routevertical:16:7:0
+routegauchebas:16:2:0
