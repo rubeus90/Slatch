@@ -2,3 +2,5 @@ Tir de fusil:commando:1
 Tir de fusil:tank:1
 Tir de canon:commando:1
 Tir de canon:tank:1
+Tir de canon:uml:2
+Tir de fusil:uml:1
