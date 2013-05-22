@@ -139,7 +139,7 @@ public class Partie
                     aTerrain[vX][vY].setUnite(distance); 
                     break;*/
                 case "uml":
-                    Unite uml = new Unite(vX,vY,vJoueur,30,TypeUnite.UML,TypeAttaque.CANON,50,1.0, TypeDeplacement.CHENILLES);
+                    Unite uml = new Unite(vX,vY,vJoueur,30,TypeUnite.UML,TypeAttaque.MISSILE,50,1.0, TypeDeplacement.CHENILLES);
                     lUnite.add(uml);
                     aTerrain[vX][vY].setUnite(uml); 
                     break;
