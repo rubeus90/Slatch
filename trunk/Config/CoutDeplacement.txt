@@ -9,7 +9,7 @@ montagne,chenilles,900
 montagne,pied,30
 batiment,roues,10
 batiment,chenilles,10
-batiment,pied,10
+batiment,pied,15
 routehorizontal,chenilles,10
 routehorizontal,pied,15
 routehorizontal,roues,10
