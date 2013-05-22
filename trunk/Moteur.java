@@ -15,7 +15,6 @@ class Moteur
     boolean[][] tabAtt;
     int[][] tabDist;
     Point[][] pred;
-    HashMap<String, List<String>> chemins; // contient la liste des chemins pour arriver à la case définie par le premier String
     Point[] voisins = {new Point(0,1), new Point(0,-1),new Point(1,0),new Point(-1,0)};
     Point[] signes = {new Point(1,1), new Point(1,-1),new Point(-1,-1),new Point(-1,1), new Point(0,1), new Point(0,-1), new Point(-1,0), new Point(1,0)};
     
@@ -266,7 +265,6 @@ class Moteur
             {
                 e.printStackTrace();
             }
-
         }
         unite.deplacee(true);
     }
@@ -403,14 +401,19 @@ class Moteur
         return distance(e1.getCoordonneeX(), e1.getCoordonneeY(), e2.getCoordonneeX(), e2.getCoordonneeY());
     }
     
+    public void remplitPorteeDep(Unite unite)
+    {
+        this.initialiseTabDist(unite.getCoordonneeX(), unite.getCoordonneeY());
+        this.algoDeplacement(unite);
+    }
+    
     /**
      * va appeler les methodes pour afficher la portee de deplacement d'une unite
      * @param unite unite qui a envie de bouger
      */
-    public void affichePorteeDep(Unite unite)
+    private void affichePorteeDep(Unite unite)
     {
-        initialiseTabDist(unite.getCoordonneeX(), unite.getCoordonneeY());
-        algoDeplacement(unite);
+        this.remplitPorteeDep(unite);
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
