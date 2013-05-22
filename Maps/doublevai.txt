@@ -115,9 +115,9 @@ batiment:3:14:1
 batiment:5:13:1
 batiment:1:14:1
 batiment:3:3:0
-infanterie:4:14:1
-infanterie:3:13:1
-infanterie:28:15:2
-infanterie:27:15:2
-vehicule:4:12:1
-vehicule:25:13:2
+commando:4:14:1
+commando:3:13:1
+commando:28:15:2
+commando:27:15:2
+tank:4:12:1
+tank:25:13:2

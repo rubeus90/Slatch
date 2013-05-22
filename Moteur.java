@@ -150,10 +150,7 @@ class Moteur
                 }
                 else
                 {
-                    if(unite.getJoueur()==uniteA.getJoueur())
-                    {
                         annulerAttaque();
-                    }
                 }
             }
         }
