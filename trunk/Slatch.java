@@ -22,7 +22,7 @@ public class Slatch {
      */
     public Slatch()
     {
-        partie = new Partie(20, 30, "Maps/mapTest.txt");
+        partie = new Partie(20, 30, "Maps/doublevai.txt");
         moteur = new Moteur();
         ihm = new IHM(802,524);
     }
