@@ -138,11 +138,23 @@ class Moteur
         uniteA=null;
     }
     
-    public void capture(Entite pBatiment)
+    public void capture(int pX, int pY)
     {
-        pBatiment.setJoueur(uniteA.getJoueur());
-        Slatch.ihm.getPanel().repaint();
+        Terrain vBatiment= Slatch.partie.getTerrain()[pX][pY];
+        uniteA=Slatch.partie.getTerrain()[pX][pY].getUnite();
+       
+       
+        vBatiment.setPointDeVie(vBatiment.getPointDeVie()-10);//Bon... ça va capturer la batiment directement...Valeur à changer
+        if(vBatiment.getPointDeVie()<=0)
+        {
+           vBatiment.setJoueur(uniteA.getJoueur());
+           Slatch.ihm.getPanel().repaint();
+        }
+        uniteA.attaque(true);
+        uniteA.deplacee(true);
+        uniteA=null;
     }
+
     
     public boolean faireDegats(Unite cible, double degats) // retourne vrai si la cible meurt
     {
