@@ -59,6 +59,11 @@ public class Terrain extends Entite{
         return aType;
     }
     
+    public int getCout(Unite unite)
+    {
+        return this.aType.aCoutDeplacement.get(unite.getTypeDeplacement().getNom());
+    }
+    
     @Override
     public void dessine (final Graphics g) {
         int pPosHautGaucheX = super.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
