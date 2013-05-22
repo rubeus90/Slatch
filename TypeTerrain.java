@@ -10,8 +10,16 @@ public enum TypeTerrain {
         FORET("foret", "arbres", "une foret", 2),
         PLAINE("plaine", "plaine", "une plaine", 1),
         MONTAGNE("montagne", "montagne", "une montagne", 3),
-        BATIMENT("batiment", "batiment", "un batiment au pif pour l'instant", 2);
-       
+        BATIMENT("batiment", "batiment", "une ville", 2),
+        
+        //Route
+        ROUTEHORIZONTAL("route","routehorizontale","une route",1),
+        ROUTEVERTICAL("route","routeverticale","une route",1),
+        VIRAGEDROITEBAS("un virage","routedroitebas","un virage",1),
+        VIRAGEDROITHAUT("une virage","routedroitehaut","un virage",1),
+        VIRAGEGAUCHEBAS("une virage","routegauchebas","un virage",1),
+        VIRAGEGAUCHEHAUT("une virage","routegauchehaut","un virage",1);
+        
         private String aNom;
         private String aImage;
         private String aDescription;
