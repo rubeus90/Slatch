@@ -146,7 +146,6 @@ class Moteur
             {
                 if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.getType()) && tabAtt[pX][pY]) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
                 {
-                    System.out.println("Attack!");
                         attaque(unite);
                 }
                 else
@@ -219,61 +218,61 @@ class Moteur
      */
     public boolean uniteProche(Unite unite, int pX, int pY)
     {
-//         for(Point p: voisins)
+        for(Point p: voisins)
+        {
+            int decX = (int)p.getX();
+            int decY = (int)p.getY();
+            if(pX+decX<Slatch.partie.getLargeur() && pX+decX>=0 && pY+decY<Slatch.partie.getHauteur() && pY+decY>=0)
+            {
+                if(Slatch.partie.getTerrain()[pX+decX][pY+decY].getUnite()!=null)
+                {
+                    if(Slatch.partie.getTerrain()[pX+decX][pY+decY].getUnite().getJoueur()!=unite.getJoueur())
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+//         if(pX+1<Slatch.partie.getLargeur())
 //         {
-//             int decX = (int)p.getX();
-//             int decY = (int)p.getY();
-//             if(pX+decX<Slatch.partie.getLargeur() && pX+decX>=0 && pY+decY<Slatch.partie.getHauteur() && pY+decY>=0)
+//             if(Slatch.partie.getTerrain()[pX+1][pY].getUnite()!=null)
 //             {
-//                 if(Slatch.partie.getTerrain()[pX+decX][pY+decY].getUnite()!=null)
+//                 if(Slatch.partie.getTerrain()[pX+1][pY].getUnite().getJoueur()!=unite.getJoueur())
 //                 {
-//                     if(Slatch.partie.getTerrain()[pX+decX][pY+decY].getUnite().getJoueur()!=unite.getJoueur())
-//                     {
-//                         return true;
-//                     }
+//                     return true;
 //                 }
 //             }
 //         }
-        if(pX+1<Slatch.partie.getLargeur())
-        {
-            if(Slatch.partie.getTerrain()[pX+1][pY].getUnite()!=null)
-            {
-                if(Slatch.partie.getTerrain()[pX+1][pY].getUnite().getJoueur()!=unite.getJoueur())
-                {
-                    return true;
-                }
-            }
-        }
-        if(pY+1<Slatch.partie.getHauteur())
-        {                
-            if(Slatch.partie.getTerrain()[pX][pY+1].getUnite()!=null)
-            {
-                if(Slatch.partie.getTerrain()[pX][pY+1].getUnite().getJoueur()!=unite.getJoueur())
-                {
-                    return true;
-                }
-            }
-        }
-        if(pX>0)
-        {
-            if(Slatch.partie.getTerrain()[pX-1][pY].getUnite()!=null)
-            {
-                if(Slatch.partie.getTerrain()[pX-1][pY].getUnite().getJoueur()!=unite.getJoueur())
-                {
-                    return true;
-                }
-            }
-        }
-        if(pY>0)
-        {
-            if(Slatch.partie.getTerrain()[pX][pY-1].getUnite()!=null)
-            {
-                if(Slatch.partie.getTerrain()[pX][pY-1].getUnite().getJoueur()!=unite.getJoueur())
-                {
-                    return true;
-                }
-            }
-        }
+//         if(pY+1<Slatch.partie.getHauteur())
+//         {                
+//             if(Slatch.partie.getTerrain()[pX][pY+1].getUnite()!=null)
+//             {
+//                 if(Slatch.partie.getTerrain()[pX][pY+1].getUnite().getJoueur()!=unite.getJoueur())
+//                 {
+//                     return true;
+//                 }
+//             }
+//         }
+//         if(pX>0)
+//         {
+//             if(Slatch.partie.getTerrain()[pX-1][pY].getUnite()!=null)
+//             {
+//                 if(Slatch.partie.getTerrain()[pX-1][pY].getUnite().getJoueur()!=unite.getJoueur())
+//                 {
+//                     return true;
+//                 }
+//             }
+//         }
+//         if(pY>0)
+//         {
+//             if(Slatch.partie.getTerrain()[pX][pY-1].getUnite()!=null)
+//             {
+//                 if(Slatch.partie.getTerrain()[pX][pY-1].getUnite().getJoueur()!=unite.getJoueur())
+//                 {
+//                     return true;
+//                 }
+//             }
+//         }
         return false;
     }
     
