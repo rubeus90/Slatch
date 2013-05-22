@@ -512,6 +512,8 @@ class Moteur
             u.attaque(false);
             u.deplacee(false);
         }
+        
+        if(Slatch.partie.getJoueurActuel()==2){GrandeIA.test(l.get(0));}
     }
     
     public boolean estAuJoueurActuel(Unite unite)
