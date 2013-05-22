@@ -48,6 +48,7 @@ public class Partie
 		}        
         
         initMap();
+        aMap.close();
     } 
     
     /**

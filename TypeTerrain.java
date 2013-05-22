@@ -44,6 +44,8 @@ public enum TypeTerrain {
                                 aCoutDeplacement.put(tab[1],Integer.parseInt(tab[2]));
                         }
                 }
+                
+                fichier.close();
         }
        
         /***
