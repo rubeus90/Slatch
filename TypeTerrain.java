@@ -7,6 +7,13 @@ import java.lang.Integer;
 import java.net.URL;
 
 public enum TypeTerrain {
+<<<<<<< .mine
+        FORET("foret", "arbres", "une foret", 2, false),
+        PLAINE("plaine", "plaine", "une plaine", 1,false),
+        MONTAGNE("montagne", "montagne", "une montagne", 3,false),
+        BATIMENT("batiment", "batiment", "un batiment au pif pour l'instant", 2,true);
+       
+=======
         FORET("foret", "arbres", "une foret", 2),
         PLAINE("plaine", "plaine", "une plaine", 1),
         MONTAGNE("montagne", "montagne", "une montagne", 3),
@@ -25,15 +32,19 @@ public enum TypeTerrain {
         ROUTETGAUCHE("carrefour","routeTgauche","une route en t",1),
         CARREFOUR("carrefour","routecroissement","un croissemtn",1);
         
+>>>>>>> .r333
         private String aNom;
         private String aImage;
         private String aDescription;
         private int aCouverture;
         public HashMap<String,Integer> aCoutDeplacement;
         static final int bonusCouverture = 10;
+        private boolean aDependanceJoueur;
+        
        
-        TypeTerrain(final String pNom, final String pImage, final String pDescription, final int pCouverture){
+        TypeTerrain(final String pNom, final String pImage, final String pDescription, final int pCouverture,final boolean pDependance){
                 aNom = pNom;
+                aDependanceJoueur = pDependance;
                 aImage = pImage;
                 aDescription = pDescription;
                 aCouverture = pCouverture;
@@ -91,5 +102,9 @@ public enum TypeTerrain {
          */
         public int getCouverture(){
                 return aCouverture;
+        }
+        
+        public boolean getDependance(){
+            return aDependanceJoueur;
         }
 }

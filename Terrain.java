@@ -65,14 +65,11 @@ public class Terrain extends Entite{
         int pPosHautGaucheY = super.getCoordonneeY()*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
         int pPosBasDroiteX = (super.getCoordonneeX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
         int pPosBasDroiteY = (super.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
-        try {
-            Image img = ImageIO.read(getClass().getClassLoader().getResource("Images/" + aType.getImage() + getJoueur() + ".png"));
+        
+            //System.out.println("TERRAIN "+aType.getImage() + getJoueur() + ".png");
+            Image img = Slatch.aImages.get(""+ aType.getImage() + getJoueur());
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
         
         if(aUnite!=null){
             aUnite.dessine(g);    
@@ -89,14 +86,11 @@ public class Terrain extends Entite{
 //        }
         
         if(super.getSurbrillance()) {
-            try {
-            	Image img = ImageIO.read(getClass().getClassLoader().getResource("Images/5.png"));
+            
+                Image surbrillance = Slatch.aImages.get("5");
                 //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-                g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
-                }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
+                g.drawImage(surbrillance, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
+            
         }
         
     }

@@ -1,14 +1,18 @@
+import java.util.HashMap;
+import javax.imageio.ImageIO;
+import java.awt.Image;
+import java.io.IOException;
+
 /**
  * @author rubeus
  *
  */
 public class Slatch {
-
     public static Slatch slatch;
     public static IHM ihm;
     public static Partie partie;
     public static Moteur moteur;
-    //private HashMap<String,Image> aImages; // Se trouvera dans Le moteur du jeu quand il y sera avec tout les load
+    public static HashMap<String,Image> aImages; // Se trouvera dans Le moteur du jeu quand il y sera avec tout les load
     
     /**
      * @param args
@@ -22,30 +26,142 @@ public class Slatch {
      */
     public Slatch()
     {
-        partie = new Partie(20, 30, "Maps/doublevai.txt");
+        aImages=new HashMap<String,Image>();
+        loadImage();
+        partie = new Partie(20, 30, "Maps/mapTest.txt");
         moteur = new Moteur();
         ihm = new IHM(802,524);
+        
     }
+    
+ 
     
     private void loadImage()
     {
-        
+        loadAutre();
+        loadNumero();
+        loadTerrain();
+        loadUnite();
     }
     
     private void loadTerrain()
     {
-     /*   try {
-            for(TypeTerrain terrain : TypeTerrain.Values())
+        try {
+            Image image;
+            Image imageRedim;
+            for(TypeTerrain terrain : TypeTerrain.values())
             {
-                for(int i=0;i<5;i++)
+                if(terrain.getDependance())
                 {
+                    for(int i=0;i<5;i++)
+                    {
+                        //System.out.println("TERRAIN DEPENDANCE "+terrain.getImage() + i);
+                        image = ImageIO.read(getClass().getClassLoader().getResource("Images/"+ terrain.getImage() + i + ".png"));
+                        imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                        aImages.put(""+terrain.getImage() + i,image);
+                    }
                     
-                    Image aImage = ImageIO.read(getClass().getClassLoader().getResource("Images/"+ terrain.aType.getImage() + i + ".png"));
+                }
+                else
+                {
+                    //System.out.println("TERRAIN NONDEPENDANCE "+terrain.getImage());
+                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/"+ terrain.getImage() +"0.png"));
+                    imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                    aImages.put(terrain.getImage()+"0",image);
+                }
+                
+                
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void loadUnite()
+    {
+      try {
+            Image image;
+            Image imageRedim;
+            for(TypeUnite unite : TypeUnite.values())
+            {
+                for(int i=1;i<5;i++)
+                {
+                   // System.out.println("SLATCH"+unite.getImage() + i);
+                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/"+ unite.getImage() + i + ".png"));
+                    imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                    aImages.put(""+unite.getImage() + i,image);
                 }
             }
         }
         catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
+    }
+    
+    private void loadAutre()
+    {
+        try {
+                Image image;
+                Image imageRedim;
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/suivant.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("suivant",image);
+            
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("menu",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/suivantAppui.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("suivantAppui",image);
+            
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menuAppui.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("menuAppui",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/5.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("5",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/joueur.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("joueur",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/argent.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("argent",image);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void loadNumero()
+    {
+        try {
+                Image image;
+                Image imageRedim;
+                
+                for(int i=0;i<10;i++)
+                {
+                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/numero"+i+".png"));
+                    imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                    aImages.put("numero"+i,image);
+                    
+                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/pvUnite"+i+".png"));
+                    imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                    aImages.put("pvUnite"+i,image);
+                    
+                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/pvDizaine"+i+".png"));
+                    imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                    aImages.put("pvDizaine"+i,image);
+                }
+                
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
