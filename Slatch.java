@@ -64,7 +64,7 @@ public class Slatch {
                 }
                 else
                 {
-                    //System.out.println("TERRAIN NONDEPENDANCE "+terrain.getImage());
+                    System.out.println("TERRAIN NONDEPENDANCE "+terrain.getImage());
                     image = ImageIO.read(getClass().getClassLoader().getResource("Images/"+ terrain.getImage() +"0.png"));
                     imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                     aImages.put(terrain.getImage()+"0",image);
