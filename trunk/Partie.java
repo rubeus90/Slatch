@@ -1,9 +1,6 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import java.lang.Integer;
-import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -92,7 +89,7 @@ public class Partie
             vY = Integer.parseInt(tab[2]);   
             vJoueur = Integer.parseInt(tab[3]);
             
-            
+
             switch(vId){
                 case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.FORET); break;
                 case "montagne": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.MONTAGNE); break;
