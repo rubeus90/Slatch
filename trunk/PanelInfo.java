@@ -132,8 +132,8 @@ public class PanelInfo extends JPanel
 
         
         afficheImageRedim ("jour", 3*this.getWidth()/32, this.getHeight()/4,7*this.getWidth()/32, this.getHeight(), g);
-        afficheImageRedim ("numero0", 7*this.getWidth()/32, this.getHeight()/4,8*this.getWidth()/32, this.getHeight(), g);
-        afficheImageRedim ("numero1", 8*this.getWidth()/32, this.getHeight()/4,9*this.getWidth()/32, this.getHeight(), g);
+        afficheImageRedim ("numero"+Slatch.partie.getTour()%10, 8*this.getWidth()/32, this.getHeight()/4,9*this.getWidth()/32, 3*this.getHeight()/4, g);
+        afficheImageRedim ("numero"+(Slatch.partie.getTour()/10)%10, 7*this.getWidth()/32, this.getHeight()/4,8*this.getWidth()/32, 3*this.getHeight()/4, g);
         
         // Argent de base du primier joueur
         afficheImageRedim ("argent", 9*this.getWidth()/32, 0,13*this.getWidth()/32, this.getHeight(), g);

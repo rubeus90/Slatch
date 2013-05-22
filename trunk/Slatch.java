@@ -33,7 +33,7 @@ public class Slatch {
         moteur = new Moteur();
         ihm = new IHM_NEW();
         
-        maps = new CreationMaps();
+        //maps = new CreationMaps();
     }
     
     private void loadImage()
