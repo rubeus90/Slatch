@@ -1,5 +1,5 @@
-plaine,roues,15
-plaine,chenilles,15
+plaine,roues,13
+plaine,chenilles,13
 plaine,pied,15
 foret,roues,30
 foret,chenilles,800
