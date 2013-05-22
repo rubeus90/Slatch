@@ -146,6 +146,7 @@ class Moteur
             {
                 if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.getType()) && tabAtt[pX][pY]) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
                 {
+                    System.out.println("Attack!");
                         attaque(unite);
                 }
                 else
