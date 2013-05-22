@@ -34,8 +34,6 @@ public class Slatch {
         
     }
     
- 
-    
     private void loadImage()
     {
         loadAutre();

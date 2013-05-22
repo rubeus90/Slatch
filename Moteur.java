@@ -17,7 +17,7 @@ class Moteur
     Point[][] pred;
     HashMap<String, List<String>> chemins; // contient la liste des chemins pour arriver à la case définie par le premier String
     Point[] voisins = {new Point(0,1), new Point(0,-1),new Point(1,0),new Point(-1,0)};
-    Point[] signes = {new Point(1,1), new Point(1,-1),new Point(-1,-1),new Point(-1,1)};
+    Point[] signes = {new Point(1,1), new Point(1,-1),new Point(-1,-1),new Point(-1,1), new Point(0,1), new Point(0,-1), new Point(-1,0), new Point(1,0)};
     
     
     
@@ -231,7 +231,6 @@ class Moteur
     /**
     * permet de déplacer une unité en fonction du chemin passé en paramètre
     * @param unite unite a deplacer
-    * @param chemin liste de coordonnees formant le chemin menant vers la destination
     * @param pX abscisse de l'arrivee
     * @param pY ordonnee de l'arrivee
     */
@@ -380,7 +379,7 @@ class Moteur
         
         if(x+decX<Slatch.partie.getLargeur() && y+decY<Slatch.partie.getHauteur() && x+decX>=0 && y+decY>=0)
         {
-            if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && Slatch.partie.getTerrain()[x+decX][y+decY].getUnite()!=null)
+            if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && Slatch.partie.getTerrain()[x+decX][y+decY].getUnite()!=null)
             {
                 return (Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel());
             }
@@ -444,7 +443,7 @@ class Moteur
         tabDist[x][y]=-2;
     }
     
-    private void algoDeplacement(Unite unite)
+    private void algoDeplacement(Unite unite, boolean porteeComptee)
     {
         PriorityQueue<Triplet> pq = new PriorityQueue<Triplet>();
         pq.add(new Triplet(0,unite.getCoordonneeX(),unite.getCoordonneeY()));
@@ -458,7 +457,7 @@ class Moteur
                 if(x>=0 && y>=0 && x<Slatch.partie.getLargeur() && y<Slatch.partie.getHauteur())
                 {
                     int d = t.d+Slatch.partie.getTerrain()[x][y].getCout(unite);
-                    if(d<=unite.getPorteeDeplacement())
+                    if(d<=unite.getPorteeDeplacement() || !porteeComptee)
                     {
                         if(d<tabDist[x][y] || tabDist[x][y]==-1)
                         {
@@ -470,6 +469,11 @@ class Moteur
                 }
             }
         }
+    }
+    
+    private void algoDeplacement(Unite unite)
+    {
+        this.algoDeplacement(unite, true);
     }
     
     public void passeTour()
