@@ -113,7 +113,7 @@ public class Partie
                     lUnite.add(vcommando);
                     aTerrain[vX][vY].setUnite(vcommando); 
                     break;
-                case "demolisseur": 
+               /* case "demolisseur": 
                     Unite demolisseur = new Unite(vX,vY,vJoueur,20,TypeUnite.DEMOLISSEUR,TypeAttaque.CANON,3,1.0, TypeDeplacement.PIED);
                     lUnite.add(demolisseur);
                     aTerrain[vX][vY].setUnite(demolisseur); 
@@ -142,7 +142,7 @@ public class Partie
                     Unite uml = new Unite(vX,vY,vJoueur,30,TypeUnite.UML,TypeAttaque.CANON,5,1.0, TypeDeplacement.CHENILLES);
                     lUnite.add(uml);
                     aTerrain[vX][vY].setUnite(uml); 
-                    break;
+                    break;*/
             default: aTerrain[vX][vY] = new Terrain(vX, vY, 0, 0, TypeTerrain.PLAINE);
             }
         }
