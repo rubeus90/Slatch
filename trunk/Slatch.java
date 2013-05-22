@@ -123,10 +123,19 @@ public class Slatch {
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("5",image);
                 
+
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/4.png"));
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("4",image);
                 
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/noir80.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("noir80",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/jour.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("jour",image);
+
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/joueur.png"));
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("joueur",image);

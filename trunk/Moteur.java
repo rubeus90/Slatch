@@ -139,13 +139,13 @@ class Moteur
     public void capture(Entite pBatiment)
     {
         pBatiment.setJoueur(uniteA.getJoueur());
-        Slatch.ihm.getPanel().paintComponent(Slatch.ihm.getPanel().getGraphics());
+        Slatch.ihm.getPanel().repaint();
     }
     
     public boolean faireDegats(Unite cible, double degats) // retourne vrai si la cible meurt
     {
         cible.setPointDeVie(cible.getPointDeVie() - (int)degats);
-        if(cible.getPointDeVie()<=0){return true;}else{cible.dessine(Slatch.ihm.getPanel().getGraphics()); return false;}
+        if(cible.getPointDeVie()<=0){return true;}else{Slatch.ihm.getPanel().repaint(); return false;}
     }
     
     public double getDegats(Unite a, Unite v) // a= attaquant, v= cible
@@ -301,8 +301,9 @@ class Moteur
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
         unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
         Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
-        //System.out.println(destX+" "+destY);
+
         Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
+
     }
     
     /**
@@ -442,7 +443,7 @@ class Moteur
                 if(tabDist[i][j]>0)
                 {
                     Slatch.partie.getTerrain()[i][j].setSurbrillance(true);
-                    Slatch.ihm.getPanel().dessineTerrain(i,j);
+                    Slatch.ihm.getPanel().repaint();
                 }
             }
         }

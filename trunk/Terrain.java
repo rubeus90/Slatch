@@ -67,9 +67,13 @@ public class Terrain extends Entite{
     @Override
     public void dessine (final Graphics g) {
         int pPosHautGaucheX = super.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
-        int pPosHautGaucheY = super.getCoordonneeY()*Slatch.ihm.getPanel().getaHauteurCarreau() ;
+
+        int pPosHautGaucheY = super.getCoordonneeY()*Slatch.ihm.getPanel().getaHauteurCarreau();
+
         int pPosBasDroiteX = (super.getCoordonneeX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
-        int pPosBasDroiteY = (super.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau() ;
+
+        int pPosBasDroiteY = (super.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
+
         
             //System.out.println("TERRAIN "+aType.getImage() + getJoueur() + ".png");
             Image img = Slatch.aImages.get(""+ aType.getImage() + getJoueur());

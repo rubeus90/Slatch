@@ -10,7 +10,7 @@ public class MouseInfo implements MouseListener
 {
     @Override
     public void mouseClicked(MouseEvent event) {
-        Slatch.ihm.getpanelinfo().coordclickUnite(event.getX(),event.getY());
+        
     }
   
     @Override
@@ -23,6 +23,7 @@ public class MouseInfo implements MouseListener
   
     @Override
     public void mousePressed(MouseEvent event) {
+        Slatch.ihm.getpanelinfo().coordclickUnite(event.getX(),event.getY());
     }
 
     @Override
