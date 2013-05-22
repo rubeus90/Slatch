@@ -13,16 +13,16 @@ public enum TypeTerrain {
         BATIMENT("batiment", "batiment", "une ville", 2,true),
         
         //Route
-        ROUTEHORIZONTAL("route","routehorizontale","une route",1,false),
-        ROUTEVERTICAL("route","routeverticale","une route",1,false),
-        VIRAGEDROITEBAS("virage","routedroitebas","un virage",1,false),
-        VIRAGEDROITHAUT("virage","routedroitehaut","un virage",1,false),
-        VIRAGEGAUCHEBAS("virage","routegauchebas","un virage",1,false),
-        VIRAGEGAUCHEHAUT("virage","routegauchehaut","un virage",1,false),
-        ROUTETHAUT("carrefour","routeThaut","une route en t",1,false),
-        ROUTETBAS("carrefour","routeTbas","une route en t",1,false),
-        ROUTETDROITE("carrefour","routeTdroite","une route en t",1,false),
-        ROUTETGAUCHE("carrefour","routeTgauche","une route en t",1,false),
+        ROUTEHORIZONTAL("routehorizontal","routehorizontale","une route",1,false),
+        ROUTEVERTICAL("routevertical","routeverticale","une route",1,false),
+        VIRAGEDROITEBAS("viragedroitebas","routedroitebas","un virage",1,false),
+        VIRAGEDROITHAUT("viragedroithaut","routedroitehaut","un virage",1,false),
+        VIRAGEGAUCHEBAS("viragegauchebas","routegauchebas","un virage",1,false),
+        VIRAGEGAUCHEHAUT("viragegauchehaut","routegauchehaut","un virage",1,false),
+        ROUTETHAUT("routethaut","routeThaut","une route en t",1,false),
+        ROUTETBAS("routetbas","routeTbas","une route en t",1,false),
+        ROUTETDROITE("routetdroite","routeTdroite","une route en t",1,false),
+        ROUTETGAUCHE("routetgauche","routeTgauche","une route en t",1,false),
         CARREFOUR("carrefour","routecroisement","un croissemtn",1,false);
         
         
