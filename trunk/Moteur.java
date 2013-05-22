@@ -269,6 +269,7 @@ class Moteur
             }
 
         }
+        unite.deplacee(true);
     }
     
     /**
