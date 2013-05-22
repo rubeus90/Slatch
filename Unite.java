@@ -173,6 +173,55 @@ public class Unite extends Entite
        aAttaque.setDegats((int)(aAttaque.getDegats()*aGain));
        aPorteeDeplacement = (int)(aPorteeDeplacement*aGain);
     }
+    
+/*****    
+    /**
+     * Methode a deplacer dans Moteur Une fois moteur safe
+     * Methode qui permet a un ingenieur de soigner une unite
+     * @param pUnite
+     *
+    public void soin(Unite pUnite)
+    { 
+        int vPV=pUnite.getPointDeVie();
+        int vPVMax = pUnite.getPVMax();
+        
+        if(vPV<vPVMax){ // On verifie que le nbr de PV est inferieur au nbr de PV max
+            
+           if(vPV+5>vPVMax){ // Si lorsqu'on soigne on depasse le nbr de PV max, alors Vie de l'unite = PVmax
+               pUnite.setPointDeVie(vPVMax);
+            }
+           else{ //Sinon on ajoute 5
+               pUnite.setPointDeVie(vPV+5);
+           }
+            
+           //On "grise" l'unite
+           uniteA.attaque(true);
+           uniteA.deplacee(true);
+           uniteA=null; 
+        }
+    }
+    
+    /**
+     * Methode a deplacer dans Moteur Une fois moteur safe
+     * Methode qui permet a un ingenieur de faire evoluer une methode
+     * @param pUnite
+     *
+    public void evoluer(Unite pUnite){
+        if(pUnite.getExperience()>Unite.pallierExperience){ //On verifie que l'XP de l'unite est superieur au pallier pour monter d'XP
+            pUnite.upLvl();
+            
+            //Ingenieur grisee
+            uniteA.attaque(true);
+            uniteA.deplacee(true);
+            uniteA=null;
+            
+            //Unite evoluer grisee
+            pUnite.attaque(true);
+            pUnite.deplacee(true);
+            pUnite=null;
+        }
+    }
+ ***/
    
     @Override
     public void dessine (final Graphics g) {
@@ -181,7 +230,7 @@ public class Unite extends Entite
         int pPosBasDroiteX = (super.getCoordonneeX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
         int pPosBasDroiteY = (super.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
         try {
-        	Image img = ImageIO.read(getClass().getClassLoader().getResource("Images/"+ aType.getImage() + getJoueur() + ".png"));
+            Image img = ImageIO.read(getClass().getClassLoader().getResource("Images/"+ aType.getImage() + getJoueur() + ".png"));
             //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
         }
