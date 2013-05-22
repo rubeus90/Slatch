@@ -7,23 +7,23 @@ import java.lang.Integer;
 import java.net.URL;
 
 public enum TypeTerrain {
-        FORET("foret", "arbres", "une foret", 2),
-        PLAINE("plaine", "plaine", "une plaine", 1),
-        MONTAGNE("montagne", "montagne", "une montagne", 3),
-        BATIMENT("batiment", "batiment", "une ville", 2),
+        FORET("foret", "arbres", "une foret", 2,false),
+        PLAINE("plaine", "plaine", "une plaine", 1,false),
+        MONTAGNE("montagne", "montagne", "une montagne", 3,false),
+        BATIMENT("batiment", "batiment", "une ville", 2,true),
         
         //Route
-        ROUTEHORIZONTAL("route","routehorizontale","une route",1),
-        ROUTEVERTICAL("route","routeverticale","une route",1),
-        VIRAGEDROITEBAS("virage","routedroitebas","un virage",1),
-        VIRAGEDROITHAUT("virage","routedroitehaut","un virage",1),
-        VIRAGEGAUCHEBAS("virage","routegauchebas","un virage",1),
-        VIRAGEGAUCHEHAUT("virage","routegauchehaut","un virage",1),
-        ROUTETHAUT("carrefour","routeThaut","une route en t",1),
-        ROUTETBAS("carrefour","routeTbas","une route en t",1),
-        ROUTETDROITE("carrefour","routeTdroite","une route en t",1),
-        ROUTETGAUCHE("carrefour","routeTgauche","une route en t",1),
-        CARREFOUR("carrefour","routecroissement","un croissemtn",1);
+        ROUTEHORIZONTAL("route","routehorizontale","une route",1,false),
+        ROUTEVERTICAL("route","routeverticale","une route",1,false),
+        VIRAGEDROITEBAS("virage","routedroitebas","un virage",1,false),
+        VIRAGEDROITHAUT("virage","routedroitehaut","un virage",1,false),
+        VIRAGEGAUCHEBAS("virage","routegauchebas","un virage",1,false),
+        VIRAGEGAUCHEHAUT("virage","routegauchehaut","un virage",1,false),
+        ROUTETHAUT("carrefour","routeThaut","une route en t",1,false),
+        ROUTETBAS("carrefour","routeTbas","une route en t",1,false),
+        ROUTETDROITE("carrefour","routeTdroite","une route en t",1,false),
+        ROUTETGAUCHE("carrefour","routeTgauche","une route en t",1,false),
+        CARREFOUR("carrefour","routecroisement","un croissemtn",1,false);
         
         
         private String aNom;
