@@ -208,9 +208,9 @@ class IHM_Panel extends JPanel
             {
                 // Position de la case selectionnee
                 int pPosHautGaucheX = i*Slatch.ihm.getPanel().getaLargeurCarreau();
-                int pPosHautGaucheY = j*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
+                int pPosHautGaucheY = j*Slatch.ihm.getPanel().getaHauteurCarreau();
                 int pPosBasDroiteX = (i+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
-                int pPosBasDroiteY = (j+1)*Slatch.ihm.getPanel().getaHauteurCarreau() + Slatch.ihm.getPanel().getDECALAGE_PX_EN_Y();
+                int pPosBasDroiteY = (j+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
 
                 if(pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) 
                 {
@@ -265,9 +265,9 @@ class IHM_Panel extends JPanel
     private void effaceMenuUnite(Graphics g)
     {
         int aMenuHautGauche_X=aMenuHautGauche_Xpx/aLargeurCarreau;
-        int aMenuHautGauche_Y=(aMenuHautGauche_Ypx-DECALAGE_PX_EN_Y)/aHauteurCarreau;
+        int aMenuHautGauche_Y=(aMenuHautGauche_Ypx)/aHauteurCarreau;
         int aMenuBasDroite_X=aMenuBasDroite_Xpx/aLargeurCarreau;
-        int aMenuBasDroite_Y=(aMenuBasDroite_Ypx-DECALAGE_PX_EN_Y)/aHauteurCarreau;
+        int aMenuBasDroite_Y=(aMenuBasDroite_Ypx)/aHauteurCarreau;
         for(int u=aMenuHautGauche_X; u<aMenuBasDroite_X; u++) {
             for(int v=aMenuHautGauche_Y; v<aMenuBasDroite_Y; v++) {
                 MATRICE_TEST[u][v].dessine(g);
@@ -303,34 +303,34 @@ class IHM_Panel extends JPanel
         {
             //Dessine en haut à gauche
             aMenuHautGauche_Xpx = (pX-aLargeurMenuEnCase)*aLargeurCarreau;
-            aMenuHautGauche_Ypx = (pY-aHauteurMenuEnCase)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuHautGauche_Ypx = (pY-aHauteurMenuEnCase)*aHauteurCarreau;
             aMenuBasDroite_Xpx = pX*aLargeurCarreau;
-            aMenuBasDroite_Ypx = pY*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuBasDroite_Ypx = pY*aHauteurCarreau;
         }
 
         else if(pX+aLargeurMenuEnCase+1>NOMBRE_DE_CASE_X) 
         {
             //Dessine en bas à gauche
             aMenuHautGauche_Xpx = (pX-aLargeurMenuEnCase)*aLargeurCarreau;
-            aMenuHautGauche_Ypx = (pY+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuHautGauche_Ypx = (pY+1)*aHauteurCarreau;
             aMenuBasDroite_Xpx = pX*aLargeurCarreau;
-            aMenuBasDroite_Ypx = (pY+aHauteurMenuEnCase+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuBasDroite_Ypx = (pY+aHauteurMenuEnCase+1)*aHauteurCarreau;
         }
         
         else if(pY+aHauteurMenuEnCase+1>NOMBRE_DE_CASE_Y) {
             //Dessine en haut à droite
             aMenuHautGauche_Xpx = (pX+1)*aLargeurCarreau;
-            aMenuHautGauche_Ypx = (pY-aHauteurMenuEnCase)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuHautGauche_Ypx = (pY-aHauteurMenuEnCase)*aHauteurCarreau;
             aMenuBasDroite_Xpx = (pX+aLargeurMenuEnCase+1)*aLargeurCarreau;
-            aMenuBasDroite_Ypx = pY*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuBasDroite_Ypx = pY*aHauteurCarreau;
         }
         
         else {
             // Meun en bas a droite par default
             aMenuHautGauche_Xpx = (pX+1)*aLargeurCarreau;
-            aMenuHautGauche_Ypx = (pY+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuHautGauche_Ypx = (pY+1)*aHauteurCarreau;
             aMenuBasDroite_Xpx = (pX+aLargeurMenuEnCase+1)*aLargeurCarreau;
-            aMenuBasDroite_Ypx = (pY+aHauteurMenuEnCase+1)*aHauteurCarreau+DECALAGE_PX_EN_Y;
+            aMenuBasDroite_Ypx = (pY+aHauteurMenuEnCase+1)*aHauteurCarreau;
         }
             
         afficheImageRedim ("noir80.png", aMenuHautGauche_Xpx, aMenuHautGauche_Ypx, aMenuBasDroite_Xpx, aMenuBasDroite_Ypx, g);
@@ -375,9 +375,9 @@ class IHM_Panel extends JPanel
     private void afficheTest (final Graphics g) {
         for(int i = 0; i < NOMBRE_DE_CASE_X ; i++) {
             for(int j=0 ; j < NOMBRE_DE_CASE_Y ; j++) {
-                afficheImageRedim(""+(i%4+1)+".png",aLargeurCarreau*i, aHauteurCarreau*j+DECALAGE_PX_EN_Y, aLargeurCarreau*(i+1), aHauteurCarreau*(j+1)+DECALAGE_PX_EN_Y,g);
+                afficheImageRedim(""+(i%4+1)+".png",aLargeurCarreau*i, aHauteurCarreau*j, aLargeurCarreau*(i+1), aHauteurCarreau*(j+1),g);
                 g.setColor(Color.white);
-                g.drawRect(aLargeurCarreau*i, j*aHauteurCarreau+DECALAGE_PX_EN_Y, aLargeurCarreau+aLargeurCarreau*i, aHauteurCarreau+j*aHauteurCarreau+DECALAGE_PX_EN_Y);
+                g.drawRect(aLargeurCarreau*i, j*aHauteurCarreau, aLargeurCarreau+aLargeurCarreau*i, aHauteurCarreau+j*aHauteurCarreau);
             }
         }
     }

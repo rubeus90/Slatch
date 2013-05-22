@@ -65,6 +65,8 @@ public class PanelInfo extends JPanel
 //             // Avertir Moteur
               Slatch.moteur.passeTour();
               this.repaint();
+              Slatch.ihm.getPanel().repaint();
+              
 //             
 //             // Joueur Actuel affichage
 //             afficheImageRedim ("joueur.png", 18*aLargeurCarreau, 0,19*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
