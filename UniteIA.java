@@ -7,4 +7,9 @@ public class UniteIA
         Slatch.moteur.remplitPorteeDep(unite, false);
         Slatch.moteur.deplacement(unite, pX, pY);
     }
+    
+    public void decrypterObjectif(String objectif)
+    {
+        
+    }
 }
