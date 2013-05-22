@@ -98,6 +98,19 @@ class Moteur
         affichePorteeAttaque(uniteA);
     }
     
+    public void modeCapture(int pX, int pY)
+    {
+        Terrain vBatiment= Slatch.partie.getTerrain()[pX][pY];
+        uniteA=Slatch.partie.getTerrain()[pX][pY].getUnite();
+        
+        
+        vBatiment.setPointDeVie(vBatiment.getPointDeVie()-10);//Bon... ça va capturer la batiment directement...Valeur à changer
+        if(vBatiment.getPointDeVie()<=0)
+        {
+            capture(vBatiment);
+        }
+    }
+    
     public void attaque(Unite pVictime)
     { 
         double degatsAtt=0;
@@ -121,6 +134,12 @@ class Moteur
         uniteA.attaque(true);
         uniteA.deplacee(true);
         uniteA=null;
+    }
+    
+    public void capture(Entite pBatiment)
+    {
+        pBatiment.setJoueur(uniteA.getJoueur());
+        Slatch.ihm.getPanel().paintComponent(Slatch.ihm.getPanel().getGraphics());
     }
     
     public boolean faireDegats(Unite cible, double degats) // retourne vrai si la cible meurt

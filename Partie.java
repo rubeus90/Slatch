@@ -284,5 +284,5 @@ public class Partie
     public void setJoueurActuel(final int pJoueurActuel){
         aJoueurActuel = pJoueurActuel;
     }
-    
+   
 }
