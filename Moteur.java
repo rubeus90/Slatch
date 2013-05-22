@@ -275,7 +275,7 @@ class Moteur
      * @param pX abscisse de l'arrivee
      * @param pY ordonnee de l'arrivee
      */
-    private void changerCase(Unite unite, int destX, int destY)
+    public void changerCase(Unite unite, int destX, int destY)
     {
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
         Slatch.ihm.getPanel().dessineTerrain(unite.getCoordonneeX(),unite.getCoordonneeY());
