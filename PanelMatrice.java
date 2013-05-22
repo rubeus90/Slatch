@@ -29,17 +29,24 @@ public class PanelMatrice extends JPanel
     private int aLargeurCarreau;
     private int aHauteurCarreau;
     
-    private int aMenuHautGauche_Xpx;
-    private int aMenuHautGauche_Ypx;
-    private int aMenuBasDroite_Xpx;
-    private int aMenuBasDroite_Ypx;
+    private int aMenuActionHautGauche_Xpx;
+    private int aMenuActionHautGauche_Ypx;
+    private int aMenuActionBasDroite_Xpx;
+    private int aMenuActionBasDroite_Ypx;
+    
+    private int aMenuDescriptionHautGauche_Xpx;
+    private int aMenuDescriptionActionHautGauche_Ypx;
+    private int aMenuDescriptionActionBasDroite_Xpx;
+    private int aMenuDescriptionActionBasDroite_Ypx;
+    
     private int aUniteMemCaseX;
     private int aUniteMemCaseY;
     
     private int aLargeurMenuEnCase=3;
     private int aHauteurMenuEnCase=6;
     
-    private boolean modeMenuUnite;
+    private boolean menuUniteAction;
+    private boolean menuUniteDescription;
     private boolean modeMenu;
     
     private boolean aAttaquePossible=false;
@@ -60,7 +67,7 @@ public class PanelMatrice extends JPanel
         aLargeurCarreau = this.getWidth()/Slatch.partie.getLargeur();
         aHauteurCarreau = this.getHeight()/ Slatch.partie.getHauteur();
 
-        modeMenuUnite=false;
+        menuUniteAction=false;
         modeMenu=false;
         
         aListeAction= new ArrayList<String>();
@@ -76,47 +83,49 @@ public class PanelMatrice extends JPanel
         aHauteurCarreau = this.getHeight()/ Slatch.partie.getHauteur();
         dessineMatrice(g);
         
-        if(modeMenuUnite) {
-            afficheImageRedim ("noir80", aMenuHautGauche_Xpx, aMenuHautGauche_Ypx, aMenuBasDroite_Xpx, aMenuBasDroite_Ypx, g);
+        if(menuUniteAction) {
+            afficheImageRedim ("noir80", aMenuActionHautGauche_Xpx, aMenuActionHautGauche_Ypx, aMenuActionBasDroite_Xpx, aMenuActionBasDroite_Ypx, g);
             
             // Ecrie les boutons en rouge
             g.setColor(Color.gray);
-            g.drawString("Deplace", aMenuHautGauche_Xpx+aLargeurCarreau/3, aMenuHautGauche_Ypx+2*aHauteurCarreau/3);
-            g.drawString("Attaque", aMenuHautGauche_Xpx+aLargeurCarreau/3, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
-            g.drawString("Capture", aMenuHautGauche_Xpx+aLargeurCarreau/3, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
-            g.drawString("Evolue", aMenuHautGauche_Xpx+aLargeurCarreau/3, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
+            g.drawString("Deplace", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3);
+            g.drawString("Attaque", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
+            g.drawString("Capture", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+            g.drawString("Evolue", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
             
             // Ecrie les boutons en vert
             for(int vVar=0;vVar<aListeAction.size();vVar++) {
                 g.setColor(Color.green);
                 if(aListeAction.get(vVar).equals("Deplace")) {
-                    g.drawString("Deplace", aMenuHautGauche_Xpx+aLargeurCarreau/3, aMenuHautGauche_Ypx+2*aHauteurCarreau/3);
+                    g.drawString("Deplace", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3);
                     aDeplacePossible=true;
                 }
                 if(aListeAction.get(vVar).equals("Attaque")) {
-                    g.drawString("Attaque", aMenuHautGauche_Xpx+aLargeurCarreau/3, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
+                    g.drawString("Attaque", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
                     aAttaquePossible=true;
                 }
                 if(aListeAction.get(vVar).equals("Capture")) {
-                    g.drawString("Capture", aMenuHautGauche_Xpx+aLargeurCarreau/3, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+                    g.drawString("Capture", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
                     aCapturePossible=true;
                 }
                 if(aListeAction.get(vVar).equals("Evolue")) {
-                    g.drawString("Evolue", aMenuHautGauche_Xpx+aLargeurCarreau/3, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
+                    g.drawString("Evolue", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
                 }
             }
             
             // Trace les lignes
             for(int vVar=1;vVar<4;vVar++) {
                 g.setColor(Color.white);
-                g.drawLine(aMenuHautGauche_Xpx, aMenuHautGauche_Ypx+(vVar*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau, aMenuBasDroite_Xpx-1, aMenuHautGauche_Ypx+(vVar*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau);
+                g.drawLine(aMenuActionHautGauche_Xpx, aMenuActionHautGauche_Ypx+(vVar*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau, aMenuActionBasDroite_Xpx-1, aMenuActionHautGauche_Ypx+(vVar*aHauteurMenuEnCase/aHauteurMenuEnCase)*aHauteurCarreau);
             }
             
         }
         
+        if(menuUniteDescription) {
+            
+        }
+        
     }
-    
-    
     
     
     /**
@@ -143,35 +152,35 @@ public class PanelMatrice extends JPanel
 
                 if(pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) 
                 {
-                    if(modeMenuUnite)
+                    if(menuUniteAction)
                     {
-                        if( aMenuHautGauche_Ypx<clickY && clickY<aMenuBasDroite_Ypx && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx )//Si tu es dans menu
+                        if( aMenuActionHautGauche_Ypx<clickY && clickY<aMenuActionBasDroite_Ypx && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )//Si tu es dans menu
                         {
                             //Action a differencier
                             
                             //Bouton 1 : Deplace
-                            if(aDeplacePossible && (aMenuHautGauche_Ypx<clickY && clickY<(aMenuHautGauche_Ypx+aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx )) 
+                            if(aDeplacePossible && (aMenuActionHautGauche_Ypx<clickY && clickY<(aMenuActionHautGauche_Ypx+aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )) 
                             {
                                 Slatch.moteur.modeDeplacement(aUniteMemCaseX, aUniteMemCaseY);
-                                effaceMenuUnite();
+                                effaceMenuUniteAction();
                                 aDeplacePossible=false;
                                 this.repaint();
                             }
                             
                             //Bouton 2 : Attaque
-                            if(aAttaquePossible && (aMenuHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuHautGauche_Ypx+2*aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx ) 
+                            if(aAttaquePossible && (aMenuActionHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+2*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx ) 
                             {
                                 Slatch.moteur.modeAttaque(aUniteMemCaseX, aUniteMemCaseY);
-                                effaceMenuUnite();
+                                effaceMenuUniteAction();
                                 aAttaquePossible=false;
                                 this.repaint();
                             }
                             
                             //Bouton 3 : Capture
-                            if(aCapturePossible && (aMenuHautGauche_Ypx+2*aHauteurCarreau)<clickY && clickY<(aMenuHautGauche_Ypx+3*aHauteurCarreau) && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx )
+                            if(aCapturePossible && (aMenuActionHautGauche_Ypx+2*aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+3*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )
                             {
                                 Slatch.moteur.capture(aUniteMemCaseX, aUniteMemCaseY);
-                                effaceMenuUnite();
+                                effaceMenuUniteAction();
                                 aCapturePossible=false;
                             }
                             
@@ -180,7 +189,7 @@ public class PanelMatrice extends JPanel
                             // Avertir Moteur
                             Slatch.moteur.annulerDeplacement();
                             Slatch.moteur.caseSelectionnee(i,j);
-                            effaceMenuUnite();
+                            effaceMenuUniteAction();
                         }
                     }
                     else
@@ -218,13 +227,13 @@ public class PanelMatrice extends JPanel
         
     }
     
-    private void effaceMenuUnite()
+    private void effaceMenuUniteAction()
     {
-        aMenuHautGauche_Xpx=0;
-        aMenuHautGauche_Ypx=0;
-        aMenuBasDroite_Xpx=0;
-        aMenuBasDroite_Ypx=0;
-        modeMenuUnite = false;
+        aMenuActionHautGauche_Xpx=0;
+        aMenuActionHautGauche_Ypx=0;
+        aMenuActionBasDroite_Xpx=0;
+        aMenuActionBasDroite_Ypx=0;
+        menuUniteAction = false;
         this.repaint();
     }
     
@@ -235,45 +244,53 @@ public class PanelMatrice extends JPanel
     {
         aUniteMemCaseX = pX;
         aUniteMemCaseY = pY;
-        modeMenuUnite = true;
+        menuUniteAction = true;
+        afficheMenuAction(pList, pX, pY);
+    }
+    
+    /**
+     * Affiche Test
+     */
+    public void afficheMenuAction(final List<String> pList, final int pX, final int pY) 
+    {
         if(pX+aLargeurMenuEnCase+1>Slatch.partie.getLargeur() && pY+aHauteurMenuEnCase+1>Slatch.partie.getHauteur()) 
         {
             //Dessine en haut à gauche
-            aMenuHautGauche_Xpx = (pX-aLargeurMenuEnCase)*aLargeurCarreau;
-            aMenuHautGauche_Ypx = (pY-aHauteurMenuEnCase)*aHauteurCarreau;
-            aMenuBasDroite_Xpx = pX*aLargeurCarreau;
-            aMenuBasDroite_Ypx = pY*aHauteurCarreau;
+            aMenuActionHautGauche_Xpx = (pX-aLargeurMenuEnCase)*aLargeurCarreau;
+            aMenuActionHautGauche_Ypx = (pY-aHauteurMenuEnCase)*aHauteurCarreau;
+            aMenuActionBasDroite_Xpx = pX*aLargeurCarreau;
+            aMenuActionBasDroite_Ypx = pY*aHauteurCarreau;
         }
 
         else if(pX+aLargeurMenuEnCase+1>Slatch.partie.getLargeur()) 
         {
             //Dessine en bas à gauche
-            aMenuHautGauche_Xpx = (pX-aLargeurMenuEnCase)*aLargeurCarreau;
-            aMenuHautGauche_Ypx = (pY+1)*aHauteurCarreau;
-            aMenuBasDroite_Xpx = pX*aLargeurCarreau;
-            aMenuBasDroite_Ypx = (pY+aHauteurMenuEnCase+1)*aHauteurCarreau;
+            aMenuActionHautGauche_Xpx = (pX-aLargeurMenuEnCase)*aLargeurCarreau;
+            aMenuActionHautGauche_Ypx = (pY+1)*aHauteurCarreau;
+            aMenuActionBasDroite_Xpx = pX*aLargeurCarreau;
+            aMenuActionBasDroite_Ypx = (pY+aHauteurMenuEnCase+1)*aHauteurCarreau;
         }
         
         else if(pY+aHauteurMenuEnCase+1>Slatch.partie.getHauteur()) {
             //Dessine en haut à droite
-            aMenuHautGauche_Xpx = (pX+1)*aLargeurCarreau;
-            aMenuHautGauche_Ypx = (pY-aHauteurMenuEnCase)*aHauteurCarreau;
-            aMenuBasDroite_Xpx = (pX+aLargeurMenuEnCase+1)*aLargeurCarreau;
-            aMenuBasDroite_Ypx = pY*aHauteurCarreau;
+            aMenuActionHautGauche_Xpx = (pX+1)*aLargeurCarreau;
+            aMenuActionHautGauche_Ypx = (pY-aHauteurMenuEnCase)*aHauteurCarreau;
+            aMenuActionBasDroite_Xpx = (pX+aLargeurMenuEnCase+1)*aLargeurCarreau;
+            aMenuActionBasDroite_Ypx = pY*aHauteurCarreau;
         }
         
         else {
             // Meun en bas a droite par default
-            aMenuHautGauche_Xpx = (pX+1)*aLargeurCarreau;
-            aMenuHautGauche_Ypx = (pY+1)*aHauteurCarreau;
-            aMenuBasDroite_Xpx = (pX+aLargeurMenuEnCase+1)*aLargeurCarreau;
-            aMenuBasDroite_Ypx = (pY+aHauteurMenuEnCase+1)*aHauteurCarreau;
+            aMenuActionHautGauche_Xpx = (pX+1)*aLargeurCarreau;
+            aMenuActionHautGauche_Ypx = (pY+1)*aHauteurCarreau;
+            aMenuActionBasDroite_Xpx = (pX+aLargeurMenuEnCase+1)*aLargeurCarreau;
+            aMenuActionBasDroite_Ypx = (pY+aHauteurMenuEnCase+1)*aHauteurCarreau;
         }
         aListeAction=pList;
     }
     
     public int getaLargeurCarreau() {return aLargeurCarreau;}
     public int getaHauteurCarreau() {return aHauteurCarreau;}
-    public void setMenuUnite(final boolean X){modeMenuUnite=X;}
+    public void setMenuUnite(final boolean X){menuUniteAction=X;}
     public void setMenu(final boolean X){modeMenu=X;}
 }
