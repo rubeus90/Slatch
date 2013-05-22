@@ -109,7 +109,7 @@ public class Partie
                     vBatimentJoueur[vJoueur]+=1;
                     break;
                 case "commando": 
-                    Unite vcommando = new Unite(vX,vY,vJoueur,20,TypeUnite.COMMANDO,TypeAttaque.CANON,40,1.0, TypeDeplacement.PIED);
+                    Unite vcommando = new Unite(vX,vY,vJoueur,20,TypeUnite.COMMANDO,TypeAttaque.FUSIL,40,1.0, TypeDeplacement.PIED);
                     lUnite.add(vcommando);
                     aTerrain[vX][vY].setUnite(vcommando); 
                     break;
