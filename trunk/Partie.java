@@ -137,12 +137,12 @@ public class Partie
                     Unite distance = new Unite(vX,vY,vJoueur,35,TypeUnite.DISTANCE,TypeAttaque.CANON,50,1.0, TypeDeplacement.CHENILLES);
                     lUnite.add(distance);
                     aTerrain[vX][vY].setUnite(distance); 
-                    break;
+                    break;*/
                 case "uml":
                     Unite uml = new Unite(vX,vY,vJoueur,30,TypeUnite.UML,TypeAttaque.CANON,50,1.0, TypeDeplacement.CHENILLES);
                     lUnite.add(uml);
                     aTerrain[vX][vY].setUnite(uml); 
-                    break;*/
+                    break;
             default: aTerrain[vX][vY] = new Terrain(vX, vY, 0, 0, TypeTerrain.PLAINE);
             }
         }
