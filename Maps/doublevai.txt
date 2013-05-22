@@ -115,12 +115,6 @@ batiment:3:14:1
 batiment:5:13:1
 batiment:1:14:1
 batiment:3:3:0
-commando:4:14:1
-commando:3:13:1
-commando:28:15:2
-commando:27:15:2
-tank:4:12:1
-tank:25:13:2
 routevertical:3:13:0
 routevertical:3:12:0
 routevertical:3:11:0
@@ -165,3 +159,9 @@ routevertical:16:5:0
 routevertical:16:6:0
 routevertical:16:7:0
 routegauchebas:16:2:0
+commando:4:14:1
+commando:3:13:1
+commando:28:15:2
+commando:27:15:2
+tank:4:12:1
+tank:25:13:2
