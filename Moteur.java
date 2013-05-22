@@ -13,8 +13,10 @@ class Moteur
     Unite uniteD; // unite en attente de déplacement
     Unite uniteA; // unite en attente d'attaque
     boolean[][] tabAtt;
+    
     int[][] tabDist;
     Point[][] pred;
+    
     Point[] voisins = {new Point(0,1), new Point(0,-1),new Point(1,0),new Point(-1,0)};
     Point[] signes = {new Point(1,1), new Point(1,-1),new Point(-1,-1),new Point(-1,1), new Point(0,1), new Point(0,-1), new Point(-1,0), new Point(1,0)};
     
@@ -98,7 +100,7 @@ class Moteur
         affichePorteeAttaque(uniteA);
     }
     
-    public void capture(int pX, int pY)
+    public void modeCapture(int pX, int pY)
     {
         Terrain vBatiment= Slatch.partie.getTerrain()[pX][pY];
         uniteA=Slatch.partie.getTerrain()[pX][pY].getUnite();
@@ -107,12 +109,8 @@ class Moteur
         vBatiment.setPointDeVie(vBatiment.getPointDeVie()-10);//Bon... ça va capturer la batiment directement...Valeur à changer
         if(vBatiment.getPointDeVie()<=0)
         {
-           vBatiment.setJoueur(uniteA.getJoueur());
-           Slatch.ihm.getPanel().repaint(); 
+            capture(vBatiment);
         }
-        uniteA.attaque(true);
-        uniteA.deplacee(true);
-        uniteA=null;
     }
     
     public void attaque(Unite pVictime)
@@ -138,6 +136,12 @@ class Moteur
         uniteA.attaque(true);
         uniteA.deplacee(true);
         uniteA=null;
+    }
+    
+    public void capture(Entite pBatiment)
+    {
+        pBatiment.setJoueur(uniteA.getJoueur());
+        Slatch.ihm.getPanel().repaint();
     }
     
     public boolean faireDegats(Unite cible, double degats) // retourne vrai si la cible meurt
@@ -271,11 +275,15 @@ class Moteur
             }
         }
         int k = chemin.size();
+        int l = unite.getPorteeDeplacement();
         while(!chemin.isEmpty())
         {
             Point p = chemin.pop();
+            if((l-=Slatch.partie.getTerrain()[(int)p.getX()][(int)p.getY()].getCout(unite))<0)
+            {
+                break;
+            }
             changerCase(unite, (int)p.getX(), (int)p.getY());
-            
             
             try{
                 Thread.sleep(250/k+50);
@@ -421,10 +429,10 @@ class Moteur
         return distance(e1.getCoordonneeX(), e1.getCoordonneeY(), e2.getCoordonneeX(), e2.getCoordonneeY());
     }
     
-    public void remplitPorteeDep(Unite unite)
+    public void remplitPorteeDep(Unite unite, boolean bool)
     {
         this.initialiseTabDist(unite.getCoordonneeX(), unite.getCoordonneeY());
-        this.algoDeplacement(unite);
+        this.algoDeplacement(unite, bool);
     }
     
     /**
@@ -433,7 +441,7 @@ class Moteur
      */
     private void affichePorteeDep(Unite unite)
     {
-        this.remplitPorteeDep(unite);
+        this.remplitPorteeDep(unite, true);
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
@@ -458,6 +466,7 @@ class Moteur
             {
                 if(Slatch.partie.getTerrain()[i][j].getUnite()!=null)  // quand on a déjà une unité sur la case, on ne peut pas y accéder
                 {
+                    pred[i][j]=null;
                     tabDist[i][j] = -2;
                 }
                 else{tabDist[i][j] = -1;} // au début, on suppose qu'on a une distance infinie représentée par -1 sur chacune des cases restantes
@@ -492,11 +501,6 @@ class Moteur
                 }
             }
         }
-    }
-    
-    private void algoDeplacement(Unite unite)
-    {
-        this.algoDeplacement(unite, true);
     }
     
     public void passeTour()
