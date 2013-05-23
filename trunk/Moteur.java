@@ -41,7 +41,7 @@ class Moteur
                 if(Slatch.partie.getTerrain()[i][j].getSurbrillance())
                 {
                     Slatch.partie.getTerrain()[i][j].setSurbrillance(false);
-                    Slatch.ihm.getPanel().repaint();
+                    repaint();
                 }
             }
         }
@@ -135,7 +135,7 @@ class Moteur
         if(vBatiment.getPV()<=0)
         {
            vBatiment.setJoueur(uniteA.getJoueur());
-           Slatch.ihm.getPanel().repaint();
+           repaint();
         }
         uniteA.attaque(true);
         uniteA.deplacee(true);
@@ -146,7 +146,7 @@ class Moteur
     public boolean faireDegats(Unite cible, double degats) // retourne vrai si la cible meurt
     {
         cible.setPV(cible.getPV() - (int)degats);
-        if(cible.getPV()<=0){return true;}else{Slatch.ihm.getPanel().repaint(); return false;}
+        if(cible.getPV()<=0){return true;}else{repaint(); return false;}
     }
     
     public double getDegats(Unite a, Unite v) // a= attaquant, v= cible
@@ -157,7 +157,7 @@ class Moteur
     public void estMort(Unite unite)
     {
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
-        Slatch.ihm.getPanel().repaint();
+        repaint();
         Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
         if(Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty())
         {
@@ -401,7 +401,7 @@ class Moteur
                     if(ciblePresente(unite, i*decX,j*decY))
                     {
                         Slatch.partie.getTerrain()[x+i*decX][y+j*decY].setSurbrillance(true);
-                        Slatch.ihm.getPanel().repaint();
+                        repaint();
                         tabAtt[x+i*decX][y+j*decY] = true;
                     }
                 }
@@ -464,7 +464,7 @@ class Moteur
                 if(tabDist[i][j]>0)
                 {
                     Slatch.partie.getTerrain()[i][j].setSurbrillance(true);
-                    Slatch.ihm.getPanel().repaint();
+                    repaint();
                 }
             }
         }
@@ -548,6 +548,14 @@ class Moteur
         Joueur vJoueur = Slatch.partie.getJoueur(vNumJoueur);
         
         Unite creation = new Unite(pX,pY,vNumJoueur,pType);
+        creation.deplacee(true);
+        creation.attaque(true);
         Slatch.partie.getTerrain()[pX][pY].setUnite(creation);
+       repaint();
     }  
+    
+    private void repaint()
+    {
+         Slatch.ihm.getPanel().repaint();
+    }
 }
