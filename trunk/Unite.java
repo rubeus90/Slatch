@@ -212,6 +212,17 @@ public class Unite extends Entite
        aDeplacement = (int)(aDeplacement*aGain);
     }
     
+    public boolean soigner(int soin)
+    {
+        if(aPV<aPVMax)
+        {
+            this.aPV += soin;
+            if(aPV>aPVMax){aPV=aPVMax;}
+            return true;
+        }
+        return false;
+    }
+    
 
    
     @Override
