@@ -276,7 +276,7 @@ public class PanelMatrice extends JPanel
                         if (aShopHautGauche_Ypx<clickY && clickY<aShopBasDroite_Ypx && aShopHautGauche_Xpx<clickX && clickX<aShopBasDroite_Xpx) {
                             for(int v=1; v<aListeShop.size()+1;v++) {
                                 if(aTabAchat.get(v)!=null && (aShopHautGauche_Ypx+v*aHauteurCarreau<clickY && clickY<aShopHautGauche_Ypx+(v+1)*aHauteurCarreau)) {
-                                    System.out.println("Achat sur le bouton "+(v)+" de "+aTabAchat.get(v).getNom());
+                                    Slatch.moteur.creationUnite(aUniteMemMenuCaseX,aUniteMemMenuCaseY,aTabAchat.get(v));
                                 }
                             }
                         }
@@ -376,7 +376,7 @@ public class PanelMatrice extends JPanel
         aListeShop=pList;
         aHauteurShopEnCase=(Slatch.partie.getHauteur()-aHauteurMenuDescriptionEnCase-1);
         aLargeurShopEnCase=(Slatch.partie.getLargeur()/2-1);
-        
+
         if(pX<Slatch.partie.getLargeur()/2) 
         {
             //Dessine a droite
