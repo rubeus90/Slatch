@@ -286,6 +286,7 @@ public class PanelMatrice extends JPanel
                             for(int v=1; v<aListeShop.size()+1;v++) {
                                 if(aTabAchat.get(v)!=null && (aShopHautGauche_Ypx+v*aHauteurCarreau<clickY && clickY<aShopHautGauche_Ypx+(v+1)*aHauteurCarreau)) {
                                     Slatch.moteur.creationUnite(aUniteMemMenuCaseX,aUniteMemMenuCaseY,aTabAchat.get(v));
+                                    effaceMenuShop();
                                     this.repaint();
                                     Slatch.ihm.getpanelinfo().repaint();
                                 }
