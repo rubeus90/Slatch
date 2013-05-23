@@ -156,7 +156,7 @@ public class PanelMatrice extends JPanel
             Terrain t = Slatch.partie.getTerrain()[aUniteMemMenuCaseX][aUniteMemMenuCaseY];
             if(t.getUnite()!=null)
             {
-                String portedep = "Portée Depl = "+t.getUnite().getDeplacement();
+                String portedep = "Portée Depl = "+t.getUnite().getDeplacement()/10;
                 String xp = "XP = "+t.getUnite().getExperience();
                 String lvl = "LVL = "+t.getUnite().getLvl();
                 String couverture = "Couv = "+ t.getType().getCouverture();
