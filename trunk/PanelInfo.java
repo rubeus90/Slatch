@@ -81,6 +81,7 @@ public class PanelInfo extends JPanel
 
         String menu = "MENU";
         String jour = "JOUR : "+Slatch.partie.getTour();
+        System.out.println(Slatch.partie.getJoueurActuel());
         String joueur = "JOUEUR : "+Slatch.partie.getJoueurActuel();
         String argent = "ARGENT : "+Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent();
         String suivant = "SUIVANT";
