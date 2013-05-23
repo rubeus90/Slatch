@@ -226,7 +226,7 @@ public class PanelMatrice extends JPanel
                             if(aDeplacePossible && (aMenuActionHautGauche_Ypx<clickY && clickY<(aMenuActionHautGauche_Ypx+aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )) 
                             {
                                 Slatch.moteur.modeDeplacement(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
-                                effaceMenu();
+                                effaceMenuUniteAction();
                                 aDeplacePossible=false;
                                 this.repaint();
                             }
@@ -235,7 +235,7 @@ public class PanelMatrice extends JPanel
                             if(aAttaquePossible && (aMenuActionHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+2*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx ) 
                             {
                                 Slatch.moteur.modeAttaque(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
-                                effaceMenu();
+                                effaceMenuUniteAction();
                                 aAttaquePossible=false;
                                 this.repaint();
                             }
@@ -244,7 +244,7 @@ public class PanelMatrice extends JPanel
                             if(aCapturePossible && (aMenuActionHautGauche_Ypx+2*aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+3*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )
                             {
                                 Slatch.moteur.capture(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
-                                effaceMenu();
+                                effaceMenuUniteAction();
                                 aCapturePossible=false;
                             }
                         }
@@ -252,11 +252,25 @@ public class PanelMatrice extends JPanel
                         {
                             aUniteMemMenuCaseX=i;
                             aUniteMemMenuCaseY=j;
-                            
+                            effaceMenuUniteAction();
                             // Avertir Moteur
-                            effaceMenu();
-
                             Slatch.moteur.caseSelectionnee(i,j);
+                            this.repaint();
+                        }
+                    }
+                    else if(menuShop) {
+                        if (aShopHautGauche_Ypx<clickY && clickY<aShopBasDroite_Ypx && aShopHautGauche_Xpx<clickX && clickX<aShopBasDroite_Xpx) {
+                            
+                            
+                        }
+                        else 
+                        {
+                            aUniteMemMenuCaseX=i;
+                            aUniteMemMenuCaseY=j;
+                            effaceMenuShop();
+                            // Avertir Moteur
+                            Slatch.moteur.caseSelectionnee(i,j);
+                            this.repaint();
                         }
                     }
                     /*else if(menuShop) 
@@ -296,12 +310,6 @@ public class PanelMatrice extends JPanel
     private void afficheImageRedim (final String pURL, final int pPosHautGaucheX, final int pPosHautGaucheY,final int pPosBasDroiteX, final int pPosBasDroiteY, final Graphics g) {  
         Image img = Slatch.aImages.get(pURL);
         g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
-    }
-    
-    private void effaceMenu() {
-        effaceMenuUniteAction();
-        effaceMenuUniteDescription();
-        effaceMenuShop();
     }
     
     private void effaceMenuUniteAction()
