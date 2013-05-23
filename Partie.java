@@ -131,13 +131,13 @@ public class Partie
                     Unite vchar = new Unite(vX,vY,vJoueur,40,TypeUnite.CHAR,TypeAttaque.CANON,60,1.0, TypeDeplacement.CHENILLES);
                     lUnite.add(vchar);
                     aTerrain[vX][vY].setUnite(vchar); 
-                    break;
+                    break;*/
                 case "ingenieur":
-                    Unite ingenieur = new Unite(vX,vY,vJoueur,15,TypeUnite.INGENIEUR,TypeAttaque.CANON,40,1.0, TypeDeplacement.CHENILLES);
+                    Unite ingenieur = new Unite(vX,vY,vJoueur,TypeUnite.INGENIEUR);
                     lUnite.add(ingenieur);
                     aTerrain[vX][vY].setUnite(ingenieur); 
                     break;
-                case "distance":
+                /*case "distance":
                     Unite distance = new Unite(vX,vY,vJoueur,35,TypeUnite.DISTANCE,TypeAttaque.CANON,50,1.0, TypeDeplacement.CHENILLES);
                     lUnite.add(distance);
                     aTerrain[vX][vY].setUnite(distance); 

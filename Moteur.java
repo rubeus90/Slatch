@@ -195,7 +195,7 @@ class Moteur
             }
             else if(Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE)
             {
-                Slatch.ihm.shop(
+                //Slatch.ihm.shop(
             }
             annulerDeplacement();
         }

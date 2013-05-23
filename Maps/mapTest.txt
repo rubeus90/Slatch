@@ -45,3 +45,5 @@ tank:12:5:1
 tank:17:5:2
 uml:12:6:1
 uml:17:6:2
+ingenieur:12:7:1
+ingenieur:17:7:2

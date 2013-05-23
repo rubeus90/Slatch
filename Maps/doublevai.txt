@@ -115,6 +115,10 @@ batiment:3:14:1
 batiment:5:13:1
 batiment:1:14:1
 batiment:3:3:0
+usine:4:15:1
+usine:2:15:1
+usine:28:16:2
+usine:29:16:2
 routevertical:3:13:0
 routevertical:3:12:0
 routevertical:3:11:0

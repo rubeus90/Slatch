@@ -7,3 +7,6 @@ canon:uml:1
 missile:commando:1
 missile:tank:1.2
 missile:uml:1
+soin:commando:0
+soin:tank:0
+soin:uml:0
