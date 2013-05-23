@@ -76,6 +76,7 @@ public class PanelMatrice extends JPanel
         menuShop=false;
         
         aListeAction= new ArrayList<String>();
+        aListeShop= new ArrayList<TypeUnite>();
     }
 
     /**
