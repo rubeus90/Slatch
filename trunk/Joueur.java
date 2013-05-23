@@ -41,7 +41,7 @@ public class Joueur
     
     public void setNumJoueur(final int pNum) {aNumJoueur = pNum;}
     public void setFaction(final Faction pFaction) {aFaction = pFaction;}
-    public void setNbreBatiment(final int pNbre) {aNbreBatiment = pNbre;}
+    public void addNbreBatiment(final int pNbre) {aNbreBatiment += pNbre;}
     public void setArgent(final int pArgent) {aArgent = pArgent;}
     
     public void benefTour(final int pRevenuBatiment)
