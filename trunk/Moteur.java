@@ -195,7 +195,12 @@ class Moteur
             }
             else if(Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE)
             {
-                //Slatch.ihm.shop(
+                List<TypeUnite> l = new ArrayList<TypeUnite>();
+                for(TypeUnite vType: Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getFaction().getListe())
+                {
+                    if(vType.nomType.equals("Terrestre")){l.add(vType);}
+                }
+                Slatch.ihm.getPanel().shop(l,Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent(), pX, pY);
             }
             annulerDeplacement();
         }
