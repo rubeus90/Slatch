@@ -7,10 +7,10 @@ import java.lang.Integer;
 import java.net.URL;
 
 public enum TypeTerrain {
-        FORET("foret", "Une foret", "une foret", 2,0,false),
-        PLAINE("plaine", "Une plaine", "une plaine", 1,0,false),
-        MONTAGNE("montagne", "une montagne", "une montagne", 3,0,false),
-        BATIMENT("batiment", "Un batiment", "une ville", 2,30,true),
+        FORET("foret", "arbres", "Une foret", 2,0,false),
+        PLAINE("plaine", "plaine", "Une plaine", 1,0,false),
+        MONTAGNE("montagne", "montagne", "Une montagne", 3,0,false),
+        BATIMENT("batiment", "batiment", "Un batiment", 2,30,true),
         USINE("usine","caserne","Une usine",3,30,true),
         
         //eau
