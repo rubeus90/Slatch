@@ -58,6 +58,8 @@ public class PanelMatrice extends JPanel
     private boolean aDeplacePossible=false;
     private boolean aCapturePossible=false;
     
+    private HashMap<Integer,TypeUnite>  aTabAchat;
+    
     private List<String> aListeAction;
     private List<TypeUnite> aListeShop;
 
@@ -78,6 +80,7 @@ public class PanelMatrice extends JPanel
         modeMenu=false;
         menuShop=false;
         
+        aTabAchat= new HashMap<Integer,TypeUnite> ();
         aListeAction= new ArrayList<String>();
         aListeShop= new ArrayList<TypeUnite>();
     }
@@ -195,6 +198,7 @@ public class PanelMatrice extends JPanel
                     // Ecrie les boutons en vert
                     g.setColor(Color.green);
                     g.drawString(vType.getNom(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
+                    aTabAchat.put(i,vType);
                 }
             }
             g.setColor(Color.gray);
@@ -270,8 +274,10 @@ public class PanelMatrice extends JPanel
                     }
                     else if(menuShop) {
                         if (aShopHautGauche_Ypx<clickY && clickY<aShopBasDroite_Ypx && aShopHautGauche_Xpx<clickX && clickX<aShopBasDroite_Xpx) {
-                            if(aShopHautGauche_Ypx<clickY && clickY<aShopHautGauche_Ypx+aHauteurCarreau) {
-                                System.out.println("Achat 1");
+                            for(int v=1; v<aListeShop.size()+1;v++) {
+                                if(aTabAchat.get(v)!=null && (aShopHautGauche_Ypx+v*aHauteurCarreau<clickY && clickY<aShopHautGauche_Ypx+(v+1)*aHauteurCarreau)) {
+                                    System.out.println("Achat sur le bouton "+(v)+" de "+aTabAchat.get(v).getNom());
+                                }
                             }
                         }
                         else 
