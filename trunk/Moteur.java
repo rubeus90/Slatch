@@ -108,7 +108,7 @@ class Moteur
         //pVictime.setPointDeVie(pVictime.getPointDeVie() - (int)degatsAtt);
         if(faireDegats(pVictime, degatsAtt)) // si la victime meurt
         {
-            uniteA.addExperience(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*pVictime.getLvl());
+            uniteA.addExperience(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*(pVictime.getLvl()+1));
             estMort(pVictime);
         }    
         else if(distance(uniteA, pVictime)==1 && pVictime.getAttaque().aTypePortee.getPorteeMin()==1) //sinon + si attaque au CAC, on riposte
@@ -116,7 +116,7 @@ class Moteur
             degatsAtt= 0.7*getDegats(pVictime, uniteA);
             if(faireDegats(uniteA, degatsAtt))
             {
-                uniteA.addExperience(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*uniteA.getLvl());
+                uniteA.addExperience(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*(uniteA.getLvl()+1));
                 estMort(uniteA);
             }
         }
