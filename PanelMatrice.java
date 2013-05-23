@@ -23,9 +23,6 @@ import javax.swing.*;
  */
 public class PanelMatrice extends JPanel
 {     
-
-    private int DECALAGE_PX_EN_Y;
-    
     private int aLargeurCarreau;
     private int aHauteurCarreau;
     
