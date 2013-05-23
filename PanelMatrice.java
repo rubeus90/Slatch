@@ -99,6 +99,11 @@ public class PanelMatrice extends JPanel
         {
             afficheImageRedim ("noir80", aMenuActionHautGauche_Xpx, aMenuActionHautGauche_Ypx, aMenuActionBasDroite_Xpx, aMenuActionBasDroite_Ypx, g);
             
+            // Police
+            Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
+            g.setFont(font);
+            FontMetrics fm=getFontMetrics(font); 
+            
             // Ecrie les boutons en gris
             g.setColor(Color.gray);
             g.drawString("Deplace", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3);
@@ -136,6 +141,11 @@ public class PanelMatrice extends JPanel
         if(menuUniteDescription) 
         {
             redimMenuDescription(aUniteMemMenuCaseX,aUniteMemMenuCaseY);
+            
+            // Police
+            Font font = new Font("Serif", Font.BOLD, this.getWidth()/100);
+            g.setFont(font);
+            FontMetrics fm=getFontMetrics(font);  
             
             afficheImageRedim ("noir80", aMenuDescriptionHautGauche_Xpx, aMenuDescriptionHautGauche_Ypx, aMenuDescriptionBasDroite_Xpx, aMenuDescriptionBasDroite_Ypx, g);
             g.setColor(Color.white);
@@ -177,8 +187,7 @@ public class PanelMatrice extends JPanel
         if(menuShop) 
         {
             afficheImageRedim ("noir80", aShopHautGauche_Xpx, aShopHautGauche_Ypx, aShopBasDroite_Xpx, aShopBasDroite_Ypx, g);
-            
-            
+
             // Police
             Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
             g.setFont(font);
