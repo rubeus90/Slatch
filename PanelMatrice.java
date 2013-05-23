@@ -41,7 +41,7 @@ public class PanelMatrice extends JPanel
     private int aArgentMem;
     
     private int aLargeurMenuActionEnCase=3;
-    private int aHauteurMenuActionEnCase=6;
+    private int aHauteurMenuActionEnCase=4;
     
     private int aLargeurMenuDescriptionEnCase=10;
     private int aHauteurMenuDescriptionEnCase=4;
