@@ -171,15 +171,3 @@ routevertical:16:5:0
 routevertical:16:6:0
 routevertical:16:7:0
 routetgauche:16:2:0
-commando:4:14:1
-commando:3:13:1
-commando:28:15:2
-commando:27:15:2
-tank:4:12:1
-tank:25:13:2
-uml:4:16:1
-uml:27:16:2
-ingenieur:3:16:1
-ingenieur:28:14:2
-demolisseur:3:15:1
-demolisseur:25:15:2
