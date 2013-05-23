@@ -43,6 +43,7 @@ public class Joueur
     public void setFaction(final Faction pFaction) {aFaction = pFaction;}
     public void addNbreBatiment(final int pNbre) {aNbreBatiment += pNbre;}
     public void setArgent(final int pArgent) {aArgent = pArgent;}
+    public void addArgent(final int pArgent) {aArgent += pArgent;}
     
     public void benefTour(final int pRevenuBatiment)
     {

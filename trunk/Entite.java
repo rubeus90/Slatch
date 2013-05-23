@@ -10,11 +10,11 @@ import javax.imageio.ImageIO;
  */
 public abstract class Entite 
 {
-    private int aCoordonneeX;       //Coordonnee en X dans la matrice du Jeu
-    private int aCoordonneeY;       //Coordonnee en Y dans la matrice du Jeu
-    private int aPV; //Point de vie actuelle de l'entite
-    private int aJoueur;            //Numero du joueur
-    private boolean aSurbrillance;            //Numero du joueur
+    protected int aCoordonneeX;       //Coordonnee en X dans la matrice du Jeu
+    protected int aCoordonneeY;       //Coordonnee en Y dans la matrice du Jeu
+    protected int aPV; //Point de vie actuelle de l'entite
+    protected int aJoueur;            //Numero du joueur
+    protected boolean aSurbrillance;            //Numero du joueur
     
     /**
      * Constructeur d'une Entite
