@@ -525,6 +525,10 @@ class Moteur
         {
             u.attaque(false);
             u.deplacee(false);
+            if(Slatch.partie.getTerrain()[u.getCoordonneeX()][u.getCoordonneeY()].estUnBatimentAuJoueur(u.getJoueur()))
+            {
+                u.soigner(8);
+            }
         }
         
         if(Slatch.partie.getJoueurActuel()==2){GrandeIA.test(l.get(0));} // ceci est un test et devra être remplacé rapidement par un appel à la Grande IA
@@ -543,16 +547,18 @@ class Moteur
     public void creationUnite(final int pX,final int pY, final TypeUnite pType){
         int vNumJoueur = Slatch.partie.getJoueurActuel();
         Joueur vJoueur = Slatch.partie.getJoueur(vNumJoueur);
-        
+        vJoueur.addArgent(-pType.getPrix());
         Unite creation = new Unite(pX,pY,vNumJoueur,pType);
         creation.deplacee(true);
         creation.attaque(true);
         Slatch.partie.getTerrain()[pX][pY].setUnite(creation);
+        vJoueur.getListeUnite().add(creation);
         repaint();
     }  
     
     private void repaint()
     {
          Slatch.ihm.getPanel().repaint();
+         Slatch.ihm.getpanelinfo().repaint();
     }
 }

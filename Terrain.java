@@ -18,10 +18,10 @@ import javax.imageio.ImageIO;
 
 public class Terrain extends Entite{
 
-    private TypeTerrain aType;
-    private int aPVMax;
-    private int aPV;
-    private Unite aUnite;
+    protected TypeTerrain aType;
+    protected int aPVMax;
+    protected int aPV;
+    protected Unite aUnite;
     
     /**
      * Constructeur des terrains et des batiment
@@ -114,6 +114,21 @@ public class Terrain extends Entite{
             
         }
         
+    }
+    
+    public boolean estUnBatiment()
+    {
+        return (this.aType == TypeTerrain.BATIMENT || this.aType == TypeTerrain.USINE);
+    }
+    
+    public boolean appartientAuJoueur(int joueur)
+    {
+        return (this.aJoueur == joueur);
+    }
+    
+    public boolean estUnBatimentAuJoueur(int joueur)
+    {
+        return (this.estUnBatiment() && this.appartientAuJoueur(joueur));
     }
 }
 
