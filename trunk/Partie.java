@@ -117,11 +117,11 @@ public class Partie
                     lUnite.add(vcommando);
                     aTerrain[vX][vY].setUnite(vcommando); 
                     break;
-               /* case "demolisseur": 
+               case "demolisseur": 
                     Unite demolisseur = new Unite(vX,vY,vJoueur,TypeUnite.DEMOLISSEUR);
                     lUnite.add(demolisseur);
                     aTerrain[vX][vY].setUnite(demolisseur); 
-                    break;*/
+                    break;
                 case "tank":
                     Unite vtank = new Unite(vX,vY,vJoueur,TypeUnite.TANK);
                     lUnite.add(vtank);

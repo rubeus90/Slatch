@@ -4,7 +4,7 @@
 public enum TypeUnite
 {
     COMMANDO("Commando", "une infanterie","commando",100,20,40,"fusil",TypeDeplacement.PIED,1.0, "Terrestre"),
-    //DEMOLISSEUR("demolisseur", "une infanterie","demolisseur",200,20,30,"fusil",TypeDeplacement.PIED,1.0), 
+    DEMOLISSEUR("Demolisseur", "une infanterie","demolisseur",200,20,30,"mortier",TypeDeplacement.PIED,1.0,"Terrestre"), 
     //CHAR("char","un char","char",300,40,60,"canon",TypeDeplacement.PIED,1.0),
     TANK("Tank","un tank","tank",500,65,40,"groscanon",TypeDeplacement.CHENILLES,1.0, "Terrestre"),
     INGENIEUR("Ingenieur","un ingenieur formidable","ingenieur",150,15,40,"soin",TypeDeplacement.PIED,1.0, "Terrestre"),
