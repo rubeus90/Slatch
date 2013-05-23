@@ -534,10 +534,11 @@ class Moteur
         return estAuJoueurActuel(Slatch.partie.getTerrain()[pX][pY].getUnite());
     }
     
-    public void creationUnite(final int pX,final int pY, final String pUnite){
+    public void creationUnite(final int pX,final int pY, final TypeUnite pType){
         int vNumJoueur = Slatch.partie.getJoueurActuel();
         Joueur vJoueur = Slatch.partie.getJoueur(vNumJoueur);
-        int vArgentJv = vJoueur.getArgent();
-       // Unite modele = vJoueur.getFaction().getListe().get(pUnite);
+        
+        Unite creation = new Unite(pX,pY,vNumJoueur,pType);
+        Slatch.partie.getTerrain()[pX][pY].setUnite(creation);
     }  
 }
