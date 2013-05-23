@@ -62,7 +62,7 @@ public class Partie
         //On rempli la carte de plaine 
         for(int i=0; i<aLargeur; i++){
             for(int j=0; j<aHauteur; j++){
-                aTerrain[i][j] = new Terrain(i, j, 0, 0, TypeTerrain.PLAINE);
+                aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
             }
         }       
         
@@ -91,25 +91,29 @@ public class Partie
             
 
             switch(vId){
-                case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.FORET); break;
-                case "montagne": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.MONTAGNE); break;
-                case "routehorizontal": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.ROUTEHORIZONTAL); break;
-                case "routevertical": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.ROUTEVERTICAL); break;
-                case "routedroitebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.VIRAGEDROITEBAS); break;
-                case "routedroitehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.VIRAGEDROITHAUT); break;
-                case "routegauchebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.VIRAGEGAUCHEBAS); break;
-                case "routegauchehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.VIRAGEGAUCHEHAUT); break;
-                case "routethaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.ROUTETHAUT); break;
-                case "routetbas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.ROUTETBAS); break;
-                case "routetdroite": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.ROUTETDROITE); break;
-                case "routetgauche": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.ROUTETGAUCHE); break;
-                case "carrefour": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 0, TypeTerrain.CARREFOUR); break;
+                case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.FORET); break;
+                case "montagne": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.MONTAGNE); break;
+                case "routehorizontal": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTEHORIZONTAL); break;
+                case "routevertical": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTEVERTICAL); break;
+                case "routedroitebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEDROITEBAS); break;
+                case "routedroitehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEDROITHAUT); break;
+                case "routegauchebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEGAUCHEBAS); break;
+                case "routegauchehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEGAUCHEHAUT); break;
+                case "routethaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETHAUT); break;
+                case "routetbas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETBAS); break;
+                case "routetdroite": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETDROITE); break;
+                case "routetgauche": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETGAUCHE); break;
+                case "carrefour": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.CARREFOUR); break;
                 case "batiment":
-                    aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, 10, TypeTerrain.BATIMENT); 
+                    aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.BATIMENT); 
+                    vBatimentJoueur[vJoueur]+=1;
+                    break;
+                case "usine":
+                    aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.USINE); 
                     vBatimentJoueur[vJoueur]+=1;
                     break;
                 case "commando": 
-                    Unite vcommando = new Unite(vX,vY,vJoueur,20,TypeUnite.COMMANDO,TypeAttaque.FUSIL,40,1.0, TypeDeplacement.PIED);
+                    Unite vcommando = new Unite(vX,vY,vJoueur,TypeUnite.COMMANDO);
                     lUnite.add(vcommando);
                     aTerrain[vX][vY].setUnite(vcommando); 
                     break;
@@ -119,7 +123,7 @@ public class Partie
                     aTerrain[vX][vY].setUnite(demolisseur); 
                     break;*/
                 case "tank":
-                    Unite vtank = new Unite(vX,vY,vJoueur,65,TypeUnite.TANK,TypeAttaque.CANON,40,1.0, TypeDeplacement.CHENILLES);
+                    Unite vtank = new Unite(vX,vY,vJoueur,TypeUnite.TANK);
                     lUnite.add(vtank);
                     aTerrain[vX][vY].setUnite(vtank); 
                     break;
@@ -139,11 +143,11 @@ public class Partie
                     aTerrain[vX][vY].setUnite(distance); 
                     break;*/
                 case "uml":
-                    Unite uml = new Unite(vX,vY,vJoueur,30,TypeUnite.UML,TypeAttaque.MISSILE,50,1.0, TypeDeplacement.CHENILLES);
+                    Unite uml = new Unite(vX,vY,vJoueur,TypeUnite.UML);
                     lUnite.add(uml);
                     aTerrain[vX][vY].setUnite(uml); 
                     break;
-            default: aTerrain[vX][vY] = new Terrain(vX, vY, 0, 0, TypeTerrain.PLAINE);
+            default: aTerrain[vX][vY] = new Terrain(vX, vY, 0, TypeTerrain.PLAINE);
             }
         }
         

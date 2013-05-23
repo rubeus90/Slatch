@@ -131,7 +131,7 @@ public class PanelMatrice extends JPanel
             Terrain t = Slatch.partie.getTerrain()[aUniteMemMenuCaseX][aUniteMemMenuCaseY];
             if(t.getUnite()!=null)
             {
-                String portedep = "Portée Depl = "+t.getUnite().getPorteeDeplacement();
+                String portedep = "Portée Depl = "+t.getUnite().getDeplacement();
                 String xp = "XP = "+t.getUnite().getExperience();
                 String lvl = "LVL = "+t.getUnite().getLvl();
                 String couverture = "Couv = "+ t.getType().getCouverture();
@@ -145,7 +145,7 @@ public class PanelMatrice extends JPanel
                 g.drawString(couverture, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
             
                 if(t.getType().getDependance()) {
-                    String pv = "PVTerrain = "+t.getPointDeVie();
+                    String pv = "PVTerrain = "+t.getPV();
                     g.drawString(pv, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
                 }
             }
@@ -157,7 +157,7 @@ public class PanelMatrice extends JPanel
                 g.drawString(couverture,  aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
             
                 if(t.getType().getDependance()) {
-                    String pv = "PVTerrain = "+t.getPointDeVie();
+                    String pv = "PVTerrain = "+t.getPV();
                     g.drawString(pv, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
                 }
             

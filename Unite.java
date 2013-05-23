@@ -18,12 +18,14 @@ public class Unite extends Entite
 {
     // instance variables - replace the example below with your own
     private TypeUnite aType; // Correspond au type d'unité : Infanterie, Véhicule etc ...
-    private TypeAttaque aAttaque; // Correspond à l'attaque au corps à corps
-    private TypeDeplacement aTypeDeplacement;
-    private int aPorteeDeplacement; // Coresspond au déplacement maximum que peut effectuer l'unité
     private int aLvl; // Correspond au niveau de l'unité
+    private TypeAttaque aAttaque;
+    private int aDegats;
+    private int aDeplacement;
     private int aExperience; // Correspond à l'expérience total de l'unité
     private int aExperienceMax;
+    private int aPVMax;
+    private int aPV;
     private double aGain; //Compris entre 1 et 2, correspondant au pourcentage d'augmentation des caractéristique à chaque monté de niveau
     private boolean dejaAttaque;
     private boolean dejaDeplacee;
@@ -39,35 +41,96 @@ public class Unite extends Entite
      * Un int correspondant au gain de chaque monté de niveau
      * @param pX pY pJoueur pPVMax pType pAttaque pDeplacement pGain pTypeDeplacement
      */
-    public Unite(final int pX,final int pY,final int pJoueur,final int pPVMax,final TypeUnite pType,final TypeAttaque pAttaque,final int pDeplacement, final double pGain, final TypeDeplacement pTypeDeplacement)
+    public Unite(final int pX,final int pY,final int pJoueur, final TypeUnite pType)
     {
-       super(pX,pY,pJoueur,pPVMax);
+       super(pX,pY,pJoueur);
        aType = pType;
-       aAttaque = pAttaque;
-       aPorteeDeplacement = pDeplacement;
-       aGain = pGain;
+       aGain = pType.getGain();
+       aPVMax = pType.getPVMax();
+       aPV = pType.getPVMax();
+       aDeplacement = pType.getDeplacement();
        aLvl = 0;
        aExperience = 0;
        aExperienceMax=100;
-       aTypeDeplacement = pTypeDeplacement;
+       
+       for(TypeAttaque type : TypeAttaque.values()) {
+                   
+                    if(type.getNom().equals(pType.getAttaque())){
+                        aAttaque = type;
+                        break;
+                    }
+                }
+            
+       aDegats = aAttaque.getDegats();         
+       
        dejaAttaque=false;
        dejaDeplacee = false;
     }
 
-    /**
-     * Accesseur qui renvoie la valeur du aTypeDeplacement
-     * @return aTypeDeplacement
+     /**
+     * Accesseur qui renvoi le type de l'unite
+     * @return aType
      */
-    public TypeDeplacement getTypeDeplacement(){
-        return aTypeDeplacement;
+    public TypeUnite getType(){
+        return aType;
     }
-   
+    
     /**
-     * Accesseur qui renvoie l'attaque au corps à corps
+     * Accesseur qui renvoie le niveau de l'unite
+     * @return aLvl
+     */
+    public int getLvl(){
+        return aLvl;
+    }
+    
+    /**
+     * Accesseur pour la valeur de aAttaque
      * @return aAttaque
      */
     public TypeAttaque getAttaque(){
         return aAttaque;
+    }
+    
+    /**
+     * Accesseur pour la valeur de aDegats
+     * @return aDegats
+     */
+    public int getDegat(){
+        return aDegats;
+    }
+    
+    /**
+     * Accesseur pour la valeur de aDeplacement
+     * @return aDeplacement
+     */
+    public int getDeplacement(){
+        return aDeplacement;
+    }
+    
+    /**
+     * Accesseur qui renvoie l'expérience total de l'unite
+     * @return aExperience
+     */
+    public int getExperience(){
+        return aExperience;
+    }
+    
+    /**
+     * Accesseur pour aPV
+     * @return aPV
+     */
+    public int getPV()
+    {
+        return aPV;
+    }
+    
+     /**
+     * Accesseur pour aPVMax
+     * @return aPVMax
+     */
+    public int getPVMax()
+    {
+        return aPVMax;
     }
     
     /**
@@ -87,37 +150,14 @@ public class Unite extends Entite
     {
         return dejaAttaque;
     }
-
+    
     /**
-     * Accesseur qui renvoie l'expérience total de l'unite
-     * @return aExperience
+     * Mutateur
+     * @param pPV
      */
-    public int getExperience(){
-        return aExperience;
-    }
-   
-    /**
-     * Accesseur qui renvoie le niveau de l'unite
-     * @return aLvl
-     */
-    public int getLvl(){
-        return aLvl;
-    }
-   
-    /**
-     * Accesseur qui renvoi le deplacement maximum de l'unite
-     * @return aPorteeDeplacement
-     */
-    public int getPorteeDeplacement(){
-        return aPorteeDeplacement;
-    }
-   
-    /**
-     * Accesseur qui renvoi le type de l'unite
-     * @return aType
-     */
-    public TypeUnite getType(){
-        return aType;
+    public void setPV(final int pPV)
+    {
+        aPV = pPV;
     }
     
      /**
@@ -160,18 +200,16 @@ public class Unite extends Entite
      */
     public void upLvl(){
         if(aExperience < aExperienceMax ){
-            System.out.println("Experience inferieur a "+aExperienceMax); // Debogage
             return;
         }
         else if(aLvl >=3){
-             System.out.println("Niveau superieur ou egal a 3"); // Debogage
              return;
         }
        aLvl++;
        aExperience-=aExperienceMax;
-       setPointDeVie((int)(getPointDeVie()*aGain));
-       aAttaque.setDegats((int)(aAttaque.getDegats()*aGain));
-       aPorteeDeplacement = (int)(aPorteeDeplacement*aGain);
+       aPV = (int)(aPV*aGain);
+       aDegats = (int)(aDegats*aGain);
+       aDeplacement = (int)(aDeplacement*aGain);
     }
     
 
@@ -196,8 +234,8 @@ public class Unite extends Entite
 //                e.printStackTrace();
 //            }
             
-                int vUnite = getPointDeVie()%10;
-                int vDizaine = (int)getPointDeVie()/10;
+                int vUnite = aPV%10;
+                int vDizaine = aPV/10;
                 
                 Image unite = Slatch.aImages.get("pvUnite"+vUnite);
                 Image dizaine = Slatch.aImages.get("pvDizaine"+vDizaine);
