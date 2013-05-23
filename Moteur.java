@@ -47,6 +47,12 @@ class Moteur
         }
     } 
       
+    public void modeSoin(int pX, int pY)
+    {
+        uniteA = Slatch.partie.getTerrain()[pX][pY].getUnite();
+        affichePorteeAttaque(uniteA, true);
+    }
+    
     /**
      * Methode a deplacer dans Moteur Une fois moteur safe
      * Methode qui permet a un ingenieur de soigner une unite
@@ -60,26 +66,6 @@ class Moteur
            uniteA.deplacee(true);
            uniteA=null; 
         }
-    }
-    
-    private boolean soinPossible(Unite unite)
-    {
-        int x;
-        int y;
-        for(Point p: voisins)
-        {
-            x = (int)p.getX();
-            y = (int)p.getY();
-            Unite u = Slatch.partie.getTerrain()[x][y].getUnite();
-            if(u != null)
-            {
-                if(u.aBesoinDeSoins() && u.appartientAuJoueur(unite.getJoueur()))
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
     
     /**
@@ -106,7 +92,7 @@ class Moteur
     public void modeAttaque(int pX, int pY)
     {
         uniteA = Slatch.partie.getTerrain()[pX][pY].getUnite();
-        affichePorteeAttaque(uniteA);
+        affichePorteeAttaque(uniteA, false);
     }
     
     public void attaque(Unite pVictime)
@@ -230,11 +216,11 @@ class Moteur
                     {
                         List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
                         if(!unite.dejaDeplacee()){items.add("Deplace");}
-                        if(cibleEnVue(unite) && !unite.dejaAttaque())
+                        if(cibleEnVue(unite, false) && !unite.dejaAttaque())
                         {
                             if(unite.getType()!=TypeUnite.INGENIEUR){items.add("Attaque");}
                         }
-                        if(soinPossible(unite) && !unite.dejaAttaque() && unite.getType()==TypeUnite.INGENIEUR)
+                        if(cibleEnVue(unite, true) && !unite.dejaAttaque() && unite.getType()==TypeUnite.INGENIEUR)
                         {
                             items.add("Soin");
                         }
@@ -257,9 +243,13 @@ class Moteur
                 {
                         attaque(unite);
                 }
+                else if(unite.getJoueur()==uniteA.getJoueur() && tabAtt[pX][pY] && uniteA.getType()==TypeUnite.INGENIEUR)
+                {
+                    soin(unite);
+                }
                 else
                 {
-                        annulerAttaque();
+                    annulerAttaque();
                 }
             }
         }
@@ -379,7 +369,7 @@ class Moteur
      * @param unite unite qui cherche une autre unite a frapper
      * @return true si une unite est a portee de tir, false sinon
      */
-    private boolean cibleEnVue(Unite unite)
+    private boolean cibleEnVue(Unite unite, boolean soin)
     {
         int x = unite.getCoordonneeX(), y = unite.getCoordonneeY();
         for(int i=0; i<=unite.getAttaque().aTypePortee.getPorteeMax();i++)
@@ -390,7 +380,7 @@ class Moteur
                 {
                     int decX = (int)p.getX();
                     int decY = (int)p.getY();
-                    if(ciblePresente(unite, i*decX,j*decY)){return true;}
+                    if(ciblePresente(unite, i*decX,j*decY, soin)){return true;}
                 }
             }
         }
@@ -401,7 +391,7 @@ class Moteur
      * Affiche la portee d'attaque en mettant en surbrillance les cibles potentielles
      * @param unite unite qui cherche une autre unite a frapper
      */
-    public void affichePorteeAttaque(Unite unite)
+    public void affichePorteeAttaque(Unite unite, boolean soin)
     {
         int x = unite.getCoordonneeX();
         int y = unite.getCoordonneeY();
@@ -422,7 +412,7 @@ class Moteur
                 {
                     int decX = (int)p.getX();
                     int decY = (int)p.getY();
-                    if(ciblePresente(unite, i*decX,j*decY))
+                    if(ciblePresente(unite, i*decX,j*decY, soin))
                     {
                         Slatch.partie.getTerrain()[x+i*decX][y+j*decY].setSurbrillance(true);
                         repaint();
@@ -437,7 +427,7 @@ class Moteur
     /**
      * vérifie si une cible est présente en (x+decX, y+decY)
      */
-    private boolean ciblePresente(Unite unite, int decX, int decY)
+    private boolean ciblePresente(Unite unite, int decX, int decY, boolean soin)
     {
         int x = unite.getCoordonneeX();
         int y = unite.getCoordonneeY();
@@ -446,7 +436,7 @@ class Moteur
         {
             if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && Slatch.partie.getTerrain()[x+decX][y+decY].getUnite()!=null)
             {
-                return (Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel())&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
+                return (Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel()^soin)&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
             }
         }
         return false;
