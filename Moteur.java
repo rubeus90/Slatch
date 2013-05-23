@@ -77,12 +77,15 @@ class Moteur
         {
             x=(int)p.getX();
             y=(int)p.getY();
-            Unite u = Slatch.partie.getTerrain()[x+unite.getCoordonneeX()][y+unite.getCoordonneeY()].getUnite();
-            if(u!= null)
+            if(dansLesBords(x,y))
             {
-                if(u.aBesoinDeSoins())
+                Unite u = Slatch.partie.getTerrain()[x+unite.getCoordonneeX()][y+unite.getCoordonneeY()].getUnite();
+                if(u!= null)
                 {
-                    return true;
+                    if(u.aBesoinDeSoins())
+                    {
+                        return true;
+                    }
                 }
             }
         }
@@ -179,6 +182,7 @@ class Moteur
    
     public void estMort(Unite unite)
     {
+        Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
         repaint();
         Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
@@ -241,9 +245,12 @@ class Moteur
                         {
                             if(unite.getType()!=TypeUnite.INGENIEUR){items.add("Attaque");}
                         }
-                        if(cibleSoignable(unite) && !unite.dejaAttaque() && unite.getType()==TypeUnite.INGENIEUR)
+                        if(unite.getType()==TypeUnite.INGENIEUR)
                         {
-                            items.add("Soin");
+                            if(cibleSoignable(unite) && !unite.dejaAttaque())
+                            {
+                                items.add("Soin");
+                            }
                         }
                         if(!unite.dejaAttaque()&&(unite.getType()==TypeUnite.COMMANDO || unite.getType()==TypeUnite.DEMOLISSEUR) && (Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE) && Slatch.partie.getJoueurActuel()!=Slatch.partie.getTerrain()[pX][pY].getJoueur())
                         {
@@ -315,7 +322,6 @@ class Moteur
                 if(unite.getCoordonneeX()==x && unite.getCoordonneeY()==y)
                 {
                     fini = true;
-                    
                 }
                 else
                 {
@@ -326,6 +332,7 @@ class Moteur
         }
         int k = chemin.size();
         int l = unite.getType().getDeplacement();
+        Unite mem = null; int i=-1,j=-1;
         while(!chemin.isEmpty())
         {
             Point p = chemin.pop();
@@ -333,8 +340,8 @@ class Moteur
             {
                 break;
             }
-            changerCase(unite, (int)p.getX(), (int)p.getY());
-            
+            mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
+
             try{
                 Thread.sleep(250/k+50);
             }
@@ -352,14 +359,15 @@ class Moteur
      * @param pX abscisse de l'arrivee
      * @param pY ordonnee de l'arrivee
      */
-    public void changerCase(Unite unite, int destX, int destY)
+    public Unite changerCase(Unite unite, int destX, int destY, Unite mem)
     {
-        Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
+        Unite ret=Slatch.partie.getTerrain()[destX][destY].getUnite();
+        Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(mem);
         unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
         Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
 
         Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
-
+        return ret;
     }
     
     /**
@@ -496,6 +504,13 @@ class Moteur
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
             {
+                if(Slatch.partie.getTerrain()[i][j].getUnite()!=null)
+                {
+                    if(Slatch.partie.getTerrain()[i][j].getUnite().getJoueur() == Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getUnite().getJoueur())
+                    {
+                            tabDist[i][j] = -2;
+                    }
+                }
                 if(tabDist[i][j]>0)
                 {
                     Slatch.partie.getTerrain()[i][j].setSurbrillance(true);
@@ -516,10 +531,17 @@ class Moteur
             {
                 if(Slatch.partie.getTerrain()[i][j].getUnite()!=null)  // quand on a déjà une unité sur la case, on ne peut pas y accéder
                 {
-                    pred[i][j]=null;
-                    tabDist[i][j] = -2;
+                    if(Slatch.partie.getTerrain()[i][j].getUnite().getJoueur() == Slatch.partie.getTerrain()[x][y].getUnite().getJoueur())
+                    {
+                        tabDist[i][j] = -2;
+                    }
+                    else
+                    {
+                        tabDist[i][j] = -3;
+                    }
                 }
                 else{tabDist[i][j] = -1;} // au début, on suppose qu'on a une distance infinie représentée par -1 sur chacune des cases restantes
+                pred[i][j]=null;
             }
         }
         tabDist[x][y]=-2;
@@ -542,7 +564,7 @@ class Moteur
                     int d = t.d+Slatch.partie.getTerrain()[x][y].getCout(unite);
                     if(d<=unite.getType().getDeplacement() || !porteeComptee)
                     {
-                        if(d<tabDist[x][y] || tabDist[x][y]==-1)
+                        if(d<tabDist[x][y] || tabDist[x][y]==-1 || tabDist[x][y]==-2 )
                         {
                             tabDist[x][y] = d;
                             pred[x][y] = new Point(t.x, t.y);
@@ -592,7 +614,12 @@ class Moteur
         Slatch.partie.getTerrain()[pX][pY].setUnite(creation);
         vJoueur.getListeUnite().add(creation);
         repaint();
-    }  
+    }
+    
+    private boolean dansLesBords(int x, int y)
+    {
+        return(x>=0 && y>=0 && x<Slatch.partie.getLargeur() && y<Slatch.partie.getHauteur());
+    }
     
     private void repaint()
     {
