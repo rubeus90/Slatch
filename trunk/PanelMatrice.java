@@ -201,12 +201,12 @@ public class PanelMatrice extends JPanel
                 if(aArgentMem<vType.getPrix()) {
                     // Ecrie les boutons en gris
                     g.setColor(Color.gray);
-                    g.drawString(vType.getNom(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
+                    g.drawString(vType.getNom()+" : "+vType.getPrix()+"¤", aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
                 }
                 else {
                     // Ecrie les boutons en vert
                     g.setColor(Color.green);
-                    g.drawString(vType.getNom(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
+                    g.drawString(vType.getNom()+" : "+vType.getPrix()+"¤", aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
                     aTabAchat.put(i,vType);
                 }
             }
