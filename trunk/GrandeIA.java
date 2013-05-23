@@ -13,7 +13,7 @@ public class GrandeIA
         int x =20, y =16;
         if(Slatch.partie.getTerrain()[x][y].getUnite()==null)
         {
-            uia.decrypterObjectif(unite, "aller,"+x+""+y);
+            uia.decrypterObjectif(unite, "aller,"+x+","+y);
         }
         Slatch.moteur.passeTour();
     }

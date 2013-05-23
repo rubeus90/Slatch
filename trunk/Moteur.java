@@ -193,6 +193,10 @@ class Moteur
                 deplacement(uniteD, pX, pY);
                 Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
             }
+            else if(Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE)
+            {
+                Slatch.ihm.shop(
+            }
             annulerDeplacement();
         }
         else
