@@ -5,6 +5,13 @@ fusil:Tank:0.1
 fusil:Ingenieur:1
 fusil:Distance:0.65
 fusil:Uml:0.65
+mortier:Commando:0.5
+mortier:Demolisseur:1
+mortier:Char:1.3
+mortier:Tank:1.2
+mortier:Ingenieur:1.2
+mortier:Distance:1.2
+mortier:Uml:1.2
 canon:Commando:1.5
 canon:Demolisseur:1.2
 canon:Char:1

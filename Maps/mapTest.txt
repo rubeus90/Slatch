@@ -47,3 +47,5 @@ uml:12:6:1
 uml:17:6:2
 ingenieur:12:7:1
 ingenieur:17:7:2
+demolisseur:13:7:1
+demolisseur:16:7:2

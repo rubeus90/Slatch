@@ -9,6 +9,7 @@ public enum TypeAttaque
     CANON(15, "canon", "Envoie un obus sur votre ennemi. Efficace contre l'infanterie.",PorteeAttaque.COURTE),
     GROSCANON(20,"groscanon","Envoi un gros obus sur votre ennemi", PorteeAttaque.COURTE),
     FUSIL(10, "fusil", "Envoie une salve de balles sur votre ennemi.",PorteeAttaque.COURTE),
+    MORTIER(15, "mortier","Envoi un motier sur votre adversaire",PorteeAttaque.COURTE),
     ROQUETTE(15,"roquette","Envoie des roquettes sur votre ennemi",PorteeAttaque.MOYENNE),
     MISSILE(15,"missile","Envoie des missiles sur votre ennemi.", PorteeAttaque.LONGUE),
     SOIN(0,"soin","Soigne une unite",PorteeAttaque.COURTE);
