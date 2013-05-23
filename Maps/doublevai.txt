@@ -21,11 +21,9 @@ foret:12:14:0
 foret:13:11:0
 foret:13:12:0
 foret:13:13:0
-foret:13:16:0
 foret:14:14:0
 foret:14:13:0
 foret:14:12:0
-foret:14:16:0
 foret:14:11:0
 foret:15:10:0
 foret:15:15:0
@@ -71,7 +69,6 @@ montagne:7:2:0
 montagne:7:1:0
 montagne:7:0:0
 montagne:14:17:0
-montagne:14:15:0
 montagne:15:12:0
 montagne:15:11:0
 montagne:15:17:0
@@ -99,6 +96,14 @@ montagne:24:1:0
 montagne:24:0:0
 montagne:24:6:0
 montagne:24:5:0
+rivebasgauche:12:17:0
+rivegauche:12:16:0
+rivehautgauche:12:15:0
+rivehaut:13:15:0
+rivehautdroite:14:15:0
+rivebasdroite:14:16:0
+eau:13:16:0
+rivebasdroite:13:17:0
 batiment:18:5:0
 batiment:17:4:0
 batiment:14:5:0
