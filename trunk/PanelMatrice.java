@@ -110,55 +110,34 @@ public class PanelMatrice extends JPanel
                 g.setColor(Color.white);
                 g.drawLine(aMenuActionHautGauche_Xpx, aMenuActionHautGauche_Ypx+(vVar*aHauteurMenuActionEnCase/aHauteurMenuActionEnCase)*aHauteurCarreau, aMenuActionBasDroite_Xpx-1, aMenuActionHautGauche_Ypx+(vVar*aHauteurMenuActionEnCase/aHauteurMenuActionEnCase)*aHauteurCarreau);
             }
-
+            
+            // Ecrie les boutons en gris
+            g.setColor(Color.gray);
+            g.drawString("Deplace", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3);
+            g.drawString("Att/Soin", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
+            g.drawString("Capture", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+            g.drawString("Evolue", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
+           
+            // Ecrie les boutons en vert
             for(int vVar=0;vVar<aListeAction.size();vVar++) {
-                if(aListeAction.get(vVar).equals("Deplace")) 
-                {
-                    g.setColor(Color.green);
+                g.setColor(Color.green);
+                if(aListeAction.get(vVar).equals("Deplace")) {
                     g.drawString("Deplace", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3);
                     aDeplacePossible=true;
                 }
-                else 
-                {
-                    g.setColor(Color.gray);
-                    g.drawString("Deplace", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3);
-                }
-                if(aListeAction.get(vVar).equals("Attaque")) 
-                {
-                    g.setColor(Color.green);
-                    g.drawString("Attaque", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
+                if(aListeAction.get(vVar).equals("Attaque")) {
+                    g.drawString("Att/Soin", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
                     aAttaquePossible=true;
                 }
-                else if (aListeAction.get(vVar).equals("Soin"))
-                {
-                    g.setColor(Color.green);
-                    g.drawString("Soin", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
+                if(aListeAction.get(vVar).equals("Soin")) {
+                    g.drawString("Att/Soin", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
                     aSoinPossible=true;
                 }
-                else 
-                {
-                    g.setColor(Color.gray);
-                    g.drawString("Att/Soin", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
-                }
-                if(aListeAction.get(vVar).equals("Capture")) 
-                {
-                    g.setColor(Color.green);
+                if(aListeAction.get(vVar).equals("Capture")) {
                     g.drawString("Capture", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
                     aCapturePossible=true;
                 }
-                else 
-                {
-                    g.setColor(Color.gray);
-                    g.drawString("Capture", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
-                }
-                if(aListeAction.get(vVar).equals("Evolue")) 
-                {
-                    g.setColor(Color.green);
-                    g.drawString("Evolue", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
-                } 
-                else 
-                {
-                    g.setColor(Color.gray);
+                if(aListeAction.get(vVar).equals("Evolue")) {
                     g.drawString("Evolue", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
                 }
             }
