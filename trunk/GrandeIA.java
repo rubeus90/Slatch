@@ -17,4 +17,9 @@ public class GrandeIA
         }
         Slatch.moteur.passeTour();
     }
+    
+    static void test2()
+    {
+        
+    }
 }
