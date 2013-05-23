@@ -7,7 +7,7 @@ public enum TypeUnite
     //DEMOLISSEUR("demolisseur", "une infanterie","demolisseur"), 
     //CHAR("char","un char","char"),
     TANK("tank","un tank","tank",500,65,40,"canon",TypeDeplacement.CHENILLES,1.0),
-    //INGENIEUR("ingenieur","un ingenieur formidable","ingenieur"),
+    INGENIEUR("ingenieur","un ingenieur formidable","ingenieur",150,15,4,"soin",TypeDeplacement.CHENILLES,1.0),
     //DISTANCE("distance","un vehicule a moyenne distance","distance"),
     UML("uml","Ultmiate missile launcher","uml",300,30,50,"missile",TypeDeplacement.CHENILLES,1.0);
 
