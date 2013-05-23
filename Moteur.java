@@ -54,19 +54,8 @@ class Moteur
      */
     public void soin(Unite pUnite)
     { 
-        int vPV=pUnite.getPV();
-        int vPVMax = pUnite.getPVMax();
-        
-        if(vPV<vPVMax){ // On verifie que le nbr de PV est inferieur au nbr de PV max
-            
-           if(vPV+5>vPVMax){ // Si lorsqu'on soigne on depasse le nbr de PV max, alors Vie de l'unite = PVmax
-               pUnite.setPV(vPVMax);
-            }
-           else{ //Sinon on ajoute 5
-               pUnite.setPV(vPV+5);
-           }
-            
-           //On "grise" l'unite
+        if(pUnite.soigner(5)){            
+           //On "grise" l'unité qui soigne
            uniteA.attaque(true);
            uniteA.deplacee(true);
            uniteA=null; 
@@ -559,7 +548,7 @@ class Moteur
         creation.deplacee(true);
         creation.attaque(true);
         Slatch.partie.getTerrain()[pX][pY].setUnite(creation);
-       repaint();
+        repaint();
     }  
     
     private void repaint()
