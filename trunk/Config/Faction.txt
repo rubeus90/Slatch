@@ -1,7 +1,8 @@
 HUMAINS:Commando
-HUMAINS:Tank
-HUMAINS:Uml
 HUMAINS:Ingenieur
+HUMAINS:Demolisseur
+HUMAINS:Uml
+HUMAINS:Tank
 ROBOTS:Commando
 ROBOTS:Tank
 ROBOTS:Uml

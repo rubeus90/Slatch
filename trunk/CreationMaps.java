@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
 public class CreationMaps extends JPanel{
 	public JFrame frame;
 	public JPanel panel;

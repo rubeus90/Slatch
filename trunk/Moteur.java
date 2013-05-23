@@ -569,7 +569,7 @@ class Moteur
             }
         }
         
-        if(Slatch.partie.getJoueurActuel()==2){GrandeIA.test(l.get(0));} // ceci est un test et devra être remplacé rapidement par un appel à la Grande IA
+       // if(Slatch.partie.getJoueurActuel()==2){GrandeIA.test(l.get(0));} // ceci est un test et devra être remplacé rapidement par un appel à la Grande IA
     }
     
     public boolean estAuJoueurActuel(Unite unite)
