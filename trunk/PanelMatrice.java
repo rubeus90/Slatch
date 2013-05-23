@@ -55,6 +55,7 @@ public class PanelMatrice extends JPanel
     private boolean menuShop;
     
     private boolean aAttaquePossible=false;
+    private boolean aSoinPossible=false;
     private boolean aDeplacePossible=false;
     private boolean aCapturePossible=false;
     
@@ -104,37 +105,62 @@ public class PanelMatrice extends JPanel
             g.setFont(font);
             FontMetrics fm=getFontMetrics(font); 
             
-            // Ecrie les boutons en gris
-            g.setColor(Color.gray);
-            g.drawString("Deplace", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3);
-            g.drawString("Attaque", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
-            g.drawString("Capture", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
-            g.drawString("Evolue", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
-            
-            // Ecrie les boutons en vert
-            for(int vVar=0;vVar<aListeAction.size();vVar++) {
-                g.setColor(Color.green);
-                if(aListeAction.get(vVar).equals("Deplace")) {
-                    g.drawString("Deplace", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3);
-                    aDeplacePossible=true;
-                }
-                if(aListeAction.get(vVar).equals("Attaque")) {
-                    g.drawString("Attaque", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
-                    aAttaquePossible=true;
-                }
-                if(aListeAction.get(vVar).equals("Capture")) {
-                    g.drawString("Capture", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
-                    aCapturePossible=true;
-                }
-                if(aListeAction.get(vVar).equals("Evolue")) {
-                    g.drawString("Evolue", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
-                }
-            }
-            
             // Trace les lignes
             for(int vVar=1;vVar<4;vVar++) {
                 g.setColor(Color.white);
                 g.drawLine(aMenuActionHautGauche_Xpx, aMenuActionHautGauche_Ypx+(vVar*aHauteurMenuActionEnCase/aHauteurMenuActionEnCase)*aHauteurCarreau, aMenuActionBasDroite_Xpx-1, aMenuActionHautGauche_Ypx+(vVar*aHauteurMenuActionEnCase/aHauteurMenuActionEnCase)*aHauteurCarreau);
+            }
+
+            for(int vVar=0;vVar<aListeAction.size();vVar++) {
+                if(aListeAction.get(vVar).equals("Deplace")) 
+                {
+                    g.setColor(Color.green);
+                    g.drawString("Deplace", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3);
+                    aDeplacePossible=true;
+                }
+                else 
+                {
+                    g.setColor(Color.gray);
+                    g.drawString("Deplace", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3);
+                }
+                if(aListeAction.get(vVar).equals("Attaque")) 
+                {
+                    g.setColor(Color.green);
+                    g.drawString("Attaque", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
+                    aAttaquePossible=true;
+                }
+                else if (aListeAction.get(vVar).equals("Soin"))
+                {
+                    g.setColor(Color.green);
+                    g.drawString("Soin", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
+                    aSoinPossible=true;
+                }
+                else 
+                {
+                    g.setColor(Color.gray);
+                    g.drawString("Att/Soin", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
+                }
+                if(aListeAction.get(vVar).equals("Capture")) 
+                {
+                    g.setColor(Color.green);
+                    g.drawString("Capture", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+                    aCapturePossible=true;
+                }
+                else 
+                {
+                    g.setColor(Color.gray);
+                    g.drawString("Capture", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+                }
+                if(aListeAction.get(vVar).equals("Evolue")) 
+                {
+                    g.setColor(Color.green);
+                    g.drawString("Evolue", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
+                } 
+                else 
+                {
+                    g.setColor(Color.gray);
+                    g.drawString("Evolue", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
+                }
             }
         }
         
@@ -259,6 +285,15 @@ public class PanelMatrice extends JPanel
                                 Slatch.moteur.modeAttaque(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
                                 effaceMenuUniteAction();
                                 aAttaquePossible=false;
+                                this.repaint();
+                            }
+                            
+                            //Bouton 2 : Soin
+                            if(aSoinPossible && (aMenuActionHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+2*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx ) 
+                            {
+                                Slatch.moteur.modeSoin(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
+                                effaceMenuUniteAction();
+                                aSoinPossible=false;
                                 this.repaint();
                             }
                             
