@@ -171,16 +171,18 @@ public class PanelMatrice extends JPanel
         {
             String info = "SHOP";
             g.drawString("INFO UNITE:", aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
-            for(int i=0;i<aListeShop.size();i++) {
-                if(aArgentMem>=aListeShop.get(i).getPrix()) {
+            int i=0;
+            for(TypeUnite vType : aListeShop) {
+                i++;
+                if(aArgentMem>=vType.getPrix()) {
                     // Ecrie les boutons en gris
                     g.setColor(Color.gray);
-                    g.drawString(aListeShop.get(i).getNom(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*(i+1));
+                    g.drawString(vType.getNom(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*(i+1));
                 }
                 else {
                     // Ecrie les boutons en vert
                     g.setColor(Color.green);
-                    g.drawString(aListeShop.get(i).getNom(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*(i+1));
+                    g.drawString(vType.getNom(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*(i+1));
                 }
             }
         }
