@@ -127,6 +127,8 @@ public class PanelMatrice extends JPanel
         }
         
         if(menuUniteDescription) {
+            redimMenuDescription(aUniteMemMenuCaseX,aUniteMemMenuCaseY);
+            
             afficheImageRedim ("noir80", aMenuDescriptionHautGauche_Xpx, aMenuDescriptionHautGauche_Ypx, aMenuDescriptionBasDroite_Xpx, aMenuDescriptionBasDroite_Ypx, g);
             g.setColor(Color.white);
             Terrain t = Slatch.partie.getTerrain()[aUniteMemMenuCaseX][aUniteMemMenuCaseY];
@@ -245,7 +247,6 @@ public class PanelMatrice extends JPanel
                             effaceMenuUniteAction();
                             effaceMenuUniteDescription();
                             menuUniteDescription = true;
-                            afficheMenuDescription(i, j);
                             Slatch.moteur.caseSelectionnee(i,j);
                             
                         }
@@ -256,7 +257,6 @@ public class PanelMatrice extends JPanel
                         aUniteMemMenuCaseY=j;
                         
                         menuUniteDescription = true;
-                        afficheMenuDescription(i, j);
                         Slatch.moteur.caseSelectionnee(i,j);
                         this.repaint();
                     }
@@ -315,13 +315,13 @@ public class PanelMatrice extends JPanel
         aUniteMemMoteurCaseX = pX;
         aUniteMemMoteurCaseY = pY;
         menuUniteAction = true;
-        afficheMenuAction(pList, pX, pY);
+        redimMenuAction(pList, pX, pY);
     }
     
     /**
      * Affiche le menu avec les boutons
      */
-    public void afficheMenuAction(final List<String> pList, final int pX, final int pY) 
+    public void redimMenuAction(final List<String> pList, final int pX, final int pY) 
     {
         if(pX+aLargeurMenuActionEnCase+1>Slatch.partie.getLargeur() && pY+aHauteurMenuActionEnCase+1>Slatch.partie.getHauteur()) 
         {
@@ -362,7 +362,7 @@ public class PanelMatrice extends JPanel
     /**
      * Affiche le menu avec les descriptions
      */
-    public void afficheMenuDescription(final int pX, final int pY) 
+    public void redimMenuDescription(final int pX, final int pY) 
     {
         if(Slatch.partie.getTerrain()[aUniteMemMenuCaseX][aUniteMemMenuCaseY].getUnite()==null && aLargeurMenuDescriptionEnCase==10) aLargeurMenuDescriptionEnCase=5;
         if(Slatch.partie.getTerrain()[aUniteMemMenuCaseX][aUniteMemMenuCaseY].getUnite()!=null)  aLargeurMenuDescriptionEnCase=10;
