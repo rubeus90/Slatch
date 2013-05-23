@@ -191,6 +191,7 @@ class Moteur
             if(uniteD!=null && tabDist[pX][pY]>-1) // si on a sélectioné aucune unité auparavant pour le déplacement
             {
                 deplacement(uniteD, pX, pY);
+                Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
             }
             annulerDeplacement();
         }
