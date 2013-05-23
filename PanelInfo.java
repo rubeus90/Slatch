@@ -20,10 +20,10 @@ import java.awt.font.FontRenderContext;
 
 
 /**
- * Write a description of class IHM_Panel_Barre here.
+ * Panel de la barre info : affiche les inforamtions liees a la partie
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author jonathan
+ * @version 1.0
  */
 public class PanelInfo extends JPanel
 {
@@ -49,12 +49,9 @@ public class PanelInfo extends JPanel
     @Override
     public void paintComponent (final Graphics g) 
     {
-        /*g.setColor(Color.blue);
-        g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());*/
         afficheBarreInfo(g);
     } 
 
-    
     /**
      * Methode appelee lors d'un click
      */
@@ -79,6 +76,7 @@ public class PanelInfo extends JPanel
      * Affiche la barre d'informations en haut de l'ecran
      */
     public void afficheBarreInfo (final Graphics g) {
+        // Fond de panel
         afficheImageRedim("4",0, 0,this.getWidth(),this.getHeight(),g);
 
         String menu = "MENU";
@@ -111,11 +109,8 @@ public class PanelInfo extends JPanel
     /**
      * Affiche une image en fond d'ecran
      */
-    private void afficheImageRedim (final String pURL, final int pPosHautGaucheX, final int pPosHautGaucheY,final int pPosBasDroiteX, final int pPosBasDroiteY, final Graphics g) {
-                    
-            Image img = Slatch.aImages.get(pURL);
-            
-            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
-        
+    private void afficheImageRedim (final String pURL, final int pPosHautGaucheX, final int pPosHautGaucheY,final int pPosBasDroiteX, final int pPosBasDroiteY, final Graphics g) {     
+        Image img = Slatch.aImages.get(pURL);
+        g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
     } 
 }
