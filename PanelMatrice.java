@@ -325,7 +325,7 @@ public class PanelMatrice extends JPanel
         aShopHautGauche_Ypx=0;
         aShopBasDroite_Xpx=0;
         aShopBasDroite_Ypx=0;
-        menuShop=true;
+        menuShop=false;
         this.repaint();
     }
     
