@@ -3,13 +3,13 @@
  */
 public enum TypeUnite
 {
-    COMMANDO("commando", "une infanterie","commando",100,20,40,"Tir de fusil",TypeDeplacement.PIED,1.0),
+    COMMANDO("commando", "une infanterie","commando",100,20,40,"fusil",TypeDeplacement.PIED,1.0),
     //DEMOLISSEUR("demolisseur", "une infanterie","demolisseur"), 
     //CHAR("char","un char","char"),
-    TANK("tank","un tank","tank",500,65,40,"Tir de canon",TypeDeplacement.CHENILLES,1.0),
+    TANK("tank","un tank","tank",500,65,40,"canon",TypeDeplacement.CHENILLES,1.0),
     //INGENIEUR("ingenieur","un ingenieur formidable","ingenieur"),
     //DISTANCE("distance","un vehicule a moyenne distance","distance"),
-    UML("uml","Ultmiate missile launcher","uml",300,30,50,"Tir de missile",TypeDeplacement.CHENILLES,1.0);
+    UML("uml","Ultmiate missile launcher","uml",300,30,50,"missile",TypeDeplacement.CHENILLES,1.0);
 
     private String aNom;
     private String aDescription;
