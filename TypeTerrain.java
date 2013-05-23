@@ -7,35 +7,35 @@ import java.lang.Integer;
 import java.net.URL;
 
 public enum TypeTerrain {
-        FORET("foret", "arbres", "D'une foret", 2,0,false),
-        PLAINE("plaine", "plaine", "D'une plaine", 1,0,false),
-        MONTAGNE("montagne", "montagne", "D'une montagne", 3,0,false),
-        BATIMENT("batiment", "batiment", "D'un batiment", 2,30,true),
-        USINE("usine","caserne","D'ne usine",3,30,true),
+        FORET("foret", "arbres", "d'une foret", 2,0,false),
+        PLAINE("plaine", "plaine", "d'une plaine", 1,0,false),
+        MONTAGNE("montagne", "montagne", "d'une montagne", 3,0,false),
+        BATIMENT("batiment", "batiment", "d'un batiment", 2,30,true),
+        USINE("usine","caserne","d'une usine",3,30,true),
         
         //eau
-        EAU("eau","eau","De l'eau",1,0,false),
-        RIVEBAS("rivebas","rivebas","De l'eau",1,0,false),
-        RIVEHAUT("rivehaut","rivehaut","De l'eau",1,0,false),
-        RIVEDROITE("rivedroite","rivedroite","De l'eau",1,0,false),
-        RIVEGAUCHE("rivegauche","rivegauche","De l'eau",1,0,false),
-        RIVEBASDROITE("rivebasdroite","rivebasdroite","De l'eau",1,0,false),
-        RIVEBASGAUCHE("rivebasgauche","rivebasgauche","De l'eau",1,0,false),
-        RIVEHAUTDROITE("rivehautdroite","rivehautdroite","De l'eau",1,0,false),
-        RIVEHAUTGAUCHE("rivehautgauche","rivehautgauche","De l'eau",1,0,false),
+        EAU("eau","eau","de l'eau",1,0,false),
+        RIVEBAS("rivebas","rivebas","de l'eau",1,0,false),
+        RIVEHAUT("rivehaut","rivehaut","de l'eau",1,0,false),
+        RIVEDROITE("rivedroite","rivedroite","de l'eau",1,0,false),
+        RIVEGAUCHE("rivegauche","rivegauche","de l'eau",1,0,false),
+        RIVEBASDROITE("rivebasdroite","rivebasdroite","de l'eau",1,0,false),
+        RIVEBASGAUCHE("rivebasgauche","rivebasgauche","de l'eau",1,0,false),
+        RIVEHAUTDROITE("rivehautdroite","rivehautdroite","de l'eau",1,0,false),
+        RIVEHAUTGAUCHE("rivehautgauche","rivehautgauche","de l'eau",1,0,false),
         
         //Route
-        ROUTEHORIZONTAL("routehorizontal","routehorizontale","D'ne route",1,0,false),
-        ROUTEVERTICAL("routevertical","routeverticale","D'une route",1,0,false),
-        VIRAGEDROITEBAS("viragedroitebas","routedroitebas","D'un virage",1,0,false),
-        VIRAGEDROITHAUT("viragedroithaut","routedroitehaut","D'un virage",1,0,false),
-        VIRAGEGAUCHEBAS("viragegauchebas","routegauchebas","D'un virage",1,0,false),
-        VIRAGEGAUCHEHAUT("viragegauchehaut","routegauchehaut","D'un virage",1,0,false),
-        ROUTETHAUT("routethaut","routeThaut","D'une route",1,0,false),
-        ROUTETBAS("routetbas","routeTbas","D'une route",1,0,false),
-        ROUTETDROITE("routetdroite","routeTdroite","D'une route",1,0,false),
-        ROUTETGAUCHE("routetgauche","routeTgauche","D'une route",1,0,false),
-        CARREFOUR("carrefour","routecroisement","D'un croissement",1,0,false);
+        ROUTEHORIZONTAL("routehorizontal","routehorizontale","d'ne route",1,0,false),
+        ROUTEVERTICAL("routevertical","routeverticale","d'une route",1,0,false),
+        VIRAGEDROITEBAS("viragedroitebas","routedroitebas","d'un virage",1,0,false),
+        VIRAGEDROITHAUT("viragedroithaut","routedroitehaut","d'un virage",1,0,false),
+        VIRAGEGAUCHEBAS("viragegauchebas","routegauchebas","d'un virage",1,0,false),
+        VIRAGEGAUCHEHAUT("viragegauchehaut","routegauchehaut","d'un virage",1,0,false),
+        ROUTETHAUT("routethaut","routeThaut","d'une route",1,0,false),
+        ROUTETBAS("routetbas","routeTbas","d'une route",1,0,false),
+        ROUTETDROITE("routetdroite","routeTdroite","d'une route",1,0,false),
+        ROUTETGAUCHE("routetgauche","routeTgauche","d'une route",1,0,false),
+        CARREFOUR("carrefour","routecroisement","d'un croissement",1,0,false);
         
         
         private String aNom;
