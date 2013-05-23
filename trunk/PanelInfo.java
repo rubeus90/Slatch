@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.*;
+import java.awt.font.LineMetrics;
+import java.awt.font.FontRenderContext;
 
 
 /**
@@ -25,6 +27,13 @@ import javax.swing.*;
  */
 public class PanelInfo extends JPanel
 {
+    int menuSize;
+    int jourSize;
+    int joueurSize;
+    int argentSize;
+    int suivantSize;
+    int espaceSize;
+
     /**
      * Constructor for objects of class IHM_Panel_Barre
      */
@@ -52,7 +61,7 @@ public class PanelInfo extends JPanel
     public void coordclickUnite (int pX, int pY) 
     {
         // Bouton SUIVANT fonctionnement
-        if(0<pY && pY<this.getHeight() && this.getWidth()-6*this.getWidth()/32<pX && pX<this.getWidth()) 
+        if(0<pY && pY<this.getHeight() && this.getWidth()-suivantSize-espaceSize<pX && pX<this.getWidth()) 
         {
             // Efface le petit menu 
             Slatch.ihm.getPanel().setMenuUniteAction(false);
@@ -63,58 +72,6 @@ public class PanelInfo extends JPanel
             this.repaint();
             Slatch.ihm.getPanel().repaint();
             
-            /*
-            // Joueur Actuel affichage
-            afficheImageRedim ("joueur.png", 18*aLargeurCarreau, 0,19*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
-            for(int i=0; i<10;i++) {
-                if(Slatch.partie.getJoueurActuel()%10==i) {
-                    afficheImageRedim ("numero"+i+".png", 19*aLargeurCarreau, DECALAGE_PX_EN_Y/4,20*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
-                }
-            }
-            
-            // Jour Actuel affichage
-            afficheImageRedim ("jour.png", 3*aLargeurCarreau, 0,7*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
-            afficheImageRedim ("menu.png", 0, 0,4*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
-            // Affiche les dizaines
-            for(int i=0; i<10;i++) {
-                if(Slatch.partie.getTour()%10==i) {
-                    afficheImageRedim ("numero"+i+".png", 8*aLargeurCarreau, DECALAGE_PX_EN_Y/4,9*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
-                }
-            }
-            // Affiche les unites
-            for(int i=0; i<10;i++) {
-                if(Slatch.partie.getTour()/10%10==i) {
-                    afficheImageRedim ("numero"+i+".png", 7*aLargeurCarreau,DECALAGE_PX_EN_Y/4,8*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
-                }
-            }
-            
-            
-            // Argent du joueur actuel affichage
-            afficheImageRedim ("argent.png", 9*aLargeurCarreau, 0,13*aLargeurCarreau, DECALAGE_PX_EN_Y, g);
-            // Affiche les unites
-            for(int u=0; u<10;u++) {
-                if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()%10==u) {
-                    afficheImageRedim ("numero"+u+".png", 16*aLargeurCarreau, DECALAGE_PX_EN_Y/4,17*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
-                }
-            }
-            // Affiche les dizaines
-            for(int v=0; v<10;v++) {
-                if((Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()/10)%10==v) {
-                    afficheImageRedim ("numero"+v+".png", 15*aLargeurCarreau,DECALAGE_PX_EN_Y/4,16*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
-                }
-            }
-            // Affiche les centaines
-            for(int v=0; v<10;v++) {
-                if((Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()/100)%10==v) {
-                    afficheImageRedim ("numero"+v+".png", 14*aLargeurCarreau,DECALAGE_PX_EN_Y/4,15*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
-                }
-            }
-            // Affiche les milliemes
-            for(int v=0; v<10;v++) {
-                if((Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()/1000)%10==v) {
-                    afficheImageRedim ("numero"+v+".png", 13*aLargeurCarreau,DECALAGE_PX_EN_Y/4,14*aLargeurCarreau, 3*DECALAGE_PX_EN_Y/4, g);
-                }
-            }*/
         }
     }
     
@@ -124,36 +81,31 @@ public class PanelInfo extends JPanel
     public void afficheBarreInfo (final Graphics g) {
         afficheImageRedim("4",0, 0,this.getWidth(),this.getHeight(),g);
 
+        String menu = "MENU";
+        String jour = "JOUR : "+Slatch.partie.getTour();
+        String joueur = "JOUEUR : "+Slatch.partie.getJoueurActuel();
+        String argent = "ARGENT : "+Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent();
+        String suivant = "SUIVANT";
+        String espace = "   ";
         
-        afficheImageRedim ("jour", 3*this.getWidth()/32, this.getHeight()/4,7*this.getWidth()/32, this.getHeight(), g);
-        afficheImageRedim ("numero"+Slatch.partie.getTour()%10, 8*this.getWidth()/32, this.getHeight()/4,9*this.getWidth()/32, 3*this.getHeight()/4, g);
-        afficheImageRedim ("numero"+(Slatch.partie.getTour()/10)%10, 7*this.getWidth()/32, this.getHeight()/4,8*this.getWidth()/32, 3*this.getHeight()/4, g);
+        // Police
+        Font font = new Font("Serif", Font.BOLD, 25*this.getWidth()/1000);
+        g.setFont(font);
+        FontMetrics fm=getFontMetrics(font); 
         
-        // Argent de base du primier joueur
-        afficheImageRedim ("argent", 9*this.getWidth()/32, 0,13*this.getWidth()/32, this.getHeight(), g);
+        menuSize = fm.stringWidth(menu);
+        jourSize = fm.stringWidth(jour);
+        joueurSize = fm.stringWidth(joueur);
+        argentSize = fm.stringWidth(argent);
+        suivantSize = fm.stringWidth(suivant);
+        espaceSize = fm.stringWidth(espace);
         
-        // Affiche les unites
-        afficheImageRedim ("numero"+(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent())%10, 16*this.getWidth()/32, this.getHeight()/4,17*this.getWidth()/32, 3*this.getHeight()/4, g);
-        // Affiche les dizaines
-        afficheImageRedim ("numero"+(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()/10)%10, 15*this.getWidth()/32,this.getHeight()/4,16*this.getWidth()/32, 3*this.getHeight()/4, g);
-        // Affiche les centaines
-        afficheImageRedim ("numero"+(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()/100)%10, 14*this.getWidth()/32,this.getHeight()/4,15*this.getWidth()/32, 3*this.getHeight()/4, g);
-        // Affiche les milliemes
-        afficheImageRedim ("numero"+(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()/1000)%10, 13*this.getWidth()/32,this.getHeight()/4,14*this.getWidth()/32, 3*this.getHeight()/4, g);
-        
-        // Bouton SUIVANT
-        afficheImageRedim ("suivant", this.getWidth()-6*this.getWidth()/32, 0,this.getWidth(), this.getHeight(), g);
-        
-        // Bouton MENU
-        afficheImageRedim ("menu", 0, 0,4*this.getWidth()/32, this.getHeight(), g);
-        
-        // Joueur Actuel de base
-        afficheImageRedim ("joueur", 18*this.getWidth()/32, 0, 19*this.getWidth()/32, this.getHeight(), g);
-        afficheImageRedim ("numero"+Slatch.partie.getJoueurActuel(), 19*this.getWidth()/32, this.getHeight()/4,20*this.getWidth()/32, 3*this.getHeight()/4, g);
-        
-        
-        
-        
+        g.setColor(Color.white);
+        g.drawString(menu, espaceSize, 33);
+        g.drawString(jour, espaceSize+menuSize+espaceSize, 33);
+        g.drawString(joueur, espaceSize+menuSize+espaceSize+jourSize+espaceSize, 33);
+        g.drawString(argent, espaceSize+menuSize+espaceSize+jourSize+espaceSize+joueurSize+espaceSize, 33);
+        g.drawString(suivant, this.getWidth()-suivantSize-espaceSize, 33);
     }
     
     /**
