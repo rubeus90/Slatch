@@ -7,6 +7,10 @@ foret:14:8:0
 foret:15:8:0
 montagne:14:6:0
 montagne:15:6:0
+eau:12:4:0
+eau:13:4:0
+eau:16:4:0
+eau:17:4:0
 batiment:14:7:2
 batiment:15:7:1
 usine:14:4:1

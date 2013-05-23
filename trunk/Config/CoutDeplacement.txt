@@ -7,6 +7,9 @@ foret,pied,20
 montagne,roues,800
 montagne,chenilles,900
 montagne,pied,30
+eau,pied,999
+eau,roues,999
+eau,chenilles,999
 batiment,roues,7
 batiment,chenilles,7
 batiment,pied,10
