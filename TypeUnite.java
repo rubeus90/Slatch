@@ -3,13 +3,13 @@
  */
 public enum TypeUnite
 {
-    COMMANDO("commando", "une infanterie","commando",100,20,40,"fusil",TypeDeplacement.PIED,1.0),
+    COMMANDO("commando", "une infanterie","commando",100,20,40,"fusil",TypeDeplacement.PIED,1.0, "Terrestre"),
     //DEMOLISSEUR("demolisseur", "une infanterie","demolisseur"), 
     //CHAR("char","un char","char"),
-    TANK("tank","un tank","tank",500,65,40,"canon",TypeDeplacement.CHENILLES,1.0),
-    INGENIEUR("ingenieur","un ingenieur formidable","ingenieur",150,15,4,"soin",TypeDeplacement.CHENILLES,1.0),
+    TANK("tank","un tank","tank",500,65,40,"canon",TypeDeplacement.CHENILLES,1.0, "Terrestre"),
+    INGENIEUR("ingenieur","un ingenieur formidable","ingenieur",150,15,4,"soin",TypeDeplacement.CHENILLES,1.0, "Terrestre"),
     //DISTANCE("distance","un vehicule a moyenne distance","distance"),
-    UML("uml","Ultmiate missile launcher","uml",300,30,50,"missile",TypeDeplacement.CHENILLES,1.0);
+    UML("uml","Ultmiate missile launcher","uml",300,30,50,"missile",TypeDeplacement.CHENILLES,1.0, "Terrestre");
 
     private String aNom;
     private String aDescription;
@@ -20,9 +20,10 @@ public enum TypeUnite
     private String aAttaque;
     private TypeDeplacement aTypeDeplacement;
     private double aGain;
+    public String nomType;
     
     
-    TypeUnite(final String pNom,final String pDescription,final String pImage,final int pPrix,final int pPVMax,final int pDeplacement,final String pAttaque,final  TypeDeplacement pTypeDeplacement,final double pGain){
+    TypeUnite(final String pNom,final String pDescription,final String pImage,final int pPrix,final int pPVMax,final int pDeplacement,final String pAttaque,final  TypeDeplacement pTypeDeplacement,final double pGain, final String pNomType){
         aNom=pNom;
         aDescription =pDescription;
         aImage = pImage;
@@ -32,6 +33,7 @@ public enum TypeUnite
         aAttaque = pAttaque;
         aTypeDeplacement = pTypeDeplacement;
         aGain = pGain;
+        this.nomType = pNomType;
     }
     
     /**
