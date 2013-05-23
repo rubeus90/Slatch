@@ -27,7 +27,7 @@ public class Unite extends Entite
     private double aGain; //Compris entre 1 et 2, correspondant au pourcentage d'augmentation des caractéristique à chaque monté de niveau
     private boolean dejaAttaque;
     private boolean dejaDeplacee;
-    static final int pallierExperience =100;
+    static final int pallierExperience =20;
     static final int EXPERIENCE_DONNEE_PAR_NIVEAU = 20;
    
     /**
