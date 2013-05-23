@@ -114,7 +114,7 @@ public class PanelMatrice extends JPanel
             // Ecrie les boutons en gris
             g.setColor(Color.gray);
             g.drawString("Deplace", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3);
-            g.drawString("Att/Soin", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
+            if(!aListeAction.contains("Attaque") && !aListeAction.contains("Soin")){ g.drawString("Action", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);}
             g.drawString("Capture", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
             g.drawString("Evolue", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
            
@@ -126,11 +126,10 @@ public class PanelMatrice extends JPanel
                     aDeplacePossible=true;
                 }
                 if(aListeAction.get(vVar).equals("Attaque")) {
-                    g.drawString("Att/Soin", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
+                    g.drawString("Attaque", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
                     aAttaquePossible=true;
-                }
-                if(aListeAction.get(vVar).equals("Soin")) {
-                    g.drawString("Att/Soin", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
+                }else if(aListeAction.get(vVar).equals("Soin")) {
+                    g.drawString("Soin", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
                     aSoinPossible=true;
                 }
                 if(aListeAction.get(vVar).equals("Capture")) {
