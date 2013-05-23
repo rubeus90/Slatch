@@ -36,6 +36,11 @@ public class PanelMatrice extends JPanel
     private int aMenuDescriptionBasDroite_Xpx;
     private int aMenuDescriptionBasDroite_Ypx;
     
+    private int aShopHautGauche_Xpx;
+    private int aShopHautGauche_Ypx;
+    private int aShopBasDroite_Xpx;
+    private int aShopBasDroite_Ypx;
+    
     private int aUniteMemMoteurCaseX;
     private int aUniteMemMoteurCaseY;
     
@@ -51,12 +56,14 @@ public class PanelMatrice extends JPanel
     private boolean menuUniteAction;
     private boolean menuUniteDescription;
     private boolean modeMenu;
+    private boolean menuShop;
     
     private boolean aAttaquePossible=false;
     private boolean aDeplacePossible=false;
     private boolean aCapturePossible=false;
     
     private List<String> aListeAction;
+    private List<Unite> aListeShop;
 
     /**
      * Constructor for objects of class IHM_Panel_Matrice
@@ -71,7 +78,9 @@ public class PanelMatrice extends JPanel
         aHauteurCarreau = this.getHeight()/ Slatch.partie.getHauteur();
 
         menuUniteAction=false;
+        menuUniteDescription=false;
         modeMenu=false;
+        menuShop=false;
         
         aListeAction= new ArrayList<String>();
     }
@@ -164,6 +173,12 @@ public class PanelMatrice extends JPanel
             }
         }
         
+        if(menuShop) {
+            for(int i=0;i<aListeShop.size();i++) {
+                
+            }
+        }
+        
     }
     
     
@@ -201,8 +216,7 @@ public class PanelMatrice extends JPanel
                             if(aDeplacePossible && (aMenuActionHautGauche_Ypx<clickY && clickY<(aMenuActionHautGauche_Ypx+aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )) 
                             {
                                 Slatch.moteur.modeDeplacement(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
-                                effaceMenuUniteAction();
-                                effaceMenuUniteDescription();
+                                effaceMenu();
                                 aDeplacePossible=false;
                                 this.repaint();
                             }
@@ -211,8 +225,7 @@ public class PanelMatrice extends JPanel
                             if(aAttaquePossible && (aMenuActionHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+2*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx ) 
                             {
                                 Slatch.moteur.modeAttaque(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
-                                effaceMenuUniteAction();
-                                effaceMenuUniteDescription();
+                                effaceMenu();
                                 aAttaquePossible=false;
                                 this.repaint();
                             }
@@ -221,8 +234,7 @@ public class PanelMatrice extends JPanel
                             if(aCapturePossible && (aMenuActionHautGauche_Ypx+2*aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+3*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )
                             {
                                 Slatch.moteur.capture(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
-                                effaceMenuUniteAction();
-                                effaceMenuUniteDescription();
+                                effaceMenu();
                                 aCapturePossible=false;
                             }
                             
@@ -232,9 +244,8 @@ public class PanelMatrice extends JPanel
                             aUniteMemMenuCaseY=j;
                             
                             // Avertir Moteur
-                            effaceMenuUniteAction();
-                            effaceMenuUniteDescription();
-                            menuUniteDescription = true;
+                            effaceMenu();
+
                             Slatch.moteur.caseSelectionnee(i,j);
                             
                         }
@@ -251,7 +262,6 @@ public class PanelMatrice extends JPanel
                 }
             }
         }
-        
     }
     
     /**
@@ -275,6 +285,12 @@ public class PanelMatrice extends JPanel
         g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
     }
     
+    private void effaceMenu() {
+        effaceMenuUniteAction();
+        effaceMenuUniteDescription();
+        effaceMenuShop();
+    }
+    
     private void effaceMenuUniteAction()
     {
         aMenuActionHautGauche_Xpx=0;
@@ -295,6 +311,17 @@ public class PanelMatrice extends JPanel
         this.repaint();
     }
     
+    private void effaceMenuShop()
+    {
+        aShopHautGauche_Xpx=0;
+        aShopHautGauche_Ypx=0;
+        aShopBasDroite_Xpx=0;
+        aShopBasDroite_Ypx=0;
+        menuShop=true;
+        this.repaint();
+    }
+    
+    
     /**
      * Affiche les 2 menus qui s'affichent lors d'une selection d'une unite
      */
@@ -305,6 +332,49 @@ public class PanelMatrice extends JPanel
         menuUniteAction = true;
         redimMenuAction(pList, pX, pY);
     }
+    
+    /**
+     * Methode appelee par moteur lors du click sur un shop
+     */
+    public void shop(final List<Unite> pList, final int pX, final int pY) {
+        menuShop=true;
+        aListeShop=pList;
+        aHauteurMenuActionEnCase=aListeShop.size();
+        if(pX+aLargeurMenuActionEnCase+1>Slatch.partie.getLargeur() && pY+aHauteurMenuActionEnCase+1>Slatch.partie.getHauteur()) 
+        {
+            //Dessine en haut à gauche
+            aShopHautGauche_Xpx = (pX-aLargeurMenuActionEnCase)*aLargeurCarreau;
+            aShopHautGauche_Ypx = (pY-aHauteurMenuActionEnCase)*aHauteurCarreau;
+            aShopBasDroite_Xpx = pX*aLargeurCarreau;
+            aShopBasDroite_Ypx = pY*aHauteurCarreau;
+        }
+
+        else if(pX+aLargeurMenuActionEnCase+1>Slatch.partie.getLargeur()) 
+        {
+            //Dessine en bas à gauche
+            aShopHautGauche_Xpx = (pX-aLargeurMenuActionEnCase)*aLargeurCarreau;
+            aShopHautGauche_Ypx = (pY+1)*aHauteurCarreau;
+            aShopBasDroite_Xpx = pX*aLargeurCarreau;
+            aShopBasDroite_Ypx = (pY+aHauteurMenuActionEnCase+1)*aHauteurCarreau;
+        }
+        
+        else if(pY+aHauteurMenuActionEnCase+1>Slatch.partie.getHauteur()) {
+            //Dessine en haut à droite
+            aShopHautGauche_Xpx = (pX+1)*aLargeurCarreau;
+            aShopHautGauche_Ypx = (pY-aHauteurMenuActionEnCase)*aHauteurCarreau;
+            aShopBasDroite_Xpx = (pX+aLargeurMenuActionEnCase+1)*aLargeurCarreau;
+            aShopBasDroite_Ypx = pY*aHauteurCarreau;
+        }
+        
+        else {
+            // Meun en bas a droite par default
+            aShopHautGauche_Xpx = (pX+1)*aLargeurCarreau;
+            aShopHautGauche_Ypx = (pY+1)*aHauteurCarreau;
+            aShopBasDroite_Xpx = (pX+aLargeurMenuActionEnCase+1)*aLargeurCarreau;
+            aShopBasDroite_Ypx = (pY+aHauteurMenuActionEnCase+1)*aHauteurCarreau;
+        }
+    }
+    
     
     /**
      * Affiche le menu avec les boutons
