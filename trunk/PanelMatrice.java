@@ -228,8 +228,9 @@ public class PanelMatrice extends JPanel
         int clickX = pX;
         int clickY = pY; 
 
-        if(modeMenu) 
+        if(modeMenu) {
             this.repaint();modeMenu=false;
+        }
 
         for(int i = 0 ; i < Slatch.partie.getLargeur() ; i++) 
         {
@@ -318,10 +319,15 @@ public class PanelMatrice extends JPanel
                     }
                     else
                     {
+                        if(aUniteMemMenuCaseX==i && aUniteMemMenuCaseY==j && menuUniteDescription)
+                            menuUniteDescription = false;
+                        else if (!menuUniteDescription) {
+                            menuUniteDescription = true;
+                        }
+                        
                         aUniteMemMenuCaseX=i;
                         aUniteMemMenuCaseY=j;
-                        
-                        menuUniteDescription = true;
+    
                         Slatch.moteur.caseSelectionnee(i,j);
                         this.repaint();
                     }
