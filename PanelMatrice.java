@@ -88,7 +88,8 @@ public class PanelMatrice extends JPanel
         aHauteurCarreau = this.getHeight()/ Slatch.partie.getHauteur();
         dessineMatrice(g);
         
-        if(menuUniteAction) {
+        if(menuUniteAction) 
+        {
             afficheImageRedim ("noir80", aMenuActionHautGauche_Xpx, aMenuActionHautGauche_Ypx, aMenuActionBasDroite_Xpx, aMenuActionBasDroite_Ypx, g);
             
             // Ecrie les boutons en gris
@@ -125,7 +126,8 @@ public class PanelMatrice extends JPanel
             }
         }
         
-        if(menuUniteDescription) {
+        if(menuUniteDescription) 
+        {
             redimMenuDescription(aUniteMemMenuCaseX,aUniteMemMenuCaseY);
             
             afficheImageRedim ("noir80", aMenuDescriptionHautGauche_Xpx, aMenuDescriptionHautGauche_Ypx, aMenuDescriptionBasDroite_Xpx, aMenuDescriptionBasDroite_Ypx, g);
@@ -162,11 +164,11 @@ public class PanelMatrice extends JPanel
                     String pv = "PVTerrain = "+t.getPV();
                     g.drawString(pv, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
                 }
-            
             }
         }
         
-        if(menuShop) {
+        if(menuShop) 
+        {
             for(int i=0;i<aListeShop.size();i++) {
                 if(aArgentMem>=aListeShop.get(i).getPrix()) {
                     // Ecrie les boutons en gris
@@ -190,9 +192,8 @@ public class PanelMatrice extends JPanel
         int clickX = pX;
         int clickY = pY; 
 
-        if(modeMenu) {
+        if(modeMenu) 
             this.repaint();modeMenu=false;
-        }
 
         for(int i = 0 ; i < Slatch.partie.getLargeur() ; i++) 
         {
@@ -238,7 +239,8 @@ public class PanelMatrice extends JPanel
                                 aCapturePossible=false;
                             }
                         }
-                        else {
+                        else 
+                        {
                             aUniteMemMenuCaseX=i;
                             aUniteMemMenuCaseY=j;
                             
@@ -247,6 +249,10 @@ public class PanelMatrice extends JPanel
 
                             Slatch.moteur.caseSelectionnee(i,j);
                         }
+                    }
+                    else if(menuShop) 
+                    {
+                        // Boutons pour le menuShop pour l'achat des unites
                     }
                     else
                     {
