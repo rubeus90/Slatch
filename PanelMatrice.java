@@ -7,10 +7,11 @@ import java.awt.* ;
 import javax.swing.*;
 
 /**
- * Write a description of class IHM_Panel_Matrice here.
+ * Panel specifique a la matrice de jeu :
+ * ce panel affiche les terrains, les unites et les differents menus.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author jonathan
+ * @version 1.0
  */
 public class PanelMatrice extends JPanel
 {     
@@ -65,7 +66,7 @@ public class PanelMatrice extends JPanel
     private List<TypeUnite> aListeShop;
 
     /**
-     * Constructor for objects of class IHM_Panel_Matrice
+     * Constructeur du panel, creer les listes et definie les dime,
      */
     public PanelMatrice()
     {
@@ -210,7 +211,7 @@ public class PanelMatrice extends JPanel
                 else {
                     // Ecrie les boutons en vert
                     g.setColor(Color.green);
-                    g.drawString(vType.getNom()+":  Prix"+vType.getPrix()+"¤  PV"+vType.getPVMax()+"  Depl:"+vType.getDeplacement()+"  Att:"+vType.getAttaque(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
+                    g.drawString(vType.getNom()+":  Prix"+vType.getPrix()+"¤  PV:"+vType.getPVMax()+"  Depl:"+vType.getDeplacement()+"  Att:"+vType.getAttaque(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
                     aTabAchat.put(i,vType);
                 }
             }
