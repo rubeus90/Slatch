@@ -10,6 +10,7 @@ public enum TypeTerrain {
         FORET("foret", "arbres", "une foret", 2,0,false),
         PLAINE("plaine", "plaine", "une plaine", 1,0,false),
         MONTAGNE("montagne", "montagne", "une montagne", 3,0,false),
+        EAU("eau","eau","de l'eau",1,0,false),
         BATIMENT("batiment", "batiment", "une ville", 2,30,true),
         USINE("usine","caserne","une usine",3,30,true),
         
