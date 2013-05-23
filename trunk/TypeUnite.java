@@ -3,13 +3,13 @@
  */
 public enum TypeUnite
 {
-    COMMANDO("Commando", "une infanterie","commando",100,20,40,"fusil",TypeDeplacement.PIED,1.0, "Terrestre"),
-    DEMOLISSEUR("Demolisseur", "une infanterie","demolisseur",200,20,30,"mortier",TypeDeplacement.PIED,1.0,"Terrestre"), 
+    COMMANDO("Commando", "Capable de capturer un batiment","commando",100,20,40,"fusil",TypeDeplacement.PIED,1.0, "Terrestre"),
+    DEMOLISSEUR("Demolisseur", "Capable capturer un batiment de faire des degats aux tanks","demolisseur",200,20,30,"mortier",TypeDeplacement.PIED,1.0,"Terrestre"), 
     //CHAR("char","un char","char",300,40,60,"canon",TypeDeplacement.PIED,1.0),
-    TANK("Tank","un tank","tank",700,65,40,"groscanon",TypeDeplacement.CHENILLES,1.0, "Terrestre"),
-    INGENIEUR("Ingenieur","un ingenieur formidable","ingenieur",100,15,40,"soin",TypeDeplacement.PIED,1.0, "Terrestre"),
+    TANK("Tank","Unite tres puissante","tank",700,65,40,"groscanon",TypeDeplacement.CHENILLES,1.0, "Terrestre"),
+    INGENIEUR("Ingenieur","Capable de soigner des unites et de les faire evoluer","ingenieur",100,15,40,"soin",TypeDeplacement.PIED,1.0, "Terrestre"),
     //DISTANCE("distance","un vehicule a moyenne distance","distance",350,35,50,"roquette",TypeDeplacement.ROUES,1.0),
-    UML("Uml","Ultimate missile launcher","uml",300,30,30,"missile",TypeDeplacement.CHENILLES,1.0, "Terrestre");
+    UML("Uml","Capable de tirer a distance","uml",300,30,30,"missile",TypeDeplacement.CHENILLES,1.0, "Terrestre");
 
     private String aNom;
     private String aDescription;
