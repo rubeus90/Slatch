@@ -64,6 +64,8 @@ public class PanelInfo extends JPanel
             Slatch.ihm.getPanel().setMenuUniteAction(false);
             // Efface le menu
             Slatch.ihm.getPanel().setMenuUniteDescription(false);
+            // Efface le menu shop
+            Slatch.ihm.getPanel().setMenuShop(false);
             // Avertir Moteur
             Slatch.moteur.passeTour();
             this.repaint();

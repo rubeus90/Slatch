@@ -174,12 +174,19 @@ public class PanelMatrice extends JPanel
         if(menuShop) 
         {
             afficheImageRedim ("noir80", aShopHautGauche_Xpx, aShopHautGauche_Ypx, aShopBasDroite_Xpx, aShopBasDroite_Ypx, g);
+            
+            
+            // Police
+            Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
+            g.setFont(font);
+            FontMetrics fm=getFontMetrics(font);  
+
             String info = "VOICI LE SHOP :";
             g.drawString(info, aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
             int i=0;
             for(TypeUnite vType : aListeShop) {
                 i++;
-                if(aArgentMem>=vType.getPrix()) {
+                if(aArgentMem<vType.getPrix()) {
                     // Ecrie les boutons en gris
                     g.setColor(Color.gray);
                     g.drawString(vType.getNom(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
@@ -190,6 +197,8 @@ public class PanelMatrice extends JPanel
                     g.drawString(vType.getNom(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
                 }
             }
+            g.setColor(Color.gray);
+            g.drawLine(aShopHautGauche_Xpx, 0, aShopBasDroite_Xpx, 0);
         }
     }
     
@@ -246,6 +255,7 @@ public class PanelMatrice extends JPanel
                                 Slatch.moteur.capture(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
                                 effaceMenuUniteAction();
                                 aCapturePossible=false;
+                                this.repaint();
                             }
                         }
                         else 
@@ -260,8 +270,9 @@ public class PanelMatrice extends JPanel
                     }
                     else if(menuShop) {
                         if (aShopHautGauche_Ypx<clickY && clickY<aShopBasDroite_Ypx && aShopHautGauche_Xpx<clickX && clickX<aShopBasDroite_Xpx) {
-                            
-                            
+                            if(aShopHautGauche_Ypx<clickY && clickY<aShopHautGauche_Ypx+aHauteurCarreau) {
+                                System.out.println("Achat 1");
+                            }
                         }
                         else 
                         {
@@ -273,10 +284,6 @@ public class PanelMatrice extends JPanel
                             this.repaint();
                         }
                     }
-                    /*else if(menuShop) 
-                    {
-                        // Boutons pour le menuShop pour l'achat des unites
-                    }*/
                     else
                     {
                         aUniteMemMenuCaseX=i;
@@ -451,4 +458,5 @@ public class PanelMatrice extends JPanel
     public int getaHauteurCarreau() {return aHauteurCarreau;}
     public void setMenuUniteAction(final boolean X){menuUniteAction=X;}
     public void setMenuUniteDescription(final boolean X){menuUniteDescription=X;}
+    public void setMenuShop(final boolean X){menuShop=X;}
 }
