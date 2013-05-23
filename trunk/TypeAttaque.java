@@ -6,10 +6,10 @@ import java.io.IOException;
 public enum TypeAttaque
 {
     OMEGA_SLASH_DE_L_ULTIME_APOLLON(250, "Omega Slash de l'ultime Apollon", "Une série de coups frénétiques qui laisseront tous les ennemis sur le tapis",PorteeAttaque.COURTE), // en attente de créer les vraies attaques
-    CANON(15, "Tir de canon", "Envoie un obus sur votre ennemi. Efficace contre l'infanterie.",PorteeAttaque.COURTE),
-    FUSIL(10, "Tir de fusil", "Envoie une salve de balles sur votre ennemi.",PorteeAttaque.COURTE),
-    ROQUETTE(15,"Tir de roquette","Envoie des roquettes sur votre ennemi",PorteeAttaque.MOYENNE),
-    MISSILE(15,"Tir de missile","Envoie des missiles sur votre ennemi.", PorteeAttaque.LONGUE);
+    CANON(15, "canon", "Envoie un obus sur votre ennemi. Efficace contre l'infanterie.",PorteeAttaque.COURTE),
+    FUSIL(10, "fusil", "Envoie une salve de balles sur votre ennemi.",PorteeAttaque.COURTE),
+    ROQUETTE(15,"roquette","Envoie des roquettes sur votre ennemi",PorteeAttaque.MOYENNE),
+    MISSILE(15,"missile","Envoie des missiles sur votre ennemi.", PorteeAttaque.LONGUE);
    
     private int aDegats; // dégâts de base de l'attaque
     private String aNom;
