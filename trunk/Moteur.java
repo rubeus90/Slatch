@@ -538,41 +538,6 @@ class Moteur
         int vNumJoueur = Slatch.partie.getJoueurActuel();
         Joueur vJoueur = Slatch.partie.getJoueur(vNumJoueur);
         int vArgentJv = vJoueur.getArgent();
-        
-        switch(pUnite){
-            case "commando": 
-                if(vArgentJv>TypeUnite.COMMANDO.getPrix()){
-                    Unite vcommando = new Unite(pX,pY,vNumJoueur,TypeUnite.COMMANDO);
-                    Slatch.partie.getJoueur(vNumJoueur).getListeUnite().add(vcommando);
-                    Slatch.partie.getTerrain()[pX][pY].setUnite(vcommando);
-                    vJoueur.setArgent(vArgentJv + TypeUnite.COMMANDO.getPrix());
-                    vcommando.attaque(true);
-                    vcommando.deplacee(true);
-                    vcommando=null;
-                }
-                break;
-            case "tank":
-                if(vArgentJv>TypeUnite.TANK.getPrix()){
-                   Unite vtank = new Unite(pX,pY,vNumJoueur,TypeUnite.TANK);
-                   Slatch.partie.getJoueur(vNumJoueur).getListeUnite().add(vtank);
-                   Slatch.partie.getTerrain()[pX][pY].setUnite(vtank);
-                   vJoueur.setArgent(vArgentJv + TypeUnite.TANK.getPrix());
-                   vtank.attaque(true);
-                   vtank.deplacee(true);
-                   vtank=null;
-                }
-                break;
-            case "uml":
-                if(vArgentJv>TypeUnite.UML.getPrix()){
-                    Unite vuml = new Unite(pX,pY,vNumJoueur,TypeUnite.UML);
-                    Slatch.partie.getJoueur(vNumJoueur).getListeUnite().add(vuml);
-                    Slatch.partie.getTerrain()[pX][pY].setUnite(vuml);
-                    vJoueur.setArgent(vArgentJv + TypeUnite.UML.getPrix());
-                    vuml.attaque(true);
-                    vuml.deplacee(true);
-                    vuml=null;
-                }
-                break;
-            }
-    }
+       // Unite modele = vJoueur.getFaction().getListe().get(pUnite);
+    }  
 }
