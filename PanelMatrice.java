@@ -1,19 +1,10 @@
-import java.awt.Graphics;
-import java.awt.Image;
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
 import java.io.*;
-import java.awt.Color;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
-import javax.swing.JFrame;
 import java.awt.* ;
-import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import javax.swing.*;
-
 
 /**
  * Write a description of class IHM_Panel_Matrice here.
@@ -47,6 +38,8 @@ public class PanelMatrice extends JPanel
     private int aUniteMemMenuCaseX;
     private int aUniteMemMenuCaseY;
     
+    private int aArgentMem;
+    
     private int aLargeurMenuActionEnCase=3;
     private int aHauteurMenuActionEnCase=6;
     
@@ -63,7 +56,7 @@ public class PanelMatrice extends JPanel
     private boolean aCapturePossible=false;
     
     private List<String> aListeAction;
-    private List<Unite> aListeShop;
+    private List<TypeUnite> aListeShop;
 
     /**
      * Constructor for objects of class IHM_Panel_Matrice
@@ -98,7 +91,7 @@ public class PanelMatrice extends JPanel
         if(menuUniteAction) {
             afficheImageRedim ("noir80", aMenuActionHautGauche_Xpx, aMenuActionHautGauche_Ypx, aMenuActionBasDroite_Xpx, aMenuActionBasDroite_Ypx, g);
             
-            // Ecrie les boutons en rouge
+            // Ecrie les boutons en gris
             g.setColor(Color.gray);
             g.drawString("Deplace", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3);
             g.drawString("Attaque", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
@@ -175,12 +168,19 @@ public class PanelMatrice extends JPanel
         
         if(menuShop) {
             for(int i=0;i<aListeShop.size();i++) {
-                
+                if(aArgentMem>=aListeShop.get(i).getPrix()) {
+                    // Ecrie les boutons en gris
+                    g.setColor(Color.gray);
+                    g.drawString(aListeShop.get(i).getNom(), aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
+                }
+                else {
+                    // Ecrie les boutons en vert
+                    g.setColor(Color.gray);
+                    g.drawString(aListeShop.get(i).getNom(), aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
+                }
             }
         }
-        
     }
-    
     
     /**
      * Methode appelee lors d'un click
@@ -237,7 +237,6 @@ public class PanelMatrice extends JPanel
                                 effaceMenu();
                                 aCapturePossible=false;
                             }
-                            
                         }
                         else {
                             aUniteMemMenuCaseX=i;
@@ -247,7 +246,6 @@ public class PanelMatrice extends JPanel
                             effaceMenu();
 
                             Slatch.moteur.caseSelectionnee(i,j);
-                            
                         }
                     }
                     else
@@ -321,7 +319,6 @@ public class PanelMatrice extends JPanel
         this.repaint();
     }
     
-    
     /**
      * Affiche les 2 menus qui s'affichent lors d'une selection d'une unite
      */
@@ -329,15 +326,17 @@ public class PanelMatrice extends JPanel
     {
         aUniteMemMoteurCaseX = pX;
         aUniteMemMoteurCaseY = pY;
+        aListeAction=pList;
         menuUniteAction = true;
-        redimMenuAction(pList, pX, pY);
+        redimMenuAction(pX, pY);
     }
     
     /**
      * Methode appelee par moteur lors du click sur un shop
      */
-    public void shop(final List<Unite> pList, final int pX, final int pY) {
+    public void shop(final List<TypeUnite> pList, final int pArgentDispo, final int pX, final int pY) {
         menuShop=true;
+        aArgentMem=pArgentDispo;
         aListeShop=pList;
         aHauteurMenuActionEnCase=aListeShop.size();
         if(pX+aLargeurMenuActionEnCase+1>Slatch.partie.getLargeur() && pY+aHauteurMenuActionEnCase+1>Slatch.partie.getHauteur()) 
@@ -375,11 +374,10 @@ public class PanelMatrice extends JPanel
         }
     }
     
-    
     /**
      * Affiche le menu avec les boutons
      */
-    public void redimMenuAction(final List<String> pList, final int pX, final int pY) 
+    public void redimMenuAction(final int pX, final int pY) 
     {
         if(pX+aLargeurMenuActionEnCase+1>Slatch.partie.getLargeur() && pY+aHauteurMenuActionEnCase+1>Slatch.partie.getHauteur()) 
         {
@@ -414,7 +412,7 @@ public class PanelMatrice extends JPanel
             aMenuActionBasDroite_Xpx = (pX+aLargeurMenuActionEnCase+1)*aLargeurCarreau;
             aMenuActionBasDroite_Ypx = (pY+aHauteurMenuActionEnCase+1)*aHauteurCarreau;
         }
-        aListeAction=pList;
+        
     }
     
     /**
