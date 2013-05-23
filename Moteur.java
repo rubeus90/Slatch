@@ -258,20 +258,26 @@ class Moteur
         boolean fini = false;
         int x = pX, y =pY;
         Stack<Point> chemin = new Stack<Point>();
-        chemin.push(new Point(pX,pY));
+        
+        if(pred[x][y]!=null){chemin.push(new Point(pX,pY));}
         while(!fini)
         {
             Point p = pred[x][y];
-            x=(int)p.getX();
-            y=(int)p.getY();
-            if(unite.getCoordonneeX()==x && unite.getCoordonneeY()==y)
+            if(p!=null)
             {
-                fini = true;
+                x=(int)p.getX();
+                y=(int)p.getY();
+                if(unite.getCoordonneeX()==x && unite.getCoordonneeY()==y)
+                {
+                    fini = true;
+                    
+                }
+                else
+                {
+                    chemin.push(p);
+                }
             }
-            else
-            {
-                chemin.push(p);
-            }
+            else{break;}
         }
         int k = chemin.size();
         int l = unite.getPorteeDeplacement();
@@ -472,6 +478,7 @@ class Moteur
             }
         }
         tabDist[x][y]=-2;
+        pred = new Point[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
     }
     
     private void algoDeplacement(Unite unite, boolean porteeComptee)
