@@ -130,12 +130,18 @@ class Moteur
         Terrain vBatiment= Slatch.partie.getTerrain()[pX][pY];
         uniteA=Slatch.partie.getTerrain()[pX][pY].getUnite();
        
-       
-        vBatiment.setPV(vBatiment.getPV()-10);//Bon... ça va capturer la batiment directement...Valeur à changer
+        switch(uniteA.getType())
+        {
+            case COMMANDO: vBatiment.setPV(vBatiment.getPV()-10); break;
+            case DEMOLISSEUR: vBatiment.setPV(vBatiment.getPV()-15);
+        }
+        
         if(vBatiment.getPV()<=0)
         {
+           Slatch.partie.getJoueur(vBatiment.getJoueur()).addNbreBatiment(-1);
            vBatiment.setJoueur(uniteA.getJoueur());
            vBatiment.setPV(vBatiment.getType().getPVMax());
+           Slatch.partie.getJoueur(uniteA.getJoueur()).addNbreBatiment(1); 
            repaint();
         }
         uniteA.attaque(true);
@@ -191,6 +197,7 @@ class Moteur
             annulerAttaque();
             if(uniteD!=null && tabDist[pX][pY]>-1) // si on a sélectioné aucune unité auparavant pour le déplacement
             {
+                Slatch.partie.getTerrain()[uniteD.getCoordonneeX()][uniteD.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[uniteD.getCoordonneeX()][uniteD.getCoordonneeY()].getType().getPVMax());
                 deplacement(uniteD, pX, pY);
                 Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
             }
