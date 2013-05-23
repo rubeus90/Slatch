@@ -160,7 +160,7 @@ class Moteur
            Slatch.partie.getJoueur(vBatiment.getJoueur()).addNbreBatiment(-1);
            vBatiment.setJoueur(uniteA.getJoueur());
            vBatiment.setPV(vBatiment.getType().getPVMax());
-           Slatch.partie.getJoueur(uniteA.getJoueur()).addNbreBatiment(1); 
+           Slatch.partie.getJoueur(uniteA.getJoueur()).addNbreBatiment(1);
            repaint();
         }
         uniteA.attaque(true);
@@ -531,13 +531,13 @@ class Moteur
             {
                 if(Slatch.partie.getTerrain()[i][j].getUnite()!=null)  // quand on a déjà une unité sur la case, on ne peut pas y accéder
                 {
-                    if(Slatch.partie.getTerrain()[i][j].getUnite().getJoueur() == Slatch.partie.getTerrain()[x][y].getUnite().getJoueur())
+                    if(Slatch.partie.getTerrain()[i][j].getUnite().getJoueur() != Slatch.partie.getTerrain()[x][y].getUnite().getJoueur())
                     {
                         tabDist[i][j] = -2;
                     }
                     else
                     {
-                        tabDist[i][j] = -3;
+                        tabDist[i][j] = -1;
                     }
                 }
                 else{tabDist[i][j] = -1;} // au début, on suppose qu'on a une distance infinie représentée par -1 sur chacune des cases restantes
@@ -564,7 +564,7 @@ class Moteur
                     int d = t.d+Slatch.partie.getTerrain()[x][y].getCout(unite);
                     if(d<=unite.getType().getDeplacement() || !porteeComptee)
                     {
-                        if(d<tabDist[x][y] || tabDist[x][y]==-1 || tabDist[x][y]==-2 )
+                        if(d<tabDist[x][y] || tabDist[x][y]==-1)
                         {
                             tabDist[x][y] = d;
                             pred[x][y] = new Point(t.x, t.y);
