@@ -46,6 +46,9 @@ public class PanelMatrice extends JPanel
     private int aLargeurMenuDescriptionEnCase=10;
     private int aHauteurMenuDescriptionEnCase=4;
     
+    private int aHauteurShopEnCase;
+    private int aLargeurShopEnCase;
+    
     private boolean menuUniteAction;
     private boolean menuUniteDescription;
     private boolean modeMenu;
@@ -170,8 +173,9 @@ public class PanelMatrice extends JPanel
         
         if(menuShop) 
         {
-            String info = "SHOP";
-            g.drawString("INFO UNITE:", aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
+            afficheImageRedim ("noir80", aShopHautGauche_Xpx, aShopHautGauche_Ypx, aShopBasDroite_Xpx, aShopBasDroite_Ypx, g);
+            String info = "VOICI LE SHOP :";
+            g.drawString(info, aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
             int i=0;
             for(TypeUnite vType : aListeShop) {
                 i++;
@@ -255,10 +259,10 @@ public class PanelMatrice extends JPanel
                             Slatch.moteur.caseSelectionnee(i,j);
                         }
                     }
-                    else if(menuShop) 
+                    /*else if(menuShop) 
                     {
                         // Boutons pour le menuShop pour l'achat des unites
-                    }
+                    }*/
                     else
                     {
                         aUniteMemMenuCaseX=i;
@@ -349,22 +353,24 @@ public class PanelMatrice extends JPanel
         menuShop=true;
         aArgentMem=pArgentDispo;
         aListeShop=pList;
-        aHauteurMenuActionEnCase=aListeShop.size();
+        aHauteurShopEnCase=(Slatch.partie.getHauteur()-aHauteurMenuDescriptionEnCase-1);
+        aLargeurShopEnCase=(Slatch.partie.getLargeur()/2-1);
+        
         if(pX<Slatch.partie.getLargeur()/2) 
         {
             //Dessine a droite
-            aShopHautGauche_Xpx = Slatch.partie.getLargeur()/2;
+            aShopHautGauche_Xpx = (Slatch.partie.getLargeur()-aLargeurShopEnCase)*aLargeurCarreau;
             aShopHautGauche_Ypx = 0;
-            aShopBasDroite_Xpx = Slatch.partie.getLargeur();
-            aShopBasDroite_Ypx = aHauteurMenuDescriptionEnCase*aHauteurCarreau;
+            aShopBasDroite_Xpx = Slatch.partie.getLargeur()*aLargeurCarreau;
+            aShopBasDroite_Ypx = aHauteurShopEnCase*aHauteurCarreau;
         }
         else 
         {
             //Dessine a gauche
             aShopHautGauche_Xpx = 0;
             aShopHautGauche_Ypx = 0;
-            aShopBasDroite_Xpx = Slatch.partie.getLargeur()/2;
-            aShopBasDroite_Ypx = aHauteurMenuDescriptionEnCase*aHauteurCarreau;
+            aShopBasDroite_Xpx = (Slatch.partie.getLargeur()/2-1)*aLargeurCarreau;
+            aShopBasDroite_Ypx = aHauteurShopEnCase*aHauteurCarreau;
         }
     }
     
