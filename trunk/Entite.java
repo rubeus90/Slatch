@@ -109,4 +109,10 @@ public abstract class Entite
     {
         this.aSurbrillance = pSurbrillance;
     }
+    
+        
+    public boolean appartientAuJoueur(int joueur)
+    {
+        return (this.aJoueur == joueur);
+    }
 }

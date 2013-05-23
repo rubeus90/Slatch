@@ -214,13 +214,18 @@ public class Unite extends Entite
     
     public boolean soigner(int soin)
     {
-        if(aPV<aPVMax)
+        if(this.aBesoinDeSoins())
         {
             this.aPV += soin;
             if(aPV>aPVMax){aPV=aPVMax;}
             return true;
         }
         return false;
+    }
+    
+    public boolean aBesoinDeSoins()
+    {
+        return(aPV<aPVMax);
     }
     
 
