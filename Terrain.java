@@ -120,11 +120,7 @@ public class Terrain extends Entite{
     {
         return (this.aType == TypeTerrain.BATIMENT || this.aType == TypeTerrain.USINE);
     }
-    
-    public boolean appartientAuJoueur(int joueur)
-    {
-        return (this.aJoueur == joueur);
-    }
+
     
     public boolean estUnBatimentAuJoueur(int joueur)
     {

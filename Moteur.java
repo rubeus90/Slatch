@@ -62,6 +62,26 @@ class Moteur
         }
     }
     
+    private boolean soinPossible(Unite unite)
+    {
+        int x;
+        int y;
+        for(Point p: voisins)
+        {
+            x = (int)p.getX();
+            y = (int)p.getY();
+            Unite u = Slatch.partie.getTerrain()[x][y].getUnite();
+            if(u != null)
+            {
+                if(u.aBesoinDeSoins() && u.appartientAuJoueur(unite.getJoueur()))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
     /**
      * Methode a deplacer dans Moteur Une fois moteur safe
      * Methode qui permet a un ingenieur de faire evoluer une methode
@@ -213,7 +233,10 @@ class Moteur
                         if(cibleEnVue(unite) && !unite.dejaAttaque())
                         {
                             if(unite.getType()!=TypeUnite.INGENIEUR){items.add("Attaque");}
-                            else{items.add("Soin");}
+                        }
+                        if(soinPossible(unite) && !unite.dejaAttaque() && unite.getType()==TypeUnite.INGENIEUR)
+                        {
+                            items.add("Soin");
                         }
                         if(!unite.dejaAttaque()&&(unite.getType()==TypeUnite.COMMANDO || unite.getType()==TypeUnite.DEMOLISSEUR) && (Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE) && Slatch.partie.getJoueurActuel()!=Slatch.partie.getTerrain()[pX][pY].getJoueur())
                         {
