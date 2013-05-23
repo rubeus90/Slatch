@@ -193,7 +193,7 @@ class Moteur
                 deplacement(uniteD, pX, pY);
                 Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
             }
-            else if(Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE)
+            else if(Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE && Slatch.partie.getTerrain()[pX][pY].getJoueur()==Slatch.partie.getJoueurActuel())
             {
                 List<TypeUnite> l = new ArrayList<TypeUnite>();
                 for(TypeUnite vType: Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getFaction().getListe())
