@@ -49,7 +49,7 @@ public class PanelMatrice extends JPanel
     private int aHauteurMenuActionEnCase=6;
     
     private int aLargeurMenuDescriptionEnCase=10;
-    private int aHauteurMenuDescriptionEnCase=6;
+    private int aHauteurMenuDescriptionEnCase=4;
     
     private boolean menuUniteAction;
     private boolean menuUniteDescription;
@@ -135,42 +135,33 @@ public class PanelMatrice extends JPanel
             if(t.getUnite()!=null)
             {
                 String portedep = "Portée Depl = "+t.getUnite().getPorteeDeplacement();
-                String xp = "Experience = "+t.getUnite().getExperience();
+                String xp = "XP = "+t.getUnite().getExperience();
                 String lvl = "LVL = "+t.getUnite().getLvl();
+                String couverture = "Couv = "+ t.getType().getCouverture();
 
                 g.drawString("INFO UNITE:", aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
                 g.drawString(portedep, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
                 g.drawString(xp, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
                 g.drawString(lvl, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
-                
-                String nomterrain = "NomTerrain = "+t.getType().getNom();
-                String descterrain = "DescTerrain = "+t.getType().getDescription();
-                String couverture = "Couv = "+ t.getType().getCouverture();
-                
+
                 g.drawString("INFO TERRAIN:", (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
-                g.drawString(nomterrain, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
-                g.drawString(descterrain, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
-                g.drawString(couverture, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
+                g.drawString(couverture, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
             
                 if(t.getType().getDependance()) {
                     String pv = "PVTerrain = "+t.getPointDeVie();
-                    g.drawString(pv, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*4);
+                    g.drawString(pv, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
                 }
             }
             
             else {
-                String nomterrain = "NomTerrain = "+t.getType().getNom();
-                String descterrain = "DescTerrain = "+t.getType().getDescription();
                 String couverture = "Couv = "+ t.getType().getCouverture();
                 
                 g.drawString("INFO TERRAIN:",  aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
-                g.drawString(nomterrain,  aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
-                g.drawString(descterrain,  aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
-                g.drawString(couverture,  aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
+                g.drawString(couverture,  aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
             
                 if(t.getType().getDependance()) {
                     String pv = "PVTerrain = "+t.getPointDeVie();
-                    g.drawString(pv, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*4);
+                    g.drawString(pv, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
                 }
             
             }
