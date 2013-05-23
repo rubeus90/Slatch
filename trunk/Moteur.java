@@ -54,16 +54,16 @@ class Moteur
      */
     public void soin(Unite pUnite)
     { 
-        int vPV=pUnite.getPointDeVie();
+        int vPV=pUnite.getPV();
         int vPVMax = pUnite.getPVMax();
         
         if(vPV<vPVMax){ // On verifie que le nbr de PV est inferieur au nbr de PV max
             
            if(vPV+5>vPVMax){ // Si lorsqu'on soigne on depasse le nbr de PV max, alors Vie de l'unite = PVmax
-               pUnite.setPointDeVie(vPVMax);
+               pUnite.setPV(vPVMax);
             }
            else{ //Sinon on ajoute 5
-               pUnite.setPointDeVie(vPV+5);
+               pUnite.setPV(vPV+5);
            }
             
            //On "grise" l'unite
@@ -131,8 +131,8 @@ class Moteur
         uniteA=Slatch.partie.getTerrain()[pX][pY].getUnite();
        
        
-        vBatiment.setPointDeVie(vBatiment.getPointDeVie()-10);//Bon... ça va capturer la batiment directement...Valeur à changer
-        if(vBatiment.getPointDeVie()<=0)
+        vBatiment.setPV(vBatiment.getPV()-10);//Bon... ça va capturer la batiment directement...Valeur à changer
+        if(vBatiment.getPV()<=0)
         {
            vBatiment.setJoueur(uniteA.getJoueur());
            Slatch.ihm.getPanel().repaint();
@@ -145,13 +145,13 @@ class Moteur
     
     public boolean faireDegats(Unite cible, double degats) // retourne vrai si la cible meurt
     {
-        cible.setPointDeVie(cible.getPointDeVie() - (int)degats);
-        if(cible.getPointDeVie()<=0){return true;}else{Slatch.ihm.getPanel().repaint(); return false;}
+        cible.setPV(cible.getPV() - (int)degats);
+        if(cible.getPV()<=0){return true;}else{Slatch.ihm.getPanel().repaint(); return false;}
     }
     
     public double getDegats(Unite a, Unite v) // a= attaquant, v= cible
     {
-        return ((a.getAttaque().getDegats()*a.getAttaque().efficacite.get(v.getType()))*(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getCoordonneeX()][v.getCoordonneeY()].getType().getCouverture()))/100)*((double)a.getPointDeVie()/(double)a.getPVMax());
+        return ((a.getAttaque().getDegats()*a.getAttaque().efficacite.get(v.getType()))*(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getCoordonneeX()][v.getCoordonneeY()].getType().getCouverture()))/100)*((double)a.getPV()/(double)a.getPVMax());
     }
    
     public void estMort(Unite unite)
@@ -281,7 +281,7 @@ class Moteur
             else{break;}
         }
         int k = chemin.size();
-        int l = unite.getPorteeDeplacement();
+        int l = unite.getType().getDeplacement();
         while(!chemin.isEmpty())
         {
             Point p = chemin.pop();
@@ -496,7 +496,7 @@ class Moteur
                 if(x>=0 && y>=0 && x<Slatch.partie.getLargeur() && y<Slatch.partie.getHauteur())
                 {
                     int d = t.d+Slatch.partie.getTerrain()[x][y].getCout(unite);
-                    if(d<=unite.getPorteeDeplacement() || !porteeComptee)
+                    if(d<=unite.getType().getDeplacement() || !porteeComptee)
                     {
                         if(d<tabDist[x][y] || tabDist[x][y]==-1)
                         {
@@ -542,7 +542,7 @@ class Moteur
         switch(pUnite){
             case "commando": 
                 if(vArgentJv>TypeUnite.COMMANDO.getPrix()){
-                    Unite vcommando = new Unite(pX,pY,vNumJoueur,20,TypeUnite.COMMANDO,TypeAttaque.FUSIL,40,1.0, TypeDeplacement.PIED);
+                    Unite vcommando = new Unite(pX,pY,vNumJoueur,TypeUnite.COMMANDO);
                     Slatch.partie.getJoueur(vNumJoueur).getListeUnite().add(vcommando);
                     Slatch.partie.getTerrain()[pX][pY].setUnite(vcommando);
                     vJoueur.setArgent(vArgentJv + TypeUnite.COMMANDO.getPrix());
@@ -553,7 +553,7 @@ class Moteur
                 break;
             case "tank":
                 if(vArgentJv>TypeUnite.TANK.getPrix()){
-                   Unite vtank = new Unite(pX,pY,vNumJoueur,65,TypeUnite.TANK,TypeAttaque.CANON,40,1.0, TypeDeplacement.CHENILLES);
+                   Unite vtank = new Unite(pX,pY,vNumJoueur,TypeUnite.TANK);
                    Slatch.partie.getJoueur(vNumJoueur).getListeUnite().add(vtank);
                    Slatch.partie.getTerrain()[pX][pY].setUnite(vtank);
                    vJoueur.setArgent(vArgentJv + TypeUnite.TANK.getPrix());
@@ -564,7 +564,7 @@ class Moteur
                 break;
             case "uml":
                 if(vArgentJv>TypeUnite.UML.getPrix()){
-                    Unite vuml = new Unite(pX,pY,vNumJoueur,30,TypeUnite.UML,TypeAttaque.MISSILE,50,1.0, TypeDeplacement.CHENILLES);
+                    Unite vuml = new Unite(pX,pY,vNumJoueur,TypeUnite.UML);
                     Slatch.partie.getJoueur(vNumJoueur).getListeUnite().add(vuml);
                     Slatch.partie.getTerrain()[pX][pY].setUnite(vuml);
                     vJoueur.setArgent(vArgentJv + TypeUnite.UML.getPrix());

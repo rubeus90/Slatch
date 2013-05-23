@@ -9,6 +9,8 @@ montagne:14:6:0
 montagne:15:6:0
 batiment:14:7:2
 batiment:15:7:1
+usine:14:4:1
+usine:15:4:2
 routevertical:11:5:0
 routevertical:11:4:0
 routedroitebas:11:3:0

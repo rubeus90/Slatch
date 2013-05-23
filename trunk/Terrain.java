@@ -19,20 +19,19 @@ import javax.imageio.ImageIO;
 public class Terrain extends Entite{
 
     private TypeTerrain aType;
+    private int aPVMax;
+    private int aPV;
     private Unite aUnite;
     
     /**
      * Constructeur des terrains et des batiment
      */
-    public Terrain(
-        final int pX,
-        final int pY,
-        final int pJoueur,
-        final int pPVMax,
-        final TypeTerrain pType) 
+    public Terrain(final int pX,final int pY,final int pJoueur,final TypeTerrain pType) 
     {
-        super(pX,pY,pJoueur,pPVMax);
+        super(pX,pY,pJoueur);
         aType = pType;
+        aPVMax = pType.getPVMax();
+        aPV = pType.getPVMax();
     }
     
     /**
@@ -44,12 +43,25 @@ public class Terrain extends Entite{
     }
     
     /**
+     * Retourner l'unite se trouvant sur le terrain
+     * @return aUnite
+     */
+    public int getPV(){
+        return aPV;
+    }
+    
+    public void setPV(final int pPV){
+        aPV=pPV;
+    }
+    
+    /**
      * Attribut une unite à un terrain
      * @return aUnite
      */
     public void setUnite(final Unite pUnite){
         aUnite = pUnite;
     }  
+    
     
     /**
      * Retourner le type de terrain
@@ -61,7 +73,7 @@ public class Terrain extends Entite{
     
     public int getCout(Unite unite)
     {
-        return this.aType.aCoutDeplacement.get(unite.getTypeDeplacement().getNom());
+        return this.aType.aCoutDeplacement.get(unite.getType().getTypeDeplacement().getNom());
     }
     
     @Override

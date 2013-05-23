@@ -7,23 +7,24 @@ import java.lang.Integer;
 import java.net.URL;
 
 public enum TypeTerrain {
-        FORET("foret", "arbres", "une foret", 2,false),
-        PLAINE("plaine", "plaine", "une plaine", 1,false),
-        MONTAGNE("montagne", "montagne", "une montagne", 3,false),
-        BATIMENT("batiment", "batiment", "une ville", 2,true),
+        FORET("foret", "arbres", "une foret", 2,0,false),
+        PLAINE("plaine", "plaine", "une plaine", 1,0,false),
+        MONTAGNE("montagne", "montagne", "une montagne", 3,0,false),
+        BATIMENT("batiment", "batiment", "une ville", 2,10,true),
+        USINE("usine","batiment","une usine",3,0,true),
         
         //Route
-        ROUTEHORIZONTAL("routehorizontal","routehorizontale","une route",1,false),
-        ROUTEVERTICAL("routevertical","routeverticale","une route",1,false),
-        VIRAGEDROITEBAS("viragedroitebas","routedroitebas","un virage",1,false),
-        VIRAGEDROITHAUT("viragedroithaut","routedroitehaut","un virage",1,false),
-        VIRAGEGAUCHEBAS("viragegauchebas","routegauchebas","un virage",1,false),
-        VIRAGEGAUCHEHAUT("viragegauchehaut","routegauchehaut","un virage",1,false),
-        ROUTETHAUT("routethaut","routeThaut","une route en t",1,false),
-        ROUTETBAS("routetbas","routeTbas","une route en t",1,false),
-        ROUTETDROITE("routetdroite","routeTdroite","une route en t",1,false),
-        ROUTETGAUCHE("routetgauche","routeTgauche","une route en t",1,false),
-        CARREFOUR("carrefour","routecroisement","un croissemtn",1,false);
+        ROUTEHORIZONTAL("routehorizontal","routehorizontale","une route",1,0,false),
+        ROUTEVERTICAL("routevertical","routeverticale","une route",1,0,false),
+        VIRAGEDROITEBAS("viragedroitebas","routedroitebas","un virage",1,0,false),
+        VIRAGEDROITHAUT("viragedroithaut","routedroitehaut","un virage",1,0,false),
+        VIRAGEGAUCHEBAS("viragegauchebas","routegauchebas","un virage",1,0,false),
+        VIRAGEGAUCHEHAUT("viragegauchehaut","routegauchehaut","un virage",1,0,false),
+        ROUTETHAUT("routethaut","routeThaut","une route en t",1,0,false),
+        ROUTETBAS("routetbas","routeTbas","une route en t",1,0,false),
+        ROUTETDROITE("routetdroite","routeTdroite","une route en t",1,0,false),
+        ROUTETGAUCHE("routetgauche","routeTgauche","une route en t",1,0,false),
+        CARREFOUR("carrefour","routecroisement","un croissemtn",1,0,false);
         
         
         private String aNom;
@@ -32,15 +33,17 @@ public enum TypeTerrain {
         private int aCouverture;
         public HashMap<String,Integer> aCoutDeplacement;
         static final int bonusCouverture = 10;
+        private int aPVMax;
         private boolean aDependanceJoueur;
         
        
-        TypeTerrain(final String pNom, final String pImage, final String pDescription, final int pCouverture,final boolean pDependance){
+        TypeTerrain(final String pNom, final String pImage, final String pDescription, final int pCouverture,final int pPVMax,final boolean pDependance){
                 aNom = pNom;
                 aDependanceJoueur = pDependance;
                 aImage = pImage;
                 aDescription = pDescription;
                 aCouverture = pCouverture;
+                aPVMax = pPVMax;
                 aCoutDeplacement = new HashMap<String,Integer> ();
                
                 Scanner fichier = null;
@@ -97,7 +100,19 @@ public enum TypeTerrain {
                 return aCouverture;
         }
         
+        /***
+         * Accesseur pour l'attributaDependanceJoueur
+         * @return aDependanceJoueur
+         */
         public boolean getDependance(){
             return aDependanceJoueur;
+        }
+        
+        /***
+         * Accesseur pour l'attribut aCouverture
+         * @return aCouverture
+         */
+        public int getPVMax(){
+            return aPVMax;
         }
 }

@@ -10,6 +10,9 @@ montagne,pied,30
 batiment,roues,7
 batiment,chenilles,7
 batiment,pied,10
+usine,pied,10
+usine,chenilles,7
+usine,roues,7
 routehorizontal,chenilles,7
 routehorizontal,pied,10
 routehorizontal,roues,7
