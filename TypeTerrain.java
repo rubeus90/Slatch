@@ -10,8 +10,8 @@ public enum TypeTerrain {
         FORET("foret", "arbres", "une foret", 2,0,false),
         PLAINE("plaine", "plaine", "une plaine", 1,0,false),
         MONTAGNE("montagne", "montagne", "une montagne", 3,0,false),
-        BATIMENT("batiment", "batiment", "une ville", 2,10,true),
-        USINE("usine","caserne","une usine",3,0,true),
+        BATIMENT("batiment", "batiment", "une ville", 2,20,true),
+        USINE("usine","caserne","une usine",3,20,true),
         
         //Route
         ROUTEHORIZONTAL("routehorizontal","routehorizontale","une route",1,0,false),
