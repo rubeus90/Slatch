@@ -10,9 +10,19 @@ public enum TypeTerrain {
         FORET("foret", "arbres", "une foret", 2,0,false),
         PLAINE("plaine", "plaine", "une plaine", 1,0,false),
         MONTAGNE("montagne", "montagne", "une montagne", 3,0,false),
-        EAU("eau","eau","de l'eau",1,0,false),
         BATIMENT("batiment", "batiment", "une ville", 2,30,true),
         USINE("usine","caserne","une usine",3,30,true),
+        
+        //eau
+        EAU("eau","eau","de l'eau",1,0,false),
+        RIVEBAS("rivebas","rivebas","de l'eau",1,0,false),
+        RIVEHAUT("rivehaut","rivehaut","de l'eau",1,0,false),
+        RIVEDROITE("rivedroite","rivedroite","de l'eau",1,0,false),
+        RIVEGAUCHE("rivegauche","rivegauche","de l'eau",1,0,false),
+        RIVEBASDROITE("rivebasdroite","rivebasdroite","de l'eau",1,0,false),
+        RIVEBASGAUCHE("rivebasgauche","rivebasgauche","de l'eau",1,0,false),
+        RIVEHAUTDROITE("rivehautdroite","rivehautdroite","de l'eau",1,0,false),
+        RIVEHAUTGAUCHE("rivehautgauche","rivehautgauche","de l'eau",1,0,false),
         
         //Route
         ROUTEHORIZONTAL("routehorizontal","routehorizontale","une route",1,0,false),
