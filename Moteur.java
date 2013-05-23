@@ -210,7 +210,11 @@ class Moteur
                     {
                         List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
                         if(!unite.dejaDeplacee()){items.add("Deplace");}
-                        if(cibleEnVue(unite) && !unite.dejaAttaque()){items.add("Attaque");}
+                        if(cibleEnVue(unite) && !unite.dejaAttaque())
+                        {
+                            if(unite.getType()!=TypeUnite.INGENIEUR){items.add("Attaque");}
+                            else{items.add("Soin");}
+                        }
                         if(!unite.dejaAttaque()&&(unite.getType()==TypeUnite.COMMANDO || unite.getType()==TypeUnite.DEMOLISSEUR) && (Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE) && Slatch.partie.getJoueurActuel()!=Slatch.partie.getTerrain()[pX][pY].getJoueur())
                         {
                                 items.add("Capture");
