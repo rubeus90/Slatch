@@ -118,7 +118,7 @@ public class Partie
                     aTerrain[vX][vY].setUnite(vcommando); 
                     break;
                /* case "demolisseur": 
-                    Unite demolisseur = new Unite(vX,vY,vJoueur,20,TypeUnite.DEMOLISSEUR,TypeAttaque.CANON,30,1.0, TypeDeplacement.PIED);
+                    Unite demolisseur = new Unite(vX,vY,vJoueur,TypeUnite.DEMOLISSEUR);
                     lUnite.add(demolisseur);
                     aTerrain[vX][vY].setUnite(demolisseur); 
                     break;*/
@@ -128,7 +128,7 @@ public class Partie
                     aTerrain[vX][vY].setUnite(vtank); 
                     break;
                 /*case "char":
-                    Unite vchar = new Unite(vX,vY,vJoueur,40,TypeUnite.CHAR,TypeAttaque.CANON,60,1.0, TypeDeplacement.CHENILLES);
+                    Unite vchar = new Unite(vX,vY,vJoueur,TypeUnite.CHAR);
                     lUnite.add(vchar);
                     aTerrain[vX][vY].setUnite(vchar); 
                     break;*/
@@ -138,7 +138,7 @@ public class Partie
                     aTerrain[vX][vY].setUnite(ingenieur); 
                     break;
                 /*case "distance":
-                    Unite distance = new Unite(vX,vY,vJoueur,35,TypeUnite.DISTANCE,TypeAttaque.CANON,50,1.0, TypeDeplacement.CHENILLES);
+                    Unite distance = new Unite(vX,vY,vJoueur,TypeUnite.DISTANCE);
                     lUnite.add(distance);
                     aTerrain[vX][vY].setUnite(distance); 
                     break;*/
