@@ -62,10 +62,31 @@ class Moteur
     { 
         if(pUnite.soigner(5)){            
            //On "grise" l'unité qui soigne
+           uniteA.addExperience(10);
            uniteA.attaque(true);
            uniteA.deplacee(true);
            uniteA=null; 
         }
+    }
+    
+    public boolean cibleSoignable(Unite unite)
+    {
+        int x;
+        int y;
+        for(Point p: voisins)
+        {
+            x=(int)p.getX();
+            y=(int)p.getY();
+            Unite u = Slatch.partie.getTerrain()[x+unite.getCoordonneeX()][y+unite.getCoordonneeY()].getUnite();
+            if(u!= null)
+            {
+                if(u.aBesoinDeSoins())
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     
     /**
@@ -220,7 +241,7 @@ class Moteur
                         {
                             if(unite.getType()!=TypeUnite.INGENIEUR){items.add("Attaque");}
                         }
-                        if(cibleEnVue(unite, true) && !unite.dejaAttaque() && unite.getType()==TypeUnite.INGENIEUR)
+                        if(cibleSoignable(unite) && !unite.dejaAttaque() && unite.getType()==TypeUnite.INGENIEUR)
                         {
                             items.add("Soin");
                         }
