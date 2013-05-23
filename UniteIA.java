@@ -8,9 +8,13 @@ public class UniteIA
         Slatch.moteur.deplacement(unite, pX, pY);
     }
     
-    public void decrypterObjectif(String bateau)
+    public void decrypterObjectif(Unite unite,String bateau)
     {
         String[] s = bateau.split(",");
         
+        if(s[0].equals("aller"))
+        {
+            seDirigerVers(unite,Integer.parseInt(s[1]),Integer.parseInt(s[2]));
+        }
     }
 }

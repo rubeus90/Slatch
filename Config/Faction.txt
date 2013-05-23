@@ -1,7 +1,10 @@
-HUMAINS:infanterie
-HUMAINS:vehicule
-ROBOTS:infanterie
-ROBOTS:vehicule
-ALIENS:infanterie
-ALIENS:vehicule
+HUMAINS:commando
+HUMAINS:tank
+HUMAINS:uml
+ROBOTS:commando
+ROBOTS:tank
+ROBOTS:uml
+ALIENS:commando
+ALIENS:tank
+ALIENS:uml
 
