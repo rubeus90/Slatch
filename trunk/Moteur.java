@@ -151,8 +151,8 @@ class Moteur
        
         switch(uniteA.getType())
         {
-            case COMMANDO: vBatiment.setPV(vBatiment.getPV()-10); break;
-            case DEMOLISSEUR: vBatiment.setPV(vBatiment.getPV()-15);
+            case COMMANDO: vBatiment.setPV(vBatiment.getPV()-(pourcentageVie(uniteA)/10)); break;
+            case DEMOLISSEUR: vBatiment.setPV(vBatiment.getPV()-(int)(15*(double)pourcentageVie(uniteA)/100));
         }
         
         if(vBatiment.getPV()<=0)
@@ -168,6 +168,10 @@ class Moteur
         uniteA=null;
     }
 
+    private int pourcentageVie(Unite unite)
+    {
+        return (int)((double)(unite.getPV())/(double)(unite.getPVMax())*100); 
+    }
     
     public boolean faireDegats(Unite cible, double degats) // retourne vrai si la cible meurt
     {
