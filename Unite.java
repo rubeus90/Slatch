@@ -124,6 +124,7 @@ public class Unite extends Entite
         return aPV;
     }
     
+    
      /**
      * Accesseur pour aPVMax
      * @return aPVMax
