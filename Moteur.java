@@ -75,14 +75,14 @@ class Moteur
         int y;
         for(Point p: voisins)
         {
-            x=(int)p.getX();
-            y=(int)p.getY();
+            x=(int)p.getX()+unite.getCoordonneeX();
+            y=(int)p.getY()+unite.getCoordonneeY();
             if(dansLesBords(x,y))
             {
-                Unite u = Slatch.partie.getTerrain()[x+unite.getCoordonneeX()][y+unite.getCoordonneeY()].getUnite();
+                Unite u = Slatch.partie.getTerrain()[x][y].getUnite();
                 if(u!= null)
                 {
-                    if(u.aBesoinDeSoins())
+                    if(u.aBesoinDeSoins() && unite.getJoueur()==u.getJoueur())
                     {
                         return true;
                     }
@@ -151,6 +151,7 @@ class Moteur
        
         switch(uniteA.getType())
         {
+            case INGENIEUR:
             case COMMANDO: vBatiment.setPV(vBatiment.getPV()-(int)(10.0*modificateurVie(uniteA))); break;
             case DEMOLISSEUR: vBatiment.setPV(vBatiment.getPV()-(int)(15.0*modificateurVie(uniteA)));
         }
@@ -261,7 +262,7 @@ class Moteur
                                 items.add("Soin");
                             }
                         }
-                        if(!unite.dejaAttaque()&&(unite.getType()==TypeUnite.COMMANDO || unite.getType()==TypeUnite.DEMOLISSEUR) && (Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE) && Slatch.partie.getJoueurActuel()!=Slatch.partie.getTerrain()[pX][pY].getJoueur())
+                        if(!unite.dejaAttaque()&&(unite.getType()==TypeUnite.COMMANDO || unite.getType()==TypeUnite.DEMOLISSEUR || unite.getType()==TypeUnite.INGENIEUR) && (Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE) && Slatch.partie.getJoueurActuel()!=Slatch.partie.getTerrain()[pX][pY].getJoueur())
                         {
                                 items.add("Capture");
                         }
