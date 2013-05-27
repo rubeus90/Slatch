@@ -6,11 +6,15 @@ public class UniteIA
     {
         Slatch.moteur.remplitPorteeDep(unite, false);
         Slatch.moteur.deplacement(unite, pX, pY);
-        
     }
     
-    private void attaquerUnite(final Unite pVictime){
-        Slatch.moteur.attaque(pVictime);
+    private void attaquerUnite(final Unite pUnite,final int pX,final int pY){
+        seDirigerVers(pUnite, pX, pY);
+        if(pUnite.getCoordonneeX()==pX && pUnite.getCoordonneeY()==pY){
+            Unite pVictime = Slatch.partie.getTerrain()[0][1].getUnite();
+            Slatch.moteur.setuniteA(pUnite);
+            Slatch.moteur.attaque(pVictime);
+        }
     }
     
     public void decrypterObjectif(final Unite unite,final String bateau)
@@ -22,7 +26,7 @@ public class UniteIA
             seDirigerVers(unite,Integer.parseInt(s[1]),Integer.parseInt(s[2]));
             break;
         case "attaquer" :
-            attaquerUnite(unite);
+            attaquerUnite(unite,Integer.parseInt(s[1]),Integer.parseInt(s[2]));
             break;
         }
     }

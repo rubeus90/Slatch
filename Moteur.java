@@ -314,7 +314,7 @@ class Moteur
     * @param pX abscisse de l'arrivee
     * @param pY ordonnee de l'arrivee
     */
-    public boolean deplacement(final Unite unite,final int pX,final int pY)
+    public void deplacement(final Unite unite,final int pX,final int pY)
     {
         boolean fini = false;
         int x = pX, y =pY;
@@ -360,7 +360,6 @@ class Moteur
             }
         }
         unite.deplacee(true);
-        return fini;
     }
     
     /**
@@ -601,7 +600,7 @@ class Moteur
             }
         }
         
-       // if(Slatch.partie.getJoueurActuel()==2){GrandeIA.test(l.get(0));} // ceci est un test et devra être remplacé rapidement par un appel à la Grande IA
+        if(Slatch.partie.getJoueurActuel()==2){GrandeIA.test(l.get(0));} // ceci est un test et devra être remplacé rapidement par un appel à la Grande IA
     }
     
     public boolean estAuJoueurActuel(final Unite unite)
@@ -635,5 +634,9 @@ class Moteur
     {
          Slatch.ihm.getPanel().repaint();
          Slatch.ihm.getpanelinfo().repaint();
+    }
+    
+    public void setuniteA(Unite pUnite){
+        uniteA = pUnite;
     }
 }
