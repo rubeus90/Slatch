@@ -40,7 +40,7 @@ public class GrandeIA
                 yobj = y+(int)p.getY();
                 if(Slatch.partie.getTerrain()[xobj][yobj].getUnite()==null && Slatch.partie.getTerrain()[xobj][yobj].getCout(unite)<unite.getDeplacement())
                 {
-                    uia.decrypterObjectif(new Objectif("attaquer", null, new Point(x,y), unite, null));
+                    uia.decrypterObjectif(new Objectif("attaquer", null, new Point(x,y), unite));
                     break;
                 }
             }
