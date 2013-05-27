@@ -13,7 +13,7 @@ public class Slatch {
     public static Partie partie;
     public static Moteur moteur;
     public static HashMap<String,Image> aImages; // Se trouvera dans Le moteur du jeu quand il y sera avec tout les load
-    public static CreationMaps maps;
+    //public static CreationMaps maps;
     
     /**
      * @param args
@@ -33,7 +33,7 @@ public class Slatch {
         moteur = new Moteur();
         ihm = new IHM_NEW();
         
-        maps = new CreationMaps();
+       // maps = new CreationMaps();
     }
     
     private void loadImage()

@@ -353,7 +353,11 @@ public class Partie
         
         ListeJoueur.get(aJoueurActuel).benefTour(aRevenuBatiment);            
     }
-
+    
+    public void gagner(){
+       //A completer 
+    }
+    
     /**********
      * ACCESSEURS ET MUTATEURS
      *********/
