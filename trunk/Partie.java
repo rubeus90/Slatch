@@ -36,7 +36,7 @@ public class Partie
             e.printStackTrace();
         }        
         
-        chargementMap(false);
+        initMap(false);
         aMap.close();
         
         //Dans le cas ou le fichier map n'existe pas
@@ -44,6 +44,7 @@ public class Partie
         aTourMax = pTourMax;
         aTour = 1;
         aRevenuBatiment = pRevenuBatiment;
+        ListeJoueur.get(1).benefTour(aRevenuBatiment);
     }
     
     /**
@@ -57,7 +58,7 @@ public class Partie
             e.printStackTrace();
         }
         
-        chargementMap(true);
+        initMap(true);
         aMap.close();
     }
     
@@ -65,7 +66,7 @@ public class Partie
      * Methode qui permet le chargement d'une carte depuis un fichier texte et créé les Joueurs
      * iniMap pour nouvelle partie
      */
-    private void chargementMap(final boolean isCharged){
+    private void initMap(final boolean isCharged){
         
         aLargeur = Integer.parseInt(aMap.nextLine());
         aHauteur = Integer.parseInt(aMap.nextLine());
@@ -212,9 +213,6 @@ public class Partie
             if(isCharged)
                 ListeJoueur.get(i).setArgent(vArgent[i]);
         }
-        
-        if(!isCharged)
-            ListeJoueur.get(1).benefTour(aRevenuBatiment);
         
         for(Unite vUniteActuel : lUnite){
             int vJ = vUniteActuel.getJoueur();
