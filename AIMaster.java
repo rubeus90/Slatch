@@ -12,7 +12,9 @@ public class AIMaster
     {
         
         List<Unite> l = Slatch.partie.getJoueur(joueur).getListeUnite();
+        GrandeIA.acheterUnite();
         Iterator<Unite> i = l.iterator();
+        
         while(i.hasNext())
         {
             Unite u = i.next();
