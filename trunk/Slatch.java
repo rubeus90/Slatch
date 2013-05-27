@@ -118,6 +118,14 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/noir80.png"));
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("noir80",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/yangattaque.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("yangattaque",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/yindeplacement.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("yindeplacement",image);
 
         }
         catch (IOException e) {
