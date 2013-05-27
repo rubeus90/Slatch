@@ -8,17 +8,16 @@ public class UniteIA
         Slatch.moteur.deplacement((Unite)unite, (int)point.getX(),(int)point.getY());
     }
     
-    private void attaquerUnite(final Entite pUnite,final Point point){
+    private void attaquerUnite(final Entite pUnite,final Point point,final Entite pCible){
         seDirigerVers((Unite)pUnite, point);
         if(pUnite.getCoordonneeX()==(int)point.getX() && pUnite.getCoordonneeY()==(int)point.getY()){
-            Unite pVictime = Slatch.partie.getTerrain()[0][1].getUnite();
             Slatch.moteur.setuniteA((Unite)pUnite);
-            Slatch.moteur.attaque((Unite)pVictime);
+            Slatch.moteur.attaque((Unite)pCible);
         }
     }
     
     private void capture(final Entite pUnite,final Point point){
-        seDirigerVers((Unite)pUnite, point);
+        if(!((Unite)pUnite).seSitue(point)){seDirigerVers((Unite)pUnite, point);}
         if(pUnite.getCoordonneeX()==(int)point.getX() && pUnite.getCoordonneeY()==(int)point.getY()){
             Slatch.moteur.capture((int)point.getX(),(int)point.getY());
         }
@@ -38,16 +37,16 @@ public class UniteIA
     {
         switch(objectif.getMotPrincipal()){
         case "aller" :
-            seDirigerVers(objectif.getExecutant(),objectif.getCoordonnee());
+             seDirigerVers(objectif.getExecutant(),objectif.getCoordonnee());
             break;
         case "attaquer" :
-            attaquerUnite(objectif.getExecutant(),objectif.getCoordonnee());
+             attaquerUnite(objectif.getExecutant(),objectif.getCoordonnee(),objectif.getCible());
             break;
         case "capture" :
-            capture(objectif.getExecutant(),objectif.getCoordonnee());
+             capture(objectif.getExecutant(),objectif.getCoordonnee());
             break;
         case "acheter" :
-            achat(objectif.getCoordonnee(),objectif.getMotSecondaire());
+             achat(objectif.getCoordonnee(),objectif.getMotSecondaire());
             break;
         }
     }
