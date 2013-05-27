@@ -335,6 +335,7 @@ class Moteur
                 else
                 {
                     chemin.push(p);
+                    unite.deplacee(true);
                 }
             }
             else{break;}
@@ -359,7 +360,6 @@ class Moteur
                 e.printStackTrace();
             }
         }
-        unite.deplacee(true);
     }
     
     /**
@@ -498,8 +498,22 @@ class Moteur
     
     public void remplitPorteeDep(final Unite unite,final boolean bool)
     {
-        this.initialiseTabDist(unite.getCoordonneeX(), unite.getCoordonneeY());
+        this.initialiseTabDist(unite);
         this.algoDeplacement(unite, bool);
+        
+        for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        {
+            for(int j=0; j<Slatch.partie.getHauteur(); j++)
+            {
+                if(Slatch.partie.getTerrain()[i][j].getUnite()!=null)
+                {
+                    if(Slatch.partie.getTerrain()[i][j].getUnite().getJoueur() == unite.getJoueur())
+                    {
+                            tabDist[i][j] = -2;
+                    }
+                }
+            }
+        }
     }
     
     /**
@@ -513,13 +527,6 @@ class Moteur
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
             {
-                if(Slatch.partie.getTerrain()[i][j].getUnite()!=null)
-                {
-                    if(Slatch.partie.getTerrain()[i][j].getUnite().getJoueur() == Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getUnite().getJoueur())
-                    {
-                            tabDist[i][j] = -2;
-                    }
-                }
                 if(tabDist[i][j]>0)
                 {
                     Slatch.partie.getTerrain()[i][j].setSurbrillance(true);
@@ -532,7 +539,7 @@ class Moteur
     /**
      * Initialise tabDist afin d'utiliser algoDeplacement dans des conditions optimales
      */
-    private void initialiseTabDist(final int x,final int y)
+    private void initialiseTabDist(final Unite unite)
     {
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
@@ -540,7 +547,7 @@ class Moteur
             {
                 if(Slatch.partie.getTerrain()[i][j].getUnite()!=null)  // quand on a déjà une unité sur la case, on ne peut pas y accéder
                 {
-                    if(Slatch.partie.getTerrain()[i][j].getUnite().getJoueur() != Slatch.partie.getTerrain()[x][y].getUnite().getJoueur())
+                    if(Slatch.partie.getTerrain()[i][j].getUnite().getJoueur() != unite.getJoueur())
                     {
                         tabDist[i][j] = -2;
                     }
@@ -553,7 +560,7 @@ class Moteur
                 //pred[i][j]=null;
             }
         }
-        tabDist[x][y]=-2;
+        tabDist[unite.getCoordonneeX()][unite.getCoordonneeY()]=-2;
         pred = new Point[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
     }
     
@@ -600,7 +607,14 @@ class Moteur
             }
         }
         
-        if(Slatch.partie.getJoueurActuel()==2){GrandeIA.test(l.get(0));} // ceci est un test et devra être remplacé rapidement par un appel à la Grande IA
+        if(Slatch.partie.getJoueurActuel()==2)
+        {
+            for(Unite u: l)
+            {
+                GrandeIA.test2(u);
+            }
+            passeTour();
+        } // ceci est un test et devra être remplacé rapidement par un appel à la Grande IA
     }
     
     public boolean estAuJoueurActuel(final Unite unite)
@@ -630,7 +644,7 @@ class Moteur
        
     }
     
-    private boolean dansLesBords(final int x,final int y)
+    static boolean dansLesBords(final int x,final int y)
     {
         return(x>=0 && y>=0 && x<Slatch.partie.getLargeur() && y<Slatch.partie.getHauteur());
     }
