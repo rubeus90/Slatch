@@ -314,7 +314,7 @@ class Moteur
     * @param pX abscisse de l'arrivee
     * @param pY ordonnee de l'arrivee
     */
-    public void deplacement(final Unite unite,final int pX,final int pY)
+    /*public void deplacement(final Unite unite,final int pX,final int pY)
     {
         boolean fini = false;
         int x = pX, y =pY;
@@ -340,9 +340,10 @@ class Moteur
             }
             else{break;}
         }
+        
         int k = chemin.size();
         int l = unite.getType().getDeplacement();
-        Unite mem = null; int i=-1,j=-1;
+        Unite mem = null;
         while(!chemin.isEmpty())
         {
             Point p = chemin.pop();
@@ -350,6 +351,7 @@ class Moteur
             {
                 break;
             }
+            
             mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
 
             try{
@@ -360,6 +362,86 @@ class Moteur
                 e.printStackTrace();
             }
         }
+    }*/
+    
+    
+    /**
+    * permet de déplacer une unité en fonction du chemin passé en paramètre
+    * @param unite unite a deplacer
+    * @param pX abscisse de l'arrivee
+    * @param pY ordonnee de l'arrivee
+    */
+    public void deplacement(final Unite unite,final int pX,final int pY)
+    {
+        boolean fini = false;
+        int x = pX, y =pY;
+        List<Point> chemin = new ArrayList<Point>();
+        Stack<Point> stack = new Stack<Point>();
+        if(pred[x][y]!=null){chemin.add(new Point(pX,pY));}
+        while(!fini)
+        {
+            Point p = pred[x][y];
+            if(p!=null)
+            {
+                x=(int)p.getX();
+                y=(int)p.getY();
+                if(unite.getCoordonneeX()==x && unite.getCoordonneeY()==y)
+                {
+                    fini = true;
+                }
+                else
+                {
+                    chemin.add(p);
+                    unite.deplacee(true);
+                }
+            }
+            else{break;}
+        }
+        
+        while(true)
+        {
+            if(unite.getType().getDeplacement()-tabDist[(int)chemin.get(0).getX()][(int)chemin.get(0).getY()]<0)
+            {
+                chemin.remove(0);
+            }
+            else
+            {
+                while(!chemin.isEmpty())
+                {
+                    if(Slatch.partie.getTerrain()[(int)chemin.get(0).getX()][(int)chemin.get(0).getY()].getUnite()==null){break;}
+                    chemin.remove(0);
+                }
+                break;
+            }
+        }
+        
+        for(Point p: chemin)
+        {
+            stack.push(p);
+        }
+        
+        int k = chemin.size();
+        int l = unite.getType().getDeplacement();
+        Unite mem = null;
+        while(!stack.isEmpty())
+        {
+            Point p = stack.pop();
+            if((l-=Slatch.partie.getTerrain()[(int)p.getX()][(int)p.getY()].getCout(unite))<0)
+            {
+                break;
+            }
+            
+            mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
+
+            try{
+                Thread.sleep(250/k+50);
+            }
+            catch(InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        
     }
     
     /**
