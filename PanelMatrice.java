@@ -383,6 +383,9 @@ public class PanelMatrice extends JPanel
         aShopHautGauche_Ypx=0;
         aShopBasDroite_Xpx=0;
         aShopBasDroite_Ypx=0;
+        
+        aTabAchat= new HashMap<Integer,TypeUnite> ();
+        
         menuShop=false;
         
         aListeShop.clear();
