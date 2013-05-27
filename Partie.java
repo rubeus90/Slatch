@@ -51,7 +51,7 @@ public class Partie
         ListeJoueur.get(1).benefTour(aRevenuBatiment);
         
         
-		sauvegardePartie();
+        sauvegardePartie();
     }
     
     /**
@@ -84,7 +84,7 @@ public class Partie
         aRevenuBatiment = Integer.parseInt(aMap.nextLine());
         
         int[] vArgent =new int[aNbrJoueur+1];
-        for(int i=1;i<=aNbrJoueur;i++){
+        for(int i=1;i<=aNbrJoueur;  i++){
             vArgent[i]=Integer.parseInt(aMap.nextLine());
         }
   
@@ -152,10 +152,10 @@ public class Partie
                 case "rivehautgauche" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEHAUTGAUCHE); break;
                 case "routehorizontal": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTEHORIZONTAL); break;
                 case "routevertical": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTEVERTICAL); break;
-                case "routedroitebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEDROITEBAS); break;
-                case "routedroitehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEDROITHAUT); break;
-                case "routegauchebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEGAUCHEBAS); break;
-                case "routegauchehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEGAUCHEHAUT); break;
+                case "viragedroitebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEDROITEBAS); break;
+                case "viragedroitehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEDROITEHAUT); break;
+                case "viragegauchebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEGAUCHEBAS); break;
+                case "viragegauchehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEGAUCHEHAUT); break;
                 case "routethaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETHAUT); break;
                 case "routetbas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETBAS); break;
                 case "routetdroite": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETDROITE); break;
@@ -170,27 +170,27 @@ public class Partie
                     vBatimentJoueur[vJoueur]+=1;
                     lUsine.add(aTerrain[vX][vY]);
                     break;
-                case "commando": 
+                case "Commando": 
                     Unite vcommando = new Unite(vX,vY,vJoueur,TypeUnite.COMMANDO,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
                     lUnite.add(vcommando);
                     aTerrain[vX][vY].setUnite(vcommando); 
                     break;
-                case "demolisseur": 
+                case "Demolisseur": 
                     Unite demolisseur = new Unite(vX,vY,vJoueur,TypeUnite.DEMOLISSEUR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
                     lUnite.add(demolisseur);
                     aTerrain[vX][vY].setUnite(demolisseur); 
                     break;
-                case "tank":
+                case "Tank":
                     Unite vtank = new Unite(vX,vY,vJoueur,TypeUnite.TANK,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
                     lUnite.add(vtank);
                     aTerrain[vX][vY].setUnite(vtank); 
                     break;
-                case "char":
+                case "Char":
                     Unite vchar = new Unite(vX,vY,vJoueur,TypeUnite.CHAR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
                     lUnite.add(vchar);
                     aTerrain[vX][vY].setUnite(vchar); 
                     break;
-                case "ingenieur":
+                case "Ingenieur":
                     Unite ingenieur = new Unite(vX,vY,vJoueur,TypeUnite.INGENIEUR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
                     lUnite.add(ingenieur);
                     aTerrain[vX][vY].setUnite(ingenieur); 
@@ -200,7 +200,7 @@ public class Partie
                     lUnite.add(distance);
                     aTerrain[vX][vY].setUnite(distance); 
                     break;*/
-                case "uml":
+                case "Uml":
                     Unite uml = new Unite(vX,vY,vJoueur,TypeUnite.UML,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
                     lUnite.add(uml);
                     aTerrain[vX][vY].setUnite(uml); 
@@ -358,84 +358,84 @@ public class Partie
     }
     
     public void sauvegardePartie() {
-		try {
-			File file = new File(getClass().getClassLoader().getResource("Maps/sauvegarde.txt").toURI());
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			fw.write("");
-			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(""+ aLargeur);
-			bw.newLine();
-			bw.write(""+ aHauteur);
-			bw.newLine();
-			bw.write(""+ aNbrJoueur);
-			bw.newLine();
-			bw.write(""+ aJoueurActuel);
-			bw.newLine();
-			bw.write(""+ aTourMax);
-			bw.newLine();
-			bw.write(""+ aTour);
-			bw.newLine();
-			bw.write(""+ aRevenuBatiment);
-			bw.newLine();
-			for(Joueur joueur: ListeJoueur){
-				bw.write(joueur.getArgent());
-				bw.newLine();
-			}
-			
-			for(int i = 0; i<aLargeur; i++){
-				for(int j = 0; j<aHauteur; j++){
-					Terrain terrain = aTerrain[i][j];
-					Unite unite = terrain.getUnite();
-					String string = "";
-					string += terrain.getType().getNom()+ ":";
-					string += i+ ":";
-					string += j+ ":";
-					string += terrain.getJoueur() + ":";
-					string += "0:0:0:0:0";
-					bw.write(string);
-					
-					bw.newLine();
-					if(terrain.getUnite() != null){
-						String string2 = "";
-						string2 += terrain.getUnite().getType().getNom()+ ":";
-						string2 += i+ ":";
-						string2 += j+ ":";
-						string2 += terrain.getUnite().getJoueur() + ":";						
-						string2 += terrain.getUnite().getPV()+ ":";
-						string2 += terrain.getUnite().getExperience()+ ":";
-						string2 += terrain.getUnite().getLvl()+ ":";
-						if(terrain.getUnite().dejaAttaque())
-							string2 += "1"+ ":";
-						else
-							string2 += "0"+ ":";
-						
-						if(terrain.getUnite().dejaDeplacee())
-							string2 += "0"+ ":";
-						else
-							string2 += "1"+ ":";
-						bw.write(string2);
-						bw.newLine();
-					}
-				}
-			}
-			
-			bw.close();
-		} catch (URISyntaxException | IOException e) {
-			System.out.println("Probleme d'ecriture dans le fichier sauvegarde");
-			e.printStackTrace();
-		}
-		
-		/*
-		 * x
-		 * y
-		 * int joueur
-		 * typeterrain
-		 * pv actuelle (0)
-		 * xp 0)
-		 * lvl (0)
-		 * boolean deja attaquer (0)
-		 * boolean deja deplace (0)
-		 * */
+        try {
+            File file = new File(getClass().getClassLoader().getResource("Maps/sauvegarde.txt").toURI());
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            fw.write("");
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(""+ aLargeur);
+            bw.newLine();
+            bw.write(""+ aHauteur);
+            bw.newLine();
+            bw.write(""+ aNbrJoueur);
+            bw.newLine();
+            bw.write(""+ aJoueurActuel);
+            bw.newLine();
+            bw.write(""+ aTourMax);
+            bw.newLine();
+            bw.write(""+ aTour);
+            bw.newLine();
+            bw.write(""+ aRevenuBatiment);
+            bw.newLine();
+            for(Joueur joueur: ListeJoueur){
+                bw.write(joueur.getArgent());
+                bw.newLine();
+            }
+            
+            for(int i = 0; i<aLargeur; i++){
+                for(int j = 0; j<aHauteur; j++){
+                    Terrain terrain = aTerrain[i][j];
+                    Unite unite = terrain.getUnite();
+                    String string = "";
+                    string += terrain.getType().getNom()+ ":";
+                    string += i+ ":";
+                    string += j+ ":";
+                    string += terrain.getJoueur() + ":";
+                    string += "0:0:0:0:0";
+                    bw.write(string);
+                    
+                    bw.newLine();
+                    if(terrain.getUnite() != null){
+                        String string2 = "";
+                        string2 += terrain.getUnite().getType().getNom()+ ":";
+                        string2 += i+ ":";
+                        string2 += j+ ":";
+                        string2 += terrain.getUnite().getJoueur() + ":";                        
+                        string2 += terrain.getUnite().getPV()+ ":";
+                        string2 += terrain.getUnite().getExperience()+ ":";
+                        string2 += terrain.getUnite().getLvl()+ ":";
+                        if(terrain.getUnite().dejaAttaque())
+                            string2 += "1"+ ":";
+                        else
+                            string2 += "0"+ ":";
+                        
+                        if(terrain.getUnite().dejaDeplacee())
+                            string2 += "0"+ ":";
+                        else
+                            string2 += "1"+ ":";
+                        bw.write(string2);
+                        bw.newLine();
+                    }
+                }
+            }
+            
+            bw.close();
+        } catch (URISyntaxException | IOException e) {
+            System.out.println("Probleme d'ecriture dans le fichier sauvegarde");
+            e.printStackTrace();
+        }
+        
+        /*
+         * x
+         * y
+         * int joueur
+         * typeterrain
+         * pv actuelle (0)
+         * xp 0)
+         * lvl (0)
+         * boolean deja attaquer (0)
+         * boolean deja deplace (0)
+         * */
     }
    
 }

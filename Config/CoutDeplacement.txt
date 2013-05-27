@@ -49,9 +49,9 @@ routevertical,roues,7
 viragedroitebas,chenilles,7
 viragedroitebas,pied,10
 viragedroitebas,roues,7
-viragedroithaut,chenilles,7
-viragedroithaut,pied,10
-viragedroithaut,roues,7
+viragedroitehaut,chenilles,7
+viragedroitehaut,pied,10
+viragedroitehaut,roues,7
 viragegauchebas,chenilles,7
 viragegauchebas,pied,10
 viragegauchebas,roues,7

@@ -28,7 +28,7 @@ public enum TypeTerrain {
         ROUTEHORIZONTAL("routehorizontal","routehorizontale","d'ne route",1,0,false),
         ROUTEVERTICAL("routevertical","routeverticale","d'une route",1,0,false),
         VIRAGEDROITEBAS("viragedroitebas","routedroitebas","d'un virage",1,0,false),
-        VIRAGEDROITHAUT("viragedroithaut","routedroitehaut","d'un virage",1,0,false),
+        VIRAGEDROITEHAUT("viragedroitehaut","routedroitehaut","d'un virage",1,0,false),
         VIRAGEGAUCHEBAS("viragegauchebas","routegauchebas","d'un virage",1,0,false),
         VIRAGEGAUCHEHAUT("viragegauchehaut","routegauchehaut","d'un virage",1,0,false),
         ROUTETHAUT("routethaut","routeThaut","d'une route",1,0,false),
