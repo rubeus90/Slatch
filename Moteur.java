@@ -314,7 +314,7 @@ class Moteur
     * @param pX abscisse de l'arrivee
     * @param pY ordonnee de l'arrivee
     */
-    public void deplacement(final Unite unite,final int pX,final int pY)
+    public boolean deplacement(final Unite unite,final int pX,final int pY)
     {
         boolean fini = false;
         int x = pX, y =pY;
@@ -360,6 +360,7 @@ class Moteur
             }
         }
         unite.deplacee(true);
+        return fini;
     }
     
     /**
