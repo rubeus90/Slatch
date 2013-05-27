@@ -358,26 +358,24 @@ public class Partie
     }
     
     public void sauvegardePartie() {
-    	System.out.println("coucou hahah");
 		try {
-			File file = new File(getClass().getClassLoader().getResource("Config/sauvegarde.txt").toURI());
+			File file = new File(getClass().getClassLoader().getResource("Maps/sauvegarde.txt").toURI());
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			fw.write("");
 			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write("coucou");
-			System.out.println("Je viens d'ecrire");
-//			bw.write(""+ aLargeur);
-//			bw.newLine();
-//			bw.write(""+ aHauteur);
-//			bw.newLine();
-//			bw.write(""+ aNbrJoueur);
-//			bw.newLine();
-//			bw.write(""+ aJoueurActuel);
-//			bw.newLine();
-//			bw.write(""+ aTourMax);
-//			bw.newLine();
-//			bw.write(""+ aTour);
-//			bw.newLine();
-//			bw.write(""+ aRevenuBatiment);
+			bw.write(""+ aLargeur);
+			bw.newLine();
+			bw.write(""+ aHauteur);
+			bw.newLine();
+			bw.write(""+ aNbrJoueur);
+			bw.newLine();
+			bw.write(""+ aJoueurActuel);
+			bw.newLine();
+			bw.write(""+ aTourMax);
+			bw.newLine();
+			bw.write(""+ aTour);
+			bw.newLine();
+			bw.write(""+ aRevenuBatiment);
 			bw.close();
 		} catch (URISyntaxException | IOException e) {
 			System.out.println("Putain ca marche pas");
