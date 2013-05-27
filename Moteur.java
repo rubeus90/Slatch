@@ -689,14 +689,10 @@ class Moteur
             }
         }
         
-        if(Slatch.partie.getJoueurActuel()==2)
+        if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
         {
-            for(Unite u: l)
-            {
-                GrandeIA.test2(u);
-            }
-            passeTour();
-        } // ceci est un test et devra être remplacé rapidement par un appel à la Grande IA
+            AIMaster.joueTour(Slatch.partie.getJoueurActuel());
+        }
     }
     
     public boolean estAuJoueurActuel(final Unite unite)
