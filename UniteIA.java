@@ -2,31 +2,29 @@ import java.awt.Point;
 import java.util.Stack;
 public class UniteIA
 {
-    private void seDirigerVers(final Unite unite,final int pX,final int pY)
+    private void seDirigerVers(final Entite unite,final Point point)
     {
-        Slatch.moteur.remplitPorteeDep(unite, false);
-        Slatch.moteur.deplacement(unite, pX, pY);
+        Slatch.moteur.remplitPorteeDep((Unite)unite, false);
+        Slatch.moteur.deplacement((Unite)unite, (int)point.getX(),(int)point.getY());
     }
     
-    private void attaquerUnite(final Unite pUnite,final int pX,final int pY){
-        seDirigerVers(pUnite, pX, pY);
-        if(pUnite.getCoordonneeX()==pX && pUnite.getCoordonneeY()==pY){
+    private void attaquerUnite(final Entite pUnite,final Point point){
+        seDirigerVers((Unite)pUnite, point);
+        if(pUnite.getCoordonneeX()==(int)point.getX() && pUnite.getCoordonneeY()==(int)point.getY()){
             Unite pVictime = Slatch.partie.getTerrain()[0][1].getUnite();
-            Slatch.moteur.setuniteA(pUnite);
-            Slatch.moteur.attaque(pVictime);
+            Slatch.moteur.setuniteA((Unite)pUnite);
+            Slatch.moteur.attaque((Unite)pVictime);
         }
     }
     
-    public void decrypterObjectif(final Unite unite,final String bateau)
+    public void decrypterObjectif(final Objectif objectif)
     {
-        String[] s = bateau.split(",");
-        
-        switch(s[0]){
+        switch(objectif.getMotPrincipal()){
         case "aller" :
-            seDirigerVers(unite,Integer.parseInt(s[1]),Integer.parseInt(s[2]));
+            seDirigerVers(objectif.getExecutant(),objectif.getCoordonnee());
             break;
         case "attaquer" :
-            attaquerUnite(unite,Integer.parseInt(s[1]),Integer.parseInt(s[2]));
+            attaquerUnite(objectif.getExecutant(),objectif.getCoordonnee());
             break;
         }
     }

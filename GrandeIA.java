@@ -1,3 +1,4 @@
+import java.awt.Point;
 /**
  * Write a description of class GrandeIA here.
  * 
@@ -13,7 +14,7 @@ public class GrandeIA
         int x =1, y =1;
         if(Slatch.partie.getTerrain()[x][y].getUnite()==null)
         {
-            uia.decrypterObjectif(unite, "attaquer,"+x+","+y);
+            uia.decrypterObjectif(new Objectif("aller",null,new Point(x,y),unite,null));
         }
         Slatch.moteur.passeTour();
     }
