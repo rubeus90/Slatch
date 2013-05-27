@@ -388,30 +388,32 @@ public class Partie
                 for(int j = 0; j<aHauteur; j++){
                     Terrain terrain = aTerrain[i][j];
                     Unite unite = terrain.getUnite();
-                    String string = "";
-                    string += terrain.getType().getNom()+ ":";
-                    string += i+ ":";
-                    string += j+ ":";
-                    string += terrain.getJoueur() + ":";
-                    string += "0:0:0:0:0";
-                    bw.write(string);
+                    if(terrain.getType().getNom() != "plaine"){
+                    	String string = "";
+                        string += terrain.getType().getNom()+ ":";
+                        string += i+ ":";
+                        string += j+ ":";
+                        string += terrain.getJoueur() + ":";
+                        string += "0:0:0:0:0";
+                        bw.write(string);                    
+                        bw.newLine();
+                    }                    
                     
-                    bw.newLine();
                     if(terrain.getUnite() != null){
                         String string2 = "";
-                        string2 += terrain.getUnite().getType().getNom()+ ":";
+                        string2 += unite.getType().getNom()+ ":";
                         string2 += i+ ":";
                         string2 += j+ ":";
-                        string2 += terrain.getUnite().getJoueur() + ":";                        
-                        string2 += terrain.getUnite().getPV()+ ":";
-                        string2 += terrain.getUnite().getExperience()+ ":";
-                        string2 += terrain.getUnite().getLvl()+ ":";
-                        if(terrain.getUnite().dejaAttaque())
+                        string2 += unite.getJoueur() + ":";                        
+                        string2 += unite.getPV()+ ":";
+                        string2 += unite.getExperience()+ ":";
+                        string2 += unite.getLvl()+ ":";
+                        if(unite.dejaAttaque())
                             string2 += "1"+ ":";
                         else
                             string2 += "0"+ ":";
                         
-                        if(terrain.getUnite().dejaDeplacee())
+                        if(unite.dejaDeplacee())
                             string2 += "0"+ ":";
                         else
                             string2 += "1"+ ":";
