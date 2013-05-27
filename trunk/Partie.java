@@ -395,6 +395,7 @@ public class Partie
 						string += terrain.getUnite().dejaDeplacee();
 					}
 					bw.write(string);
+					bw.newLine();
 				}
 			}
 			
