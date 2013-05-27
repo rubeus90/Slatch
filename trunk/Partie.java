@@ -414,9 +414,9 @@ public class Partie
                             string2 += "0"+ ":";
                         
                         if(unite.dejaDeplacee())
-                            string2 += "0"+ ":";
+                            string2 += "0";
                         else
-                            string2 += "1"+ ":";
+                            string2 += "1";
                         bw.write(string2);
                         bw.newLine();
                     }
