@@ -233,7 +233,8 @@ public class Partie
         else
             aJoueurActuel++;
         
-        ListeJoueur.get(aJoueurActuel).benefTour(aRevenuBatiment);            
+        ListeJoueur.get(aJoueurActuel).benefTour(aRevenuBatiment);
+        Slatch.ihm.getpanelinfo().paintImmediately(0,0,Slatch.ihm.getpanelinfo().getWidth(),Slatch.ihm.getpanelinfo().getHeight());
     }
     
     public void gagner(){
