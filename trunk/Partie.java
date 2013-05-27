@@ -30,20 +30,20 @@ public class Partie
      */
     public Partie(final int pRevenuBatiment,final int pTourMax, final String pMap)
     {
-        //Dans le cas ou le fichier map n'existe pas
-        aJoueurActuel= 1;
-        aTourMax = pTourMax;
-        aTour = 1;
-        aRevenuBatiment = pRevenuBatiment;
-        
         try {
             aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
         } catch (IOException e) {
             e.printStackTrace();
         }        
         
-        initMap();
+        chargementMap(false);
         aMap.close();
+        
+        //Dans le cas ou le fichier map n'existe pas
+        aJoueurActuel= 1;
+        aTourMax = pTourMax;
+        aTour = 1;
+        aRevenuBatiment = pRevenuBatiment;
     }
     
     /**
@@ -57,8 +57,7 @@ public class Partie
             e.printStackTrace();
         }
         
-        chargementMap();
-        
+        chargementMap(true);
         aMap.close();
     }
     
@@ -66,136 +65,7 @@ public class Partie
      * Methode qui permet le chargement d'une carte depuis un fichier texte et créé les Joueurs
      * iniMap pour nouvelle partie
      */
-    private void initMap(){
-        aLargeur = Integer.parseInt(aMap.nextLine());
-        aHauteur = Integer.parseInt(aMap.nextLine());
-        aNbrJoueur = Integer.parseInt(aMap.nextLine());
-        
-        aTerrain = new Terrain[aLargeur][aHauteur];
-        
-        //On rempli la carte de plaine 
-        for(int i=0; i<aLargeur; i++){
-            for(int j=0; j<aHauteur; j++){
-                aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
-            }
-        }       
-        
-        int vX, vY, vJoueur;
-        String vId;
-        String ligne = "";
-        String tab[] = null;
-
-        int vBatimentJoueur[] = new int[aNbrJoueur+1]; //aNbrJoueur +1 pour prendre en compte le jouer Neutre
-
-        //On initialise le tableau de batiment à 0 pour chaque joueur
-        for(int i=0; i<aNbrJoueur; i++){
-            vBatimentJoueur[i] = 0;
-        }
-        
-        List<Unite> lUnite = new ArrayList<Unite>();
-        
-        //On lit le fichier et on l'analyse
-        while(aMap.hasNextLine()){
-            ligne = aMap.nextLine();
-            tab = ligne.split(":");
-            vId = tab[0];
-            vX = Integer.parseInt(tab[1]);
-            vY = Integer.parseInt(tab[2]);   
-            vJoueur = Integer.parseInt(tab[3]);
-            
-
-            switch(vId){
-                case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.FORET); break;
-                case "montagne": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.MONTAGNE); break;
-                case "eau" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.EAU); break;
-                case "rivebas" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEBAS); break;
-                case "rivehaut" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEHAUT); break;
-                case "rivedroite" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEDROITE); break;
-                case "rivegauche" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEGAUCHE); break;
-                case "rivebasdroite" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEBASDROITE); break;
-                case "rivebasgauche" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEBASGAUCHE); break;
-                case "rivehautdroite" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEHAUTDROITE); break;
-                case "rivehautgauche" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEHAUTGAUCHE); break;
-                case "routehorizontal": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTEHORIZONTAL); break;
-                case "routevertical": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTEVERTICAL); break;
-                case "routedroitebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEDROITEBAS); break;
-                case "routedroitehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEDROITHAUT); break;
-                case "routegauchebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEGAUCHEBAS); break;
-                case "routegauchehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEGAUCHEHAUT); break;
-                case "routethaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETHAUT); break;
-                case "routetbas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETBAS); break;
-                case "routetdroite": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETDROITE); break;
-                case "routetgauche": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETGAUCHE); break;
-                case "carrefour": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.CARREFOUR); break;
-                case "batiment":
-                    aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.BATIMENT); 
-                    vBatimentJoueur[vJoueur]+=1;
-                    break;
-                case "usine":
-                    aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.USINE); 
-                    vBatimentJoueur[vJoueur]+=1;
-                    break;
-                case "commando": 
-                    Unite vcommando = new Unite(vX,vY,vJoueur,TypeUnite.COMMANDO);
-                    lUnite.add(vcommando);
-                    aTerrain[vX][vY].setUnite(vcommando); 
-                    break;
-               case "demolisseur": 
-                    Unite demolisseur = new Unite(vX,vY,vJoueur,TypeUnite.DEMOLISSEUR);
-                    lUnite.add(demolisseur);
-                    aTerrain[vX][vY].setUnite(demolisseur); 
-                    break;
-                case "tank":
-                    Unite vtank = new Unite(vX,vY,vJoueur,TypeUnite.TANK);
-                    lUnite.add(vtank);
-                    aTerrain[vX][vY].setUnite(vtank); 
-                    break;
-                /*case "char":
-                    Unite vchar = new Unite(vX,vY,vJoueur,TypeUnite.CHAR);
-                    lUnite.add(vchar);
-                    aTerrain[vX][vY].setUnite(vchar); 
-                    break;*/
-                case "ingenieur":
-                    Unite ingenieur = new Unite(vX,vY,vJoueur,TypeUnite.INGENIEUR);
-                    lUnite.add(ingenieur);
-                    aTerrain[vX][vY].setUnite(ingenieur); 
-                    break;
-                /*case "distance":
-                    Unite distance = new Unite(vX,vY,vJoueur,TypeUnite.DISTANCE);
-                    lUnite.add(distance);
-                    aTerrain[vX][vY].setUnite(distance); 
-                    break;*/
-                case "uml":
-                    Unite uml = new Unite(vX,vY,vJoueur,TypeUnite.UML);
-                    lUnite.add(uml);
-                    aTerrain[vX][vY].setUnite(uml); 
-                    break;
-            default: aTerrain[vX][vY] = new Terrain(vX, vY, 0, TypeTerrain.PLAINE);
-            }
-        }
-        
-        ListeJoueur = new ArrayList<Joueur>();
-        Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
-        ListeJoueur.add(JoueurNeutre);
-        
-        //Ajout des joueur dans l'arrayList
-        for(int i=1;i<=aNbrJoueur;i++)
-        {
-            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i]));
-            ListeJoueur.get(i).benefTour(aRevenuBatiment);
-        }
-        ListeJoueur.get(1).benefTour(aRevenuBatiment);
-        for(Unite vUniteActuel : lUnite){
-            int vJ = vUniteActuel.getJoueur();
-            ListeJoueur.get(vJ).getListeUnite().add(vUniteActuel);
-        }
-    }
-    
-    /**
-     * Methode qui permet le chargement d'une carte depuis un fichier texte et créé les Joueurs
-     * iniMap pour nouvelle partie
-     */
-    private void chargementMap(){
+    private void chargementMap(final boolean isCharged){
         
         aLargeur = Integer.parseInt(aMap.nextLine());
         aHauteur = Integer.parseInt(aMap.nextLine());
@@ -339,8 +209,12 @@ public class Partie
         for(int i=1;i<=aNbrJoueur;i++)
         {
             ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i]));
-            ListeJoueur.get(i).setArgent(vArgent[i]);
+            if(isCharged)
+                ListeJoueur.get(i).setArgent(vArgent[i]);
         }
+        
+        if(!isCharged)
+            ListeJoueur.get(1).benefTour(aRevenuBatiment);
         
         for(Unite vUniteActuel : lUnite){
             int vJ = vUniteActuel.getJoueur();
