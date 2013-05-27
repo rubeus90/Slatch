@@ -428,7 +428,7 @@ public class Partie
     }
     
     public void chargerPartie(){
-    	
+    	Partie partie = new Partie();    	
     }
    
 }
