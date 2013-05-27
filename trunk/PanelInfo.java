@@ -58,7 +58,7 @@ public class PanelInfo extends JPanel
     public void coordclickUnite (int pX, int pY) 
     {
         // Bouton SUIVANT fonctionnement
-        if(0<pY && pY<this.getHeight() && this.getWidth()-suivantSize-espaceSize<pX && pX<this.getWidth()) 
+        if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()==false && 0<pY && pY<this.getHeight() && this.getWidth()-suivantSize-espaceSize<pX && pX<this.getWidth()) 
         {
             // Efface le petit menu 
             Slatch.ihm.getPanel().setMenuUniteAction(false);
