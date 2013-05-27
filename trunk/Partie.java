@@ -383,13 +383,11 @@ public class Partie
 					Terrain terrain = aTerrain[i][j];
 					Unite unite = terrain.getUnite();
 					String string = "";
-					if(!terrain.getType().getNom().equals("plaine")){
-						string += terrain.getType().getNom()+ ":";
-						string += i+ ":";
-						string += j+ ":";
-						string += terrain.getJoueur() + ":";
-						string += "0:0:0:0:0";
-					}
+					string += terrain.getType().getNom()+ ":";
+					string += i+ ":";
+					string += j+ ":";
+					string += terrain.getJoueur() + ":";
+					string += "0:0:0:0:0";
 					bw.write(string);
 					
 					bw.newLine();
