@@ -234,6 +234,7 @@ public class Partie
         }
         
         List<Unite> lUnite = new ArrayList<Unite>();
+        List<Terrain> lUsine = new ArrayList<Terrain>();
         
         //On lit le fichier et on l'analyse
         while(aMap.hasNextLine()){
@@ -285,6 +286,7 @@ public class Partie
                 case "usine":
                     aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.USINE); 
                     vBatimentJoueur[vJoueur]+=1;
+                    lUsine.add(aTerrain[vX][vY]);
                     break;
                 case "commando": 
                     Unite vcommando = new Unite(vX,vY,vJoueur,TypeUnite.COMMANDO,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
@@ -339,6 +341,10 @@ public class Partie
         for(Unite vUniteActuel : lUnite){
             int vJ = vUniteActuel.getJoueur();
             ListeJoueur.get(vJ).getListeUnite().add(vUniteActuel);
+        }
+        for(Terrain vUsineActuel : lUsine){
+            int vJ = vUsineActuel.getJoueur();
+            ListeJoueur.get(vJ).getListeUsine().add(vUsineActuel);
         }
     }
     
