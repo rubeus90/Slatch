@@ -33,13 +33,13 @@ public class Unite extends Entite
     static final int EXPERIENCE_DONNEE_PAR_NIVEAU = 20;
    
     /**
-     * Constructeur de la classe Unite
+     * Constructeur par default de la classe Unite
      * Prend en paramètre :
-     * un string correspondant au type d'unité
-     * Un int correspondant au dégat au corps à corps
-     * Un int correspondant au déplacement maximum
-     * Un int correspondant au gain de chaque monté de niveau
-     * @param pX pY pJoueur pPVMax pType pAttaque pDeplacement pGain pTypeDeplacement
+     * Un int correspondant au coordonné X
+     * Un int correspondant au coordonné Y
+     * Un int correspondant au Joueur
+     * Un TypeUnite
+     * @param pX pY pJoueur pType
      */
     public Unite(final int pX,final int pY,final int pJoueur, final TypeUnite pType)
     {
@@ -65,6 +65,43 @@ public class Unite extends Entite
        
        dejaAttaque=false;
        dejaDeplacee = false;
+    }
+    
+    /**
+     * Constructeur de la classe Unite
+     * Prend en paramètre :
+     * Un int correspondant au coordonné X
+     * Un int correspondant au coordonné Y
+     * Un int correspondant au Joueur
+     * Un TypeUnite
+     * Un int correspondant au point de vie de l'Unite
+     * Deux boolean pour savoir si l'unite a été deplacé ou non
+     * @param pX pY pJoueur pType
+     */
+    public Unite(final int pX,final int pY,final int pJoueur, final TypeUnite pType,final int pPV,final int pExperience,final int pLvl,final boolean pDejaAttaque,final boolean pDejaDeplacee)
+    {
+       super(pX,pY,pJoueur);
+       aType = pType;
+       aGain = pType.getGain();
+       aPVMax = pType.getPVMax();
+       aPV = pPV;
+       aDeplacement = pType.getDeplacement();
+       aLvl = pLvl;
+       aExperience = pExperience;
+       aExperienceMax=100;
+       
+       for(TypeAttaque type : TypeAttaque.values()) {
+                   
+                    if(type.getNom().equals(pType.getAttaque())){
+                        aAttaque = type;
+                        break;
+                    }
+                }
+            
+       aDegats = aAttaque.getDegats();         
+       
+       dejaAttaque=pDejaAttaque;
+       dejaDeplacee = pDejaDeplacee;
     }
 
      /**
