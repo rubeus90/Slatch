@@ -235,7 +235,7 @@ public class PanelMatrice extends JPanel
             
             String charger = "Charger";
             int chargerSize = fm.stringWidth(charger);
-            String sauver = "Sauver";
+            String sauver = "Sauvegarder";
             int sauverSize = fm.stringWidth(sauver);
 
             afficheImageRedim ("noir80", aMenuHautGauche_Xpx, aMenuHautGauche_Ypx, aMenuBasDroite_Xpx, aMenuBasDroite_Ypx, g);
@@ -271,7 +271,7 @@ public class PanelMatrice extends JPanel
                     if(menuMenu) {
                         // Bouton charger
                         if (0<clickY && clickY<aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
-                            new Partie("Maps/sauvegarde.txt");
+                            //Slatch.partie.chargerPartie();
                         }
                         // Bouton sauver
                         else if(aHauteurCarreau<clickY && clickY<2*aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
