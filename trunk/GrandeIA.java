@@ -26,6 +26,7 @@ public class GrandeIA
     static void test2(Unite unite)
     {
          test2uniteProcheAdverse(unite);
+         
         //if(pwin!=null && !unite.seSitue(pwin))
         //{
             //uia.decrypterObjectif(new Objectif("aller", null, pwin, unite,null));
@@ -39,10 +40,11 @@ public class GrandeIA
         //Slatch.moteur.tabDist[unite.getCoordonneeX()][unite.getCoordonneeY()] = -1;
         Triplet t = new Triplet(-1, -1, -1);
         Unite cible=null;
-        label:for(int i=0; i<Slatch.partie.getNbrJoueur(); i++)
+        label:for(int i=1; i<=Slatch.partie.getNbrJoueur(); i++)
         {
             if(i!=unite.getJoueur())
             {
+                
                 for(Unite u: Slatch.partie.getJoueur(i).getListeUnite())
                 {
                     for(Point p: Moteur.voisins)
