@@ -6,6 +6,7 @@ public class UniteIA
     {
         Slatch.moteur.remplitPorteeDep(unite, false);
         Slatch.moteur.deplacement(unite, pX, pY);
+        
     }
     
     private void attaquerUnite(final Unite pVictime){
