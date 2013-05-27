@@ -1,6 +1,10 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.lang.Integer;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -45,6 +49,9 @@ public class Partie
         aTour = 1;
         aRevenuBatiment = pRevenuBatiment;
         ListeJoueur.get(1).benefTour(aRevenuBatiment);
+        
+        
+		sauvegardePartie();
     }
     
     /**
@@ -348,6 +355,61 @@ public class Partie
      */
     public void setJoueurActuel(final int pJoueurActuel){
         aJoueurActuel = pJoueurActuel;
+    }
+    
+    public void sauvegardePartie() {
+    	System.out.println("coucou hahah");
+		try {
+			File file = new File(getClass().getClassLoader().getResource("Config/sauvegarde.txt").toURI());
+			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write("coucou");
+			System.out.println("Je viens d'ecrire");
+//			bw.write(""+ aLargeur);
+//			bw.newLine();
+//			bw.write(""+ aHauteur);
+//			bw.newLine();
+//			bw.write(""+ aNbrJoueur);
+//			bw.newLine();
+//			bw.write(""+ aJoueurActuel);
+//			bw.newLine();
+//			bw.write(""+ aTourMax);
+//			bw.newLine();
+//			bw.write(""+ aTour);
+//			bw.newLine();
+//			bw.write(""+ aRevenuBatiment);
+			bw.close();
+		} catch (URISyntaxException | IOException e) {
+			System.out.println("Putain ca marche pas");
+			e.printStackTrace();
+		}
+    	
+    	
+		
+		
+		
+		
+		/*
+		 * largeur
+		 * hauteur
+		 * nbr joueur
+		 * joueur actuelle
+		 * tour max
+		 * tour
+		 * revenu par batiment
+		 */
+		
+		/*
+		 * x
+		 * y
+		 * int joueur
+		 * typeterrain
+		 * pv actuelle (0)
+		 * xp 0)
+		 * lvl (0)
+		 * boolean deja attaquer (0)
+		 * boolean deja deplace (0)
+		 * */
     }
    
 }

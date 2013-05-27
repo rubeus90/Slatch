@@ -80,30 +80,20 @@
 // 		panel.add(panelSelection, BorderLayout.EAST);
 // 		
 // 		panelSelection.setLayout(new BorderLayout());
-// 		joueur1 = new BoutonJoueur("Joueur1");
-// 		joueur2 = new BoutonJoueur("Joueur2");
-// 		joueur3 = new BoutonJoueur("Joueur3");
-// 		joueur4 = new BoutonJoueur("Joueur4");
+// 		joueur1 = new BoutonJoueur("joueur1");
+// 		joueur2 = new BoutonJoueur("joueur2");
+// 		joueur3 = new BoutonJoueur("joueur3");
+// 		joueur4 = new BoutonJoueur("joueur4");
 // 		ArrayList<BoutonJoueur> liste = new ArrayList<BoutonJoueur>();
 // 		liste.add(joueur1);
 // 		liste.add(joueur2);
 // 		liste.add(joueur3);
 // 		liste.add(joueur4);
 // 		
-// 		for(BoutonJoueur joueur : liste){
-// 			joueur.setImage("OFF");
-// 			joueur.addItemListener(new ItemListener() {
-// 				   public void itemStateChanged(ItemEvent ev) {
-// 				      if(ev.getStateChange()==ItemEvent.SELECTED){
-// 				    	  System.out.println("button is selected");
-// //				    	  joueur.setImage("ON");
-// 				      } else if(ev.getStateChange()==ItemEvent.DESELECTED){
-// 				    	  System.out.println("button is not selected");
-// //				    	  joueur.setImage("OFF");
-// 				      }
-// 				   }
-// 				});
-// 		}
+// 		joueur1.addItemListener(joueur1);
+// 		joueur2.addItemListener(joueur2);
+// 		joueur3.addItemListener(joueur3);
+// 		joueur4.addItemListener(joueur4);
 // 		
 // 		
 // 		
@@ -184,7 +174,7 @@
 // 		}
 // 	}    
 // 	
-// 	public class BoutonJoueur extends JToggleButton
+// 	public class BoutonJoueur extends JToggleButton implements ItemListener
 // 	{
 // 		private Image img;
 // 		private String nomButton;
@@ -210,17 +200,28 @@
 // 		  	  }
 // 		  }
 // 		  
-// // 		  public void setImage(String etat){
-// // 			  try {
-// // 				img = ImageIO.read(getClass().getClassLoader().getResource("Images/Bouton" + nomButton + etat + ".png"));
-// // 			} catch (IOException e) {
-// // 				e.printStackTrace();
-// // 			}			  
-// // 		  }
-// 		  
 // 		  public String getNomButton(){
 // 			  return nomButton;
 // 		  }
+// 		  
+// 		  public void setImage(String pNom){
+// 			  try {
+// 				 img = ImageIO.read(getClass().getClassLoader().getResource("Images/" + pNom + ".png"));
+// 				 } catch (IOException e) {
+// 					 e.printStackTrace();
+// 				 }
+// 		  }
+//
+//		@Override
+//		public void itemStateChanged(ItemEvent ev) {
+//			if(ev.getStateChange()==ItemEvent.SELECTED){
+//		    	  BoutonJoueur joueur = ev.getSource();
+//		    	  joueur.setImage("ON");
+//		      } else if(ev.getStateChange()==ItemEvent.DESELECTED){
+//		    	  this.setImage("OFF");
+//		      }
+//			
+//		}
 // 	}
 // }
 // 	
