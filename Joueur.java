@@ -13,6 +13,7 @@ public class Joueur
     private int aNbreBatiment; //Correspond aux nombres de batiment que possede un joueur. 
     private int aArgent; //Correspond a l'argent que possede le joueur.
     private List<Unite> aListeUnite;
+    private boolean IA;
     private List<Terrain> aListeUsine;
 
     /**
@@ -26,6 +27,7 @@ public class Joueur
     {
         aNumJoueur = pNumJoueur;
         aFaction = pFaction;
+        IA=false;
         aArgent = 0;
         aNbreBatiment = pNbreBatiment;
         aListeUnite = new ArrayList<Unite>();
@@ -41,12 +43,14 @@ public class Joueur
     public int getArgent()             {return aArgent;}
     public List<Unite> getListeUnite()   {return aListeUnite;}
     public List<Terrain> getListeUsine()   {return aListeUsine;}
+    public boolean getIA()                  {return IA;}
     
     public void setNumJoueur(final int pNum) {aNumJoueur = pNum;}
     public void setFaction(final Faction pFaction) {aFaction = pFaction;}
     public void addNbreBatiment(final int pNbre) {aNbreBatiment += pNbre;}
     public void setArgent(final int pArgent) {aArgent = pArgent;}
     public void addArgent(final int pArgent) {aArgent += pArgent;}
+    public void setIA(final boolean X)      {IA=X;}
     
     public void benefTour(final int pRevenuBatiment)
     {
