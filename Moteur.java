@@ -47,7 +47,7 @@ class Moteur
         }
     } 
       
-    public void modeSoin(int pX, int pY)
+    public void modeSoin(final int pX,final int pY)
     {
         uniteA = Slatch.partie.getTerrain()[pX][pY].getUnite();
         affichePorteeAttaque(uniteA, true);
@@ -58,7 +58,7 @@ class Moteur
      * Methode qui permet a un ingenieur de soigner une unite
      * @param pUnite
      */
-    public void soin(Unite pUnite)
+    public void soin(final Unite pUnite)
     { 
         if(pUnite.soigner(5)){            
            //On "grise" l'unité qui soigne
@@ -69,7 +69,7 @@ class Moteur
         }
     }
     
-    public boolean cibleSoignable(Unite unite)
+    public boolean cibleSoignable(final Unite unite)
     {
         int x;
         int y;
@@ -97,7 +97,7 @@ class Moteur
      * Methode qui permet a un ingenieur de faire evoluer une methode
      * @param pUnite
      */
-    public void evoluer(Unite pUnite){
+    public void evoluer(final Unite pUnite){
         if(pUnite.getExperience()>Unite.pallierExperience){ //On verifie que l'XP de l'unite est superieur au pallier pour monter d'XP
             pUnite.upLvl();
             
@@ -113,13 +113,13 @@ class Moteur
         }
     }
     
-    public void modeAttaque(int pX, int pY)
+    public void modeAttaque(final int pX,final int pY)
     {
         uniteA = Slatch.partie.getTerrain()[pX][pY].getUnite();
         affichePorteeAttaque(uniteA, false);
     }
     
-    public void attaque(Unite pVictime)
+    public void attaque(final Unite pVictime)
     { 
         double degatsAtt=0;
         //degatsAtt=(uniteA.getAttaque().getDegats()*uniteA.getAttaque().efficacite.get(pVictime.getType()))*(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[pVictime.getCoordonneeX()][pVictime.getCoordonneeY()].getType().getCouverture()))/100;
@@ -144,7 +144,7 @@ class Moteur
         uniteA=null;
     }
     
-    public void capture(int pX, int pY)
+    public void capture(final int pX,final int pY)
     {
         Terrain vBatiment= Slatch.partie.getTerrain()[pX][pY];
         uniteA=Slatch.partie.getTerrain()[pX][pY].getUnite();
@@ -169,28 +169,28 @@ class Moteur
         uniteA=null;
     }
 
-    private double modificateurVie(Unite unite)
+    private double modificateurVie(final Unite unite)
     {
         return (double)(pourcentageVie(unite))/100.0;
     }
     
-    private int pourcentageVie(Unite unite)
+    private int pourcentageVie(final Unite unite)
     {
         return (int)((double)(unite.getPV())/(double)(unite.getPVMax())*100); 
     }
     
-    public boolean faireDegats(Unite cible, double degats) // retourne vrai si la cible meurt
+    public boolean faireDegats(final Unite cible,final double degats) // retourne vrai si la cible meurt
     {
         cible.setPV(cible.getPV() - (int)degats);
         if(cible.getPV()<=0){return true;}else{repaint(); return false;}
     }
     
-    public double getDegats(Unite a, Unite v) // a= attaquant, v= cible
+    public double getDegats(final Unite a,final Unite v) // a= attaquant, v= cible
     {
         return ((a.getAttaque().getDegats()*a.getAttaque().efficacite.get(v.getType()))*(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getCoordonneeX()][v.getCoordonneeY()].getType().getCouverture()))/100)*((double)a.getPV()/(double)a.getPVMax());
     }
    
-    public void estMort(Unite unite)
+    public void estMort(final Unite unite)
     {
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
@@ -205,7 +205,7 @@ class Moteur
     /**
      * Appelee par l'IHM quand on clique sur une case, cette methode doit generer la liste des coordonnees accessibles par l'unite se trouvant sur la case selectionnee si elle ne s'est pas deja deplacee, et passer cette Liste a l'IHM.
      */
-    public void caseSelectionnee(int pX, int pY)
+    public void caseSelectionnee(final int pX,final int pY)
     {
         
         if(Slatch.partie.getTerrain()[pX][pY].getSurbrillance() && uniteA==null && uniteD == null)
@@ -293,7 +293,7 @@ class Moteur
         }
     }
     
-    public void modeDeplacement(int pX, int pY)
+    public void modeDeplacement(final int pX,final int pY)
     {
         uniteD = Slatch.partie.getTerrain()[pX][pY].getUnite();
         affichePorteeDep(uniteD);
@@ -315,7 +315,7 @@ class Moteur
     * @param pX abscisse de l'arrivee
     * @param pY ordonnee de l'arrivee
     */
-    public void deplacement(Unite unite, int pX, int pY)
+    public void deplacement(final Unite unite,final int pX,final int pY)
     {
         boolean fini = false;
         int x = pX, y =pY;
@@ -369,7 +369,7 @@ class Moteur
      * @param pX abscisse de l'arrivee
      * @param pY ordonnee de l'arrivee
      */
-    public Unite changerCase(Unite unite, int destX, int destY, Unite mem)
+    public Unite changerCase(final Unite unite,final int destX,final int destY,final Unite mem)
     {
         Unite ret=Slatch.partie.getTerrain()[destX][destY].getUnite();
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(mem);
@@ -383,7 +383,7 @@ class Moteur
     /**
      * Vérifie si une unité se trouve à côté de la case passée en paramètre
      */
-    public boolean uniteProche(Unite unite, int pX, int pY)
+    public boolean uniteProche(final Unite unite,final int pX,final int pY)
     {
         for(Point p: voisins)
         {
@@ -408,7 +408,7 @@ class Moteur
      * @param unite unite qui cherche une autre unite a frapper
      * @return true si une unite est a portee de tir, false sinon
      */
-    private boolean cibleEnVue(Unite unite, boolean soin)
+    private boolean cibleEnVue(final Unite unite,final boolean soin)
     {
         int x = unite.getCoordonneeX(), y = unite.getCoordonneeY();
         for(int i=0; i<=unite.getAttaque().aTypePortee.getPorteeMax();i++)
@@ -430,7 +430,7 @@ class Moteur
      * Affiche la portee d'attaque en mettant en surbrillance les cibles potentielles
      * @param unite unite qui cherche une autre unite a frapper
      */
-    public void affichePorteeAttaque(Unite unite, boolean soin)
+    public void affichePorteeAttaque(final Unite unite,final boolean soin)
     {
         int x = unite.getCoordonneeX();
         int y = unite.getCoordonneeY();
@@ -466,7 +466,7 @@ class Moteur
     /**
      * vérifie si une cible est présente en (x+decX, y+decY)
      */
-    private boolean ciblePresente(Unite unite, int decX, int decY, boolean soin)
+    private boolean ciblePresente(final Unite unite,final int decX,final int decY,final boolean soin)
     {
         int x = unite.getCoordonneeX();
         int y = unite.getCoordonneeY();
@@ -484,7 +484,7 @@ class Moteur
     /**
      * renvoie la distance entre (dX,dY) et (aX,aY)
      */
-    public int distance(int dX, int dY, int aX, int aY)
+    public int distance(final int dX,final int dY,final int aX,final int aY)
     {
         return Math.abs(dX-aX) + Math.abs(dY-aY);
     }
@@ -492,12 +492,12 @@ class Moteur
     /**
      * renvoie la distance entre e1 et e2
      */
-    public int distance(Entite e1, Entite e2)
+    public int distance(final Entite e1,final Entite e2)
     {
         return distance(e1.getCoordonneeX(), e1.getCoordonneeY(), e2.getCoordonneeX(), e2.getCoordonneeY());
     }
     
-    public void remplitPorteeDep(Unite unite, boolean bool)
+    public void remplitPorteeDep(final Unite unite,final boolean bool)
     {
         this.initialiseTabDist(unite.getCoordonneeX(), unite.getCoordonneeY());
         this.algoDeplacement(unite, bool);
@@ -507,7 +507,7 @@ class Moteur
      * va appeler les methodes pour afficher la portee de deplacement d'une unite
      * @param unite unite qui a envie de bouger
      */
-    private void affichePorteeDep(Unite unite)
+    private void affichePorteeDep(final Unite unite)
     {
         this.remplitPorteeDep(unite, true);
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
@@ -533,7 +533,7 @@ class Moteur
     /**
      * Initialise tabDist afin d'utiliser algoDeplacement dans des conditions optimales
      */
-    private void initialiseTabDist(int x, int y)
+    private void initialiseTabDist(final int x,final int y)
     {
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
@@ -558,7 +558,7 @@ class Moteur
         pred = new Point[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
     }
     
-    private void algoDeplacement(Unite unite, boolean porteeComptee)
+    private void algoDeplacement(final Unite unite,final boolean porteeComptee)
     {
         PriorityQueue<Triplet> pq = new PriorityQueue<Triplet>();
         pq.add(new Triplet(0,unite.getCoordonneeX(),unite.getCoordonneeY()));
@@ -604,12 +604,12 @@ class Moteur
        // if(Slatch.partie.getJoueurActuel()==2){GrandeIA.test(l.get(0));} // ceci est un test et devra être remplacé rapidement par un appel à la Grande IA
     }
     
-    public boolean estAuJoueurActuel(Unite unite)
+    public boolean estAuJoueurActuel(final Unite unite)
     {
         return unite.getJoueur()==Slatch.partie.getJoueurActuel();
     }
     
-    public boolean estAuJoueurActuel(int pX, int pY)
+    public boolean estAuJoueurActuel(final int pX,final int pY)
     {
         return estAuJoueurActuel(Slatch.partie.getTerrain()[pX][pY].getUnite());
     }
@@ -626,7 +626,7 @@ class Moteur
         repaint();
     }
     
-    private boolean dansLesBords(int x, int y)
+    private boolean dansLesBords(final int x,final int y)
     {
         return(x>=0 && y>=0 && x<Slatch.partie.getLargeur() && y<Slatch.partie.getHauteur());
     }
