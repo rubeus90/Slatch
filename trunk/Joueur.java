@@ -43,7 +43,7 @@ public class Joueur
     public int getArgent()             {return aArgent;}
     public List<Unite> getListeUnite()   {return aListeUnite;}
     public List<Terrain> getListeUsine()   {return aListeUsine;}
-    public boolean getIA()                  {return IA;}
+    public boolean estUneIA()                  {return IA;}
     
     public void setNumJoueur(final int pNum) {aNumJoueur = pNum;}
     public void setFaction(final Faction pFaction) {aFaction = pFaction;}
