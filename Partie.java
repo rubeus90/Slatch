@@ -383,7 +383,7 @@ public class Partie
 					Terrain terrain = aTerrain[i][j];
 					Unite unite = terrain.getUnite();
 					String string = "";
-					if(terrain.getType().getNom() != "plaine"){
+					if(!terrain.getType().getNom().equals("plaine")){
 						string += terrain.getType().getNom()+ ":";
 						string += i+ ":";
 						string += j+ ":";
