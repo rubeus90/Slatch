@@ -93,7 +93,6 @@ class Moteur
     }
     
     /**
-     * Methode a deplacer dans Moteur Une fois moteur safe
      * Methode qui permet a un ingenieur de faire evoluer une methode
      * @param pUnite
      */
@@ -109,7 +108,7 @@ class Moteur
             //Unite evoluer grisee
             pUnite.attaque(true);
             pUnite.deplacee(true);
-            pUnite=null;
+            //pUnite=null;
         }
     }
     
