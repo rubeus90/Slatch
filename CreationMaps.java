@@ -1,19 +1,30 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JToggleButton;
+import javax.swing.border.Border;
 
 public class CreationMaps extends JPanel implements ActionListener {
 	public JFrame frame;
 	public JPanel panel;
 	public PanelMap panelMap;
-	public JPanel panelTerrain;
+	public JPanel panelSelection;
 	private int NbrCaseX;
     private int NbrCaseY;
     private Terrain[][] MATRICE_TEST;
@@ -32,8 +43,12 @@ public class CreationMaps extends JPanel implements ActionListener {
     private JButton buttonRouteTBas;
     private JButton buttonRouteTGauche;
     private JButton buttonRouteTDroite;
-    private JButton buttonJoueur1;
-    private JButton buttonJoueur2;
+    
+    private BoutonJoueur joueur1;
+    private BoutonJoueur joueur2;
+    private BoutonJoueur joueur3;
+    private BoutonJoueur joueur4;
+
     
     private String aID;
     private String aX;
@@ -54,13 +69,44 @@ public class CreationMaps extends JPanel implements ActionListener {
 		frame.setContentPane(panel);
 				
 		panelMap = new PanelMap(partieNew);
-		panelMap.setPreferredSize(new Dimension(802,524));
+		panelMap.setPreferredSize(new Dimension(800,500));
 		
-		panelTerrain = new JPanel();
+		panelSelection = new JPanel();
+		panelSelection.setPreferredSize(new Dimension(400,500));
+		panelSelection.setBackground(Color.BLACK);
 				
 		panel.setLayout(new BorderLayout());
-		panel.add(panelMap, BorderLayout.SOUTH);
-		panel.add(panelTerrain, BorderLayout.NORTH);
+		panel.add(panelMap, BorderLayout.CENTER);
+		panel.add(panelSelection, BorderLayout.EAST);
+		
+		panelSelection.setLayout(new BorderLayout());
+		joueur1 = new BoutonJoueur("Joueur1");
+		joueur2 = new BoutonJoueur("Joueur2");
+		joueur3 = new BoutonJoueur("Joueur3");
+		joueur4 = new BoutonJoueur("Joueur4");
+		ArrayList<BoutonJoueur> liste = new ArrayList<BoutonJoueur>();
+		liste.add(joueur1);
+		liste.add(joueur2);
+		liste.add(joueur3);
+		liste.add(joueur4);
+		
+		for(BoutonJoueur joueur : liste){
+			joueur.setImage("OFF");
+			joueur.addItemListener(new ItemListener() {
+				   public void itemStateChanged(ItemEvent ev) {
+				      if(ev.getStateChange()==ItemEvent.SELECTED){
+				    	  System.out.println("button is selected");
+//				    	  joueur.setImage("ON");
+				      } else if(ev.getStateChange()==ItemEvent.DESELECTED){
+				    	  System.out.println("button is not selected");
+//				    	  joueur.setImage("OFF");
+				      }
+				   }
+				});
+		}
+		
+		
+		
 				
 				
 		JButton buttonMontagne = new JButton("montagne");
@@ -80,23 +126,23 @@ public class CreationMaps extends JPanel implements ActionListener {
 		JButton buttonJoueur1 = new JButton("Joueur 1");
 		JButton buttonJoueur2 = new JButton("Joueur 2");
 				
-		panelTerrain.setLayout(new GridLayout(2,7));
-		panelTerrain.add(buttonForet);
-		panelTerrain.add(buttonMontagne);
-		panelTerrain.add(buttonBatiment);
-		panelTerrain.add(buttonRouteCarrefour);
-		panelTerrain.add(buttonRouteDroiteBas);
-		panelTerrain.add(buttonRouteDroiteHaut);
-		panelTerrain.add(buttonRouteGaucheBas);
-		panelTerrain.add(buttonRouteGaucheHaut);
-		panelTerrain.add(buttonRouteHorizontal);
-		panelTerrain.add(buttonRouteTBas);
-		panelTerrain.add(buttonRouteTDroite);
-		panelTerrain.add(buttonRouteTGauche);		
-		panelTerrain.add(buttonRouteTHaut);
-		panelTerrain.add(buttonRouteVertical);
-		panelTerrain.add(buttonJoueur1);
-		panelTerrain.add(buttonJoueur2);
+//		panelSelection.setLayout(new GridLayout(2,7));
+//		panelSelection.add(buttonForet);
+//		panelSelection.add(buttonMontagne);
+//		panelSelection.add(buttonBatiment);
+//		panelSelection.add(buttonRouteCarrefour);
+//		panelSelection.add(buttonRouteDroiteBas);
+//		panelSelection.add(buttonRouteDroiteHaut);
+//		panelSelection.add(buttonRouteGaucheBas);
+//		panelSelection.add(buttonRouteGaucheHaut);
+//		panelSelection.add(buttonRouteHorizontal);
+//		panelSelection.add(buttonRouteTBas);
+//		panelSelection.add(buttonRouteTDroite);
+//		panelSelection.add(buttonRouteTGauche);		
+//		panelSelection.add(buttonRouteTHaut);
+//		panelSelection.add(buttonRouteVertical);
+//		panelSelection.add(buttonJoueur1);
+//		panelSelection.add(buttonJoueur2);
 		
 		buttonMontagne.addActionListener(this);
 		buttonBatiment.addActionListener(this);
@@ -137,4 +183,45 @@ public class CreationMaps extends JPanel implements ActionListener {
 			}
 		}
 	}    
+	
+	public class BoutonJoueur extends JToggleButton
+	{
+		private Image img;
+		private String nomButton;
+
+		  public BoutonJoueur(String pNom){
+		    super();
+		    nomButton = pNom;
+		    this.setPreferredSize(new Dimension(300, 80));
+		    this.setBackground(Color.BLACK);
+		    this.setBorder(null);
+//		    try {
+//			      img = ImageIO.read(getClass().getClassLoader().getResource("Images/BoutonJoueur1ON.png"));
+//			} catch (IOException e) {
+//			      e.printStackTrace();
+//			}
+		  }
+
+		  @Override
+		  public void paintComponent(Graphics g){		  {
+			  
+			  Graphics2D g2d = (Graphics2D)g;
+			  g2d.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+		  	  }
+		  }
+		  
+		  public void setImage(String etat){
+			  try {
+				img = ImageIO.read(getClass().getClassLoader().getResource("Images/Bouton" + nomButton + etat + ".png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}			  
+		  }
+		  
+		  public String getNomButton(){
+			  return nomButton;
+		  }
+	}
 }
+	
+
