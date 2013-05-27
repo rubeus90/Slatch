@@ -10,6 +10,7 @@ public class AIMaster
 {
     static void joueTour(int joueur)
     {
+        
         List<Unite> l = Slatch.partie.getJoueur(joueur).getListeUnite();
         Iterator<Unite> i = l.iterator();
         while(i.hasNext())
