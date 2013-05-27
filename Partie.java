@@ -376,7 +376,7 @@ public class Partie
 			bw.write(""+ aTour);
 			bw.newLine();
 			bw.write(""+ aRevenuBatiment);
-			
+			bw.newLine();
 			
 			for(int i = 0; i<aLargeur; i++){
 				for(int j = 0; j<aHauteur; j++){
