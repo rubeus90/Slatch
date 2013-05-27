@@ -194,7 +194,10 @@ class Moteur
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
         repaint();
-        Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
+        if(!Slatch.partie.getJoueur(unite.getJoueur()).estUneIA())
+        {
+            Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
+        }
         if(Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty())
         {
             System.out.println("Le joueur "+unite.getJoueur()+" est vaincu");

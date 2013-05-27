@@ -11,9 +11,12 @@ public class AIMaster
     static void joueTour(int joueur)
     {
         List<Unite> l = Slatch.partie.getJoueur(joueur).getListeUnite();
-        for(Unite u: l)
+        Iterator<Unite> i = l.iterator();
+        while(i.hasNext())
         {
+            Unite u = i.next();
             GrandeIA.test2(u);
+            if(u.getPV()<=0){i.remove();}
         }    
         Slatch.moteur.passeTour();
     }
