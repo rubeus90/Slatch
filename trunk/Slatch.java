@@ -34,6 +34,11 @@ public class Slatch {
         moteur = new Moteur();
         ihm = new IHM_NEW();
         
+        if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
+        {
+            AIMaster.joueTour(Slatch.partie.getJoueurActuel());
+        }
+        
        // maps = new CreationMaps();
     }
     
