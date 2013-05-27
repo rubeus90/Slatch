@@ -383,19 +383,20 @@ public class Partie
 					Terrain terrain = aTerrain[i][j];
 					Unite unite = terrain.getUnite();
 					String string = "";
+					string += terrain.getType().getNom()+ ":";
 					string += i+ ":";
 					string += j+ ":";
 					string += terrain.getJoueur() + ":";
-					string += terrain.getType().getNom()+ ":";
-					bw.write(string);
 					string += "0:0:0:0:0";
+					bw.write(string);
+					
 					bw.newLine();
 					if(terrain.getUnite() != null){
 						String string2 = "";
+						string2 += terrain.getUnite().getType().getNom()+ ":";
 						string2 += i+ ":";
 						string2 += j+ ":";
-						string2 += terrain.getUnite().getJoueur() + ":";
-						string2 += terrain.getUnite().getType().getNom()+ ":";
+						string2 += terrain.getUnite().getJoueur() + ":";						
 						string2 += terrain.getUnite().getPV()+ ":";
 						string2 += terrain.getUnite().getExperience()+ ":";
 						string2 += terrain.getUnite().getLvl()+ ":";
