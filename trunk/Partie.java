@@ -425,8 +425,10 @@ public class Partie
             System.out.println("Probleme d'ecriture dans le fichier sauvegarde");
             e.printStackTrace();
         }
-        
-
+    }
+    
+    public void chargerPartie(){
+    	
     }
    
 }

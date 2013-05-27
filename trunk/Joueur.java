@@ -27,7 +27,7 @@ public class Joueur
     {
         aNumJoueur = pNumJoueur;
         aFaction = pFaction;
-        IA=true;
+        IA=false;
         aArgent = 0;
         aNbreBatiment = pNbreBatiment;
         aListeUnite = new ArrayList<Unite>();
