@@ -21,6 +21,7 @@ public class GrandeIA
             uia.decrypterObjectif(new Objectif("acheter","Commando",new Point(x,y),null,null));
         //}
         Slatch.moteur.passeTour();
+        /*Salut les conflits, fuck you*/
     }
     
     static void test2(Unite unite)
@@ -32,6 +33,7 @@ public class GrandeIA
             //uia.decrypterObjectif(new Objectif("aller", null, pwin, unite,null));
         //}
         //Slatch.moteur.passeTour();
+         /*Salut les conflits, fuck you*/
     }
     
     static void test2uniteProcheAdverse(Unite unite)
@@ -82,6 +84,7 @@ public class GrandeIA
             //System.out.println(t.x+" "+t.y+" "+t.d);
              uia.decrypterObjectif(new Objectif("attaquer", null, new Point(t.x,t.y), unite,cible));
             //return new Point(t.x,t.y);
+             /*Salut les conflits, fuck you*/
         }
     }
 }
