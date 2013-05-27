@@ -17,7 +17,7 @@ class Moteur
     int[][] tabDist;
     Point[][] pred;
     
-    Point[] voisins = {new Point(0,1), new Point(0,-1),new Point(1,0),new Point(-1,0)};
+    static Point[] voisins = {new Point(0,1), new Point(0,-1),new Point(1,0),new Point(-1,0)};
     Point[] signes = {new Point(1,1), new Point(1,-1),new Point(-1,-1),new Point(-1,1), new Point(0,1), new Point(0,-1), new Point(-1,0), new Point(1,0)};
     
     
@@ -550,14 +550,14 @@ class Moteur
                     }
                 }
                 else{tabDist[i][j] = -1;} // au début, on suppose qu'on a une distance infinie représentée par -1 sur chacune des cases restantes
-                pred[i][j]=null;
+                //pred[i][j]=null;
             }
         }
         tabDist[x][y]=-2;
         pred = new Point[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
     }
     
-    private void algoDeplacement(final Unite unite,final boolean porteeComptee)
+    public void algoDeplacement(final Unite unite,final boolean porteeComptee)
     {
         PriorityQueue<Triplet> pq = new PriorityQueue<Triplet>();
         pq.add(new Triplet(0,unite.getCoordonneeX(),unite.getCoordonneeY()));
@@ -600,7 +600,7 @@ class Moteur
             }
         }
         
-        if(Slatch.partie.getJoueurActuel()==2){GrandeIA.test(l.get(0));} // ceci est un test et devra être remplacé rapidement par un appel à la Grande IA
+        if(Slatch.partie.getJoueurActuel()==2){GrandeIA.test2(l.get(0));} // ceci est un test et devra être remplacé rapidement par un appel à la Grande IA
     }
     
     public boolean estAuJoueurActuel(final Unite unite)
