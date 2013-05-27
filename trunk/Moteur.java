@@ -616,13 +616,18 @@ class Moteur
     public void creationUnite(final int pX,final int pY, final TypeUnite pType){
         int vNumJoueur = Slatch.partie.getJoueurActuel();
         Joueur vJoueur = Slatch.partie.getJoueur(vNumJoueur);
-        vJoueur.addArgent(-pType.getPrix());
-        Unite creation = new Unite(pX,pY,vNumJoueur,pType);
-        creation.deplacee(true);
-        creation.attaque(true);
-        Slatch.partie.getTerrain()[pX][pY].setUnite(creation);
-        vJoueur.getListeUnite().add(creation);
-        repaint();
+        
+        if(vJoueur.getArgent()>=pType.getPrix())
+        {
+            vJoueur.addArgent(-pType.getPrix());
+            Unite creation = new Unite(pX,pY,vNumJoueur,pType);
+            creation.deplacee(true);
+            creation.attaque(true);
+            Slatch.partie.getTerrain()[pX][pY].setUnite(creation);
+            vJoueur.getListeUnite().add(creation);
+            repaint();
+        }
+       
     }
     
     private boolean dansLesBords(final int x,final int y)
