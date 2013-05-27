@@ -378,8 +378,10 @@ public class Partie
             bw.write(""+ aRevenuBatiment);
             bw.newLine();
             for(Joueur joueur: ListeJoueur){
-                bw.write(""+joueur.getArgent());
-                bw.newLine();
+            	if(joueur.getNumJoueur() != 0){
+            		bw.write(""+joueur.getArgent());
+            		bw.newLine();
+            	}
             }
             
             for(int i = 0; i<aLargeur; i++){
