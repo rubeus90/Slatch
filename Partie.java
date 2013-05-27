@@ -252,9 +252,13 @@ public class Partie
       
             if(vIntDejaDeplacee==1)
                 vDejaDeplacee=true;
+            else
+                vDejaDeplacee=false;
             
             if(vIntDejaAttaque==1)
                 vDejaAttaque=true;
+            else
+                vDejaAttaque=false;
 
             switch(vId){
                 case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.FORET); break;
