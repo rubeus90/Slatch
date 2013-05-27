@@ -163,6 +163,11 @@ class Moteur
            vBatiment.setJoueur(uniteA.getJoueur());
            vBatiment.setPV(vBatiment.getType().getPVMax());
            Slatch.partie.getJoueur(uniteA.getJoueur()).addNbreBatiment(1);
+           if(vBatiment.getType()==TypeTerrain.USINE)
+           {
+                    Slatch.partie.getJoueur(uniteA.getJoueur()).getListeUsine().add(vBatiment);
+           }
+           
            repaint();
         }
         uniteA.attaque(true);

@@ -427,7 +427,7 @@ public class Partie
         }
     }
     
-    public void chargerPartie(){
+    /*public void chargerPartie(){
     	Partie partie = new Partie("Maps/sauvegarde.txt");   
-    }
+    }*/
 }

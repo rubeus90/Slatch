@@ -26,7 +26,8 @@ public class GrandeIA
     
     static void test2(Unite unite)
     {
-         test2uniteProcheAdverse(unite);
+         if(!unite.dejaDeplacee() && !unite.dejaAttaque() )
+        { test2uniteProcheAdverse(unite);}
          
         //if(pwin!=null && !unite.seSitue(pwin))
         //{
@@ -35,6 +36,7 @@ public class GrandeIA
         //Slatch.moteur.passeTour();
          /*Salut les conflits, fuck you*/
     }
+    
     
     static void test2uniteProcheAdverse(Unite unite)
     {        
@@ -86,5 +88,44 @@ public class GrandeIA
             //return new Point(t.x,t.y);
              /*Salut les conflits, fuck you*/
         }
+    }
+    
+    static void acheterUnite()
+    {
+            Joueur JoueurActuel = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
+        
+            for (Terrain usine : JoueurActuel.getListeUsine())
+            {
+                int x = usine.getCoordonneeX();
+                int y = usine.getCoordonneeY();
+
+                if(JoueurActuel.getArgent()>=700)
+                 {
+                    uia.decrypterObjectif(new Objectif("acheter","While",new Point(x,y),null,null));                    
+                                        
+                 }
+                else if(JoueurActuel.getArgent()>=350)         
+                {
+                    uia.decrypterObjectif(new Objectif("acheter","Uml",new Point(x,y),null,null));
+                                
+                }
+                else if(JoueurActuel.getArgent()>=300)
+                {
+                    uia.decrypterObjectif(new Objectif("acheter","Tank",new Point(x,y),null,null));
+                }
+                else if(JoueurActuel.getArgent()>=200)
+                {
+                    uia.decrypterObjectif(new Objectif("acheter","Demolisseur",new Point(x,y),null,null));
+                }
+                else if(JoueurActuel.getArgent()>=100)
+                {
+                    uia.decrypterObjectif(new Objectif("acheter","Commando",new Point(x,y),null,null));   
+                }
+                else
+                {
+                  break;   
+                }
+            }
+        
     }
 }
