@@ -62,15 +62,25 @@ public class PanelInfo extends JPanel
         {
             // Efface le petit menu 
             Slatch.ihm.getPanel().setMenuUniteAction(false);
-            // Efface le menu
+            // Efface le menu description
             Slatch.ihm.getPanel().setMenuUniteDescription(false);
             // Efface le menu shop
             Slatch.ihm.getPanel().setMenuShop(false);
+            // Efface le menu
+            Slatch.ihm.getPanel().setMenu(false);
             // Avertir Moteur
             Slatch.moteur.passeTour();
             this.repaint();
             Slatch.ihm.getPanel().repaint();
             
+        }
+        
+        // Bouton Menu fonctionnement
+        if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()==false && 0<pY && pY<this.getHeight() && 0<pX && pX<menuSize+2*espaceSize) 
+        {
+            Slatch.ihm.getPanel().setMenu(true);
+            this.repaint();
+            Slatch.ihm.getPanel().repaint();
         }
     }
     

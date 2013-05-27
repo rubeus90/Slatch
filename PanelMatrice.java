@@ -28,6 +28,11 @@ public class PanelMatrice extends JPanel
     private int aMenuDescriptionBasDroite_Xpx;
     private int aMenuDescriptionBasDroite_Ypx;
     
+    private int aMenuHautGauche_Xpx;
+    private int aMenuHautGauche_Ypx;
+    private int aMenuBasDroite_Xpx;
+    private int aMenuBasDroite_Ypx;
+    
     private int aShopHautGauche_Xpx;
     private int aShopHautGauche_Ypx;
     private int aShopBasDroite_Xpx;
@@ -52,7 +57,7 @@ public class PanelMatrice extends JPanel
     
     private boolean menuUniteAction;
     private boolean menuUniteDescription;
-    private boolean modeMenu;
+    private boolean menuMenu;
     private boolean menuShop;
     
     private boolean aAttaquePossible=false;
@@ -79,7 +84,7 @@ public class PanelMatrice extends JPanel
 
         menuUniteAction=false;
         menuUniteDescription=false;
-        modeMenu=false;
+        menuMenu=false;
         menuShop=false;
         
         aTabAchat= new HashMap<Integer,TypeUnite> ();
@@ -218,6 +223,29 @@ public class PanelMatrice extends JPanel
             g.setColor(Color.gray);
             g.drawLine(aShopHautGauche_Xpx, 0, aShopBasDroite_Xpx, 0);
         }
+        
+        if(menuMenu) 
+        {
+            redimMenu();
+            
+            // Police
+            Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
+            g.setFont(font);
+            FontMetrics fm=getFontMetrics(font);  
+            
+            String charger = "Charger";
+            int chargerSize = fm.stringWidth(charger);
+            String sauver = "Sauver";
+            int sauverSize = fm.stringWidth(sauver);
+
+            afficheImageRedim ("noir80", aMenuHautGauche_Xpx, aMenuHautGauche_Ypx, aMenuBasDroite_Xpx, aMenuBasDroite_Ypx, g);
+            g.setColor(Color.white);
+            g.drawString(charger, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-chargerSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
+            g.drawString(sauver, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-sauverSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
+            
+            g.setColor(Color.gray);
+            g.drawLine(aMenuHautGauche_Xpx, 0, aMenuBasDroite_Xpx-1, 0);
+        }
     }
     
     /**
@@ -227,10 +255,6 @@ public class PanelMatrice extends JPanel
     {
         int clickX = pX;
         int clickY = pY; 
-
-        if(modeMenu) {
-            this.repaint();modeMenu=false;
-        }
 
         for(int i = 0 ; i < Slatch.partie.getLargeur() ; i++) 
         {
@@ -244,6 +268,26 @@ public class PanelMatrice extends JPanel
 
                 if(pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) 
                 {
+                    if(menuMenu) {
+                        // Bouton charger
+                        if (0<clickY && clickY<aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
+                            System.out.println("Bouton Charger");
+                        }
+                        // Bouton sauver
+                        else if(aHauteurCarreau<clickY && clickY<2*aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
+                            System.out.println("Bouton Sauver");
+                        }
+                        else {
+                            aUniteMemMenuCaseX=i;
+                            aUniteMemMenuCaseY=j;
+                            effaceMenu();
+                            // Avertir Moteur
+                            Slatch.moteur.caseSelectionnee(i,j);
+                            this.repaint();
+                        }
+                        effaceMenuShop();
+                    }
+                    
                     if(menuUniteAction)
                     {
                         if( aMenuActionHautGauche_Ypx<clickY && clickY<aMenuActionBasDroite_Ypx && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )//Si tu es dans menu
@@ -317,6 +361,7 @@ public class PanelMatrice extends JPanel
                             this.repaint();
                         }
                     }
+                    
                     else
                     {
                         if(aUniteMemMenuCaseX==i && aUniteMemMenuCaseY==j && menuUniteDescription)
@@ -327,7 +372,6 @@ public class PanelMatrice extends JPanel
                         
                         aUniteMemMenuCaseX=i;
                         aUniteMemMenuCaseY=j;
-    
                         Slatch.moteur.caseSelectionnee(i,j);
                         this.repaint();
                     }
@@ -383,14 +427,19 @@ public class PanelMatrice extends JPanel
         aShopHautGauche_Ypx=0;
         aShopBasDroite_Xpx=0;
         aShopBasDroite_Ypx=0;
-        
         aTabAchat= new HashMap<Integer,TypeUnite> ();
-        
         menuShop=false;
-        
         aListeShop.clear();
-        
-        
+        this.repaint();
+    }
+    
+    private void effaceMenu()
+    {
+        aMenuHautGauche_Xpx=0;
+        aMenuHautGauche_Ypx=0;
+        aMenuBasDroite_Xpx=0;
+        aMenuBasDroite_Ypx=0;
+        menuMenu=false;
         this.repaint();
     }
     
@@ -432,6 +481,13 @@ public class PanelMatrice extends JPanel
             aShopBasDroite_Xpx = (Slatch.partie.getLargeur()/2-1)*aLargeurCarreau;
             aShopBasDroite_Ypx = aHauteurShopEnCase*aHauteurCarreau;
         }
+    }
+    
+    public void redimMenu() {
+        aMenuHautGauche_Xpx = 0;
+        aMenuHautGauche_Ypx = 0;
+        aMenuBasDroite_Xpx = 4*aLargeurCarreau;
+        aMenuBasDroite_Ypx = 2*aHauteurCarreau;
     }
     
     /**
@@ -504,4 +560,6 @@ public class PanelMatrice extends JPanel
     public void setMenuUniteAction(final boolean X){menuUniteAction=X;}
     public void setMenuUniteDescription(final boolean X){menuUniteDescription=X;}
     public void setMenuShop(final boolean X){menuShop=X;}
+    public void setMenu(final boolean X){menuMenu=X;}
+    
 }
