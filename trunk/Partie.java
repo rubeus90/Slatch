@@ -205,8 +205,8 @@ public class Partie
         aTour = Integer.parseInt(aMap.nextLine());
         aRevenuBatiment = Integer.parseInt(aMap.nextLine());
         
-        int[] vArgent =new int[aNbrJoueur];
-        for(int i=0;i<aNbrJoueur;i++){
+        int[] vArgent =new int[aNbrJoueur+1];
+        for(int i=1;i<=aNbrJoueur;i++){
             vArgent[i]=Integer.parseInt(aMap.nextLine());
         }
   
