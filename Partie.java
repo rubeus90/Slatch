@@ -377,6 +377,10 @@ public class Partie
 			bw.newLine();
 			bw.write(""+ aRevenuBatiment);
 			bw.newLine();
+			for(Joueur joueur: ListeJoueur){
+				bw.write(joueur.getArgent());
+				bw.newLine();
+			}
 			
 			for(int i = 0; i<aLargeur; i++){
 				for(int j = 0; j<aHauteur; j++){
