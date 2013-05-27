@@ -387,11 +387,13 @@ public class Partie
 					string += j+ ":";
 					string += terrain.getJoueur() + ":";
 					string += terrain.getType().getNom()+ ":";
-					string += terrain.getUnite().getPV()+ ":";
-					string += terrain.getUnite().getExperience()+ ":";
-					string += terrain.getUnite().getLvl()+ ":";
-					string += terrain.getUnite().dejaAttaque();
-					string += terrain.getUnite().dejaDeplacee();
+					if(terrain.getUnite() != null){
+						string += terrain.getUnite().getPV()+ ":";
+						string += terrain.getUnite().getExperience()+ ":";
+						string += terrain.getUnite().getLvl()+ ":";
+						string += terrain.getUnite().dejaAttaque()+ ":";
+						string += terrain.getUnite().dejaDeplacee();
+					}
 					bw.write(string);
 				}
 			}
