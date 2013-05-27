@@ -617,7 +617,7 @@ class Moteur
         int vNumJoueur = Slatch.partie.getJoueurActuel();
         Joueur vJoueur = Slatch.partie.getJoueur(vNumJoueur);
         
-        if(vJoueur.getArgent()>=pType.getPrix())
+        if(vJoueur.getArgent()>=pType.getPrix() && Slatch.partie.getTerrain()[pX][pY].getUnite()==null)
         {
             vJoueur.addArgent(-pType.getPrix());
             Unite creation = new Unite(pX,pY,vNumJoueur,pType);
