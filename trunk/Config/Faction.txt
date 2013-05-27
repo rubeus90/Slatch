@@ -3,6 +3,7 @@ HUMAINS:Ingenieur
 HUMAINS:Demolisseur
 HUMAINS:Uml
 HUMAINS:Tank
+HUMAINS:Char
 ROBOTS:Commando
 ROBOTS:Tank
 ROBOTS:Uml

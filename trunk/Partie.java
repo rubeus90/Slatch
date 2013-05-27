@@ -185,11 +185,11 @@ public class Partie
                     lUnite.add(vtank);
                     aTerrain[vX][vY].setUnite(vtank); 
                     break;
-                /*case "char":
+                case "char":
                     Unite vchar = new Unite(vX,vY,vJoueur,TypeUnite.CHAR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
                     lUnite.add(vchar);
                     aTerrain[vX][vY].setUnite(vchar); 
-                    break;*/
+                    break;
                 case "ingenieur":
                     Unite ingenieur = new Unite(vX,vY,vJoueur,TypeUnite.INGENIEUR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
                     lUnite.add(ingenieur);
