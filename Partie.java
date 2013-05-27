@@ -383,11 +383,13 @@ public class Partie
 					Terrain terrain = aTerrain[i][j];
 					Unite unite = terrain.getUnite();
 					String string = "";
-					string += terrain.getType().getNom()+ ":";
-					string += i+ ":";
-					string += j+ ":";
-					string += terrain.getJoueur() + ":";
-					string += "0:0:0:0:0";
+					if(terrain.getType().getNom() != "plaine"){
+						string += terrain.getType().getNom()+ ":";
+						string += i+ ":";
+						string += j+ ":";
+						string += terrain.getJoueur() + ":";
+						string += "0:0:0:0:0";
+					}
 					bw.write(string);
 					
 					bw.newLine();
@@ -400,8 +402,15 @@ public class Partie
 						string2 += terrain.getUnite().getPV()+ ":";
 						string2 += terrain.getUnite().getExperience()+ ":";
 						string2 += terrain.getUnite().getLvl()+ ":";
-						string2 += terrain.getUnite().dejaAttaque()+ ":";
-						string2 += terrain.getUnite().dejaDeplacee();
+						if(terrain.getUnite().dejaAttaque())
+							string2 += "1"+ ":";
+						else
+							string2 += "0"+ ":";
+						
+						if(terrain.getUnite().dejaDeplacee())
+							string2 += "0"+ ":";
+						else
+							string2 += "1"+ ":";
 						bw.write(string2);
 						bw.newLine();
 					}
