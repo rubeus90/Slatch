@@ -196,6 +196,7 @@ public class Partie
      * iniMap pour nouvelle partie
      */
     private void chargementMap(){
+        
         aLargeur = Integer.parseInt(aMap.nextLine());
         aHauteur = Integer.parseInt(aMap.nextLine());
         aNbrJoueur = Integer.parseInt(aMap.nextLine());
@@ -204,6 +205,11 @@ public class Partie
         aTour = Integer.parseInt(aMap.nextLine());
         aRevenuBatiment = Integer.parseInt(aMap.nextLine());
         
+        int[] vArgent =new int[aNbrJoueur];
+        for(int i=0;i<aNbrJoueur;i++){
+            vArgent[i]=Integer.parseInt(aMap.nextLine());
+        }
+  
         aTerrain = new Terrain[aLargeur][aHauteur];
         
         //On rempli la carte de plaine 
@@ -241,10 +247,12 @@ public class Partie
             vExperience = Integer.parseInt(tab[5]);
             vLvl = Integer.parseInt(tab[6]);
             vIntDejaDeplacee = Integer.parseInt(tab[7]);
+            vIntDejaAttaque = Integer.parseInt(tab[8]);
+      
             if(vIntDejaDeplacee==1)
                 vDejaDeplacee=true;
-            vIntDejaAttaque = Integer.parseInt(tab[8]);
-             if(vIntDejaAttaque==1)
+            
+            if(vIntDejaAttaque==1)
                 vDejaAttaque=true;
 
             switch(vId){
@@ -283,7 +291,7 @@ public class Partie
                     lUnite.add(vcommando);
                     aTerrain[vX][vY].setUnite(vcommando); 
                     break;
-               case "demolisseur": 
+                case "demolisseur": 
                     Unite demolisseur = new Unite(vX,vY,vJoueur,TypeUnite.DEMOLISSEUR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
                     lUnite.add(demolisseur);
                     aTerrain[vX][vY].setUnite(demolisseur); 
@@ -325,9 +333,9 @@ public class Partie
         for(int i=1;i<=aNbrJoueur;i++)
         {
             ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i]));
-            ListeJoueur.get(i).benefTour(aRevenuBatiment);
+            ListeJoueur.get(i).setArgent(vArgent[i]);
         }
-        ListeJoueur.get(1).benefTour(aRevenuBatiment);
+        
         for(Unite vUniteActuel : lUnite){
             int vJ = vUniteActuel.getJoueur();
             ListeJoueur.get(vJ).getListeUnite().add(vUniteActuel);
