@@ -376,26 +376,31 @@ public class Partie
 			bw.write(""+ aTour);
 			bw.newLine();
 			bw.write(""+ aRevenuBatiment);
+			
+			
+			for(int i = 0; i<aLargeur; i++){
+				for(int j = 0; j<aHauteur; j++){
+					Terrain terrain = aTerrain[i][j];
+					Unite unite = terrain.getUnite();
+					String string = "";
+					string += i+ ":";
+					string += j+ ":";
+					string += terrain.getJoueur() + ":";
+					string += terrain.getType().getNom()+ ":";
+					string += terrain.getUnite().getPV()+ ":";
+					string += terrain.getUnite().getExperience()+ ":";
+					string += terrain.getUnite().getLvl()+ ":";
+					string += terrain.getUnite().dejaAttaque();
+					string += terrain.getUnite().dejaDeplacee();
+					bw.write(string);
+				}
+			}
+			
 			bw.close();
 		} catch (URISyntaxException | IOException e) {
-			System.out.println("Putain ca marche pas");
+			System.out.println("Probleme d'ecriture dans le fichier sauvegarde");
 			e.printStackTrace();
 		}
-    	
-    	
-		
-		
-		
-		
-		/*
-		 * largeur
-		 * hauteur
-		 * nbr joueur
-		 * joueur actuelle
-		 * tour max
-		 * tour
-		 * revenu par batiment
-		 */
 		
 		/*
 		 * x
