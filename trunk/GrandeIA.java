@@ -10,10 +10,10 @@ public class GrandeIA
     
     static void test(Unite unite)
     {
-        int x =20, y =16;
+        int x =1, y =1;
         if(Slatch.partie.getTerrain()[x][y].getUnite()==null)
         {
-            uia.decrypterObjectif(unite, "aller,"+x+","+y);
+            uia.decrypterObjectif(unite, "attaquer,"+x+","+y);
         }
         Slatch.moteur.passeTour();
     }
