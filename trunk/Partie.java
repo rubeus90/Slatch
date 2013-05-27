@@ -284,11 +284,11 @@ public class Partie
                 case "routetgauche": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETGAUCHE); break;
                 case "carrefour": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.CARREFOUR); break;
                 case "batiment":
-                    aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.BATIMENT); 
+                    aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.BATIMENT,vPV); 
                     vBatimentJoueur[vJoueur]+=1;
                     break;
                 case "usine":
-                    aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.USINE); 
+                    aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.USINE,vPV); 
                     vBatimentJoueur[vJoueur]+=1;
                     lUsine.add(aTerrain[vX][vY]);
                     break;
