@@ -34,6 +34,15 @@ public class Terrain extends Entite{
         aPV = pType.getPVMax();
     }
     
+    public Terrain(final int pX,final int pY,final int pJoueur,final TypeTerrain pType,final int pPV) 
+    {
+        super(pX,pY,pJoueur);
+        aType = pType;
+        aPVMax = pType.getPVMax();
+        aPV = pPV;
+    }
+    
+    
     /**
      * Retourner l'unite se trouvant sur le terrain
      * @return aUnite
