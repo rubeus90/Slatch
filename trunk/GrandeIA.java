@@ -25,7 +25,7 @@ public class GrandeIA
     static void test2(Unite unite)
     {
         Point pwin = test2uniteProcheAdverse(unite);
-        if(pwin!=null)
+        if(pwin!=null && !unite.seSitue(pwin))
         {
             uia.decrypterObjectif(new Objectif("aller", null, pwin, unite));
         }
@@ -56,6 +56,7 @@ public class GrandeIA
                                 t.x = x;
                                 t.y = y;
                             }
+                            if(unite.seSitue(new Point(x,y))){return new Point(x,y);}
                         }
                     }
                 }

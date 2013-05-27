@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import javax.imageio.ImageIO;
+import java.awt.Point;
 
 /****************************************
  *
@@ -314,5 +315,10 @@ public class Unite extends Entite
                 }
                }
 //        }
+    }
+    
+    public boolean seSitue(Point p)
+    {
+        return (this.aCoordonneeX == (int)p.getX() && this.aCoordonneeY == (int)p.getY());
     }
 }
