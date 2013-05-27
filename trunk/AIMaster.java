@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Iterator;
 /**
  * Write a description of class AIMaster here.
  * 
@@ -13,7 +14,7 @@ public class AIMaster
         for(Unite u: l)
         {
             GrandeIA.test2(u);
-        }
+        }    
         Slatch.moteur.passeTour();
     }
 }

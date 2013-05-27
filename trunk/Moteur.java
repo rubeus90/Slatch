@@ -398,7 +398,7 @@ class Moteur
             else{break;}
         }
         
-        while(true)
+        while(!chemin.isEmpty())
         {
             if(unite.getType().getDeplacement()-tabDist[(int)chemin.get(0).getX()][(int)chemin.get(0).getY()]<0)
             {
@@ -639,7 +639,7 @@ class Moteur
                     }
                 }
                 else{tabDist[i][j] = -1;} // au début, on suppose qu'on a une distance infinie représentée par -1 sur chacune des cases restantes
-                //pred[i][j]=null;
+                pred[i][j]=null;
             }
         }
         tabDist[unite.getCoordonneeX()][unite.getCoordonneeY()]=-2;

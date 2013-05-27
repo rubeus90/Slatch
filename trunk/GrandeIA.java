@@ -1,3 +1,4 @@
+
 import java.util.PriorityQueue;
 import java.awt.Point;
 
@@ -17,28 +18,28 @@ public class GrandeIA
         int x =15, y =4;
         //if(Slatch.partie.getTerrain()[x][y].getUnite()==null)
         //{
-            uia.decrypterObjectif(new Objectif("acheter","Commando",new Point(x,y),null));
+            uia.decrypterObjectif(new Objectif("acheter","Commando",new Point(x,y),null,null));
         //}
         Slatch.moteur.passeTour();
     }
     
     static void test2(Unite unite)
     {
-        Point pwin = test2uniteProcheAdverse(unite);
-        if(pwin!=null && !unite.seSitue(pwin))
-        {
-            uia.decrypterObjectif(new Objectif("aller", null, pwin, unite));
-        }
+         test2uniteProcheAdverse(unite);
+        //if(pwin!=null && !unite.seSitue(pwin))
+        //{
+            //uia.decrypterObjectif(new Objectif("aller", null, pwin, unite,null));
+        //}
         //Slatch.moteur.passeTour();
     }
     
-    static Point test2uniteProcheAdverse(Unite unite)
+    static void test2uniteProcheAdverse(Unite unite)
     {        
         Slatch.moteur.remplitPorteeDep(unite, false);
         //Slatch.moteur.tabDist[unite.getCoordonneeX()][unite.getCoordonneeY()] = -1;
         Triplet t = new Triplet(-1, -1, -1);
-        
-        for(int i=0; i<Slatch.partie.getNbrJoueur(); i++)
+        Unite cible=null;
+        label:for(int i=0; i<Slatch.partie.getNbrJoueur(); i++)
         {
             if(i!=unite.getJoueur())
             {
@@ -55,8 +56,18 @@ public class GrandeIA
                                 t.d = Slatch.moteur.tabDist[x][y];
                                 t.x = x;
                                 t.y = y;
+                                cible=u;
                             }
-                            if(unite.seSitue(new Point(x,y))){return new Point(x,y);}
+                            if(unite.seSitue(new Point(x,y)))
+                            {
+                                t.d = Slatch.moteur.tabDist[x][y];
+                                t.x = x;
+                                t.y = y;
+                                cible=u;
+                                break label;
+                                /*uia.decrypterObjectif(new Objectif("attaquer", null, new Point(t.x,t.y), unite,u));
+                                return new Point(x,y);*/
+                            }
                         }
                     }
                 }
@@ -67,8 +78,8 @@ public class GrandeIA
         if(t.d!=-1)
         {
             //System.out.println(t.x+" "+t.y+" "+t.d);
-            return new Point(t.x,t.y);
+             uia.decrypterObjectif(new Objectif("attaquer", null, new Point(t.x,t.y), unite,cible));
+            //return new Point(t.x,t.y);
         }
-        return null;
     }
 }
