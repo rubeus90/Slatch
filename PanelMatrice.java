@@ -384,6 +384,10 @@ public class PanelMatrice extends JPanel
         aShopBasDroite_Xpx=0;
         aShopBasDroite_Ypx=0;
         menuShop=false;
+        
+        aListeShop.clear();
+        
+        
         this.repaint();
     }
     

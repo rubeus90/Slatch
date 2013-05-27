@@ -17,6 +17,23 @@ public class UniteIA
         }
     }
     
+    private void capture(final Entite pUnite,final Point point){
+        seDirigerVers((Unite)pUnite, point);
+        if(pUnite.getCoordonneeX()==(int)point.getX() && pUnite.getCoordonneeY()==(int)point.getY()){
+            Slatch.moteur.capture((int)point.getX(),(int)point.getY());
+        }
+    }
+    
+    private void achat(final Point point,String pType){
+        
+        for(TypeUnite type : TypeUnite.values()){
+            if(type.getNom().equals(pType)){
+                Slatch.moteur.creationUnite((int)point.getX(),(int)point.getY(),type);
+                break;
+            }
+        }
+    }
+    
     public void decrypterObjectif(final Objectif objectif)
     {
         switch(objectif.getMotPrincipal()){
@@ -25,6 +42,12 @@ public class UniteIA
             break;
         case "attaquer" :
             attaquerUnite(objectif.getExecutant(),objectif.getCoordonnee());
+            break;
+        case "capture" :
+            capture(objectif.getExecutant(),objectif.getCoordonnee());
+            break;
+        case "acheter" :
+            achat(objectif.getCoordonnee(),objectif.getMotSecondaire());
             break;
         }
     }
