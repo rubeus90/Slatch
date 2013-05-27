@@ -18,7 +18,7 @@ public class GrandeIA
         int x =15, y =4;
         //if(Slatch.partie.getTerrain()[x][y].getUnite()==null)
         //{
-            uia.decrypterObjectif(new Objectif("acheter","Commando",new Point(x,y),null,null));
+            uia.decrypterObjectif(new Objectif("acheter","Commando",new Point(x,y),null));
         //}
         Slatch.moteur.passeTour();
     }
