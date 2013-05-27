@@ -378,7 +378,7 @@ public class Partie
             bw.write(""+ aRevenuBatiment);
             bw.newLine();
             for(Joueur joueur: ListeJoueur){
-                bw.write(joueur.getArgent());
+                bw.write(""+joueur.getArgent());
                 bw.newLine();
             }
             
@@ -425,17 +425,7 @@ public class Partie
             e.printStackTrace();
         }
         
-        /*
-         * x
-         * y
-         * int joueur
-         * typeterrain
-         * pv actuelle (0)
-         * xp 0)
-         * lvl (0)
-         * boolean deja attaquer (0)
-         * boolean deja deplace (0)
-         * */
+
     }
    
 }
