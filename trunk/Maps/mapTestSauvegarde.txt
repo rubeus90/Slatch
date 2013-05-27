@@ -48,4 +48,12 @@ routevertical:11:8:0:0:0:0:0:0
 routevertical:11:7:0:0:0:0:0:0
 routevertical:11:6:0:0:0:0:0:0
 commando:13:5:1:8:40:1:1:1
-commando:16:6:2:2:20:1:1:1
+commando:16:6:2:2:20:1:2:1
+tank:12:5:1:10:60:1:1:1
+tank:17:5:2:7:0:1:0:0
+uml:12:6:1:6:0:1:1:1
+uml:17:6:2:10:40:1:0:0
+ingenieur:2:2:1:8:0:1:1:1
+ingenieur:0:3:2:8:0:1:1:1
+demolisseur:1:2:1:8:0:1:0:0
+demolisseur:1:3:2:8:0:1:0:0
