@@ -49,9 +49,6 @@ public class Partie
         aTour = 1;
         aRevenuBatiment = pRevenuBatiment;
         ListeJoueur.get(1).benefTour(aRevenuBatiment);
-        
-        
-        sauvegardePartie();
     }
     
     /**
