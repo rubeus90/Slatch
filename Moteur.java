@@ -362,7 +362,7 @@ class Moteur
                         {
                             stack.push(p);
                             unite.deplacee(true);
-                                           // Slatch.partie.getTerrain()[uniteD.getCoordonneeX()][uniteD.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[uniteD.getCoordonneeX()][uniteD.getCoordonneeY()].getType().getPVMax());
+                            Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
                         }
                     }
                 }
