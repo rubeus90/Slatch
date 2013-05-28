@@ -142,7 +142,8 @@ class Moteur
                 estMort(uniteA);
             }
         }
-        
+        //System.out.println("attaquant "+uniteA.getJoueur()+" PV"+uniteA.getPV()); 
+        //System.out.println("attaquant "+pVictime.getJoueur()+" PV"+pVictime.getPV()); 
         uniteA.attaque(true);
         uniteA.deplacee(true);
         uniteA=null;

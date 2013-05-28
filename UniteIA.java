@@ -5,33 +5,17 @@ public class UniteIA
     private void seDirigerVers(final Entite executant,final Point point)
     {
         Unite u = (Unite)executant;
-        Slatch.moteur.remplitPorteeDep(u, false);
-        /*int x=(int)point.getX();
-        int y=(int)point.getY();
-        while(u.getType().getDeplacement()<Slatch.moteur.tabDist[x][y])
-        {
-            Point p = Slatch.moteur.pred[x][y];
-            x=(int)p.getX();
-            y=(int)p.getY();
-        }
-        
-        while(Slatch.partie.getTerrain()[x][y].getUnite()!=null)
-        {
-            Point p = Slatch.moteur.pred[x][y];
-            x=(int)p.getX();
-            y=(int)p.getY();
-        }
-        
-        
-        */
-        
-        
+        //System.out.println(u.getJoueur()+" Je me deplace vers "+point.getX()+","+point.getY());
+        Slatch.moteur.remplitPorteeDep(u, false);        
         Slatch.moteur.deplacement(u, (int)point.getX(),(int)point.getY());
     }
     
     private void attaquerUnite(final Entite pUnite,final Point point,final Entite pCible){
         seDirigerVers((Unite)pUnite, point);
+        
+        
         if(pUnite.getCoordonneeX()==(int)point.getX() && pUnite.getCoordonneeY()==(int)point.getY()){
+            //System.out.println(pCible.getJoueur()+" J'attaque en "+pCible.getCoordonneeX()+","+pCible.getCoordonneeY());
             Slatch.moteur.setuniteA((Unite)pUnite);
             Slatch.moteur.attaque((Unite)pCible);
         }

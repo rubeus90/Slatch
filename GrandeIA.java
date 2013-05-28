@@ -24,6 +24,7 @@ public class GrandeIA
         
         if( (Slatch.partie.getTerrain()[X][Y].getType()==TypeTerrain.BATIMENT || Slatch.partie.getTerrain()[X][Y].getType()==TypeTerrain.USINE) && Slatch.partie.getTerrain()[X][Y].getJoueur()!=unite.getJoueur() )
         {
+            
             uia.decrypterObjectif(new Objectif("capture",null,new Point(X,Y),unite,null));
             return;
         }
@@ -34,11 +35,14 @@ public class GrandeIA
         Triplet cible;
         
         
-        
+        System.out.println(unite.getJoueur()+" "+batimentProche.d+" "+ennemiProche.d+" "+ennemiProche.d);
         if( (batimentProche.d > ennemiProche.d) && ennemiProche.d!=-1)
         {
+            
             Unite ennemi = Slatch.partie.getTerrain()[ennemiProche.x][ennemiProche.y].getUnite();
             cible = determineVoisinProcheEnnemi(unite,ennemiProche);
+            
+            //System.out.println(unite.getJoueur()+" Je demande d'attaquer");
             uia.decrypterObjectif(new Objectif("attaquer", null, new Point(cible.x,cible.y),unite,ennemi));
         }
         else if(batimentProche.d!=-1)
@@ -111,7 +115,7 @@ public class GrandeIA
                 }
             }
         }
-        
+       
         return t;
     }
     
@@ -155,7 +159,7 @@ public class GrandeIA
                 }
             }
         }
-        
+         
         return new Triplet (t.d,X,Y);
     }
     
