@@ -18,7 +18,7 @@ public class Partie
 {
     // instance variables - replace the example below with your own
     private int aNbrJoueur;
-    private List<Joueur> ListeJoueur;
+    public List<Joueur> ListeJoueur;
     private int aRevenuBatiment;
     private int aLargeur;
     private int aHauteur;
