@@ -13,7 +13,7 @@ public class Slatch {
     public static Partie partie;
     public static Moteur moteur;
     public static HashMap<String,Image> aImages; // Se trouvera dans Le moteur du jeu quand il y sera avec tout les load
-    //public static CreationMaps maps;
+    public static CreationMaps maps;
     
     /**
      * @param args
@@ -39,7 +39,7 @@ public class Slatch {
             AIMaster.joueTour(Slatch.partie.getJoueurActuel());
         }
         
-       // maps = new CreationMaps();
+        maps = new CreationMaps();
     }
     
     private void loadImage()

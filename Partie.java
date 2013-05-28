@@ -76,7 +76,7 @@ public class Partie
         aLargeur = Integer.parseInt(aMap.nextLine());
         aHauteur = Integer.parseInt(aMap.nextLine());
         aNbrJoueur = Integer.parseInt(aMap.nextLine());
-        aJoueurActuel= Integer.parseInt(aMap.nextLine());
+        aJoueurActuel = Integer.parseInt(aMap.nextLine());
         aTourMax = Integer.parseInt(aMap.nextLine());
         aTour = Integer.parseInt(aMap.nextLine());
         aRevenuBatiment = Integer.parseInt(aMap.nextLine());

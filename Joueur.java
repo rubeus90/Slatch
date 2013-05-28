@@ -37,7 +37,7 @@ public class Joueur
     {
         aNumJoueur = pNumJoueur;
         aFaction = pFaction;
-        IA=true;
+        IA=false;
         aArgent = 0;
         aArgentTotal = 0;
         aNbrUniteMort = 0;

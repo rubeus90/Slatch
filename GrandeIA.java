@@ -18,6 +18,7 @@ public class GrandeIA
     
     static void elaborationObjectif(Unite unite)
     {
+
         int X = unite.getCoordonneeX();
         int Y = unite.getCoordonneeY();
         
@@ -314,7 +315,6 @@ public class GrandeIA
             //System.out.println(t.x+" "+t.y+" "+t.d);
              uia.decrypterObjectif(new Objectif("attaquer", null, new Point(t.x,t.y), unite,cible));
             //return new Point(t.x,t.y);
-             /*Salut les conflits, fuck you*/
         }
     }
     
