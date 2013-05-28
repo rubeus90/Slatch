@@ -17,6 +17,7 @@ public class Joueur
     private List<Terrain> aListeUsine;
     private double aArgentTotal; // Sert aux statistiques de fin de partie, represente l'argent total que le joueur a gagne
     private int aNbrUniteMort;
+    private int aNbrUniteCree;
     
     /**
      * Créer un joueur
@@ -47,6 +48,7 @@ public class Joueur
     public int getArgent()             {return aArgent;}
     public double getArgentTotal() {return aArgentTotal;}
     public int getNbrUniteMort() {return aNbrUniteMort;}
+    public int getNbrUniteCree() {return aNbrUniteCree;}
     public List<Unite> getListeUnite()   {return aListeUnite;}
     public List<Terrain> getListeUsine()   {return aListeUsine;}
     public boolean estUneIA()                  {return IA;}
@@ -54,6 +56,7 @@ public class Joueur
     public void setNumJoueur(final int pNum) {aNumJoueur = pNum;}
     public void setFaction(final Faction pFaction) {aFaction = pFaction;}
     public void addNbreBatiment(final int pNbre) {aNbreBatiment += pNbre;}
+    public void addNbrUniteCree() {aNbrUniteCree++;}
     public void setArgent(final int pArgent){
         aArgent = pArgent;
         aArgentTotal = pArgent;
@@ -67,6 +70,8 @@ public class Joueur
     
     public void addNbrUniteMort(){
         aNbrUniteMort++;
+        //if(aNumJoueur ==1)
+        //    System.out.println("Le joueur " + aNumJoueur + " a perdu une Unite");
     }
     
     public void setIA(final boolean X)      {IA=X;}
