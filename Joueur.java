@@ -81,7 +81,6 @@ public class Joueur
     
     public void addNbrUniteMort(){
         aNbrUniteMort++;
-        System.out.println("Le joueur " + aNumJoueur + " a perdu une Unite");
     }
     
     public void setIA(final boolean X)      {IA=X;}
