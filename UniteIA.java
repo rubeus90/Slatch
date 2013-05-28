@@ -2,10 +2,31 @@ import java.awt.Point;
 import java.util.Stack;
 public class UniteIA
 {
-    private void seDirigerVers(final Entite unite,final Point point)
+    private void seDirigerVers(final Entite cible,final Point point)
     {
-        Slatch.moteur.remplitPorteeDep((Unite)unite, false);
-        Slatch.moteur.deplacement((Unite)unite, (int)point.getX(),(int)point.getY());
+        Unite u = (Unite)cible;
+        Slatch.moteur.remplitPorteeDep(u, false);
+        /*int x=(int)point.getX();
+        int y=(int)point.getY();
+        while(u.getType().getDeplacement()<Slatch.moteur.tabDist[x][y])
+        {
+            Point p = Slatch.moteur.pred[x][y];
+            x=(int)p.getX();
+            y=(int)p.getY();
+        }
+        
+        while(Slatch.partie.getTerrain()[x][y].getUnite()!=null)
+        {
+            Point p = Slatch.moteur.pred[x][y];
+            x=(int)p.getX();
+            y=(int)p.getY();
+        }
+        
+        
+        */
+        
+        
+        Slatch.moteur.deplacement(u, (int)point.getX(),(int)point.getY());
     }
     
     private void attaquerUnite(final Entite pUnite,final Point point,final Entite pCible){
@@ -24,7 +45,6 @@ public class UniteIA
     }
     
     private void achat(final Point point,String pType){
-        
         for(TypeUnite type : TypeUnite.values()){
             if(type.getNom().equals(pType)){
                 Slatch.moteur.creationUnite((int)point.getX(),(int)point.getY(),type);

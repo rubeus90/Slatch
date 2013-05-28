@@ -318,64 +318,6 @@ class Moteur
         uniteA=null;
     }
     
-    /**
-    * permet de déplacer une unité en fonction du chemin passé en paramètre
-    * @param unite unite a deplacer
-    * @param pX abscisse de l'arrivee
-    * @param pY ordonnee de l'arrivee
-    */
-    /*public void deplacement(final Unite unite,final int pX,final int pY)
-    {
-        boolean fini = false;
-        int x = pX, y =pY;
-        Stack<Point> chemin = new Stack<Point>();
-        boolean deplacee = false;
-        
-        if(pred[x][y]!=null){chemin.push(new Point(pX,pY));}
-        while(!fini)
-        {
-            Point p = pred[x][y];
-            if(p!=null)
-            {
-                x=(int)p.getX();
-                y=(int)p.getY();
-                if(unite.getCoordonneeX()==x && unite.getCoordonneeY()==y)
-                {
-                    fini = true;
-                }
-                else
-                {
-                    chemin.push(p);
-                    unite.deplacee(true);
-                }
-            }
-            else{break;}
-        }
-        
-        int k = chemin.size();
-        int l = unite.getType().getDeplacement();
-        Unite mem = null;
-        while(!chemin.isEmpty())
-        {
-            deplacee= true;
-            Point p = chemin.pop();
-            if((l-=Slatch.partie.getTerrain()[(int)p.getX()][(int)p.getY()].getCout(unite))<0)
-            {
-                break;
-            }
-            
-            mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
-
-            try{
-                Thread.sleep(250/k+50);
-            }
-            catch(InterruptedException e)
-            {
-                e.printStackTrace();
-            }
-        }
-    }*/
-    
     
     /**
     * permet de déplacer une unité en fonction du chemin passé en paramètre
@@ -421,28 +363,6 @@ class Moteur
             }
             else{break;}
         }
-        
-        /*while(!chemin.isEmpty())
-        {
-            if(unite.getType().getDeplacement()-tabDist[(int)chemin.get(0).getX()][(int)chemin.get(0).getY()]<0)
-            {
-                chemin.remove(0);
-            }
-            else
-            {
-                while(!chemin.isEmpty())
-                {
-                    if(Slatch.partie.getTerrain()[(int)chemin.get(0).getX()][(int)chemin.get(0).getY()].getUnite()==null){break;}
-                    chemin.remove(0);
-                }
-                break;
-            }
-        }
-        
-        for(Point p: chemin)
-        {
-            stack.push(p);
-        }*/
         
         int k = stack.size();
         int l = unite.getType().getDeplacement();
@@ -615,7 +535,7 @@ class Moteur
                 {
                     if(Slatch.partie.getTerrain()[i][j].getUnite().getJoueur() == unite.getJoueur())
                     {
-                            tabDist[i][j] = -2;
+                        tabDist[i][j] = -2;
                     }
                 }
             }
@@ -684,18 +604,40 @@ class Moteur
                 if(x>=0 && y>=0 && x<Slatch.partie.getLargeur() && y<Slatch.partie.getHauteur())
                 {
                     int d = t.d+Slatch.partie.getTerrain()[x][y].getCout(unite);
+                    
                     if(d<=unite.getType().getDeplacement() || !porteeComptee)
                     {
                         if(d<tabDist[x][y] || tabDist[x][y]==-1)
                         {
-                            tabDist[x][y] = d;
                             pred[x][y] = new Point(t.x, t.y);
-                            pq.offer(new Triplet(d, x, y));
+                            
+                            if(enBordureDeDeplacement(unite, t.x, t.y, d) && Slatch.partie.getTerrain()[t.x][t.y].getUnite()!=null) // et unité présente aussi
+                            {
+                                pred[x][y]= null;
+                            }
+                            else
+                            {
+                                tabDist[x][y] = d;
+                                pq.offer(new Triplet(d, x, y));
+                            }
                         }
                     }
                 }
             }
         }
+    }
+    
+    private boolean enBordureDeDeplacement(Unite unite, int pX, int pY, int d)
+    {
+        Point p = pred[pX][pY];
+        if(p!=null)
+        {
+            int x = (int)p.getX();
+            int y = (int)p.getY();
+            
+            return (d<=unite.getType().getDeplacement() && tabDist[pX][pY]>unite.getType().getDeplacement());
+        }
+        return false;
     }
     
     public void passeTour()
