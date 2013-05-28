@@ -14,6 +14,7 @@ public class Joueur
     private int aArgent; //Correspond a l'argent que possede le joueur.
     private List<Unite> aListeUnite;
     private boolean IA;
+    private List<Terrain> aListeBatiment;
     private List<Terrain> aListeUsine;
     private double aArgentTotal; // Sert aux statistiques de fin de partie, represente l'argent total que le joueur a gagne
     private int aNbrUniteMort;
@@ -37,6 +38,7 @@ public class Joueur
         aNbreBatiment = pNbreBatiment;
         aListeUnite = new ArrayList<Unite>();
         aListeUsine = new ArrayList<Terrain>();
+        aListeBatiment = new ArrayList<Terrain>();
     }
 
     /**
@@ -51,6 +53,7 @@ public class Joueur
     public int getNbrUniteCree() {return aNbrUniteCree;}
     public List<Unite> getListeUnite()   {return aListeUnite;}
     public List<Terrain> getListeUsine()   {return aListeUsine;}
+    public List<Terrain> getListeBatiment()   {return aListeBatiment;}
     public boolean estUneIA()                  {return IA;}
     
     public void setNumJoueur(final int pNum) {aNumJoueur = pNum;}
