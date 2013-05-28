@@ -216,7 +216,6 @@ class Moteur
      */
     public void caseSelectionnee(final int pX,final int pY)
     {
-        
         if(Slatch.partie.getTerrain()[pX][pY].getSurbrillance() && uniteA==null && uniteD == null)
         {
             this.enleverSurbrillance();
@@ -234,7 +233,7 @@ class Moteur
         if(unite==null) // si aucune unité n'est présente sur la case
         {
             annulerAttaque();
-            if(uniteD!=null && tabDist[pX][pY]>-1) // si on a sélectioné aucune unité auparavant pour le déplacement
+            if(uniteD!=null) // si on a sélectioné aucune unité auparavant pour le déplacement
             {
                 Slatch.partie.getTerrain()[uniteD.getCoordonneeX()][uniteD.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[uniteD.getCoordonneeX()][uniteD.getCoordonneeY()].getType().getPVMax());
                 deplacement(uniteD, pX, pY);
@@ -329,6 +328,7 @@ class Moteur
         boolean fini = false;
         int x = pX, y =pY;
         Stack<Point> chemin = new Stack<Point>();
+        boolean deplacee = false;
         
         if(pred[x][y]!=null){chemin.push(new Point(pX,pY));}
         while(!fini)
@@ -356,6 +356,7 @@ class Moteur
         Unite mem = null;
         while(!chemin.isEmpty())
         {
+            deplacee= true;
             Point p = chemin.pop();
             if((l-=Slatch.partie.getTerrain()[(int)p.getX()][(int)p.getY()].getCout(unite))<0)
             {
@@ -384,10 +385,11 @@ class Moteur
     public void deplacement(final Unite unite,final int pX,final int pY)
     {
         boolean fini = false;
+        boolean geez = false;
         int x = pX, y =pY;
-        List<Point> chemin = new ArrayList<Point>();
+        //List<Point> chemin = new ArrayList<Point>();
         Stack<Point> stack = new Stack<Point>();
-        if(pred[x][y]!=null){chemin.add(new Point(pX,pY));}
+        if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));}
         while(!fini)
         {
             Point p = pred[x][y];
@@ -401,14 +403,25 @@ class Moteur
                 }
                 else
                 {
-                    chemin.add(p);
-                    unite.deplacee(true);
+                    if(unite.getType().getDeplacement()>=tabDist[x][y])
+                    {
+                        if(!geez)
+                        {
+                            if(Slatch.partie.getTerrain()[x][y].getUnite()==null){stack.push(p);
+                            unite.deplacee(true); geez = true;}
+                        }
+                        else
+                        {
+                            stack.push(p);
+                            unite.deplacee(true);
+                        }
+                    }
                 }
             }
             else{break;}
         }
         
-        while(!chemin.isEmpty())
+        /*while(!chemin.isEmpty())
         {
             if(unite.getType().getDeplacement()-tabDist[(int)chemin.get(0).getX()][(int)chemin.get(0).getY()]<0)
             {
@@ -428,9 +441,9 @@ class Moteur
         for(Point p: chemin)
         {
             stack.push(p);
-        }
+        }*/
         
-        int k = chemin.size();
+        int k = stack.size();
         int l = unite.getType().getDeplacement();
         Unite mem = null;
         while(!stack.isEmpty())
