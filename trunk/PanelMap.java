@@ -13,9 +13,12 @@ import java.awt.* ;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.*;
 
-public class PanelMap extends JPanel{
+public class PanelMap extends JPanel {
 	 private int aLargeurCarreau;
 	 private int aHauteurCarreau;
 	 private Partie aPartie;
@@ -56,5 +59,43 @@ public class PanelMap extends JPanel{
 	            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, this);
 	         }
 	     }
+	 }
+	 
+	 public Point coordclickUnite (int pX, int pY) 
+	 {
+	     int clickX = pX;
+	     int clickY = pY; 
+	        
+	     Point point = new Point();
+
+	     for(int i = 0 ; i < Slatch.partie.getLargeur() ; i++) 
+	     {
+	         for(int j = 0 ; j < Slatch.partie.getHauteur() ; j++) 
+	         {
+	             // Position de la case selectionnee
+	             int pPosHautGaucheX = i*aLargeurCarreau;
+	             int pPosHautGaucheY = j*aHauteurCarreau;
+	             int pPosBasDroiteX = (i+1)*aLargeurCarreau;
+	             int pPosBasDroiteY = (j+1)*aHauteurCarreau;
+	                
+	             if(pPosHautGaucheY<=clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<=clickX && clickX<pPosBasDroiteX) 
+	             {
+	             	point.setLocation(i, j);
+	             }
+	         }
+	     }
+	     return point;
+	 }
+	 
+	 public Partie getPartie(){
+		 return aPartie;
+	 }
+	 
+	 public int getLargeurCarreau(){
+		 return aLargeurCarreau;
+	 }
+	 
+	 public int getHauteurCarreau(){
+		 return aHauteurCarreau;
 	 }
 }

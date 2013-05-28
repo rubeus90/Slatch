@@ -268,6 +268,14 @@ public class PanelMatrice extends JPanel
 
                 if(pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) 
                 {
+                	/*
+                	 * 
+                	 * 
+                	 * 
+                	 * Recuperer les coordonnees
+                	 * 
+                	 * 
+                	 */
                     if(menuMenu) {
                         // Bouton charger
                         if (0<clickY && clickY<aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
