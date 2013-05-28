@@ -336,9 +336,14 @@ public class GrandeIA
                     uia.decrypterObjectif(new Objectif("acheter","While",new Point(x,y),null,null));                    
                                         
                  }
-                else if(JoueurActuel.getArgent()>=350)         
+                else if(JoueurActuel.getArgent()>=450)         
                 {
                     uia.decrypterObjectif(new Objectif("acheter","Uml",new Point(x,y),null,null));
+                                
+                }
+                else if(JoueurActuel.getArgent()>=350)         
+                {
+                    uia.decrypterObjectif(new Objectif("acheter","Distance",new Point(x,y),null,null));
                                 
                 }
                 else if(JoueurActuel.getArgent()>=300)
