@@ -241,7 +241,7 @@ class Moteur
             annulerAttaque();
             if(uniteD!=null) // si on a sélectioné aucune unité auparavant pour le déplacement
             {
-                Slatch.partie.getTerrain()[uniteD.getCoordonneeX()][uniteD.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[uniteD.getCoordonneeX()][uniteD.getCoordonneeY()].getType().getPVMax());
+
                 deplacement(uniteD, pX, pY);
                 Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
             }
@@ -362,6 +362,7 @@ class Moteur
                         {
                             stack.push(p);
                             unite.deplacee(true);
+                                           // Slatch.partie.getTerrain()[uniteD.getCoordonneeX()][uniteD.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[uniteD.getCoordonneeX()][uniteD.getCoordonneeY()].getType().getPVMax());
                         }
                     }
                 }

@@ -35,7 +35,7 @@ public class GrandeIA
             
         Terrain batimentproche;
         List<Terrain> pasNosBatiment= new ArrayList<Terrain>();
-        for(int i=0;i<Slatch.partie.getNbrJoueur();i++)
+        for(int i=0;i<Slatch.partie.getNbrJoueur()+1;i++)
         {
             if(i!=Slatch.partie.getJoueurActuel())
             {
@@ -54,6 +54,12 @@ public class GrandeIA
         {
             x=batiment.getCoordonneeX();
             y=batiment.getCoordonneeY();
+            if(unite.getCoordonneeX()==x && unite.getCoordonneeY()==y)
+            {
+                uia.decrypterObjectif(new Objectif("capture",null,new Point(x,y),unite,null));
+                break;
+            }
+            
             if((Slatch.moteur.tabDist[x][y]<t.d || t.d==-1)&& Slatch.moteur.tabDist[x][y]>0 && Slatch.partie.getTerrain()[x][y].getUnite() ==null)
                             {
                                 t.d = Slatch.moteur.tabDist[x][y];
@@ -63,17 +69,24 @@ public class GrandeIA
         }
      
         
+        if(!(pasNosBatiment.isEmpty())){
+            
+        if(unite.getCoordonneeX()==t.x && unite.getCoordonneeY()==t.y)
+        {
+            uia.decrypterObjectif(new Objectif("capture",null,new Point(t.x,t.y),unite,null));
+        }
+        else if(Slatch.partie.getTerrain()[t.x][t.y].getUnite()==null &&(!(t.x==-1) || !(t.y==-1)))
+        {
+            
+            uia.decrypterObjectif(new Objectif("capture",null,new Point(t.x,t.y),unite,null));
+            
+        }
+        else 
+        { test2uniteProcheAdverse(unite);}
+         
+        }
         
-//         if(Slatch.partie.getTerrain()[t.x][t.y].getUnite()==null &&(!(t.x==-1) || !(t.y==-1)))
-//         {
-//             
-//             uia.decrypterObjectif(new Objectif("capture",null,new Point(t.x,t.y),unite,null));
-//             
-//         }
-//         else 
-//         { test2uniteProcheAdverse(unite);}
-//          
-//         }
+    }
         //if(pwin!=null && !unite.seSitue(pwin))
         //{
             //uia.decrypterObjectif(new Objectif("aller", null, pwin, unite,null));
