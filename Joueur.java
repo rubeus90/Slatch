@@ -65,8 +65,8 @@ public class Joueur
         }
     }
     
-    public void addNbrUniteMort(final int pMort){
-        aNbrUniteMort+=pMort;
+    public void addNbrUniteMort(){
+        aNbrUniteMort++;
     }
     
     public void setIA(final boolean X)      {IA=X;}

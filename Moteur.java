@@ -200,11 +200,11 @@ class Moteur
     {
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
+        Slatch.partie.getJoueur(unite.getJoueur()).addNbrUniteMort();
         repaint();
         if(!Slatch.partie.getJoueur(unite.getJoueur()).estUneIA())
         {
             Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
-            Slatch.partie.getJoueur(unite.getJoueur()).addNbrUniteMort(1);
         }
         if(/*Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty() || */Slatch.partie.getTour()>=20)
         {
