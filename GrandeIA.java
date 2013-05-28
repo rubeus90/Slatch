@@ -35,7 +35,7 @@ public class GrandeIA
         Triplet cible;
         
         
-        System.out.println(unite.getJoueur()+" "+batimentProche.d+" "+ennemiProche.d+" "+ennemiProche.d);
+        //System.out.println(unite.getJoueur()+" "+batimentProche.d+" "+ennemiProche.d+" "+ennemiProche.d);
         if( (batimentProche.d > ennemiProche.d) && ennemiProche.d!=-1)
         {
             
