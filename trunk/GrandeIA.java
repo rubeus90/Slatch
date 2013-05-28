@@ -32,7 +32,6 @@ public class GrandeIA
         if(!unite.dejaDeplacee() && !unite.dejaAttaque() )
         {
             
-            
         Terrain batimentproche;
         List<Terrain> pasNosBatiment= new ArrayList<Terrain>();
         for(int i=0;i<Slatch.partie.getNbrJoueur()+1;i++)

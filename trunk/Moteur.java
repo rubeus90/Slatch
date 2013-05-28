@@ -335,7 +335,6 @@ class Moteur
         boolean fini = false;
         boolean geez = false;
         int x = pX, y =pY;
-        //List<Point> chemin = new ArrayList<Point>();
         Stack<Point> stack = new Stack<Point>();
         if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));}
         while(!fini)
