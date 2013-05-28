@@ -18,11 +18,12 @@ public class AIMaster
         while(i.hasNext())
         {
             Unite u = i.next();
-            if(u!=null)
+            if(u!=null){
             GrandeIA.elaborationObjectif(u);
-            
+        }
             if(u.getPV()<=0){i.remove();}
         }    
+        //System.out.println(joueur+" Je passe mon tour");
         Slatch.moteur.passeTour();
     }
 }

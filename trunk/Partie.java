@@ -250,6 +250,7 @@ public class Partie
     
     public void gagner(final int pJoueur){
        this.partieFinie=true;
+       while(partieFinie){}
     }
     
     /**********
