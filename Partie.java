@@ -241,8 +241,11 @@ public class Partie
         Slatch.ihm.getpanelinfo().paintImmediately(0,0,Slatch.ihm.getpanelinfo().getWidth(),Slatch.ihm.getpanelinfo().getHeight());
     }
     
-    public void gagner(){
-       //A completer 
+    public void gagner(final int pJoueur){
+       System.out.println("Le joueur "+ pJoueur +" est vaincu");
+       System.out.println("Statistique");
+       System.out.println("Le joueur "+pJoueur + " a depense : " + ListeJoueur.get(pJoueur).getArgentTotal()+"¤");
+       System.out.println("Le joueur "+pJoueur + " a perdu : " + ListeJoueur.get(pJoueur).getNbrUniteMort()+"unite.");
     }
     
     /**********

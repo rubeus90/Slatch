@@ -15,7 +15,9 @@ public class Joueur
     private List<Unite> aListeUnite;
     private boolean IA;
     private List<Terrain> aListeUsine;
-
+    private double aArgentTotal; // Sert aux statistiques de fin de partie, represente l'argent total que le joueur a gagne
+    private int aNbrUniteMort;
+    
     /**
      * Créer un joueur
      * Initialise le numero du joueur, la faction du joueur et son nombre de batiment avec les valeurs mise en parametre et l'argent du joueur a 0.
@@ -29,6 +31,8 @@ public class Joueur
         aFaction = pFaction;
         IA=true;
         aArgent = 0;
+        aArgentTotal = 0;
+        aNbrUniteMort = 0;
         aNbreBatiment = pNbreBatiment;
         aListeUnite = new ArrayList<Unite>();
         aListeUsine = new ArrayList<Terrain>();
@@ -41,6 +45,8 @@ public class Joueur
     public Faction getFaction()        {return aFaction;}   
     public int getNbreBatiment()        {return aNbreBatiment;}    
     public int getArgent()             {return aArgent;}
+    public double getArgentTotal() {return aArgentTotal;}
+    public int getNbrUniteMort() {return aNbrUniteMort;}
     public List<Unite> getListeUnite()   {return aListeUnite;}
     public List<Terrain> getListeUsine()   {return aListeUsine;}
     public boolean estUneIA()                  {return IA;}
@@ -48,14 +54,28 @@ public class Joueur
     public void setNumJoueur(final int pNum) {aNumJoueur = pNum;}
     public void setFaction(final Faction pFaction) {aFaction = pFaction;}
     public void addNbreBatiment(final int pNbre) {aNbreBatiment += pNbre;}
-    public void setArgent(final int pArgent) {aArgent = pArgent;}
-    public void addArgent(final int pArgent) {aArgent += pArgent;}
+    public void setArgent(final int pArgent){
+        aArgent = pArgent;
+        aArgentTotal = pArgent;
+    }
+    public void addArgent(final int pArgent){
+        aArgent += pArgent;
+        if(pArgent > 0){
+            aArgentTotal += pArgent;
+        }
+    }
+    
+    public void addNbrUniteMort(final int pMort){
+        aNbrUniteMort+=pMort;
+    }
+    
     public void setIA(final boolean X)      {IA=X;}
     
     public void benefTour(final int pRevenuBatiment)
     {
         int gain = aNbreBatiment*pRevenuBatiment;
-        aArgent = aArgent+gain;
+        aArgent+=gain;
+        aArgentTotal += gain;
     }
     
 
