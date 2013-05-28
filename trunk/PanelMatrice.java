@@ -246,6 +246,65 @@ public class PanelMatrice extends JPanel
             g.setColor(Color.gray);
             g.drawLine(aMenuHautGauche_Xpx, 0, aMenuBasDroite_Xpx-1, 0);
         }
+        
+        if(Slatch.partie.partieFinie) {
+            afficheImageRedim ("noir80", 0, 0, this.getWidth(), this.getHeight(), g);
+            
+            Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
+            g.setFont(font);
+            FontMetrics fm=getFontMetrics(font); 
+            g.setColor(Color.white);
+            
+            int hauteurSize = fm.getHeight();
+            String joueur = "Le joueur "+ Slatch.partie.getJoueurActuel() +" a gagné";
+            int joueurSize = fm.stringWidth(joueur);
+            g.drawString(joueur, this.getWidth()/2 - joueurSize/2, 2*this.getHeight()/(2*hauteurSize));
+            
+            for(int i=1; i<=Slatch.partie.getNbrJoueur(); i++){
+                int decalage=0;
+                if(Slatch.partie.getNbrJoueur()==2 && i==1) decalage=-this.getWidth()/5;
+                if(Slatch.partie.getNbrJoueur()==2 && i==2) decalage=this.getWidth()/5;
+                
+                if(Slatch.partie.getNbrJoueur()==3 && i==1) decalage=-this.getWidth()/5;
+                if(Slatch.partie.getNbrJoueur()==3 && i==2) decalage=0;
+                if(Slatch.partie.getNbrJoueur()==3 && i==3) decalage=this.getWidth()/5;
+                
+                if(Slatch.partie.getNbrJoueur()==4 && i==1) decalage=-this.getWidth()/3;
+                if(Slatch.partie.getNbrJoueur()==4 && i==2) decalage=-this.getWidth()/7;
+                if(Slatch.partie.getNbrJoueur()==4 && i==3) decalage=this.getWidth()/7;
+                if(Slatch.partie.getNbrJoueur()==4 && i==4) decalage=this.getWidth()/3;
+                
+                String stat1 = "Statistiques du joueur " + i;
+                int stat1Size = fm.stringWidth(stat1);
+                String stat2 = "Argent recolte : " + Slatch.partie.ListeJoueur.get(i).getArgentTotal()+"¤";
+                int stat2Size = fm.stringWidth(stat2);
+                String stat3 = "Argent depense : " + Slatch.partie.ListeJoueur.get(i).getArgentDepense()+"¤";
+                int stat3Size = fm.stringWidth(stat3);
+                String stat4 = "Batiments Captures: " + Slatch.partie.ListeJoueur.get(i).getCaptureTotal();
+                int stat4Size = fm.stringWidth(stat4);
+                String stat5 = "Unites perdues : " + Slatch.partie.ListeJoueur.get(i).getNbrUniteMort();
+                int stat5Size = fm.stringWidth(stat5);
+                String stat6 = "Degats infliges : " + Slatch.partie.ListeJoueur.get(i).getDegatTotal();
+                int stat6Size = fm.stringWidth(stat6);
+                String stat7 = "Degats subis : " + Slatch.partie.ListeJoueur.get(i).getDegatSubit();
+                int stat7Size = fm.stringWidth(stat7);
+                String stat8 = "Experience Totale : " + Slatch.partie.ListeJoueur.get(i).getExpTotal();
+                int stat8Size = fm.stringWidth(stat8);
+                String stat9 = "Deplacement Totale : " + Slatch.partie.ListeJoueur.get(i).getDeplacementTotal();
+                int stat9Size = fm.stringWidth(stat9);
+                    
+                g.drawString(stat1, this.getWidth()/2 + decalage - stat1Size/2, 4*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat2, this.getWidth()/2 + decalage - stat2Size/2, 5*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat3, this.getWidth()/2 + decalage - stat3Size/2, 6*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat4, this.getWidth()/2 + decalage - stat4Size/2, 7*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat5, this.getWidth()/2 + decalage - stat5Size/2, 8*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat6, this.getWidth()/2 + decalage - stat6Size/2, 9*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat7, this.getWidth()/2 + decalage - stat7Size/2, 10*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat8, this.getWidth()/2 + decalage - stat8Size/2, 11*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat9, this.getWidth()/2 + decalage - stat9Size/2, 12*this.getHeight()/(2*hauteurSize));
+
+            }
+        }
     }
     
     /**
