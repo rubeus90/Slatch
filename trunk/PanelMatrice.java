@@ -102,7 +102,7 @@ public class PanelMatrice extends JPanel
         aHauteurCarreau = this.getHeight()/ Slatch.partie.getHauteur();
         dessineMatrice(g);
         
-        if(menuUniteAction) 
+        if(menuUniteAction && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()) 
         {
             afficheImageRedim ("noir80", aMenuActionHautGauche_Xpx, aMenuActionHautGauche_Ypx, aMenuActionBasDroite_Xpx, aMenuActionBasDroite_Ypx, g);
             
@@ -194,7 +194,7 @@ public class PanelMatrice extends JPanel
             }
         }
         
-        if(menuShop) 
+        if(menuShop && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()) 
         {
             afficheImageRedim ("noir80", aShopHautGauche_Xpx, aShopHautGauche_Ypx, aShopBasDroite_Xpx, aShopBasDroite_Ypx, g);
 
@@ -288,7 +288,7 @@ public class PanelMatrice extends JPanel
                         effaceMenuShop();
                     }
                     
-                    if(menuUniteAction)
+                    if(menuUniteAction && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
                     {
                         if( aMenuActionHautGauche_Ypx<clickY && clickY<aMenuActionBasDroite_Ypx && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )//Si tu es dans menu
                         {
@@ -340,7 +340,7 @@ public class PanelMatrice extends JPanel
                             this.repaint();
                         }
                     }
-                    else if(menuShop) {
+                    else if(menuShop && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()) {
                         if (aShopHautGauche_Ypx<clickY && clickY<aShopBasDroite_Ypx && aShopHautGauche_Xpx<clickX && clickX<aShopBasDroite_Xpx) {
                             for(int v=1; v<aListeShop.size()+1;v++) {
                                 if(aTabAchat.get(v)!=null && (aShopHautGauche_Ypx+v*aHauteurCarreau<clickY && clickY<aShopHautGauche_Ypx+(v+1)*aHauteurCarreau)) {
