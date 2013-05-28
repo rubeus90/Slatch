@@ -290,7 +290,7 @@ public class PanelMatrice extends JPanel
                 int stat7Size = fm.stringWidth(stat7);
                 String stat8 = "Experience Totale : " + Slatch.partie.ListeJoueur.get(i).getExpTotal();
                 int stat8Size = fm.stringWidth(stat8);
-                String stat9 = "Deplacement Totale : " + Slatch.partie.ListeJoueur.get(i).getDeplacementTotal();
+                String stat9 = "Deplacement Total : " + Slatch.partie.ListeJoueur.get(i).getDeplacementTotal();
                 int stat9Size = fm.stringWidth(stat9);
                     
                 g.drawString(stat1, this.getWidth()/2 + decalage - stat1Size/2, 4*this.getHeight()/(2*hauteurSize));
