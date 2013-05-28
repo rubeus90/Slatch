@@ -195,11 +195,11 @@ public class Partie
                     lUnite.add(ingenieur);
                     aTerrain[vX][vY].setUnite(ingenieur); 
                     break;
-                /*case "distance":
+                case "Distance":
                     Unite distance = new Unite(vX,vY,vJoueur,TypeUnite.DISTANCE,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
                     lUnite.add(distance);
                     aTerrain[vX][vY].setUnite(distance); 
-                    break;*/
+                    break;
                 case "Uml":
                     Unite uml = new Unite(vX,vY,vJoueur,TypeUnite.UML,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
                     lUnite.add(uml);
