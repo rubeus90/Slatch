@@ -8,7 +8,7 @@ public enum TypeUnite
     CHAR("Char","un char","tank",300,40,60,"canon",TypeDeplacement.CHENILLES,1.0,"Terrestre"),
     TANK("Tank","Unite tres puissante","while",700,65,40,"groscanon",TypeDeplacement.CHENILLES,1.0, "Terrestre"),
     INGENIEUR("Ingenieur","Capable de soigner des unites et de les faire evoluer","ingenieur",100,15,40,"soin",TypeDeplacement.PIED,1.0, "Terrestre"),
-    //DISTANCE("distance","un vehicule a moyenne distance","distance",350,35,50,"roquette",TypeDeplacement.ROUES,1.0),
+    DISTANCE("Distance","un vehicule a moyenne distance","distance",350,35,50,"roquette",TypeDeplacement.ROUES,1.0, "Terrestre"),
     UML("Uml","Capable de tirer a distance","uml",300,30,30,"missile",TypeDeplacement.CHENILLES,1.0, "Terrestre");
 
     private String aNom;
