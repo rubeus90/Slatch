@@ -94,37 +94,20 @@ public class Terrain extends Entite{
     @Override
     public void dessine (final Graphics g, PanelMatrice pPanel) {
         int pPosHautGaucheX = super.getCoordonneeX()*pPanel.getaLargeurCarreau();
-
         int pPosHautGaucheY = super.getCoordonneeY()*pPanel.getaHauteurCarreau();
-
         int pPosBasDroiteX = (super.getCoordonneeX()+1)*pPanel.getaLargeurCarreau();
-
         int pPosBasDroiteY = (super.getCoordonneeY()+1)*pPanel.getaHauteurCarreau();
 
-        
-            //System.out.println("TERRAIN "+aType.getImage() + getJoueur() + ".png");
             Image img = Slatch.aImages.get(""+ aType.getImage() + getJoueur());
-            //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
         
         if(aUnite!=null){
             aUnite.dessine(g, pPanel);    
         }
         
-        
-//        try {
-//            Image img = ImageIO.read(new File("Images/joueur" + getJoueur() + ".png"));
-//            //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-//            g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
-//            }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        
         if(super.getSurbrillance()) {
             
                 Image surbrillance = Slatch.aImages.get("5");
-                //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
                 g.drawImage(surbrillance, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
             
         }
