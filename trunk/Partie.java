@@ -27,6 +27,7 @@ public class Partie
     private Terrain[][] aTerrain;
     private int aJoueurActuel;
     private int aTour;
+    public boolean partieFinie = false;
     
 
     /**
@@ -257,6 +258,7 @@ public class Partie
            System.out.println("Unite Cree : " + ListeJoueur.get(i).getNbrUniteCree());
            System.out.println("Nombre d'unite perdu : " + ListeJoueur.get(i).getNbrUniteMort()+" unites.");
        }
+       this.partieFinie=true;
     }
     
     /**********
