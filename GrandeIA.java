@@ -32,60 +32,58 @@ public class GrandeIA
         if(!unite.dejaDeplacee() && !unite.dejaAttaque() )
         {
             
-        Terrain batimentproche;
-        List<Terrain> pasNosBatiment= new ArrayList<Terrain>();
-        for(int i=0;i<Slatch.partie.getNbrJoueur()+1;i++)
-        {
-            if(i!=Slatch.partie.getJoueurActuel())
+            Terrain batimentproche;
+            List<Terrain> pasNosBatiment= new ArrayList<Terrain>();
+            for(int i=0;i<Slatch.partie.getNbrJoueur()+1;i++)
             {
-                if(!Slatch.partie.getJoueur(i).getListeUsine().isEmpty())
-                pasNosBatiment.addAll(Slatch.partie.getJoueur(i).getListeUsine());
+                if(i!=Slatch.partie.getJoueurActuel())
+                {
+                    if(!Slatch.partie.getJoueur(i).getListeUsine().isEmpty())
+                    pasNosBatiment.addAll(Slatch.partie.getJoueur(i).getListeUsine());
+                    
+                     if(!Slatch.partie.getJoueur(i).getListeBatiment().isEmpty())
+                    pasNosBatiment.addAll(Slatch.partie.getJoueur(i).getListeBatiment());
+                }
+            }
+            
+            Slatch.moteur.remplitPorteeDep(unite, false);
+            Triplet t = new Triplet(-1, -1, -1);
+            int x,y;
+            for(Terrain batiment : pasNosBatiment)
+            {
+                x=batiment.getCoordonneeX();
+                y=batiment.getCoordonneeY();
+                if(unite.getCoordonneeX()==x && unite.getCoordonneeY()==y)
+                {
+                    uia.decrypterObjectif(new Objectif("capture",null,new Point(x,y),unite,null));
+                    break;
+                }
                 
-                 if(!Slatch.partie.getJoueur(i).getListeBatiment().isEmpty())
-                pasNosBatiment.addAll(Slatch.partie.getJoueur(i).getListeBatiment());
+                if((Slatch.moteur.tabDist[x][y]<t.d || t.d==-1)&& Slatch.moteur.tabDist[x][y]>0 && Slatch.partie.getTerrain()[x][y].getUnite() ==null)
+                                {
+                                    t.d = Slatch.moteur.tabDist[x][y];
+                                    t.x = x;
+                                    t.y = y;
+                                }
             }
-        }
-        
-        Slatch.moteur.remplitPorteeDep(unite, false);
-        Triplet t = new Triplet(-1, -1, -1);
-        int x,y;
-        for(Terrain batiment : pasNosBatiment)
-        {
-            x=batiment.getCoordonneeX();
-            y=batiment.getCoordonneeY();
-            if(unite.getCoordonneeX()==x && unite.getCoordonneeY()==y)
-            {
-                uia.decrypterObjectif(new Objectif("capture",null,new Point(x,y),unite,null));
-                break;
-            }
-            
-            if((Slatch.moteur.tabDist[x][y]<t.d || t.d==-1)&& Slatch.moteur.tabDist[x][y]>0 && Slatch.partie.getTerrain()[x][y].getUnite() ==null)
-                            {
-                                t.d = Slatch.moteur.tabDist[x][y];
-                                t.x = x;
-                                t.y = y;
-                            }
-        }
-     
-        
-        if(!(pasNosBatiment.isEmpty())&&(!(t.x==-1) || !(t.y==-1))){
-            
-        if(unite.getCoordonneeX()==t.x && unite.getCoordonneeY()==t.y)
-        {
-            uia.decrypterObjectif(new Objectif("capture",null,new Point(t.x,t.y),unite,null));
-        }
-        else if(Slatch.partie.getTerrain()[t.x][t.y].getUnite()==null )
-        {
-            
-            uia.decrypterObjectif(new Objectif("capture",null,new Point(t.x,t.y),unite,null));
-            
-        }
-        else 
-        { test2uniteProcheAdverse(unite);}
          
+            
+            if(!(pasNosBatiment.isEmpty())&&(!(t.x==-1) || !(t.y==-1))){
+                
+                if(unite.getCoordonneeX()==t.x && unite.getCoordonneeY()==t.y)
+                {
+                    uia.decrypterObjectif(new Objectif("capture",null,new Point(t.x,t.y),unite,null));
+                }
+                else if(Slatch.partie.getTerrain()[t.x][t.y].getUnite()==null )
+                {
+                    
+                    uia.decrypterObjectif(new Objectif("capture",null,new Point(t.x,t.y),unite,null));
+                    
+                }
+            }
+            if(!unite.dejaAttaque() || !unite.dejaDeplacee())
+            {test2uniteProcheAdverse(unite);}
         }
-        
-    }
         //if(pwin!=null && !unite.seSitue(pwin))
         //{
             //uia.decrypterObjectif(new Objectif("aller", null, pwin, unite,null));

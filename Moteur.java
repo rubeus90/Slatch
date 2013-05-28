@@ -144,7 +144,7 @@ class Moteur
     public void capture(final int pX,final int pY)
     {
         Terrain vBatiment= Slatch.partie.getTerrain()[pX][pY];
-        uniteA=Slatch.partie.getTerrain()[pX][pY].getUnite();
+        if((uniteA=Slatch.partie.getTerrain()[pX][pY].getUnite())==null){return;};
        
         switch(uniteA.getType())
         {
@@ -205,11 +205,11 @@ class Moteur
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
         Slatch.partie.getJoueur(unite.getJoueur()).addNbrUniteMort();
         repaint();
-        if(!Slatch.partie.getJoueur(unite.getJoueur()).estUneIA())
+        if(!Slatch.partie.getJoueur(unite.getJoueur()).estUneIA() || unite.getJoueur()!=Slatch.partie.getJoueurActuel())
         {
             Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
         }
-        if(/*Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty()*/ Slatch.partie.getTour()>20 || Slatch.partie.getTour()<22)
+        if(Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty())
         {
             Slatch.partie.gagner(Slatch.partie.getJoueurActuel());
         }
@@ -645,22 +645,25 @@ class Moteur
     
     public void passeTour()
     {
-        Slatch.partie.tourSuivant();
-        List<Unite> l = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getListeUnite();
-        
-        for(Unite u: l)
+        if(!Slatch.partie.partieFinie)
         {
-            u.attaque(false);
-            u.deplacee(false);
-            if(Slatch.partie.getTerrain()[u.getCoordonneeX()][u.getCoordonneeY()].estUnBatimentAuJoueur(u.getJoueur()))
+            Slatch.partie.tourSuivant();
+            List<Unite> l = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getListeUnite();
+            
+            for(Unite u: l)
             {
-                u.soigner(8);
+                u.attaque(false);
+                u.deplacee(false);
+                if(Slatch.partie.getTerrain()[u.getCoordonneeX()][u.getCoordonneeY()].estUnBatimentAuJoueur(u.getJoueur()))
+                {
+                    u.soigner(8);
+                }
             }
-        }
-        
-        if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
-        {
-            AIMaster.joueTour(Slatch.partie.getJoueurActuel());
+            
+            if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
+            {
+                AIMaster.joueTour(Slatch.partie.getJoueurActuel());
+            }
         }
     }
     

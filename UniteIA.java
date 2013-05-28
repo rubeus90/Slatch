@@ -2,9 +2,9 @@ import java.awt.Point;
 import java.util.Stack;
 public class UniteIA
 {
-    private void seDirigerVers(final Entite cible,final Point point)
+    private void seDirigerVers(final Entite executant,final Point point)
     {
-        Unite u = (Unite)cible;
+        Unite u = (Unite)executant;
         Slatch.moteur.remplitPorteeDep(u, false);
         /*int x=(int)point.getX();
         int y=(int)point.getY();
@@ -37,13 +37,15 @@ public class UniteIA
         }
     }
     
-    private void capture(final Entite pUnite,final Point point){
-        
-        if(!((Unite)pUnite).seSitue(point))
-        {seDirigerVers((Unite)pUnite, point);}
-        if(pUnite.getCoordonneeX()==(int)point.getX() && pUnite.getCoordonneeY()==(int)point.getY()){
+    private void capture(final Entite executant,final Point point){
+        Unite u= (Unite) executant;
+        if(!u.seSitue(point))
+        {seDirigerVers(u, point);}
+        if(u.getCoordonneeX()==(int)point.getX() && u.getCoordonneeY()==(int)point.getY()){
             Slatch.moteur.capture((int)point.getX(),(int)point.getY());
         }
+        u.attaque(true);
+        u.deplacee(true);
     }
     
     private void achat(final Point point,String pType){
