@@ -69,13 +69,13 @@ public class GrandeIA
         }
      
         
-        if(!(pasNosBatiment.isEmpty())){
+        if(!(pasNosBatiment.isEmpty())&&(!(t.x==-1) || !(t.y==-1))){
             
         if(unite.getCoordonneeX()==t.x && unite.getCoordonneeY()==t.y)
         {
             uia.decrypterObjectif(new Objectif("capture",null,new Point(t.x,t.y),unite,null));
         }
-        else if(Slatch.partie.getTerrain()[t.x][t.y].getUnite()==null &&(!(t.x==-1) || !(t.y==-1)))
+        else if(Slatch.partie.getTerrain()[t.x][t.y].getUnite()==null )
         {
             
             uia.decrypterObjectif(new Objectif("capture",null,new Point(t.x,t.y),unite,null));
