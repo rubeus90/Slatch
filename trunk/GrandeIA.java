@@ -64,22 +64,21 @@ public class GrandeIA
      
         
         
-        if(Slatch.partie.getTerrain()[t.x][t.y].getUnite()==null &&(!(t.x==-1) || !(t.y==-1)))
-        {
-            
-            uia.decrypterObjectif(new Objectif("capture",null,new Point(t.x,t.y),unite,null));
-            
-        }
-        else 
-        { test2uniteProcheAdverse(unite);}
-         
-        }
+//         if(Slatch.partie.getTerrain()[t.x][t.y].getUnite()==null &&(!(t.x==-1) || !(t.y==-1)))
+//         {
+//             
+//             uia.decrypterObjectif(new Objectif("capture",null,new Point(t.x,t.y),unite,null));
+//             
+//         }
+//         else 
+//         { test2uniteProcheAdverse(unite);}
+//          
+//         }
         //if(pwin!=null && !unite.seSitue(pwin))
         //{
             //uia.decrypterObjectif(new Objectif("aller", null, pwin, unite,null));
         //}
         //Slatch.moteur.passeTour();
-         /*Salut les conflits, fuck you*/
     }
     
     

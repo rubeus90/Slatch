@@ -153,8 +153,6 @@ class Moteur
             case INGENIEUR:
             case COMMANDO: vBatiment.setPV(vBatiment.getPV()-(int)(10.0*modificateurVie(uniteA))); break;
             case DEMOLISSEUR: vBatiment.setPV(vBatiment.getPV()-(int)(15.0*modificateurVie(uniteA)));
-            
-            /*Salut les conflits, fuck you*/
         }
         
         if(vBatiment.getPV()<=0)
