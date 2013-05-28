@@ -243,9 +243,13 @@ public class Partie
     
     public void gagner(final int pJoueur){
        System.out.println("Le joueur "+ pJoueur +" est vaincu");
-       System.out.println("Statistique");
-       System.out.println("Le joueur "+pJoueur + " a gagner un total de : " + ListeJoueur.get(pJoueur).getArgentTotal()+"¤ au cours de la partie");
-       System.out.println("Le joueur "+pJoueur + " a perdu : " + ListeJoueur.get(pJoueur).getNbrUniteMort()+"unite.");
+       for(int i=1; i<=aNbrJoueur; i++){
+           System.out.println("____________________________________________________________________________");
+           System.out.println("Statistique du joueur " + i);
+           System.out.println("Argent recolte : " + ListeJoueur.get(i).getArgentTotal()+"¤");
+           System.out.println("Unite Cree : " + ListeJoueur.get(i).getNbrUniteCree());
+           System.out.println("Nombre d'unite perdu : " + ListeJoueur.get(i).getNbrUniteMort()+" unites.");
+       }
     }
     
     /**********

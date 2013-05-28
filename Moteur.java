@@ -206,7 +206,7 @@ class Moteur
         {
             Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
         }
-        if(/*Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty() || */Slatch.partie.getTour()>=20)
+        if(/*Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty() || */Slatch.partie.getTour()>=20 && Slatch.partie.getTour()<22)
         {
             Slatch.partie.gagner(Slatch.partie.getJoueurActuel());
         }
@@ -741,6 +741,7 @@ class Moteur
             creation.attaque(true);
             Slatch.partie.getTerrain()[pX][pY].setUnite(creation);
             vJoueur.getListeUnite().add(creation);
+            vJoueur.addNbrUniteCree();
             repaint();
         }
        
