@@ -204,10 +204,11 @@ class Moteur
         if(!Slatch.partie.getJoueur(unite.getJoueur()).estUneIA())
         {
             Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
+            Slatch.partie.getJoueur(unite.getJoueur()).addNbrUniteMort(1);
         }
-        if(Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty())
+        if(/*Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty() || */Slatch.partie.getTour()>=20)
         {
-            System.out.println("Le joueur "+unite.getJoueur()+" est vaincu");
+            Slatch.partie.gagner(Slatch.partie.getJoueurActuel());
         }
     }
 
