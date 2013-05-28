@@ -17,7 +17,6 @@ import java.awt.Point;
  */
 public class Unite extends Entite
 {
-    // instance variables - replace the example below with your own
     private TypeUnite aType; // Correspond au type d'unité : Infanterie, Véhicule etc ...
     private int aLvl; // Correspond au niveau de l'unité
     private TypeAttaque aAttaque;
@@ -269,8 +268,6 @@ public class Unite extends Entite
     {
         return(aPV<aPVMax);
     }
-    
-
    
     @Override
     public void dessine (final Graphics g, PanelMatrice pPanel) {
@@ -278,27 +275,16 @@ public class Unite extends Entite
         int pPosHautGaucheY = super.getCoordonneeY()*pPanel.getaHauteurCarreau();
         int pPosBasDroiteX = (super.getCoordonneeX()+1)*pPanel.getaLargeurCarreau();
         int pPosBasDroiteY = (super.getCoordonneeY()+1)*pPanel.getaHauteurCarreau();
-       // System.out.println("UNITE "+ aType.getImage() + getJoueur());
+        
             Image img = Slatch.aImages.get(""+ aType.getImage() + getJoueur());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
 
-//        if(getSurbrillance()) {
-//            try {
-//                Image img = ImageIO.read(new File("Images/joueur" + getJoueur() + ".png"));
-//                //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
-//                g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
-//                }
-//            catch (IOException e) {
-//                e.printStackTrace();
-//            }
-            
                 int vUnite = aPV%10;
                 int vDizaine = aPV/10;
                 
                 Image unite = Slatch.aImages.get("pvUnite"+vUnite);
                 Image dizaine = Slatch.aImages.get("pvDizaine"+vDizaine);
                 
-                //g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pLargeur, pHauteur, IHM.getMenu1());
                 g.drawImage(unite, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
                 g.drawImage(dizaine, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
                if(Slatch.partie.getJoueurActuel()==this.getJoueur())
@@ -314,7 +300,7 @@ public class Unite extends Entite
                     g.drawImage(yin, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
                 }
                }
-//        }
+
     }
     
     public boolean seSitue(Point p)

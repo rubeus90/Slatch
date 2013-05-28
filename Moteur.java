@@ -121,9 +121,7 @@ class Moteur
     public void attaque(final Unite pVictime)
     { 
         double degatsAtt=0;
-        //degatsAtt=(uniteA.getAttaque().getDegats()*uniteA.getAttaque().efficacite.get(pVictime.getType()))*(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[pVictime.getCoordonneeX()][pVictime.getCoordonneeY()].getType().getCouverture()))/100;
         degatsAtt = getDegats(uniteA, pVictime);
-        //pVictime.setPointDeVie(pVictime.getPointDeVie() - (int)degatsAtt);
         if(faireDegats(pVictime, degatsAtt)) // si la victime meurt
         {
             //uniteA.addExperience(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*(pVictime.getLvl()+1));
