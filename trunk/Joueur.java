@@ -30,7 +30,7 @@ public class Joueur
     {
         aNumJoueur = pNumJoueur;
         aFaction = pFaction;
-        IA=true;
+        IA=false;
         aArgent = 0;
         aArgentTotal = 0;
         aNbrUniteMort = 0;
@@ -70,8 +70,7 @@ public class Joueur
     
     public void addNbrUniteMort(){
         aNbrUniteMort++;
-        //if(aNumJoueur ==1)
-        //    System.out.println("Le joueur " + aNumJoueur + " a perdu une Unite");
+        //System.out.println("Le joueur " + aNumJoueur + " a perdu une Unite");
     }
     
     public void setIA(final boolean X)      {IA=X;}

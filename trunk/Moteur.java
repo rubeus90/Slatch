@@ -206,7 +206,7 @@ class Moteur
         {
             Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
         }
-        if(/*Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty() || */Slatch.partie.getTour()>=20 && Slatch.partie.getTour()<22)
+        if(Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty())
         {
             Slatch.partie.gagner(Slatch.partie.getJoueurActuel());
         }
