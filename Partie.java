@@ -252,11 +252,15 @@ public class Partie
        System.out.println("Le joueur "+ pJoueur +" a gagné");
        for(int i=1; i<=aNbrJoueur; i++){
            System.out.println("____________________________________________________________________________");
-           System.out.println("Statistique du joueur " + i);
+           System.out.println("Statistiques du joueur " + i);
            System.out.println("Argent recolte : " + ListeJoueur.get(i).getArgentTotal()+"¤");
            System.out.println("Argent depense : " + ListeJoueur.get(i).getArgentDepense()+"¤");
-           System.out.println("Unite Cree : " + ListeJoueur.get(i).getNbrUniteCree());
-           System.out.println("Nombre d'unite perdu : " + ListeJoueur.get(i).getNbrUniteMort()+" unites.");
+           System.out.println("Batiments Captures: " + ListeJoueur.get(i).getCaptureTotal());
+           System.out.println("Unites Creees : " + ListeJoueur.get(i).getNbrUniteCree());
+           System.out.println("Unites perdues : " + ListeJoueur.get(i).getNbrUniteMort());
+           System.out.println("Degats infliges : " + ListeJoueur.get(i).getDegatTotal());
+           System.out.println("Degats subis : " + ListeJoueur.get(i).getDegatSubit());
+           System.out.println("Experience Totale :" + ListeJoueur.get(i).getExpTotal());
        }
        this.partieFinie=true;
     }

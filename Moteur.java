@@ -122,20 +122,27 @@ class Moteur
     { 
         double degatsAtt=0;
         degatsAtt = getDegats(uniteA, pVictime);
+        Slatch.partie.getJoueur(uniteA.getJoueur()).addDegatTotal(degatsAtt);
+        Slatch.partie.getJoueur(pVictime.getJoueur()).addDegatSubit(degatsAtt);
         if(faireDegats(pVictime, degatsAtt)) // si la victime meurt
         {
             //uniteA.addExperience(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*(pVictime.getLvl()+1));
+            //Slatch.partie.getJoueur(uniteA.getJoueur()).addExpTotal(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*(pVictime.getLvl()+1));
             estMort(pVictime);
         }    
         else if(distance(uniteA, pVictime)==1 && pVictime.getAttaque().aTypePortee.getPorteeMin()==1) //sinon + si attaque au CAC, on riposte
         {
             degatsAtt= 0.7*getDegats(pVictime, uniteA);
+            Slatch.partie.getJoueur(uniteA.getJoueur()).addDegatSubit(degatsAtt);
+            Slatch.partie.getJoueur(pVictime.getJoueur()).addDegatTotal(degatsAtt);
             if(faireDegats(uniteA, degatsAtt))
             {
                 //uniteA.addExperience(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*(uniteA.getLvl()+1));
+                //Slatch.partie.getJoueur(uniteA.getJoueur()).addExpTotal(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*(pVictime.getLvl()+1));
                 estMort(uniteA);
             }
         }
+        
         uniteA.attaque(true);
         uniteA.deplacee(true);
         uniteA=null;
@@ -169,7 +176,7 @@ class Moteur
            vBatiment.setJoueur(uniteA.getJoueur());
            vBatiment.setPV(vBatiment.getType().getPVMax());
            Slatch.partie.getJoueur(uniteA.getJoueur()).addNbreBatiment(1);
-           
+           Slatch.partie.getJoueur(uniteA.getJoueur()).addCaptureTotal();
            
            repaint();
         }
