@@ -31,24 +31,21 @@ public class GrandeIA
         
         Slatch.moteur.remplitPorteeDep(unite, false);
         Triplet batimentProche = determineBatimentProche(unite);
-        Triplet ennemiProche = determineEnnemiProche(unite);
-        Triplet cible;
+        Cible ennemiProche = determineEnnemiProche(unite);
+        //Triplet cible;
         
         
         //System.out.println(unite.getJoueur()+" "+batimentProche.d+" "+ennemiProche.d+" "+ennemiProche.d);
-        if( (batimentProche.d > ennemiProche.d) && ennemiProche.d!=-1)
+        if( (batimentProche.d >= ennemiProche.t.d) && ennemiProche.t.d!=-1)
         {
-            
-            Unite ennemi = Slatch.partie.getTerrain()[ennemiProche.x][ennemiProche.y].getUnite();
-            cible = determineVoisinProcheEnnemi(unite,ennemiProche);
-            
-            //System.out.println(unite.getJoueur()+" Je demande d'attaquer");
-            uia.decrypterObjectif(new Objectif("attaquer", null, new Point(cible.x,cible.y),unite,ennemi));
+            //Unite ennemi = Slatch.partie.getTerrain()[ennemiProche.t.x][ennemiProche.t.y].getUnite();
+            //cible = determineVoisinProcheEnnemi(unite,ennemiProche.t);
+            uia.decrypterObjectif(new Objectif("attaquer", null, new Point(ennemiProche.t.x,ennemiProche.t.y),unite,ennemiProche.u));
         }
         else if(batimentProche.d!=-1)
         {
-            cible = batimentProche;
-            uia.decrypterObjectif(new Objectif("capture", null, new Point(cible.x,cible.y),unite,null));
+            //cible = batimentProche;
+            uia.decrypterObjectif(new Objectif("capture", null, new Point(batimentProche.x,batimentProche.y),unite,null));
         }
         
         
@@ -119,24 +116,25 @@ public class GrandeIA
         return t;
     }
     
-    static Triplet determineEnnemiProche(Unite unite)
+    static Cible determineEnnemiProche(Unite unite)
     {
+        Unite cible=null;
         Triplet t=new Triplet(-1, -1, -1);
         int X=-1,Y=-1;
          label:for(int i=1; i<=Slatch.partie.getNbrJoueur(); i++)
         {
             if(i!=unite.getJoueur())
             {
-                
                 for(Unite u: Slatch.partie.getJoueur(i).getListeUnite())
                 {
+                    cible = u;
                     for(Point p: Moteur.voisins)
                     {
                         int x= (int)p.getX()+u.getCoordonneeX();
                         int y= (int)p.getY()+u.getCoordonneeY();
                         
-                        X= u.getCoordonneeX();
-                        Y= u.getCoordonneeY();
+                        //X= u.getCoordonneeX();
+                        //Y= u.getCoordonneeY();
                         if(Moteur.dansLesBords(x,y))
                         {
                             if((Slatch.moteur.tabDist[x][y]<t.d || t.d==-1)&& Slatch.moteur.tabDist[x][y]>0 && Slatch.partie.getTerrain()[x][y].getUnite() ==null)
@@ -160,40 +158,40 @@ public class GrandeIA
             }
         }
          
-        return new Triplet (t.d,X,Y);
+        return new Cible(new Triplet (t.d,t.x, t.y),cible);
     }
     
-    static Triplet determineVoisinProcheEnnemi(Unite unite,Triplet cible)
+    /*static Triplet determineVoisinProcheEnnemi(Unite unite,Triplet cible)
     {
         Unite u = Slatch.partie.getTerrain()[cible.x][cible.y].getUnite();
         Slatch.moteur.remplitPorteeDep(unite, false);
         Triplet t=new Triplet(-1, -1, -1);
         for(Point p: Moteur.voisins)
-                    {
-                        int x= (int)p.getX()+u.getCoordonneeX();
-                        int y= (int)p.getY()+u.getCoordonneeY();
-                        if(Moteur.dansLesBords(x,y))
-                        {
-                            if((Slatch.moteur.tabDist[x][y]<t.d || t.d==-1)&& Slatch.moteur.tabDist[x][y]>0 && Slatch.partie.getTerrain()[x][y].getUnite() ==null)
-                            {
-                                t.d = Slatch.moteur.tabDist[x][y];
-                                t.x = x;
-                                t.y = y;
-                            }
-                            if(unite.seSitue(new Point(x,y)))
-                            {
-                                t.d = Slatch.moteur.tabDist[x][y];
-                                t.x = x;
-                                t.y = y;
-                                break;
-                                /*uia.decrypterObjectif(new Objectif("attaquer", null, new Point(t.x,t.y), unite,u));
-                                return new Point(x,y);*/
-                            }
-                        }
-                    }
+        {
+            int x= (int)p.getX()+u.getCoordonneeX();
+            int y= (int)p.getY()+u.getCoordonneeY();
+            if(Moteur.dansLesBords(x,y))
+            {
+                if((Slatch.moteur.tabDist[x][y]<t.d || t.d==-1)&& Slatch.moteur.tabDist[x][y]>0 && Slatch.partie.getTerrain()[x][y].getUnite() ==null)
+                {
+                    t.d = Slatch.moteur.tabDist[x][y];
+                    t.x = x;
+                    t.y = y;
+                }
+                if(unite.seSitue(new Point(x,y)))
+                {
+                    t.d = Slatch.moteur.tabDist[x][y];
+                    t.x = x;
+                    t.y = y;
+                    break;
+                    /*uia.decrypterObjectif(new Objectif("attaquer", null, new Point(t.x,t.y), unite,u));
+                    return new Point(x,y);*/
+    /*          }
+            }
+        }
                     
         return t;
-    }
+    }*/
     
     static void test(Unite unite)
     {
