@@ -38,7 +38,9 @@ public class UniteIA
     }
     
     private void capture(final Entite pUnite,final Point point){
-        if(!((Unite)pUnite).seSitue(point)){seDirigerVers((Unite)pUnite, point);}
+        
+        if(!((Unite)pUnite).seSitue(point))
+        {seDirigerVers((Unite)pUnite, point);}
         if(pUnite.getCoordonneeX()==(int)point.getX() && pUnite.getCoordonneeY()==(int)point.getY()){
             Slatch.moteur.capture((int)point.getX(),(int)point.getY());
         }
@@ -63,6 +65,7 @@ public class UniteIA
              attaquerUnite(objectif.getExecutant(),objectif.getCoordonnee(),objectif.getCible());
             break;
         case "capture" :
+           
              capture(objectif.getExecutant(),objectif.getCoordonnee());
             break;
         case "acheter" :

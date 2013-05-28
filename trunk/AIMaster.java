@@ -18,7 +18,9 @@ public class AIMaster
         while(i.hasNext())
         {
             Unite u = i.next();
+            if(u!=null)
             GrandeIA.test2(u);
+            
             if(u.getPV()<=0){i.remove();}
         }    
         Slatch.moteur.passeTour();
