@@ -14,7 +14,9 @@ public enum PorteeAttaque {
     private int aPorteeMax;
     private int aPorteeMin;
     
-    
+    /**
+     * Constructeur des Portees d'attaque
+     */
     PorteeAttaque(final String pNom,final String pDescription,final int pPorteeMin, final int pPorteeMax){
         aNom = pNom;
         aDescription = pDescription;
