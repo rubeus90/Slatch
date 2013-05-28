@@ -260,7 +260,8 @@ public class Partie
            System.out.println("Unites perdues : " + ListeJoueur.get(i).getNbrUniteMort());
            System.out.println("Degats infliges : " + ListeJoueur.get(i).getDegatTotal());
            System.out.println("Degats subis : " + ListeJoueur.get(i).getDegatSubit());
-           System.out.println("Experience Totale :" + ListeJoueur.get(i).getExpTotal());
+           System.out.println("Experience Totale : " + ListeJoueur.get(i).getExpTotal());
+           System.out.println("Deplacement Totale : " + ListeJoueur.get(i).getDeplacementTotal());
        }
        this.partieFinie=true;
     }

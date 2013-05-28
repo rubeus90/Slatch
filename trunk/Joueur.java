@@ -24,6 +24,7 @@ public class Joueur
     private double aDegatSubit;
     private int aExpTotal;
     private int aCaptureTotal;
+    private int aDeplacementTotal;
     
     /**
      * Créer un joueur
@@ -45,6 +46,7 @@ public class Joueur
         aDegatSubit=0;
         aExpTotal=0;
         aCaptureTotal=0;
+        aDeplacementTotal=0;
         aNbreBatiment = pNbreBatiment;
         aListeUnite = new ArrayList<Unite>();
         aListeUsine = new ArrayList<Terrain>();
@@ -65,6 +67,7 @@ public class Joueur
     public int getDegatTotal() {return (int)aDegatTotal;}
     public int getDegatSubit() {return (int)aDegatSubit;}
     public int getExpTotal() {return aExpTotal;}
+    public int getDeplacementTotal() {return aDeplacementTotal;}
     public int getCaptureTotal() {return aCaptureTotal;}
     public List<Unite> getListeUnite()   {return aListeUnite;}
     public List<Terrain> getListeUsine()   {return aListeUsine;}
@@ -77,6 +80,7 @@ public class Joueur
     public void addDegatSubit(final double pDegat) {aDegatSubit += pDegat;}
     public void addDegatTotal(final double pDegat) {aDegatTotal += pDegat;}
     public void addExpTotal(final int pExp) {aExpTotal += pExp;}
+    public void addDeplacementTotal(final int pDeplacement) {aDeplacementTotal+=pDeplacement;}
     public void addCaptureTotal() {aCaptureTotal ++;}
     public void addNbrUniteCree() {aNbrUniteCree++;}
     public void setArgent(final int pArgent){

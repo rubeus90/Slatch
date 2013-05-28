@@ -412,6 +412,7 @@ class Moteur
         Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
 
         Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
+        Slatch.partie.getJoueur(unite.getJoueur()).addDeplacementTotal(1);
         return ret;
     }
     
