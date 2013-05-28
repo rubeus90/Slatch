@@ -20,6 +20,10 @@ public class Joueur
     private int aArgentDepense;
     private int aNbrUniteMort;
     private int aNbrUniteCree;
+    private double aDegatTotal;
+    private double aDegatSubit;
+    private int aExpTotal;
+    private int aCaptureTotal;
     
     /**
      * Créer un joueur
@@ -37,6 +41,10 @@ public class Joueur
         aArgentTotal = 0;
         aNbrUniteMort = 0;
         aArgentDepense = 0;
+        aDegatTotal=0;
+        aDegatSubit=0;
+        aExpTotal=0;
+        aCaptureTotal=0;
         aNbreBatiment = pNbreBatiment;
         aListeUnite = new ArrayList<Unite>();
         aListeUsine = new ArrayList<Terrain>();
@@ -54,6 +62,10 @@ public class Joueur
     public int getArgentDepense() {return aArgentDepense;}
     public int getNbrUniteMort() {return aNbrUniteMort;}
     public int getNbrUniteCree() {return aNbrUniteCree;}
+    public int getDegatTotal() {return (int)aDegatTotal;}
+    public int getDegatSubit() {return (int)aDegatSubit;}
+    public int getExpTotal() {return aExpTotal;}
+    public int getCaptureTotal() {return aCaptureTotal;}
     public List<Unite> getListeUnite()   {return aListeUnite;}
     public List<Terrain> getListeUsine()   {return aListeUsine;}
     public List<Terrain> getListeBatiment()   {return aListeBatiment;}
@@ -62,6 +74,10 @@ public class Joueur
     public void setNumJoueur(final int pNum) {aNumJoueur = pNum;}
     public void setFaction(final Faction pFaction) {aFaction = pFaction;}
     public void addNbreBatiment(final int pNbre) {aNbreBatiment += pNbre;}
+    public void addDegatSubit(final double pDegat) {aDegatSubit += pDegat;}
+    public void addDegatTotal(final double pDegat) {aDegatTotal += pDegat;}
+    public void addExpTotal(final int pExp) {aExpTotal += pExp;}
+    public void addCaptureTotal() {aCaptureTotal ++;}
     public void addNbrUniteCree() {aNbrUniteCree++;}
     public void setArgent(final int pArgent){
         aArgent = pArgent;
