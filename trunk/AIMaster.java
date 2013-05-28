@@ -19,7 +19,7 @@ public class AIMaster
         {
             Unite u = i.next();
             if(u!=null)
-            GrandeIA.test2(u);
+            GrandeIA.elaborationObjectif(u);
             
             if(u.getPV()<=0){i.remove();}
         }    
