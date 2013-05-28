@@ -16,7 +16,8 @@ public class Joueur
     private boolean IA;
     private List<Terrain> aListeBatiment;
     private List<Terrain> aListeUsine;
-    private double aArgentTotal; // Sert aux statistiques de fin de partie, represente l'argent total que le joueur a gagne
+    private int aArgentTotal; // Sert aux statistiques de fin de partie, represente l'argent total que le joueur a gagne
+    private int aArgentDepense;
     private int aNbrUniteMort;
     private int aNbrUniteCree;
     
@@ -35,6 +36,7 @@ public class Joueur
         aArgent = 0;
         aArgentTotal = 0;
         aNbrUniteMort = 0;
+        aArgentDepense = 0;
         aNbreBatiment = pNbreBatiment;
         aListeUnite = new ArrayList<Unite>();
         aListeUsine = new ArrayList<Terrain>();
@@ -48,7 +50,8 @@ public class Joueur
     public Faction getFaction()        {return aFaction;}   
     public int getNbreBatiment()        {return aNbreBatiment;}    
     public int getArgent()             {return aArgent;}
-    public double getArgentTotal() {return aArgentTotal;}
+    public int getArgentTotal() {return aArgentTotal;}
+    public int getArgentDepense() {return aArgentDepense;}
     public int getNbrUniteMort() {return aNbrUniteMort;}
     public int getNbrUniteCree() {return aNbrUniteCree;}
     public List<Unite> getListeUnite()   {return aListeUnite;}
@@ -64,6 +67,11 @@ public class Joueur
         aArgent = pArgent;
         aArgentTotal = pArgent;
     }
+    
+    public void setArgentDepense(final int pArgentDepense){
+        aArgentDepense+=pArgentDepense;
+    }
+    
     public void addArgent(final int pArgent){
         aArgent += pArgent;
         if(pArgent > 0){
@@ -73,7 +81,7 @@ public class Joueur
     
     public void addNbrUniteMort(){
         aNbrUniteMort++;
-        //System.out.println("Le joueur " + aNumJoueur + " a perdu une Unite");
+        System.out.println("Le joueur " + aNumJoueur + " a perdu une Unite");
     }
     
     public void setIA(final boolean X)      {IA=X;}
