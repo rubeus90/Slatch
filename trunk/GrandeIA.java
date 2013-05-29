@@ -139,10 +139,6 @@ public class GrandeIA
     
     static Cible determineEnnemiProche(Unite unite)
     {
-        if(Slatch.moteur.cibleEnVue(unite, false))
-        {
-            
-        }
         Unite cible=null;
         Triplet t=new Triplet(-1, -1, -1);
         int X=-1,Y=-1;
@@ -165,15 +161,13 @@ public class GrandeIA
                                 t.y = y;
                                 cible = u;
                             }
-                            if(unite.seSitue(new Point(x,y)))
+                            if(unite.seSitue(new Point(x,y)) || Slatch.moteur.estAPortee(unite, u))
                             {
                                 t.d = Slatch.moteur.tabDist[x][y];
                                 t.x = x;
                                 t.y = y;
                                 cible =u;
                                 break label;
-                                /*uia.decrypterObjectif(new Objectif("attaquer", null, new Point(t.x,t.y), unite,u));
-                                return new Point(x,y);*/
                             }
                         }
                     }
