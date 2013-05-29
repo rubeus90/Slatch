@@ -185,6 +185,8 @@ public class CreationMaps extends JPanel implements ActionListener,
 				button.setEnabled(false);
 			}
 		} else {
+			for(JRadioButton button: listeBoutonJoueur)
+				button.setEnabled(true);
 			for(int i=Integer.parseInt(aNbrJoueur) + 1; i<=4; i++)
 				listeBoutonJoueur.get(i).setEnabled(false);
 		}
