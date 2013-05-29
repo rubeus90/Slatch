@@ -358,7 +358,7 @@ class Moteur
         boolean geez = false;
         int x = pX, y =pY;
         Stack<Point> stack = new Stack<Point>();
-        if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));}
+        if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));unite.deplacee(true);}
         while(!fini)
         {
             Point p = pred[x][y];
@@ -382,7 +382,6 @@ class Moteur
                         else
                         {
                             stack.push(p);
-                            unite.deplacee(true);
                             Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
                         }
                     }
