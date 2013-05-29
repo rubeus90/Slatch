@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * Un joueur possede un numero de joueur (aNumJoueur), une faction (aFaction)
  * 
@@ -14,6 +15,7 @@ public class Joueur
     private int aArgent; //Correspond a l'argent que possede le joueur.
     private List<Unite> aListeUnite;
     private boolean IA;
+    private boolean aVivant;
     private List<Terrain> aListeBatiment;
     private List<Terrain> aListeUsine;
     private int aArgentTotal; // Sert aux statistiques de fin de partie, represente l'argent total que le joueur a gagne
@@ -38,6 +40,7 @@ public class Joueur
         aNumJoueur = pNumJoueur;
         aFaction = pFaction;
         IA=true;
+        aVivant=true;
         aArgent = 0;
         aArgentTotal = 0;
         aNbrUniteMort = 0;
@@ -73,6 +76,7 @@ public class Joueur
     public List<Terrain> getListeUsine()   {return aListeUsine;}
     public List<Terrain> getListeBatiment()   {return aListeBatiment;}
     public boolean estUneIA()                  {return IA;}
+    public boolean isAlive()                  {return aVivant;}
     
     public void setNumJoueur(final int pNum) {aNumJoueur = pNum;}
     public void setFaction(final Faction pFaction) {aFaction = pFaction;}
@@ -110,6 +114,31 @@ public class Joueur
         int gain = aNbreBatiment*pRevenuBatiment;
         aArgent+=gain;
         aArgentTotal += gain;
+    }
+    
+    public void isMort() {
+        aVivant=false;
+        
+        Iterator<Terrain> i = aListeBatiment.iterator();
+        while(i.hasNext())
+        {
+            i.next();
+            i.remove();
+        }
+        
+        Iterator<Terrain> l = aListeUsine.iterator();
+        while(i.hasNext())
+        {
+            l.remove();
+            l.remove();
+        }
+        
+        Iterator<Unite> m = aListeUnite.iterator();
+        while(m.hasNext())
+        {
+            m.next();
+            m.remove();
+        }
     }
     
 

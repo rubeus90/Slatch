@@ -27,6 +27,7 @@ public class Partie
     private Terrain[][] aTerrain;
     private int aJoueurActuel;
     private int aTour;
+    private int aNbrJoueurMort;
     public boolean partieFinie = false;
     
 
@@ -35,6 +36,8 @@ public class Partie
      */
     public Partie(final int pRevenuBatiment,final int pTourMax, final String pMap)
     {
+        aNbrJoueurMort=0;
+        
         try {
             aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
         } catch (IOException e) {
@@ -57,7 +60,9 @@ public class Partie
      * 
      */
     public Partie(final String pMap){
-         try {
+        aNbrJoueurMort=0;
+        
+        try {
             aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
         } catch (IOException e) {
             e.printStackTrace();
@@ -240,20 +245,33 @@ public class Partie
     }
     
     public void tourSuivant(){
-        if(aJoueurActuel == aNbrJoueur)
-        {
-            aJoueurActuel = 1;
+        aJoueurActuel++;
+        
+        if(aJoueurActuel > aNbrJoueur){
+            aJoueurActuel=1;
             aTour++;
         }
-        else
-            aJoueurActuel++;
+        
+        if(!ListeJoueur.get(aJoueurActuel).isAlive()){// Si le joueur suivant est mort
+            while(!ListeJoueur.get(aJoueurActuel).isAlive()){ // On recherche le prochain vivant
+                aJoueurActuel ++;
+                if(aJoueurActuel > aNbrJoueur){
+                    aJoueurActuel=1;
+                    aTour++;
+                }
+            }
+        }
         
         ListeJoueur.get(aJoueurActuel).benefTour(aRevenuBatiment);
         Slatch.ihm.getpanelinfo().paintImmediately(0,0,Slatch.ihm.getpanelinfo().getWidth(),Slatch.ihm.getpanelinfo().getHeight());
     }
     
-    public void gagner(final int pJoueur){
-       this.partieFinie=true;
+    public void gagner(){
+       aNbrJoueurMort ++;
+       
+       if(aNbrJoueurMort == aNbrJoueur-1){
+          this.partieFinie=true;
+       }
     }
     
     /**********
