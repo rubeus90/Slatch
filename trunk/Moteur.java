@@ -60,9 +60,8 @@ class Moteur
      */
     public void soin(final Unite pUnite)
     { 
-        if(pUnite.soigner(5)){  
-           System.out.println("C'est moi qui est appelé");
-           uniteA.addExperience(5);
+        if(pUnite.soigner(uniteA.getDegat())){  
+           uniteA.addExperience(uniteA.getDegat());
            uniteA.attaque(true);
            uniteA.deplacee(true);
            uniteA=null; 
