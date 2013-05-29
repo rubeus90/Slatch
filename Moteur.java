@@ -176,7 +176,7 @@ class Moteur
            }
            if(vBatiment.getType()==TypeTerrain.QG)
            {
-                    Slatch.partie.gagner(Slatch.partie.getJoueurActuel());
+                    Slatch.partie.gagner();
            }
            Slatch.partie.getJoueur(vBatiment.getJoueur()).addNbreBatiment(-1);
            vBatiment.setJoueur(uniteA.getJoueur());
@@ -233,8 +233,10 @@ class Moteur
         }
         if(Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty())
         {
-            Slatch.partie.gagner(Slatch.partie.getJoueurActuel());
+            Slatch.partie.getJoueur(unite.getJoueur()).isMort();
+            Slatch.partie.gagner();
         }
+        
     }
 
     /**
