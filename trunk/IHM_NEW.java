@@ -16,6 +16,7 @@ public class IHM_NEW  {
     private JPanel panel;
     private PanelInfo panelInfo;
     private PanelMatrice panelMatrice;
+    private PanelMenu panelMenu;
     private JFrame frame;
     
     /**
@@ -34,18 +35,26 @@ public class IHM_NEW  {
         
         panelInfo = new PanelInfo();
         panelMatrice = new PanelMatrice(); 
-         
+        panelMenu = new PanelMenu();
+
+        
         panel.setLayout(new BorderLayout());
         panel.add(panelInfo, BorderLayout.NORTH);
         panel.add(panelMatrice, BorderLayout.CENTER);     
-        
+        //panel.add(panelMenu, BorderLayout.CENTER);  
+       
         MouseMatrice lecteurMatrice = new MouseMatrice();
         panelMatrice.addMouseListener(lecteurMatrice);
         MouseInfo lecteurInfo = new MouseInfo();
         panelInfo.addMouseListener(lecteurInfo);
+        MouseMenu lecteurMenu = new MouseMenu();
+        panelMenu.addMouseListener(lecteurMenu);
         
         frame.pack();
         frame.setVisible(true);
+        panelMenu.setVisible(false);
+        panelMatrice.setVisible(true);
+        panelInfo.setVisible(true);
     }
     
     /**
@@ -71,5 +80,9 @@ public class IHM_NEW  {
      */
     public PanelMatrice getPanel() {
         return panelMatrice;
+    }
+    
+    public PanelMenu getPanelMenu() {
+        return panelMenu;
     }
 }
