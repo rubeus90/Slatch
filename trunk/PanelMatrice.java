@@ -64,6 +64,7 @@ public class PanelMatrice extends JPanel
     private boolean aSoinPossible=false;
     private boolean aDeplacePossible=false;
     private boolean aCapturePossible=false;
+    private boolean aEvoluePossible=false;
     
     private HashMap<Integer,TypeUnite>  aTabAchat;
     
@@ -144,6 +145,7 @@ public class PanelMatrice extends JPanel
                 }
                 if(aListeAction.get(vVar).equals("Evolue")) {
                     g.drawString("Evolue", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
+                    aEvoluePossible=true;
                 }
             }
         }
@@ -400,6 +402,15 @@ public class PanelMatrice extends JPanel
                                 Slatch.moteur.capture(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
                                 effaceMenuUniteAction();
                                 aCapturePossible=false;
+                                this.repaint();
+                            }
+                            
+                            //Bouton 4 : Evolue
+                            if(aEvoluePossible && (aMenuActionHautGauche_Ypx+3*aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+4*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )
+                            {
+                                Slatch.moteur.evolue(aUniteMemMoteurCaseX,aUniteMemMoteurCaseY);
+                                effaceMenuUniteAction();
+                                aEvoluePossible=false;
                                 this.repaint();
                             }
                         }
