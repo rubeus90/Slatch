@@ -52,7 +52,7 @@ public class Unite extends Entite
        aDeplacement = pType.getDeplacement();
        aLvl = 0;
        aExperience = 0;
-       aExperienceMax=100;
+       aExperienceMax=pType.getXPUP();
        
        for(TypeAttaque type : TypeAttaque.values()) {
                    
@@ -241,9 +241,8 @@ public class Unite extends Entite
         }
        aLvl++;
        aExperience-=aExperienceMax;
-       aPV = (int)(aPV*aGain);
+       aPVMax = (int)(aPVMax*aGain);
        aDegats = (int)(aDegats*aGain);
-       aDeplacement = (int)(aDeplacement*aGain);
     }
     
     public boolean soigner(int soin)

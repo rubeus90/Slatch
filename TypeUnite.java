@@ -3,13 +3,13 @@
  */
 public enum TypeUnite
 {
-    COMMANDO("Commando", "Capable de capturer un batiment","commando",100,30,40,"fusil",TypeDeplacement.PIED,1.0, "Terrestre"),
-    DEMOLISSEUR("Demolisseur", "Capable capturer un batiment de faire des degats aux tanks","demolisseur",200,20,30,"mortier",TypeDeplacement.PIED,1.0,"Terrestre"), 
-    CHAR("Char","un char","char",300,40,60,"canon",TypeDeplacement.CHENILLES,1.0,"Terrestre"),
-    TANK("Tank","Unite tres puissante","tank",700,65,40,"groscanon",TypeDeplacement.CHENILLES,1.0, "Terrestre"),
-    INGENIEUR("Ingenieur","Capable de soigner des unites et de les faire evoluer","ingenieur",100,15,40,"soin",TypeDeplacement.PIED,1.0, "Terrestre"),
-    DISTANCE("Distance","un vehicule a moyenne distance","distance",350,35,50,"roquette",TypeDeplacement.ROUES,1.0, "Terrestre"),
-    UML("Uml","Capable de tirer a distance","uml",450,30,30,"missile",TypeDeplacement.CHENILLES,1.0, "Terrestre");
+    COMMANDO("Commando", "Capable de capturer un batiment","commando",100,30,40,"fusil",TypeDeplacement.PIED,1.3, "Terrestre",100),
+    DEMOLISSEUR("Demolisseur", "Capable capturer un batiment de faire des degats aux tanks","demolisseur",200,20,30,"mortier",TypeDeplacement.PIED,1.2,"Terrestre",100), 
+    CHAR("Char","un char","char",300,40,60,"canon",TypeDeplacement.CHENILLES,1.3,"Terrestre",110),
+    TANK("Tank","Unite tres puissante","tank",700,65,40,"groscanon",TypeDeplacement.CHENILLES,1.2, "Terrestre",150),
+    INGENIEUR("Ingenieur","Capable de soigner des unites et de les faire evoluer","ingenieur",100,15,40,"soin",TypeDeplacement.PIED,1.5, "Terrestre",100),
+    DISTANCE("Distance","un vehicule a moyenne distance","distance",350,35,50,"roquette",TypeDeplacement.ROUES,1.3, "Terrestre",110),
+    UML("Uml","Capable de tirer a distance","uml",450,30,30,"missile",TypeDeplacement.CHENILLES,1.3, "Terrestre",110);
 
     private String aNom;
     private String aDescription;
@@ -21,9 +21,10 @@ public enum TypeUnite
     private TypeDeplacement aTypeDeplacement;
     private double aGain;
     public String nomType;
+    private int aXPUP;
     
     
-    TypeUnite(final String pNom,final String pDescription,final String pImage,final int pPrix,final int pPVMax,final int pDeplacement,final String pAttaque,final  TypeDeplacement pTypeDeplacement,final double pGain, final String pNomType){
+    TypeUnite(final String pNom,final String pDescription,final String pImage,final int pPrix,final int pPVMax,final int pDeplacement,final String pAttaque,final  TypeDeplacement pTypeDeplacement,final double pGain, final String pNomType,final int pXPUP){
         aNom=pNom;
         aDescription =pDescription;
         aImage = pImage;
@@ -34,6 +35,7 @@ public enum TypeUnite
         aTypeDeplacement = pTypeDeplacement;
         aGain = pGain;
         this.nomType = pNomType;
+        aXPUP= pXPUP;
     }
     
     /**
@@ -106,6 +108,14 @@ public enum TypeUnite
      */
     public double getGain(){
         return aGain;
+    }
+    
+    /**
+     * Accesseur pour aXPUP
+     * @return aXPUP
+     */
+    public int getXPUP(){
+        return aXPUP;
     }
     
 
