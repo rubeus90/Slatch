@@ -25,7 +25,6 @@ public class PanelMap extends JPanel {
 	 
 	 public PanelMap(Partie pPartie){
 		 super();
-	     this.setPreferredSize(new Dimension(800, 500));
 	     this.setBackground(Color.black);
 	        
 	     aLargeurCarreau = this.getWidth()/pPartie.getLargeur();

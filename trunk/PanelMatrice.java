@@ -348,7 +348,7 @@ public class PanelMatrice extends JPanel
                         }
                         // Bouton sauver
                         else if(aHauteurCarreau<clickY && clickY<2*aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
-                            Slatch.partie.sauvegardePartie();
+                            Slatch.partie.sauvegardePartie("Maps/sauvegarde.txt");
                         }
                         else {
                             aUniteMemMenuCaseX=i;
