@@ -188,7 +188,6 @@ public class CreationMaps extends JPanel implements ActionListener,
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		String ID = liste.getSelectedValue();
-		System.out.println("Voila ce qui est selectionne " + ID);
 		if (ID != "USINE" && ID != "BATIMENT") {
 			aJoueur = "0";
 			for (JRadioButton button : listeBoutonJoueur) {
@@ -210,8 +209,6 @@ public class CreationMaps extends JPanel implements ActionListener,
 			partieNew.setCarreauTerrain(pX,pY,new Terrain(pX, pY,
 					Integer.parseInt(aJoueur), TypeTerrain.valueOf(ID)));
 			panelMap.repaint();
-
-			System.out.println("Les coordonnees sont " + X + " " + Y);
 		}
 	}
 
