@@ -358,6 +358,7 @@ class Moteur
         boolean geez = false;
         int x = pX, y =pY;
         Stack<Point> stack = new Stack<Point>();
+        Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
         if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));unite.deplacee(true);}
         while(!fini)
         {
