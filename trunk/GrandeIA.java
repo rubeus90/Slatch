@@ -45,7 +45,6 @@ public class GrandeIA
                     else if(batimentProche.d==-1) batimentProche.d = 900;
                     
                     
-                    //System.out.println(unite.getJoueur()+" "+batimentProche.d+" "+ennemiProche.d+" "+ennemiProche.d);
                     if( (batimentProche.d >= ennemiProche.t.d) && ennemiProche.t.d!=-1)
                     {
                         uia.decrypterObjectif(new Objectif("attaquer", null, new Point(ennemiProche.t.x,ennemiProche.t.y),unite,ennemiProche.u));
@@ -140,6 +139,10 @@ public class GrandeIA
     
     static Cible determineEnnemiProche(Unite unite)
     {
+        if(Slatch.moteur.cibleEnVue(unite, false))
+        {
+            
+        }
         Unite cible=null;
         Triplet t=new Triplet(-1, -1, -1);
         int X=-1,Y=-1;
@@ -149,14 +152,10 @@ public class GrandeIA
             {
                 for(Unite u: Slatch.partie.getJoueur(i).getListeUnite())
                 {
-                    cible = u;
                     for(Point p: Moteur.voisins)
                     {
                         int x= (int)p.getX()+u.getCoordonneeX();
                         int y= (int)p.getY()+u.getCoordonneeY();
-                        
-                        //X= u.getCoordonneeX();
-                        //Y= u.getCoordonneeY();
                         if(Moteur.dansLesBords(x,y))
                         {
                             if((Slatch.moteur.tabDist[x][y]<t.d || t.d==-1)&& Slatch.moteur.tabDist[x][y]>0 && Slatch.partie.getTerrain()[x][y].getUnite() ==null)
@@ -164,12 +163,14 @@ public class GrandeIA
                                 t.d = Slatch.moteur.tabDist[x][y];
                                 t.x = x;
                                 t.y = y;
+                                cible = u;
                             }
                             if(unite.seSitue(new Point(x,y)))
                             {
                                 t.d = Slatch.moteur.tabDist[x][y];
                                 t.x = x;
                                 t.y = y;
+                                cible =u;
                                 break label;
                                 /*uia.decrypterObjectif(new Objectif("attaquer", null, new Point(t.x,t.y), unite,u));
                                 return new Point(x,y);*/
