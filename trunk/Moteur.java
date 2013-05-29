@@ -314,7 +314,7 @@ class Moteur
                         {
                                 items.add("Capture");
                         }
-                        if(unite.isEvolvable()){
+                        if(unite.isEvolvable() && !unite.dejaAttaque()){
                             items.add("Evolue");
                         }
                         Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
