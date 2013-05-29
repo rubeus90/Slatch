@@ -229,13 +229,26 @@ public class CreationMaps extends JPanel implements ActionListener,	MouseListene
 	}
 
 	public void genererMap() {
-		partieNew.sauvegardePartie("Maps/mapGenere.txt");
+		partieNew.sauvegardePartie("Maps/mapGenere2.txt");
 	}
 
-	public void initialiseMap() {		
+	public void initialiseMap() {	
+		File fichier = new File("Maps/mapGenere2.txt");
 		try {
-			File file = new File(getClass().getClassLoader()
-					.getResource("Maps/mapGenere.txt").toURI());
+			fichier.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		fichier.setReadable(true);
+		fichier.setWritable(true);
+		fichier.setExecutable(true);
+		
+		
+		try {
+			File file = new File(getClass().getClassLoader().getResource("Maps/mapGenere2.txt").toURI());
+			
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			fw.write("");
 			BufferedWriter bw = new BufferedWriter(fw);
