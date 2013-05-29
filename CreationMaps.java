@@ -275,21 +275,30 @@ public class CreationMaps extends JPanel implements ActionListener,
 		int resultat = JOptionPane.showConfirmDialog(null, panel,
 				"Entrez les caracteristiques de la carte",
 				JOptionPane.OK_CANCEL_OPTION);
-
+		
 		if (resultat == JOptionPane.OK_OPTION) {
 			aLargeur = largeur.getText();
 			aHauteur = hauteur.getText();
 			
-			Integer nbr = Integer.parseInt(nbrJoueur.getText());
+			
+			if(aLargeur.equals(""))
+				aLargeur = "32";
+			if(aHauteur.equals(""))
+				aHauteur = "18";
+			
+			String stringNbrJoueur = nbrJoueur.getText();
+			if(stringNbrJoueur.equals(""))
+				stringNbrJoueur = "2";
+			
+			Integer nbr = Integer.parseInt(stringNbrJoueur);
 			if(nbr > 4)
 				nbr = 4;
 			aNbrJoueur = nbr.toString();
-			
 			initialiseMap();
-		} else {
+		}							
+			
+		else {
 			System.exit(0);
 		}
-		
-		System.out.println("Je le veux. Si si! Eh oui!!!!");
-	}
+	}		
 }
