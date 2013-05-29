@@ -60,9 +60,9 @@ class Moteur
      */
     public void soin(final Unite pUnite)
     { 
-        if(pUnite.soigner(5)){            
-           //On "grise" l'unité qui soigne
-           //uniteA.addExperience(10);
+        if(pUnite.soigner(5)){  
+           System.out.println("C'est moi qui est appelé");
+           uniteA.addExperience(5);
            uniteA.attaque(true);
            uniteA.deplacee(true);
            uniteA=null; 
