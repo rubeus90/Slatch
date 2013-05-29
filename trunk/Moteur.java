@@ -5,7 +5,7 @@ import java.util.Stack;
 import java.awt.Point;
 import java.util.PriorityQueue;
 
-/*
+/**
  * Possede presque toutes les methodes propres a la mecanique du jeu, il va travailler de paire avec Partie et IHM
  */
 class Moteur
