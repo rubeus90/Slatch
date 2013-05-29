@@ -10,9 +10,8 @@ public class UniteIA
     }
     
     private void attaquerUnite(final Unite pUnite,final Point point,final Unite pCible){
-        if(pCible == null){System.out.println("Cible nulle");System.out.println("Nom de l'attaquant: "+pUnite+" situé en "+pUnite.getCoordonneeX()+","+pUnite.getCoordonneeY());}
         if(!Slatch.moteur.estAPortee(pUnite, pCible)){seDirigerVers(pUnite, point);}
-        if(Slatch.moteur.estAPortee(pUnite, pCible) && (pUnite.getAttaque().aTypePortee.getPorteeMin()==1 || !pUnite.dejaDeplacee())){
+        if(Slatch.moteur.estAPortee(pUnite, pCible) && ((pUnite.getAttaque().aTypePortee.getPorteeMin()==1 && Slatch.moteur.distance(pUnite, pCible)==1) || !pUnite.dejaDeplacee())){
             Slatch.moteur.setuniteA(pUnite);
             Slatch.moteur.attaque(pCible);
         }

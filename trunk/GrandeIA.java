@@ -57,41 +57,91 @@ public class GrandeIA
         }
     }
     
+    
+    
     static void acheterUnite()
     {
-            Joueur JoueurActuel = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
+            Joueur joueurActuel = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
         
-            for (Terrain usine : JoueurActuel.getListeUsine())
+            //Choix de l'unite
+            int nombreCommando=0;
+            int nombreDemolisseur=0;
+            int nombreIngenieur=0;
+            int nombreTank=0;
+            int nombreUml=0;
+            int nombreDistance=0;
+            int nombreWhile=0;
+            
+            for (Unite unit : joueurActuel.getListeUnite())
+            {
+                switch(unit.getType().getNom())
+                {
+                    case "Commando" :
+                                        nombreCommando=nombreCommando+1;
+                                        break;
+                    case "Demolisseur" :
+                                        nombreDemolisseur=nombreDemolisseur+1;
+                                        break;
+                    case "Ingenieur" :
+                                        nombreIngenieur=nombreIngenieur+1;
+                                        break;
+                    case "Char" :
+                                        nombreTank=nombreTank+1;
+                                        break;
+                    case "Uml" :
+                                        nombreUml=nombreUml+1;
+                                        break;
+                    case "Tank" :
+                                        nombreWhile=nombreWhile+1;
+                                        break;
+                    case "Distance" :
+                                        nombreDistance=nombreDistance+1;
+                                        break;                   
+                }
+            }
+            
+            
+            
+            for (Terrain usine : joueurActuel.getListeUsine())
             {
                 int x = usine.getCoordonneeX();
                 int y = usine.getCoordonneeY();
 
-                if(JoueurActuel.getArgent()>=700)
+                if(joueurActuel.getArgent()>=700 && nombreWhile <1)
                  {
-                    uia.decrypterObjectif(new Objectif("acheter","While",new Point(x,y),null,null));                    
-                                        
+                    uia.decrypterObjectif(new Objectif("acheter","Tank",new Point(x,y),null,null));                    
+                    //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreWhile+" While donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
+                    nombreWhile=nombreWhile+1;
                  }
-                else if(JoueurActuel.getArgent()>=450)         
+                else if(joueurActuel.getArgent()>=450 && nombreUml <1)         
                 {
                     uia.decrypterObjectif(new Objectif("acheter","Uml",new Point(x,y),null,null));
-                                
+                    //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreUml+" Uml donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
+                    nombreUml=nombreUml+1;
                 }
-                else if(JoueurActuel.getArgent()>=350)         
+                else if(joueurActuel.getArgent()>=350 && nombreDistance <1)         
                 {
                     uia.decrypterObjectif(new Objectif("acheter","Distance",new Point(x,y),null,null));
-                                
+                   //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreDistance+" Distance donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
+                   nombreDistance=nombreDistance+1;
                 }
-                else if(JoueurActuel.getArgent()>=300)
+                else if(joueurActuel.getArgent()>=300 && nombreTank <1)
                 {
-                    uia.decrypterObjectif(new Objectif("acheter","Tank",new Point(x,y),null,null));
+                    uia.decrypterObjectif(new Objectif("acheter","Char",new Point(x,y),null,null));
+                     //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreTank+" Tank donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
+                     nombreTank=nombreTank+1;
                 }
-                else if(JoueurActuel.getArgent()>=200)
+                else if(joueurActuel.getArgent()>=200 && nombreDemolisseur <3)
                 {
                     uia.decrypterObjectif(new Objectif("acheter","Demolisseur",new Point(x,y),null,null));
+                    //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreDemolisseur+" Demolisseur donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
+                    nombreDemolisseur=nombreDemolisseur+1;
                 }
-                else if(JoueurActuel.getArgent()>=100)
+                else if(joueurActuel.getArgent()>=100 && nombreCommando <3)
                 {
                     uia.decrypterObjectif(new Objectif("acheter","Commando",new Point(x,y),null,null));   
+                    //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreCommando+" Commando donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
+                    nombreCommando=nombreCommando+1;
                 }
                 else
                 {

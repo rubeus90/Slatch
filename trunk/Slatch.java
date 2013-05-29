@@ -30,7 +30,7 @@ public class Slatch {
         aImages=new HashMap<String,Image>();
         loadImage();
 
-        partie = new Partie(20,30,"Maps/mapTest.txt");
+        partie = new Partie(20,30,"Maps/doublevai.txt");
 //        partie = new Partie("Maps/mapGenere.txt");
 
         //partie =new Partie("Maps/sauvegarde.txt");
@@ -102,6 +102,23 @@ public class Slatch {
                     aImages.put(""+unite.getImage() + i,image);
                 }
             }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void loadNiveau()
+    {
+        try {
+                Image image;
+                Image imageRedim;
+                for(int i=1;1<=3;i++){
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/niveau"+i+"HUMAINS.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("niveau"+i+"HUMAINS",image);
+            }
+
         }
         catch (IOException e) {
             e.printStackTrace();
