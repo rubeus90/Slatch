@@ -403,7 +403,7 @@ class Moteur
             mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
 
             try{
-                Thread.sleep(250/k+50);
+                Thread.sleep(0/*250/k+50*/);
             }
             catch(InterruptedException e)
             {
@@ -421,6 +421,39 @@ class Moteur
      */
     public Unite changerCase(Unite unite,final int destX,final int destY,final Unite mem)
     {
+        int vPasDepl = 8;
+        if(unite.getCoordonneeX() != destX ) {
+            if(unite.getCoordonneeX() < destX) {
+                for(int i=0; i<Slatch.ihm.getPanel().getaLargeurCarreau()-vPasDepl ; i=i+vPasDepl) {
+                    unite.setDecaleUniteX(i);
+                    Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
+                }
+            }
+            else  {
+                for(int i=0; i<Slatch.ihm.getPanel().getaLargeurCarreau()-vPasDepl ; i=i+vPasDepl) {
+                    unite.setDecaleUniteX(-i);
+                    Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
+                }
+            }
+        }
+        else {
+            if(unite.getCoordonneeY() < destY) {
+                for(int i=0; i<Slatch.ihm.getPanel().getaHauteurCarreau()-vPasDepl ; i=i+vPasDepl) {
+                    unite.setDecaleUniteY(i);
+                    Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
+                }
+            }
+            else  {
+                for(int i=0; i<Slatch.ihm.getPanel().getaHauteurCarreau()-vPasDepl ; i=i+vPasDepl) {
+                    unite.setDecaleUniteY(-i);
+                    Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
+                }
+            }
+        }
+        
+        unite.setDecaleUniteX(0);
+        unite.setDecaleUniteY(0);
+    
         Unite ret=Slatch.partie.getTerrain()[destX][destY].getUnite();
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(mem);
         unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
