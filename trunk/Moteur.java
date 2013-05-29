@@ -221,7 +221,7 @@ class Moteur
     
     public double getDegats(final Unite a,final Unite v) // a= attaquant, v= cible
     {
-        int degatA = a.getAttaque().getDegats();
+        int degatA = a.getDegat();
         double efficaciteA = a.getAttaque().efficacite.get(v.getType());
         double bonusTerrain = (100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getCoordonneeX()][v.getCoordonneeY()].getType().getCouverture()))/100.0;
         double maluspvA = (double)a.getPV()/(double)a.getPVMax(); 
