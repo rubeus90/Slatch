@@ -403,14 +403,6 @@ class Moteur
             }
             
             mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
-
-            /*try{
-                Thread.sleep(0/*250/k+50*/);
-            }
-            catch(InterruptedException e)
-            {
-                e.printStackTrace();
-            }*/
         }
         
     }
@@ -424,31 +416,52 @@ class Moteur
     public Unite changerCase(Unite unite,final int destX,final int destY,final Unite mem)
     {
         int vPasDepl = 8;
+        int vThread = 10;
+        int pPosHautGaucheX = unite.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosHautGaucheY = unite.getCoordonneeY()*Slatch.ihm.getPanel().getaHauteurCarreau();
+        int pPosBasDroiteX = (unite.getCoordonneeX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosBasDroiteY = (unite.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
+        
+        int pPosHautGaucheXdest = destX*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosHautGaucheYdest = destY*Slatch.ihm.getPanel().getaHauteurCarreau();
+        int pPosBasDroiteXdest = (destX+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosBasDroiteYdest = (destY+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
+
         if(unite.getCoordonneeX() != destX ) {
             if(unite.getCoordonneeX() < destX) {
-                for(int i=0; i<Slatch.ihm.getPanel().getaLargeurCarreau()-vPasDepl ; i=i+vPasDepl) {
+                for(int i=0; i<Slatch.ihm.getPanel().getaLargeurCarreau() ; i=i+vPasDepl) {
+                    //bug
+                    //Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
                     unite.setDecaleUniteX(i);
-                    Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
+                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteX-pPosHautGaucheXdest,pPosBasDroiteY-pPosHautGaucheYdest);
+                    try{Thread.sleep(vThread/*250/k+50*/);}catch(InterruptedException e){e.printStackTrace();}
                 }
             }
             else  {
-                for(int i=0; i<Slatch.ihm.getPanel().getaLargeurCarreau()-vPasDepl ; i=i+vPasDepl) {
+                for(int i=0; i<Slatch.ihm.getPanel().getaLargeurCarreau() ; i=i+vPasDepl) {
                     unite.setDecaleUniteX(-i);
-                    Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
+                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
+                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
+                    try{Thread.sleep(vThread/*250/k+50*/);}catch(InterruptedException e){e.printStackTrace();}
                 }
             }
         }
-        else {
+        if(unite.getCoordonneeY() != destY ) {
             if(unite.getCoordonneeY() < destY) {
-                for(int i=0; i<Slatch.ihm.getPanel().getaHauteurCarreau()-vPasDepl ; i=i+vPasDepl) {
+                for(int i=0; i<Slatch.ihm.getPanel().getaHauteurCarreau() ; i=i+vPasDepl) {
+                    // bug
+                    //Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
                     unite.setDecaleUniteY(i);
-                    Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
+                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteX-pPosHautGaucheXdest,pPosBasDroiteY-pPosHautGaucheYdest);
+                    try{Thread.sleep(vThread/*250/k+50*/);}catch(InterruptedException e){e.printStackTrace();}
                 }
             }
             else  {
-                for(int i=0; i<Slatch.ihm.getPanel().getaHauteurCarreau()-vPasDepl ; i=i+vPasDepl) {
+                for(int i=0; i<Slatch.ihm.getPanel().getaHauteurCarreau() ; i=i+vPasDepl) {
                     unite.setDecaleUniteY(-i);
-                    Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
+                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
+                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
+                    try{Thread.sleep(vThread/*250/k+50*/);}catch(InterruptedException e){e.printStackTrace();}
                 }
             }
         }
@@ -461,7 +474,9 @@ class Moteur
         unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
         Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
 
-        Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
+        Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
+        Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);        
+        
         Slatch.partie.getJoueur(unite.getJoueur()).addDeplacementTotal(1);
         return ret;
     }
