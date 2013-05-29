@@ -44,19 +44,18 @@ public class UniteIA
     public void decrypterObjectif(final Objectif objectif)
     {
         switch(objectif.getMotPrincipal()){
-        case "aller" :
-             seDirigerVers(objectif.getExecutant(),objectif.getCoordonnee());
-            break;
-        case "attaquer" :
-             attaquerUnite(objectif.getExecutant(),objectif.getCoordonnee(),objectif.getCible());
-            break;
-        case "capture" :
-           
-             capture(objectif.getExecutant(),objectif.getCoordonnee());
-            break;
-        case "acheter" :
-             achat(objectif.getCoordonnee(),objectif.getMotSecondaire());
-            break;
+            case "aller" :
+                 seDirigerVers(objectif.getExecutant(),objectif.getCoordonnee());
+                break;
+            case "attaquer" :
+                 attaquerUnite(objectif.getExecutant(),objectif.getCoordonnee(),objectif.getCible());
+                break;
+            case "capture" :
+                 capture(objectif.getExecutant(),objectif.getCoordonnee());
+                break;
+            case "acheter" :
+                 achat(objectif.getCoordonnee(),objectif.getMotSecondaire());
+                break;
         }
     }
 }
