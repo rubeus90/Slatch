@@ -474,6 +474,12 @@ public class Partie
     }
     
     public void chargerPartie(){
-        Partie partie = new Partie("Maps/sauvegarde.txt");   
+    	try {
+            aMap = new Scanner(getClass().getClassLoader().getResource("Maps/sauvegarde.txt").openStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        initMap(true); 
+        Slatch.ihm.getPanel().repaint();
     }
 }
