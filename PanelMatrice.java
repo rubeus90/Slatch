@@ -168,18 +168,22 @@ public class PanelMatrice extends JPanel
                 String xp = "XP = "+t.getUnite().getExperience();
                 String lvl = "LVL = ";
                 String couverture = "Couv = "+ t.getType().getCouverture();
+                String titre = t.getUnite().getType().getNom()+" : ";
+                String titreTerrain=t.getType().getDescription()+" : ";
                 
-                
-                g.drawString("UNITE "+t.getUnite().getType().getNom()+" : ", aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
+                g.drawString(titre, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
                 g.drawString(portedep, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
                 g.drawString(xp, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
                 g.drawString(lvl, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
                 
-                int tailleNiveau = 40;
+                int tailleIcon = aHauteurCarreau -5;
                 //System.out.println("niveau"+t.getUnite().getLvl()+""+Slatch.partie.getJoueur(t.getUnite().getJoueur()).getFaction().getNom());
-                afficheImageRedim ("niveau"+t.getUnite().getLvl()+""+Slatch.partie.getJoueur(t.getUnite().getJoueur()).getFaction().getNom(), (aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(lvl), (aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3)-(2*tailleNiveau/3), (aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(lvl)+tailleNiveau, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3+(tailleNiveau/3), g);
+                afficheImageRedim ("niveau"+t.getUnite().getLvl()+""+Slatch.partie.getJoueur(t.getUnite().getJoueur()).getFaction().getNom(), (aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(lvl), (aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3)-(2*tailleIcon/3), (aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(lvl)+tailleIcon, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3+(tailleIcon/3), g);
                 
-                g.drawString("TERRAIN "+t.getType().getDescription()+" : ", (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
+                afficheImageRedim (t.getUnite().getType().getImage()+""+t.getUnite().getJoueur(), (aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titre),(aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)-(2*tailleIcon/3) ,(aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titre)+tailleIcon, (aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)+(1*tailleIcon/3), g);
+                afficheImageRedim (t.getType().getImage()+""+t.getJoueur(), ((aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titreTerrain),(aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)-(2*tailleIcon/3) ,((aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titreTerrain)+tailleIcon, (aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)+(1*tailleIcon/3), g);
+                
+                g.drawString(titreTerrain, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
                 g.drawString(couverture, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
             
                 if(t.getType().getDependance()) {
@@ -190,13 +194,15 @@ public class PanelMatrice extends JPanel
             
             else {
                 String couverture = "Couv = "+ t.getType().getCouverture();
-                
-                g.drawString("TERRAIN "+t.getType().getDescription()+" : ",  aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
+                String titre = t.getType().getDescription()+" : ";
+                int tailleIcon = aHauteurCarreau - 5;
+                g.drawString(t.getType().getDescription()+" : ",  aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
                 g.drawString(couverture,  aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
-            
+                afficheImageRedim (t.getType().getImage()+""+t.getJoueur(), (aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titre),(aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)-(2*tailleIcon/3) ,(aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titre)+tailleIcon, (aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)+(1*tailleIcon/3), g);
                 if(t.getType().getDependance()) {
                     String pv = "PVTerrain = "+t.getPV();
                     g.drawString(pv, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+                    
                 }
             }
         }
