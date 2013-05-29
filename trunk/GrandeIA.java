@@ -176,11 +176,11 @@ public class GrandeIA
             x=batiment.getCoordonneeX();
             y=batiment.getCoordonneeY();
             if((Slatch.moteur.tabDist[x][y]<t.d || t.d==-1)&& Slatch.moteur.tabDist[x][y]>0 && Slatch.partie.getTerrain()[x][y].getUnite() ==null)
-                            {
-                                t.d = Slatch.moteur.tabDist[x][y];
-                                t.x = x;
-                                t.y = y;
-                            }
+            {
+                t.d = Slatch.moteur.tabDist[x][y];
+                t.x = x;
+                t.y = y;
+            }
         }
         
         return t;
@@ -226,5 +226,12 @@ public class GrandeIA
         }
          
         return new Cible(new Triplet (t.d,t.x, t.y),cible);
+    }
+    
+    
+    
+    static void aWholeNewWorld(Unite unite)
+    {
+        
     }
 }
