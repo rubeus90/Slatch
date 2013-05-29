@@ -208,7 +208,17 @@ class Moteur
     
     public double getDegats(final Unite a,final Unite v) // a= attaquant, v= cible
     {
-        return ((a.getAttaque().getDegats()*a.getAttaque().efficacite.get(v.getType()))*(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getCoordonneeX()][v.getCoordonneeY()].getType().getCouverture()))/100)*((double)a.getPV()/(double)a.getPVMax());
+        int degatA = a.getAttaque().getDegats();
+        double efficaciteA = a.getAttaque().efficacite.get(v.getType());
+        double bonusTerrain = (100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getCoordonneeX()][v.getCoordonneeY()].getType().getCouverture()))/100.0;
+        double maluspvA = (double)a.getPV()/(double)a.getPVMax(); 
+        
+        double degat = degatA*efficaciteA*bonusTerrain*maluspvA;
+        
+        /*((a.getAttaque().getDegats()*a.getAttaque().efficacite.get(v.getType()))
+        *(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getCoordonneeX()][v.getCoordonneeY()].getType().getCouverture()))/100)
+         *((double)a.getPV()/(double)a.getPVMax())*/   
+        return degat;
     }
    
     public void estMort(final Unite unite)
