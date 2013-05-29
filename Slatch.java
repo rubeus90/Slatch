@@ -30,7 +30,7 @@ public class Slatch {
         aImages=new HashMap<String,Image>();
         loadImage();
 
-        partie = new Partie(20,30,"Maps/doublevai.txt");
+        partie = new Partie(20,30,"Maps/mapTest4.txt");
 //        partie = new Partie("Maps/mapGenere.txt");
 
         //partie =new Partie("Maps/sauvegarde.txt");
@@ -42,7 +42,7 @@ public class Slatch {
             AIMaster.joueTour(Slatch.partie.getJoueurActuel());
         }
         
-//        maps = new CreationMaps();
+      //  maps = new CreationMaps();
     }
     
     private void loadImage()
