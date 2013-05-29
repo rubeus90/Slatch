@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -88,6 +89,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 		panel.add(panelSelection, BorderLayout.EAST);
 
 		panelSelection.setLayout(new BorderLayout());
+		panelSelection.setBackground(Color.black);
 		panelSelection.setBorder(BorderFactory
 				.createTitledBorder("Les terrains disponibles:"));
 		listeTerrain = new DefaultListModel<String>();
@@ -116,6 +118,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 
 		fini = new JButton("FINI!");
 		fini.setPreferredSize(new Dimension(400, 50));
+		fini.setBackground(Color.black);
 
 		panelSelection.add(fini, BorderLayout.SOUTH);
 		panelSelection.add(listScroller, BorderLayout.CENTER);
