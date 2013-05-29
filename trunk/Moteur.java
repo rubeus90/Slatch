@@ -120,6 +120,7 @@ class Moteur
     
     public void attaque(final Unite pVictime)
     { 
+//         System.out.println(uniteA+" située en "+uniteA.getCoordonneeX()+","+uniteA.getCoordonneeY()+" attaque "+pVictime+" située en "+pVictime.getCoordonneeX()+","+pVictime.getCoordonneeY());
         double degatsAtt=0;
         degatsAtt = getDegats(uniteA, pVictime);
         Slatch.partie.getJoueur(uniteA.getJoueur()).addDegatTotal(degatsAtt);
@@ -182,7 +183,6 @@ class Moteur
            vBatiment.setPV(vBatiment.getType().getPVMax());
            Slatch.partie.getJoueur(uniteA.getJoueur()).addNbreBatiment(1);
            Slatch.partie.getJoueur(uniteA.getJoueur()).addCaptureTotal();
-           
            repaint();
         }
         uniteA.attaque(true);
@@ -350,7 +350,7 @@ class Moteur
     * @param pX abscisse de l'arrivee
     * @param pY ordonnee de l'arrivee
     */
-    public void deplacement(final Unite unite,final int pX,final int pY)
+    public void deplacement(Unite unite,final int pX,final int pY)
     {
         boolean fini = false;
         boolean geez = false;
@@ -419,7 +419,7 @@ class Moteur
      * @param pX abscisse de l'arrivee
      * @param pY ordonnee de l'arrivee
      */
-    public Unite changerCase(final Unite unite,final int destX,final int destY,final Unite mem)
+    public Unite changerCase(Unite unite,final int destX,final int destY,final Unite mem)
     {
         Unite ret=Slatch.partie.getTerrain()[destX][destY].getUnite();
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(mem);
@@ -512,6 +512,12 @@ class Moteur
             }
         }
         
+    }
+    
+    public boolean estAPortee(Unite pA, Unite pC)
+    {
+        int d=distance(pA, pC);
+        return d<=pA.getAttaque().aTypePortee.getPorteeMax() && d>=pA.getAttaque().aTypePortee.getPorteeMin();
     }
     
     /**
