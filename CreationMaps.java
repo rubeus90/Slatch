@@ -89,13 +89,14 @@ public class CreationMaps extends JPanel implements ActionListener,
 		panel.add(panelSelection, BorderLayout.EAST);
 
 		panelSelection.setLayout(new BorderLayout());
-		panelSelection.setBackground(Color.black);
 		panelSelection.setBorder(BorderFactory
 				.createTitledBorder("Les terrains disponibles:"));
 		listeTerrain = new DefaultListModel<String>();
 		liste = new JList<String>(listeTerrain);
 
 		listScroller = new JScrollPane(liste);
+		listScroller.setBorder(null);
+		
 
 		panelJoueurs = new JPanel();
 		panelJoueurs.setPreferredSize(new Dimension(400, 80));
@@ -111,14 +112,15 @@ public class CreationMaps extends JPanel implements ActionListener,
 		listeBoutonJoueur.add(joueur2);
 		listeBoutonJoueur.add(joueur3);
 		listeBoutonJoueur.add(joueur4);
-
-		for (int i = 0; i < listeBoutonJoueur.size(); i++) {
-			panelJoueurs.add(listeBoutonJoueur.get(i));
+		
+		for(JRadioButton button : listeBoutonJoueur){
+			panelJoueurs.add(button);
+			button.setBorder(null);
 		}
-
+		
 		fini = new JButton("FINI!");
 		fini.setPreferredSize(new Dimension(400, 50));
-		fini.setBackground(Color.black);
+		fini.setBorder(null);
 
 		panelSelection.add(fini, BorderLayout.SOUTH);
 		panelSelection.add(listScroller, BorderLayout.CENTER);
@@ -166,8 +168,10 @@ public class CreationMaps extends JPanel implements ActionListener,
 			aJoueur = "3";
 		else if (e.getSource() == joueur4)
 			aJoueur = "4";
-		else if (e.getSource() == fini)
+		else if (e.getSource() == fini){
 			genererMap();
+			System.exit(0);
+		}
 
 		for (int i = 0; i < listeBoutonJoueur.size(); i++) {
 			listeBoutonJoueur.get(i).setSelected(false);
@@ -199,9 +203,11 @@ public class CreationMaps extends JPanel implements ActionListener,
 			Integer pX = (int) point.getX();
 			Integer pY = (int) point.getY();
 
-			partieNew.setCarreauTerrain(pX,pY,new Terrain(pX, pY,
-					Integer.parseInt(aJoueur), TypeTerrain.valueOf(ID)));
-			panelMap.repaint();
+			if(ID != null){
+				partieNew.setCarreauTerrain(pX,pY,new Terrain(pX, pY,
+						Integer.parseInt(aJoueur), TypeTerrain.valueOf(ID)));
+				panelMap.repaint();
+			}			
 		}
 	}
 
