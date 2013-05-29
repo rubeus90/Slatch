@@ -21,6 +21,7 @@ public class Joueur
     private int aArgentTotal; // Sert aux statistiques de fin de partie, represente l'argent total que le joueur a gagne
     private int aArgentDepense;
     private int aNbrUniteMort;
+    private int aNbrUniteTue;
     private int aNbrUniteCree;
     private double aDegatTotal;
     private double aDegatSubit;
@@ -43,8 +44,10 @@ public class Joueur
         aVivant=true;
         aArgent = 0;
         aArgentTotal = 0;
-        aNbrUniteMort = 0;
         aArgentDepense = 0;
+        aNbrUniteCree = 0;
+        aNbrUniteMort = 0;
+        aNbrUniteTue = 0;
         aDegatTotal=0;
         aDegatSubit=0;
         aExpTotal=0;
@@ -69,6 +72,7 @@ public class Joueur
     public int getNbrUniteCree() {return aNbrUniteCree;}
     public int getDegatTotal() {return (int)aDegatTotal;}
     public int getDegatSubit() {return (int)aDegatSubit;}
+    public int getNbrUniteTue() {return aNbrUniteTue;}
     public int getExpTotal() {return aExpTotal;}
     public int getDeplacementTotal() {return aDeplacementTotal;}
     public int getCaptureTotal() {return aCaptureTotal;}
@@ -87,6 +91,7 @@ public class Joueur
     public void addDeplacementTotal(final int pDeplacement) {aDeplacementTotal+=pDeplacement;}
     public void addCaptureTotal() {aCaptureTotal ++;}
     public void addNbrUniteCree() {aNbrUniteCree++;}
+    public void addNbrUniteTue() {aNbrUniteTue++;}
     public void setArgent(final int pArgent){
         aArgent = pArgent;
         aArgentTotal = pArgent;

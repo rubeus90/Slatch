@@ -129,6 +129,7 @@ class Moteur
         {
             //uniteA.addExperience(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*(pVictime.getLvl()+1));
             //Slatch.partie.getJoueur(uniteA.getJoueur()).addExpTotal(Unite.EXPERIENCE_DONNEE_PAR_NIVEAU*(pVictime.getLvl()+1));
+            Slatch.partie.getJoueur(uniteA.getJoueur()).addNbrUniteTue();
             estMort(pVictime);
         }    
         else if(distance(uniteA, pVictime)==1 && pVictime.getAttaque().aTypePortee.getPorteeMin()==1) //sinon + si attaque au CAC, on riposte
