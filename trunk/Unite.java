@@ -98,8 +98,9 @@ public class Unite extends Entite
        else{
            aLvl = pLvl;
        }
+       isEvolvable = false;
        aExperience = pExperience;
-       aExperienceMax=100;
+       aExperienceMax=pType.getXPUP();
        
        for(TypeAttaque type : TypeAttaque.values()) {
                    
