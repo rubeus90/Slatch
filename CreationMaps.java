@@ -137,6 +137,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 		joueur2.addActionListener(this);
 		joueur3.addActionListener(this);
 		joueur4.addActionListener(this);
+		fini.addActionListener(this);
 
 		liste.addMouseListener(this);
 		panelMap.addMouseListener(this);
@@ -177,9 +178,11 @@ public class CreationMaps extends JPanel implements ActionListener,
 		for (int i = 0; i < listeBoutonJoueur.size(); i++) {
 			listeBoutonJoueur.get(i).setSelected(false);
 		}
-
-		JRadioButton boutonClicked = (JRadioButton) e.getSource();
-		boutonClicked.setSelected(true);
+		
+		if(e.getSource() != fini){
+			JRadioButton boutonClicked = (JRadioButton) e.getSource();
+			boutonClicked.setSelected(true);
+		}
 	}
 
 	@Override
