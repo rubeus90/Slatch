@@ -404,13 +404,13 @@ class Moteur
             
             mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
 
-            try{
+            /*try{
                 Thread.sleep(0/*250/k+50*/);
             }
             catch(InterruptedException e)
             {
                 e.printStackTrace();
-            }
+            }*/
         }
         
     }
@@ -494,7 +494,7 @@ class Moteur
      * @param unite unite qui cherche une autre unite a frapper
      * @return true si une unite est a portee de tir, false sinon
      */
-    private boolean cibleEnVue(final Unite unite,final boolean soin)
+    public boolean cibleEnVue(final Unite unite,final boolean soin)
     {
         int x = unite.getCoordonneeX(), y = unite.getCoordonneeY();
         for(int i=0; i<=unite.getAttaque().aTypePortee.getPorteeMax();i++)
