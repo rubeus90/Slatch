@@ -289,5 +289,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 		} else {
 			System.exit(0);
 		}
+		
+		System.out.println("Je le veux");
 	}
 }
