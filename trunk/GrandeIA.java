@@ -18,37 +18,45 @@ public class GrandeIA
     
     static void elaborationObjectif(Unite unite)
     {
-
-        int X = unite.getCoordonneeX();
-        int Y = unite.getCoordonneeY();
-        
-        if( (Slatch.partie.getTerrain()[X][Y].getType()==TypeTerrain.BATIMENT || Slatch.partie.getTerrain()[X][Y].getType()==TypeTerrain.USINE) && Slatch.partie.getTerrain()[X][Y].getJoueur()!=unite.getJoueur() )
+        Triplet batimentProche=null;
+        Cible ennemiProche;
+        switch(unite.getType().getNom())
         {
-            
-            uia.decrypterObjectif(new Objectif("capture",null,new Point(X,Y),unite,null));
-            return;
+           case "Commando" :
+           case "Demolisseur" :
+           case "Ingenieur" :
+           
+                    int X = unite.getCoordonneeX();
+                    int Y = unite.getCoordonneeY();
+                    if( (Slatch.partie.getTerrain()[X][Y].getType()==TypeTerrain.BATIMENT || Slatch.partie.getTerrain()[X][Y].getType()==TypeTerrain.USINE) && Slatch.partie.getTerrain()[X][Y].getJoueur()!=unite.getJoueur() )
+                    {
+                    
+                        uia.decrypterObjectif(new Objectif("capture",null,new Point(X,Y),unite,null));
+                        return;
+                    }
+                    Slatch.moteur.remplitPorteeDep(unite, false);
+                    batimentProche = determineBatimentProche(unite);
+                    
+                    
+           default:
+           
+                    ennemiProche = determineEnnemiProche(unite);
+                    
+                    if(batimentProche==null) batimentProche = new Triplet(900,-1,-1);
+                    else if(batimentProche.d==-1) batimentProche.d = 900;
+                    
+                    
+                    //System.out.println(unite.getJoueur()+" "+batimentProche.d+" "+ennemiProche.d+" "+ennemiProche.d);
+                    if( (batimentProche.d >= ennemiProche.t.d) && ennemiProche.t.d!=-1)
+                    {
+                        uia.decrypterObjectif(new Objectif("attaquer", null, new Point(ennemiProche.t.x,ennemiProche.t.y),unite,ennemiProche.u));
+                    }
+                    else if(batimentProche.d != 900)
+                    {
+                        uia.decrypterObjectif(new Objectif("capture", null, new Point(batimentProche.x,batimentProche.y),unite,null));
+                    }
+        
         }
-        
-        Slatch.moteur.remplitPorteeDep(unite, false);
-        Triplet batimentProche = determineBatimentProche(unite);
-        Cible ennemiProche = determineEnnemiProche(unite);
-        //Triplet cible;
-        
-        
-        //System.out.println(unite.getJoueur()+" "+batimentProche.d+" "+ennemiProche.d+" "+ennemiProche.d);
-        if( (batimentProche.d >= ennemiProche.t.d) && ennemiProche.t.d!=-1)
-        {
-            //Unite ennemi = Slatch.partie.getTerrain()[ennemiProche.t.x][ennemiProche.t.y].getUnite();
-            //cible = determineVoisinProcheEnnemi(unite,ennemiProche.t);
-            uia.decrypterObjectif(new Objectif("attaquer", null, new Point(ennemiProche.t.x,ennemiProche.t.y),unite,ennemiProche.u));
-        }
-        else if(batimentProche.d!=-1)
-        {
-            //cible = batimentProche;
-            uia.decrypterObjectif(new Objectif("capture", null, new Point(batimentProche.x,batimentProche.y),unite,null));
-        }
-        
-        
     }
     
     
@@ -87,7 +95,7 @@ public class GrandeIA
         return t;
     }
     
-    static Triplet determineEnnemiProche2(Unite unite)
+    /*static Triplet determineEnnemiProche2(Unite unite)
     {
         Triplet t = new Triplet(-1, -1, -1);
         Unite cible=null;
@@ -114,7 +122,8 @@ public class GrandeIA
         }
        
         return t;
-    }
+    }*/
+    
     
     static Cible determineEnnemiProche(Unite unite)
     {
