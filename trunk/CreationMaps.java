@@ -259,6 +259,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 				bw.newLine();
 			}
 			bw.close();
+			fw.close();
 		} catch (URISyntaxException | IOException e) {
 			e.printStackTrace();
 		}
