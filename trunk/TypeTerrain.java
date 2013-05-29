@@ -11,6 +11,7 @@ public enum TypeTerrain {
         PLAINE("plaine", "plaine", "d'une plaine", 1,0,false),
         MONTAGNE("montagne", "montagne", "d'une montagne", 3,0,false),
         BATIMENT("batiment", "batiment", "d'un batiment", 2,30,true),
+        //QG("qg","qg","d'un quartier general",5,40,true),
         USINE("usine","caserne","d'une usine",3,30,true),
         
         //eau
