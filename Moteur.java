@@ -172,7 +172,11 @@ class Moteur
            {
                     Slatch.partie.getJoueur(vBatiment.getJoueur()).getListeBatiment().remove(vBatiment);
                     Slatch.partie.getJoueur(uniteA.getJoueur()).getListeBatiment().add(vBatiment);
-           } 
+           }
+           if(vBatiment.getType()==TypeTerrain.QG)
+           {
+                    Slatch.partie.gagner(Slatch.partie.getJoueurActuel());
+           }
            Slatch.partie.getJoueur(vBatiment.getJoueur()).addNbreBatiment(-1);
            vBatiment.setJoueur(uniteA.getJoueur());
            vBatiment.setPV(vBatiment.getType().getPVMax());
@@ -282,7 +286,7 @@ class Moteur
                                 items.add("Soin");
                             }
                         }
-                        if(!unite.dejaAttaque()&&(unite.getType()==TypeUnite.COMMANDO || unite.getType()==TypeUnite.DEMOLISSEUR || unite.getType()==TypeUnite.INGENIEUR) && (Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE) && Slatch.partie.getJoueurActuel()!=Slatch.partie.getTerrain()[pX][pY].getJoueur())
+                        if(!unite.dejaAttaque()&&(unite.getType()==TypeUnite.COMMANDO || unite.getType()==TypeUnite.DEMOLISSEUR || unite.getType()==TypeUnite.INGENIEUR) && (Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.QG || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE) && Slatch.partie.getJoueurActuel()!=Slatch.partie.getTerrain()[pX][pY].getJoueur())
                         {
                                 items.add("Capture");
                         }

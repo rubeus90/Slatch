@@ -170,9 +170,10 @@ public class Partie
                     vBatimentJoueur[vJoueur]+=1;
                     lUsine.add(aTerrain[vX][vY]);
                     break;
-//                 case "qg":
-//                     aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.QG,vPV); 
-//                     vBatimentJoueur[vJoueur]+=1;
+                case "qg":
+                    aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.QG,vPV); 
+                    vBatimentJoueur[vJoueur]+=1;
+                    break;
                 case "Commando": 
                     Unite vcommando = new Unite(vX,vY,vJoueur,TypeUnite.COMMANDO,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
                     lUnite.add(vcommando);
@@ -208,7 +209,7 @@ public class Partie
                     lUnite.add(uml);
                     aTerrain[vX][vY].setUnite(uml); 
                     break;
-            default: aTerrain[vX][vY] = new Terrain(vX, vY, 0, TypeTerrain.PLAINE);
+                default: aTerrain[vX][vY] = new Terrain(vX, vY, 0, TypeTerrain.PLAINE);
             }
         }
         
@@ -253,7 +254,6 @@ public class Partie
     
     public void gagner(final int pJoueur){
        this.partieFinie=true;
-       while(partieFinie){}
     }
     
     /**********
