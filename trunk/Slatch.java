@@ -48,6 +48,7 @@ public class Slatch {
     private void loadImage()
     {
         loadAutre();
+        loadNiveau();
         loadNumero();
         loadTerrain();
         loadUnite();
@@ -113,7 +114,8 @@ public class Slatch {
         try {
                 Image image;
                 Image imageRedim;
-                for(int i=1;1<=3;i++){
+                for(int i=1;i<=3;i++){
+                   
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/niveau"+i+"HUMAINS.png"));
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("niveau"+i+"HUMAINS",image);
