@@ -42,7 +42,8 @@ public class Slatch {
             AIMaster.joueTour(Slatch.partie.getJoueurActuel());
         }
         
-      //  maps = new CreationMaps();
+
+        maps = new CreationMaps();
     }
     
     private void loadImage()

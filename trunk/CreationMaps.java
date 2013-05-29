@@ -232,6 +232,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 	}
 
 	public void initialiseMap() {		
+		
 		try {
 			File file = new File(getClass().getClassLoader()
 					.getResource("Maps/mapGenere.txt").toURI());
@@ -259,7 +260,10 @@ public class CreationMaps extends JPanel implements ActionListener,
 			}
 			bw.close();
 			fw.close();
-		} catch (URISyntaxException | IOException e) {
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
