@@ -2,12 +2,12 @@ HUMAINS:Commando
 HUMAINS:Ingenieur
 HUMAINS:Demolisseur
 HUMAINS:Char
-HUMAINS:Tank
+HUMAINS:While
 HUMAINS:Distance
 HUMAINS:Uml
 ROBOTS:Commando
 ROBOTS:Tank
 ROBOTS:Uml
 ALIENS:Commando
-ALIENS:Tank
+ALIENS:While
 ALIENS:Uml
