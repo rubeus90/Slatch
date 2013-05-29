@@ -143,7 +143,7 @@ public class GrandeIA
         Unite cible=null;
         Triplet t=new Triplet(-1, -1, -1);
         int X=-1,Y=-1;
-         label:for(int i=1; i<=Slatch.partie.getNbrJoueur(); i++)
+        label:for(int i=1; i<=Slatch.partie.getNbrJoueur(); i++)
         {
             if(i!=unite.getJoueur())
             {
@@ -182,5 +182,4 @@ public class GrandeIA
          
         return new Cible(new Triplet (t.d,t.x, t.y),cible);
     }
-    
 }

@@ -6,11 +6,10 @@ import java.util.Iterator;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class AIMaster
+public class AIMaster 
 {
     static void joueTour(int joueur)
     {
-        
         List<Unite> l = Slatch.partie.getJoueur(joueur).getListeUnite();
         GrandeIA.acheterUnite();
         Iterator<Unite> i = l.iterator();
@@ -26,4 +25,6 @@ public class AIMaster
         //System.out.println(joueur+" Je passe mon tour");
         Slatch.moteur.passeTour();
     }
+    
+    
 }

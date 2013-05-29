@@ -10,14 +10,15 @@ public class UniteIA
         Slatch.moteur.deplacement(u, (int)point.getX(),(int)point.getY());
     }
     
-    private void attaquerUnite(final Entite pUnite,final Point point,final Entite pCible){
-        seDirigerVers((Unite)pUnite, point);
-        
-        
-        if(pUnite.getCoordonneeX()==(int)point.getX() && pUnite.getCoordonneeY()==(int)point.getY()){
-            //System.out.println(pCible.getJoueur()+" J'attaque en "+pCible.getCoordonneeX()+","+pCible.getCoordonneeY());
-            Slatch.moteur.setuniteA((Unite)pUnite);
-            Slatch.moteur.attaque((Unite)pCible);
+    private void attaquerUnite(final Unite pUnite,final Point point,final Unite pCible){
+        //System.out.println("Case objectif: ("+(int)(point.getX())+","+(int)(point.getY())+") et unité cible en ("+pCible.getCoordonneeX()+","+pCible.getCoordonneeY()+")");
+        //System.out.println(pUnite+" est à "+Slatch.moteur.distance(pUnite, pCible)+" cases de "+pCible);
+        if(!Slatch.moteur.estAPortee(pUnite, pCible)){seDirigerVers(pUnite, point); System.out.println(pUnite+" se dirige vers "+pCible);}
+        //System.out.println(pUnite+" est à "+Slatch.moteur.distance(pUnite, pCible)+" cases de "+pCible);
+        if(Slatch.moteur.estAPortee(pUnite, pCible) && (pUnite.getAttaque().aTypePortee.getPorteeMin()==1 || !pUnite.dejaDeplacee())){
+            //System.out.println(pUnite+" attaque "+pCible);
+            Slatch.moteur.setuniteA(pUnite);
+            Slatch.moteur.attaque(pCible);
         }
     }
     
@@ -44,18 +45,19 @@ public class UniteIA
     public void decrypterObjectif(final Objectif objectif)
     {
         switch(objectif.getMotPrincipal()){
-            case "aller" :
-                 seDirigerVers(objectif.getExecutant(),objectif.getCoordonnee());
-                break;
-            case "attaquer" :
-                 attaquerUnite(objectif.getExecutant(),objectif.getCoordonnee(),objectif.getCible());
-                break;
-            case "capture" :
-                 capture(objectif.getExecutant(),objectif.getCoordonnee());
-                break;
-            case "acheter" :
-                 achat(objectif.getCoordonnee(),objectif.getMotSecondaire());
-                break;
+        case "aller" :
+             seDirigerVers(objectif.getExecutant(),objectif.getCoordonnee());
+            break;
+        case "attaquer" :
+             attaquerUnite((Unite)objectif.getExecutant(),objectif.getCoordonnee(),(Unite)objectif.getCible());
+            break;
+        case "capture" :
+           
+             capture(objectif.getExecutant(),objectif.getCoordonnee());
+            break;
+        case "acheter" :
+             achat(objectif.getCoordonnee(),objectif.getMotSecondaire());
+            break;
         }
     }
 }

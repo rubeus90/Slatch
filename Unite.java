@@ -307,4 +307,10 @@ public class Unite extends Entite
     {
         return (this.aCoordonneeX == (int)p.getX() && this.aCoordonneeY == (int)p.getY());
     }
+    
+    @Override
+    public String toString()
+    {
+        return this.aType.getNom();
+    }
 }
