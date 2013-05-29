@@ -5,7 +5,6 @@ public class UniteIA
     private void seDirigerVers(final Entite executant,final Point point)
     {
         Unite u = (Unite)executant;
-        //System.out.println(u.getJoueur()+" Je me deplace vers "+point.getX()+","+point.getY());
         Slatch.moteur.remplitPorteeDep(u, false);        
         Slatch.moteur.deplacement(u, (int)point.getX(),(int)point.getY());
     }
