@@ -60,8 +60,9 @@ class Moteur
      */
     public void soin(final Unite pUnite)
     { 
-        if(pUnite.soigner(uniteA.getDegat())){  
-           uniteA.addExperience(uniteA.getDegat());
+        int vLocal = pUnite.soigner(uniteA.getDegat());
+        if(vLocal!=0){  
+           uniteA.addExperience(vLocal);
            uniteA.attaque(true);
            uniteA.deplacee(true);
            uniteA=null; 

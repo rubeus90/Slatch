@@ -268,15 +268,20 @@ public class Unite extends Entite
        //Sinon le joueur pourra encore monter de niveau le tour prochain
     }
     
-    public boolean soigner(int soin)
+    public int soigner(int soin)
     {
+        int vXP; //XP pour l'ingenieur qui vient de soigner
         if(this.aBesoinDeSoins())
         {
             this.aPV += soin;
-            if(aPV>aPVMax){aPV=aPVMax;}
-            return true;
+            vXP = soin;
+            if(aPV>aPVMax){
+                vXP = aPVMax + soin -aPV ;
+                aPV=aPVMax;
+            }
+            return vXP;
         }
-        return false;
+        return 0;
     }
     
     public boolean aBesoinDeSoins()
