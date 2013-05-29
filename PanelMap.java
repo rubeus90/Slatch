@@ -67,9 +67,9 @@ public class PanelMap extends JPanel {
 	        
 	     Point point = new Point();
 
-	     for(int i = 0 ; i < Slatch.partie.getLargeur() ; i++) 
+	     for(int i = 0 ; i < aPartie.getLargeur() ; i++) 
 	     {
-	         for(int j = 0 ; j < Slatch.partie.getHauteur() ; j++) 
+	         for(int j = 0 ; j < aPartie.getHauteur() ; j++) 
 	         {
 	             // Position de la case selectionnee
 	             int pPosHautGaucheX = i*aLargeurCarreau;
