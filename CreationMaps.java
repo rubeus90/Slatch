@@ -68,21 +68,18 @@ public class CreationMaps extends JPanel implements ActionListener,
 	private String aLargeur;
 	private String aHauteur;
 	private String aNbrJoueur;
-	private String aID;
-	private String aX;
-	private String aY;
+//	private String ID;
+//	private String aX;
+//	private String aY;
 	private String aJoueur;
 
-	public CreationMaps() {
+	public CreationMaps() {		
 		createDialog();
 
 		aJoueur = "0";
-
+		
 		partieNew = new Partie("Maps/mapGenere.txt");
-		NbrCaseX = partieNew.getLargeur();
-		NbrCaseY = partieNew.getHauteur();
-		MATRICE_TEST = partieNew.getTerrain();
-
+		
 		frame = new JFrame("Creation maps");
 
 		panel = new JPanel();
@@ -90,7 +87,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 		frame.setContentPane(panel);
 
 		panelMap = new PanelMap(partieNew);
-		panelMap.setPreferredSize(new Dimension(800, 500));
+		panelMap.setPreferredSize(new Dimension(800,500));
 
 		panelSelection = new JPanel();
 		panelSelection.setPreferredSize(new Dimension(400, 500));
@@ -187,9 +184,9 @@ public class CreationMaps extends JPanel implements ActionListener,
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		aID = liste.getSelectedValue();
-		System.out.println("Voila ce qui est selectionne " + aID);
-		if (aID != "USINE" && aID != "BATIMENT") {
+		String ID = liste.getSelectedValue();
+		System.out.println("Voila ce qui est selectionne " + ID);
+		if (ID != "USINE" && ID != "BATIMENT") {
 			aJoueur = "0";
 			for (JRadioButton button : listeBoutonJoueur) {
 				button.setEnabled(false);
@@ -204,14 +201,14 @@ public class CreationMaps extends JPanel implements ActionListener,
 			Point point = panelMap.coordclickUnite(e.getX(), e.getY());
 			Integer pX = (int) point.getX();
 			Integer pY = (int) point.getY();
-			aX = pX.toString();
-			aY = pY.toString();
+			String X = pX.toString();
+			String Y = pY.toString();
 
-			panelMap.getPartie().getTerrain()[pX][pY] = new Terrain(pX, pY,
-					Integer.parseInt(aJoueur), TypeTerrain.valueOf(aID));
+			partieNew.setCarreauTerrain(pX,pY,new Terrain(pX, pY,
+					Integer.parseInt(aJoueur), TypeTerrain.valueOf(ID)));
 			panelMap.repaint();
 
-			System.out.println("Les coordonnees sont " + aX + " " + aY);
+			System.out.println("Les coordonnees sont " + X + " " + Y);
 		}
 	}
 
@@ -232,13 +229,12 @@ public class CreationMaps extends JPanel implements ActionListener,
 	}
 
 	public void genererMap() {
-
+		partieNew.sauvegardePartie("Maps/mapGenere.txt");
 	}
 
-	public void initialiseMap() {
-		File file;
+	public void initialiseMap() {		
 		try {
-			file = new File(getClass().getClassLoader()
+			File file = new File(getClass().getClassLoader()
 					.getResource("Maps/mapGenere.txt").toURI());
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			fw.write("");
@@ -262,6 +258,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 				bw.write("0");
 				bw.newLine();
 			}
+			bw.close();
 		} catch (URISyntaxException | IOException e) {
 			e.printStackTrace();
 		}
@@ -289,6 +286,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 			aLargeur = largeur.getText();
 			aHauteur = hauteur.getText();
 			aNbrJoueur = nbrJoueur.getText();
+			
 			initialiseMap();
 		} else {
 			System.exit(0);

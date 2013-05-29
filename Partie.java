@@ -287,6 +287,10 @@ public class Partie
         return aHauteur;
     }
     
+    public void setHauteur(int pHauteur){
+    	aHauteur = pHauteur;
+    }
+    
     /**
      * Accesseur qui renvoi la valeur de la largeur du plateau
      * @return aLargeur 
@@ -294,6 +298,10 @@ public class Partie
     public int getLargeur()
     {
         return aLargeur;
+    }
+    
+    public void setLargeur(int pLargeur){
+    	aLargeur = pLargeur;
     }
     
     /**
@@ -332,6 +340,10 @@ public class Partie
         return aNbrJoueur;
     }
     
+    public void setNbrJoueur(int pNbrJoueur){
+    	aNbrJoueur = pNbrJoueur;
+    }
+    
     /**
      * Accesseur qui renvoi le nombre de jouer
      * @return aNbrJoueur
@@ -339,6 +351,10 @@ public class Partie
     public Terrain[][] getTerrain()
     {
         return aTerrain;
+    }
+    
+    public void setCarreauTerrain(int i, int j, Terrain pTerrain){
+    	aTerrain[i][j] = pTerrain;
     }
     
     /**
@@ -383,11 +399,11 @@ public class Partie
         aJoueurActuel = pJoueurActuel;
     }
     
-    public void sauvegardePartie() {
+    public void sauvegardePartie(String pNom) {
         try {
-            File file = new File(getClass().getClassLoader().getResource("Maps/sauvegarde.txt").toURI());
+            File file = new File(getClass().getClassLoader().getResource(pNom).toURI());
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            fw.write("");
+//            fw.write("");
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(""+ aLargeur);
             bw.newLine();
