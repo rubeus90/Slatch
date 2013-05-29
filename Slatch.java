@@ -153,6 +153,32 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/yindeplacement.png"));
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("yindeplacement",image);
+                
+                //images du menu
+                 
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/boutoncampagne.png"));
+                aImages.put("boutoncampagne",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/slatch.png"));
+                aImages.put("slatch",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/boutonrapide.png"));
+                aImages.put("boutonrapide",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/boutontutoriel.png"));
+                aImages.put("boutontutoriel",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/boutonmapcreator.png"));
+                aImages.put("boutonmapcreator",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/boutoncredits.png"));
+                aImages.put("boutoncredits",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/titrecampagne.png"));
+                aImages.put("titrecampagne",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/titrerapide.png"));
+                aImages.put("titrerapide",image);
 
         }
         catch (IOException e) {
