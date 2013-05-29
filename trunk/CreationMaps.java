@@ -290,6 +290,6 @@ public class CreationMaps extends JPanel implements ActionListener,
 			System.exit(0);
 		}
 		
-		System.out.println("Je le veux. Si si!");
+		System.out.println("Je le veux. Si si! Eh oui!");
 	}
 }
