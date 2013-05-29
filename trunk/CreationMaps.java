@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,9 +28,9 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
 
-public class CreationMaps extends JPanel implements ActionListener,
-		MouseListener {
+public class CreationMaps extends JPanel implements ActionListener,	MouseListener {
 	private JFrame frame;
 	private JPanel panel;
 	private PanelMap panelMap;
@@ -56,14 +58,13 @@ public class CreationMaps extends JPanel implements ActionListener,
 	private JTextField largeur;
 	private JTextField hauteur;
 	private JTextField nbrJoueur;
+	private JTextField nomMap;
 
 	private String aLargeur;
 	private String aHauteur;
 	private String aNbrJoueur;
-//	private String ID;
-//	private String aX;
-//	private String aY;
 	private String aJoueur;
+	private String aNomMap;
 
 	public CreationMaps() {		
 		createDialog();
@@ -265,6 +266,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 	}
 
 	public void createDialog() {
+		
 		largeur = new JTextField(3);
 		hauteur = new JTextField(3);
 		nbrJoueur = new JTextField(2);
@@ -306,5 +308,5 @@ public class CreationMaps extends JPanel implements ActionListener,
 		else {
 			System.exit(0);
 		}
-	}		
+	}
 }
