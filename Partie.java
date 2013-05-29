@@ -170,6 +170,9 @@ public class Partie
                     vBatimentJoueur[vJoueur]+=1;
                     lUsine.add(aTerrain[vX][vY]);
                     break;
+//                 case "qg":
+//                     aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.QG,vPV); 
+//                     vBatimentJoueur[vJoueur]+=1;
                 case "Commando": 
                     Unite vcommando = new Unite(vX,vY,vJoueur,TypeUnite.COMMANDO,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
                     lUnite.add(vcommando);
@@ -383,10 +386,10 @@ public class Partie
             bw.write(""+ aRevenuBatiment);
             bw.newLine();
             for(Joueur joueur: ListeJoueur){
-            	if(joueur.getNumJoueur() != 0){
-            		bw.write(""+joueur.getArgent());
-            		bw.newLine();
-            	}
+                if(joueur.getNumJoueur() != 0){
+                    bw.write(""+joueur.getArgent());
+                    bw.newLine();
+                }
             }
             
             for(int i = 0; i<aLargeur; i++){
@@ -394,7 +397,7 @@ public class Partie
                     Terrain terrain = aTerrain[i][j];
                     Unite unite = terrain.getUnite();
                     if(terrain.getType().getNom() != "plaine"){
-                    	String string = "";
+                        String string = "";
                         string += terrain.getType().getNom()+ ":";
                         string += i+ ":";
                         string += j+ ":";
@@ -436,6 +439,6 @@ public class Partie
     }
     
     public void chargerPartie(){
-    	Partie partie = new Partie("Maps/sauvegarde.txt");   
+        Partie partie = new Partie("Maps/sauvegarde.txt");   
     }
 }
