@@ -20,7 +20,7 @@ canon:Ingenieur:2
 canon:Distance:1
 canon:Uml:1
 groscanon:Commando:1
-groscanon:Demolisseur:1
+groscanon:Demolisseur:0.4
 groscanon:Char:1
 groscanon:Tank:1.2
 groscanon:Ingenieur:2

@@ -29,7 +29,7 @@ public class Slatch {
     {
         aImages=new HashMap<String,Image>();
         loadImage();
-        partie = new Partie(20,30,"Maps/mapTest4.txt");;
+        partie = new Partie(20,30,"Maps/mapTest.txt");;
         //partie =new Partie("Maps/sauvegarde.txt");
         moteur = new Moteur();
         ihm = new IHM_NEW();
