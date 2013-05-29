@@ -32,6 +32,7 @@ public class Unite extends Entite
     static final int pallierExperience =20;
     private int aDecaleUniteX=0;
     private int aDecaleUniteY=0;
+    private boolean isEvolvable;
    
     /**
      * Constructeur par default de la classe Unite
@@ -50,8 +51,9 @@ public class Unite extends Entite
        aPVMax = pType.getPVMax();
        aPV = pType.getPVMax();
        aDeplacement = pType.getDeplacement();
-       aLvl = 0;
+       aLvl = 1;
        aExperience = 0;
+       isEvolvable = false;
        aExperienceMax=pType.getXPUP();
        
        for(TypeAttaque type : TypeAttaque.values()) {
@@ -90,7 +92,12 @@ public class Unite extends Entite
        else
         aPV=pPV;
        aDeplacement = pType.getDeplacement();
-       aLvl = pLvl;
+       if(pLvl == 0){
+           aLvl = 1;
+       }
+       else{
+           aLvl = pLvl;
+       }
        aExperience = pExperience;
        aExperienceMax=100;
        
@@ -194,6 +201,14 @@ public class Unite extends Entite
     }
     
     /**
+     * Mutateur de la valeur du boolean evolvable
+     * @return isEvolvable
+     */
+    public boolean isEvolvable(){
+        return isEvolvable;
+    }
+    
+    /**
      * Mutateur
      * @param pPV
      */
@@ -226,6 +241,9 @@ public class Unite extends Entite
     */
     public void addExperience(final double pExperience){
         aExperience+=(int)pExperience;
+        if(aExperience > aExperienceMax ){
+            isEvolvable = true;
+        }
     }
     
     
@@ -233,7 +251,7 @@ public class Unite extends Entite
     * Methode qui permet a une unite de monter de niveau
     */
     public void upLvl(){
-        if(aExperience < aExperienceMax ){
+        if(!isEvolvable){
             return;
         }
         else if(aLvl >=3){
@@ -243,6 +261,11 @@ public class Unite extends Entite
        aExperience-=aExperienceMax;
        aPVMax = (int)(aPVMax*aGain);
        aDegats = (int)(aDegats*aGain);
+       
+       if(aExperience < aExperienceMax ){
+            isEvolvable = false;
+       }
+       //Sinon le joueur pourra encore monter de niveau le tour prochain
     }
     
     public boolean soigner(int soin)

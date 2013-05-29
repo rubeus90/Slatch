@@ -314,6 +314,9 @@ class Moteur
                         {
                                 items.add("Capture");
                         }
+                        if(unite.isEvolvable()){
+                            items.add("Evolue");
+                        }
                         Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
                         if(!items.isEmpty()){Slatch.ihm.getPanel().afficheMenu(items, pX, pY);}
                     }
@@ -824,6 +827,14 @@ class Moteur
         }
        
     }
+    
+    public void evolue(final int pX,final int pY){
+        Unite vUnite = Slatch.partie.getTerrain()[pX][pY].getUnite();
+        vUnite.upLvl();
+        vUnite.deplacee(true);
+        vUnite.attaque(true);
+    }
+        
     
     static boolean dansLesBords(final int x,final int y)
     {
