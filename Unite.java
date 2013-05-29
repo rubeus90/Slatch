@@ -31,6 +31,8 @@ public class Unite extends Entite
     private boolean dejaDeplacee;
     static final int pallierExperience =20;
     static final int EXPERIENCE_DONNEE_PAR_NIVEAU = 20;
+    private int aDecaleUniteX=0;
+    private int aDecaleUniteY=0;
    
     /**
      * Constructeur par default de la classe Unite
@@ -271,10 +273,10 @@ public class Unite extends Entite
    
     @Override
     public void dessine (final Graphics g, PanelMatrice pPanel) {
-        int pPosHautGaucheX = super.getCoordonneeX()*pPanel.getaLargeurCarreau();
-        int pPosHautGaucheY = super.getCoordonneeY()*pPanel.getaHauteurCarreau();
-        int pPosBasDroiteX = (super.getCoordonneeX()+1)*pPanel.getaLargeurCarreau();
-        int pPosBasDroiteY = (super.getCoordonneeY()+1)*pPanel.getaHauteurCarreau();
+        int pPosHautGaucheX = super.getCoordonneeX()*pPanel.getaLargeurCarreau()+aDecaleUniteX;
+        int pPosHautGaucheY = super.getCoordonneeY()*pPanel.getaHauteurCarreau()+aDecaleUniteY;
+        int pPosBasDroiteX = (super.getCoordonneeX()+1)*pPanel.getaLargeurCarreau()+aDecaleUniteX;
+        int pPosBasDroiteY = (super.getCoordonneeY()+1)*pPanel.getaHauteurCarreau()+aDecaleUniteY;
         
             Image img = Slatch.aImages.get(""+ aType.getImage() + getJoueur());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
@@ -313,4 +315,7 @@ public class Unite extends Entite
     {
         return this.aType.getNom();
     }
+    
+    public void setDecaleUniteX(final int p) {aDecaleUniteX=p;}
+    public void setDecaleUniteY(final int p) {aDecaleUniteY=p;}
 }
