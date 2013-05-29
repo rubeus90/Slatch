@@ -59,6 +59,49 @@ public class GrandeIA
         }
     }
     
+    static void acheterUnite()
+    {
+            Joueur JoueurActuel = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
+        
+            for (Terrain usine : JoueurActuel.getListeUsine())
+            {
+                int x = usine.getCoordonneeX();
+                int y = usine.getCoordonneeY();
+
+                if(JoueurActuel.getArgent()>=700)
+                 {
+                    uia.decrypterObjectif(new Objectif("acheter","While",new Point(x,y),null,null));                    
+                                        
+                 }
+                else if(JoueurActuel.getArgent()>=450)         
+                {
+                    uia.decrypterObjectif(new Objectif("acheter","Uml",new Point(x,y),null,null));
+                                
+                }
+                else if(JoueurActuel.getArgent()>=350)         
+                {
+                    uia.decrypterObjectif(new Objectif("acheter","Distance",new Point(x,y),null,null));
+                                
+                }
+                else if(JoueurActuel.getArgent()>=300)
+                {
+                    uia.decrypterObjectif(new Objectif("acheter","Tank",new Point(x,y),null,null));
+                }
+                else if(JoueurActuel.getArgent()>=200)
+                {
+                    uia.decrypterObjectif(new Objectif("acheter","Demolisseur",new Point(x,y),null,null));
+                }
+                else if(JoueurActuel.getArgent()>=100)
+                {
+                    uia.decrypterObjectif(new Objectif("acheter","Commando",new Point(x,y),null,null));   
+                }
+                else
+                {
+                  break;   
+                }
+            }
+        
+    }
     
     static Triplet determineBatimentProche(Unite unite)
     {
@@ -329,47 +372,5 @@ public class GrandeIA
         }
     }
     
-    static void acheterUnite()
-    {
-            Joueur JoueurActuel = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
-        
-            for (Terrain usine : JoueurActuel.getListeUsine())
-            {
-                int x = usine.getCoordonneeX();
-                int y = usine.getCoordonneeY();
-
-                if(JoueurActuel.getArgent()>=700)
-                 {
-                    uia.decrypterObjectif(new Objectif("acheter","While",new Point(x,y),null,null));                    
-                                        
-                 }
-                else if(JoueurActuel.getArgent()>=450)         
-                {
-                    uia.decrypterObjectif(new Objectif("acheter","Uml",new Point(x,y),null,null));
-                                
-                }
-                else if(JoueurActuel.getArgent()>=350)         
-                {
-                    uia.decrypterObjectif(new Objectif("acheter","Distance",new Point(x,y),null,null));
-                                
-                }
-                else if(JoueurActuel.getArgent()>=300)
-                {
-                    uia.decrypterObjectif(new Objectif("acheter","Tank",new Point(x,y),null,null));
-                }
-                else if(JoueurActuel.getArgent()>=200)
-                {
-                    uia.decrypterObjectif(new Objectif("acheter","Demolisseur",new Point(x,y),null,null));
-                }
-                else if(JoueurActuel.getArgent()>=100)
-                {
-                    uia.decrypterObjectif(new Objectif("acheter","Commando",new Point(x,y),null,null));   
-                }
-                else
-                {
-                  break;   
-                }
-            }
-        
-    }
+    
 }
