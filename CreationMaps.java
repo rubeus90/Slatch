@@ -179,7 +179,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		String ID = liste.getSelectedValue();
-		if (ID != "USINE" && ID != "BATIMENT") {
+		if (ID != "USINE" && ID != "BATIMENT" && ID != "QG") {
 			aJoueur = "0";
 			for (JRadioButton button : listeBoutonJoueur) {
 				button.setEnabled(false);
