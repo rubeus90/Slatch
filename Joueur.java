@@ -87,7 +87,7 @@ public class Joueur
     public void addNbreBatiment(final int pNbre) {aNbreBatiment += pNbre;}
     public void addDegatSubit(final double pDegat) {aDegatSubit += pDegat;}
     public void addDegatTotal(final double pDegat) {aDegatTotal += pDegat;}
-    public void addExpTotal(final int pExp) {aExpTotal += pExp;}
+    public void addExpTotal(final double pExp) {aExpTotal += (int)pExp;}
     public void addDeplacementTotal(final int pDeplacement) {aDeplacementTotal+=pDeplacement;}
     public void addCaptureTotal() {aCaptureTotal ++;}
     public void addNbrUniteCree() {aNbrUniteCree++;}

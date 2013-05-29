@@ -30,7 +30,6 @@ public class Unite extends Entite
     private boolean dejaAttaque;
     private boolean dejaDeplacee;
     static final int pallierExperience =20;
-    static final int EXPERIENCE_DONNEE_PAR_NIVEAU = 20;
     private int aDecaleUniteX=0;
     private int aDecaleUniteY=0;
    
@@ -221,26 +220,18 @@ public class Unite extends Entite
         dejaAttaque = pBoolean;
     }
     
-     /**
-     * Methode qui permet l'augmentation ou la diminution de l'experience
-     * @param pExperience
-     */
-    public void addExperience(final int pExperience){
-        //aExperience+=pExperience;
-        for(int i=0; i<pExperience; i++)
-        {
-            aExperience++;
-            if(this.aExperience >= pallierExperience && this.aLvl<=3)
-            {
-                this.upLvl();
-            }
-        }
+    /**
+    * Methode qui permet l'augmentation ou la diminution de l'experience
+    * @param pExperience
+    */
+    public void addExperience(final double pExperience){
+        aExperience+=(int)pExperience;
     }
     
     
     /*******
-     * Methode qui permet a une unite de monter de niveau
-     */
+    * Methode qui permet a une unite de monter de niveau
+    */
     public void upLvl(){
         if(aExperience < aExperienceMax ){
             return;
