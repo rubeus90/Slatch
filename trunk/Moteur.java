@@ -232,12 +232,12 @@ class Moteur
         {
             Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
         }
+        
         if(Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty())
         {
             Slatch.partie.getJoueur(unite.getJoueur()).isMort();
             Slatch.partie.gagner();
         }
-        
     }
 
     /**
@@ -359,7 +359,7 @@ class Moteur
         int x = pX, y =pY;
         Stack<Point> stack = new Stack<Point>();
         Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
-        if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));unite.deplacee(true); Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());}
+        if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));}
         while(!fini)
         {
             Point p = pred[x][y];
@@ -378,12 +378,11 @@ class Moteur
                         if(!geez)
                         {
                             if(Slatch.partie.getTerrain()[x][y].getUnite()==null){stack.push(p);
-                            unite.deplacee(true); geez = true;}
+                            unite.deplacee(true); geez = true;Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());}
                         }
                         else
                         {
                             stack.push(p);
-                            Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
                         }
                     }
                 }
