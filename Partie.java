@@ -466,6 +466,7 @@ public class Partie
             }
             
             bw.close();
+            fw.close();
         } catch (URISyntaxException | IOException e) {
             System.out.println("Probleme d'ecriture dans le fichier sauvegarde");
             e.printStackTrace();
