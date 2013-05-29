@@ -18,7 +18,7 @@ public class AIMaster
         {
             Unite u = i.next();
             if(u!=null){
-                if(!u.dejaAttaque()||u.dejaDeplacee()){GrandeIA.elaborationObjectif(u);}
+                if(!u.dejaAttaque()||!u.dejaDeplacee()){GrandeIA.elaborationObjectif(u);}
             }
             if(u.getPV()<=0){i.remove();}
         }    
