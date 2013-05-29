@@ -276,7 +276,11 @@ public class CreationMaps extends JPanel implements ActionListener,
 		if (resultat == JOptionPane.OK_OPTION) {
 			aLargeur = largeur.getText();
 			aHauteur = hauteur.getText();
-			aNbrJoueur = nbrJoueur.getText();
+			
+			Integer nbr = Integer.parseInt(nbrJoueur.getText());
+			if(nbr > 4)
+				nbr = 4;
+			aNbrJoueur = nbr.toString();
 			
 			initialiseMap();
 		} else {
