@@ -270,8 +270,8 @@ public class PanelMatrice extends JPanel
                 if(Slatch.partie.getNbrJoueur()==3 && i==3) decalage=this.getWidth()/5;
                 
                 if(Slatch.partie.getNbrJoueur()==4 && i==1) decalage=-this.getWidth()/3;
-                if(Slatch.partie.getNbrJoueur()==4 && i==2) decalage=-this.getWidth()/7;
-                if(Slatch.partie.getNbrJoueur()==4 && i==3) decalage=this.getWidth()/7;
+                if(Slatch.partie.getNbrJoueur()==4 && i==2) decalage=-this.getWidth()/9;
+                if(Slatch.partie.getNbrJoueur()==4 && i==3) decalage=this.getWidth()/9;
                 if(Slatch.partie.getNbrJoueur()==4 && i==4) decalage=this.getWidth()/3;
                 
                 String stat1 = "Statistiques du joueur " + i;
