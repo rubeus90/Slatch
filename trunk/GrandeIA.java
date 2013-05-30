@@ -52,10 +52,13 @@ public class GrandeIA
         
         if(batimentProche==null) batimentProche = new Triplet(900,-1,-1);
                     else if(batimentProche.d==-1) batimentProche.d = 900;
-                   
+                 
         if(cibleSoin!=null)
         {
-            uia.decrypterObjectif(new Objectif("soigner", null, new Point(cibleSoin.t.x, cibleSoin.t.y),unite,cibleSoin.u));
+            if(cibleSoin.u!=null)
+            {
+                uia.decrypterObjectif(new Objectif("soigner", null, new Point(cibleSoin.t.x, cibleSoin.t.y),unite,cibleSoin.u));
+            }
         }
         else if( (batimentProche.d >= ennemiProche.t.d) && ennemiProche.t.d!=-1)
         {
