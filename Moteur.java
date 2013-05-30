@@ -158,7 +158,7 @@ class Moteur
         uniteA=null;
     }
     
-    public boolean faireDegats(final Unite cible,final double degats) // retourne vrai si la cible meurt
+    private boolean faireDegats(final Unite cible,final double degats) // retourne vrai si la cible meurt
     {
         cible.setPV(cible.getPV() - (int)degats);
         if(cible.getPV()<=0){
@@ -167,6 +167,39 @@ class Moteur
         else{
             repaint(); 
             return false;
+        }
+    }
+    
+    private double getDegats(final Unite a,final Unite v) // a= attaquant, v= cible
+    {
+        int degatA = a.getDegat();
+        double efficaciteA = a.getAttaque().efficacite.get(v.getType());
+        double bonusTerrain = (100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getCoordonneeX()][v.getCoordonneeY()].getType().getCouverture()))/100.0;
+        double maluspvA = (double)a.getPV()/(double)a.getPVMax(); 
+        
+        double degat = degatA*efficaciteA*bonusTerrain*maluspvA;
+        
+        /*((a.getAttaque().getDegats()*a.getAttaque().efficacite.get(v.getType()))
+        *(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getCoordonneeX()][v.getCoordonneeY()].getType().getCouverture()))/100)
+         *((double)a.getPV()/(double)a.getPVMax())*/   
+        return degat;
+    }
+    
+    private void estMort(final Unite unite)
+    {
+        Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
+        Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
+        Slatch.partie.getJoueur(unite.getJoueur()).addNbrUniteMort();
+        repaint();
+        if(!Slatch.partie.getJoueur(unite.getJoueur()).estUneIA() || unite.getJoueur()!=Slatch.partie.getJoueurActuel())
+        {
+            Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
+        }
+        
+        if(Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty())
+        {
+            Slatch.partie.getJoueur(unite.getJoueur()).mourrir();
+            Slatch.partie.gagner();
         }
     }
     
@@ -196,7 +229,8 @@ class Moteur
            }
            if(vBatiment.getType()==TypeTerrain.QG)
            {
-                    Slatch.partie.gagner();
+               Slatch.partie.getJoueur(vBatiment.getJoueur()).mourrir();     
+               Slatch.partie.gagner();
            }
            Slatch.partie.getJoueur(vBatiment.getJoueur()).addNbreBatiment(-1);
            vBatiment.setJoueur(uniteA.getJoueur());
@@ -218,39 +252,6 @@ class Moteur
     private int pourcentageVie(final Unite unite)
     {
         return (int)((double)(unite.getPV())/(double)(unite.getPVMax())*100); 
-    }
-    
-    public double getDegats(final Unite a,final Unite v) // a= attaquant, v= cible
-    {
-        int degatA = a.getDegat();
-        double efficaciteA = a.getAttaque().efficacite.get(v.getType());
-        double bonusTerrain = (100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getCoordonneeX()][v.getCoordonneeY()].getType().getCouverture()))/100.0;
-        double maluspvA = (double)a.getPV()/(double)a.getPVMax(); 
-        
-        double degat = degatA*efficaciteA*bonusTerrain*maluspvA;
-        
-        /*((a.getAttaque().getDegats()*a.getAttaque().efficacite.get(v.getType()))
-        *(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getCoordonneeX()][v.getCoordonneeY()].getType().getCouverture()))/100)
-         *((double)a.getPV()/(double)a.getPVMax())*/   
-        return degat;
-    }
-   
-    public void estMort(final Unite unite)
-    {
-        Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
-        Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
-        Slatch.partie.getJoueur(unite.getJoueur()).addNbrUniteMort();
-        repaint();
-        if(!Slatch.partie.getJoueur(unite.getJoueur()).estUneIA() || unite.getJoueur()!=Slatch.partie.getJoueurActuel())
-        {
-            Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
-        }
-        
-        if(Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty())
-        {
-            Slatch.partie.getJoueur(unite.getJoueur()).isMort();
-            Slatch.partie.gagner();
-        }
     }
 
     /**

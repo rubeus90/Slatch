@@ -121,28 +121,29 @@ public class Joueur
         aArgentTotal += gain;
     }
     
-    public void isMort() {
+    public void mourrir() {
         aVivant=false;
         
         Iterator<Terrain> i = aListeBatiment.iterator();
         while(i.hasNext())
         {
-            i.next();
+            Terrain vTerrain = i.next();
             i.remove();
         }
         
         Iterator<Terrain> l = aListeUsine.iterator();
         while(i.hasNext())
         {
-            l.remove();
+            Terrain vUsine = l.next();
             l.remove();
         }
         
         Iterator<Unite> m = aListeUnite.iterator();
         while(m.hasNext())
         {
-            m.next();
-            m.remove();
+            Unite vUnite = m.next();
+            Slatch.partie.getTerrain()[vUnite.getCoordonneeX()][vUnite.getCoordonneeY()].setUnite(null);
+            m.remove(); 
         }
     }
     
