@@ -29,7 +29,6 @@ public class Unite extends Entite
     private double aGain; //Compris entre 1 et 2, correspondant au pourcentage d'augmentation des caractéristique à chaque monté de niveau
     private boolean dejaAttaque;
     private boolean dejaDeplacee;
-    static final int pallierExperience =20;
     private int aDecaleUniteX=0;
     private int aDecaleUniteY=0;
     private boolean isEvolvable;
@@ -242,7 +241,7 @@ public class Unite extends Entite
     */
     public void addExperience(final double pExperience){
         aExperience+=(int)pExperience;
-        if(aExperience > aExperienceMax ){
+        if(aExperience > aExperienceMax && aLvl <3){
             isEvolvable = true;
         }
     }
@@ -252,17 +251,15 @@ public class Unite extends Entite
     * Methode qui permet a une unite de monter de niveau
     */
     public void upLvl(){
-        if(!isEvolvable){
-            return;
-        }
-        else if(aLvl >=3){
-             return;
-        }
        aLvl++;
        aExperience-=aExperienceMax;
        aPVMax = (int)(aPVMax*aGain);
        aDegats = (int)(aDegats*aGain);
        aPV = (int)(aPV*aGain);
+       
+       if(aGain==2){
+           aExperienceMax = (int)(aPV*aGain*1.5);
+       }
        
        if(aExperience < aExperienceMax ){
             isEvolvable = false;

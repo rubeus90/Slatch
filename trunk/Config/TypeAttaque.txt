@@ -1,7 +1,7 @@
 fusil:Commando:1
 fusil:Demolisseur:1.5
 fusil:Char:0.5
-fusil:While:0.1
+fusil:While:0.3
 fusil:Ingenieur:1
 fusil:Distance:0.65
 fusil:Uml:0.65
