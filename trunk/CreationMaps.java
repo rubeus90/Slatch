@@ -60,17 +60,16 @@ public class CreationMaps extends JPanel implements ActionListener,
 	private String aLargeur;
 	private String aHauteur;
 	private String aNbrJoueur;
-//	private String ID;
-//	private String aX;
-//	private String aY;
 	private String aJoueur;
+	private String aNomMap;
 
-	public CreationMaps() {		
+	public CreationMaps(String pNomMap) {	
+		aNomMap = pNomMap;
 		createDialog();
 
 		aJoueur = "0";
 		
-		partieNew = new Partie("Maps/mapGenere.txt");
+		partieNew = new Partie("Maps/" + aNomMap + ".txt");
 		
 		frame = new JFrame("Creation maps");
 
@@ -228,14 +227,14 @@ public class CreationMaps extends JPanel implements ActionListener,
 	}
 
 	public void genererMap() {
-		partieNew.sauvegardePartie("Maps/mapGenere.txt");
+		partieNew.sauvegardePartie("Maps/" + aNomMap + ".txt");
 	}
 
 	public void initialiseMap() {		
 		
 		try {
 			File file = new File(getClass().getClassLoader()
-					.getResource("Maps/mapGenere.txt").toURI());
+					.getResource("Maps/" + aNomMap + ".txt").toURI());
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			fw.write("");
 			BufferedWriter bw = new BufferedWriter(fw);

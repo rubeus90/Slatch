@@ -26,9 +26,9 @@ public class Tutoriel extends Partie
     /**
      * Constructor for objects of class Tutoriel
      */
-    public Tutoriel(final int pRevenuBatiment,final int pTourMax, final String pMap)
+    public Tutoriel(final String pMap)
     {
-       super(pRevenuBatiment,pTourMax,pMap);
+       super(pMap);
        aEtape = 1;
     }
 
