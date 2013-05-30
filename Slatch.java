@@ -30,12 +30,17 @@ public class Slatch {
         aImages=new HashMap<String,Image>();
         loadImage();
 
-        partie = new Partie(20,30,"Maps/mapTest.txt");
+        Partie partieRapide = new Partie(20,30,"Maps/mapTest.txt");
         //partie = new Partie("Maps/mapGenere.txt");
-
         //partie =new Partie("Maps/sauvegarde.txt");
+        Tutoriel tuto = new Tutoriel("Maps/tutoriel.txt");
+        
+        partie = partieRapide;        
+        
         moteur = new Moteur();
         ihm = new IHM_NEW();
+        
+//        maps = new CreationMaps("tutoriel");
         
         if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
         {
@@ -43,7 +48,7 @@ public class Slatch {
         }
         
 
-      //  maps = new CreationMaps();
+
     }
     
     private void loadImage()
