@@ -69,7 +69,7 @@ class Moteur
         }
     }
     
-    public boolean cibleSoignable(final Unite unite)
+    private boolean cibleSoignable(final Unite unite)
     {
         int x;
         int y;
@@ -300,11 +300,15 @@ class Moteur
                 {   if(Slatch.partie.getJoueurActuel()==unite.getJoueur())
                     {
                         List<String> items= new ArrayList<String>();//on va afficher le menu en créant une liste d'items
-                        if(!unite.dejaDeplacee()){items.add("Deplace");}
+                        if(!unite.dejaDeplacee()){
+                            items.add("Deplace");
+                        }
+                        
                         if(cibleEnVue(unite, false) && !unite.dejaAttaque())
                         {
                             if(unite.getType()!=TypeUnite.INGENIEUR){items.add("Attaque");}
                         }
+                        
                         if(unite.getType()==TypeUnite.INGENIEUR)
                         {
                             if(cibleSoignable(unite) && !unite.dejaAttaque())
@@ -312,13 +316,16 @@ class Moteur
                                 items.add("Soin");
                             }
                         }
+                        
                         if(!unite.dejaAttaque()&&(unite.getType()==TypeUnite.COMMANDO || unite.getType()==TypeUnite.DEMOLISSEUR || unite.getType()==TypeUnite.INGENIEUR) && (Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.QG || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE) && Slatch.partie.getJoueurActuel()!=Slatch.partie.getTerrain()[pX][pY].getJoueur())
                         {
                                 items.add("Capture");
                         }
+                        
                         if(unite.isEvolvable() && !unite.dejaAttaque()){
-                            items.add("Evolue");
+                                items.add("Evolue");
                         }
+
                         Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
                         if(!items.isEmpty()){Slatch.ihm.getPanel().afficheMenu(items, pX, pY);}
                     }
