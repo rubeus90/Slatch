@@ -34,7 +34,7 @@ public class Slatch {
         //partie = new Partie("Maps/mapGenere.txt");
         //partie =new Partie("Maps/sauvegarde.txt");
         
-        Tutoriel tuto = new Tutoriel("Maps/tutoriel.txt");
+//         Tutoriel tuto = new Tutoriel("Maps/tutoriel.txt");
         
         partie = partieRapide;        
         

@@ -49,7 +49,7 @@ public class IHM_NEW  {
         panelInfo.addMouseListener(lecteurInfo);
         MouseMenu lecteurMenu = new MouseMenu();
         panelMenu.addMouseListener(lecteurMenu);
-        
+
         frame.pack();
         frame.setVisible(true);
         panelMenu.setVisible(false);
