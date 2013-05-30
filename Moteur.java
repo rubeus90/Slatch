@@ -151,7 +151,7 @@ class Moteur
         
         if(faireDegats(pVictime, degatsAtt)) // si la victime meurt
         {
-            //Pour les statistiques
+            //Pour les statistiques si le nombre de degat est superieur a nombre de point de vie de l'unite
             uniteA.addExperience(degatsAtt+pVictime.getPV());
             Slatch.partie.getJoueur(uniteA.getJoueur()).addExpTotal(degatsAtt+pVictime.getPV());
             Slatch.partie.getJoueur(uniteA.getJoueur()).addDegatTotal(degatsAtt+pVictime.getPV());
@@ -162,7 +162,7 @@ class Moteur
         }    
         else if(distance(uniteA, pVictime)==1 && pVictime.getAttaque().aTypePortee.getPorteeMin()==1) //sinon + si attaque au CAC, on riposte
         {
-            //Pour les statistiques
+            //Pour les statistiques pour une attaque normal
             uniteA.addExperience(degatsAtt);
             Slatch.partie.getJoueur(uniteA.getJoueur()).addExpTotal(degatsAtt);
             Slatch.partie.getJoueur(uniteA.getJoueur()).addDegatTotal(degatsAtt);
@@ -170,7 +170,7 @@ class Moteur
             
             degatsAtt= 0.7*getDegats(pVictime, uniteA);
             
-            //Add XP
+            //Add XP a l'unite qui contre-attaque
             pVictime.addExperience(degatsAtt);
             Slatch.partie.getJoueur(pVictime.getJoueur()).addExpTotal(degatsAtt);
             
@@ -180,13 +180,12 @@ class Moteur
             
             if(faireDegats(uniteA, degatsAtt))
             {
-                uniteA.addExperience(degatsAtt);
-                Slatch.partie.getJoueur(uniteA.getJoueur()).addExpTotal(degatsAtt);
+                //Si l'unite qui attaque meurt pendant l'attaque,
+                Slatch.partie.getJoueur(pVictime.getJoueur()).addNbrUniteTue();
+                
                 estMort(uniteA);
             }
         }
-        //System.out.println("attaquant "+uniteA.getJoueur()+" PV"+uniteA.getPV()); 
-        //System.out.println("attaquant "+pVictime.getJoueur()+" PV"+pVictime.getPV()); 
         uniteA.attaque(true);
         uniteA.deplacee(true);
         uniteA=null;
