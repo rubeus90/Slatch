@@ -6,13 +6,13 @@ import java.util.Iterator;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class AIMaster 
+public class AIMaster
 {
     static int[][]iMap;
     static void joueTour(int joueur)
     {
         List<Unite> l = Slatch.partie.getJoueur(joueur).getListeUnite();
-        //GrandeIA.acheterUnite();
+        GrandeIA.acheterUnite();
         
         iMap = new int[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
         //remplirMap();
