@@ -33,7 +33,8 @@ public class Slatch {
         Partie partieRapide = new Partie(20,30,"Maps/mapTest4.txt");
         //partie = new Partie("Maps/mapGenere.txt");
         //partie =new Partie("Maps/sauvegarde.txt");
-  //      Tutoriel tuto = new Tutoriel("Maps/tutoriel.txt");
+        
+        Tutoriel tuto = new Tutoriel("Maps/tutoriel.txt");
         
         partie = partieRapide;        
         
@@ -46,9 +47,6 @@ public class Slatch {
         {
             AIMaster.joueTour(Slatch.partie.getJoueurActuel());
         }
-        
-
-
     }
     
     private void loadImage()
