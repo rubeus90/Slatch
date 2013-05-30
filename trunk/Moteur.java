@@ -13,6 +13,7 @@ class Moteur
     Unite uniteD; // unite en attente de déplacement
     Unite uniteA; // unite en attente d'attaque
     boolean[][] tabAtt;
+    private boolean aModeEvoluer;
     
     int[][] tabDist;
     Point[][] pred;
@@ -27,7 +28,8 @@ class Moteur
         tabDist = new int[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
         pred = new Point[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
         tabAtt= new boolean[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
-       
+        aModeEvoluer=false;
+        
         uniteD = null;
         uniteA = null;
     }
@@ -53,22 +55,6 @@ class Moteur
         affichePorteeAttaque(uniteA, true);
     }
     
-    /**
-     * Methode a deplacer dans Moteur Une fois moteur safe
-     * Methode qui permet a un ingenieur de soigner une unite
-     * @param pUnite
-     */
-    public void soin(final Unite pUnite)
-    { 
-        int vLocal = pUnite.soigner(uniteA.getDegat());
-        if(vLocal!=0){  
-           uniteA.addExperience(vLocal);
-           uniteA.attaque(true);
-           uniteA.deplacee(true);
-           uniteA=null; 
-        }
-    }
-    
     private boolean cibleSoignable(final Unite pUnite)
     {
         int vX;
@@ -90,6 +76,22 @@ class Moteur
             }
         }
         return false;
+    }
+    
+    /**
+     * Methode a deplacer dans Moteur Une fois moteur safe
+     * Methode qui permet a un ingenieur de soigner une unite
+     * @param pUnite
+     */
+    public void soin(final Unite pUnite)
+    { 
+        int vLocal = pUnite.soigner(uniteA.getDegat());
+        if(vLocal!=0){  
+           uniteA.addExperience(vLocal);
+           uniteA.attaque(true);
+           uniteA.deplacee(true);
+           uniteA=null; 
+        }
     }
     
     private boolean cibleEvoluable(final Unite pUnite){
@@ -120,9 +122,14 @@ class Moteur
      */
     public void evoluer(final Unite pUnite){
             pUnite.upLvl();
+            
             //Unite evoluer grisee
             pUnite.attaque(true);
             pUnite.deplacee(true);
+            
+            //L'ingenieur de peut plus bouger non plus
+            uniteA.attaque(true);
+            uniteA.deplacee(true);
     }
     
     public void modeAttaque(final int pX,final int pY)
@@ -341,6 +348,7 @@ class Moteur
                             if(cibleEvoluable(unite) && !unite.dejaAttaque())
                             {
                                 items.add("Evolue");
+                                aModeEvoluer=true;
                             }
                         }
                         
@@ -364,14 +372,19 @@ class Moteur
                 {
                         attaque(unite);
                 }
-                else if(unite.getJoueur()==uniteA.getJoueur() && tabAtt[pX][pY] && uniteA.getType()==TypeUnite.INGENIEUR)
+                else if(unite.getJoueur()==uniteA.getJoueur() && tabAtt[pX][pY] && !aModeEvoluer && uniteA.getType()==TypeUnite.INGENIEUR)
                 {
                     soin(unite);
+                }
+                else if(unite.getJoueur()==uniteA.getJoueur() && tabAtt[pX][pY] && aModeEvoluer &&uniteA.getType()==TypeUnite.INGENIEUR)
+                {
+                    evoluer(unite);
                 }
                 else
                 {
                     annulerAttaque();
                 }
+                aModeEvoluer=false;
             }
         }
     }
@@ -857,14 +870,6 @@ class Moteur
         }
        
     }
-    
-    public void evolue(final int pX,final int pY){
-        Unite vUnite = Slatch.partie.getTerrain()[pX][pY].getUnite();
-        vUnite.upLvl();
-        vUnite.deplacee(true);
-        vUnite.attaque(true);
-    }
-        
     
     static boolean dansLesBords(final int x,final int y)
     {
