@@ -406,7 +406,7 @@ class Moteur
         int x = pX, y =pY;
         Stack<Point> stack = new Stack<Point>();
         Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
-        if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));unite.deplacee(true); Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());}
+        if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));unite.deplacee(true); Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax()); if(unite.getAttaque().aTypePortee.getPorteeMin()>1){unite.attaque(true);}}
         while(!fini)
         {
             Point p = pred[x][y];
@@ -596,19 +596,6 @@ class Moteur
      */
     public boolean cibleEnVue(final Unite unite,final boolean soin)
     {
-        /*for(int i=0; i<=unite.getAttaque().aTypePortee.getPorteeMax();i++)
-        {
-            for(int j=0; j<=unite.getAttaque().aTypePortee.getPorteeMax();j++)
-            {
-                for(Point p: signes)
-                {
-                    int decX = (int)p.getX();
-                    int decY = (int)p.getY();
-                    if(ciblePresente(unite, i*decX,j*decY, soin)){return true;}
-                }
-            }
-        }*/
-        
         for(int i=1; i<=unite.getAttaque().aTypePortee.getPorteeMax(); i++)
         {
             for(int j=1; j<=i; j++)
@@ -678,7 +665,7 @@ class Moteur
         {
             if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && Slatch.partie.getTerrain()[x+decX][y+decY].getUnite()!=null)
             {
-                return (Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel()^soin)&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
+                return (Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel()^(soin && Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().aBesoinDeSoins()))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
             }
         }
         return false;

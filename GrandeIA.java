@@ -20,11 +20,18 @@ public class GrandeIA
     {
         Triplet batimentProche=null;
         Cible ennemiProche;
+        Slatch.moteur.remplitPorteeDep(unite, false);
         switch(unite.getType().getNom())
         {
-           case "Commando" :
-           case "Demolisseur" :
            case "Ingenieur" :
+                    Cible c = chercheUniteASoigner(unite);
+                    if(c.u!=null)
+                    {
+                        
+                    }
+           
+           case "Demolisseur" :
+           case "Commando":
            
                     int X = unite.getCoordonneeX();
                     int Y = unite.getCoordonneeY();
@@ -153,7 +160,7 @@ public class GrandeIA
     
     static Triplet determineBatimentProche(Unite unite)
     {
-        Slatch.moteur.remplitPorteeDep(unite, false);
+        
         
         Terrain batimentproche;
         List<Terrain> pasNosBatiments= new ArrayList<Terrain>(); //Liste des terrains n'appartenant pas au joueur actuel
@@ -185,7 +192,6 @@ public class GrandeIA
         
         return t;
     }
-    
     
     static Cible determineEnnemiProche(Unite unite)
     {
@@ -228,7 +234,46 @@ public class GrandeIA
         return new Cible(new Triplet (t.d,t.x, t.y),cible);
     }
     
-    
+    static Cible chercheUniteASoigner(Unite unite)
+    {
+        Unite cible = null;
+        Triplet t=new Triplet(-1, -1, -1);
+        int X=-1,Y=-1;
+        label:for(int i=1; i<=Slatch.partie.getNbrJoueur(); i++)
+        {
+            if(i!=unite.getJoueur())
+            {
+                for(Unite u: Slatch.partie.getJoueur(i).getListeUnite())
+                {
+                    for(Point p: Moteur.voisins)
+                    {
+                        int x= (int)p.getX()+u.getCoordonneeX();
+                        int y= (int)p.getY()+u.getCoordonneeY();
+                        if(Moteur.dansLesBords(x,y))
+                        {
+                            if((Slatch.moteur.tabDist[x][y]<t.d || t.d==-1)&& Slatch.moteur.tabDist[x][y]>0 && Slatch.partie.getTerrain()[x][y].getUnite() ==null)
+                            {
+                                t.d = Slatch.moteur.tabDist[x][y];
+                                t.x = x;
+                                t.y = y;
+                                cible = u;
+                            }
+                            if(unite.seSitue(new Point(x,y)) || Slatch.moteur.estAPortee(unite, u))
+                            {
+                                t.d = Slatch.moteur.tabDist[x][y];
+                                t.x = x;
+                                t.y = y;
+                                cible =u;
+                                break label;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+         
+        return new Cible(new Triplet (t.d,t.x, t.y),cible);
+    }
     
     static void aWholeNewWorld(Unite unite)
     {

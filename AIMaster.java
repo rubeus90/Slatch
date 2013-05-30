@@ -15,7 +15,7 @@ public class AIMaster
         GrandeIA.acheterUnite();
         
         iMap = new int[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
-        remplirMap();
+        //remplirMap();
         Iterator<Unite> i = l.iterator();
         while(i.hasNext())
         {
@@ -24,6 +24,7 @@ public class AIMaster
                 if(!u.dejaAttaque()||!u.dejaDeplacee()){GrandeIA.elaborationObjectif(u);}
             }
             if(u.getPV()<=0){i.remove();}
+            if(Slatch.partie.partieFinie){break;}
         }    
         //System.out.println(joueur+" Je passe mon tour");
         Slatch.moteur.passeTour();
