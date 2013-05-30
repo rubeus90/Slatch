@@ -230,7 +230,6 @@ public class Partie
                 ListeJoueur.get(i).setArgent(vArgent[i]);
         }
         //ListeJoueur.get(1).setIA(false);
-        //ListeJoueur.get(1).setIA(false);
         for(Unite vUniteActuel : lUnite){
             int vJ = vUniteActuel.getJoueur();
             ListeJoueur.get(vJ).getListeUnite().add(vUniteActuel);
