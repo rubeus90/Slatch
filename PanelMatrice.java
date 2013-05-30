@@ -420,6 +420,7 @@ public class PanelMatrice extends JPanel
                             if(aEvoluePossible && (aMenuActionHautGauche_Ypx+3*aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+4*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )
                             {
                                 Slatch.moteur.modeSoin(aUniteMemMoteurCaseX,aUniteMemMoteurCaseY);
+                                Slatch.moteur.setModeEvoluer(true);
                                 effaceMenuUniteAction();
                                 aEvoluePossible=false;
                                 this.repaint();
