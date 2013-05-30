@@ -134,6 +134,7 @@ class Moteur
             //L'ingenieur de peut plus bouger non plus
             uniteA.attaque(true);
             uniteA.deplacee(true);
+            uniteA=null;
     }
     
     public void modeAttaque(final int pX,final int pY)
