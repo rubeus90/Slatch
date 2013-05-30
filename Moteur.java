@@ -57,6 +57,12 @@ class Moteur
     public void modeSoin(final int pX,final int pY)
     {
         uniteA = Slatch.partie.getTerrain()[pX][pY].getUnite();
+        affichePorteeEvoluer(uniteA, true);
+    }
+    
+    public void modeEvoluer(final int pX,final int pY)
+    {
+        uniteA = Slatch.partie.getTerrain()[pX][pY].getUnite();
         affichePorteeAttaque(uniteA, true);
     }
     
@@ -373,7 +379,7 @@ class Moteur
             {
                 if(unite.getJoueur()!=uniteA.getJoueur() && uniteA.getAttaque().efficacite.containsKey(unite.getType()) && tabAtt[pX][pY]) // si l'unité ciblée n'appartient pas au même joueur que l'attaquant, et que l'attaquant a une attaque qui peut toucher la cible, alors on attaque
                 {
-                        attaque(unite);
+                    attaque(unite);
                 }
                 else if(unite.getJoueur()==uniteA.getJoueur() && tabAtt[pX][pY] && !aModeEvoluer && uniteA.getType()==TypeUnite.INGENIEUR)
                 {
@@ -663,6 +669,44 @@ class Moteur
         }
     }
     
+    /**
+     * Affiche la portee d'attaque en mettant en surbrillance les cibles potentielles
+     * @param unite unite qui cherche une autre unite a frapper
+     */
+    public void affichePorteeEvoluer(final Unite unite,final boolean evoluer)
+    {
+        int x = unite.getCoordonneeX();
+        int y = unite.getCoordonneeY();
+
+        for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        {
+            for(int j=0; j<Slatch.partie.getHauteur(); j++)
+            {
+                tabAtt[i][j] = false;
+            }
+        }
+        
+        for(int i=1; i<=unite.getAttaque().aTypePortee.getPorteeMax();i++)
+        {
+            for(int j=1; j<=i;j++)
+            {
+                for(Quad q: signes)
+                {
+                    int a = i*q.a, b= j*q.b, c=i*q.c, d = j*q.d;
+                    if(dansLesBords(x+a+b, y+c+d))
+                    {
+                        if(cibleEvoluable(unite,a+b,c+d, evoluer))
+                        {
+                            Slatch.partie.getTerrain()[x+a+b][y+c+d].setSurbrillance(true);
+                            repaint();
+                            tabAtt[x+a+b][y+c+d] = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     public boolean estAPortee(Unite pA, Unite pC)
     {
         int d=distance(pA, pC);
@@ -683,6 +727,25 @@ class Moteur
             {
                 boolean pasAuJoueurActuel = Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel();
                 return (pasAuJoueurActuel^(soin && (Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().aBesoinDeSoins()||pasAuJoueurActuel)))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * vérifie si une cible est présente en (x+decX, y+decY)
+     */
+    private boolean cibleEvoluable(final Unite unite,final int decX,final int decY,final boolean soin)
+    {
+        int x = unite.getCoordonneeX();
+        int y = unite.getCoordonneeY();
+        
+        if(dansLesBords(x+decX,y+decY))
+        {
+            if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && Slatch.partie.getTerrain()[x+decX][y+decY].getUnite()!=null)
+            {
+                boolean pasAuJoueurActuel = Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel();
+                return (pasAuJoueurActuel^(soin && (Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().isEvolvable()||pasAuJoueurActuel)))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
             }
         }
         return false;

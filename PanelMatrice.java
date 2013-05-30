@@ -401,7 +401,7 @@ public class PanelMatrice extends JPanel
                             //Bouton 2 : Soin
                             if(aSoinPossible && (aMenuActionHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+2*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx ) 
                             {
-                                Slatch.moteur.modeSoin(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
+                                Slatch.moteur.modeEvoluer(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
                                 effaceMenuUniteAction();
                                 aSoinPossible=false;
                                 this.repaint();
