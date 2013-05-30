@@ -139,9 +139,9 @@ public class Slatch {
                 aImages.put("5",image);
                 
 
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/4.png"));
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/barreinfo.png"));
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
-                aImages.put("4",image);
+                aImages.put("barreinfo",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/noir80.png"));
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);

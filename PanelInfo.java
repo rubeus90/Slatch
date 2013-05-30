@@ -33,6 +33,7 @@ public class PanelInfo extends JPanel
     int argentSize;
     int suivantSize;
     int espaceSize;
+    int barreSize;
 
     /**
      * Constructor for objects of class IHM_Panel_Barre
@@ -89,17 +90,18 @@ public class PanelInfo extends JPanel
      */
     public void afficheBarreInfo (final Graphics g) {
         // Fond de panel
-        afficheImageRedim("4",0, 0,this.getWidth(),this.getHeight(),g);
+        afficheImageRedim("barreinfo",0, 0,this.getWidth(),this.getHeight(),g);
 
         String menu = "MENU";
         String jour = "JOUR : "+Slatch.partie.getTour();
         String joueur = "JOUEUR : "+Slatch.partie.getJoueurActuel();
         String argent = "ARGENT : "+Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent()+"¤";
         String suivant = "SUIVANT";
-        String espace = "   ";
+        String espace = "  ";
+        String barre = " |  ";
         
         // Police
-        Font font = new Font("Serif", Font.BOLD, 25*this.getWidth()/1000);
+        Font font = new Font("Helvetica", Font.BOLD, 10+25*this.getWidth()/1500);
         g.setFont(font);
         FontMetrics fm=getFontMetrics(font); 
         
@@ -109,12 +111,30 @@ public class PanelInfo extends JPanel
         argentSize = fm.stringWidth(argent);
         suivantSize = fm.stringWidth(suivant);
         espaceSize = fm.stringWidth(espace);
+        barreSize = fm.stringWidth(barre);
+        
+        int decaleX=3;
+        int decaleY=3;
+        
+        // Ombre
+        g.setColor(Color.black);
+        g.drawString(menu, espaceSize+decaleX, 33+decaleY);
+        g.drawString(barre, espaceSize+menuSize+decaleX, 33+decaleY);
+        g.drawString(jour, espaceSize+menuSize+barreSize+decaleX, 33+decaleY);
+        g.drawString(barre, espaceSize+menuSize+barreSize+jourSize+decaleX, 33+decaleY);
+        g.drawString(joueur, espaceSize+menuSize+barreSize+jourSize+barreSize+decaleX, 33+decaleY);
+        g.drawString(barre, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+decaleX, 33+decaleY);
+        g.drawString(argent, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+barreSize+decaleX, 33+decaleY);
+        g.drawString(suivant, this.getWidth()-suivantSize-espaceSize+decaleX, 33+decaleY);
         
         g.setColor(Color.white);
         g.drawString(menu, espaceSize, 33);
-        g.drawString(jour, espaceSize+menuSize+espaceSize, 33);
-        g.drawString(joueur, espaceSize+menuSize+espaceSize+jourSize+espaceSize, 33);
-        g.drawString(argent, espaceSize+menuSize+espaceSize+jourSize+espaceSize+joueurSize+espaceSize, 33);
+        g.drawString(barre, espaceSize+menuSize, 33);
+        g.drawString(jour, espaceSize+menuSize+barreSize, 33);
+        g.drawString(barre, espaceSize+menuSize+barreSize+jourSize, 33);
+        g.drawString(joueur, espaceSize+menuSize+barreSize+jourSize+barreSize, 33);
+        g.drawString(barre, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize, 33);
+        g.drawString(argent, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+barreSize, 33);
         g.drawString(suivant, this.getWidth()-suivantSize-espaceSize, 33);
     }
     
