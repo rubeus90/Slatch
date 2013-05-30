@@ -258,7 +258,7 @@ public class Unite extends Entite
        aPV = (int)(aPV*aGain);
        
        if(aGain==2){
-           aExperienceMax = (int)(aPV*aGain*1.5);
+           aExperienceMax = (int)(aPV*aGain*2);
        }
        
        isEvolvable = false;
