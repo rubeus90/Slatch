@@ -97,19 +97,10 @@ class Moteur
      * @param pUnite
      */
     public void evoluer(final Unite pUnite){
-        if(pUnite.getExperience()>Unite.pallierExperience){ //On verifie que l'XP de l'unite est superieur au pallier pour monter d'XP
             pUnite.upLvl();
-            
-            //Ingenieur grisee
-            uniteA.attaque(true);
-            uniteA.deplacee(true);
-            uniteA=null;
-            
             //Unite evoluer grisee
             pUnite.attaque(true);
             pUnite.deplacee(true);
-            //pUnite=null;
-        }
     }
     
     public void modeAttaque(final int pX,final int pY)
