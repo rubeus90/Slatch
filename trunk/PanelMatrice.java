@@ -303,6 +303,8 @@ public class PanelMatrice extends JPanel
                 int stat5Size = fm.stringWidth(stat5);
                 String stat6 = "Degats infliges : " + Slatch.partie.ListeJoueur.get(i).getDegatTotal();
                 int stat6Size = fm.stringWidth(stat6);
+                String stat12 = "Soin donne : " + Slatch.partie.ListeJoueur.get(i).getSoinTotal();
+                int stat12Size = fm.stringWidth(stat12);
                 String stat7 = "Degats subis : " + Slatch.partie.ListeJoueur.get(i).getDegatSubit();
                 int stat7Size = fm.stringWidth(stat7);
                 String stat8 = "Experience Totale : " + Slatch.partie.ListeJoueur.get(i).getExpTotal();
@@ -318,9 +320,10 @@ public class PanelMatrice extends JPanel
                 g.drawString(stat11, this.getWidth()/2 + decalage - stat11Size/2, 9*this.getHeight()/(2*hauteurSize));
                 g.drawString(stat10, this.getWidth()/2 + decalage - stat10Size/2, 10*this.getHeight()/(2*hauteurSize));
                 g.drawString(stat6, this.getWidth()/2 + decalage - stat6Size/2, 11*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat7, this.getWidth()/2 + decalage - stat7Size/2, 12*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat8, this.getWidth()/2 + decalage - stat8Size/2, 13*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat9, this.getWidth()/2 + decalage - stat9Size/2, 14*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat12, this.getWidth()/2 + decalage - stat12Size/2, 12*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat7, this.getWidth()/2 + decalage - stat7Size/2, 13*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat8, this.getWidth()/2 + decalage - stat8Size/2, 14*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat9, this.getWidth()/2 + decalage - stat9Size/2, 15*this.getHeight()/(2*hauteurSize));
 
             }
         }
