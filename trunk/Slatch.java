@@ -43,7 +43,7 @@ public class Slatch {
         }
         
 
-        maps = new CreationMaps();
+      //  maps = new CreationMaps();
     }
     
     private void loadImage()

@@ -124,21 +124,25 @@ class Moteur
         double degatsAtt=0;
         degatsAtt = getDegats(uniteA, pVictime);
         
-        //Ajout de l'XP a l'Unite
-        uniteA.addExperience(degatsAtt);
-        Slatch.partie.getJoueur(uniteA.getJoueur()).addExpTotal(degatsAtt);
-        
-        //Pour les statistiques
-        Slatch.partie.getJoueur(uniteA.getJoueur()).addDegatTotal(degatsAtt);
-        Slatch.partie.getJoueur(pVictime.getJoueur()).addDegatSubit(degatsAtt);
-        
         if(faireDegats(pVictime, degatsAtt)) // si la victime meurt
         {
+            //Pour les statistiques
+            uniteA.addExperience(degatsAtt+pVictime.getPV());
+            Slatch.partie.getJoueur(uniteA.getJoueur()).addExpTotal(degatsAtt+pVictime.getPV());
+            Slatch.partie.getJoueur(uniteA.getJoueur()).addDegatTotal(degatsAtt+pVictime.getPV());
+            Slatch.partie.getJoueur(pVictime.getJoueur()).addDegatSubit(degatsAtt+pVictime.getPV());
             Slatch.partie.getJoueur(uniteA.getJoueur()).addNbrUniteTue();
+            
             estMort(pVictime);
         }    
         else if(distance(uniteA, pVictime)==1 && pVictime.getAttaque().aTypePortee.getPorteeMin()==1) //sinon + si attaque au CAC, on riposte
         {
+            //Pour les statistiques
+            uniteA.addExperience(degatsAtt);
+            Slatch.partie.getJoueur(uniteA.getJoueur()).addExpTotal(degatsAtt);
+            Slatch.partie.getJoueur(uniteA.getJoueur()).addDegatTotal(degatsAtt);
+            Slatch.partie.getJoueur(pVictime.getJoueur()).addDegatSubit(degatsAtt);
+            
             degatsAtt= 0.7*getDegats(pVictime, uniteA);
             
             //Add XP
@@ -161,6 +165,18 @@ class Moteur
         uniteA.attaque(true);
         uniteA.deplacee(true);
         uniteA=null;
+    }
+    
+    public boolean faireDegats(final Unite cible,final double degats) // retourne vrai si la cible meurt
+    {
+        cible.setPV(cible.getPV() - (int)degats);
+        if(cible.getPV()<=0){
+            return true;
+        }
+        else{
+            repaint(); 
+            return false;
+        }
     }
     
     public void capture(final int pX,final int pY)
@@ -211,12 +227,6 @@ class Moteur
     private int pourcentageVie(final Unite unite)
     {
         return (int)((double)(unite.getPV())/(double)(unite.getPVMax())*100); 
-    }
-    
-    public boolean faireDegats(final Unite cible,final double degats) // retourne vrai si la cible meurt
-    {
-        cible.setPV(cible.getPV() - (int)degats);
-        if(cible.getPV()<=0){return true;}else{repaint(); return false;}
     }
     
     public double getDegats(final Unite a,final Unite v) // a= attaquant, v= cible
