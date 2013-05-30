@@ -69,20 +69,42 @@ class Moteur
         }
     }
     
-    private boolean cibleSoignable(final Unite unite)
+    private boolean cibleSoignable(final Unite pUnite)
     {
-        int x;
-        int y;
+        int vX;
+        int vY;
         for(Point p: voisins)
         {
-            x=(int)p.getX()+unite.getCoordonneeX();
-            y=(int)p.getY()+unite.getCoordonneeY();
-            if(dansLesBords(x,y))
+            vX=(int)p.getX()+pUnite.getCoordonneeX();
+            vY=(int)p.getY()+pUnite.getCoordonneeY();
+            if(dansLesBords(vX,vY))
             {
-                Unite u = Slatch.partie.getTerrain()[x][y].getUnite();
+                Unite u = Slatch.partie.getTerrain()[vX][vY].getUnite();
                 if(u!= null)
                 {
-                    if(u.aBesoinDeSoins() && unite.getJoueur()==u.getJoueur())
+                    if(u.aBesoinDeSoins() && pUnite.getJoueur()==u.getJoueur())
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    private boolean cibleEvoluable(final Unite pUnite){
+        int vX;
+        int vY;
+        for(Point p: voisins)
+        {
+            vX=(int)p.getX()+pUnite.getCoordonneeX();
+            vY=(int)p.getY()+pUnite.getCoordonneeY();
+            if(dansLesBords(vX,vY))
+            {
+                Unite u = Slatch.partie.getTerrain()[vX][vY].getUnite();
+                if(u!= null)
+                {
+                    if(u.isEvolvable() && pUnite.getJoueur()==u.getJoueur())
                     {
                         return true;
                     }
@@ -315,6 +337,11 @@ class Moteur
                             {
                                 items.add("Soin");
                             }
+                            
+                            if(cibleEvoluable(unite) && !unite.dejaAttaque())
+                            {
+                                items.add("Evolue");
+                            }
                         }
                         
                         if(!unite.dejaAttaque()&&(unite.getType()==TypeUnite.COMMANDO || unite.getType()==TypeUnite.DEMOLISSEUR || unite.getType()==TypeUnite.INGENIEUR) && (Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.QG || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE) && Slatch.partie.getJoueurActuel()!=Slatch.partie.getTerrain()[pX][pY].getJoueur())
@@ -322,10 +349,6 @@ class Moteur
                                 items.add("Capture");
                         }
                         
-                        if(unite.isEvolvable() && !unite.dejaAttaque()){
-                                items.add("Evolue");
-                        }
-
                         Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
                         if(!items.isEmpty()){Slatch.ihm.getPanel().afficheMenu(items, pX, pY);}
                     }
