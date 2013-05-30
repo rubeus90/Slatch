@@ -33,7 +33,11 @@ class Moteur
         uniteD = null;
         uniteA = null;
     }
-   
+    
+    public void setModeEvoluer(final boolean pBoolean){
+        aModeEvoluer = true;
+    }
+    
     public void enleverSurbrillance()
     {
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
@@ -348,7 +352,6 @@ class Moteur
                             if(cibleEvoluable(unite) && !unite.dejaAttaque())
                             {
                                 items.add("Evolue");
-                                aModeEvoluer=true;
                             }
                         }
                         

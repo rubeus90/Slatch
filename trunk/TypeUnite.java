@@ -3,7 +3,7 @@
  */
 public enum TypeUnite
 {
-    COMMANDO("Commando", "Capable de capturer un batiment","commando",100,30,40,"fusil",TypeDeplacement.PIED,1.3, "Terrestre",100),
+    COMMANDO("Commando", "Capable de capturer un batiment","commando",100,30,40,"fusil",TypeDeplacement.PIED,1.3, "Terrestre",5),
     DEMOLISSEUR("Demolisseur", "Capable capturer un batiment de faire des degats aux tanks","demolisseur",200,20,30,"mortier",TypeDeplacement.PIED,1.2,"Terrestre",100), 
     CHAR("Char","un char","char",300,40,60,"canon",TypeDeplacement.CHENILLES,1.3,"Terrestre",110),
     TANK("While","Unite tres puissante","tank",700,65,40,"groscanon",TypeDeplacement.CHENILLES,1.2, "Terrestre",150),
