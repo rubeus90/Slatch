@@ -24,9 +24,8 @@ public class AIMaster
                 if(!u.dejaAttaque()||!u.dejaDeplacee()){GrandeIA.elaborationObjectif(u);}
             }
             if(u.getPV()<=0){i.remove();}
-            if(Slatch.partie.partieFinie){break;}
+            if(Slatch.partie.partieFinie){return;}
         }    
-        //System.out.println(joueur+" Je passe mon tour");
         Slatch.moteur.passeTour();
     }
     
