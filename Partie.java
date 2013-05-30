@@ -229,7 +229,7 @@ public class Partie
             if(isCharged)
                 ListeJoueur.get(i).setArgent(vArgent[i]);
         }
-        
+        //ListeJoueur.get(1).setIA(false);
         for(Unite vUniteActuel : lUnite){
             int vJ = vUniteActuel.getJoueur();
             ListeJoueur.get(vJ).getListeUnite().add(vUniteActuel);

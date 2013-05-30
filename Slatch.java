@@ -30,8 +30,8 @@ public class Slatch {
         aImages=new HashMap<String,Image>();
         loadImage();
 
-        partie = new Partie(20,30,"Maps/mapTest4.txt");
-//        partie = new Partie("Maps/mapGenere.txt");
+        partie = new Partie(20,30,"Maps/doublevai.txt");
+        //partie = new Partie("Maps/mapGenere.txt");
 
         //partie =new Partie("Maps/sauvegarde.txt");
         moteur = new Moteur();
@@ -53,6 +53,8 @@ public class Slatch {
         loadNumero();
         loadTerrain();
         loadUnite();
+        loadBoutonMenu();
+       // loadPlaines();
     }
     
     private void loadTerrain()
@@ -87,6 +89,25 @@ public class Slatch {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    private void loadPlaines()
+    {
+       try {
+            Image image;
+            Image imageRedim;
+            for(int i =0;i<=4;i++)
+            {
+                
+                        //System.out.println("TERRAIN DEPENDANCE "+terrain.getImage() + i);
+                        image = ImageIO.read(getClass().getClassLoader().getResource("Images/plaine0" + i + ".png"));
+                        imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                        aImages.put("plaine0" + i,image);
+             }
+            }
+        catch (IOException e) {
+            e.printStackTrace();
+        } 
     }
     
     private void loadUnite()
@@ -155,8 +176,18 @@ public class Slatch {
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("yindeplacement",image);
                 
-                //images du menu
-                 
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void loadBoutonMenu()
+    {
+        try {
+                Image image;
+                
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/boutoncampagne.png"));
                 aImages.put("boutoncampagne",image);
                 
@@ -180,11 +211,10 @@ public class Slatch {
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/titrerapide.png"));
                 aImages.put("titrerapide",image);
-
         }
         catch (IOException e) {
             e.printStackTrace();
-        }
+        }       
     }
     
     private void loadNumero()

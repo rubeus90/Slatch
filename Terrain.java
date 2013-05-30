@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.lang.Integer;
 import java.awt.Graphics;
 import java.awt.Image;
-
+import java.util.Random;
 import javax.imageio.ImageIO;
 
 /**
@@ -97,8 +97,11 @@ public class Terrain extends Entite{
         int pPosHautGaucheY = super.getCoordonneeY()*pPanel.getaHauteurCarreau();
         int pPosBasDroiteX = (super.getCoordonneeX()+1)*pPanel.getaLargeurCarreau();
         int pPosBasDroiteY = (super.getCoordonneeY()+1)*pPanel.getaHauteurCarreau();
-
-            Image img = Slatch.aImages.get(""+ aType.getImage() + getJoueur());
+        Image img;
+            
+                img = Slatch.aImages.get(""+ aType.getImage() + getJoueur());
+            
+            
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
         
         if(aUnite!=null){

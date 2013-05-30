@@ -91,7 +91,7 @@ public class GrandeIA
                     case "Uml" :
                                         nombreUml=nombreUml+1;
                                         break;
-                    case "Tank" :
+                    case "While" :
                                         nombreWhile=nombreWhile+1;
                                         break;
                     case "Distance" :
