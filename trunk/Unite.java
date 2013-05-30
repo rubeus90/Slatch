@@ -241,7 +241,7 @@ public class Unite extends Entite
     */
     public void addExperience(final double pExperience){
         aExperience+=(int)pExperience;
-        if(aExperience > aExperienceMax && aLvl <3){
+        if(aExperience >= aExperienceMax && aLvl <3){
             isEvolvable = true;
         }
     }
@@ -261,10 +261,7 @@ public class Unite extends Entite
            aExperienceMax = (int)(aPV*aGain*1.5);
        }
        
-       if(aExperience < aExperienceMax ){
-            isEvolvable = false;
-       }
-       //Sinon le joueur pourra encore monter de niveau le tour prochain
+       isEvolvable = false;
     }
     
     public int soigner(int soin)
