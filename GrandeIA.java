@@ -116,7 +116,7 @@ public class GrandeIA
 
                 if(joueurActuel.getArgent()>=700 && nombreWhile <1)
                  {
-                    uia.decrypterObjectif(new Objectif("acheter","Tank",new Point(x,y),null,null));                    
+                    uia.decrypterObjectif(new Objectif("acheter","While",new Point(x,y),null,null));                    
                     //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreWhile+" While donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
                     nombreWhile=nombreWhile+1;
                  }
