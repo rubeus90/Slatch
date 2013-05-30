@@ -21,7 +21,7 @@ public class UniteIA
         Unite u= (Unite) executant;
         if(!u.seSitue(point))
         {seDirigerVers(u, point);}
-        if(u.getCoordonneeX()==(int)point.getX() && u.getCoordonneeY()==(int)point.getY()){
+        if(u.seSitue(point)){
             Slatch.moteur.capture((int)point.getX(),(int)point.getY());
         }
         u.attaque(true);
@@ -35,6 +35,19 @@ public class UniteIA
                 break;
             }
         }
+    }
+    
+    private void soigner(Unite executant, Unite cible, Point point)
+    {
+        if(!executant.seSitue(point))
+        {seDirigerVers(executant, point);}
+        if(executant.seSitue(point))
+        {
+            Slatch.moteur.setuniteA(executant);
+            Slatch.moteur.soin(cible);
+        }
+        executant.attaque(true);
+        executant.deplacee(true);
     }
     
     public void decrypterObjectif(final Objectif objectif)
@@ -53,6 +66,8 @@ public class UniteIA
         case "acheter" :
              achat(objectif.getCoordonnee(),objectif.getMotSecondaire());
             break;
+        case "soigner" :
+         soigner((Unite)objectif.getExecutant(),(Unite)objectif.getCible(), objectif.getCoordonnee());
         }
     }
 }
