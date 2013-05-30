@@ -32,6 +32,8 @@ public class PanelMenu extends JPanel
     {
         
         afficheImageRedim("plaine0",0,0,this.getWidth(),this.getHeight(),g);
+        Image ok = Slatch.aImages.get("boutonok");
+        Image retour = Slatch.aImages.get("boutonretour");
         
         if(aMenuPrincipal)
         {
@@ -58,12 +60,13 @@ public class PanelMenu extends JPanel
             int vHauteurTitre = this.getHeight()/8;
             
             Image titrecampagne = Slatch.aImages.get("titrecampagne");
-            Image campagne = Slatch.aImages.get("boutoncampagne");
+            Image chargerCampagne = Slatch.aImages.get("boutonchargercampagne");
+            Image nouvelleCampagne = Slatch.aImages.get("boutonnouvellecampagne");
             
             g.drawImage(titrecampagne, this.getWidth()/6, 33, 4*vHauteurTitre,vHauteurTitre, this);
-            g.drawImage(campagne, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton,aHauteurBouton, this);
-            g.drawImage(campagne, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton,aHauteurBouton, this);
-            g.drawImage(campagne, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/12, this);
+            g.drawImage(nouvelleCampagne, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton,aHauteurBouton, this);
+            g.drawImage(chargerCampagne, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton,aHauteurBouton, this);
+            g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
         }
         else if(aMenuRapide)
         {
@@ -71,26 +74,27 @@ public class PanelMenu extends JPanel
             int vHauteurTitre = this.getHeight()/8;
             
             Image titrerapide = Slatch.aImages.get("titrerapide");
-            Image campagne = Slatch.aImages.get("boutoncampagne");//A Remplacer par retour
+            Image chargerPartie = Slatch.aImages.get("boutonchargerpartie");
+            Image nouvellePartie = Slatch.aImages.get("boutonnouvellepartie");
             g.drawImage(titrerapide, this.getWidth()/6, 33, 4*vHauteurTitre,vHauteurTitre, this);
-            g.drawImage(campagne, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/12, this);//A Remplacer par retour
+            g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);//A Remplacer par retour
             
             if(aSousMenuRapide1)
             {
-                g.drawImage(campagne, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/12, this);//A Remplacer par OK
+                g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);//A Remplacer par OK
                 
             }
             
             else if(aSousMenuRapide2)
             {
-                g.drawImage(campagne, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/12, this);//A Remplacer par OK
+                g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);//A Remplacer par OK
             }
             
             else
             {
                 
-                g.drawImage(campagne, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton,aHauteurBouton, this);
-                g.drawImage(campagne, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton,aHauteurBouton, this);
+                g.drawImage(nouvellePartie, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton,aHauteurBouton, this);
+                g.drawImage(chargerPartie, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton,aHauteurBouton, this);
                 
             }
         }
@@ -109,7 +113,6 @@ public class PanelMenu extends JPanel
             //Clic Bouton Campagne
             if(pY>33+ this.getHeight()/4 && pY<33+this.getHeight()/4+aHauteurBouton && pX>this.getWidth()/2-2*aHauteurBouton && pX< this.getWidth()/2+2*aHauteurBouton)
             {
-                System.out.println("Campagne");
                 aMenuCampagne = true;
                 aMenuPrincipal = false;
                 this.repaint();
@@ -118,7 +121,6 @@ public class PanelMenu extends JPanel
             //Clic Bouton Partie Rapide
             if(pY>33+ 3*this.getHeight()/8 && pY<33+ 3*this.getHeight()/8+aHauteurBouton && pX>this.getWidth()/2-2*aHauteurBouton && pX< this.getWidth()/2+2*aHauteurBouton)
             {
-                System.out.println("Partie Rapide");
                 aMenuRapide = true;
                 aMenuPrincipal = false;
                 this.repaint();
@@ -128,19 +130,19 @@ public class PanelMenu extends JPanel
             //Clic Bouton Tutoriel
             if(pY>33+ 4*this.getHeight()/8 && pY<33+ 4*this.getHeight()/8+aHauteurBouton && pX>this.getWidth()/2-2*aHauteurBouton && pX< this.getWidth()/2+2*aHauteurBouton)
             {
-                System.out.println("Tutoriel");
+                
             }
             
             //Clic Bouton Map Creator
             if(pY>33+ 5*this.getHeight()/8 && pY<33+ 5*this.getHeight()/8+aHauteurBouton && pX>this.getWidth()/2-2*aHauteurBouton && pX< this.getWidth()/2+2*aHauteurBouton)
             {
-                System.out.println("Map Creator");
+                
             }
             
             //Clic Bouton Credits
             if(pY>33+ 6*this.getHeight()/8 && pY<33+ 6*this.getHeight()/8+aHauteurBouton && pX>this.getWidth()/2-2*aHauteurBouton && pX< this.getWidth()/2+2*aHauteurBouton)
             {
-                System.out.println("Crédits");
+                
             }
         }
         else if(aMenuCampagne)
@@ -173,10 +175,7 @@ public class PanelMenu extends JPanel
                 // Clic Bouton OK
                 if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>this.getWidth()-this.getHeight()/6-10 && pX< this.getWidth()-10)
                 {
-                    System.out.println("Yaaaaaaaaaaaahouuuuuuuuuu");
-//                     partie = new Partie(20,30,"Maps/doublevai.txt");
-//                     moteur = new Moteur();
-//                     Slatch.ihm.ecranJeu();
+                    
                 }
                 
                 // Clic Bouton Retour
