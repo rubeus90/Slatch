@@ -19,7 +19,7 @@ class Moteur
     Point[][] pred;
     
     static Point[] voisins = {new Point(0,1), new Point(0,-1),new Point(1,0),new Point(-1,0)};
-    Quad[] signes = {new Quad(0,1,-1,1), new Quad(0,-1,1,-1),new Quad(1,-1,0,1),new Quad(-1,1,0,-1)};//, new Point(0,1), new Point(0,-1), new Point(-1,0), new Point(1,0)};
+    Quad[] signes = {new Quad(0,1,-1,1), new Quad(0,-1,1,-1),new Quad(1,-1,0,1),new Quad(-1,1,0,-1)};// Permettra de parcourir le rayon de portée d'une unité
     
     
     
@@ -145,7 +145,6 @@ class Moteur
     
     public void attaque(final Unite pVictime)
     { 
-//         System.out.println(uniteA+" située en "+uniteA.getCoordonneeX()+","+uniteA.getCoordonneeY()+" attaque "+pVictime+" située en "+pVictime.getCoordonneeX()+","+pVictime.getCoordonneeY());
         double degatsAtt=0;
         degatsAtt = getDegats(uniteA, pVictime);
         
@@ -681,7 +680,8 @@ class Moteur
         {
             if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && Slatch.partie.getTerrain()[x+decX][y+decY].getUnite()!=null)
             {
-                return (Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel()^(soin && Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().aBesoinDeSoins()))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
+                boolean pasAuJoueurActuel = Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel();
+                return (pasAuJoueurActuel^(soin && (Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().aBesoinDeSoins()||pasAuJoueurActuel)))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
             }
         }
         return false;
