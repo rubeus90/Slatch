@@ -99,7 +99,7 @@ class Moteur
         int vLocal = pUnite.soigner(uniteA.getDegat());
         if(vLocal!=0){  
            uniteA.addExperience(vLocal);
-           uniteA.addSoinTotal(vLocal);
+           Slatch.partie.getJoueur(uniteA.getJoueur()).addSoinTotal(vLocal);
            uniteA.attaque(true);
            uniteA.deplacee(true);
            uniteA=null; 
