@@ -30,7 +30,7 @@ public class Slatch {
         aImages=new HashMap<String,Image>();
         loadImage();
 
-        Partie partieRapide = new Partie(20,30,"Maps/mapTest4.txt");
+        Partie partieRapide = new Partie(20,30,"Maps/mapTest.txt");
         //partie = new Partie("Maps/mapGenere.txt");
         //partie =new Partie("Maps/sauvegarde.txt");
         
