@@ -156,7 +156,7 @@ public class GrandeIA
                     //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreCommando+" Commando donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
                     nombreCommando=nombreCommando+1;
                 }
-                else if(joueurActuel.getArgent()>=100 && nombreIngenieur <3)
+                else if(joueurActuel.getArgent()>=100 && nombreIngenieur <1)
                 {
                     uia.decrypterObjectif(new Objectif("acheter","Ingenieur",new Point(x,y),null,null));   
                     //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreCommando+" Commando donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
