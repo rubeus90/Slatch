@@ -132,17 +132,18 @@ class Moteur
      * Methode qui permet a un ingenieur de faire evoluer une methode
      * @param pUnite
      */
-    public void evoluer(final Unite pUnite){
-            pUnite.upLvl();
-            
-            //Unite evoluer grisee
-            pUnite.attaque(true);
-            pUnite.deplacee(true);
-            
-            //L'ingenieur de peut plus bouger non plus
-            uniteA.attaque(true);
-            uniteA.deplacee(true);
-            uniteA=null;
+    public void evoluer(final Unite pUnite)
+    {
+        pUnite.upLvl();
+        
+        //Unite evoluer grisee
+        pUnite.attaque(true);
+        pUnite.deplacee(true);
+        
+        //L'ingenieur de peut plus bouger non plus
+        uniteA.attaque(true);
+        uniteA.deplacee(true);
+        uniteA=null;
     }
     
     public void modeAttaque(final int pX,final int pY)
