@@ -1,10 +1,12 @@
 import java.awt.Graphics;
+import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import javax.imageio.ImageIO;
 import java.awt.Point;
+import java.awt.Font;
 
 /****************************************
  *
@@ -32,7 +34,8 @@ public class Unite extends Entite
     private int aDecaleUniteX=0;
     private int aDecaleUniteY=0;
     private boolean isEvolvable;
-   
+    private int vPV;
+    private boolean check=false;
     /**
      * Constructeur par default de la classe Unite
      * Prend en paramètre :
@@ -54,6 +57,7 @@ public class Unite extends Entite
        aExperience = 0;
        isEvolvable = false;
        aExperienceMax=pType.getXPUP();
+       vPV = aPV;
        
        for(TypeAttaque type : TypeAttaque.values()) {
                    
@@ -296,6 +300,8 @@ public class Unite extends Entite
         int pPosHautGaucheY = super.getCoordonneeY()*pPanel.getaHauteurCarreau()+aDecaleUniteY;
         int pPosBasDroiteX = (super.getCoordonneeX()+1)*pPanel.getaLargeurCarreau()+aDecaleUniteX;
         int pPosBasDroiteY = (super.getCoordonneeY()+1)*pPanel.getaHauteurCarreau()+aDecaleUniteY;
+        int pPosMidGaucheX = super.getCoordonneeX()*pPanel.getaLargeurCarreau()+pPanel.getaLargeurCarreau()/2;
+        int pPosMidGaucheY = super.getCoordonneeY()*pPanel.getaHauteurCarreau()+pPanel.getaHauteurCarreau()/2;
         
             Image img = Slatch.aImages.get(""+ aType.getImage() + getJoueur());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
@@ -321,7 +327,32 @@ public class Unite extends Entite
                     g.drawImage(yin, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
                 }
                }
+        
+                if((vPV != aPV) && check)
+                {
+                    int pDegats = aPV-vPV;
+                    
+                    Font font = new Font("Helvetica", Font.BOLD, 8+15*Slatch.ihm.getpanelmatrice().getWidth()/1500);
+                    g.setFont(font);
+                    if(pDegats <0)
+                    {
+                        g.setColor(Color.red);
+                        String stringDegats = ""+pDegats;
+                        g.drawString(stringDegats, pPosHautGaucheX, pPosMidGaucheY);
+                    }
+                    if(pDegats >=0)
+                    {
+                        g.setColor(Color.green);
+                        String stringDegats = "+"+pDegats;
+                        g.drawString(stringDegats, pPosHautGaucheX, pPosMidGaucheY);
+                    }
+                    
+                    try{Thread.sleep(200);}catch(InterruptedException e){e.printStackTrace();}
 
+                }
+                vPV = aPV;
+                check=true;
+                                    
     }
     
     public boolean seSitue(Point p)

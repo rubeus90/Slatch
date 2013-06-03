@@ -102,7 +102,7 @@ public class PanelMatrice extends JPanel
         aLargeurCarreau = this.getWidth()/Slatch.partie.getLargeur();
         aHauteurCarreau = this.getHeight()/ Slatch.partie.getHauteur();
         dessineMatrice(g);
-        
+                
         if(menuUniteAction && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()) 
         {
             afficheImageRedim ("noir80", aMenuActionHautGauche_Xpx, aMenuActionHautGauche_Ypx, aMenuActionBasDroite_Xpx, aMenuActionBasDroite_Ypx, g);
@@ -245,7 +245,7 @@ public class PanelMatrice extends JPanel
             Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
             g.setFont(font);
             FontMetrics fm=getFontMetrics(font);  
-            
+        
             String charger = "Charger";
             int chargerSize = fm.stringWidth(charger);
             String sauver = "Sauvegarder";
@@ -259,6 +259,7 @@ public class PanelMatrice extends JPanel
             g.setColor(Color.gray);
             g.drawLine(aMenuHautGauche_Xpx, 0, aMenuBasDroite_Xpx-1, 0);
         }
+        
         
         if(Slatch.partie.partieFinie) {
             afficheImageRedim ("noir80", 0, 0, this.getWidth(), this.getHeight(), g);
@@ -330,6 +331,8 @@ public class PanelMatrice extends JPanel
 
             }
         }
+        
+
     }
     
     /**
