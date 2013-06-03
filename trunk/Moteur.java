@@ -364,7 +364,7 @@ class Moteur
                             }
                         }
                         
-                        if(!unite.dejaAttaque()&&(unite.getType()==TypeUnite.COMMANDO || unite.getType()==TypeUnite.DEMOLISSEUR || unite.getType()==TypeUnite.INGENIEUR) && (Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.QG || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE) && getJoueurActuel().getEquipe()!=getJoueur(pX,pY).getEquipe())
+                        if(!unite.dejaAttaque()&&(unite.getType()==TypeUnite.COMMANDO || unite.getType()==TypeUnite.DEMOLISSEUR || unite.getType()==TypeUnite.INGENIEUR) && (Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.QG || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.BATIMENT || Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE) && getJoueurActuel().getEquipe()!=getJoueurTerrain(pX,pY).getEquipe())
                         {
                                 items.add("Capture");
                         }
@@ -1027,6 +1027,10 @@ class Moteur
     
     private Joueur getJoueur(final Terrain pTerrain){
         return Slatch.partie.getJoueur(pTerrain.getJoueur());
+    }
+    
+    private Joueur getJoueurTerrain(final int pX,final int pY){
+        return Slatch.partie.getJoueur(Slatch.partie.getTerrain()[pX][pY].getJoueur());
     }
     
     private Joueur getJoueur(final int pX,final int pY){
