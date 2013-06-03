@@ -56,13 +56,13 @@ class Moteur
       
     public void modeSoin(final int pX,final int pY)
     {
-        uniteA = Slatch.partie.getTerrain()[pX][pY].getUnite();
+        uniteA = getUnite(pX,pY);
         affichePorteeEvoluer(uniteA, true);
     }
     
     public void modeEvoluer(final int pX,final int pY)
     {
-        uniteA = Slatch.partie.getTerrain()[pX][pY].getUnite();
+        uniteA = getUnite(pX,pY);
         affichePorteeAttaque(uniteA, true);
     }
     
@@ -76,7 +76,7 @@ class Moteur
             vY=(int)p.getY()+pUnite.getCoordonneeY();
             if(dansLesBords(vX,vY))
             {
-                Unite u = Slatch.partie.getTerrain()[vX][vY].getUnite();
+                Unite u = getUnite(vX,vY);
                 if(u!= null)
                 {
                     if(u.aBesoinDeSoins() && getEquipe(pUnite.getJoueur())==getEquipe(u.getJoueur()))
@@ -116,7 +116,7 @@ class Moteur
             vY=(int)p.getY()+pUnite.getCoordonneeY();
             if(dansLesBords(vX,vY))
             {
-                Unite u = Slatch.partie.getTerrain()[vX][vY].getUnite();
+                Unite u = getUnite(vX,vY);
                 if(u!= null)
                 {
                     if(u.isEvolvable() && getEquipe(pUnite.getJoueur())==getEquipe(u.getJoueur()))
@@ -149,7 +149,7 @@ class Moteur
     
     public void modeAttaque(final int pX,final int pY)
     {
-        uniteA = Slatch.partie.getTerrain()[pX][pY].getUnite();
+        uniteA = getUnite(pX,pY);
         affichePorteeAttaque(uniteA, false);
     }
     
@@ -248,7 +248,7 @@ class Moteur
     public void capture(final int pX,final int pY)
     {
         Terrain vBatiment= Slatch.partie.getTerrain()[pX][pY];
-        if((uniteA=Slatch.partie.getTerrain()[pX][pY].getUnite())==null){return;};
+        if((uniteA=getUnite(pX,pY))==null){return;};
        
         switch(uniteA.getType())
         {
@@ -261,24 +261,24 @@ class Moteur
         {
            if(vBatiment.getType()==TypeTerrain.USINE)
            {
-                    Slatch.partie.getJoueur(vBatiment.getJoueur()).getListeUsine().remove(vBatiment);
-                    Slatch.partie.getJoueur(uniteA.getJoueur()).getListeUsine().add(vBatiment);
+                    getJoueur(vBatiment).getListeUsine().remove(vBatiment);
+                    getJoueur(uniteA).getListeUsine().add(vBatiment);
            } 
            if(vBatiment.getType()==TypeTerrain.BATIMENT)
            {
-                    Slatch.partie.getJoueur(vBatiment.getJoueur()).getListeBatiment().remove(vBatiment);
-                    Slatch.partie.getJoueur(uniteA.getJoueur()).getListeBatiment().add(vBatiment);
+                    getJoueur(vBatiment).getListeBatiment().remove(vBatiment);
+                    getJoueur(uniteA).getListeBatiment().add(vBatiment);
            }
            if(vBatiment.getType()==TypeTerrain.QG)
            {
-               Slatch.partie.getJoueur(vBatiment.getJoueur()).mourrir();     
+               getJoueur(vBatiment).mourrir();     
                Slatch.partie.gagner();
            }
-           Slatch.partie.getJoueur(vBatiment.getJoueur()).addNbreBatiment(-1);
+           getJoueur(vBatiment).addNbreBatiment(-1);
            vBatiment.setJoueur(uniteA.getJoueur());
            vBatiment.setPV(vBatiment.getType().getPVMax());
-           Slatch.partie.getJoueur(uniteA.getJoueur()).addNbreBatiment(1);
-           Slatch.partie.getJoueur(uniteA.getJoueur()).addCaptureTotal();
+           getJoueur(uniteA).addNbreBatiment(1);
+           getJoueur(uniteA).addCaptureTotal();
            repaint();
         }
         uniteA.attaque(true);
@@ -314,7 +314,7 @@ class Moteur
         {
             Slatch.partie.getTerrain()[pX][pY].setSurbrillance(true);
         }
-        Unite unite = Slatch.partie.getTerrain()[pX][pY].getUnite();
+        Unite unite = getUnite(pX,pY);
         if(unite==null) // si aucune unité n'est présente sur la case
         {
             annulerAttaque();
@@ -330,7 +330,7 @@ class Moteur
                 {
                     if(vType.nomType.equals("Terrestre")){l.add(vType);}
                 }
-                Slatch.ihm.getPanel().shop(l,Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getArgent(), pX, pY);
+                Slatch.ihm.getPanel().shop(l,getJoueurActuel().getArgent(), pX, pY);
             }
             annulerDeplacement();
         }
@@ -403,7 +403,7 @@ class Moteur
     
     public void modeDeplacement(final int pX,final int pY)
     {
-        uniteD = Slatch.partie.getTerrain()[pX][pY].getUnite();
+        uniteD = getUnite(pX,pY);
         affichePorteeDep(uniteD);
     }
     
@@ -449,7 +449,7 @@ class Moteur
                     {
                         if(!geez)
                         {
-                            if(Slatch.partie.getTerrain()[x][y].getUnite()==null){stack.push(p);
+                            if(getUnite(x,y)==null){stack.push(p);
                             unite.deplacee(true); geez = true;Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());}
                         }
                         else
@@ -501,13 +501,13 @@ class Moteur
         if(unite.getCoordonneeX() != destX ) {
             if(unite.getCoordonneeX() < destX) {
                 //BUG
-                Unite ret=Slatch.partie.getTerrain()[destX][destY].getUnite();
+                Unite ret=getUnite(destX,destY);
                 Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(mem);
                 unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
                 Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
                 
                 for(int i=0; i<Slatch.ihm.getPanel().getaLargeurCarreau() ; i=i+vPasDepl) {
-                    Slatch.partie.getTerrain()[destX][destY].getUnite().setDecaleUniteX(-Slatch.ihm.getPanel().getaLargeurCarreau()+i);
+                    getUnite(destX,destY).setDecaleUniteX(-Slatch.ihm.getPanel().getaLargeurCarreau()+i);
                     Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
                     Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
                     try{Thread.sleep(vThread);}catch(InterruptedException e){e.printStackTrace();}
@@ -531,7 +531,7 @@ class Moteur
                 unite.setDecaleUniteX(0);
                 unite.setDecaleUniteY(0);
             
-                Unite ret=Slatch.partie.getTerrain()[destX][destY].getUnite();
+                Unite ret=getUnite(destX,destY);
                 Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(mem);
                 unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
                 Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
@@ -539,20 +539,20 @@ class Moteur
                 Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
                 Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);        
                 
-                Slatch.partie.getJoueur(unite.getJoueur()).addDeplacementTotal(1);
+                getJoueur(unite).addDeplacementTotal(1);
                 return ret;
             }
         }
         if(unite.getCoordonneeY() != destY ) {
             if(unite.getCoordonneeY() < destY) {
                 //BUG
-                Unite ret=Slatch.partie.getTerrain()[destX][destY].getUnite();
+                Unite ret=getUnite(destX,destY);
                 Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(mem);
                 unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
                 Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
                 
                 for(int i=0; i<Slatch.ihm.getPanel().getaHauteurCarreau() ; i=i+vPasDepl) {
-                    Slatch.partie.getTerrain()[destX][destY].getUnite().setDecaleUniteY(-Slatch.ihm.getPanel().getaHauteurCarreau()+i);
+                    getUnite(destX,destY).setDecaleUniteY(-Slatch.ihm.getPanel().getaHauteurCarreau()+i);
                     Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
                     Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
                     try{Thread.sleep(vThread);}catch(InterruptedException e){e.printStackTrace();}
@@ -576,7 +576,7 @@ class Moteur
                 unite.setDecaleUniteX(0);
                 unite.setDecaleUniteY(0);
             
-                Unite ret=Slatch.partie.getTerrain()[destX][destY].getUnite();
+                Unite ret=getUnite(destX,destY);
                 Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(mem);
                 unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
                 Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
@@ -584,7 +584,7 @@ class Moteur
                 Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
                 Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);        
                 
-                Slatch.partie.getJoueur(unite.getJoueur()).addDeplacementTotal(1);
+                getJoueur(unite).addDeplacementTotal(1);
                 return ret;
             }
         }
@@ -602,9 +602,9 @@ class Moteur
             int decY = (int)p.getY();
             if(dansLesBords(pX+decX,pY+decY))
             {
-                if(Slatch.partie.getTerrain()[pX+decX][pY+decY].getUnite()!=null)
+                if(getUnite(pX+decX,pY+decY)!=null)
                 {
-                    if(Slatch.partie.getTerrain()[pX+decX][pY+decY].getUnite().getJoueur()!=unite.getJoueur())
+                    if(getNumJoueur(pX+decX,pY+decY)!=unite.getJoueur());
                     {
                         return true;
                     }
@@ -726,10 +726,10 @@ class Moteur
         
         if(dansLesBords(x+decX,y+decY))
         {
-            if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && Slatch.partie.getTerrain()[x+decX][y+decY].getUnite()!=null)
+            if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && getUnite(x+decX,y+decY)!=null)
             {
                 boolean pasAuJoueurActuel = getEquipe(getNumJoueur(x+decX,y+decY))!=getJoueurActuel().getEquipe();
-                return (pasAuJoueurActuel^(soin && (Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().aBesoinDeSoins()||pasAuJoueurActuel)))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
+                return (pasAuJoueurActuel^(soin && (getUnite(x+decX,y+decY).aBesoinDeSoins()||pasAuJoueurActuel)))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
             }
         }
         return false;
@@ -745,10 +745,10 @@ class Moteur
         
         if(dansLesBords(x+decX,y+decY))
         {
-            if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && Slatch.partie.getTerrain()[x+decX][y+decY].getUnite()!=null)
+            if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && getUnite(x+decX,y+decY)!=null)
             {
-                boolean pasAuJoueurActuel = Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel();
-                return (pasAuJoueurActuel^(soin && (Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().isEvolvable()||pasAuJoueurActuel)))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
+                boolean pasAuJoueurActuel = getNumJoueur(x+decX,y+decY)!=Slatch.partie.getJoueurActuel();
+                return (pasAuJoueurActuel^(soin && (getUnite(x+decX,y+decY).isEvolvable()||pasAuJoueurActuel)))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
             }
         }
         return false;
@@ -779,9 +779,9 @@ class Moteur
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
             {
-                if(Slatch.partie.getTerrain()[i][j].getUnite()!=null)
+                if(getUnite(i,j)!=null)
                 {
-                    if(Slatch.partie.getTerrain()[i][j].getUnite().getJoueur() == unite.getJoueur())
+                    if(getNumJoueur(i,j) == unite.getJoueur())
                     {
                         tabDist[i][j] = -2;
                     }
@@ -819,9 +819,9 @@ class Moteur
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
             {
-                if(Slatch.partie.getTerrain()[i][j].getUnite()!=null)  // quand on a déjà une unité sur la case, on ne peut pas y accéder
+                if(getUnite(i,j)!=null)  // quand on a déjà une unité sur la case, on ne peut pas y accéder
                 {
-                    if(Slatch.partie.getTerrain()[i][j].getUnite().getJoueur() != unite.getJoueur())
+                    if(getNumJoueur(i,j)!= unite.getJoueur())
                     {
                         tabDist[i][j] = -2;
                     }
@@ -859,7 +859,7 @@ class Moteur
                         {
                             pred[x][y] = new Point(t.x, t.y);
                             
-                            if(enBordureDeDeplacement(unite, t.x, t.y, d) && Slatch.partie.getTerrain()[t.x][t.y].getUnite()!=null) // et unité présente aussi
+                            if(enBordureDeDeplacement(unite, t.x, t.y, d) && getUnite(t.x,t.y)!=null) // et unité présente aussi
                             {
                                 pred[x][y]= null;
                             }
@@ -893,7 +893,7 @@ class Moteur
         if(!Slatch.partie.partieFinie)
         {
             Slatch.partie.tourSuivant();
-            List<Unite> l = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getListeUnite();
+            List<Unite> l = getJoueurActuel().getListeUnite();
             
             for(Unite u: l)
             {
@@ -905,7 +905,7 @@ class Moteur
                 }
             }
             
-            if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
+            if(getJoueurActuel().estUneIA())
             {
                 AIMaster.joueTour(Slatch.partie.getJoueurActuel());
             }
@@ -919,14 +919,14 @@ class Moteur
     
     public boolean estAuJoueurActuel(final int pX,final int pY)
     {
-        return estAuJoueurActuel(Slatch.partie.getTerrain()[pX][pY].getUnite());
+        return estAuJoueurActuel(getUnite(pX,pY));
     }
     
     public void creationUnite(final int pX,final int pY, final TypeUnite pType){
         int vNumJoueur = Slatch.partie.getJoueurActuel();
         Joueur vJoueur = Slatch.partie.getJoueur(vNumJoueur);
         
-        if(vJoueur.getArgent()>=pType.getPrix() && Slatch.partie.getTerrain()[pX][pY].getUnite()==null)
+        if(vJoueur.getArgent()>=pType.getPrix() && getUnite(pX,pY)==null)
         {
             vJoueur.addArgent(-pType.getPrix());
             vJoueur.setArgentDepense(pType.getPrix());
@@ -960,7 +960,7 @@ class Moteur
     
     /*****************
      * 
-     * METHODE SIMPLIFICATRICE
+     * METHODEs SIMPLIFICATRICEs
      * 
      * *************/
     
@@ -969,25 +969,43 @@ class Moteur
      */ 
     private int getNumJoueur(final int pX,final int pY){
         return Slatch.partie.getTerrain()[pX][pY].getUnite().getJoueur();
-    } 
-    
-    private int getEquipe(final int pJoueur){
-        return Slatch.partie.getJoueur(pJoueur).getEquipe();
     }
     
+    /****
+     * ENSEMBLE DE METHODE QUI RETOURNE DES UNITES
+     */ 
+    private Unite getUnite(final int pX, final int pY){
+       return Slatch.partie.getTerrain()[pX][pY].getUnite();
+    }
+   
     
     /****
      * ENSEMBLE DE METHODE QUI RETOURNE DES JOUEURS
      */
     private Joueur getJoueur(final Unite pUnite){
-        return Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
+        return Slatch.partie.getJoueur(pUnite.getJoueur());
     }
     
     private Joueur getJoueur(final Terrain pTerrain){
-        return Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
+        return Slatch.partie.getJoueur(pTerrain.getJoueur());
+    }
+    
+    private Joueur getJoueur(final int pX,final int pY){
+        return Slatch.partie.getJoueur(Slatch.partie.getTerrain()[pX][pY].getUnite().getJoueur());
     }
     
     private Joueur getJoueurActuel(){
         return Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
+    }
+    
+    /****
+     * ENSEMBLE DE METHODE QUI RETOURNE l'equipe d'un joueur
+     */
+    private int getEquipe(final int pJoueur){
+        return Slatch.partie.getJoueur(pJoueur).getEquipe();
+    }
+    
+    private int getEquipe(final Unite pUnite){
+        return getJoueur(pUnite).getEquipe();
     }
 }
