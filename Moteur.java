@@ -79,7 +79,7 @@ class Moteur
                 Unite u = Slatch.partie.getTerrain()[vX][vY].getUnite();
                 if(u!= null)
                 {
-                    if(u.aBesoinDeSoins() && pUnite.getJoueur()==u.getJoueur())
+                    if(u.aBesoinDeSoins() && getEquipe(pUnite.getJoueur())==getEquipe(u.getJoueur()))
                     {
                         return true;
                     }
@@ -99,7 +99,8 @@ class Moteur
         int vLocal = pUnite.soigner(uniteA.getDegat());
         if(vLocal!=0){  
            uniteA.addExperience(vLocal);
-           Slatch.partie.getJoueur(uniteA.getJoueur()).addSoinTotal(vLocal);
+           //Slatch.partie.getJoueur(uniteA.getJoueur()).addSoinTotal(vLocal);
+           getJoueur(uniteA).addSoinTotal(vLocal);
            uniteA.attaque(true);
            uniteA.deplacee(true);
            uniteA=null; 
@@ -118,7 +119,7 @@ class Moteur
                 Unite u = Slatch.partie.getTerrain()[vX][vY].getUnite();
                 if(u!= null)
                 {
-                    if(u.isEvolvable() && pUnite.getJoueur()==u.getJoueur())
+                    if(u.isEvolvable() && getEquipe(pUnite.getJoueur())==getEquipe(u.getJoueur()))
                     {
                         return true;
                     }
@@ -161,10 +162,10 @@ class Moteur
         {
             //Pour les statistiques si le nombre de degat est superieur a nombre de point de vie de l'unite
             uniteA.addExperience(degatsAtt+pVictime.getPV());
-            Slatch.partie.getJoueur(uniteA.getJoueur()).addExpTotal(degatsAtt+pVictime.getPV());
-            Slatch.partie.getJoueur(uniteA.getJoueur()).addDegatTotal(degatsAtt+pVictime.getPV());
-            Slatch.partie.getJoueur(pVictime.getJoueur()).addDegatSubit(degatsAtt+pVictime.getPV());
-            Slatch.partie.getJoueur(uniteA.getJoueur()).addNbrUniteTue();
+            getJoueur(uniteA).addExpTotal(degatsAtt+pVictime.getPV());
+            getJoueur(uniteA).addExpTotal(degatsAtt+pVictime.getPV());
+            getJoueur(pVictime).addExpTotal(degatsAtt+pVictime.getPV());
+            getJoueur(uniteA).addNbrUniteTue();
             
             estMort(pVictime);
         }    
@@ -172,24 +173,24 @@ class Moteur
         {
             //Pour les statistiques pour une attaque normal
             uniteA.addExperience(degatsAtt);
-            Slatch.partie.getJoueur(uniteA.getJoueur()).addExpTotal(degatsAtt);
-            Slatch.partie.getJoueur(uniteA.getJoueur()).addDegatTotal(degatsAtt);
-            Slatch.partie.getJoueur(pVictime.getJoueur()).addDegatSubit(degatsAtt);
+            getJoueur(uniteA).addExpTotal(degatsAtt);
+            getJoueur(uniteA).addDegatTotal(degatsAtt);
+            getJoueur(pVictime).addDegatSubit(degatsAtt);
             
             degatsAtt= 0.7*getDegats(pVictime, uniteA);
             
             //Add XP a l'unite qui contre-attaque
             pVictime.addExperience(degatsAtt);
-            Slatch.partie.getJoueur(pVictime.getJoueur()).addExpTotal(degatsAtt);
+            getJoueur(pVictime).addExpTotal(degatsAtt);
             
             //Stat
-            Slatch.partie.getJoueur(uniteA.getJoueur()).addDegatSubit(degatsAtt);
-            Slatch.partie.getJoueur(pVictime.getJoueur()).addDegatTotal(degatsAtt);
+            getJoueur(uniteA).addDegatSubit(degatsAtt);
+            getJoueur(pVictime).addDegatTotal(degatsAtt);
             
             if(faireDegats(uniteA, degatsAtt))
             {
                 //Si l'unite qui attaque meurt pendant l'attaque,
-                Slatch.partie.getJoueur(pVictime.getJoueur()).addNbrUniteTue();
+                getJoueur(pVictime).addNbrUniteTue();
                 
                 estMort(uniteA);
             }
@@ -230,16 +231,16 @@ class Moteur
     {
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
-        Slatch.partie.getJoueur(unite.getJoueur()).addNbrUniteMort();
+        getJoueur(unite).addNbrUniteMort();
         repaint();
-        if(!Slatch.partie.getJoueur(unite.getJoueur()).estUneIA() || unite.getJoueur()!=Slatch.partie.getJoueurActuel())
+        if(!getJoueur(unite).estUneIA() || unite.getJoueur()!=Slatch.partie.getJoueurActuel())
         {
-            Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().remove(unite);
+            getJoueur(unite).getListeUnite().remove(unite);
         }
         
-        if(Slatch.partie.getJoueur(unite.getJoueur()).getListeUnite().isEmpty())
+        if(getJoueur(unite).getListeUnite().isEmpty())
         {
-            Slatch.partie.getJoueur(unite.getJoueur()).mourrir();
+            getJoueur(unite).mourrir();
             Slatch.partie.gagner();
         }
     }
@@ -727,7 +728,7 @@ class Moteur
         {
             if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && Slatch.partie.getTerrain()[x+decX][y+decY].getUnite()!=null)
             {
-                boolean pasAuJoueurActuel = Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().getJoueur()!=Slatch.partie.getJoueurActuel();
+                boolean pasAuJoueurActuel = getEquipe(getNumJoueur(x+decX,y+decY))!=getJoueurActuel().getEquipe();
                 return (pasAuJoueurActuel^(soin && (Slatch.partie.getTerrain()[x+decX][y+decY].getUnite().aBesoinDeSoins()||pasAuJoueurActuel)))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
             }
         }
@@ -953,5 +954,40 @@ class Moteur
     
     public void setuniteA(Unite pUnite){
         uniteA = pUnite;
+    }
+    
+    
+    
+    /*****************
+     * 
+     * METHODE SIMPLIFICATRICE
+     * 
+     * *************/
+    
+    /****
+     * ENSEMBLE DE METHODE QUI RETOURNE DES INDICES DE JOUEUR
+     */ 
+    private int getNumJoueur(final int pX,final int pY){
+        return Slatch.partie.getTerrain()[pX][pY].getUnite().getJoueur();
+    } 
+    
+    private int getEquipe(final int pJoueur){
+        return Slatch.partie.getJoueur(pJoueur).getEquipe();
+    }
+    
+    
+    /****
+     * ENSEMBLE DE METHODE QUI RETOURNE DES JOUEURS
+     */
+    private Joueur getJoueur(final Unite pUnite){
+        return Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
+    }
+    
+    private Joueur getJoueur(final Terrain pTerrain){
+        return Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
+    }
+    
+    private Joueur getJoueurActuel(){
+        return Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
     }
 }
