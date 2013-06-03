@@ -289,6 +289,8 @@ public class PanelMatrice extends JPanel
                 
                 String stat1 = "Statistiques du joueur " + i;
                 int stat1Size = fm.stringWidth(stat1);
+                String stat13 = "Score : " + Slatch.partie.ListeJoueur.get(i).getScore();
+                int stat13Size = fm.stringWidth(stat13);
                 String stat2 = "Argent recolte : " + Slatch.partie.ListeJoueur.get(i).getArgentTotal()+"¤";
                 int stat2Size = fm.stringWidth(stat2);
                 String stat3 = "Argent depense : " + Slatch.partie.ListeJoueur.get(i).getArgentDepense()+"¤";
@@ -313,17 +315,18 @@ public class PanelMatrice extends JPanel
                 int stat9Size = fm.stringWidth(stat9);
                     
                 g.drawString(stat1, this.getWidth()/2 + decalage - stat1Size/2, 4*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat2, this.getWidth()/2 + decalage - stat2Size/2, 5*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat3, this.getWidth()/2 + decalage - stat3Size/2, 6*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat4, this.getWidth()/2 + decalage - stat4Size/2, 7*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat5, this.getWidth()/2 + decalage - stat5Size/2, 8*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat11, this.getWidth()/2 + decalage - stat11Size/2, 9*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat10, this.getWidth()/2 + decalage - stat10Size/2, 10*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat6, this.getWidth()/2 + decalage - stat6Size/2, 11*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat12, this.getWidth()/2 + decalage - stat12Size/2, 12*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat7, this.getWidth()/2 + decalage - stat7Size/2, 13*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat8, this.getWidth()/2 + decalage - stat8Size/2, 14*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat9, this.getWidth()/2 + decalage - stat9Size/2, 15*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat13, this.getWidth()/2 + decalage - stat1Size/2, 5*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat2, this.getWidth()/2 + decalage - stat2Size/2, 6*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat3, this.getWidth()/2 + decalage - stat3Size/2, 7*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat4, this.getWidth()/2 + decalage - stat4Size/2, 8*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat5, this.getWidth()/2 + decalage - stat5Size/2, 9*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat11, this.getWidth()/2 + decalage - stat11Size/2, 10*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat10, this.getWidth()/2 + decalage - stat10Size/2, 11*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat6, this.getWidth()/2 + decalage - stat6Size/2, 12*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat12, this.getWidth()/2 + decalage - stat12Size/2, 13*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat7, this.getWidth()/2 + decalage - stat7Size/2, 14*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat8, this.getWidth()/2 + decalage - stat8Size/2, 15*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat9, this.getWidth()/2 + decalage - stat9Size/2, 16*this.getHeight()/(2*hauteurSize));
 
             }
         }
