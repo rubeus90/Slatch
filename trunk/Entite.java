@@ -15,6 +15,7 @@ public abstract class Entite
     protected int aPV; //Point de vie actuelle de l'entite
     protected int aJoueur;            //Numero du joueur
     protected boolean aSurbrillance;            //Numero du joueur
+    protected boolean aBrouillard;
     
     /**
      * Constructeur d'une Entite
@@ -28,6 +29,7 @@ public abstract class Entite
         this.aCoordonneeY = pCoordonneeY;
         this.aJoueur = pJoueur;
         this.aSurbrillance=false;
+        this.aBrouillard=false;
     }
        
     public abstract void dessine(final Graphics g, PanelMatrice pPanel);
@@ -101,6 +103,15 @@ public abstract class Entite
         return this.aSurbrillance;
     }
     
+     /**
+     * Accesseur
+     * @return aSurbrillance
+     */
+    public boolean getBrouillard()
+    {
+        return this.aBrouillard;
+    }
+    
     /**
      * Mutateur
      * @param pSurbrillance
@@ -108,6 +119,15 @@ public abstract class Entite
     public void setSurbrillance(final boolean pSurbrillance)
     {
         this.aSurbrillance = pSurbrillance;
+    }
+    
+    /**
+     * Mutateur
+     * @param pSurbrillance
+     */
+    public void setBrouillard(final boolean pBrouillard)
+    {
+        this.aBrouillard = pBrouillard;
     }
     
         

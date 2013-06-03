@@ -475,6 +475,10 @@ class Moteur
             
             mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
         }
+        
+        if(!getJoueur(unite).estUneIA()){
+            Brouillard();
+        }
     }
     
     
@@ -848,6 +852,70 @@ class Moteur
             }
         }
     }
+    
+     /**
+     * va appeler les methodes pour afficher la portee de deplacement d'une unite
+     * @param unite unite qui a envie de bouger
+     */
+    private void affichePorteeBrouillard(final Unite unite)
+    {
+        int x = unite.getCoordonneeX();
+        int y = unite.getCoordonneeY();
+        
+        Slatch.partie.getTerrain()[x][y].setBrouillard(false);
+        
+        Terrain plaine = new Terrain(x, y, 0, TypeTerrain.PLAINE);
+        int porteeMax = unite.getDeplacement() / plaine.getCout(unite);
+        
+        for(int i=1; i<=porteeMax;i++)
+        {
+            for(int j=1; j<=i;j++)
+            {
+                for(Quad q: signes)
+                {
+                    int a = i*q.a, b= j*q.b, c=i*q.c, d = j*q.d;
+                    if(dansLesBords(x+a+b, y+c+d))
+                    {
+                        Slatch.partie.getTerrain()[x+a+b][y+c+d].setBrouillard(false);
+                        repaint();
+                    }
+                }
+            }
+        } 
+        
+        
+        
+//         this.remplitPorteeDep(unite, true);
+//         for(int i=0; i<Slatch.partie.getLargeur(); i++)
+//         {
+//             for(int j=0; j<Slatch.partie.getHauteur(); j++)
+//             {
+//                 if(tabDist[i][j]>0 || tabDist[i][j] == -2)
+//                 {
+//                     Slatch.partie.getTerrain()[i][j].setBrouillard(false);
+//                     repaint();
+//                 }
+//             }
+//         }
+    }
+    
+    public void Brouillard(){
+        for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        {
+            for(int j=0; j<Slatch.partie.getHauteur(); j++)
+            {
+                Slatch.partie.getTerrain()[i][j].setBrouillard(true);
+            }
+        }
+        
+        for(Joueur vJoueur : Slatch.partie.ListeJoueur){
+            if(getJoueurActuel().getEquipe() == vJoueur.getEquipe()){                
+                for(Unite vUnite : vJoueur.getListeUnite()){
+                     affichePorteeBrouillard(vUnite);
+                }             
+            }
+        }
+    }
    
     /**
      * Initialise tabDist afin d'utiliser algoDeplacement dans des conditions optimales
@@ -985,12 +1053,6 @@ class Moteur
         return(x>=0 && y>=0 && x<Slatch.partie.getLargeur() && y<Slatch.partie.getHauteur());
     }
     
-    private void repaint()
-    {
-         Slatch.ihm.getPanel().repaint();
-         Slatch.ihm.getpanelinfo().repaint();
-    }
-    
     public void setuniteA(Unite pUnite){
         uniteA = pUnite;
     }
@@ -1000,6 +1062,12 @@ class Moteur
      * METHODEs SIMPLIFICATRICEs
      * 
      * *************/
+     
+    private void repaint()
+    {
+         Slatch.ihm.getPanel().repaint();
+         Slatch.ihm.getpanelinfo().repaint();
+    }
     
     /****
      * ENSEMBLE DE METHODE QUI RETOURNE DES INDICES DE JOUEUR

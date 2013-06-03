@@ -41,6 +41,8 @@ public class Slatch {
         moteur = new Moteur();
         ihm = new IHM_NEW();
         
+        moteur.Brouillard();
+        
         //maps = new CreationMaps("hacheMap");
         
         if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())

@@ -104,17 +104,23 @@ public class Terrain extends Entite{
             
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
         
-        if(aUnite!=null){
-            aUnite.dessine(g, pPanel);    
-        }
-        
         if(super.getSurbrillance()) {
             
                 Image surbrillance = Slatch.aImages.get("5");
                 g.drawImage(surbrillance, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
             
-        }
+        } 
         
+        if(super.getBrouillard()) {
+            
+                Image surbrillance = Slatch.aImages.get("noir80");
+                g.drawImage(surbrillance, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
+        } 
+        else{
+            if(aUnite!=null){
+                        aUnite.dessine(g, pPanel);    
+            }
+        }
     }
     
     public boolean estUnBatiment()
