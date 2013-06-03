@@ -5,6 +5,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.*;
 
+import javax.swing.Timer;
+
 /**
  * JFrame est l'IHM du jeu. (herite de JFrame)
  * (Ne definie que le nom de la fenetre, sa taille, si elle est redimenssionable...).
@@ -18,11 +20,17 @@ public class IHM_NEW  {
     private PanelMatrice panelMatrice;
     private PanelMenu panelMenu;
     private JFrame frame;
+    private Animation animation;
+    static Timer timer;
     
     /**
      * Constructeur qui instancie JFrame du Menu.
      */
     public IHM_NEW(){
+        animation = new Animation();
+        Timer timer = new Timer(100, animation);
+        timer.start();
+
         frame = new JFrame("SLATCH");
 
         frame.setTitle("SLATCH");
@@ -84,5 +92,9 @@ public class IHM_NEW  {
     
     public PanelMenu getPanelMenu() {
         return panelMenu;
+    }
+    
+    public Animation getAnimation() {
+        return animation;
     }
 }
