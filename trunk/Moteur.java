@@ -995,8 +995,6 @@ class Moteur
         uniteA = pUnite;
     }
     
-    
-    
     /*****************
      * 
      * METHODEs SIMPLIFICATRICEs
