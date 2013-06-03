@@ -478,9 +478,9 @@ public class Partie
         }
     }
     
-    public void chargerPartie(){
+    public void chargerPartie(final String pNom){
         try {
-            aMap = new Scanner(getClass().getClassLoader().getResource("Maps/sauvegarde.txt").openStream());
+            aMap = new Scanner(getClass().getClassLoader().getResource("Maps/" + pNom + ".txt").openStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
