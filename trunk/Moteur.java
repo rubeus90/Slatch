@@ -476,8 +476,25 @@ class Moteur
             mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
         }
         
-        if(!getJoueur(unite).estUneIA()){
-            Brouillard();
+        
+        
+        
+        /*Retourner la liste des joueurs qui ne sont pas des IAs. Si un joueur n'est pas un IA, on appelle la methode Brouillard() pour
+         * mettre a jour son brouillard.
+         * 
+         * Si un joueur est un IA mais il est dans la meme equipe qu'un joueur non IA alors on mettre a jour son brouillard aussi
+         */
+        
+        ArrayList<Joueur> liste = new ArrayList<Joueur>();
+        for(Joueur vJoueur : Slatch.partie.ListeJoueur){
+            if(!vJoueur.estUneIA()){
+            	liste.add(vJoueur);
+            }
+        }
+        
+        for(Joueur joueur: liste){
+        	if(!getJoueur(unite).estUneIA() || getJoueur(unite).getEquipe() == joueur.getEquipe())
+        		Brouillard();
         }
     }
     
