@@ -29,6 +29,7 @@ public class Joueur
     private int aCaptureTotal;
     private int aDeplacementTotal;
     private int aSoinTotal;
+    private int aEquipe;
     
     /**
      * Créer un joueur
@@ -37,7 +38,7 @@ public class Joueur
      *          la faction (Faction)
      *          le nombre de batiment au depart (entier)
      */ 
-    public Joueur(final int pNumJoueur,final Faction pFaction,final int pNbreBatiment)
+    public Joueur(final int pNumJoueur,final Faction pFaction,final int pNbreBatiment,final int pEquipe)
     {
         aNumJoueur = pNumJoueur;
         aFaction = pFaction;
@@ -56,6 +57,7 @@ public class Joueur
         aDeplacementTotal=0;
         aSoinTotal=0;
         aNbreBatiment = pNbreBatiment;
+        aEquipe = pEquipe;
         aListeUnite = new ArrayList<Unite>();
         aListeUsine = new ArrayList<Terrain>();
         aListeBatiment = new ArrayList<Terrain>();
@@ -79,6 +81,7 @@ public class Joueur
     public int getSoinTotal() {return aSoinTotal;}
     public int getDeplacementTotal() {return aDeplacementTotal;}
     public int getCaptureTotal() {return aCaptureTotal;}
+    public int getEquipe() {return aEquipe;}
     public List<Unite> getListeUnite()   {return aListeUnite;}
     public List<Terrain> getListeUsine()   {return aListeUsine;}
     public List<Terrain> getListeBatiment()   {return aListeBatiment;}
