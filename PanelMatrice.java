@@ -328,7 +328,12 @@ public class PanelMatrice extends JPanel
                 g.drawString(stat7, this.getWidth()/2 + decalage - stat7Size/2, 14*this.getHeight()/(2*hauteurSize));
                 g.drawString(stat8, this.getWidth()/2 + decalage - stat8Size/2, 15*this.getHeight()/(2*hauteurSize));
                 g.drawString(stat9, this.getWidth()/2 + decalage - stat9Size/2, 16*this.getHeight()/(2*hauteurSize));
-
+            }
+            
+            Campagne campagne = new Campagne("Maps/mapTest.txt", 1);
+            if(Slatch.partie.getClass() == campagne.getClass()){
+            	campagne.createDialogue(); 
+            	
             }
         }
         
@@ -366,7 +371,7 @@ public class PanelMatrice extends JPanel
                     if(menuMenu) {
                         // Bouton charger
                         if (0<clickY && clickY<aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
-                            Slatch.partie.chargerPartie();
+                            Slatch.partie.chargerPartie("sauvegarde");
                         }
                         // Bouton sauver
                         else if(aHauteurCarreau<clickY && clickY<2*aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
