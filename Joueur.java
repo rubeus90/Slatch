@@ -30,6 +30,7 @@ public class Joueur
     private int aDeplacementTotal;
     private int aSoinTotal;
     private int aEquipe;
+    //private GeneraleIA aGeneraleIA;
     
     /**
      * Créer un joueur
@@ -61,6 +62,7 @@ public class Joueur
         aListeUnite = new ArrayList<Unite>();
         aListeUsine = new ArrayList<Terrain>();
         aListeBatiment = new ArrayList<Terrain>();
+        //aGeneraleIA= new GeneraleIA(pBut);
     }
 
     /**
@@ -88,6 +90,7 @@ public class Joueur
     public List<Terrain> getListeBatiment()   {return aListeBatiment;}
     public boolean estUneIA()                  {return IA;}
     public boolean isAlive()                  {return aVivant;}
+    //public GeneraleIA getGeneraleIA()       {return aGeneraleIA;}
     
     public void setNumJoueur(final int pNum) {aNumJoueur = pNum;}
     public void setFaction(final Faction pFaction) {aFaction = pFaction;}
