@@ -223,7 +223,6 @@ public class Partie
         for(int i=1;i<=aNbrJoueur;i++)
         {
             ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i],vEquipe[i],""));     
-            System.out.println("Le joueur"+ i + "est dans l'équipe" + vEquipe[i]);
             if(isCharged)
                 ListeJoueur.get(i).setArgent(vArgent[i]);
         }
