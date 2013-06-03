@@ -7,27 +7,24 @@
  */
 public class Influence
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    
+    public int capture;
+    public int defensif;
+    public int offensif;
+    public int danger;
+    public int retraite;
 
     /**
      * Constructor for objects of class Influence
      */
     public Influence()
     {
-        // initialise instance variables
-        x = 0;
+        capture=0;
+        defensif=0;
+        offensif=0;
+        danger=0;
+        retraite=0;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+   
 }

@@ -30,7 +30,7 @@ public class Joueur
     private int aDeplacementTotal;
     private int aSoinTotal;
     private int aEquipe;
-    //private GeneraleIA aGeneraleIA;
+    private GeneraleIA aGeneraleIA;
     
     /**
      * Créer un joueur
@@ -39,7 +39,7 @@ public class Joueur
      *          la faction (Faction)
      *          le nombre de batiment au depart (entier)
      */ 
-    public Joueur(final int pNumJoueur,final Faction pFaction,final int pNbreBatiment,final int pEquipe)
+    public Joueur(final int pNumJoueur,final Faction pFaction,final int pNbreBatiment,final int pEquipe,final String pBut)
     {
         aNumJoueur = pNumJoueur;
         aFaction = pFaction;
@@ -62,7 +62,7 @@ public class Joueur
         aListeUnite = new ArrayList<Unite>();
         aListeUsine = new ArrayList<Terrain>();
         aListeBatiment = new ArrayList<Terrain>();
-        //aGeneraleIA= new GeneraleIA(pBut);
+        aGeneraleIA= new GeneraleIA(pBut);
     }
 
     /**
@@ -90,7 +90,7 @@ public class Joueur
     public List<Terrain> getListeBatiment()   {return aListeBatiment;}
     public boolean estUneIA()                  {return IA;}
     public boolean isAlive()                  {return aVivant;}
-    //public GeneraleIA getGeneraleIA()       {return aGeneraleIA;}
+    public GeneraleIA getGeneraleIA()       {return aGeneraleIA;}
     
     public void setNumJoueur(final int pNum) {aNumJoueur = pNum;}
     public void setFaction(final Faction pFaction) {aFaction = pFaction;}
