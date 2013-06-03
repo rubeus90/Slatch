@@ -20,7 +20,7 @@ class Moteur
     Point[][] pred;
     
     static Point[] voisins = {new Point(0,1), new Point(0,-1),new Point(1,0),new Point(-1,0)};
-    Quad[] signes = {new Quad(0,1,-1,1), new Quad(0,-1,1,-1),new Quad(1,-1,0,1),new Quad(-1,1,0,-1)};// Permettra de parcourir le rayon de portée d'une unité
+    static Quad[] signes = {new Quad(0,1,-1,1), new Quad(0,-1,1,-1),new Quad(1,-1,0,1),new Quad(-1,1,0,-1)};// Permettra de parcourir le rayon de portée d'une unité
     
     
     
@@ -1021,34 +1021,34 @@ class Moteur
     /****
      * ENSEMBLE DE METHODE QUI RETOURNE DES JOUEURS
      */
-    private Joueur getJoueur(final Unite pUnite){
+    public Joueur getJoueur(final Unite pUnite){
         return Slatch.partie.getJoueur(pUnite.getJoueur());
     }
     
-    private Joueur getJoueur(final Terrain pTerrain){
+    public Joueur getJoueur(final Terrain pTerrain){
         return Slatch.partie.getJoueur(pTerrain.getJoueur());
     }
     
-    private Joueur getJoueurTerrain(final int pX,final int pY){
+    public Joueur getJoueurTerrain(final int pX,final int pY){
         return Slatch.partie.getJoueur(Slatch.partie.getTerrain()[pX][pY].getJoueur());
     }
     
-    private Joueur getJoueur(final int pX,final int pY){
+    public Joueur getJoueur(final int pX,final int pY){
         return Slatch.partie.getJoueur(Slatch.partie.getTerrain()[pX][pY].getUnite().getJoueur());
     }
     
-    private Joueur getJoueurActuel(){
+    public Joueur getJoueurActuel(){
         return Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
     }
     
     /****
      * ENSEMBLE DE METHODE QUI RETOURNE l'equipe d'un joueur
      */
-    private int getEquipe(final int pJoueur){
+    public int getEquipe(final int pJoueur){
         return Slatch.partie.getJoueur(pJoueur).getEquipe();
     }
     
-    private int getEquipe(final Unite pUnite){
+    public int getEquipe(final Unite pUnite){
         return getJoueur(pUnite).getEquipe();
     }
 }

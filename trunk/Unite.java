@@ -284,6 +284,11 @@ public class Unite extends Entite
     {
         return(aPV<aPVMax);
     }
+    
+    public boolean estLowHP()
+    {
+        return(this.aPV<this.aPVMax/3);
+    }
    
     @Override
     public void dessine (final Graphics g, PanelMatrice pPanel) {
