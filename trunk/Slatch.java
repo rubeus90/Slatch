@@ -31,10 +31,12 @@ public class Slatch {
         loadImage();
 
         Partie partieRapide = new Partie(20,30,"Maps/mapTest4.txt");
+        
         //partie = new Partie("Maps/mapGenere.txt");
         //partie =new Partie("Maps/sauvegarde.txt");
         
         //Tutoriel tuto = new Tutoriel("Maps/tutoriel.txt");
+//        Campagne campagne = new Campagne("Maps/mapTest4.txt", 1);
         
         partie = partieRapide;        
         
@@ -173,6 +175,10 @@ public class Slatch {
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("noir80",image);
                 
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/noir.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("noir",image);
+                
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/yangattaque.png"));
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("yangattaque",image);
@@ -261,5 +267,9 @@ public class Slatch {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void setPartie(Partie pPartie){
+    	partie = pPartie;
     }
 }
