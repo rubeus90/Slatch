@@ -29,6 +29,7 @@ public class OperationIA
                         int x=0,y=0;
                         if(unite.getAttaque().efficacite.containsKey(u.getType()))
                         {
+                            if(Slatch.moteur.estAPortee(unite, u)){x= (int)(unite.getAttaque().efficacite.get(u.getType()).doubleValue()*5.0);}
                             x= (int)(unite.getAttaque().efficacite.get(u.getType()).doubleValue()*5.0);
                         }
                         
