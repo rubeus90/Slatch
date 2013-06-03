@@ -11,7 +11,7 @@ public class Influence
     public int capture;
     public int defensif;
     public int offensif;
-    public int danger;
+    public int menace;
     public int retraite;
 
     /**
@@ -22,8 +22,17 @@ public class Influence
         capture=0;
         defensif=0;
         offensif=0;
-        danger=0;
+        menace=0;
         retraite=0;
+    }
+    
+    public Influence(int capture, int defensif, int offensif, int menace, int retraite)
+    {
+        capture=capture;
+        defensif=defensif;
+        offensif=offensif;
+        menace=menace;
+        retraite=retraite;
     }
 
    
