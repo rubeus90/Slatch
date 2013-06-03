@@ -332,4 +332,6 @@ public class Unite extends Entite
     
     public void setDecaleUniteX(final int p) {aDecaleUniteX=p;}
     public void setDecaleUniteY(final int p) {aDecaleUniteY=p;}
+    public int getDecaleUniteX() {return aDecaleUniteX;}
+    public int getDecaleUniteY() {return aDecaleUniteY;}
 }
