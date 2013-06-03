@@ -219,13 +219,13 @@ public class Partie
         }
         
         ListeJoueur = new ArrayList<Joueur>();
-        Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
+        Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,0); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
         ListeJoueur.add(JoueurNeutre);
         
         //Ajout des joueur dans l'arrayList
         for(int i=1;i<=aNbrJoueur;i++)
         {
-            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i]));
+            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i],i));
             if(isCharged)
                 ListeJoueur.get(i).setArgent(vArgent[i]);
         }
