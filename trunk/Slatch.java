@@ -2,6 +2,8 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * @author rubeus
@@ -14,6 +16,7 @@ public class Slatch {
     public static Moteur moteur;
     public static HashMap<String,Image> aImages; // Se trouvera dans Le moteur du jeu quand il y sera avec tout les load
     public static CreationMaps maps;
+    static Timer timer;
     
     /**
      * @param args
@@ -27,6 +30,9 @@ public class Slatch {
      */
     public Slatch()
     {
+        timer = new Timer();
+        timer.schedule(new Chrono(),0,1);
+        
         aImages=new HashMap<String,Image>();
         loadImage();
 
@@ -34,7 +40,7 @@ public class Slatch {
         //partie = new Partie("Maps/mapGenere.txt");
         //partie =new Partie("Maps/sauvegarde.txt");
         
-//         Tutoriel tuto = new Tutoriel("Maps/tutoriel.txt");
+        //Tutoriel tuto = new Tutoriel("Maps/tutoriel.txt");
         
         partie = partieRapide;        
         
