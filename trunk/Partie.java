@@ -90,6 +90,11 @@ public class Partie
         for(int i=1;i<=aNbrJoueur;  i++){
             vArgent[i]=Integer.parseInt(aMap.nextLine());
         }
+        
+        int[] vEquipe =new int[aNbrJoueur+1];
+        for(int i=1;i<=aNbrJoueur;  i++){
+            vEquipe[i]=Integer.parseInt(aMap.nextLine());
+        }
   
         aTerrain = new Terrain[aLargeur][aHauteur];
         
@@ -225,7 +230,8 @@ public class Partie
         //Ajout des joueur dans l'arrayList
         for(int i=1;i<=aNbrJoueur;i++)
         {
-            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i],i));
+            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i],vEquipe[i]));
+            System.out.println("Le joueur"+ i + "est dans l'équipe" + vEquipe[i]);
             if(isCharged)
                 ListeJoueur.get(i).setArgent(vArgent[i]);
         }
