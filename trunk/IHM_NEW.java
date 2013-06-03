@@ -27,6 +27,12 @@ public class IHM_NEW  {
      * Constructeur qui instancie JFrame du Menu.
      */
     public IHM_NEW(){
+        // Creation des animations
+        animation = new Animation();
+        // Creation du timer pour les animations
+        Timer timer = new Timer(100, animation);
+        timer.start();
+
         // Creation de la fenetre : frame
         frame = new JFrame("SLATCH");
         frame.setTitle("SLATCH");
@@ -59,12 +65,6 @@ public class IHM_NEW  {
         panelMenu.setVisible(false);
         panelMatrice.setVisible(true);
         panelInfo.setVisible(true);
-        
-        // Creation des animations
-        //animation = new Animation();
-        // Creation du timer pour les animations
-        //Timer timer = new Timer(100, animation);
-        //timer.start();
     }
     
     /**
