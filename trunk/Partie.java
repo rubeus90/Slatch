@@ -27,9 +27,8 @@ public class Partie
     private Terrain[][] aTerrain;
     private int aJoueurActuel;
     private int aTour;
-    private int aNbrJoueurMort;
     public boolean partieFinie = false;
-    //JACKPOT
+    
     
 
     /**
@@ -37,8 +36,6 @@ public class Partie
      */
     public Partie(final int pRevenuBatiment,final int pTourMax, final String pMap)
     {
-        aNbrJoueurMort=0;
-        
         try {
             aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
         } catch (IOException e) {
@@ -61,8 +58,6 @@ public class Partie
      * 
      */
     public Partie(final String pMap){
-        aNbrJoueurMort=0;
-        
         try {
             aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
         } catch (IOException e) {
@@ -92,11 +87,6 @@ public class Partie
             vArgent[i]=Integer.parseInt(aMap.nextLine());
         }
         
-        int[] vEquipe =new int[aNbrJoueur+1];
-        for(int i=1;i<=aNbrJoueur;  i++){
-            vEquipe[i]=Integer.parseInt(aMap.nextLine());
-        }
-  
         aTerrain = new Terrain[aLargeur][aHauteur];
         
         //On rempli la carte de plaine 
@@ -228,11 +218,12 @@ public class Partie
         Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,0,""); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
         ListeJoueur.add(JoueurNeutre);
         
+        int[] vEquipe = {0,1,1,2,2};
         //Ajout des joueur dans l'arrayList
         for(int i=1;i<=aNbrJoueur;i++)
         {
-            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i],vEquipe[i],""));
-            //System.out.println("Le joueur"+ i + "est dans l'équipe" + vEquipe[i]);
+            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i],vEquipe[i],""));     
+            System.out.println("Le joueur"+ i + "est dans l'équipe" + vEquipe[i]);
             if(isCharged)
                 ListeJoueur.get(i).setArgent(vArgent[i]);
         }
@@ -274,12 +265,19 @@ public class Partie
         Slatch.ihm.getpanelinfo().paintImmediately(0,0,Slatch.ihm.getpanelinfo().getWidth(),Slatch.ihm.getpanelinfo().getHeight());
     }
     
-    public void gagner(){
-       aNbrJoueurMort ++;
-       
-       if(aNbrJoueurMort == aNbrJoueur-1){
-          this.partieFinie=true;
+    public void gagner(final Joueur pJoueur){
+       int i=1;
+       for(Joueur vJoueur: ListeJoueur){
+           if(vJoueur.getNumJoueur()!=0){
+               if(vJoueur.isAlive()){
+                   if(vJoueur.getEquipe()!=pJoueur.getEquipe()){
+                        return;
+                   }
+               }   
+           }
+           i++;
        }
+       partieFinie=true;
     }
     
     /**********
@@ -296,7 +294,7 @@ public class Partie
     }
     
     public void setHauteur(int pHauteur){
-    	aHauteur = pHauteur;
+        aHauteur = pHauteur;
     }
     
     /**
@@ -309,7 +307,7 @@ public class Partie
     }
     
     public void setLargeur(int pLargeur){
-    	aLargeur = pLargeur;
+        aLargeur = pLargeur;
     }
     
     /**
@@ -349,7 +347,7 @@ public class Partie
     }
     
     public void setNbrJoueur(int pNbrJoueur){
-    	aNbrJoueur = pNbrJoueur;
+        aNbrJoueur = pNbrJoueur;
     }
     
     /**
@@ -362,7 +360,7 @@ public class Partie
     }
     
     public void setCarreauTerrain(int i, int j, Terrain pTerrain){
-    	aTerrain[i][j] = pTerrain;
+        aTerrain[i][j] = pTerrain;
     }
     
     /**
@@ -482,7 +480,7 @@ public class Partie
     }
     
     public void chargerPartie(){
-    	try {
+        try {
             aMap = new Scanner(getClass().getClassLoader().getResource("Maps/sauvegarde.txt").openStream());
         } catch (IOException e) {
             e.printStackTrace();

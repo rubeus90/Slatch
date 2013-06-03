@@ -167,7 +167,7 @@ class Moteur
             getJoueur(pVictime).addExpTotal(degatsAtt+pVictime.getPV());
             getJoueur(uniteA).addNbrUniteTue();
             
-            estMort(pVictime);
+            estMort(pVictime,uniteA);
         }    
         else if(distance(uniteA, pVictime)==1 && pVictime.getAttaque().aTypePortee.getPorteeMin()==1) //sinon + si attaque au CAC, on riposte
         {
@@ -192,7 +192,7 @@ class Moteur
                 //Si l'unite qui attaque meurt pendant l'attaque,
                 getJoueur(pVictime).addNbrUniteTue();
                 
-                estMort(uniteA);
+                estMort(uniteA,pVictime);
             }
         }
         uniteA.attaque(true);
@@ -227,7 +227,7 @@ class Moteur
         return degat;
     }
     
-    private void estMort(final Unite unite)
+    private void estMort(final Unite unite, final Unite pUniteVictorieux)
     {
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
         Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
@@ -241,7 +241,7 @@ class Moteur
         if(getJoueur(unite).getListeUnite().isEmpty())
         {
             getJoueur(unite).mourrir();
-            Slatch.partie.gagner();
+            Slatch.partie.gagner(getJoueur(pUniteVictorieux));
         }
     }
     
@@ -272,7 +272,7 @@ class Moteur
            if(vBatiment.getType()==TypeTerrain.QG)
            {
                getJoueur(vBatiment).mourrir();     
-               Slatch.partie.gagner();
+               Slatch.partie.gagner(getJoueur(vBatiment));
            }
            getJoueur(vBatiment).addNbreBatiment(-1);
            vBatiment.setJoueur(uniteA.getJoueur());
