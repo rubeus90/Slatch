@@ -315,7 +315,7 @@ public class PanelMatrice extends JPanel
                 int stat9Size = fm.stringWidth(stat9);
                     
                 g.drawString(stat1, this.getWidth()/2 + decalage - stat1Size/2, 4*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat13, this.getWidth()/2 + decalage - stat1Size/2, 5*this.getHeight()/(2*hauteurSize));
+                g.drawString(stat13, this.getWidth()/2 + decalage - stat13Size/2, 5*this.getHeight()/(2*hauteurSize));
                 g.drawString(stat2, this.getWidth()/2 + decalage - stat2Size/2, 6*this.getHeight()/(2*hauteurSize));
                 g.drawString(stat3, this.getWidth()/2 + decalage - stat3Size/2, 7*this.getHeight()/(2*hauteurSize));
                 g.drawString(stat4, this.getWidth()/2 + decalage - stat4Size/2, 8*this.getHeight()/(2*hauteurSize));
