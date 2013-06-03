@@ -29,7 +29,7 @@ public class Partie
     private int aTour;
     private int aNbrJoueurMort;
     public boolean partieFinie = false;
-    //ca va
+    //moi ca va
     
 
     /**
