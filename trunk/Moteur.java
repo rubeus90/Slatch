@@ -749,7 +749,7 @@ class Moteur
         }
     }
     
-    public boolean estAPortee(Unite pA, Unite pC)
+    public boolean estAPortee(Unite pA, Unite pC) // nous dit si pC est à portee de tir de PA
     {
         int d=distance(pA, pC);
         return d<=pA.getAttaque().aTypePortee.getPorteeMax() && d>=pA.getAttaque().aTypePortee.getPorteeMin();
