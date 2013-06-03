@@ -61,10 +61,10 @@ public class IHM_NEW  {
         panelInfo.setVisible(true);
         
         // Creation des animations
-        animation = new Animation();
+        //animation = new Animation();
         // Creation du timer pour les animations
-        Timer timer = new Timer(100, animation);
-        timer.start();
+        //Timer timer = new Timer(100, animation);
+        //timer.start();
     }
     
     /**
