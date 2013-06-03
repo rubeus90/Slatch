@@ -28,10 +28,10 @@ public class IHM_NEW  {
      */
     public IHM_NEW(){
         // Creation des animations
-        animation = new Animation();
+        //animation = new Animation();
         // Creation du timer pour les animations
-        Timer timer = new Timer(100, animation);
-        timer.start();
+        //Timer timer = new Timer(100, animation);
+        //timer.start();
 
         // Creation de la fenetre : frame
         frame = new JFrame("SLATCH");
