@@ -30,25 +30,28 @@ public class Animation implements ActionListener
      * Methode appelee ttes les 100ms
      */
     public void actionPerformed(ActionEvent event) {
-        //System.out.println(aNbTick);
-        aNbTick++;
         
-        beforeTime = System.currentTimeMillis();        
+        
+        
+        
+        
+        
+        
+        
+        
+        /*beforeTime = System.currentTimeMillis();        
         while(animationDone == false){              
             // TODO Faire anime
             
             // TODO END
             timeDifference = System.currentTimeMillis() - beforeTime;
-            sleepTime = 4 - timeDifference;         
-            if(sleepTime < 0)       
-                sleepTime = 2;              
-            try{                        
-                Thread.sleep(sleepTime);        
-            }           
-            catch(Exception e){             
-            }
+            
+            
             beforeTime = System.currentTimeMillis();    
         }
         animationDone = false;
+        */
+        //System.out.println(aNbTick);
+        aNbTick++;
     }
 }
