@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Write a description of class Partie here.
  * 
- * @author (your name) 
+ * @author (your name) .
  * @version (a version number or a date)
  */
 public class Partie
@@ -29,6 +29,7 @@ public class Partie
     private int aTour;
     private int aNbrJoueurMort;
     public boolean partieFinie = false;
+    //coucou
     
 
     /**
