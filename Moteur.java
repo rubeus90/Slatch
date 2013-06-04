@@ -866,7 +866,7 @@ class Moteur
         Terrain plaine = new Terrain(x, y, 0, TypeTerrain.PLAINE);
         int porteeMax = unite.getDeplacement() / plaine.getCout(unite);
         
-        for(int i=1; i<=porteeMax;i++)
+        for(int i=1; i<=porteeMax+2;i++)
         {
             for(int j=1; j<=i;j++)
             {
@@ -1036,6 +1036,7 @@ class Moteur
             vJoueur.getListeUnite().add(creation);
             vJoueur.addNbrUniteCree();
             repaint();
+            Brouillard();
         }
        
     }
