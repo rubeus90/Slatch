@@ -38,12 +38,10 @@ public class Slatch {
 //        Tutoriel tuto = new Tutoriel("Maps/tutoriel.txt");
 //        Campagne campagne = new Campagne("Maps/mapTest4.txt", 1);
         
-        partie = partieRapide;        
-        
+        partie = partieRapide;
         moteur = new Moteur();
         ihm = new IHM_NEW();
-            
-        moteur.Brouillard();
+           
         //maps = new CreationMaps("hacheMap");
         
         if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
@@ -51,7 +49,7 @@ public class Slatch {
             AIMaster.joueTour(Slatch.partie.getJoueurActuel());
         }
         else{
-           //moteur.Brouillard();
+            moteur.Brouillard();
         }
     }
     
