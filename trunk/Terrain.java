@@ -113,7 +113,7 @@ public class Terrain extends Entite{
         
         if(super.getBrouillard()) {
             
-                Image surbrillance = Slatch.aImages.get("noir80");
+                Image surbrillance = Slatch.aImages.get("brouillard");
                 g.drawImage(surbrillance, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
         } 
         else{

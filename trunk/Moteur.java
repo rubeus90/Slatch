@@ -22,6 +22,7 @@ class Moteur
     static Point[] voisins = {new Point(0,1), new Point(0,-1),new Point(1,0),new Point(-1,0)};
     static Quad[] signes = {new Quad(0,1,-1,1), new Quad(0,-1,1,-1),new Quad(1,-1,0,1),new Quad(-1,1,0,-1)};// Permettra de parcourir le rayon de portée d'une unité
     
+    int brouillardI =0;
     
     
     public Moteur()
@@ -476,7 +477,7 @@ class Moteur
             mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
         }
         
-        Brouillard();
+//        Brouillard();
     }
     
     
@@ -883,6 +884,8 @@ class Moteur
     }
     
     public void Brouillard(){
+    	brouillardI++;
+    	System.out.println(brouillardI);
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
