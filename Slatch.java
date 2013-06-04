@@ -36,7 +36,7 @@ public class Slatch {
 //        partie =new Partie("Maps/sauvegarde.txt");
         
 //        Tutoriel tuto = new Tutoriel("Maps/tutoriel.txt");
-        Campagne campagne = new Campagne("Maps/mapTest4.txt", 1);
+//        Campagne campagne = new Campagne("Maps/mapTest4.txt", 1);
         
         partie = partieRapide;
         moteur = new Moteur();
