@@ -174,6 +174,7 @@ public class Partie
                 case "qg":
                     aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.QG,vPV); 
                     vBatimentJoueur[vJoueur]+=1;
+                    lBatiment.add(aTerrain[vX][vY]);
                     break;
                 case "Commando": 
                     Unite vcommando = new Unite(vX,vY,vJoueur,TypeUnite.COMMANDO,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
@@ -214,11 +215,15 @@ public class Partie
             }
         }
         
+        Equipe equipe0 = new Equipe(0);
+        Equipe equipe1 = new Equipe(1);
+        Equipe equipe2 = new Equipe(2);
+        
         ListeJoueur = new ArrayList<Joueur>();
-        Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,0,""); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
+        Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,equipe0,""); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
         ListeJoueur.add(JoueurNeutre);
         
-        int[] vEquipe = {0,1,1,2,2};
+        Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
         //Ajout des joueur dans l'arrayList
         for(int i=1;i<=aNbrJoueur;i++)
         {
@@ -226,7 +231,7 @@ public class Partie
             if(isCharged)
                 ListeJoueur.get(i).setArgent(vArgent[i]);
         }
-        //ListeJoueur.get(1).setIA(false);
+        ListeJoueur.get(2).setIA(false);
         
         for(Unite vUniteActuel : lUnite){
             int vJ = vUniteActuel.getJoueur();
@@ -259,6 +264,8 @@ public class Partie
                 }
             }
         }
+        
+        Slatch.moteur.Brouillard();
         
         ListeJoueur.get(aJoueurActuel).benefTour(aRevenuBatiment);
         Slatch.ihm.getpanelinfo().paintImmediately(0,0,Slatch.ihm.getpanelinfo().getWidth(),Slatch.ihm.getpanelinfo().getHeight());

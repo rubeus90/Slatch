@@ -29,7 +29,7 @@ public class Joueur
     private int aCaptureTotal;
     private int aDeplacementTotal;
     private int aSoinTotal;
-    private int aEquipe;
+    private Equipe aEquipe;
     private GeneraleIA aGeneraleIA;
     
     /**
@@ -39,7 +39,7 @@ public class Joueur
      *          la faction (Faction)
      *          le nombre de batiment au depart (entier)
      */ 
-    public Joueur(final int pNumJoueur,final Faction pFaction,final int pNbreBatiment,final int pEquipe,final String pBut)
+    public Joueur(final int pNumJoueur,final Faction pFaction,final int pNbreBatiment,final Equipe pEquipe,final String pBut)
     {
         aNumJoueur = pNumJoueur;
         aFaction = pFaction;
@@ -63,6 +63,8 @@ public class Joueur
         aListeUsine = new ArrayList<Terrain>();
         aListeBatiment = new ArrayList<Terrain>();
         aGeneraleIA= new GeneraleIA(pBut);
+        
+        pEquipe.addJoueur(this);
     }
 
     /**
@@ -83,7 +85,7 @@ public class Joueur
     public int getSoinTotal() {return aSoinTotal;}
     public int getDeplacementTotal() {return aDeplacementTotal;}
     public int getCaptureTotal() {return aCaptureTotal;}
-    public int getEquipe() {return aEquipe;}
+    public Equipe getEquipe() {return aEquipe;}
     public int getScore(){ return 2*(int)aDegatTotal+2*aArgentTotal+aArgentDepense+2*aNbrUniteCree+(int)aDegatSubit+2*aNbrUniteTue+aExpTotal+aSoinTotal+aCaptureTotal;}
     public List<Unite> getListeUnite()   {return aListeUnite;}
     public List<Terrain> getListeUsine()   {return aListeUsine;}

@@ -61,7 +61,7 @@ public class StrategieIA
     {
         int x= unite.getCoordonneeX();
         int y= unite.getCoordonneeY();
-        if(Slatch.moteur.getEquipe(unite)!=Slatch.moteur.getJoueurActuel().getEquipe())
+        if(Slatch.moteur.getEquipe(unite) != Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
         {
             for(int i=0; i<unite.getAttaque().aTypePortee.getPorteeMax(); i++)
             {
