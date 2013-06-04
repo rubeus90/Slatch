@@ -327,13 +327,6 @@ public class Unite extends Entite
                     g.drawImage(yin, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
                 }
                }
-               
-               if(super.getBrouillard()) {
-            
-                Image surbrillance = Slatch.aImages.get("noir80");
-                g.drawImage(surbrillance, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
-            
-       		   } 
 
         
                 if((vPV != aPV) && check)
@@ -360,6 +353,8 @@ public class Unite extends Entite
                 }
                 vPV = aPV;
                 check=true;
+                
+                Slatch.moteur.Brouillard();
                                     
     }
     
