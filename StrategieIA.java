@@ -35,9 +35,9 @@ public class StrategieIA
                 iMap[i][j].defensif+=100*Slatch.partie.getTerrain()[i][j].getType().getCouverture()*mode.inf.defensif;
                 switch(Slatch.partie.getTerrain()[i][j].getType().getNom())
                 {
-                    case "usine": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){iMap[i][j].capture+=100*mode.inf.capture;}
+                    case "usine": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){iMap[i][j].capture+=200*mode.inf.capture;}
                     else{iMap[i][j].retraite+=400;}
-                    case "batiment": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){iMap[i][j].capture+=200*mode.inf.capture;} 
+                    case "batiment": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){iMap[i][j].capture+=100*mode.inf.capture;} 
                     else{iMap[i][j].retraite+=500;}break;
                     case "foret": break;
                     case "montagne": break;

@@ -1,9 +1,3 @@
-/**
- * Write a description of class OperationIA here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class OperationIA
 {
     static void joueUnite(Unite unite, Influence[][] map)
@@ -18,11 +12,11 @@ public class OperationIA
         {
             changerMap(new Influence(1,3,1,5,5), map);
         }
-        else
+        else if(unite.getType()!=TypeUnite.INGENIEUR)
         {
             for(int i=0; i<Slatch.partie.getNbrJoueur(); i++)
             {
-                if(i!=Slatch.partie.getJoueurActuel())
+                if(Slatch.partie.getJoueur(i).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe())
                 {
                     for(Unite u: Slatch.partie.getJoueur(i).getListeUnite())
                     {
