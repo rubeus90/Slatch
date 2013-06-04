@@ -264,6 +264,7 @@ public class Partie
                 }
             }
         }
+
         
         Slatch.moteur.Brouillard();
         

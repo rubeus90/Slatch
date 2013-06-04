@@ -1068,6 +1068,10 @@ class Moteur
         return Slatch.partie.getTerrain()[pX][pY].getUnite().getJoueur();
     }
     
+    private int getNumJoueurActuel(){
+        return Slatch.partie.getJoueurActuel();
+    }
+    
     /****
      * ENSEMBLE DE METHODE QUI RETOURNE DES UNITES
      */ 

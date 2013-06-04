@@ -354,7 +354,7 @@ public class Unite extends Entite
                 vPV = aPV;
                 check=true;
                 
-                Slatch.moteur.Brouillard();
+                //Slatch.moteur.Brouillard();
                                     
     }
     

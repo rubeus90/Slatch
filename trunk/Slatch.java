@@ -2,6 +2,7 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * @author rubeus
@@ -36,7 +37,7 @@ public class Slatch {
 //        partie =new Partie("Maps/sauvegarde.txt");
         
 //        Tutoriel tuto = new Tutoriel("Maps/tutoriel.txt");
-//        Campagne campagne = new Campagne("Maps/mapTest4.txt", 1);
+       Campagne campagne = new Campagne("Maps/mapTest.txt", 1);
         
         partie = partieRapide;
         moteur = new Moteur();
@@ -45,6 +46,9 @@ public class Slatch {
         moteur.Brouillard();
            
         //maps = new CreationMaps("hacheMap");
+       
+        
+        moteur.Brouillard();
         
         if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
         {
