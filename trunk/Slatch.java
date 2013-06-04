@@ -30,7 +30,7 @@ public class Slatch {
         aImages=new HashMap<String,Image>();
         loadImage();
 
-        Partie partieRapide = new Partie(20,30,"Maps/mapTest4.txt");
+        Partie partieRapide = new Partie(20,30,"Maps/doublevai.txt");
         
 //        partie = new Partie("Maps/mapGenere.txt");
 //        partie =new Partie("Maps/sauvegarde.txt");
@@ -41,15 +41,14 @@ public class Slatch {
         partie = partieRapide;
         moteur = new Moteur();
         ihm = new IHM_NEW();
+        
+        moteur.Brouillard();
            
         //maps = new CreationMaps("hacheMap");
         
         if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
         {
             AIMaster.joueTour(Slatch.partie.getJoueurActuel());
-        }
-        else{
-            moteur.Brouillard();
         }
     }
     
@@ -175,9 +174,9 @@ public class Slatch {
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("noir80",image);
                 
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/noir.png"));
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/brouillard.png"));
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
-                aImages.put("noir",image);
+                aImages.put("brouillard",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/yangattaque.png"));
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
