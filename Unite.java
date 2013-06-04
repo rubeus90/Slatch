@@ -355,7 +355,6 @@ public class Unite extends Entite
                         g.drawString(stringDegats, pPosHautGaucheX, pPosMidGaucheY);
                     }
                     
-                    try{Thread.sleep(200);}catch(InterruptedException e){e.printStackTrace();}
 
 
                 }
