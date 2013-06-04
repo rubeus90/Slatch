@@ -352,10 +352,8 @@ public class Unite extends Entite
 
                 }
                 vPV = aPV;
-                check=true;
-                
-                //Slatch.moteur.Brouillard();
-                                    
+
+                check=true;    
     }
     
     public boolean seSitue(Point p)
