@@ -924,12 +924,14 @@ class Moteur
                 Slatch.partie.getTerrain()[i][j].setBrouillard(true);
             }
         }
-        
-        for(Joueur vJoueur : Slatch.partie.ListeJoueur){
-            if(getJoueurActuel().getEquipe() == vJoueur.getEquipe()){                
-                for(Unite vUnite : vJoueur.getListeUnite()){
-                     affichePorteeBrouillard(vUnite);
-                }             
+            
+        if(!getJoueurActuel().estUneIA()){
+            for(Joueur vJoueur : Slatch.partie.ListeJoueur){
+                if(getJoueurActuel().getEquipe() == vJoueur.getEquipe()){                
+                    for(Unite vUnite : vJoueur.getListeUnite()){
+                         affichePorteeBrouillard(vUnite);
+                    }             
+                }
             }
         }
     }
