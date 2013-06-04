@@ -30,5 +30,7 @@ public class Campagne extends Partie{
 			frame.setContentPane(panel);
 			frame.repaint();
 		}
+		System.out.println("But Here's my number");
+		System.out.println("So call me maybe ?");
 	}
 }
