@@ -477,7 +477,7 @@ class Moteur
             mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
         }
         
-//        Brouillard();
+        Brouillard();
     }
     
     
