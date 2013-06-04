@@ -12,7 +12,7 @@ mortier:While:1.5
 mortier:Ingenieur:1
 mortier:Distance:1.2
 mortier:Uml:1.2
-canon:Commando:1.6
+canon:Commando:1.7
 canon:Demolisseur:1.2
 canon:Char:1
 canon:While:1
