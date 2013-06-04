@@ -162,7 +162,7 @@ public class PanelMatrice extends JPanel
             afficheImageRedim ("noir80", aMenuDescriptionHautGauche_Xpx, aMenuDescriptionHautGauche_Ypx, aMenuDescriptionBasDroite_Xpx, aMenuDescriptionBasDroite_Ypx, g);
             g.setColor(Color.white);
             Terrain t = Slatch.partie.getTerrain()[aUniteMemMenuCaseX][aUniteMemMenuCaseY];
-            if(t.getUnite()!=null)
+            if(t.getUnite()!=null && !t.getBrouillard())
             {
                 String portedep = "Portée Depl = "+t.getUnite().getDeplacement()/10;
                 String xp = "XP = "+t.getUnite().getExperience();
@@ -479,7 +479,7 @@ public class PanelMatrice extends JPanel
                         else if (!menuUniteDescription) {
                             menuUniteDescription = true;
                         }
-                        
+                        redimMenuDescription(i,j);
                         aUniteMemMenuCaseX=i;
                         aUniteMemMenuCaseY=j;
                         Slatch.moteur.caseSelectionnee(i,j);
@@ -521,7 +521,7 @@ public class PanelMatrice extends JPanel
         this.repaint();
     }
     
-    private void effaceMenuUniteDescription()
+    public void effaceMenuUniteDescription()
     {
         aMenuDescriptionHautGauche_Xpx=0;
         aMenuDescriptionHautGauche_Ypx=0;
@@ -647,7 +647,7 @@ public class PanelMatrice extends JPanel
     public void redimMenuDescription(final int pX, final int pY) 
     {
         if(Slatch.partie.getTerrain()[aUniteMemMenuCaseX][aUniteMemMenuCaseY].getUnite()==null && aLargeurMenuDescriptionEnCase==10) aLargeurMenuDescriptionEnCase=5;
-        if(Slatch.partie.getTerrain()[aUniteMemMenuCaseX][aUniteMemMenuCaseY].getUnite()!=null)  aLargeurMenuDescriptionEnCase=10;
+        if(Slatch.partie.getTerrain()[aUniteMemMenuCaseX][aUniteMemMenuCaseY].getUnite()!=null && !Slatch.partie.getTerrain()[aUniteMemMenuCaseX][aUniteMemMenuCaseY].getBrouillard())  aLargeurMenuDescriptionEnCase=10;
         if(pX<Slatch.partie.getLargeur()/2) 
         {
             // En bas a droite

@@ -476,26 +476,7 @@ class Moteur
             mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
         }
         
-        
-        
-        
-        /*Retourner la liste des joueurs qui ne sont pas des IAs. Si un joueur n'est pas un IA, on appelle la methode Brouillard() pour
-         * mettre a jour son brouillard.
-         * 
-         * Si un joueur est un IA mais il est dans la meme equipe qu'un joueur non IA alors on mettre a jour son brouillard aussi
-         */
-        
-        ArrayList<Joueur> liste = new ArrayList<Joueur>();
-        for(Joueur vJoueur : Slatch.partie.ListeJoueur){
-            if(!vJoueur.estUneIA()){
-            	liste.add(vJoueur);
-            }
-        }
-        
-        for(Joueur joueur: liste){
-        	if(!getJoueur(unite).estUneIA() || getJoueur(unite).getEquipe() == joueur.getEquipe())
-        		Brouillard();
-        }
+        Brouillard();
     }
     
     
@@ -788,7 +769,7 @@ class Moteur
         {
             if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && getUnite(x+decX,y+decY)!=null)
             {
-                boolean pasAuJoueurActuel = getEquipe(getNumJoueur(x+decX,y+decY))!=getJoueurActuel().getEquipe();
+                boolean pasAuJoueurActuel = getEquipe(getNumJoueur(x+decX,y+decY)) != getJoueurActuel().getEquipe().getNumEquipe();
                 return (pasAuJoueurActuel^(soin && (getUnite(x+decX,y+decY).aBesoinDeSoins()||pasAuJoueurActuel)))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
             }
         }
@@ -899,21 +880,6 @@ class Moteur
                 }
             }
         } 
-        
-        
-        
-//         this.remplitPorteeDep(unite, true);
-//         for(int i=0; i<Slatch.partie.getLargeur(); i++)
-//         {
-//             for(int j=0; j<Slatch.partie.getHauteur(); j++)
-//             {
-//                 if(tabDist[i][j]>0 || tabDist[i][j] == -2)
-//                 {
-//                     Slatch.partie.getTerrain()[i][j].setBrouillard(false);
-//                     repaint();
-//                 }
-//             }
-//         }
     }
     
     public void Brouillard(){
@@ -923,17 +889,21 @@ class Moteur
             {
                 Slatch.partie.getTerrain()[i][j].setBrouillard(true);
             }
-        }
-            
-        if(!getJoueurActuel().estUneIA()){
-            for(Joueur vJoueur : Slatch.partie.ListeJoueur){
-                if(getJoueurActuel().getEquipe() == vJoueur.getEquipe()){                
-                    for(Unite vUnite : vJoueur.getListeUnite()){
-                         affichePorteeBrouillard(vUnite);
-                    }             
+        }            
+        
+        for(Joueur vJoueur : getJoueurActuel().getEquipe().getListeJoueur()){
+            if(vJoueur.getEquipe().haveUnJoueurHumain()){                
+                for(Unite vUnite : vJoueur.getListeUnite()){
+                     affichePorteeBrouillard(vUnite);
+                }             
+                for(Terrain terrain : vJoueur.getListeBatiment()){
+                	Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+                }
+                for(Terrain terrain : vJoueur.getListeUsine()){
+                	Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
                 }
             }
-        }
+        }    
     }
    
     /**
@@ -1130,10 +1100,10 @@ class Moteur
      * ENSEMBLE DE METHODE QUI RETOURNE l'equipe d'un joueur
      */
     public int getEquipe(final int pJoueur){
-        return Slatch.partie.getJoueur(pJoueur).getEquipe();
+        return Slatch.partie.getJoueur(pJoueur).getEquipe().getNumEquipe();
     }
     
     public int getEquipe(final Unite pUnite){
-        return getJoueur(pUnite).getEquipe();
+        return getJoueur(pUnite).getEquipe().getNumEquipe();
     }
 }
