@@ -475,7 +475,9 @@ class Moteur
             mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
         }
         
-        //Brouillard();
+        if(getBrouillard()){
+            Brouillard();
+        }
     }
     
     
@@ -1032,7 +1034,10 @@ class Moteur
             vJoueur.getListeUnite().add(creation);
             vJoueur.addNbrUniteCree();
             repaint();
-            //Brouillard();
+            
+            if(getBrouillard()){
+                Brouillard();
+            }
         }
        
     }
