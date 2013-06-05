@@ -84,12 +84,12 @@ public class StrategieIA
                         {
                             if(ajouterInfluence){
                                 if(i>=unite.getAttaque().aTypePortee.getPorteeMin()){map[x+a+b][y+c+d].menace+=(60*(pm-i+1))*inf.menace;}
-                                if(i>=unite.getAttaque().aTypePortee.getPorteeMin()){map[x+a+b][y+c+d].offensif+=(30*(pm-i+1))*inf.offensif;}
+                                //if(i>=unite.getAttaque().aTypePortee.getPorteeMin()){map[x+a+b][y+c+d].offensif+=(30*(pm-i+1))*inf.offensif;}
                             }
                             else
                             {
                                 if(i>=unite.getAttaque().aTypePortee.getPorteeMin()){map[x+a+b][y+c+d].menace-=(60*(pm-i+1))*inf.menace;}
-                                if(i>=unite.getAttaque().aTypePortee.getPorteeMin()){map[x+a+b][y+c+d].offensif-=(30*(pm-i+1))*inf.offensif;}
+                               // if(i>=unite.getAttaque().aTypePortee.getPorteeMin()){map[x+a+b][y+c+d].offensif-=(30*(pm-i+1))*inf.offensif;}
                             }
                         }
                     }
