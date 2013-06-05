@@ -18,6 +18,7 @@ public class Partie
 {
     // instance variables - replace the example below with your own
     private int aNbrJoueur;
+    private int aNbrEquipe;
     public List<Joueur> ListeJoueur;
     private int aRevenuBatiment;
     private int aLargeur;
@@ -29,6 +30,7 @@ public class Partie
     private int aTour;
     public boolean partieFinie = false;
     private boolean aBrouillard;
+    private boolean uneSeulEquipedeJoueur;
     
     
 
@@ -54,7 +56,7 @@ public class Partie
         aTourMax = pTourMax;
         aTour = 1;
         aRevenuBatiment = pRevenuBatiment;
-        ListeJoueur.get(1).benefTour(aRevenuBatiment);        
+        ListeJoueur.get(1).benefTour(aRevenuBatiment);     
     }
     
     /**
@@ -223,7 +225,12 @@ public class Partie
         Equipe equipe0 = new Equipe(0);
         Equipe equipe1 = new Equipe(1);
         Equipe equipe2 = new Equipe(2);
+        aNbrEquipe = 3;
         
+        /*************************************
+         * CREATION DES CARACTERISTIQUES DES JOUEURS
+         * 
+         ************************************/
         ListeJoueur = new ArrayList<Joueur>();
         Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,equipe0,""); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
         ListeJoueur.add(JoueurNeutre);
@@ -238,6 +245,7 @@ public class Partie
         }
         ListeJoueur.get(2).setIA(false);
         
+        //Creation des liste d'unite ,de batiment de d'usine des Joueurs
         for(Unite vUniteActuel : lUnite){
             int vJ = vUniteActuel.getJoueur();
             ListeJoueur.get(vJ).getListeUnite().add(vUniteActuel);
@@ -250,6 +258,8 @@ public class Partie
             int vJ = vBatActuel.getJoueur();
             ListeJoueur.get(vJ).getListeBatiment().add(vBatActuel);
         }
+        
+        isOneEquipeNonIA();
     }
     
     public void tourSuivant(){
@@ -273,9 +283,6 @@ public class Partie
         if(aBrouillard){
             Slatch.moteur.Brouillard();
         }
-        
-        //Slatch.moteur.Brouillard();
-        
         ListeJoueur.get(aJoueurActuel).benefTour(aRevenuBatiment);
         Slatch.ihm.getpanelinfo().paintImmediately(0,0,Slatch.ihm.getpanelinfo().getWidth(),Slatch.ihm.getpanelinfo().getHeight());
     }
@@ -416,6 +423,10 @@ public class Partie
         aRevenuBatiment = pRevenuBatiment;
     }
     
+    public boolean getuneSeulEquipedeJoueur(){
+        return uneSeulEquipedeJoueur;
+    }
+    
     /**
      * Mutateur qui modifie la valeur de l'attribut aJoueurActuel
      * @param pJoueurActuel
@@ -506,5 +517,26 @@ public class Partie
         }
         initMap(true); 
         Slatch.ihm.getPanel().repaint();
+    }
+    
+    private int getEquipeJoueurNonIA(){
+        for(Joueur vJoueur: ListeJoueur){
+			if(!vJoueur.estUneIA() && vJoueur.getEquipe().getNumEquipe()!=0){
+				return vJoueur.getEquipe().getNumEquipe();
+			}
+		}
+		return 0;
+    }
+    
+    private void isOneEquipeNonIA(){
+        for(Joueur vJoueur: ListeJoueur){
+			if(!vJoueur.estUneIA()){
+				if(vJoueur.getEquipe().getNumEquipe()!=getEquipeJoueurNonIA() && vJoueur.getEquipe().getNumEquipe()!=0) {
+				    uneSeulEquipedeJoueur=false;
+				    return;
+				}
+             }
+		}
+		uneSeulEquipedeJoueur=true;
     }
 }

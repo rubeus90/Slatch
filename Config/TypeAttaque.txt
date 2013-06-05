@@ -1,5 +1,5 @@
 fusil:Commando:1
-fusil:Demolisseur:1.5
+fusil:Demolisseur:1.8
 fusil:Char:0.5
 fusil:While:0.3
 fusil:Ingenieur:1
@@ -13,7 +13,7 @@ mortier:Ingenieur:1
 mortier:Distance:1.2
 mortier:Uml:1.2
 canon:Commando:1.7
-canon:Demolisseur:1.2
+canon:Demolisseur:0.6
 canon:Char:1.5
 canon:While:1
 canon:Ingenieur:2
