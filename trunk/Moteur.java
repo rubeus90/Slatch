@@ -1073,18 +1073,14 @@ class Moteur
                 
                 if(dansLesBords(x,y))
                 {
-                    if(tabDist[x][y]>0 && Slatch.partie.getTerrain()[x][y].getUnite()==null)
+                    if(tabDist[x][y]>0 && tabDist[x][y]<= pA.getDeplacement() && Slatch.partie.getTerrain()[x][y].getUnite()==null)
                     {
                         return true;
                     }
                 }
             }
         }
-        else
-        {
-            return this.estAPortee(pA, pC);
-        }
-        return false;
+        return this.estAPortee(pA, pC);
     }
     
     static boolean dansLesBords(final int x,final int y)
