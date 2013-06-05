@@ -243,7 +243,7 @@ public class Partie
             if(isCharged)
                 ListeJoueur.get(i).setArgent(vArgent[i]);
         }
-        ListeJoueur.get(2).setIA(false);
+        //ListeJoueur.get(2).setIA(false);
         
         //Creation des liste d'unite ,de batiment de d'usine des Joueurs
         for(Unite vUniteActuel : lUnite){

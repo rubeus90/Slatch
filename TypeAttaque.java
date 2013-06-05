@@ -72,6 +72,11 @@ public enum TypeAttaque
     {
         return this.aDescription;
     }
+    
+    public PorteeAttaque getTypePortee()
+    {
+        return this.aTypePortee;
+    }
    
     /**
      * Accesseur pour l'attribut aDegat
