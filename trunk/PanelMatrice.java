@@ -83,6 +83,7 @@ public class PanelMatrice extends JPanel
         aLargeurCarreau = this.getWidth()/Slatch.partie.getLargeur();
         aHauteurCarreau = this.getHeight()/ Slatch.partie.getHauteur();
 
+        //Aucun menu a la creation
         menuUniteAction=false;
         menuUniteDescription=false;
         menuMenu=false;
@@ -101,6 +102,8 @@ public class PanelMatrice extends JPanel
     {
         aLargeurCarreau = this.getWidth()/Slatch.partie.getLargeur();
         aHauteurCarreau = this.getHeight()/ Slatch.partie.getHauteur();
+        
+        // Dessine la matrice (Terrain + Unite)
         dessineMatrice(g);
                 
         // Menu d'action d'une unite non IA
@@ -266,8 +269,10 @@ public class PanelMatrice extends JPanel
         
         // Ecran de fin de partie
         if(Slatch.partie.partieFinie) {
+            // Fond d'ecran de fin de partie
             afficheImageRedim ("noir80", 0, 0, this.getWidth(), this.getHeight(), g);
             
+            // Choix de la police de char
             Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
             g.setFont(font);
             FontMetrics fm=getFontMetrics(font); 
@@ -278,6 +283,7 @@ public class PanelMatrice extends JPanel
             int joueurSize = fm.stringWidth(joueur);
             g.drawString(joueur, this.getWidth()/2 - joueurSize/2, 2*this.getHeight()/(2*hauteurSize));
             
+            // Afiche les statistiques
             for(int i=1; i<=Slatch.partie.getNbrJoueur(); i++){
                 int decalage=0;
                 if(Slatch.partie.getNbrJoueur()==2 && i==1) decalage=-this.getWidth()/5;
@@ -344,6 +350,7 @@ public class PanelMatrice extends JPanel
         int clickX = pX;
         int clickY = pY; 
 
+        // Determine la case matricielle du click
         for(int i = 0 ; i < Slatch.partie.getLargeur() ; i++) 
         {
             for(int j = 0 ; j < Slatch.partie.getHauteur() ; j++) 
@@ -361,6 +368,8 @@ public class PanelMatrice extends JPanel
                      * Recuperer les coordonnees
                      * 
                      */
+                    
+                    // Si le menu est la...
                     if(menuMenu) {
                         // Bouton charger
                         if (0<clickY && clickY<aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
@@ -381,6 +390,7 @@ public class PanelMatrice extends JPanel
                         effaceMenuShop();
                     }
                     
+                    // Si le menu d'action d'une unite est la...
                     if(menuUniteAction && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
                     {
                         if( aMenuActionHautGauche_Ypx<clickY && clickY<aMenuActionBasDroite_Ypx && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )//Si tu es dans menu
@@ -443,6 +453,8 @@ public class PanelMatrice extends JPanel
                             this.repaint();
                         }
                     }
+                    
+                    // Si le menu d'achat d'une unite est la (et pas le menu action)...
                     else if(menuShop && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()) {
                         if (aShopHautGauche_Ypx<clickY && clickY<aShopBasDroite_Ypx && aShopHautGauche_Xpx<clickX && clickX<aShopBasDroite_Xpx) {
                             for(int v=1; v<aListeShop.size()+1;v++) {
@@ -465,6 +477,7 @@ public class PanelMatrice extends JPanel
                         }
                     }
                     
+                    // S'il n'y a ni menu d'achat ni menu d'action
                     else
                     {
                         if(aUniteMemMenuCaseX==i && aUniteMemMenuCaseY==j && menuUniteDescription)
@@ -475,6 +488,7 @@ public class PanelMatrice extends JPanel
                         aUniteMemMenuCaseX=i;
                         aUniteMemMenuCaseY=j;
                         redimMenuDescription(i,j);
+                        // Avertir Moteur
                         Slatch.moteur.caseSelectionnee(i,j);
                         this.repaint();
                     }
@@ -487,8 +501,7 @@ public class PanelMatrice extends JPanel
      * Affiche une matrice d'image sur la carte
      */
     private void dessineMatrice(final Graphics g) {
-        //afficheImageRedim("2.png",0, 0,this.getWidth(),this.getHeight(),g);
-        
+        // Dessine la matrice de terrain
         for(int i=0; i<Slatch.partie.getLargeur(); i++) {
             for(int j=0; j<Slatch.partie.getHauteur(); j++) {
                 Slatch.partie.getTerrain()[i][j].dessine(g, this);
@@ -499,7 +512,7 @@ public class PanelMatrice extends JPanel
     }
     
     /**
-     * Affiche les info du terrain
+     * Methode DEBUG : Affiche les info du terrain
      */
     private void afficheInfoTerrain (int i, int j, Graphics g) {  
         int t=Slatch.partie.getTerrain()[i][j].getType().getCouverture();
@@ -516,6 +529,7 @@ public class PanelMatrice extends JPanel
         FontMetrics fm=getFontMetrics(font); 
         int h=fm.getHeight()-1;
         
+        // Modifie la coleur en foction de la couverture
         if(t==0)               {g.setColor(Color.blue);}
         else if (t<=1)       {g.setColor(Color.green);}
         else if (t<=4)       {g.setColor(Color.orange);}
@@ -528,7 +542,7 @@ public class PanelMatrice extends JPanel
     }
     
     /**
-     * Affiche les info de l'IA
+     * Methode DEBUG : Affiche les info de l'IA
      */
     private void afficheInfoIA (int i, int j, Graphics g) {  
         int joueurAv; 
@@ -563,6 +577,7 @@ public class PanelMatrice extends JPanel
             int p;
             
             p=ca;
+            // Modifie la coleur en foction de la valeur
             if(p==0)               {g.setColor(Color.blue);}
             else if (p<=100)       {g.setColor(Color.green);}
             else if (p<=500)       {g.setColor(Color.orange);}
@@ -570,6 +585,7 @@ public class PanelMatrice extends JPanel
             g.drawString(" c "+ca, pPosHautGaucheX, pPosBasDroiteY+h-aHauteurCarreau);
             
             p=de;
+            // Modifie la coleur en foction de la valeur
             if(p==0)               {g.setColor(Color.blue);}
             else if (p<=100)       {g.setColor(Color.green);}
             else if (p<=500)       {g.setColor(Color.orange);}
@@ -577,6 +593,7 @@ public class PanelMatrice extends JPanel
             g.drawString(" d "+de, pPosHautGaucheX, pPosBasDroiteY+2*h-aHauteurCarreau);
             
             p=of;
+            // Modifie la coleur en foction de la valeur
             if(p==0)               {g.setColor(Color.blue);}
             else if (p<=100)       {g.setColor(Color.green);}
             else if (p<=500)       {g.setColor(Color.orange);}
@@ -584,6 +601,7 @@ public class PanelMatrice extends JPanel
             g.drawString(" o "+of, pPosHautGaucheX, pPosBasDroiteY+3*h-aHauteurCarreau);
             
             p=me;
+            // Modifie la coleur en foction de la valeur
             if(p==0)               {g.setColor(Color.blue);}
             else if (p<=100)       {g.setColor(Color.green);}
             else if (p<=500)       {g.setColor(Color.orange);}
@@ -591,12 +609,14 @@ public class PanelMatrice extends JPanel
             g.drawString(" m "+me, pPosHautGaucheX, pPosBasDroiteY+4*h-aHauteurCarreau);
             
             p=re;
+            // Modifie la coleur en foction de la valeur
             if(p==0)               {g.setColor(Color.blue);}
             else if (p<=100)       {g.setColor(Color.green);}
             else if (p<=500)       {g.setColor(Color.orange);}
             else                    {g.setColor(Color.red);}
             g.drawString(" r "+re, pPosHautGaucheX, pPosBasDroiteY+5*h-aHauteurCarreau);
             
+            // Trace les lignes
             g.setColor(Color.gray);
             g.drawLine(pPosHautGaucheX, pPosHautGaucheY, pPosHautGaucheX, pPosBasDroiteY);
             g.drawLine(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX, pPosHautGaucheY);
