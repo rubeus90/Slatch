@@ -476,7 +476,6 @@ class Moteur
         }
         
         if(getBrouillard()){
-            System.out.println("coucou");
             Brouillard();
         }
     }
@@ -885,18 +884,33 @@ class Moteur
     }
     
     public void Brouillard(){
-        if(!Slatch.partie.getuneSeulEquipedeJoueur() || Slatch.partie.getTour()==1){
-            
+        if(!Slatch.partie.getuneSeulEquipedeJoueur() || Slatch.partie.getTour()==1){        	
             for(int i=0; i<Slatch.partie.getLargeur(); i++)
             {
                 for(int j=0; j<Slatch.partie.getHauteur(); j++)
                 {
                     Slatch.partie.getTerrain()[i][j].setBrouillard(true);
                 }
-            }            
+            }  
+            
+            for(Joueur vJoueur : Slatch.partie.ListeJoueur){
+            	if(!vJoueur.estUneIA()){
+            		for(Unite vUnite : vJoueur.getListeUnite()){
+                        affichePorteeBrouillard(vUnite);
+                   }             
+                   for(Terrain terrain : vJoueur.getListeBatiment()){
+                       Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+                   }
+                   for(Terrain terrain : vJoueur.getListeUsine()){
+                       Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+                   }
+            	}
+            }
+        }
+            
             
             for(Joueur vJoueur : getJoueurActuel().getEquipe().getListeJoueur()){
-                if(vJoueur.getEquipe().haveUnJoueurHumain()){                
+                if(vJoueur.getEquipe().haveUnJoueurHumain()){  
                     for(Unite vUnite : vJoueur.getListeUnite()){
                          affichePorteeBrouillard(vUnite);
                     }             
@@ -908,7 +922,7 @@ class Moteur
                     }
                 }
             }  
-        }
+        
     }
    
     /**
