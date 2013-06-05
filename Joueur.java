@@ -39,11 +39,11 @@ public class Joueur
      *          la faction (Faction)
      *          le nombre de batiment au depart (entier)
      */ 
-    public Joueur(final int pNumJoueur,final Faction pFaction,final int pNbreBatiment,final Equipe pEquipe,final String pBut)
+    public Joueur(final int pNumJoueur,final Faction pFaction,final int pNbreBatiment,final Equipe pEquipe,final boolean isIA,final String pBut)
     {
         aNumJoueur = pNumJoueur;
         aFaction = pFaction;
-        IA=false;
+        IA=isIA;
         aVivant=true;
         aArgent = 0;
         aArgentTotal = 0;
