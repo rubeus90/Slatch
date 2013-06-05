@@ -713,6 +713,9 @@ public class PanelMatrice extends JPanel
         }
     }
     
+    /**
+     * Redim le Menu du bouton menu
+     */
     public void redimMenu() {
         aMenuHautGauche_Xpx = 0;
         aMenuHautGauche_Ypx = 0;
