@@ -30,6 +30,7 @@ public class Slatch {
     {
         aImages=new HashMap<String,Image>();
         loadImage();
+
         
         Equipe equipe0 = new Equipe(0);
         Equipe equipe1 = new Equipe(1);
@@ -43,12 +44,6 @@ public class Slatch {
         
         Partie partieRapide = new Partie(20,30,"Maps/mapTest.txt",false,vEquipe,vIA);
         
-//        partie = new Partie("Maps/mapGenere.txt");
-//        partie =new Partie("Maps/sauvegarde.txt");
-        
-//        Tutoriel tuto = new Tutoriel("Maps/tutoriel.txt");
-      // Campagne campagne = new Campagne("Maps/mapTest.txt", 1);
-        
         partie = partieRapide;
         moteur = new Moteur();
         ihm = new IHM_NEW();
@@ -58,8 +53,6 @@ public class Slatch {
         if(partie.getBrouillard()){
             moteur.Brouillard();
         }
-        
-        //moteur.Brouillard();
         
         if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
         {
