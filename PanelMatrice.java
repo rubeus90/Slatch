@@ -173,6 +173,7 @@ public class PanelMatrice extends JPanel
                 String xp = "XP = "+t.getUnite().getExperience()+"   PV = "+t.getUnite().getPV()+"/"+t.getUnite().getPVMax();
                 String lvl = "LVL = ";
                 String couverture = "Couv = "+ t.getType().getCouverture();
+                String coord = "X = "+aUniteMemMenuCaseX+"   Y ="+aUniteMemMenuCaseY;
                 String titre = t.getUnite().getType().getNom()+" : ";
                 String titreTerrain=t.getType().getDescription()+" : ";
                 
@@ -190,24 +191,27 @@ public class PanelMatrice extends JPanel
                 
                 g.drawString(titreTerrain, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
                 g.drawString(couverture, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
-            
+                g.drawString(coord, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+                
                 if(t.getType().getDependance()) {
                     String pv = "PVTerrain = "+t.getPV();
-                    g.drawString(pv, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+                    g.drawString(pv, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
                 }
             }
             
             else {
                 String couverture = "Couv = "+ t.getType().getCouverture();
+                String coord = "X = "+aUniteMemMenuCaseX+"   Y ="+aUniteMemMenuCaseY;
                 String titre = t.getType().getDescription()+" : ";
                 int tailleIcon = aHauteurCarreau - 5;
                 g.drawString(t.getType().getDescription()+" : ",  aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
                 g.drawString(couverture,  aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
+                g.drawString(coord, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+
                 afficheImageRedim (t.getType().getImage()+""+t.getJoueur(), (aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titre),(aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)-(2*tailleIcon/3) ,(aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titre)+tailleIcon, (aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)+(1*tailleIcon/3), g);
                 if(t.getType().getDependance()) {
                     String pv = "PVTerrain = "+t.getPV();
-                    g.drawString(pv, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
-                    
+                    g.drawString(pv, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
                 }
             }
         }
