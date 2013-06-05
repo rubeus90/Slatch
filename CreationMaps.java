@@ -237,6 +237,8 @@ public class CreationMaps extends JPanel implements ActionListener,
 		try {
 			File file = new File(getClass().getClassLoader()
 					.getResource("Maps/" + aNomMap + ".txt").toURI());
+			if(!file.exists())
+				file.createNewFile();
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			fw.write("");
 			BufferedWriter bw = new BufferedWriter(fw);
