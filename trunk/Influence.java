@@ -28,11 +28,11 @@ public class Influence
     
     public Influence(int capture, int defensif, int offensif, int menace, int retraite)
     {
-        capture=capture;
-        defensif=defensif;
-        offensif=offensif;
-        menace=menace;
-        retraite=retraite;
+        this.capture=capture;
+        this.defensif=defensif;
+        this.offensif=offensif;
+        this.menace=menace;
+        this.retraite=retraite;
     }
 
    

@@ -475,7 +475,7 @@ class Moteur
             mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
         }
         
-        Brouillard();
+        //Brouillard();
     }
     
     
@@ -1002,7 +1002,7 @@ class Moteur
             
             if(getJoueurActuel().estUneIA())
             {
-                AIMaster.joueTour(Slatch.partie.getJoueurActuel());
+                StrategieIA.joueTour(Slatch.partie.getJoueurActuel());
             }
         }
     }
@@ -1032,9 +1032,14 @@ class Moteur
             vJoueur.getListeUnite().add(creation);
             vJoueur.addNbrUniteCree();
             repaint();
-            Brouillard();
+            //Brouillard();
         }
        
+    }
+    
+    public void seraAPortee()
+    {
+        
     }
     
     static boolean dansLesBords(final int x,final int y)

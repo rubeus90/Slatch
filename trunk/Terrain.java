@@ -123,15 +123,17 @@ public class Terrain extends Entite{
         }
     }
     
-    public boolean estUnBatiment()
+    public boolean estCapturable()
     {
-        return (this.aType == TypeTerrain.BATIMENT || this.aType == TypeTerrain.USINE);
+        return this.aType.dependDuJoueur();
     }
 
     
     public boolean estUnBatimentAuJoueur(int joueur)
     {
-        return (this.estUnBatiment() && this.appartientAuJoueur(joueur));
+        return (this.estCapturable() && this.appartientAuJoueur(joueur));
     }
+    
+    
 }
 

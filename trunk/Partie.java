@@ -266,7 +266,7 @@ public class Partie
         }
 
         
-        Slatch.moteur.Brouillard();
+        //Slatch.moteur.Brouillard();
         
         ListeJoueur.get(aJoueurActuel).benefTour(aRevenuBatiment);
         Slatch.ihm.getpanelinfo().paintImmediately(0,0,Slatch.ihm.getpanelinfo().getWidth(),Slatch.ihm.getpanelinfo().getHeight());
