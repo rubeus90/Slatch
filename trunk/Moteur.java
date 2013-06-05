@@ -896,10 +896,10 @@ class Moteur
                      affichePorteeBrouillard(vUnite);
                 }             
                 for(Terrain terrain : vJoueur.getListeBatiment()){
-                	Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+                    Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
                 }
                 for(Terrain terrain : vJoueur.getListeUsine()){
-                	Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+                    Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
                 }
             }
         }    
@@ -1114,5 +1114,9 @@ class Moteur
     
     public int getEquipe(final Unite pUnite){
         return getJoueur(pUnite).getEquipe().getNumEquipe();
+    }
+    
+    private boolean getBrouillard(){
+        return Slatch.partie.getBrouillard();
     }
 }

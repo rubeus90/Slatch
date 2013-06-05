@@ -10,7 +10,7 @@ public class Campagne extends Partie{
 	private int aNiveau;
 	
 	public Campagne(final String pMap, final int pNiveau){
-		super(pMap);		
+		super(pMap,true);		
 		aNiveau = pNiveau;
 	}
 	

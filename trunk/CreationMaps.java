@@ -69,7 +69,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 
 		aJoueur = "0";
 		
-		partieNew = new Partie("Maps/" + aNomMap + ".txt");
+		partieNew = new Partie("Maps/" + aNomMap + ".txt",true);
 		
 		frame = new JFrame("Creation maps");
 

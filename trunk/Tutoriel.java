@@ -28,7 +28,7 @@ public class Tutoriel extends Partie
      */
     public Tutoriel(final String pMap)
     {
-       super(pMap);
+       super(pMap,true);
        aEtape = 1;
     }
 

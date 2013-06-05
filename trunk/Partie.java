@@ -28,19 +28,23 @@ public class Partie
     private int aJoueurActuel;
     private int aTour;
     public boolean partieFinie = false;
+    private boolean aBrouillard;
     
     
 
     /**
      * Constructeur d'une nouvelle partie
      */
-    public Partie(final int pRevenuBatiment,final int pTourMax, final String pMap)
+    public Partie(final int pRevenuBatiment,final int pTourMax, final String pMap,final boolean pBrouillard)
     {
         try {
             aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
         } catch (IOException e) {
             e.printStackTrace();
         }        
+        
+        
+        aBrouillard = pBrouillard;
         
         initMap(false);
         aMap.close();
@@ -57,13 +61,14 @@ public class Partie
      * Constructeur de chargement d'une sauvegarde d'une Map
      * 
      */
-    public Partie(final String pMap){
+    public Partie(final String pMap,final boolean pBrouillard){
         try {
             aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
         
+        aBrouillard = pBrouillard;
         initMap(true);
         aMap.close();
     }
@@ -265,6 +270,9 @@ public class Partie
             }
         }
 
+        if(aBrouillard){
+            Slatch.moteur.Brouillard();
+        }
         
         //Slatch.moteur.Brouillard();
         
@@ -351,6 +359,10 @@ public class Partie
     public int getNbrJoueur()
     {
         return aNbrJoueur;
+    }
+    
+    public boolean getBrouillard(){
+        return aBrouillard;
     }
     
     public void setNbrJoueur(int pNbrJoueur){
