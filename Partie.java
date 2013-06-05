@@ -37,7 +37,7 @@ public class Partie
     /**
      * Constructeur d'une nouvelle partie
      */
-    public Partie(final int pRevenuBatiment,final int pTourMax, final String pMap,final boolean pBrouillard)
+    public Partie(final int pRevenuBatiment,final int pTourMax, final String pMap,final boolean pBrouillard,final Equipe[] pTabEquipe,final boolean[] pTabIA)
     {
         try {
             aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
@@ -48,7 +48,7 @@ public class Partie
         
         aBrouillard = pBrouillard;
         
-        initMap(false);
+        initMap(false,pTabEquipe,pTabIA);
         aMap.close();
         
         //Dans le cas ou le fichier map n'existe pas
@@ -61,7 +61,6 @@ public class Partie
     
     /**
      * Constructeur de chargement d'une sauvegarde d'une Map
-     * 
      */
     public Partie(final String pMap,final boolean pBrouillard){
         try {
@@ -71,7 +70,15 @@ public class Partie
         }
         
         aBrouillard = pBrouillard;
-        initMap(true);
+        
+        //A CHANGER PLUS TARD
+        Equipe equipe0 = new Equipe(0);
+        Equipe equipe1 = new Equipe(1);
+        Equipe equipe2 = new Equipe(2);
+        Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
+        boolean[] vIA = {false,true, false, true,true};
+        
+        initMap(true,vEquipe,vIA);
         aMap.close();
     }
     
@@ -79,7 +86,7 @@ public class Partie
      * Methode qui permet le chargement d'une carte depuis un fichier texte et créé les Joueurs
      * iniMap pour nouvelle partie
      */
-    private void initMap(final boolean isCharged){
+    private void initMap(final boolean isCharged,final Equipe[] pTabEquipe,final boolean[] pTabIA){
         
         aLargeur = Integer.parseInt(aMap.nextLine());
         aHauteur = Integer.parseInt(aMap.nextLine());
@@ -221,25 +228,18 @@ public class Partie
                 default: aTerrain[vX][vY] = new Terrain(vX, vY, 0, TypeTerrain.PLAINE);
             }
         }
-        /*************************************
-         * CREATION DES CARACTERISTIQUES DES JOUEURS
-         * 
-         ************************************/
-        Equipe equipe0 = new Equipe(0);
-        Equipe equipe1 = new Equipe(1);
-        Equipe equipe2 = new Equipe(2);
-        Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
-        boolean[] vIA = {false,true, false, true,true};
+
         aNbrEquipe = 3;
         
+        
         ListeJoueur = new ArrayList<Joueur>();
-        Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,equipe0,false,""); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
+        Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,pTabEquipe[0],false,""); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
         ListeJoueur.add(JoueurNeutre);
     
         //Ajout des joueur dans l'arrayList
         for(int i=1;i<=aNbrJoueur;i++)
         {
-            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i],vEquipe[i],vIA[i],""));     
+            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i],pTabEquipe[i],pTabIA[i],""));     
             if(isCharged)
                 ListeJoueur.get(i).setArgent(vArgent[i]);
         }
@@ -514,7 +514,15 @@ public class Partie
         } catch (IOException e) {
             e.printStackTrace();
         }
-        initMap(true); 
+        
+        //A CHANGER PLUS TARD
+        Equipe equipe0 = new Equipe(0);
+        Equipe equipe1 = new Equipe(1);
+        Equipe equipe2 = new Equipe(2);
+        Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
+        boolean[] vIA = {false,true, false, true,true};
+        
+        initMap(true,vEquipe,vIA); 
         Slatch.ihm.getPanel().repaint();
     }
     
