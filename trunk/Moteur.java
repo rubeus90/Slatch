@@ -476,6 +476,7 @@ class Moteur
         }
         
         if(getBrouillard()){
+            System.out.println("coucou");
             Brouillard();
         }
     }

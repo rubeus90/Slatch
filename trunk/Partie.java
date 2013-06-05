@@ -221,29 +221,28 @@ public class Partie
                 default: aTerrain[vX][vY] = new Terrain(vX, vY, 0, TypeTerrain.PLAINE);
             }
         }
-        
-        Equipe equipe0 = new Equipe(0);
-        Equipe equipe1 = new Equipe(1);
-        Equipe equipe2 = new Equipe(2);
-        aNbrEquipe = 3;
-        
         /*************************************
          * CREATION DES CARACTERISTIQUES DES JOUEURS
          * 
          ************************************/
-        ListeJoueur = new ArrayList<Joueur>();
-        Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,equipe0,""); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
-        ListeJoueur.add(JoueurNeutre);
-        
+        Equipe equipe0 = new Equipe(0);
+        Equipe equipe1 = new Equipe(1);
+        Equipe equipe2 = new Equipe(2);
         Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
+        boolean[] vIA = {false,true, false, true,true};
+        aNbrEquipe = 3;
+        
+        ListeJoueur = new ArrayList<Joueur>();
+        Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,equipe0,false,""); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
+        ListeJoueur.add(JoueurNeutre);
+    
         //Ajout des joueur dans l'arrayList
         for(int i=1;i<=aNbrJoueur;i++)
         {
-            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i],vEquipe[i],""));     
+            ListeJoueur.add(new Joueur(i,Faction.HUMAINS,vBatimentJoueur[i],vEquipe[i],vIA[i],""));     
             if(isCharged)
                 ListeJoueur.get(i).setArgent(vArgent[i]);
         }
-        //ListeJoueur.get(2).setIA(false);
         
         //Creation des liste d'unite ,de batiment de d'usine des Joueurs
         for(Unite vUniteActuel : lUnite){
