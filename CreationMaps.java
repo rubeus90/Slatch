@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -28,7 +29,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class CreationMaps extends JPanel implements ActionListener,
-		MouseListener {
+		MouseListener, MouseMotionListener {
 	private JFrame frame;
 	private JPanel panel;
 	private PanelMap panelMap;
@@ -136,6 +137,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 
 		liste.addMouseListener(this);
 		panelMap.addMouseListener(this);
+		panelMap.addMouseMotionListener(this);
 
 		frame.pack();
 		frame.setVisible(true);
@@ -309,5 +311,36 @@ public class CreationMaps extends JPanel implements ActionListener,
 		else {
 			System.exit(0);
 		}
-	}		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		String ID = liste.getSelectedValue();
+		if (ID != "USINE" && ID != "BATIMENT" && ID != "QG") {
+			aJoueur = "0";
+			for (JRadioButton button : listeBoutonJoueur) {
+				button.setEnabled(false);
+			}
+		} else {
+			for(JRadioButton button: listeBoutonJoueur)
+				button.setEnabled(true);
+			for(int i=Integer.parseInt(aNbrJoueur) + 1; i<=4; i++)
+				listeBoutonJoueur.get(i).setEnabled(false);
+		}
+
+		if (e.getSource() == panelMap) {
+			Point point = panelMap.coordclickUnite(e.getX(), e.getY());
+			Integer pX = (int) point.getX();
+			Integer pY = (int) point.getY();
+
+			if(ID != null){
+				partieNew.setCarreauTerrain(pX,pY,new Terrain(pX, pY,
+						Integer.parseInt(aJoueur), TypeTerrain.valueOf(ID)));
+				panelMap.repaint();
+			}			
+		}
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {}		
 }
