@@ -270,8 +270,8 @@ class Moteur
            }
            if(vBatiment.getType()==TypeTerrain.QG)
            {
-               getJoueur(vBatiment).mourrir();     
-               Slatch.partie.gagner(getJoueur(vBatiment));
+               getJoueur(vBatiment).mourrir();
+               Slatch.partie.gagner(getJoueur(vBatiment.getCoordonneeX(),vBatiment.getCoordonneeY())); // On donne a gagner le joueur qui vient de capturer et pas celui qui vient de perdre le QG
            }
            getJoueur(vBatiment).addNbreBatiment(-1);
            vBatiment.setJoueur(uniteA.getJoueur());
