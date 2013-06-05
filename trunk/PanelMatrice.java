@@ -479,9 +479,9 @@ public class PanelMatrice extends JPanel
                         else if (!menuUniteDescription) {
                             menuUniteDescription = true;
                         }
-                        redimMenuDescription(i,j);
                         aUniteMemMenuCaseX=i;
                         aUniteMemMenuCaseY=j;
+                        redimMenuDescription(i,j);
                         Slatch.moteur.caseSelectionnee(i,j);
                         this.repaint();
                     }
@@ -753,8 +753,8 @@ public class PanelMatrice extends JPanel
      */
     public void redimMenuDescription(final int pX, final int pY) 
     {
-        if(Slatch.partie.getTerrain()[aUniteMemMenuCaseX][aUniteMemMenuCaseY].getUnite()==null && aLargeurMenuDescriptionEnCase==10) aLargeurMenuDescriptionEnCase=5;
-        if(Slatch.partie.getTerrain()[aUniteMemMenuCaseX][aUniteMemMenuCaseY].getUnite()!=null && !Slatch.partie.getTerrain()[aUniteMemMenuCaseX][aUniteMemMenuCaseY].getBrouillard())  aLargeurMenuDescriptionEnCase=10;
+        if(Slatch.partie.getTerrain()[pX][pY].getUnite()==null || Slatch.partie.getTerrain()[pX][pY].getBrouillard()) aLargeurMenuDescriptionEnCase=5;
+        if(Slatch.partie.getTerrain()[pX][pY].getUnite()!=null && !Slatch.partie.getTerrain()[pX][pY].getBrouillard())  aLargeurMenuDescriptionEnCase=10;
         if(pX<Slatch.partie.getLargeur()/2) 
         {
             // En bas a droite
