@@ -31,13 +31,13 @@ public class Slatch {
         aImages=new HashMap<String,Image>();
         loadImage();
 
-        Partie partieRapide = new Partie(20,30,"Maps/doublevai.txt",true);
+        Partie partieRapide = new Partie(20,30,"Maps/mapTest.txt",true);
         
 //        partie = new Partie("Maps/mapGenere.txt");
 //        partie =new Partie("Maps/sauvegarde.txt");
         
 //        Tutoriel tuto = new Tutoriel("Maps/tutoriel.txt");
-       Campagne campagne = new Campagne("Maps/mapTest.txt", 1);
+      // Campagne campagne = new Campagne("Maps/mapTest.txt", 1);
         
         partie = partieRapide;
         moteur = new Moteur();
