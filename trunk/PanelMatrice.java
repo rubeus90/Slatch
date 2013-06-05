@@ -499,39 +499,114 @@ public class PanelMatrice extends JPanel
         for(int i=0; i<Slatch.partie.getLargeur(); i++) {
             for(int j=0; j<Slatch.partie.getHauteur(); j++) {
                 Slatch.partie.getTerrain()[i][j].dessine(g, this);
-
-                int joueurAv; 
-
-                /*if(Slatch.partie.getJoueurActuel()!=1)
-                    joueurAv = Slatch.partie.getJoueurActuel()-1;
-                else
-                    joueurAv = Slatch.partie.getNbrJoueur();
-                
-                    
-                if(Slatch.partie.getJoueur(joueurAv).estUneIA() && Slatch.partie.getTour()!=1)
-                {
-                    
-                    int ca =StrategieIA.iMap[i][j].capture;
-                    int de =StrategieIA.iMap[i][j].defensif;
-                    int of =StrategieIA.iMap[i][j].offensif;
-                    int me =StrategieIA.iMap[i][j].menace;
-                    int re =StrategieIA.iMap[i][j].retraite;
-                    
-                    int pPosHautGaucheX = i*aLargeurCarreau;
-                    int pPosHautGaucheY = j*aHauteurCarreau;
-                    int pPosBasDroiteX = (i+1)*aLargeurCarreau;
-                    int pPosBasDroiteY = (j+1)*aHauteurCarreau;
-                    
-                    afficheImageRedim ("noir80", pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX, pPosBasDroiteY, g);
-                    
-                    Font font = new Font("Serif", Font.BOLD, this.getWidth()/130);
-                    g.setFont(font);
-                    FontMetrics fm=getFontMetrics(font); 
-                    g.setColor(Color.white);
-                    
-                    g.drawString(""+ca, pPosHautGaucheX, pPosBasDroiteY);
-                }*/
+                //afficheInfoIA(i,j,g);
+                //afficheInfoTerrain(i,j,g);
             }
+        }
+    }
+    
+    /**
+     * Affiche les info du terrain
+     */
+    private void afficheInfoTerrain (int i, int j, Graphics g) {  
+        int t=Slatch.partie.getTerrain()[i][j].getType().getCouverture();
+        
+        int pPosHautGaucheX = i*aLargeurCarreau;
+        int pPosHautGaucheY = j*aHauteurCarreau;
+        int pPosBasDroiteX = (i+1)*aLargeurCarreau;
+        int pPosBasDroiteY = (j+1)*aHauteurCarreau;
+        
+        afficheImageRedim ("noir80", pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX, pPosBasDroiteY, g);
+        
+        Font font = new Font("Serif", Font.PLAIN, this.getWidth()/150);
+        g.setFont(font);
+        FontMetrics fm=getFontMetrics(font); 
+        int h=fm.getHeight()-1;
+        
+        if(t==0)               {g.setColor(Color.blue);}
+        else if (t<=1)       {g.setColor(Color.green);}
+        else if (t<=4)       {g.setColor(Color.orange);}
+        else                    {g.setColor(Color.red);}
+        g.drawString(" Couv : "+t, pPosHautGaucheX, pPosBasDroiteY+2*h-aHauteurCarreau);
+        
+        g.setColor(Color.gray);
+        g.drawLine(pPosHautGaucheX, pPosHautGaucheY, pPosHautGaucheX, pPosBasDroiteY);
+        g.drawLine(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX, pPosHautGaucheY);
+    }
+    
+    /**
+     * Affiche les info de l'IA
+     */
+    private void afficheInfoIA (int i, int j, Graphics g) {  
+        int joueurAv; 
+
+        if(Slatch.partie.getJoueurActuel()!=1)
+            joueurAv = Slatch.partie.getJoueurActuel()-1;
+        else
+            joueurAv = Slatch.partie.getNbrJoueur();
+            
+        if(Slatch.partie.getJoueur(joueurAv).estUneIA() && Slatch.partie.getTour()!=1)
+        {
+            int ca =StrategieIA.iMap[i][j].capture;
+            int de =StrategieIA.iMap[i][j].defensif;
+            int of =StrategieIA.iMap[i][j].offensif;
+            int me =StrategieIA.iMap[i][j].menace;
+            int re =StrategieIA.iMap[i][j].retraite;
+            
+            int pPosHautGaucheX = i*aLargeurCarreau;
+            int pPosHautGaucheY = j*aHauteurCarreau;
+            int pPosBasDroiteX = (i+1)*aLargeurCarreau;
+            int pPosBasDroiteY = (j+1)*aHauteurCarreau;
+            
+            afficheImageRedim ("noir80", pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX, pPosBasDroiteY, g);
+            
+            Font font = new Font("Serif", Font.PLAIN, this.getWidth()/150);
+            g.setFont(font);
+            FontMetrics fm=getFontMetrics(font); 
+            int h=fm.getHeight()-1;
+            
+            g.setColor(Color.white);
+
+            int p;
+            
+            p=ca;
+            if(p==0)               {g.setColor(Color.blue);}
+            else if (p<=100)       {g.setColor(Color.green);}
+            else if (p<=500)       {g.setColor(Color.orange);}
+            else                    {g.setColor(Color.red);}
+            g.drawString(" c "+ca, pPosHautGaucheX, pPosBasDroiteY+h-aHauteurCarreau);
+            
+            p=de;
+            if(p==0)               {g.setColor(Color.blue);}
+            else if (p<=100)       {g.setColor(Color.green);}
+            else if (p<=500)       {g.setColor(Color.orange);}
+            else                    {g.setColor(Color.red);}
+            g.drawString(" d "+de, pPosHautGaucheX, pPosBasDroiteY+2*h-aHauteurCarreau);
+            
+            p=of;
+            if(p==0)               {g.setColor(Color.blue);}
+            else if (p<=100)       {g.setColor(Color.green);}
+            else if (p<=500)       {g.setColor(Color.orange);}
+            else                    {g.setColor(Color.red);}
+            g.drawString(" o "+of, pPosHautGaucheX, pPosBasDroiteY+3*h-aHauteurCarreau);
+            
+            p=me;
+            if(p==0)               {g.setColor(Color.blue);}
+            else if (p<=100)       {g.setColor(Color.green);}
+            else if (p<=500)       {g.setColor(Color.orange);}
+            else                    {g.setColor(Color.red);}
+            g.drawString(" m "+me, pPosHautGaucheX, pPosBasDroiteY+4*h-aHauteurCarreau);
+            
+            p=re;
+            if(p==0)               {g.setColor(Color.blue);}
+            else if (p<=100)       {g.setColor(Color.green);}
+            else if (p<=500)       {g.setColor(Color.orange);}
+            else                    {g.setColor(Color.red);}
+            g.drawString(" r "+re, pPosHautGaucheX, pPosBasDroiteY+5*h-aHauteurCarreau);
+            
+            g.setColor(Color.gray);
+            g.drawLine(pPosHautGaucheX, pPosHautGaucheY, pPosHautGaucheX, pPosBasDroiteY);
+            g.drawLine(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX, pPosHautGaucheY);
         }
     }
     
