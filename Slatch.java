@@ -43,16 +43,16 @@ public class Slatch {
         moteur = new Moteur();
         ihm = new IHM_NEW();
         
-        moteur.Brouillard();
+        //moteur.Brouillard();
            
         //maps = new CreationMaps("hacheMap");
        
         
-        moteur.Brouillard();
+        //moteur.Brouillard();
         
         if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
         {
-            AIMaster.joueTour(Slatch.partie.getJoueurActuel());
+            StrategieIA.joueTour(Slatch.partie.getJoueurActuel());
         }
     }
     

@@ -373,4 +373,18 @@ public class Unite extends Entite
     public void addDecaleUniteY(final int p) {aDecaleUniteY+=p;}
     public int getDecaleUniteX() {return aDecaleUniteX;}
     public int getDecaleUniteY() {return aDecaleUniteY;}
+    
+    
+    public boolean peutCapturer()
+    {
+        return this.aType.peutCapturer();
+    }
+    
+    public boolean peutSoigner()
+    {
+        return this.aType.peutSoigner();
+    }
+    
+    
+    
 }

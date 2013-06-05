@@ -120,7 +120,7 @@ public class GrandeIA
                 int x = usine.getCoordonneeX();
                 int y = usine.getCoordonneeY();
 
-                if(joueurActuel.getArgent()>=700 && nombreWhile <1)
+                if(joueurActuel.getArgent()>=700)
                  {
                     uia.decrypterObjectif(new Objectif("acheter","While",new Point(x,y),null,null));                    
                     //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreWhile+" While donc j'en achete 1 JOUR: "+Slatch.partie.getTour());

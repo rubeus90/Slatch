@@ -2,14 +2,14 @@ import java.awt.Point;
 import java.util.Stack;
 public class UniteIA
 {
-    private void seDirigerVers(final Entite executant,final Point point)
+    static private void seDirigerVers(final Entite executant,final Point point)
     {
         Unite u = (Unite)executant;
         Slatch.moteur.remplitPorteeDep(u, false);        
         Slatch.moteur.deplacement(u, (int)point.getX(),(int)point.getY());
     }
     
-    private void attaquerUnite(final Unite pUnite,final Point point,final Unite pCible){
+    static private void attaquerUnite(final Unite pUnite,final Point point,final Unite pCible){
         if(!Slatch.moteur.estAPortee(pUnite, pCible)){seDirigerVers(pUnite, point);}
         if(Slatch.moteur.estAPortee(pUnite, pCible) && ((pUnite.getAttaque().aTypePortee.getPorteeMin()==1 && Slatch.moteur.distance(pUnite, pCible)==1) || !pUnite.dejaDeplacee())){
             Slatch.moteur.setuniteA(pUnite);
@@ -17,7 +17,7 @@ public class UniteIA
         }
     }
     
-    private void capture(final Entite executant,final Point point){
+    static private void capture(final Entite executant,final Point point){
         Unite u= (Unite) executant;
         if(!u.seSitue(point))
         {seDirigerVers(u, point);}
@@ -28,7 +28,7 @@ public class UniteIA
         u.deplacee(true);
     }
     
-    private void achat(final Point point,String pType){
+    static private void achat(final Point point,String pType){
         for(TypeUnite type : TypeUnite.values()){
             if(type.getNom().equals(pType)){
                 Slatch.moteur.creationUnite((int)point.getX(),(int)point.getY(),type);
@@ -37,7 +37,7 @@ public class UniteIA
         }
     }
     
-    private void soigner(Unite executant, Unite cible, Point point)
+    static private void soigner(Unite executant, Unite cible, Point point)
     {
         if(!executant.seSitue(point))
         {seDirigerVers(executant, point);}
@@ -50,7 +50,7 @@ public class UniteIA
         executant.deplacee(true);
     }
     
-    public void decrypterObjectif(final Objectif objectif)
+    static void decrypterObjectif(final Objectif objectif)
     {
         switch(objectif.getMotPrincipal()){
         case "aller" :

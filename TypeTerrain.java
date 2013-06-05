@@ -120,6 +120,11 @@ public enum TypeTerrain {
             return aDependanceJoueur;
         }
         
+        public boolean dependDuJoueur()
+        {
+            return aDependanceJoueur;
+        }
+        
         /***
          * Accesseur pour l'attribut aCouverture
          * @return aCouverture
