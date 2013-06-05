@@ -42,13 +42,13 @@ public class Slatch {
         //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
         boolean[] vIA = {false,true, false, true,true};
         
-        Partie partieRapide = new Partie(20,30,"Maps/mapTest.txt",false,vEquipe,vIA);
+        Partie partieRapide = new Partie(20,30,"Maps/doublevai.txt",true,vEquipe,vIA);
         
         partie = partieRapide;
         moteur = new Moteur();
         ihm = new IHM_NEW();
            
-        //maps = new CreationMaps("hacheMap");
+       //maps = new CreationMaps("hacheMap");
        
         if(partie.getBrouillard()){
             moteur.Brouillard();

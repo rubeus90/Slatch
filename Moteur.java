@@ -894,17 +894,19 @@ class Moteur
             }  
             
             for(Joueur vJoueur : Slatch.partie.ListeJoueur){
-            	if(!vJoueur.estUneIA()){
-            		for(Unite vUnite : vJoueur.getListeUnite()){
-                        affichePorteeBrouillard(vUnite);
-                   }             
-                   for(Terrain terrain : vJoueur.getListeBatiment()){
-                       Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
-                   }
-                   for(Terrain terrain : vJoueur.getListeUsine()){
-                       Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
-                   }
-            	}
+                if(vJoueur.getNumJoueur()!=0){
+                	if(!vJoueur.estUneIA()){
+                		for(Unite vUnite : vJoueur.getListeUnite()){
+                            affichePorteeBrouillard(vUnite);
+                       }             
+                       for(Terrain terrain : vJoueur.getListeBatiment()){
+                           Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+                       }
+                       for(Terrain terrain : vJoueur.getListeUsine()){
+                           Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+                       }
+                	}
+                }
             }
         }
             
