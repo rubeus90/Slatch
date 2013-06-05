@@ -103,6 +103,7 @@ public class PanelMatrice extends JPanel
         aHauteurCarreau = this.getHeight()/ Slatch.partie.getHauteur();
         dessineMatrice(g);
                 
+        // Menu d'action d'une unite non IA
         if(menuUniteAction && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()) 
         {
             afficheImageRedim ("noir80", aMenuActionHautGauche_Xpx, aMenuActionHautGauche_Ypx, aMenuActionBasDroite_Xpx, aMenuActionBasDroite_Ypx, g);
@@ -150,6 +151,7 @@ public class PanelMatrice extends JPanel
             }
         }
         
+        // Menu de description du terrain et de l'unite en bas de l'ecran 
         if(menuUniteDescription) 
         {
             redimMenuDescription(aUniteMemMenuCaseX,aUniteMemMenuCaseY);
@@ -207,6 +209,7 @@ public class PanelMatrice extends JPanel
             }
         }
         
+        // Menu pour l'achat d'unite
         if(menuShop && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()) 
         {
             afficheImageRedim ("noir80", aShopHautGauche_Xpx, aShopHautGauche_Ypx, aShopBasDroite_Xpx, aShopBasDroite_Ypx, g);
@@ -237,6 +240,7 @@ public class PanelMatrice extends JPanel
             g.drawLine(aShopHautGauche_Xpx, 0, aShopBasDroite_Xpx, 0);
         }
         
+        // Menu du bouton menu
         if(menuMenu) 
         {
             redimMenu();
@@ -260,7 +264,7 @@ public class PanelMatrice extends JPanel
             g.drawLine(aMenuHautGauche_Xpx, 0, aMenuBasDroite_Xpx-1, 0);
         }
         
-        
+        // Ecran de fin de partie
         if(Slatch.partie.partieFinie) {
             afficheImageRedim ("noir80", 0, 0, this.getWidth(), this.getHeight(), g);
             
@@ -330,8 +334,6 @@ public class PanelMatrice extends JPanel
                 g.drawString(stat9, this.getWidth()/2 + decalage - stat9Size/2, 16*this.getHeight()/(2*hauteurSize));
             }
         }
-        
-
     }
     
     /**
@@ -356,10 +358,7 @@ public class PanelMatrice extends JPanel
                 {
                     /*
                      * 
-                     * 
-                     * 
                      * Recuperer les coordonnees
-                     * 
                      * 
                      */
                     if(menuMenu) {
@@ -739,7 +738,6 @@ public class PanelMatrice extends JPanel
             aMenuActionBasDroite_Xpx = (pX+aLargeurMenuActionEnCase+1)*aLargeurCarreau;
             aMenuActionBasDroite_Ypx = (pY+aHauteurMenuActionEnCase+1)*aHauteurCarreau;
         }
-        
     }
     
     /**
@@ -772,5 +770,4 @@ public class PanelMatrice extends JPanel
     public void setMenuUniteDescription(final boolean X){menuUniteDescription=X;}
     public void setMenuShop(final boolean X){menuShop=X;}
     public void setMenu(final boolean X){menuMenu=X;}
-    
 }
