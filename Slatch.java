@@ -42,7 +42,7 @@ public class Slatch {
         //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
         boolean[] vIA = {false,true, false, true,true};
         
-        Partie partieRapide = new Partie(20,30,"Maps/mapTest4.txt",true,vEquipe,vIA);
+        Partie partieRapide = new Partie(20,30,"Maps/jonathan.txt",true,vEquipe,vIA);
         
         partie = partieRapide;
         moteur = new Moteur();
