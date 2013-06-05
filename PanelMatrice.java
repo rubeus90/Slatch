@@ -558,11 +558,11 @@ public class PanelMatrice extends JPanel
             
         if(Slatch.partie.getJoueur(joueurAv).estUneIA() && Slatch.partie.getTour()!=1)
         {
-            int ca =StrategieIA.iMap[i][j].capture;
-            int de =StrategieIA.iMap[i][j].defensif;
-            int of =StrategieIA.iMap[i][j].offensif;
-            int me =StrategieIA.iMap[i][j].menace;
-            int re =StrategieIA.iMap[i][j].retraite;
+            int ca =OperationIA.map[i][j].capture;
+            int de =OperationIA.map[i][j].defensif;
+            int of =OperationIA.map[i][j].offensif;
+            int me =OperationIA.map[i][j].menace;
+            int re =OperationIA.map[i][j].retraite;
             
             int pPosHautGaucheX = i*aLargeurCarreau;
             int pPosHautGaucheY = j*aHauteurCarreau;
