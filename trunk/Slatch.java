@@ -30,9 +30,18 @@ public class Slatch {
     {
         aImages=new HashMap<String,Image>();
         loadImage();
-
-        Partie partieRapide = new Partie(20,30,"Maps/mapTest.txt",true);
-
+        
+        Equipe equipe0 = new Equipe(0);
+        Equipe equipe1 = new Equipe(1);
+        Equipe equipe2 = new Equipe(2);
+        
+        //EQUIPE DES JOUEURS : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
+        Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
+        
+        //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
+        boolean[] vIA = {false,true, false, true,true};
+        
+        Partie partieRapide = new Partie(20,30,"Maps/mapTest.txt",false,vEquipe,vIA);
         
 //        partie = new Partie("Maps/mapGenere.txt");
 //        partie =new Partie("Maps/sauvegarde.txt");
@@ -43,8 +52,6 @@ public class Slatch {
         partie = partieRapide;
         moteur = new Moteur();
         ihm = new IHM_NEW();
-        
-        //moteur.Brouillard();
            
         //maps = new CreationMaps("hacheMap");
        
