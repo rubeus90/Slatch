@@ -4,6 +4,9 @@ public class OperationIA
     static boolean[][] valide = new boolean[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
     static void joueUnite(Unite unite, Influence[][] map)
     {
+        
+        /***  JO  ****/
+        
         Slatch.moteur.remplitPorteeDep(unite, false);
         adapteMap(unite, map);
         
@@ -15,37 +18,26 @@ public class OperationIA
             }
         }
         
-        
-        
-        
         Triplet t = new Triplet(-1,-1,-1);
         Point p = null;
         while(t.d==-1)
         {            
-            if(unite.estLowHP())
+            
+            if(unite.peutCapturer())
             {
-                p= trouverBonneCase(unite, map, new Influence(1,5, 1, -4, 5));
-            }
-            else if(unite.peutSoigner())
-            {
-                p= trouverBonneCase(unite, map, new Influence(3,3, 1, -4, 2));
-            }
-            else if(unite.peutCapturer())
-            {
-                p= trouverBonneCase(unite, map, new Influence(4,3, 4000, -3, 1));
+                p= trouverBonneCase(unite, map, new Influence(5,0, 0, 0, 0));
             }
             else // l'unité peut attaquer
             {
-                p= trouverBonneCase(unite, map, new Influence(2,3, 5000, -3, 1));
+                p= trouverBonneCase(unite, map, new Influence(5,0, 0, 0, 0));
             }
+            
             
             int x= (int)(p.getX());
             int y= (int)(p.getY());
-            
-            
+
             Unite u= Slatch.partie.getTerrain()[x][y].getUnite();
-            
-            
+
             if(u!=null)
             {
                 for(Point voisin: Moteur.voisins)
@@ -75,9 +67,7 @@ public class OperationIA
             }
             valide[x][y]=false;
         }
-        
-        
-        
+ 
         int x=t.x;
         int y= t.y;
         
@@ -114,6 +104,118 @@ public class OperationIA
         }
         
         StrategieIA.spreadInfluence(unite,StrategieIA.iMap, true);
+
+        /***  END  ****/
+        
+
+        
+        /*
+        Slatch.moteur.remplitPorteeDep(unite, false);
+        adapteMap(unite, map);
+        
+        for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        {
+            for(int j=0; j<Slatch.partie.getHauteur(); j++)
+            {
+                valide[i][j]=true;
+            }
+        }
+        
+        Triplet t = new Triplet(-1,-1,-1);
+        Point p = null;
+        while(t.d==-1)
+        {            
+            if(unite.estLowHP())
+            {
+                p= trouverBonneCase(unite, map, new Influence(1,5, 1, -4, 5));
+            }
+            else if(unite.peutSoigner())
+            {
+                p= trouverBonneCase(unite, map, new Influence(3,3, 1, -4, 2));
+            }
+            else if(unite.peutCapturer())
+            {
+                p= trouverBonneCase(unite, map, new Influence(40,3, 50, -3, 1));
+            }
+            else // l'unité peut attaquer
+            {
+                p= trouverBonneCase(unite, map, new Influence(20,3, 50, -3, 1));
+            }
+            
+            int x= (int)(p.getX());
+            int y= (int)(p.getY());
+
+            Unite u= Slatch.partie.getTerrain()[x][y].getUnite();
+            
+            
+            if(u!=null)
+            {
+                for(Point voisin: Moteur.voisins)
+                {
+                    int vx= (int)(voisin.getX())+x;
+                    int vy= (int)(voisin.getY())+y;
+                    
+                    if(Moteur.dansLesBords(vx, vy))
+                    {
+                        if(Slatch.partie.getTerrain()[vx][vy].getUnite()==null)
+                        {
+                            if(Slatch.moteur.tabDist[vx][vy]<t.d || t.d==-1)
+                            {
+                                t.x=vx;
+                                t.y=vy;
+                                t.d=Slatch.moteur.tabDist[vx][vy];
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                t.d= Slatch.moteur.tabDist[x][y];
+                t.x=x;
+                t.y=y;
+            }
+            valide[x][y]=false;
+        }
+ 
+        int x=t.x;
+        int y= t.y;
+        
+        int cx = (int)(p.getX());
+        int cy = (int)(p.getY());
+        
+        //System.out.println(unite+" se dirige vers ("+x+","+y+")");
+        Point pwin=new Point(x,y);
+        Unite u= Slatch.partie.getTerrain()[cx][cy].getUnite();
+        
+        StrategieIA.spreadInfluence(unite,StrategieIA.iMap, false);
+        if(Slatch.partie.getTerrain()[cx][cy].estCapturable()&&unite.peutCapturer()&&u==null)
+        {
+            UniteIA.decrypterObjectif(new Objectif("capture", null, pwin,unite, null));
+        }
+        else if(u!=null)
+        {
+            if(Slatch.moteur.getEquipe(u)==Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
+            {
+                if(unite.peutSoigner()){UniteIA.decrypterObjectif(new Objectif("soigner", null, pwin,unite, u));}
+                else
+                {
+                    UniteIA.decrypterObjectif(new Objectif("aller", null, pwin,unite, null));
+                }
+            }
+            else
+            {
+                UniteIA.decrypterObjectif(new Objectif("attaquer", null, pwin,unite, u));
+            }
+        }
+        else
+        {
+            UniteIA.decrypterObjectif(new Objectif("aller", null, pwin,unite, null));
+        }
+        
+        StrategieIA.spreadInfluence(unite,StrategieIA.iMap, true);
+
+        */
     }
     
     static void adapteMap(Unite unite, Influence[][] map)
