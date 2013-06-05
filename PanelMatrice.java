@@ -165,7 +165,7 @@ public class PanelMatrice extends JPanel
             if(t.getUnite()!=null && !t.getBrouillard())
             {
                 String portedep = "Portée Depl = "+t.getUnite().getDeplacement()/10;
-                String xp = "XP = "+t.getUnite().getExperience();
+                String xp = "XP = "+t.getUnite().getExperience()+"   PV = "+t.getUnite().getPV()+"/"+t.getUnite().getPVMax();
                 String lvl = "LVL = ";
                 String couverture = "Couv = "+ t.getType().getCouverture();
                 String titre = t.getUnite().getType().getNom()+" : ";
@@ -332,8 +332,8 @@ public class PanelMatrice extends JPanel
             
             Campagne campagne = new Campagne("Maps/mapTest.txt", 1);
             if(Slatch.partie.getClass() == campagne.getClass()){
-            	campagne.createDialogue(); 
-            	
+                campagne.createDialogue(); 
+                
             }
         }
         
@@ -499,6 +499,38 @@ public class PanelMatrice extends JPanel
         for(int i=0; i<Slatch.partie.getLargeur(); i++) {
             for(int j=0; j<Slatch.partie.getHauteur(); j++) {
                 Slatch.partie.getTerrain()[i][j].dessine(g, this);
+
+                int joueurAv; 
+
+                /*if(Slatch.partie.getJoueurActuel()!=1)
+                    joueurAv = Slatch.partie.getJoueurActuel()-1;
+                else
+                    joueurAv = Slatch.partie.getNbrJoueur();
+                
+                    
+                if(Slatch.partie.getJoueur(joueurAv).estUneIA() && Slatch.partie.getTour()!=1)
+                {
+                    
+                    int ca =StrategieIA.iMap[i][j].capture;
+                    int de =StrategieIA.iMap[i][j].defensif;
+                    int of =StrategieIA.iMap[i][j].offensif;
+                    int me =StrategieIA.iMap[i][j].menace;
+                    int re =StrategieIA.iMap[i][j].retraite;
+                    
+                    int pPosHautGaucheX = i*aLargeurCarreau;
+                    int pPosHautGaucheY = j*aHauteurCarreau;
+                    int pPosBasDroiteX = (i+1)*aLargeurCarreau;
+                    int pPosBasDroiteY = (j+1)*aHauteurCarreau;
+                    
+                    afficheImageRedim ("noir80", pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX, pPosBasDroiteY, g);
+                    
+                    Font font = new Font("Serif", Font.BOLD, this.getWidth()/130);
+                    g.setFont(font);
+                    FontMetrics fm=getFontMetrics(font); 
+                    g.setColor(Color.white);
+                    
+                    g.drawString(""+ca, pPosHautGaucheX, pPosBasDroiteY);
+                }*/
             }
         }
     }
