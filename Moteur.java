@@ -29,7 +29,6 @@ class Moteur
         pred = new Point[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
         tabAtt= new boolean[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
         aModeEvoluer=false;
-        
         uniteD = null;
         uniteA = null;
     }
