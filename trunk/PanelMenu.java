@@ -82,6 +82,10 @@ public class PanelMenu extends JPanel
             
             if(aSousMenuRapide1)
             {
+                Image map = Slatch.aImages.get("doublevai");
+               g.drawImage(map, this.getWidth()/12, getHeight()/3,this.getWidth()/2 ,this.getWidth()/3, this);//A Remplacer par OK
+                
+                
                 g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);//A Remplacer par OK
                 
             }
@@ -186,7 +190,7 @@ public class PanelMenu extends JPanel
                     //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
                     boolean[] vIA = {false,true,false,true,true};
                     
-                    Partie partieRapide = new Partie(20,30,"Maps/champs.txt",true,vEquipe,vIA);
+                    Partie partieRapide = new Partie(20,30,"Maps/doublevai.txt",false,vEquipe,vIA);
                     Slatch.partie=partieRapide;
                     
                     Moteur moteur = new Moteur();
