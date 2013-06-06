@@ -293,6 +293,11 @@ public class Unite extends Entite
     {
         return(this.aPV<this.aPVMax/3);
     }
+    
+    public int getDiffPV()
+    {
+        return aPV-aPVMax;
+    }
    
     @Override
     public void dessine (final Graphics g, PanelMatrice pPanel) {

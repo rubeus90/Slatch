@@ -48,6 +48,16 @@ public abstract class Entite
         return this.aCoordonneeX;
     }
     
+    public int getX()
+    {
+        return this.aCoordonneeX;
+    }
+    
+    public int getY()
+    {
+        return this.aCoordonneeY;
+    }
+    
     /**
      * Mutateur
      * @param pCoordonneeX

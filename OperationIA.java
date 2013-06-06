@@ -1,4 +1,5 @@
 import java.awt.Point;
+import java.util.Arrays;
 public class OperationIA
 {
     static boolean[][] valide = new boolean[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
@@ -9,6 +10,7 @@ public class OperationIA
         Slatch.moteur.remplitPorteeDep(unite, false);
         adapteMap(unite);
         valide = new boolean[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
+        
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
@@ -16,7 +18,7 @@ public class OperationIA
                 valide[i][j]=true;
             }
         }
-        
+       
         Triplet t = new Triplet(-1,-1,-1);
         Point p = null;
         while(t.d==-1)
@@ -27,11 +29,11 @@ public class OperationIA
             }
             else if(unite.peutSoigner())
             {
-                p= trouverBonneCase(unite, new Influence(3,3, 0, -4, 2));
+                p= trouverBonneCase(unite, new Influence(3,6, 0, -4, 2));
             }
             else if(unite.peutCapturer())
             {
-                p= trouverBonneCase(unite, new Influence(2,1, 50, -3, 1));
+                p= trouverBonneCase(unite, new Influence(10,1, 15, -2, 1));
             }
             else // l'unité peut attaquer
             {
@@ -43,11 +45,12 @@ public class OperationIA
             
             int x= (int)(p.getX());
             int y= (int)(p.getY());
-            if(x==-1 || y==-1){System.out.println("Bonne case non trouvée");return;}
+            if(x==-1 || y==-1){return;}
+            //if(x==unite.getCoordonneeX() && y==unite.getCoordonneeY()){return;}
             Unite u= Slatch.partie.getTerrain()[x][y].getUnite();
-            
-            
-            if(u!=null)
+        
+        
+            if(u!=null && u!=unite)
             {
                 for(Point voisin: Moteur.voisins)
                 {
@@ -86,10 +89,9 @@ public class OperationIA
         Point pwin=new Point(x,y); // coordonnees du point d'arrivée
         Unite u= Slatch.partie.getTerrain()[cx][cy].getUnite();
         
-        StrategieIA.spreadInfluence(unite,StrategieIA.iMap, false);
         
         
-        if(Slatch.partie.getTerrain()[cx][cy].estCapturable()&&unite.peutCapturer()&&u==null)
+        if(Slatch.partie.getTerrain()[cx][cy].estCapturable()&&unite.peutCapturer()&&(u==null || u==unite))
         {
             UniteIA.decrypterObjectif(new Objectif("capture", null, pwin,unite, null));
         }
@@ -124,28 +126,58 @@ public class OperationIA
         StrategieIA.spreadInfluence(unite,map, false);
         for(int i=0; i<=Slatch.partie.getNbrJoueur(); i++)
         {
-            if(Slatch.partie.getJoueur(i).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe())
+            if(Slatch.partie.getJoueur(i).getEquipe().getNumEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
             {
                 for(Unite u: Slatch.partie.getJoueur(i).getListeUnite())
                 {
+                    int uX = u.getCoordonneeX();
+                    int uY = u.getCoordonneeY();
+                    
+                    if(Slatch.partie.getTerrain()[uX][uY].getType()==TypeTerrain.QG && Slatch.partie.getTerrain()[uX][uY].appartientAuJoueur(unite.getJoueur()))
+                    {
+                        map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+= 5000;
+                    }
                     int x=0,y=0;
                     if(unite.getAttaque().efficacite.containsKey(u.getType()))
                     {
                         if(Slatch.moteur.seraAPortee(unite, u))
                         {
-                            map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+= (int)(unite.getAttaque().efficacite.get(u.getType()).doubleValue()*5000.0);
-                            //System.out.println("Offensif augmenté, nouvelle valeur = "+map[u.getCoordonneeX()][u.getCoordonneeY()].offensif);
+                            map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+= (int)(unite.getAttaque().efficacite.get(u.getType()).doubleValue()*50.0)*(u.getDiffPV());
                         }
                         x+= (int)(unite.getAttaque().efficacite.get(u.getType()).doubleValue()*5.0);
                     }
                     
                     if(u.getAttaque().efficacite.containsKey(unite.getType()))
                     {
-                        y+= (int)(u.getAttaque().efficacite.get(unite.getType()).doubleValue()*5.0);
+                        y+= (int)(u.getAttaque().efficacite.get(unite.getType()).doubleValue()*2.0);
                     }
                     
                     Influence inf = new Influence(0,0,x,y,0);
                     StrategieIA.spreadInfluence(u, map, true, inf);
+                }
+                
+                for(Terrain t: Slatch.partie.getJoueur(i).getListeBatiment())
+                {
+                    if((Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()]<=unite.getDeplacement() && Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()]>=0 && t.getUnite()==null))
+                    {
+                        map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=2000;
+                    }
+                    if(t.getUnite()==unite)
+                    {
+                        map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=5000;
+                    }
+                }
+                
+                for(Terrain t: Slatch.partie.getJoueur(i).getListeUsine())
+                {
+                    if((Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()]<=unite.getDeplacement() && Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()]>=0 && t.getUnite()==null))
+                    {
+                        map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=2000;
+                    }
+                    if(t.getUnite()==unite)
+                    {
+                        map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=5000;
+                    }
                 }
             }
         }

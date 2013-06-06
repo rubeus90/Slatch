@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Iterator;
+import java.util.Arrays;
 public class StrategieIA
 {
     static Influence[][]iMap;
@@ -21,6 +22,8 @@ public class StrategieIA
             }
         }
         
+        
+        
         remplirMap();
         Iterator<Unite> i = l.iterator();
         while(i.hasNext())
@@ -40,16 +43,16 @@ public class StrategieIA
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
             {
-                iMap[i][j].defensif+=100*Slatch.partie.getTerrain()[i][j].getType().getCouverture()*mode.inf.defensif;
+                iMap[i][j].defensif+=20*Slatch.partie.getTerrain()[i][j].getType().getCouverture()*mode.inf.defensif;
                 switch(Slatch.partie.getTerrain()[i][j].getType().getNom())
                 {
-                    case "usine": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){iMap[i][j].capture+=200*mode.inf.capture;}
-                    else{iMap[i][j].retraite+=400*mode.inf.retraite;}
-                    case "batiment": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){iMap[i][j].capture+=100*mode.inf.capture; /*System.out.println("("+i+","+j+") : Batiment avec valeur de capture: "+iMap[i][j].capture);*/;} 
-                    else{iMap[i][j].retraite+=500*mode.inf.retraite;} break;
+                    case "usine": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){if(Slatch.partie.getTerrain()[i][j].getUnite()==null){iMap[i][j].capture+=100*mode.inf.capture;}}
+                    else{iMap[i][j].retraite+=4*mode.inf.retraite;}
+                    case "batiment": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){if(Slatch.partie.getTerrain()[i][j].getUnite()==null){iMap[i][j].capture+=50*mode.inf.capture;}} 
+                    else{iMap[i][j].retraite+=5*mode.inf.retraite;} break;
                     case "foret": break;
                     case "montagne": break;
-                    case "qg": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){iMap[i][j].capture+=500*mode.inf.capture;}break;
+                    case "qg": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){if(Slatch.partie.getTerrain()[i][j].getUnite()==null){iMap[i][j].capture+=250*mode.inf.capture;}}break;
                     default:
                 }
                 if(Slatch.partie.getTerrain()[i][j].getUnite()!=null)
@@ -73,7 +76,7 @@ public class StrategieIA
         int pu = unite.getDeplacement()/10;
         if(Slatch.moteur.getEquipe(unite)!=Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
         {
-            for(int i=0; i<=pm; i++)
+            for(int i=0; i<=pm+pu; i++)
             {
                 for(int j=0; j<=i;j++)
                 {
@@ -83,13 +86,13 @@ public class StrategieIA
                         if(Moteur.dansLesBords(x+a+b, y+c+d))
                         {
                             if(ajouterInfluence){
-                                if(i>=unite.getAttaque().aTypePortee.getPorteeMin()){map[x+a+b][y+c+d].menace+=(60*(pm-i+1))*inf.menace;}
-                                if(i>=unite.getAttaque().aTypePortee.getPorteeMin()){map[x+a+b][y+c+d].offensif+=(30*(pm-i+1))*inf.offensif;}
+                                if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace+=100*inf.menace;}
+                                if(i<=3){map[x+a+b][y+c+d].offensif+=(30*(pm-i+1))*inf.offensif;}
                             }
                             else
                             {
-                                if(i>=unite.getAttaque().aTypePortee.getPorteeMin()){map[x+a+b][y+c+d].menace-=(60*(pm-i+1))*inf.menace;}
-                                if(i>=unite.getAttaque().aTypePortee.getPorteeMin()){map[x+a+b][y+c+d].offensif-=(30*(pm-i+1))*inf.offensif;}
+                                if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace-=100*inf.menace;}
+                                if(i<=3){map[x+a+b][y+c+d].offensif-=(30*(pm-i+1))*inf.offensif;}
                             }
                         }
                     }

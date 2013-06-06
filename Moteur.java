@@ -754,7 +754,15 @@ class Moteur
     
     public boolean estAPortee(Unite pA, Unite pC) // nous dit si pC est à portee de tir de PA
     {
+        /*
         int d=distance(pA, pC);
+        return d<=pA.getAttaque().aTypePortee.getPorteeMax() && d>=pA.getAttaque().aTypePortee.getPorteeMin();*/
+        return estAPortee(pA, pC.getCoordonneeX(), pC.getCoordonneeY());
+    }
+    
+    public boolean estAPortee(Unite pA, int x, int y)
+    {
+        int d=distance(pA.getCoordonneeX(), pA.getCoordonneeY(), x, y);
         return d<=pA.getAttaque().aTypePortee.getPorteeMax() && d>=pA.getAttaque().aTypePortee.getPorteeMin();
     }
     
@@ -1055,7 +1063,7 @@ class Moteur
     
     public boolean seraAPortee(Unite pA, Unite pC) // à supposer que tabDist est rempli
     {
-        if(pA.getAttaque().aTypePortee.getPorteeMin()==1)
+        /*if(pA.getAttaque().aTypePortee.getPorteeMin()==1)
         {
             for(Point p: voisins)
             {
@@ -1071,7 +1079,29 @@ class Moteur
                 }
             }
         }
-        return this.estAPortee(pA, pC);
+        return this.estAPortee(pA, pC);*/
+        return seraAPortee(pA, pC.getCoordonneeX(), pC.getCoordonneeY());
+    }
+    
+    public boolean seraAPortee(Unite pA, int pX, int pY)
+    {
+        if(pA.getAttaque().aTypePortee.getPorteeMin()==1)
+        {
+            for(Point p: voisins)
+            {
+                int x = (int)(p.getX())+pX;
+                int y = (int)(p.getY())+pY;
+                
+                if(dansLesBords(x,y))
+                {
+                    if(tabDist[x][y]>0 && tabDist[x][y]<= pA.getDeplacement() && Slatch.partie.getTerrain()[x][y].getUnite()==null)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return this.estAPortee(pA, pX, pY);
     }
     
     static boolean dansLesBords(final int x,final int y)

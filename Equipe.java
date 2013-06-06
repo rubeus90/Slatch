@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Equipe {
 	
-	private boolean haveUnJoueur;
+// 	private boolean haveUnJoueur;
 	private ArrayList<Joueur> listeJoueur;
 	private int numEquipe;
 	

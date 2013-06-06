@@ -76,7 +76,7 @@ public class Partie
         Equipe equipe1 = new Equipe(1);
         Equipe equipe2 = new Equipe(2);
         Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
-        boolean[] vIA = {false,true, false, true,true};
+        boolean[] vIA = {false,false, true, true,true};
         
         initMap(true,vEquipe,vIA);
         aMap.close();
@@ -520,7 +520,7 @@ public class Partie
         Equipe equipe1 = new Equipe(1);
         Equipe equipe2 = new Equipe(2);
         Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
-        boolean[] vIA = {false,true, false, true,true};
+        boolean[] vIA = {false,false, true, false,false};
         
         initMap(true,vEquipe,vIA); 
         Slatch.ihm.getPanel().repaint();
@@ -539,7 +539,7 @@ public class Partie
         for(Joueur vJoueur: ListeJoueur){
 			if(!vJoueur.estUneIA()){
 				if(vJoueur.getEquipe().getNumEquipe()!=getEquipeJoueurNonIA() && vJoueur.getEquipe().getNumEquipe()!=0) {
-				    System.out.println(uneSeulEquipedeJoueur);
+				    //System.out.println(uneSeulEquipedeJoueur);
 				    uneSeulEquipedeJoueur=false;
 				    return;
 				}
