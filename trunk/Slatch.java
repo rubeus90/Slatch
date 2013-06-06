@@ -48,7 +48,8 @@ public class Slatch {
         moteur = new Moteur();
         ihm = new IHM_NEW();
            
-       //maps = new CreationMaps("trucbidulemachinchosequisentmauvaisquandlesmielspopssortedusacdemamiequimangedeschaussuresamidi");
+       maps = new CreationMaps();
+
        
         if(partie.getBrouillard()){
             moteur.Brouillard();
