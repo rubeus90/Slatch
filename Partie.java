@@ -326,7 +326,7 @@ public class Partie
        }
        partieFinie=true;
        
-       Slatch.campagne.suite();
+       //Slatch.campagne.suite();
     }
     
     /**********
