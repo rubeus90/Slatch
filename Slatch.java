@@ -294,8 +294,4 @@ public class Slatch {
             e.printStackTrace();
         }
     }
-    
-    public void setPartie(Partie pPartie){
-        partie = pPartie;
-    }
 }
