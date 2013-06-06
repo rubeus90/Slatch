@@ -567,8 +567,9 @@ public class Partie
         for(Joueur vJoueur: ListeJoueur){
             if(!vJoueur.estUneIA()){
                 if(vJoueur.getEquipe().getNumEquipe()!=0){
+                    //System.out.println(vJoueur.getEquipe().getNumEquipe()+" ? "+ getEquipeJoueurNonIA());
                     if(vJoueur.getEquipe().getNumEquipe()!=getEquipeJoueurNonIA()) {
-                        System.out.println(uneSeulEquipedeJoueur);
+                        //System.out.println(uneSeulEquipedeJoueur);
                         uneSeulEquipedeJoueur=false;
                         return;
                     }
@@ -576,5 +577,6 @@ public class Partie
              }
         }
         uneSeulEquipedeJoueur=true;
+        //System.out.println(uneSeulEquipedeJoueur);
     }
 }

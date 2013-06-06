@@ -113,13 +113,18 @@ public class GrandeIA
                 }
             }
             
-            
-            
-            //for(Terrain usine : joueurActuel.getListeUsine())
-            if(joueurActuel.getListeUsine().isEmpty()){return;}
-            for(int i=joueurActuel.getListeUsine().size()-1;i>=0;i--)
+            PriorityQueue<Triplet> pq = new PriorityQueue<Triplet>();
+            for(Terrain usine : joueurActuel.getListeUsine())
             {
-                Terrain usine = joueurActuel.getListeUsine().get(i);
+                
+            }
+            
+            
+            for(Terrain usine : joueurActuel.getListeUsine())
+            //if(joueurActuel.getListeUsine().isEmpty()){return;}
+            //for(int i=joueurActuel.getListeUsine().size()-1;i>=0;i--)
+            {
+                //Terrain usine = joueurActuel.getListeUsine().get(i);
                 int x = usine.getCoordonneeX();
                 int y = usine.getCoordonneeY();
 
