@@ -77,6 +77,8 @@ public class Partie
         initMap(false,pTabEquipe,pTabIA);
         aMap.close();
         
+        aRevenuBatiment = 20;
+        
         //Dans le cas ou le fichier map n'existe pas
         aJoueurActuel= 1;
         aTourMax = pTourMax;
@@ -325,8 +327,6 @@ public class Partie
            i++;
        }
        partieFinie=true;
-       
-       //Slatch.campagne.suite();
     }
     
     /**********
