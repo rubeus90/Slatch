@@ -891,7 +891,6 @@ class Moteur
     }
     
     public void Brouillard(){
-        //if(!Slatch.partie.getuneSeulEquipedeJoueur()){
             if(!getJoueurActuel().estUneIA() || getJoueurActuel().getEquipe().haveUnJoueurHumain()){           
             
                 //On remplit la map de Brouillard
@@ -928,36 +927,6 @@ class Moteur
                     }
                 }  
             }
-        //}
-        
-//         else{
-//           if(!getJoueurActuel().estUneIA() || getJoueurActuel().getEquipe().haveUnJoueurHumain()){           
-//             
-//                 //On remplit la map de Brouillard
-//                 for(int i=0; i<Slatch.partie.getLargeur(); i++)
-//                 {
-//                     for(int j=0; j<Slatch.partie.getHauteur(); j++)
-//                     {
-//                         Slatch.partie.getTerrain()[i][j].setBrouillard(true);
-//                     }
-//                 }  
-//                 
-//                 //Pour tous les Joueurs de l'équipe, on enleve le brouillard sur les batiments + la visions des Unites
-//                 for(Joueur vJoueur : getJoueurActuel().getEquipe().getListeJoueur()){
-//                     if(vJoueur.getNumJoueur()!=0){
-//                        for(Unite vUnite : vJoueur.getListeUnite()){
-//                             affichePorteeBrouillard(vUnite);
-//                        }             
-//                        for(Terrain terrain : vJoueur.getListeBatiment()){
-//                            Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
-//                        }
-//                        for(Terrain terrain : vJoueur.getListeUsine()){
-//                            Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
-//                        }
-//                     }
-//                 }
-//             }
-//         }
     }
       
    
