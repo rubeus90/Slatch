@@ -17,6 +17,7 @@ public class Slatch {
     public static CreationMaps maps;
     public static Campagne campagne;
     
+    
     /**
      * @param args
      */
@@ -41,9 +42,9 @@ public class Slatch {
         //Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
         
         //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-        boolean[] vIA = {false,true,true,true,true};
+        //boolean[] vIA = {false,true,true,true,true};
         
-        Partie partieRapide = new Partie(20,30,"Maps/doublevai.txt",false,vEquipe,vIA);
+        //Partie partieRapide = new Partie(20,30,"Maps/doublevai.txt",false,vEquipe,vIA);
         
 
         //partie = partieRapide;
