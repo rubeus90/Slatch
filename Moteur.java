@@ -891,12 +891,7 @@ class Moteur
     }
     
     public void Brouillard(){
-        // Explication condition :
-        // Si il y a que des joueurs humains dans la même equipe, on change pas le brouillard, on applique que si getUneSeulEquipeDeJoueur est faux ( donc plusieurs joueurs)
-        // Si le joueur actuel est un IA on applique pas : Securite
-        // Mais si le joueur actuel appartient à la seul equipe de joueur, on applique ( donc marche avec une IA appartenant a l'équipe de joueur
-        
-        if(!Slatch.partie.getuneSeulEquipedeJoueur()){
+        //if(!Slatch.partie.getuneSeulEquipedeJoueur()){
             if(!getJoueurActuel().estUneIA() || getJoueurActuel().getEquipe().haveUnJoueurHumain()){           
             
                 //On remplit la map de Brouillard
@@ -923,7 +918,7 @@ class Moteur
                     }
                 }
             }
-            else if(getJoueurActuel().estUneIA()){
+            else if(getJoueurActuel().estUneIA() && !Slatch.partie.getuneSeulEquipedeJoueur()){
                 //On remplit la map de Brouillard
                 for(int i=0; i<Slatch.partie.getLargeur(); i++)
                 {
@@ -933,36 +928,36 @@ class Moteur
                     }
                 }  
             }
-        }
+        //}
         
-        else{
-          if(!getJoueurActuel().estUneIA() || getJoueurActuel().getEquipe().haveUnJoueurHumain()){           
-            
-                //On remplit la map de Brouillard
-                for(int i=0; i<Slatch.partie.getLargeur(); i++)
-                {
-                    for(int j=0; j<Slatch.partie.getHauteur(); j++)
-                    {
-                        Slatch.partie.getTerrain()[i][j].setBrouillard(true);
-                    }
-                }  
-                
-                //Pour tous les Joueurs de l'équipe, on enleve le brouillard sur les batiments + la visions des Unites
-                for(Joueur vJoueur : getJoueurActuel().getEquipe().getListeJoueur()){
-                    if(vJoueur.getNumJoueur()!=0){
-                       for(Unite vUnite : vJoueur.getListeUnite()){
-                            affichePorteeBrouillard(vUnite);
-                       }             
-                       for(Terrain terrain : vJoueur.getListeBatiment()){
-                           Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
-                       }
-                       for(Terrain terrain : vJoueur.getListeUsine()){
-                           Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
-                       }
-                    }
-                }
-            }
-        }
+//         else{
+//           if(!getJoueurActuel().estUneIA() || getJoueurActuel().getEquipe().haveUnJoueurHumain()){           
+//             
+//                 //On remplit la map de Brouillard
+//                 for(int i=0; i<Slatch.partie.getLargeur(); i++)
+//                 {
+//                     for(int j=0; j<Slatch.partie.getHauteur(); j++)
+//                     {
+//                         Slatch.partie.getTerrain()[i][j].setBrouillard(true);
+//                     }
+//                 }  
+//                 
+//                 //Pour tous les Joueurs de l'équipe, on enleve le brouillard sur les batiments + la visions des Unites
+//                 for(Joueur vJoueur : getJoueurActuel().getEquipe().getListeJoueur()){
+//                     if(vJoueur.getNumJoueur()!=0){
+//                        for(Unite vUnite : vJoueur.getListeUnite()){
+//                             affichePorteeBrouillard(vUnite);
+//                        }             
+//                        for(Terrain terrain : vJoueur.getListeBatiment()){
+//                            Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+//                        }
+//                        for(Terrain terrain : vJoueur.getListeUsine()){
+//                            Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+//                        }
+//                     }
+//                 }
+//             }
+//         }
     }
       
    

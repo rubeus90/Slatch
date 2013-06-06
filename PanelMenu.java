@@ -188,10 +188,10 @@ public class PanelMenu extends JPanel
                     Equipe equipe4 = new Equipe(4);
                     
                     //EQUIPE DES JOUEURS : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-                    Equipe[] vEquipe = {equipe0, equipe1, equipe1, equipe1, equipe4};
+                    Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe3, equipe4};
                     
                     //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-                    boolean[] vIA = {false,true,false,false,true};
+                    boolean[] vIA = {false,true,false,true,false};
                     
                     Partie partieRapide = new Partie(20,30,"Maps/champs.txt",true,vEquipe,vIA);
                     Slatch.partie=partieRapide;
