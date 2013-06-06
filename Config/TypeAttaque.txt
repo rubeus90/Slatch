@@ -5,6 +5,7 @@ fusil:While:0.3
 fusil:Ingenieur:1
 fusil:Distance:0.65
 fusil:Uml:0.65
+fusil:Kamikaze:2
 mortier:Commando:0.6
 mortier:Demolisseur:1
 mortier:Char:1.3
@@ -12,6 +13,7 @@ mortier:While:1.5
 mortier:Ingenieur:1
 mortier:Distance:1.2
 mortier:Uml:1.2
+mortier:Kamikaze:2
 canon:Commando:1.7
 canon:Demolisseur:0.6
 canon:Char:1.5
@@ -19,6 +21,7 @@ canon:While:1
 canon:Ingenieur:2
 canon:Distance:1.5
 canon:Uml:1
+canon:Kamikaze:2
 groscanon:Commando:1.4
 groscanon:Demolisseur:0.4
 groscanon:Char:1
@@ -26,6 +29,7 @@ groscanon:While:1.2
 groscanon:Ingenieur:2
 groscanon:Distance:1
 groscanon:Uml:1
+groscanon:Kamikaze:2
 roquette:Commando:1.1
 roquette:Demolisseur:1.1
 roquette:Char:1.1
@@ -33,6 +37,7 @@ roquette:While:1.1
 roquette:Ingenieur:1.3
 roquette:Distance:1
 roquette:Uml:1
+roquette:Kamikaze:2
 missile:Commando:1.2
 missile:Demolisseur:1.2
 missile:Char:1.1
@@ -40,6 +45,7 @@ missile:While:1.2
 missile:Ingenieur:1.3
 missile:Distance:1
 missile:Uml:1
+missile:Kamikaze:2
 soin:Commando:0
 soin:Demolisseur:0
 soin:Char:0
@@ -47,3 +53,12 @@ soin:While:0
 soin:Ingenieur:0
 soin:Distance:0
 soin:Uml:0
+soin:Kamikaze:1
+explosion:Commando:1
+explosion:Demolisseur:1
+explosion:Char:1
+explosion:While:1
+explosion:Ingenieur:1
+explosion:Distance:1
+explosion:Uml:1
+explosion:Kamikaze:1
