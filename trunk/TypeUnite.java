@@ -7,9 +7,10 @@ public enum TypeUnite
     DEMOLISSEUR("Demolisseur", "Capable capturer un batiment de faire des degats aux tanks","demolisseur",200,20,30,"mortier",TypeDeplacement.PIED,1.2,"Terrestre",100,true, false), 
     CHAR("Char","un char","char",300,40,60,"canon",TypeDeplacement.CHENILLES,1.3,"Terrestre",110, false, false),
     TANK("While","Unite tres puissante","tank",700,65,40,"groscanon",TypeDeplacement.CHENILLES,1.2, "Terrestre",150, false, false),
-    INGENIEUR("Ingenieur","Capable de soigner des unites et de les faire evoluer","ingenieur",100,15,40,"soin",TypeDeplacement.PIED,2.0, "Terrestre",20, true, true),
+    INGENIEUR("Ingenieur","Capable de soigner des unites et de les faire evoluer","special",100,15,40,"soin",TypeDeplacement.PIED,2.0, "Terrestre",20, true, true),
     DISTANCE("Distance","un vehicule a moyenne distance","distance",350,35,50,"roquette",TypeDeplacement.ROUES,1.3, "Terrestre",110, false, false),
-    UML("Uml","Capable de tirer a distance","uml",450,30,40,"missile",TypeDeplacement.CHENILLES,1.3, "Terrestre",110, false, false);
+    UML("Uml","Capable de tirer a distance","uml",450,30,40,"missile",TypeDeplacement.CHENILLES,1.3, "Terrestre",110, false, false),
+    KAMIKAZE("Kamikaze","Kamikaze capable de faire d'enorme degat a une unite","special",100,1,40,"explosion",TypeDeplacement.PIED,1.0,"Terrestre",1000,false,false);
 
     private String aNom;
     private String aDescription;
