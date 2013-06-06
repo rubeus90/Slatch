@@ -325,7 +325,7 @@ class Moteur
             else if(Slatch.partie.getTerrain()[pX][pY].getType()==TypeTerrain.USINE && Slatch.partie.getTerrain()[pX][pY].getJoueur()==Slatch.partie.getJoueurActuel()) // Selection d'une USINE
             {
                 List<TypeUnite> l = new ArrayList<TypeUnite>();
-                for(TypeUnite vType: Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getFaction().getListe())
+                for(TypeUnite vType: getJoueurActuel().getFaction().getListe())
                 {
                     if(vType.nomType.equals("Terrestre")){l.add(vType);}
                 }

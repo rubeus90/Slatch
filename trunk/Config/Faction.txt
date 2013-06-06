@@ -1,4 +1,4 @@
-humais:Commando
+humains:Commando
 humains:Ingenieur
 humains:Demolisseur
 humains:Char
