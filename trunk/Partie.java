@@ -31,6 +31,7 @@ public class Partie
     public boolean partieFinie = false;
     private boolean aBrouillard;
     private boolean uneSeulEquipedeJoueur;
+    private boolean isCampagne;
     
     
 
@@ -45,7 +46,7 @@ public class Partie
             e.printStackTrace();
         }        
         
-        
+        isCampagne = false;
         aBrouillard = pBrouillard;
         
         initMap(false,pTabEquipe,pTabIA);
@@ -59,6 +60,30 @@ public class Partie
         ListeJoueur.get(1).benefTour(aRevenuBatiment);     
     }
     
+    /*Constructeur pour mode Campagne
+     * 
+     */
+    public Partie(final int pTourMax, final String pMap,final boolean pBrouillard,final Equipe[] pTabEquipe,final boolean[] pTabIA)
+    {
+        try {
+            aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }        
+        
+        isCampagne = true;
+        aBrouillard = pBrouillard;
+        
+        initMap(false,pTabEquipe,pTabIA);
+        aMap.close();
+        
+        //Dans le cas ou le fichier map n'existe pas
+        aJoueurActuel= 1;
+        aTourMax = pTourMax;
+        aTour = 1;
+        ListeJoueur.get(1).benefTour(aRevenuBatiment);     
+    }
+    
     /**
      * Constructeur de chargement d'une sauvegarde d'une Map
      */
@@ -69,6 +94,7 @@ public class Partie
             e.printStackTrace();
         }
         
+        isCampagne = false;
         aBrouillard = pBrouillard;
         
         //A CHANGER PLUS TARD
@@ -299,6 +325,8 @@ public class Partie
            i++;
        }
        partieFinie=true;
+       
+       Slatch.campagne.suite();
     }
     
     /**********
