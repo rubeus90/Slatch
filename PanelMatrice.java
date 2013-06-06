@@ -15,35 +15,43 @@ import javax.swing.*;
  */
 public class PanelMatrice extends JPanel
 {     
+    // Dimensions en pixel d'une case de matrice
     private int aLargeurCarreau;
     private int aHauteurCarreau;
     
+    // Dimensions en pixel du menu pour les actions d'une unite
     private int aMenuActionHautGauche_Xpx;
     private int aMenuActionHautGauche_Ypx;
     private int aMenuActionBasDroite_Xpx;
     private int aMenuActionBasDroite_Ypx;
     
+    // Dimensions en pixel du menu de description du terrain et ou de l'unite
     private int aMenuDescriptionHautGauche_Xpx;
     private int aMenuDescriptionHautGauche_Ypx;
     private int aMenuDescriptionBasDroite_Xpx;
     private int aMenuDescriptionBasDroite_Ypx;
     
+    // Dimensions en pixel du menu (celui du bouton menu de la barre info)
     private int aMenuHautGauche_Xpx;
     private int aMenuHautGauche_Ypx;
     private int aMenuBasDroite_Xpx;
     private int aMenuBasDroite_Ypx;
     
+    // Dimensions en pixel du menu des usines : pour l'achat d'unite
     private int aShopHautGauche_Xpx;
     private int aShopHautGauche_Ypx;
     private int aShopBasDroite_Xpx;
     private int aShopBasDroite_Ypx;
     
+    // Coordonnees matricielles d'une unite selectionnee (avant le menu action)
     private int aUniteMemMoteurCaseX;
     private int aUniteMemMoteurCaseY;
     
+    // Coordonnees matricielles d'une case selectionnee
     private int aUniteMemMenuCaseX;
     private int aUniteMemMenuCaseY;
     
+    // Argent du joueur memorise
     private int aArgentMem;
     
     private int aLargeurMenuActionEnCase=3;
@@ -66,6 +74,7 @@ public class PanelMatrice extends JPanel
     private boolean aCapturePossible=false;
     private boolean aEvoluePossible=false;
     
+    // Unite que l'on peut acheter (ordonnees)
     private HashMap<Integer,TypeUnite>  aTabAchat;
     
     private List<String> aListeAction;
@@ -80,6 +89,7 @@ public class PanelMatrice extends JPanel
         this.setPreferredSize(new Dimension(800, 500));
         this.setBackground(Color.black);
         
+        // Dimensions en pixel d'une case de matrice
         aLargeurCarreau = this.getWidth()/Slatch.partie.getLargeur();
         aHauteurCarreau = this.getHeight()/ Slatch.partie.getHauteur();
 
@@ -92,7 +102,7 @@ public class PanelMatrice extends JPanel
         aTabAchat= new HashMap<Integer,TypeUnite> ();
         aListeAction= new ArrayList<String>();
         aListeShop= new ArrayList<TypeUnite>();
-    }
+    } // FIN PanelMatrice
 
     /**
      * Affiche le decor (appelé lors des repaint : a eviter)
@@ -100,6 +110,7 @@ public class PanelMatrice extends JPanel
     @Override
     public void paintComponent (final Graphics g) 
     {
+        // Dimensions en pixel d'une case de matrice
         aLargeurCarreau = this.getWidth()/Slatch.partie.getLargeur();
         aHauteurCarreau = this.getHeight()/ Slatch.partie.getHauteur();
         
@@ -139,7 +150,8 @@ public class PanelMatrice extends JPanel
                 if(aListeAction.get(vVar).equals("Attaque")) {
                     g.drawString("Attaque", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
                     aAttaquePossible=true;
-                }else if(aListeAction.get(vVar).equals("Soin")) {
+                }
+                else if(aListeAction.get(vVar).equals("Soin")) {
                     g.drawString("Soin", aMenuActionHautGauche_Xpx+aLargeurCarreau/3, aMenuActionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau);
                     aSoinPossible=true;
                 }
@@ -152,11 +164,12 @@ public class PanelMatrice extends JPanel
                     aEvoluePossible=true;
                 }
             }
-        }
+        } // FIN menuUniteAction
         
         // Menu de description du terrain et de l'unite en bas de l'ecran 
         if(menuUniteDescription) 
         {
+            // Adapte la taille du menu (s'il y a une unite ou non)
             redimMenuDescription(aUniteMemMenuCaseX,aUniteMemMenuCaseY);
             
             // Police
@@ -167,6 +180,8 @@ public class PanelMatrice extends JPanel
             afficheImageRedim ("noir80", aMenuDescriptionHautGauche_Xpx, aMenuDescriptionHautGauche_Ypx, aMenuDescriptionBasDroite_Xpx, aMenuDescriptionBasDroite_Ypx, g);
             g.setColor(Color.white);
             Terrain t = Slatch.partie.getTerrain()[aUniteMemMenuCaseX][aUniteMemMenuCaseY];
+            
+            // S'il y a une unite et pas de brouillard : on affiche la description de l'unite, on affiche la description du terrain
             if(t.getUnite()!=null && !t.getBrouillard())
             {
                 String portedep = "Portée Depl = "+t.getUnite().getDeplacement()/10;
@@ -198,7 +213,7 @@ public class PanelMatrice extends JPanel
                     g.drawString(pv, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
                 }
             }
-            
+            // Sinon : on affiche pas la description de l'unite, on affiche la description du terrain
             else {
                 String couverture = "Couv = "+ t.getType().getCouverture();
                 String coord = "X = "+aUniteMemMenuCaseX+"   Y ="+aUniteMemMenuCaseY;
@@ -214,7 +229,7 @@ public class PanelMatrice extends JPanel
                     g.drawString(pv, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
                 }
             }
-        }
+        } // FIN menuUniteDescription
         
         // Menu pour l'achat d'unite
         if(menuShop && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()) 
@@ -245,7 +260,7 @@ public class PanelMatrice extends JPanel
             }
             g.setColor(Color.gray);
             g.drawLine(aShopHautGauche_Xpx, 0, aShopBasDroite_Xpx, 0);
-        }
+        } // FIN menuShop
         
         // Menu du bouton menu
         if(menuMenu) 
@@ -269,7 +284,7 @@ public class PanelMatrice extends JPanel
             
             g.setColor(Color.gray);
             g.drawLine(aMenuHautGauche_Xpx, 0, aMenuBasDroite_Xpx-1, 0);
-        }
+        } // FIN menuMenu
         
         // Si la partie est finie : Ecran de fin de partie
         if(Slatch.partie.partieFinie) {
@@ -287,7 +302,7 @@ public class PanelMatrice extends JPanel
             int joueurSize = fm.stringWidth(joueur);
             g.drawString(joueur, this.getWidth()/2 - joueurSize/2, 2*this.getHeight()/(2*hauteurSize));
             
-            // Afiche les statistiques
+            // Affiche les statistiques
             for(int i=1; i<=Slatch.partie.getNbrJoueur(); i++){
                 int decalage=0;
                 if(Slatch.partie.getNbrJoueur()==2 && i==1) decalage=-this.getWidth()/5;
@@ -343,7 +358,7 @@ public class PanelMatrice extends JPanel
                 g.drawString(stat8, this.getWidth()/2 + decalage - stat8Size/2, 15*this.getHeight()/(2*hauteurSize));
                 g.drawString(stat9, this.getWidth()/2 + decalage - stat9Size/2, 16*this.getHeight()/(2*hauteurSize));
             }
-        }
+        } // FIN partieFinie
     }
     
     /**
@@ -502,9 +517,9 @@ public class PanelMatrice extends JPanel
                         this.repaint();
                     }
                 }
-            }
-        }
-    }
+            } // FIN for
+        } // FIN for
+    } // FIN coordclickUnite
     
     /**
      * Affiche une matrice d'image sur la carte
@@ -518,7 +533,7 @@ public class PanelMatrice extends JPanel
                 //afficheInfoTerrain(i,j,g);
             }
         }
-    }
+    } // FIN dessineMatrice
     
     /**
      * Methode DEBUG : Affiche les info du terrain
@@ -545,10 +560,11 @@ public class PanelMatrice extends JPanel
         else                    {g.setColor(Color.red);}
         g.drawString(" Couv : "+t, pPosHautGaucheX, pPosBasDroiteY+2*h-aHauteurCarreau);
         
+        // Trace les lignes
         g.setColor(Color.gray);
         g.drawLine(pPosHautGaucheX, pPosHautGaucheY, pPosHautGaucheX, pPosBasDroiteY);
         g.drawLine(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX, pPosHautGaucheY);
-    }
+    } // FIN afficheInfoTerrain
     
     /**
      * Methode DEBUG : Affiche les info de l'IA
@@ -556,13 +572,16 @@ public class PanelMatrice extends JPanel
     private void afficheInfoIA (int i, int j, Graphics g) {  
         int joueurAv; 
 
+        // Commence a l'afficher au tour 2 min
         if(Slatch.partie.getJoueurActuel()!=1)
             joueurAv = Slatch.partie.getJoueurActuel()-1;
         else
             joueurAv = Slatch.partie.getNbrJoueur();
             
+        // Affichage des Influence
         if(Slatch.partie.getJoueur(joueurAv).estUneIA() && Slatch.partie.getTour()!=1)
         {
+            // Recuperation des Influence
             int ca =OperationIA.map[i][j].capture;
             int de =OperationIA.map[i][j].defensif;
             int of =OperationIA.map[i][j].offensif;
@@ -630,7 +649,7 @@ public class PanelMatrice extends JPanel
             g.drawLine(pPosHautGaucheX, pPosHautGaucheY, pPosHautGaucheX, pPosBasDroiteY);
             g.drawLine(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX, pPosHautGaucheY);
         }
-    }
+    } // FIN afficheInfoIA
     
     /**
      * Affiche une image en fond d'ecran
@@ -638,7 +657,7 @@ public class PanelMatrice extends JPanel
     private void afficheImageRedim (final String pURL, final int pPosHautGaucheX, final int pPosHautGaucheY,final int pPosBasDroiteX, final int pPosBasDroiteY, final Graphics g) {  
         Image img = Slatch.aImages.get(pURL);
         g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
-    }
+    } // FIN afficheImageRedim
     
     private void effaceMenuUniteAction()
     {
@@ -648,7 +667,7 @@ public class PanelMatrice extends JPanel
         aMenuActionBasDroite_Ypx=0;
         menuUniteAction = false;
         this.repaint();
-    }
+    } // FIN effaceMenuUniteAction
     
     public void effaceMenuUniteDescription()
     {
@@ -692,7 +711,7 @@ public class PanelMatrice extends JPanel
         aListeAction=pList;
         menuUniteAction = true;
         redimMenuAction(pX, pY);
-    }
+    } // FIN afficheMenu
     
     /**
      * Methode appelee par moteur lors du click sur un shop
@@ -720,7 +739,7 @@ public class PanelMatrice extends JPanel
             aShopBasDroite_Xpx = (Slatch.partie.getLargeur()/2-1)*aLargeurCarreau;
             aShopBasDroite_Ypx = aHauteurShopEnCase*aHauteurCarreau;
         }
-    }
+    } // FIN shop
     
     /**
      * Redim le Menu du bouton menu
@@ -730,7 +749,7 @@ public class PanelMatrice extends JPanel
         aMenuHautGauche_Ypx = 0;
         aMenuBasDroite_Xpx = 4*aLargeurCarreau;
         aMenuBasDroite_Ypx = 2*aHauteurCarreau;
-    }
+    } // FIN redimMenu
     
     /**
      * Affiche le menu avec les boutons
@@ -770,7 +789,7 @@ public class PanelMatrice extends JPanel
             aMenuActionBasDroite_Xpx = (pX+aLargeurMenuActionEnCase+1)*aLargeurCarreau;
             aMenuActionBasDroite_Ypx = (pY+aHauteurMenuActionEnCase+1)*aHauteurCarreau;
         }
-    }
+    } // FIN redimMenuAction
     
     /**
      * Affiche le menu avec les descriptions
@@ -794,7 +813,7 @@ public class PanelMatrice extends JPanel
             aMenuDescriptionBasDroite_Xpx = (aLargeurMenuDescriptionEnCase)*aLargeurCarreau;
             aMenuDescriptionBasDroite_Ypx = Slatch.partie.getHauteur()*aHauteurCarreau;
         }
-    }
+    } // FIN redimMenuDescription
     
     public int getaLargeurCarreau() {return aLargeurCarreau;}
     public int getaHauteurCarreau() {return aHauteurCarreau;}
