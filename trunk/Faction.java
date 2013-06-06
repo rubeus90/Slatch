@@ -10,10 +10,9 @@ import java.io.IOException;
  */
 public enum Faction
 {
-   HUMAINS("HUMAINS"),
-   ROBOTS("ROBOTS"),
-   ALIENS("ALIENS"),
-   NEUTRE("NEUTRE");
+   HUMAINS("humains"),
+   ROBOTS("robots"),
+   NEUTRE("neutre");
    
     public String aNom;
     private List<TypeUnite> aListeUnites;
@@ -25,10 +24,10 @@ public enum Faction
         aNom=pNom;
        
         try {
-                        fichier = new Scanner(getClass().getResource("Config/Faction.txt").openStream());
-                } catch (IOException e) {
-                        e.printStackTrace();
-                }
+             fichier = new Scanner(getClass().getResource("Config/Faction.txt").openStream());
+        } catch (IOException e) {
+             e.printStackTrace();
+        }
        
         String ligne;
         String[] tab;
