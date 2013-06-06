@@ -199,6 +199,10 @@ public class Slatch {
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("noir80",image);
                 
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/noir.png"));
+                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                aImages.put("noir",image);
+                
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/brouillard.png"));
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("brouillard",image);

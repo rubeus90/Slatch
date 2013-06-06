@@ -22,12 +22,12 @@ public class PanelDialogueCampagne extends JPanel{
 		super();
 		etape = 1;
 		niveau = pNiveau;
-		dialogue = "Coucoucoucou on va commencer le niveau " + pNiveau;
+		dialogue = "Coucoucoucou on va commencer le niveau " + (pNiveau+1);
 	}
 	
 	@Override
 	public void paintComponent(final Graphics g){
-		afficheImageRedim ("noir80", 0, 0, this.getWidth(), this.getHeight(), g);
+		afficheImageRedim ("noir", 0, 0, this.getWidth(), this.getHeight(), g);
 		
 		Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
         g.setFont(font);

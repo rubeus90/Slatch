@@ -21,6 +21,7 @@ public class Campagne implements MouseListener{
 
 		listeNomPartie.add("Maps/gagner.txt");
 		listeNomPartie.add("Maps/mapTest.txt");
+		listeNomPartie.add("Maps/doublevai.txt");
 	}
 
 	public void chargerPartie(int pNiveau) {
@@ -64,16 +65,14 @@ public class Campagne implements MouseListener{
 		chargerPartie(aNiveau);
 		System.out.println("Je cree le dialogue avant le niveau " + aNiveau);
 		Slatch.ihm.getPanelFrame().removeAll();
-		Slatch.ihm.getPanelFrame().repaint();
 		System.out.println("J'ai remove les 2 paneaux du jeu");
 		
 		panel = new PanelDialogueCampagne(aNiveau);
 		panel.addMouseListener(this);
 
 		Slatch.ihm.getPanelFrame().add(panel, BorderLayout.CENTER);
-		Slatch.ihm.getPanelFrame().repaint();
-		panel.repaint();
-		//Slatch.ihm.getframe().pack();
+		Slatch.ihm.getPanelFrame().updateUI();
+		
 		System.out.println("C'est bon j'ai fini a creer le dialogue");
 	}
 	
