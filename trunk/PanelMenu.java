@@ -47,7 +47,8 @@ public class PanelMenu extends JPanel
             Image mapcreator = Slatch.aImages.get("boutonmapcreator");
             Image credits = Slatch.aImages.get("boutoncredits");
             
-            g.drawImage(slatch, this.getWidth()/6, 33, 4*vHauteurTitre,vHauteurTitre, this);
+            //g.drawImage(slatch, this.getWidth()/6, 33, 4*vHauteurTitre,vHauteurTitre, this);
+            g.drawImage(slatch, this.getWidth()/2-2*vHauteurTitre, 33, 4*vHauteurTitre,vHauteurTitre, this);
             g.drawImage(campagne, this.getWidth()/2-2*aHauteurBouton, 33+ this.getHeight()/4, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(rapide, this.getWidth()/2-2*aHauteurBouton, 33+ 3*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(tutoriel, this.getWidth()/2-2*aHauteurBouton, 33+ 4*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
