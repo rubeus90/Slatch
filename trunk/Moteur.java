@@ -139,7 +139,7 @@ class Moteur
         pUnite.attaque(true);
         pUnite.deplacee(true);
         
-        //L'ingenieur de peut plus bouger non plus
+        //L'ingenieur ne peut plus bouger non plus
         uniteA.attaque(true);
         uniteA.deplacee(true);
         uniteA=null;
