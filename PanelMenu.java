@@ -136,7 +136,7 @@ public class PanelMenu extends JPanel
             //Clic Bouton Map Creator
             if(pY>33+ 5*this.getHeight()/8 && pY<33+ 5*this.getHeight()/8+aHauteurBouton && pX>this.getWidth()/2-2*aHauteurBouton && pX< this.getWidth()/2+2*aHauteurBouton)
             {
-                
+                Slatch.maps = new CreationMaps();
             }
             
             //Clic Bouton Credits
