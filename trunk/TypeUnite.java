@@ -9,7 +9,7 @@ public enum TypeUnite
     TANK("While","Unite tres puissante","tank",700,65,40,"groscanon",TypeDeplacement.CHENILLES,1.2, "Terrestre",150, false, false),
     INGENIEUR("Ingenieur","Capable de soigner des unites et de les faire evoluer","ingenieur",100,15,40,"soin",TypeDeplacement.PIED,2.0, "Terrestre",20, true, true),
     DISTANCE("Distance","un vehicule a moyenne distance","distance",350,35,50,"roquette",TypeDeplacement.ROUES,1.3, "Terrestre",110, false, false),
-    UML("Uml","Capable de tirer a distance","uml",450,30,30,"missile",TypeDeplacement.CHENILLES,1.3, "Terrestre",110, false, false);
+    UML("Uml","Capable de tirer a distance","uml",450,30,40,"missile",TypeDeplacement.CHENILLES,1.3, "Terrestre",110, false, false);
 
     private String aNom;
     private String aDescription;

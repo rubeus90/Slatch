@@ -137,27 +137,15 @@ public class Joueur
     public void mourrir() {
         aVivant=false;
         
-        Iterator<Terrain> i = aListeBatiment.iterator();
-        while(i.hasNext())
-        {
-            Terrain vTerrain = i.next();
-            i.remove();
-        }
-        
-        Iterator<Terrain> l = aListeUsine.iterator();
-        while(i.hasNext())
-        {
-            Terrain vUsine = l.next();
-            l.remove();
-        }
-        
-        Iterator<Unite> m = aListeUnite.iterator();
-        while(m.hasNext())
-        {
-            Unite vUnite = m.next();
+        for(Unite vUnite : aListeUnite){
             Slatch.partie.getTerrain()[vUnite.getCoordonneeX()][vUnite.getCoordonneeY()].setUnite(null);
-            m.remove(); 
         }
+        
+        aListeBatiment.clear();
+        aListeUsine.clear();
+        aListeUnite.clear();
+        aNbreBatiment=0;
+        aArgent=0;
     }
     
 
