@@ -7,7 +7,7 @@ import java.awt.* ;
 import javax.swing.*;
 
 /**
- * Panel specifique a la matrice de jeu :
+ * Panel speifique a la matrice de jeu :
  * ce panel affiche les terrains, les unites et les differents menus.
  * 
  * @author jonathan
@@ -271,7 +271,7 @@ public class PanelMatrice extends JPanel
             g.drawLine(aMenuHautGauche_Xpx, 0, aMenuBasDroite_Xpx-1, 0);
         }
         
-        // Ecran de fin de partie
+        // Si la partie est finie : Ecran de fin de partie
         if(Slatch.partie.partieFinie) {
             // Fond d'ecran de fin de partie
             afficheImageRedim ("noir80", 0, 0, this.getWidth(), this.getHeight(), g);
@@ -343,8 +343,6 @@ public class PanelMatrice extends JPanel
                 g.drawString(stat8, this.getWidth()/2 + decalage - stat8Size/2, 15*this.getHeight()/(2*hauteurSize));
                 g.drawString(stat9, this.getWidth()/2 + decalage - stat9Size/2, 16*this.getHeight()/(2*hauteurSize));
             }
-            
-            Slatch.campagne.suite();
         }
     }
     
@@ -366,8 +364,13 @@ public class PanelMatrice extends JPanel
                 int pPosHautGaucheY = j*aHauteurCarreau;
                 int pPosBasDroiteX = (i+1)*aLargeurCarreau;
                 int pPosBasDroiteY = (j+1)*aHauteurCarreau;
-
-                if(pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) 
+                
+                // Si la partie est finie
+                if(Slatch.partie.partieFinie) {
+                    Slatch.campagne.suite();
+                }
+                // Si la partie n'est pas fine
+                else if(pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) 
                 {
                     /*
                      * 
