@@ -287,6 +287,9 @@ public class CreationMaps extends JPanel implements ActionListener,
 			if(aHauteur.equals(""))
 				aHauteur = "18";
 			
+			if(aNomMap.equals(""))
+				aNomMap = "mapGenere";
+			
 			String stringNbrJoueur = nbrJoueur.getText();
 			if(stringNbrJoueur.equals(""))
 				stringNbrJoueur = "2";
