@@ -884,7 +884,7 @@ class Moteur
     }
     
     public void Brouillard(){
-        if(!Slatch.partie.getuneSeulEquipedeJoueur() || Slatch.partie.getTour()==1){        	
+        if(!Slatch.partie.getuneSeulEquipedeJoueur() || !getJoueurActuel().estUneIA() ||Slatch.partie.getTour()==1){        	
             for(int i=0; i<Slatch.partie.getLargeur(); i++)
             {
                 for(int j=0; j<Slatch.partie.getHauteur(); j++)
@@ -893,7 +893,7 @@ class Moteur
                 }
             }  
             
-            for(Joueur vJoueur : Slatch.partie.ListeJoueur){
+            for(Joueur vJoueur : getJoueurActuel().getEquipe().getListeJoueur()){
                 if(vJoueur.getNumJoueur()!=0){
                 	if(!vJoueur.estUneIA()){
                 		for(Unite vUnite : vJoueur.getListeUnite()){
@@ -911,21 +911,22 @@ class Moteur
         }
             
             
-            for(Joueur vJoueur : getJoueurActuel().getEquipe().getListeJoueur()){
-                if(vJoueur.getEquipe().haveUnJoueurHumain()){  
-                    for(Unite vUnite : vJoueur.getListeUnite()){
-                         affichePorteeBrouillard(vUnite);
-                    }             
-                    for(Terrain terrain : vJoueur.getListeBatiment()){
-                        Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
-                    }
-                    for(Terrain terrain : vJoueur.getListeUsine()){
-                        Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
-                    }
-                }
-            }  
-        
+//             for(Joueur vJoueur : getJoueurActuel().getEquipe().getListeJoueur()){
+//                 if(vJoueur.getEquipe().haveUnJoueurHumain()){  
+//                     for(Unite vUnite : vJoueur.getListeUnite()){
+//                          affichePorteeBrouillard(vUnite);
+//                     }             
+//                     for(Terrain terrain : vJoueur.getListeBatiment()){
+//                         Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+//                     }
+//                     for(Terrain terrain : vJoueur.getListeUsine()){
+//                         Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+//                     }
+//                 }
+//             }  
+            
     }
+      
    
     /**
      * Initialise tabDist afin d'utiliser algoDeplacement dans des conditions optimales

@@ -539,6 +539,7 @@ public class Partie
         for(Joueur vJoueur: ListeJoueur){
 			if(!vJoueur.estUneIA()){
 				if(vJoueur.getEquipe().getNumEquipe()!=getEquipeJoueurNonIA() && vJoueur.getEquipe().getNumEquipe()!=0) {
+				    System.out.println(uneSeulEquipedeJoueur);
 				    uneSeulEquipedeJoueur=false;
 				    return;
 				}
