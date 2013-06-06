@@ -91,7 +91,6 @@ public class Slatch {
                 }
                 else
                 {
-                    System.out.println("Images/terrains/"+ terrain.getImage() +"0.png");
                     image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/"+ terrain.getImage() +"0.png"));
                     imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                     aImages.put(terrain.getImage()+"0",image);
@@ -129,17 +128,29 @@ public class Slatch {
       try {
             Image image;
             Image imageRedim;
+            
+            //Pour les humaines
             for(TypeUnite unite : TypeUnite.values())
             {
                 for(int i=1;i<5;i++)
                 {
-                   // System.out.println("SLATCH"+unite.getImage() + i);
                     image = ImageIO.read(getClass().getClassLoader().getResource("Images/humains/" + unite.getImage() + i + ".png"));
-                    //image = ImageIO.read(getClass().getClassLoader().getResource("Images/"+ "robots/" + unite.getImage() + i + ".png"));
                     imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                     aImages.put(""+unite.getImage() + i,image);
+                    //aImages.put("humains"+unite.getImage() + i,image);
                 }
             }
+            
+            //Pour les robots
+//             for(TypeUnite unite : TypeUnite.values())
+//             {
+//                 for(int i=1;i<5;i++)
+//                 {
+//                     image = ImageIO.read(getClass().getClassLoader().getResource("Images/robots/" + unite.getImage() + i + ".png"));
+//                     imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+//                     aImages.put("robots"+unite.getImage() + i,image);
+//                 }
+//             }
         }
         catch (IOException e) {
             e.printStackTrace();
