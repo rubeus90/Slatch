@@ -28,10 +28,10 @@ public class IHM_NEW  {
      */
     public IHM_NEW(){
         // Creation des animations
-        animation = new Animation();
+        //animation = new Animation();
         // Creation du timer pour les animations
-        Timer timer = new Timer(50, animation);
-        timer.start();
+        //Timer timer = new Timer(50, animation);
+        //timer.start();
 
         // Creation de la fenetre : frame
         frame = new JFrame("SLATCH");
@@ -43,28 +43,28 @@ public class IHM_NEW  {
         panel = new JPanel();
         frame.setContentPane(panel);
         
-        panelInfo = new PanelInfo();
-        panelMatrice = new PanelMatrice(); 
+        //panelInfo = new PanelInfo();
+        //panelMatrice = new PanelMatrice(); 
         panelMenu = new PanelMenu();
 
         
         panel.setLayout(new BorderLayout());
-        panel.add(panelInfo, BorderLayout.NORTH);
-        panel.add(panelMatrice, BorderLayout.CENTER);     
-        //panel.add(panelMenu, BorderLayout.CENTER);  
+        //panel.add(panelInfo, BorderLayout.NORTH);
+        //panel.add(panelMatrice, BorderLayout.CENTER);     
+        panel.add(panelMenu, BorderLayout.CENTER);  
        
-        MouseMatrice lecteurMatrice = new MouseMatrice();
-        panelMatrice.addMouseListener(lecteurMatrice);
-        MouseInfo lecteurInfo = new MouseInfo();
-        panelInfo.addMouseListener(lecteurInfo);
+        //MouseMatrice lecteurMatrice = new MouseMatrice();
+        //panelMatrice.addMouseListener(lecteurMatrice);
+        //MouseInfo lecteurInfo = new MouseInfo();
+        //panelInfo.addMouseListener(lecteurInfo);
         MouseMenu lecteurMenu = new MouseMenu();
         panelMenu.addMouseListener(lecteurMenu);
 
         frame.pack();
         frame.setVisible(true);
-        panelMenu.setVisible(false);
-        panelMatrice.setVisible(true);
-        panelInfo.setVisible(true);
+        panelMenu.setVisible(true);
+        //panelMatrice.setVisible(true);
+        //panelInfo.setVisible(true);
     }
     
     /**
@@ -99,4 +99,24 @@ public class IHM_NEW  {
     public Animation getAnimation() {
         return animation;
     }
+    
+    public void passageModePartie(){
+        panelInfo = new PanelInfo();
+        panelMatrice = new PanelMatrice();
+        MouseMatrice lecteurMatrice = new MouseMatrice();
+        panelMatrice.addMouseListener(lecteurMatrice);
+        MouseInfo lecteurInfo = new MouseInfo();
+        panelInfo.addMouseListener(lecteurInfo);
+        
+        panel.remove(panelMenu);
+        panel.add(panelMatrice, BorderLayout.CENTER);
+        panel.add(panelInfo, BorderLayout.NORTH);
+        panelMenu.setVisible(false);
+        panelMatrice.setVisible(true);
+        panelInfo.setVisible(true);
+        panel.repaint();
+        panelMatrice.repaint();
+        frame.pack();        
+    }
+    
 }
