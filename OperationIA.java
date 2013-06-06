@@ -1,5 +1,6 @@
 import java.awt.Point;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 public class OperationIA
 {
     static boolean[][] valide = new boolean[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
@@ -33,7 +34,7 @@ public class OperationIA
             }
             else if(unite.peutCapturer())
             {
-                p= trouverBonneCase(unite, new Influence(11,1, 10, -2, 1));
+                p= trouverBonneCase(unite, new Influence(15,1, 9, -2, 1));
             }
             else // l'unité peut attaquer
             {
@@ -137,9 +138,9 @@ public class OperationIA
                     int uX = u.getCoordonneeX();
                     int uY = u.getCoordonneeY();
                     
-                    if(Slatch.partie.getTerrain()[uX][uY].getType()==TypeTerrain.QG && Slatch.partie.getTerrain()[uX][uY].appartientAuJoueur(Slatch.partie.getJoueurActuel()))
+                    if(Slatch.partie.getTerrain()[uX][uY].estCapturable() && Slatch.partie.getTerrain()[uX][uY].appartientAuJoueur(Slatch.partie.getJoueurActuel()))
                     {
-                        map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+= 5000;
+                        map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+= 3000;
                     }
                     int x=0,y=0;
                     if(unite.getAttaque().efficacite.containsKey(u.getType()))
@@ -162,23 +163,23 @@ public class OperationIA
                 
                 for(Terrain t: Slatch.partie.getJoueur(i).getListeBatiment())
                 {
-                    /*if((Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()]<=unite.getDeplacement() && Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()]>=0 && t.getUnite()==null))
+                    if((Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()]<=unite.getDeplacement() && Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()]>=0 && t.getUnite()==null))
                     {
                         map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=2000;
-                    }*/
+                    }
                     if(t.getUnite()==unite)
                     {
-                        map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=5000;
+                        map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=10000;
                     }
                     map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=5000/Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()];
                 }
                 
                 for(Terrain t: Slatch.partie.getJoueur(i).getListeUsine())
                 {
-                    /*if((Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()]<=unite.getDeplacement() && Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()]>=0 && t.getUnite()==null))
+                    if((Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()]<=unite.getDeplacement() && Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()]>=0 && t.getUnite()==null))
                     {
                         map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=2000;
-                    }*/
+                    }
                     if(t.getUnite()==unite)
                     {
                         map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=5000;
@@ -201,7 +202,7 @@ public class OperationIA
                             map[u.getCoordonneeX()][u.getCoordonneeY()].defensif+=5000*(double)(u.getPVMax())/(double)(u.getPV());
                         }
                     }
-                    if(u.isEvolvable())
+                    if(u.isEvolvable() && u!=unite)
                     {
                         map[u.getCoordonneeX()][u.getCoordonneeY()].defensif+=5001*u.getPVMax();
                         if(Slatch.moteur.seraAPortee(unite, u))
@@ -238,5 +239,112 @@ public class OperationIA
     static int sommePonderee(Influence inf, Influence pond)
     {
         return (inf.capture*pond.capture+inf.offensif*pond.offensif+inf.defensif*pond.defensif+inf.menace*pond.menace+inf.retraite*pond.retraite);
+    }
+    
+    
+     static void acheterUnite()
+    {
+            Joueur joueurActuel = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
+        
+            //Choix de l'unite
+            int nombreCommando=0;
+            int nombreDemolisseur=0;
+            int nombreIngenieur=0;
+            int nombreTank=0;
+            int nombreUml=0;
+            int nombreDistance=0;
+            int nombreWhile=0;
+            
+            for (Unite unit : joueurActuel.getListeUnite())
+            {
+                switch(unit.getType().getNom())
+                {
+                    case "Commando" :
+                                        nombreCommando=nombreCommando+1;
+                                        break;
+                    case "Demolisseur" :
+                                        nombreDemolisseur=nombreDemolisseur+1;
+                                        break;
+                    case "Ingenieur" :
+                                        nombreIngenieur=nombreIngenieur+1;
+                                        break;
+                    case "Char" :
+                                        nombreTank=nombreTank+1;
+                                        break;
+                    case "Uml" :
+                                        nombreUml=nombreUml+1;
+                                        break;
+                    case "While" :
+                                        nombreWhile=nombreWhile+1;
+                                        break;
+                    case "Distance" :
+                                        nombreDistance=nombreDistance+1;
+                                        break;                   
+                }
+            }
+            
+            PriorityQueue<Triplet> pq = new PriorityQueue<Triplet>();
+            for(Terrain usine : joueurActuel.getListeUsine())
+            {
+                pq.add(new Triplet(-StrategieIA.iMap[usine.getX()][usine.getY()].menace, usine.getX(),usine.getY()));
+            }
+            
+            
+            //for(Terrain usine : joueurActuel.getListeUsine())
+            while(!pq.isEmpty())
+            {
+                Triplet t = pq.poll();
+                Terrain usine = Slatch.partie.getTerrain()[t.x][t.y];
+                int x = usine.getCoordonneeX();
+                int y = usine.getCoordonneeY();
+
+                if(joueurActuel.getArgent()>=700)
+                 {
+                    UniteIA.decrypterObjectif(new Objectif("acheter","While",new Point(x,y),null,null));                    
+                    //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreWhile+" While donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
+                    nombreWhile=nombreWhile+1;
+                 }
+                else if(joueurActuel.getArgent()>=450 && nombreUml <1)         
+                {
+                    UniteIA.decrypterObjectif(new Objectif("acheter","Uml",new Point(x,y),null,null));
+                    //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreUml+" Uml donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
+                    nombreUml=nombreUml+1;
+                }
+                else if(joueurActuel.getArgent()>=350 && nombreDistance <1)         
+                {
+                    UniteIA.decrypterObjectif(new Objectif("acheter","Distance",new Point(x,y),null,null));
+                   //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreDistance+" Distance donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
+                   nombreDistance=nombreDistance+1;
+                }
+                else if(joueurActuel.getArgent()>=300 && nombreTank <1)
+                {
+                    UniteIA.decrypterObjectif(new Objectif("acheter","Char",new Point(x,y),null,null));
+                     //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreTank+" Tank donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
+                     nombreTank=nombreTank+1;
+                }
+                else if(joueurActuel.getArgent()>=200 && nombreDemolisseur <3)
+                {
+                    UniteIA.decrypterObjectif(new Objectif("acheter","Demolisseur",new Point(x,y),null,null));
+                    //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreDemolisseur+" Demolisseur donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
+                    nombreDemolisseur=nombreDemolisseur+1;
+                }
+                else if(joueurActuel.getArgent()>=100 && nombreCommando <3)
+                {
+                    UniteIA.decrypterObjectif(new Objectif("acheter","Commando",new Point(x,y),null,null));   
+                    //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreCommando+" Commando donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
+                    nombreCommando=nombreCommando+1;
+                }
+                else if(joueurActuel.getArgent()>=100 && nombreIngenieur <1)
+                {
+                    UniteIA.decrypterObjectif(new Objectif("acheter","Ingenieur",new Point(x,y),null,null));   
+                    //System.out.println(joueurActuel.getNumJoueur()+" : J'ai "+nombreCommando+" Commando donc j'en achete 1 JOUR: "+Slatch.partie.getTour());
+                    nombreIngenieur=nombreIngenieur+1;
+                }
+                else
+                {
+                  break;   
+                }
+            }
+        
     }
 }

@@ -1025,10 +1025,15 @@ class Moteur
                 }
             }
             
-            if(getJoueurActuel().estUneIA())
+            if(getJoueurActuel().estUneIA() && Slatch.partie.getJoueurActuel()!=1)
             {
                 StrategieIA.joueTour(Slatch.partie.getJoueurActuel());
             }
+            else
+            {
+                if(getJoueurActuel().estUneIA()){AIMaster.joueTour(Slatch.partie.getJoueurActuel());}
+            }
+            
         }
     }
     

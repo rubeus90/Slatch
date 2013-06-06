@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.Iterator;
 import java.util.Arrays;
+
 public class StrategieIA
 {
     static Influence[][]iMap;
@@ -8,7 +9,7 @@ public class StrategieIA
     static void joueTour(int joueur)
     {
         List<Unite> l = Slatch.partie.getJoueur(joueur).getListeUnite();
-        GrandeIA.acheterUnite();
+        
         
         mode = mode.checkMode(joueur);
         
@@ -20,10 +21,11 @@ public class StrategieIA
                 iMap[i][j]=new Influence();
             }
         }
-        
-        
-        
         remplirMap();
+        OperationIA.acheterUnite();
+        
+        
+        
         Iterator<Unite> i = l.iterator();
         while(i.hasNext())
         {
@@ -38,6 +40,7 @@ public class StrategieIA
     
     static void remplirMap()
     {
+        
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
@@ -85,12 +88,21 @@ public class StrategieIA
                         if(Moteur.dansLesBords(x+a+b, y+c+d))
                         {
                             if(ajouterInfluence){
-                                if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace+=5*inf.menace;}
+                                if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace+=5*inf.menace;if(Slatch.partie.getTerrain()[x+a+b][y+c+d].getType()==TypeTerrain.QG && Slatch.partie.getTerrain()[x+a+b][y+c+d].getJoueur()==Slatch.partie.getJoueurActuel())
+                                    {
+                                        map[x+a+b][y+c+d].menace+=5*inf.menace;
+                                    }
+                                }
                                 if(i<=3){map[x+a+b][y+c+d].offensif+=(1*(pm+pu-i+1))*inf.offensif;}
                             }
                             else
                             {
-                                if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace-=5*inf.menace;}
+                                if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace-=5*inf.menace;
+                                    if(Slatch.partie.getTerrain()[x+a+b][y+c+d].getType()==TypeTerrain.QG && Slatch.partie.getTerrain()[x+a+b][y+c+d].getJoueur()==Slatch.partie.getJoueurActuel())
+                                    {
+                                        map[x+a+b][y+c+d].menace-=5*inf.menace;
+                                    }
+                                }
                                 if(i<=3){map[x+a+b][y+c+d].offensif-=(1*(pm+pu-i+1))*inf.offensif;}
                             }
                         }
@@ -110,16 +122,16 @@ public class StrategieIA
                         if(ajouterInfluence){
                             if(Moteur.dansLesBords(x+a+b, y+c+d))
                             {
-                                map[x+a+b][y+c+d].defensif+=(50*(pu-i+1))*inf.defensif;
-                                map[x+a+b][y+c+d].retraite+=(50*(pu-i+1))*inf.retraite;
+                                map[x+a+b][y+c+d].defensif+=(5*(pu-i+1))*inf.defensif;
+                                map[x+a+b][y+c+d].retraite+=(5*(pu-i+1))*inf.retraite;
                             }
                         }
                         else
                         {
                             if(Moteur.dansLesBords(x+a+b, y+c+d))
                             {
-                                 map[x+a+b][y+c+d].defensif-=(50*(pu-i+1))*inf.defensif;
-                                 map[x+a+b][y+c+d].retraite-=(50*(pu-i+1))*inf.retraite;
+                                 map[x+a+b][y+c+d].defensif-=(5*(pu-i+1))*inf.defensif;
+                                 map[x+a+b][y+c+d].retraite-=(5*(pu-i+1))*inf.retraite;
                             }
                         }
                     }
@@ -145,5 +157,7 @@ public class StrategieIA
         }
         return ret;
     }
+    
+   
     
 }

@@ -1,6 +1,6 @@
 public enum ModeIA
 {
-    DEPLOIEMENT(5,3,2,4, 1) , ATTAQUE(5, 1, 2, 2, 1), REPLI(1,4, 1, 5,5);
+    DEPLOIEMENT(5, 1, 2, 2, 1) , ATTAQUE(5, 1, 2, 2, 1), REPLI(1,4, 1, 5,5);
     
     Influence inf;
     
@@ -12,16 +12,21 @@ public enum ModeIA
     
     public ModeIA checkMode(int joueur)
     {
+        int nbTotalBatiments =0;
+        for(int i=0; i<=Slatch.partie.getNbrJoueur(); i++)
+        {
+            nbTotalBatiments+=Slatch.partie.getJoueur(i).getNbreBatiment();
+        }
         switch(this)
         {
             case DEPLOIEMENT: 
-                if(Slatch.partie.getJoueur(joueur).getListeUnite().size()>=8)
+                if(Slatch.partie.getJoueur(joueur).getListeUnite().size()>=4 || Slatch.partie.getJoueur(joueur).getNbreBatiment()>=nbTotalBatiments/Slatch.partie.getNbrJoueur()-1)
                 {
                     return ATTAQUE;
                 }
                 break;
             case ATTAQUE:
-                if(Slatch.partie.getJoueur(joueur).getListeUnite().size()<=2)
+                if(Slatch.partie.getJoueur(joueur).getListeUnite().size()<=3)
                 {
                     return REPLI;
                 }
