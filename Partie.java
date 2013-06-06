@@ -526,7 +526,7 @@ public class Partie
         Slatch.ihm.getPanel().repaint();
     }
     
-    private int getEquipeJoueurNonIA(){
+    public int getEquipeJoueurNonIA(){
         for(Joueur vJoueur: ListeJoueur){
 			if(!vJoueur.estUneIA() && vJoueur.getEquipe().getNumEquipe()!=0){
 				return vJoueur.getEquipe().getNumEquipe();
