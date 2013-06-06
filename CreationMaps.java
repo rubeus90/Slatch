@@ -13,6 +13,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
@@ -57,6 +58,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 	private JTextField largeur;
 	private JTextField hauteur;
 	private JTextField nbrJoueur;
+	private JTextField nomMap;
 
 	private String aLargeur;
 	private String aHauteur;
@@ -64,8 +66,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 	private String aJoueur;
 	private String aNomMap;
 
-	public CreationMaps(String pNomMap) {	
-		aNomMap = pNomMap;
+	public CreationMaps() {	
 		createDialog();
 
 		aJoueur = "0";
@@ -232,50 +233,39 @@ public class CreationMaps extends JPanel implements ActionListener,
 		partieNew.sauvegardePartie("Maps/" + aNomMap + ".txt");
 	}
 
-	public void initialiseMap() {		
+	public void initialiseMap() {	
 		
+		String path = "Maps/" + aNomMap + ".txt";
 		try {
-			File file = new File(getClass().getClassLoader()
-					.getResource("Maps/" + aNomMap + ".txt").toURI());
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			fw.write("");
-			BufferedWriter bw = new BufferedWriter(fw);
-			
-			bw.write("" + aLargeur);
-			bw.newLine();
-			bw.write("" + aHauteur);
-			bw.newLine();
-			bw.write("" + aNbrJoueur);
-			bw.newLine();
-			bw.write("0");
-			bw.newLine();
-			bw.write("0");
-			bw.newLine();
-			bw.write("0");
-			bw.newLine();
-			bw.write("0");
-			bw.newLine();
+			PrintWriter out = new PrintWriter(new FileWriter(path));
+			System.out.println("YES");
+			out.flush();
+			out.println("" + aLargeur);
+			out.println("" + aHauteur);
+			out.println("" + aNbrJoueur);
+			out.println("0");
+			out.println("0");
+			out.println("0");
+			out.println("0");
 			for (int i = 0; i < Integer.parseInt(aNbrJoueur); i++) {
-				bw.write("0");
-				bw.newLine();
+				out.println("0");
 			}
-			bw.close();
-			fw.close();
+			out.close();
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public void createDialog() {
+		nomMap = new JTextField(20);
 		largeur = new JTextField(3);
 		hauteur = new JTextField(3);
 		nbrJoueur = new JTextField(2);
 
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(3, 2));
+		panel.setLayout(new GridLayout(4, 2));
+		panel.add(new JLabel("Entrez le nom de la carte: "));
+		panel.add(nomMap);
 		panel.add(new JLabel("Entrez la largeur de la carte: "));
 		panel.add(largeur);
 		panel.add(new JLabel("Entrez la hauteur de la carte: "));
@@ -288,9 +278,9 @@ public class CreationMaps extends JPanel implements ActionListener,
 				JOptionPane.OK_CANCEL_OPTION);
 		
 		if (resultat == JOptionPane.OK_OPTION) {
+			aNomMap = nomMap.getText();
 			aLargeur = largeur.getText();
 			aHauteur = hauteur.getText();
-			
 			
 			if(aLargeur.equals(""))
 				aLargeur = "32";
