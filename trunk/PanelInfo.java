@@ -127,7 +127,8 @@ public class PanelInfo extends JPanel
         g.drawString(barre, espaceSize+menuSize+barreSize+jourSize+decaleX, Y+decaleY);
         g.drawString(joueur, espaceSize+menuSize+barreSize+jourSize+barreSize+decaleX, Y+decaleY);
         g.drawString(barre, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+decaleX, Y+decaleY);
-        g.drawString(argent, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+barreSize+decaleX, Y+decaleY);
+        if(!Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA() || !Slatch.partie.getBrouillard())
+            g.drawString(argent, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+barreSize+decaleX, Y+decaleY);
         g.drawString(suivant, this.getWidth()-suivantSize-espaceSize+decaleX, Y+decaleY);
         
         g.setColor(Color.white);
@@ -137,7 +138,8 @@ public class PanelInfo extends JPanel
         g.drawString(barre, espaceSize+menuSize+barreSize+jourSize,Y);
         g.drawString(joueur, espaceSize+menuSize+barreSize+jourSize+barreSize, Y);
         g.drawString(barre, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize, Y);
-        g.drawString(argent, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+barreSize, Y);
+        if(!Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA() || !Slatch.partie.getBrouillard())
+            g.drawString(argent, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+barreSize, Y);
         g.drawString(suivant, this.getWidth()-suivantSize-espaceSize, Y);
     }
     
