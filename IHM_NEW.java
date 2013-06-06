@@ -22,6 +22,7 @@ public class IHM_NEW  {
     private JFrame frame;
     private Animation animation;
     static Timer timer;
+    private PanelDialogueCampagne panelDialogueCampagne;
     
     /**
      * Constructeur qui instancie JFrame du Menu.
@@ -108,7 +109,8 @@ public class IHM_NEW  {
         MouseInfo lecteurInfo = new MouseInfo();
         panelInfo.addMouseListener(lecteurInfo);
         
-        panel.remove(panelMenu);
+        if(panelMenu != null)
+        	panel.remove(panelMenu);
         panel.add(panelMatrice, BorderLayout.CENTER);
         panel.add(panelInfo, BorderLayout.NORTH);
         panelMenu.setVisible(false);
@@ -119,4 +121,7 @@ public class IHM_NEW  {
         frame.pack();        
     }
     
+    public JPanel getPanelFrame(){
+    	return panel;
+    }
 }

@@ -3,6 +3,8 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
@@ -20,7 +22,7 @@ public class PanelDialogueCampagne extends JPanel{
 		super();
 		etape = 1;
 		niveau = pNiveau;
-		dialogue = "Coucoucoucou";
+		dialogue = "Coucoucoucou on va commencer le niveau " + pNiveau;
 	}
 	
 	@Override
