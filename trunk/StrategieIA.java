@@ -5,7 +5,6 @@ public class StrategieIA
 {
     static Influence[][]iMap;
     static ModeIA mode = ModeIA.DEPLOIEMENT;
-    
     static void joueTour(int joueur)
     {
         List<Unite> l = Slatch.partie.getJoueur(joueur).getListeUnite();
@@ -46,13 +45,13 @@ public class StrategieIA
                 iMap[i][j].defensif+=20*Slatch.partie.getTerrain()[i][j].getType().getCouverture()*mode.inf.defensif;
                 switch(Slatch.partie.getTerrain()[i][j].getType().getNom())
                 {
-                    case "usine": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){if(Slatch.partie.getTerrain()[i][j].getUnite()==null){iMap[i][j].capture+=100*mode.inf.capture;}}
+                    case "usine": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){if(Slatch.partie.getTerrain()[i][j].getUnite()==null){iMap[i][j].capture+=80*mode.inf.capture;}}
                     else{iMap[i][j].retraite+=4*mode.inf.retraite;}
                     case "batiment": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){if(Slatch.partie.getTerrain()[i][j].getUnite()==null){iMap[i][j].capture+=50*mode.inf.capture;}} 
                     else{iMap[i][j].retraite+=5*mode.inf.retraite;} break;
                     case "foret": break;
                     case "montagne": break;
-                    case "qg": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){if(Slatch.partie.getTerrain()[i][j].getUnite()==null){iMap[i][j].capture+=250*mode.inf.capture;}}break;
+                    case "qg": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){if(Slatch.partie.getTerrain()[i][j].getUnite()==null){iMap[i][j].capture+=100*mode.inf.capture;}}break;
                     default:
                 }
                 if(Slatch.partie.getTerrain()[i][j].getUnite()!=null)
@@ -86,13 +85,13 @@ public class StrategieIA
                         if(Moteur.dansLesBords(x+a+b, y+c+d))
                         {
                             if(ajouterInfluence){
-                                if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace+=100*inf.menace;}
-                                if(i<=3){map[x+a+b][y+c+d].offensif+=(30*(pm-i+1))*inf.offensif;}
+                                if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace+=5*inf.menace;}
+                                if(i<=3){map[x+a+b][y+c+d].offensif+=(1*(pm+pu-i+1))*inf.offensif;}
                             }
                             else
                             {
-                                if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace-=100*inf.menace;}
-                                if(i<=3){map[x+a+b][y+c+d].offensif-=(30*(pm-i+1))*inf.offensif;}
+                                if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace-=5*inf.menace;}
+                                if(i<=3){map[x+a+b][y+c+d].offensif-=(1*(pm+pu-i+1))*inf.offensif;}
                             }
                         }
                     }
@@ -119,8 +118,8 @@ public class StrategieIA
                         {
                             if(Moteur.dansLesBords(x+a+b, y+c+d))
                             {
-                                map[x+a+b][y+c+d].defensif-=(50*(pu-i+1))*inf.defensif;
-                                map[x+a+b][y+c+d].retraite-=(50*(pu-i+1))*inf.retraite;
+                                 map[x+a+b][y+c+d].defensif-=(50*(pu-i+1))*inf.defensif;
+                                 map[x+a+b][y+c+d].retraite-=(50*(pu-i+1))*inf.retraite;
                             }
                         }
                     }

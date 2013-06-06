@@ -115,8 +115,11 @@ public class GrandeIA
             
             
             
-            for (Terrain usine : joueurActuel.getListeUsine())
+            //for(Terrain usine : joueurActuel.getListeUsine())
+            if(joueurActuel.getListeUsine().isEmpty()){return;}
+            for(int i=joueurActuel.getListeUsine().size()-1;i>=0;i--)
             {
+                Terrain usine = joueurActuel.getListeUsine().get(i);
                 int x = usine.getCoordonneeX();
                 int y = usine.getCoordonneeY();
 
