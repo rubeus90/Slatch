@@ -164,6 +164,7 @@ public class PanelMenu extends JPanel
             if(pY>33+ this.getHeight()/4 && pY<33+ this.getHeight()/4+aHauteurBouton && this.getWidth()/2-3*aHauteurBouton<pX && pX< this.getWidth()/2+ 3*aHauteurBouton)
             {
             	Slatch.campagne = new Campagne();
+            	Slatch.campagne.chargerPartie(0);
             }
             
             //Clic Bouton Charger une Campagne

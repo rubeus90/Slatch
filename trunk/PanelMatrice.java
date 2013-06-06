@@ -343,6 +343,8 @@ public class PanelMatrice extends JPanel
                 g.drawString(stat8, this.getWidth()/2 + decalage - stat8Size/2, 15*this.getHeight()/(2*hauteurSize));
                 g.drawString(stat9, this.getWidth()/2 + decalage - stat9Size/2, 16*this.getHeight()/(2*hauteurSize));
             }
+            
+            Slatch.campagne.suite();
         }
     }
     
