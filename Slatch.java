@@ -15,6 +15,7 @@ public class Slatch {
     public static Moteur moteur;
     public static HashMap<String,Image> aImages; // Se trouvera dans Le moteur du jeu quand il y sera avec tout les load
     public static CreationMaps maps;
+    public static Campagne campagne;
     
     /**
      * @param args
@@ -44,9 +45,11 @@ public class Slatch {
         
         //Partie partieRapide = new Partie(20,30,"Maps/champs.txt",false,vEquipe,vIA);
         
+
         //partie = partieRapide;
         //moteur = new Moteur();
         ihm = new IHM_NEW();
+
            
 //        maps = new CreationMaps();
 
