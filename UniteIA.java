@@ -50,6 +50,21 @@ public class UniteIA
         executant.deplacee(true);
     }
     
+    static private void evoluer(Unite executant, Unite cible, Point point)
+    {
+        if(!executant.seSitue(point))
+        {seDirigerVers(executant, point);}
+        
+        if(executant.seSitue(point))
+        {
+            Slatch.moteur.setuniteA(executant);
+            Slatch.moteur.evoluer(cible);
+        }
+        
+        executant.attaque(true);
+        executant.deplacee(true);
+    }
+    
     static void decrypterObjectif(final Objectif objectif)
     {
         switch(objectif.getMotPrincipal()){
@@ -67,7 +82,10 @@ public class UniteIA
              achat(objectif.getCoordonnee(),objectif.getMotSecondaire());
             break;
         case "soigner" :
-         soigner((Unite)objectif.getExecutant(),(Unite)objectif.getCible(), objectif.getCoordonnee());
+         soigner((Unite)objectif.getExecutant(),(Unite)objectif.getCible(), objectif.getCoordonnee()); break;
+         
+        case "evoluer" :
+         evoluer((Unite)objectif.getExecutant(),(Unite)objectif.getCible(), objectif.getCoordonnee());
         }
     }
 }

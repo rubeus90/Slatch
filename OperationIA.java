@@ -25,7 +25,7 @@ public class OperationIA
         {            
             if(unite.estLowHP())
             {
-                p= trouverBonneCase(unite, new Influence(0,5, 1, -4, 5));
+                p= trouverBonneCase(unite, new Influence(0,5, 1, -4, 4));
             }
             else if(unite.peutSoigner())
             {
@@ -33,7 +33,7 @@ public class OperationIA
             }
             else if(unite.peutCapturer())
             {
-                p= trouverBonneCase(unite, new Influence(10,1, 10, -2, 1));
+                p= trouverBonneCase(unite, new Influence(11,1, 10, -2, 1));
             }
             else // l'unité peut attaquer
             {
@@ -97,7 +97,15 @@ public class OperationIA
         {
             if(Slatch.moteur.getEquipe(u)==Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
             {
-                if(unite.peutSoigner()){UniteIA.decrypterObjectif(new Objectif("soigner", null, pwin,unite, u));}
+                if(unite.getType()==TypeUnite.INGENIEUR && u.isEvolvable())
+                {
+                    UniteIA.decrypterObjectif(new Objectif("evoluer", null, pwin,unite, u));
+                }
+                else
+                if(unite.peutSoigner() && u.aBesoinDeSoins())
+                {
+                    UniteIA.decrypterObjectif(new Objectif("soigner", null, pwin,unite, u));
+                }
                 else
                 {
                     UniteIA.decrypterObjectif(new Objectif("aller", null, pwin,unite, null));
@@ -122,7 +130,7 @@ public class OperationIA
         StrategieIA.spreadInfluence(unite,map, false);
         for(int i=0; i<=Slatch.partie.getNbrJoueur(); i++)
         {
-            if(Slatch.partie.getJoueur(i).getEquipe().getNumEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
+            if(Slatch.partie.getJoueur(i).getEquipe().getNumEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe() && !unite.peutSoigner())
             {
                 for(Unite u: Slatch.partie.getJoueur(i).getListeUnite())
                 {
@@ -178,6 +186,28 @@ public class OperationIA
                     else
                     {
                         map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=5000/Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()];
+                    }
+                }
+            }
+            if(Slatch.partie.getJoueur(i).getEquipe().getNumEquipe()==Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe() && unite.getType()==TypeUnite.INGENIEUR)
+            {
+                for(Unite u: Slatch.partie.getJoueur(i).getListeUnite())
+                {
+                    if(u.aBesoinDeSoins() && u!=unite)
+                    {
+                        map[u.getCoordonneeX()][u.getCoordonneeY()].defensif+=5000*(double)(u.getPVMax())/(double)(u.getPV());
+                        if(Slatch.moteur.seraAPortee(unite, u))
+                        {
+                            map[u.getCoordonneeX()][u.getCoordonneeY()].defensif+=5000*(double)(u.getPVMax())/(double)(u.getPV());
+                        }
+                    }
+                    if(u.isEvolvable())
+                    {
+                        map[u.getCoordonneeX()][u.getCoordonneeY()].defensif+=5001*u.getPVMax();
+                        if(Slatch.moteur.seraAPortee(unite, u))
+                        {
+                            map[u.getCoordonneeX()][u.getCoordonneeY()].defensif+=5001*u.getPVMax();
+                        }
                     }
                 }
             }
