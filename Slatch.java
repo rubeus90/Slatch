@@ -134,7 +134,9 @@ public class Slatch {
                 for(int i=1;i<5;i++)
                 {
                    // System.out.println("SLATCH"+unite.getImage() + i);
-                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/"+ unite.getImage() + i + ".png"));
+                   System.out.println("Images/humains/" + unite.getImage() + i + ".png");
+                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/humains/" + unite.getImage() + i + ".png"));
+                    //image = ImageIO.read(getClass().getClassLoader().getResource("Images/"+ "robots/" + unite.getImage() + i + ".png"));
                     imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                     aImages.put(""+unite.getImage() + i,image);
                 }
