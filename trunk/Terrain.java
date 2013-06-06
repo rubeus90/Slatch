@@ -133,6 +133,11 @@ public class Terrain extends Entite{
         return (this.estCapturable() && this.appartientAuJoueur(joueur));
     }
     
+    @Override
+    public String toString()
+    {
+        return this.aType.getNom();
+    }
     
 }
 
