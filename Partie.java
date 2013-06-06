@@ -556,23 +556,27 @@ public class Partie
     
     public int getEquipeJoueurNonIA(){
         for(Joueur vJoueur: ListeJoueur){
-			if(!vJoueur.estUneIA() && vJoueur.getEquipe().getNumEquipe()!=0){
-				return vJoueur.getEquipe().getNumEquipe();
-			}
-		}
-		return 0;
+            if(!vJoueur.estUneIA() && vJoueur.getEquipe().getNumEquipe()!=0){
+                return vJoueur.getEquipe().getNumEquipe();
+            }
+        }
+        return 0;
     }
     
     private void isOneEquipeNonIA(){
         for(Joueur vJoueur: ListeJoueur){
-			if(!vJoueur.estUneIA()){
-				if(vJoueur.getEquipe().getNumEquipe()!=getEquipeJoueurNonIA() && vJoueur.getEquipe().getNumEquipe()!=0) {
-				    //System.out.println(uneSeulEquipedeJoueur);
-				    uneSeulEquipedeJoueur=false;
-				    return;
-				}
+            if(!vJoueur.estUneIA()){
+                if(vJoueur.getEquipe().getNumEquipe()!=0){
+                    System.out.println(vJoueur.getEquipe().getNumEquipe()+" ? "+ getEquipeJoueurNonIA());
+                    if(vJoueur.getEquipe().getNumEquipe()!=getEquipeJoueurNonIA()) {
+                        System.out.println(uneSeulEquipedeJoueur);
+                        uneSeulEquipedeJoueur=false;
+                        return;
+                    }
+                }
              }
-		}
-		uneSeulEquipedeJoueur=true;
+        }
+        uneSeulEquipedeJoueur=true;
+        System.out.println(uneSeulEquipedeJoueur);
     }
 }

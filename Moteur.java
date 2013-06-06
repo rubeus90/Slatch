@@ -896,29 +896,70 @@ class Moteur
         // Si le joueur actuel est un IA on applique pas : Securite
         // Mais si le joueur actuel appartient à la seul equipe de joueur, on applique ( donc marche avec une IA appartenant a l'équipe de joueur
         
-        if(!Slatch.partie.getuneSeulEquipedeJoueur() || !getJoueurActuel().estUneIA() || getJoueurActuel().getEquipe().getNumEquipe() == Slatch.partie.getEquipeJoueurNonIA()){           
+        if(!Slatch.partie.getuneSeulEquipedeJoueur()){
+            if(!getJoueurActuel().estUneIA() || getJoueurActuel().getEquipe().haveUnJoueurHumain()){           
             
-            //On remplit la map de Brouillard
-            for(int i=0; i<Slatch.partie.getLargeur(); i++)
-            {
-                for(int j=0; j<Slatch.partie.getHauteur(); j++)
+                //On remplit la map de Brouillard
+                for(int i=0; i<Slatch.partie.getLargeur(); i++)
                 {
-                    Slatch.partie.getTerrain()[i][j].setBrouillard(true);
+                    for(int j=0; j<Slatch.partie.getHauteur(); j++)
+                    {
+                        Slatch.partie.getTerrain()[i][j].setBrouillard(true);
+                    }
+                }  
+                
+                //Pour tous les Joueurs de l'équipe, on enleve le brouillard sur les batiments + la visions des Unites
+                for(Joueur vJoueur : getJoueurActuel().getEquipe().getListeJoueur()){
+                    if(vJoueur.getNumJoueur()!=0){
+                       for(Unite vUnite : vJoueur.getListeUnite()){
+                            affichePorteeBrouillard(vUnite);
+                       }             
+                       for(Terrain terrain : vJoueur.getListeBatiment()){
+                           Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+                       }
+                       for(Terrain terrain : vJoueur.getListeUsine()){
+                           Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+                       }
+                    }
                 }
-            }  
+            }
+            else if(getJoueurActuel().estUneIA()){
+                //On remplit la map de Brouillard
+                for(int i=0; i<Slatch.partie.getLargeur(); i++)
+                {
+                    for(int j=0; j<Slatch.partie.getHauteur(); j++)
+                    {
+                        Slatch.partie.getTerrain()[i][j].setBrouillard(true);
+                    }
+                }  
+            }
+        }
+        
+        else{
+          if(!getJoueurActuel().estUneIA() || getJoueurActuel().getEquipe().haveUnJoueurHumain()){           
             
-            //Pour tous les Joueurs de l'équipe, on enleve le brouillard sur les batiments + la visions des Unites
-            for(Joueur vJoueur : getJoueurActuel().getEquipe().getListeJoueur()){
-                if(vJoueur.getNumJoueur()!=0){
-                   for(Unite vUnite : vJoueur.getListeUnite()){
-                        affichePorteeBrouillard(vUnite);
-                   }             
-                   for(Terrain terrain : vJoueur.getListeBatiment()){
-                       Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
-                   }
-                   for(Terrain terrain : vJoueur.getListeUsine()){
-                       Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
-                   }
+                //On remplit la map de Brouillard
+                for(int i=0; i<Slatch.partie.getLargeur(); i++)
+                {
+                    for(int j=0; j<Slatch.partie.getHauteur(); j++)
+                    {
+                        Slatch.partie.getTerrain()[i][j].setBrouillard(true);
+                    }
+                }  
+                
+                //Pour tous les Joueurs de l'équipe, on enleve le brouillard sur les batiments + la visions des Unites
+                for(Joueur vJoueur : getJoueurActuel().getEquipe().getListeJoueur()){
+                    if(vJoueur.getNumJoueur()!=0){
+                       for(Unite vUnite : vJoueur.getListeUnite()){
+                            affichePorteeBrouillard(vUnite);
+                       }             
+                       for(Terrain terrain : vJoueur.getListeBatiment()){
+                           Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+                       }
+                       for(Terrain terrain : vJoueur.getListeUsine()){
+                           Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+                       }
+                    }
                 }
             }
         }
