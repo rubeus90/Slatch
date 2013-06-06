@@ -32,33 +32,33 @@ public class Slatch {
         loadImage();
 
         
-        Equipe equipe0 = new Equipe(0);
-        Equipe equipe1 = new Equipe(1);
-        Equipe equipe2 = new Equipe(2);
+        //Equipe equipe0 = new Equipe(0);
+        //Equipe equipe1 = new Equipe(1);
+        //Equipe equipe2 = new Equipe(2);
         
         //EQUIPE DES JOUEURS : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-        Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
+        //Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
         
         //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-        boolean[] vIA = {false,false,false,false,false};
+        //boolean[] vIA = {false,false,false,false,false};
         
-        Partie partieRapide = new Partie(20,30,"Maps/champs.txt",false,vEquipe,vIA);
+        //Partie partieRapide = new Partie(20,30,"Maps/champs.txt",false,vEquipe,vIA);
         
-        partie = partieRapide;
-        moteur = new Moteur();
+        //partie = partieRapide;
+        //moteur = new Moteur();
         ihm = new IHM_NEW();
            
 //        maps = new CreationMaps();
 
        
-        if(partie.getBrouillard()){
+        /*if(partie.getBrouillard()){
             moteur.Brouillard();
-        }
+        }*/
         
-        if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
+       /* if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
         {
             StrategieIA.joueTour(Slatch.partie.getJoueurActuel());
-        }
+        }*/
     }
     
     private void loadImage()

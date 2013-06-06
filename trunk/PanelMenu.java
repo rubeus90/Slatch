@@ -175,7 +175,41 @@ public class PanelMenu extends JPanel
                 // Clic Bouton OK
                 if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>this.getWidth()-this.getHeight()/6-10 && pX< this.getWidth()-10)
                 {
+                    Equipe equipe0 = new Equipe(0);
+                    Equipe equipe1 = new Equipe(1);
+                    Equipe equipe2 = new Equipe(2);
                     
+                    //EQUIPE DES JOUEURS : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
+                    Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
+                    
+                    //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
+                    boolean[] vIA = {false,true,true,true,true};
+                    
+                    Partie partieRapide = new Partie(20,30,"Maps/champs.txt",false,vEquipe,vIA);
+                    Slatch.partie=partieRapide;
+                    
+                    Moteur moteur = new Moteur();
+                    Slatch.moteur=moteur;
+                    
+                    
+                    
+                    Slatch.ihm.passageModePartie();
+                    
+                    
+                    if(Slatch.partie.getBrouillard()){
+                        moteur.Brouillard();
+                    }
+                    
+                    if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
+                    {
+                        StrategieIA.joueTour(Slatch.partie.getJoueurActuel());
+                    }
+                    
+                    /*if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
+                    {
+                        System.out.println("ICI");
+                        AIMaster.joueTour(Slatch.partie.getJoueurActuel());
+                    }*/
                 }
                 
                 // Clic Bouton Retour
