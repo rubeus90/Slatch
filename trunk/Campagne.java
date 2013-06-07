@@ -19,7 +19,7 @@ public class Campagne implements MouseListener{
 		aNiveau = 0;
 		listeNomPartie = new ArrayList<String>();
 
-		listeNomPartie.add("Maps/gagner.txt");
+		listeNomPartie.add("Maps/niveau1.txt");
 	}
 
 	public void chargerPartie(int pNiveau) {
@@ -28,7 +28,7 @@ public class Campagne implements MouseListener{
 		Equipe equipe2 = new Equipe(2);
 
 		Equipe[] vEquipe = { equipe0, equipe1, equipe2, equipe1, equipe2 };
-		boolean[] vIA = { true, false, true, true, true };
+		boolean[] vIA = { true, true, false, true, true };
 
 		Partie partie = new Partie(99, listeNomPartie.get(pNiveau), true, vEquipe, vIA);
 		Slatch.partie = partie;

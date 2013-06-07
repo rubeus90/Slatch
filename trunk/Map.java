@@ -14,7 +14,8 @@ public enum Map{
     MAPTEST4("MapTest4","Map de Test","",4,"mapTest4",false),
     PARALLAXE("Parallaxe","Une map de taille moyenne","1V1",2,"Parallaxe",false),
     SELETON("Seleton","Une grande map","3V1",4,"seleton",false),
-    NIVEAU1("Mission 1","La carte de la premiere mission de la campagne", "1V1",2,"niveau1",true);
+    NIVEAU1("Mission 1","La carte de la premiere mission de la campagne", "1V1",2,"niveau1",true),
+    COULOIR("Couloir","Une map tout en long","1V1",2,"couloir",false");
     
     private String aNom;
     private String aDescription;
