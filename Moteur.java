@@ -65,8 +65,8 @@ class Moteur
         int vY;
         for(Point p: voisins)
         {
-            vX=(int)p.getX()+pUnite.getCoordonneeX();
-            vY=(int)p.getY()+pUnite.getCoordonneeY();
+            vX=(int)p.getX()+pUnite.getX();
+            vY=(int)p.getY()+pUnite.getY();
             if(dansLesBords(vX,vY))
             {
                 Unite u = getUnite(vX,vY);
@@ -110,6 +110,7 @@ class Moteur
         uniteA.upLvl();
         uniteA.attaque(true);
         uniteA.deplacee(true);
+        uniteA=null;
     }
     
     public void modeAttaque(final int pX,final int pY)
@@ -181,21 +182,21 @@ class Moteur
     {
         int degatA = a.getDegat();
         double efficaciteA = a.getAttaque().efficacite.get(v.getType());
-        double bonusTerrain = (100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getCoordonneeX()][v.getCoordonneeY()].getType().getCouverture()))/100.0;
+        double bonusTerrain = (100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getX()][v.getY()].getType().getCouverture()))/100.0;
         double maluspvA = (double)a.getPV()/(double)a.getPVMax(); 
         
         double degat = degatA*efficaciteA*bonusTerrain*maluspvA;
         
         /*((a.getAttaque().getDegats()*a.getAttaque().efficacite.get(v.getType()))
-        *(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getCoordonneeX()][v.getCoordonneeY()].getType().getCouverture()))/100)
+        *(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getX()][v.getY()].getType().getCouverture()))/100)
          *((double)a.getPV()/(double)a.getPVMax())*/   
         return degat;
     }
     
     private void estMort(final Unite unite, final Unite pUniteVictorieux)
     {
-        Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
-        Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
+        Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setPV(Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType().getPVMax());
+        Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(null);
         getJoueur(unite).addNbrUniteMort();
         repaint();
         if(!getJoueur(unite).estUneIA() || unite.getJoueur()!=Slatch.partie.getJoueurActuel())
@@ -237,7 +238,7 @@ class Moteur
            if(vBatiment.getType()==TypeTerrain.QG)
            {
                getJoueur(vBatiment).mourrir();
-               Slatch.partie.gagner(getJoueur(vBatiment.getCoordonneeX(),vBatiment.getCoordonneeY())); // On donne a gagner le joueur qui vient de capturer et pas celui qui vient de perdre le QG
+               Slatch.partie.gagner(getJoueur(vBatiment.getX(),vBatiment.getY())); // On donne a gagner le joueur qui vient de capturer et pas celui qui vient de perdre le QG
            }
            getJoueur(vBatiment).addNbreBatiment(-1);
            vBatiment.setJoueur(uniteA.getJoueur());
@@ -396,7 +397,7 @@ class Moteur
         int x = pX, y =pY;
         Stack<Point> stack = new Stack<Point>();
         Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
-        if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));unite.deplacee(true); Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax()); if(unite.getAttaque().aTypePortee.getPorteeMin()>1){unite.attaque(true);}}
+        if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));unite.deplacee(true); Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setPV(Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType().getPVMax()); if(unite.getAttaque().aTypePortee.getPorteeMin()>1){unite.attaque(true);}}
         while(!fini)
         {
             Point p = pred[x][y];
@@ -404,7 +405,7 @@ class Moteur
             {
                 x=(int)p.getX();
                 y=(int)p.getY();
-                if(unite.getCoordonneeX()==x && unite.getCoordonneeY()==y)
+                if(unite.getX()==x && unite.getY()==y)
                 {
                     fini = true;
                 }
@@ -415,7 +416,7 @@ class Moteur
                         if(!geez)
                         {
                             if(getUnite(x,y)==null){stack.push(p);
-                            unite.deplacee(true); geez = true;Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());}
+                            unite.deplacee(true); geez = true;Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setPV(Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType().getPVMax());}
                         }
                         else
                         {
@@ -457,21 +458,21 @@ class Moteur
     {
         int vPasDepl = 8;
         int vThread = 5;
-        int pPosHautGaucheX = unite.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
-        int pPosHautGaucheY = unite.getCoordonneeY()*Slatch.ihm.getPanel().getaHauteurCarreau();
-        int pPosBasDroiteX = (unite.getCoordonneeX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
-        int pPosBasDroiteY = (unite.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
+        int pPosHautGaucheX = unite.getX()*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosHautGaucheY = unite.getY()*Slatch.ihm.getPanel().getaHauteurCarreau();
+        int pPosBasDroiteX = (unite.getX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosBasDroiteY = (unite.getY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
         
         int pPosHautGaucheXdest = destX*Slatch.ihm.getPanel().getaLargeurCarreau();
         int pPosHautGaucheYdest = destY*Slatch.ihm.getPanel().getaHauteurCarreau();
         int pPosBasDroiteXdest = (destX+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
         int pPosBasDroiteYdest = (destY+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
 
-        if(unite.getCoordonneeX() != destX ) {
-            if(unite.getCoordonneeX() < destX) {
+        if(unite.getX() != destX ) {
+            if(unite.getX() < destX) {
                 //BUG
                 Unite ret=getUnite(destX,destY);
-                Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(mem);
+                Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(mem);
                 unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
                 Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
 
@@ -518,7 +519,7 @@ class Moteur
                 unite.setDecaleUniteY(0);
             
                 Unite ret=getUnite(destX,destY);
-                Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(mem);
+                Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(mem);
                 unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
                 Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
         
@@ -529,11 +530,11 @@ class Moteur
                 return ret;
             }
         }
-        if(unite.getCoordonneeY() != destY ) {
-            if(unite.getCoordonneeY() < destY) {
+        if(unite.getY() != destY ) {
+            if(unite.getY() < destY) {
                 //BUG
                 Unite ret=getUnite(destX,destY);
-                Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(mem);
+                Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(mem);
                 unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
                 Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
                 
@@ -583,7 +584,7 @@ class Moteur
                 unite.setDecaleUniteY(0);
             
                 Unite ret=getUnite(destX,destY);
-                Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(mem);
+                Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(mem);
                 unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
                 Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
                 
@@ -648,8 +649,8 @@ class Moteur
      */
     public void affichePorteeAttaque(final Unite unite,final boolean soin)
     {
-        int x = unite.getCoordonneeX();
-        int y = unite.getCoordonneeY();
+        int x = unite.getX();
+        int y = unite.getY();
 
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
@@ -685,12 +686,12 @@ class Moteur
         /*
         int d=distance(pA, pC);
         return d<=pA.getAttaque().aTypePortee.getPorteeMax() && d>=pA.getAttaque().aTypePortee.getPorteeMin();*/
-        return estAPortee(pA, pC.getCoordonneeX(), pC.getCoordonneeY());
+        return estAPortee(pA, pC.getX(), pC.getY());
     }
     
     public boolean estAPortee(Unite pA, int x, int y)
     {
-        int d=distance(pA.getCoordonneeX(), pA.getCoordonneeY(), x, y);
+        int d=distance(pA.getX(), pA.getY(), x, y);
         return d<=pA.getAttaque().aTypePortee.getPorteeMax() && d>=pA.getAttaque().aTypePortee.getPorteeMin();
     }
     
@@ -699,8 +700,8 @@ class Moteur
      */
     private boolean ciblePresente(final Unite unite,final int decX,final int decY,final boolean soin)
     {
-        int x = unite.getCoordonneeX();
-        int y = unite.getCoordonneeY();
+        int x = unite.getX();
+        int y = unite.getY();
         
         if(dansLesBords(x+decX,y+decY))
         {
@@ -726,7 +727,7 @@ class Moteur
      */
     public int distance(final Entite e1,final Entite e2)
     {
-        return distance(e1.getCoordonneeX(), e1.getCoordonneeY(), e2.getCoordonneeX(), e2.getCoordonneeY());
+        return distance(e1.getX(), e1.getY(), e2.getX(), e2.getY());
     }
     
     public void remplitPorteeDep(final Unite unite,final boolean bool)
@@ -775,8 +776,8 @@ class Moteur
      */
     private void affichePorteeBrouillard(final Unite unite)
     {
-        int x = unite.getCoordonneeX();
-        int y = unite.getCoordonneeY();
+        int x = unite.getX();
+        int y = unite.getY();
         
         Slatch.partie.getTerrain()[x][y].setBrouillard(false);
         
@@ -819,10 +820,10 @@ class Moteur
                             affichePorteeBrouillard(vUnite);
                        }             
                        for(Terrain terrain : vJoueur.getListeBatiment()){
-                           Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+                           Slatch.partie.getTerrain()[terrain.getX()][terrain.getY()].setBrouillard(false);
                        }
                        for(Terrain terrain : vJoueur.getListeUsine()){
-                           Slatch.partie.getTerrain()[terrain.getCoordonneeX()][terrain.getCoordonneeY()].setBrouillard(false);
+                           Slatch.partie.getTerrain()[terrain.getX()][terrain.getY()].setBrouillard(false);
                        }
                     }
                 }
@@ -864,14 +865,14 @@ class Moteur
                 pred[i][j]=null;
             }
         }
-        tabDist[unite.getCoordonneeX()][unite.getCoordonneeY()]=-2;
+        tabDist[unite.getX()][unite.getY()]=-2;
         pred = new Point[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
     }
     
     public void algoDeplacement(final Unite unite,final boolean porteeComptee)
     {
         PriorityQueue<Triplet> pq = new PriorityQueue<Triplet>();
-        pq.add(new Triplet(0,unite.getCoordonneeX(),unite.getCoordonneeY()));
+        pq.add(new Triplet(0,unite.getX(),unite.getY()));
         while(!pq.isEmpty())
         {
             Triplet t = pq.poll();
@@ -929,13 +930,13 @@ class Moteur
             {
                 u.attaque(false);
                 u.deplacee(false);
-                if(Slatch.partie.getTerrain()[u.getCoordonneeX()][u.getCoordonneeY()].estUnBatimentAuJoueur(u.getJoueur()))
+                if(Slatch.partie.getTerrain()[u.getX()][u.getY()].estUnBatimentAuJoueur(u.getJoueur()))
                 {
                     u.soigner(8);
                 }
             }
             
-            if(getJoueurActuel().estUneIA() && Slatch.partie.getJoueurActuel()!=1)
+            if(getJoueurActuel().estUneIA() && Slatch.partie.getJoueurActuel()!=2)
             {
                 StrategieIA.joueTour(Slatch.partie.getJoueurActuel());
             }
@@ -986,8 +987,8 @@ class Moteur
         {
             for(Point p: voisins)
             {
-                int x = (int)(p.getX())+pC.getCoordonneeX();
-                int y = (int)(p.getY())+pC.getCoordonneeY();
+                int x = (int)(p.getX())+pC.getX();
+                int y = (int)(p.getY())+pC.getY();
                 
                 if(dansLesBords(x,y))
                 {
@@ -999,7 +1000,7 @@ class Moteur
             }
         }
         return this.estAPortee(pA, pC);*/
-        return seraAPortee(pA, pC.getCoordonneeX(), pC.getCoordonneeY());
+        return seraAPortee(pA, pC.getX(), pC.getY());
     }
     
     public boolean seraAPortee(Unite pA, int pX, int pY)
