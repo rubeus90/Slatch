@@ -58,7 +58,7 @@ public class UniteIA
         if(executant.seSitue(point))
         {
             Slatch.moteur.setuniteA(executant);
-            Slatch.moteur.evoluer(cible);
+            //Slatch.moteur.evoluer(cible);
         }
         
         executant.attaque(true);

@@ -442,7 +442,7 @@ public class PanelMatrice extends JPanel
                             //Bouton 2 : Soin
                             if(aSoinPossible && (aMenuActionHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+2*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx ) 
                             {
-                                Slatch.moteur.modeEvoluer(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
+                                Slatch.moteur.modeSoin(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
                                 effaceMenuUniteAction();
                                 aSoinPossible=false;
                                 this.repaint();
@@ -460,8 +460,8 @@ public class PanelMatrice extends JPanel
                             //Bouton 4 : Evolue
                             if(aEvoluePossible && (aMenuActionHautGauche_Ypx+3*aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+4*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )
                             {
-                                Slatch.moteur.modeSoin(aUniteMemMoteurCaseX,aUniteMemMoteurCaseY);
-                                Slatch.moteur.setModeEvoluer(true);
+                                Slatch.moteur.evoluer(aUniteMemMoteurCaseX,aUniteMemMoteurCaseY);
+                                //Slatch.moteur.setModeEvoluer(true);
                                 effaceMenuUniteAction();
                                 aEvoluePossible=false;
                                 this.repaint();
