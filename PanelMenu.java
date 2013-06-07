@@ -61,7 +61,7 @@ public class PanelMenu extends JPanel
 		try {
 			font = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
 					.getClassLoader().getResource("Config/pixelart.ttf")
-					.toURI())).deriveFont(Font.PLAIN, this.getWidth()/70);
+					.toURI())).deriveFont(Font.PLAIN, this.getWidth()/50);
 		
         g.setFont(font);
         FontMetrics fm=getFontMetrics(font); 
