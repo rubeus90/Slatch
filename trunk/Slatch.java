@@ -88,7 +88,7 @@ public class Slatch {
                     for(int i=0;i<5;i++)
                     {
                         //System.out.println("TERRAIN DEPENDANCE "+terrain.getImage() + i);
-                        image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/"+ terrain.getImage() + i + ".png"));
+                        image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/plaine/"+ terrain.getImage() + i + ".png"));
                         imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                         aImages.put(""+terrain.getImage() + i,image);
                     }
@@ -96,7 +96,7 @@ public class Slatch {
                 }
                 else
                 {
-                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/"+ terrain.getImage() +"0.png"));
+                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/plaine/"+ terrain.getImage() +"0.png"));
                     imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                     aImages.put(terrain.getImage()+"0",image);
                 }
@@ -118,7 +118,7 @@ public class Slatch {
             {
                 
                         //System.out.println("TERRAIN DEPENDANCE "+terrain.getImage() + i);
-                        image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/plaine0" + i + ".png"));
+                        image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/plaine/plaine0" + i + ".png"));
                         imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                         aImages.put("plaine0" + i,image);
              }
