@@ -98,11 +98,6 @@ public class OperationIA
         {
             if(Slatch.moteur.getEquipe(u)==Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
             {
-                if(unite.getType()==TypeUnite.INGENIEUR && u.isEvolvable())
-                {
-                    UniteIA.decrypterObjectif(new Objectif("evoluer", null, pwin,unite, u));
-                }
-                else
                 if(unite.peutSoigner() && u.aBesoinDeSoins())
                 {
                     UniteIA.decrypterObjectif(new Objectif("soigner", null, pwin,unite, u));
@@ -128,6 +123,10 @@ public class OperationIA
     
     static void adapteMap(Unite unite)
     {
+        if(unite.isEvolvable())
+        {
+            map[unite.getCoordonneeX()][unite.getCoordonneeY()].defensif+=5001;
+        }
         StrategieIA.spreadInfluence(unite,map, false);
         for(int i=0; i<=Slatch.partie.getNbrJoueur(); i++)
         {
@@ -200,14 +199,6 @@ public class OperationIA
                         if(Slatch.moteur.seraAPortee(unite, u))
                         {
                             map[u.getCoordonneeX()][u.getCoordonneeY()].defensif+=5000*(double)(u.getPVMax())/(double)(u.getPV());
-                        }
-                    }
-                    if(u.isEvolvable() && u!=unite)
-                    {
-                        map[u.getCoordonneeX()][u.getCoordonneeY()].defensif+=5001*u.getPVMax();
-                        if(Slatch.moteur.seraAPortee(unite, u))
-                        {
-                            map[u.getCoordonneeX()][u.getCoordonneeY()].defensif+=5001*u.getPVMax();
                         }
                     }
                 }
