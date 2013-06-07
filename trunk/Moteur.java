@@ -55,14 +55,9 @@ class Moteur
     public void modeSoin(final int pX,final int pY)
     {
         uniteA = getUnite(pX,pY);
-        affichePorteeEvoluer(uniteA, true);
-    }
-    
-    public void modeEvoluer(final int pX,final int pY)
-    {
-        uniteA = getUnite(pX,pY);
         affichePorteeAttaque(uniteA, true);
     }
+    
     
     private boolean cibleSoignable(final Unite pUnite)
     {
@@ -105,44 +100,16 @@ class Moteur
         }
     }
     
-    private boolean cibleEvoluable(final Unite pUnite){
-        int vX;
-        int vY;
-        for(Point p: voisins)
-        {
-            vX=(int)p.getX()+pUnite.getCoordonneeX();
-            vY=(int)p.getY()+pUnite.getCoordonneeY();
-            if(dansLesBords(vX,vY))
-            {
-                Unite u = getUnite(vX,vY);
-                if(u!= null)
-                {
-                    if(u.isEvolvable() && getEquipe(pUnite.getJoueur())==getEquipe(u.getJoueur()))
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-    
     /**
      * Methode qui permet a un ingenieur de faire evoluer une methode
      * @param pUnite
      */
-    public void evoluer(final Unite pUnite)
+    public void evoluer(final int pX,final int pY)
     {
-        pUnite.upLvl();
-        
-        //Unite evoluer grisee
-        pUnite.attaque(true);
-        pUnite.deplacee(true);
-        
-        //L'ingenieur ne peut plus bouger non plus
+        uniteA = getUnite(pX,pY);
+        uniteA.upLvl();
         uniteA.attaque(true);
         uniteA.deplacee(true);
-        uniteA=null;
     }
     
     public void modeAttaque(final int pX,final int pY)
@@ -349,16 +316,16 @@ class Moteur
                             if(unite.getType()!=TypeUnite.INGENIEUR){items.add("Attaque");}
                         }
                         
+                        if(unite.isEvolvable() && !unite.dejaAttaque())
+                            {
+                                items.add("Evolue");
+                            }
+                        
                         if(unite.getType()==TypeUnite.INGENIEUR)
                         {
                             if(cibleSoignable(unite) && !unite.dejaAttaque())
                             {
                                 items.add("Soin");
-                            }
-                            
-                            if(cibleEvoluable(unite) && !unite.dejaAttaque())
-                            {
-                                items.add("Evolue");
                             }
                         }
                         
@@ -386,10 +353,10 @@ class Moteur
                 {
                     soin(unite);
                 }
-                else if(unite.getJoueur()==uniteA.getJoueur() && tabAtt[pX][pY] && aModeEvoluer &&uniteA.getType()==TypeUnite.INGENIEUR)
-                {
-                    evoluer(unite);
-                }
+//                 else if(unite.getJoueur()==uniteA.getJoueur() && tabAtt[pX][pY] && aModeEvoluer &&uniteA.getType()==TypeUnite.INGENIEUR)
+//                 {
+//                     evoluer(unite);
+//                 }
                 else
                 {
                     annulerAttaque();
@@ -712,45 +679,7 @@ class Moteur
             }
         }
     }
-    
-    /**
-     * Affiche la portee d'attaque en mettant en surbrillance les cibles potentielles
-     * @param unite unite qui cherche une autre unite a frapper
-     */
-    public void affichePorteeEvoluer(final Unite unite,final boolean evoluer)
-    {
-        int x = unite.getCoordonneeX();
-        int y = unite.getCoordonneeY();
 
-        for(int i=0; i<Slatch.partie.getLargeur(); i++)
-        {
-            for(int j=0; j<Slatch.partie.getHauteur(); j++)
-            {
-                tabAtt[i][j] = false;
-            }
-        }
-        
-        for(int i=1; i<=unite.getAttaque().aTypePortee.getPorteeMax();i++)
-        {
-            for(int j=1; j<=i;j++)
-            {
-                for(Quad q: signes)
-                {
-                    int a = i*q.a, b= j*q.b, c=i*q.c, d = j*q.d;
-                    if(dansLesBords(x+a+b, y+c+d))
-                    {
-                        if(cibleEvoluable(unite,a+b,c+d, evoluer))
-                        {
-                            Slatch.partie.getTerrain()[x+a+b][y+c+d].setSurbrillance(true);
-                            repaint();
-                            tabAtt[x+a+b][y+c+d] = true;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
     public boolean estAPortee(Unite pA, Unite pC) // nous dit si pC est à portee de tir de PA
     {
         /*
@@ -779,25 +708,6 @@ class Moteur
             {
                 boolean pasAuJoueurActuel = getEquipe(getNumJoueur(x+decX,y+decY)) != getJoueurActuel().getEquipe().getNumEquipe();
                 return (pasAuJoueurActuel^(soin && (getUnite(x+decX,y+decY).aBesoinDeSoins()||pasAuJoueurActuel)))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
-            }
-        }
-        return false;
-    }
-    
-    /**
-     * vérifie si une cible est présente en (x+decX, y+decY)
-     */
-    private boolean cibleEvoluable(final Unite unite,final int decX,final int decY,final boolean soin)
-    {
-        int x = unite.getCoordonneeX();
-        int y = unite.getCoordonneeY();
-        
-        if(dansLesBords(x+decX,y+decY))
-        {
-            if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && getUnite(x+decX,y+decY)!=null)
-            {
-                boolean pasAuJoueurActuel = getNumJoueur(x+decX,y+decY)!=Slatch.partie.getJoueurActuel();
-                return (pasAuJoueurActuel^(soin && (getUnite(x+decX,y+decY).isEvolvable()||pasAuJoueurActuel)))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
             }
         }
         return false;
