@@ -6,8 +6,9 @@
  * @version (version number or date here)
  */
 public enum Map{
+    DOUBLEVAI("DoubleVai", "Une map en double V", "1V1",2,"doublevai", false),
     CHAMPS("Champs","Une map tres petite ou les combats sont intenses !","2V2 - 4",4,"champs",false), 
-    HACHEMAP("HacheMap","Il ne faut pas etre une pelle pour gagner","1V1",2,"hachemap",false), 
+    HACHEMAP("HacheMap","Il ne faut pas etre une pelle pour gagner","1V1",2,"hacheMap",false), 
     JONATHAN("Jonathan","Map by Jonathan","2V2 - 4",4,"jonathan",false),
     MAPTEST("MapTest","Map de Test","",2,"mapTest",false),
     MAPTEST4("MapTest4","Map de Test","",4,"mapTest4",false),
