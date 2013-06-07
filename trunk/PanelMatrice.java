@@ -15,6 +15,9 @@ import javax.swing.*;
  */
 public class PanelMatrice extends JPanel
 {     
+    // Boolean degug
+    public static boolean modeDEBUG=false;
+
     // Dimensions en pixel d'une case de matrice
     private int aLargeurCarreau;
     private int aHauteurCarreau;
@@ -529,7 +532,7 @@ public class PanelMatrice extends JPanel
         for(int i=0; i<Slatch.partie.getLargeur(); i++) {
             for(int j=0; j<Slatch.partie.getHauteur(); j++) {
                 Slatch.partie.getTerrain()[i][j].dessine(g, this);
-                //afficheInfoIA(i,j,g);
+                if(modeDEBUG)afficheInfoIA(i,j,g);
                 //afficheInfoTerrain(i,j,g);
             }
         }
