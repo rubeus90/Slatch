@@ -215,9 +215,33 @@ public class Slatch {
                 imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("yindeplacement",image);
                 
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/doublevai.png"));
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/doublevai.png"));
                 //imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("doublevai",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/champs.png"));
+                aImages.put("champs",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/hacheMap.png"));
+                aImages.put("hacheMap",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/jonathan.png"));
+                aImages.put("jonathan",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/mapTest.png"));
+                aImages.put("mapTest",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/mapTest4.png"));
+                aImages.put("mapTest4",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/Parallaxe.png"));
+                aImages.put("Parallaxe",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/seleton.png"));
+                aImages.put("seleton",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/noir.png"));
+                aImages.put("noir",image);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -270,6 +294,12 @@ public class Slatch {
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/titrerapide.png"));
                 aImages.put("titrerapide",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/flechegauche.png"));
+                aImages.put("flechegauche",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/flechedroite.png"));
+                aImages.put("flechedroite",image);
         }
         catch (IOException e) {
             e.printStackTrace();

@@ -1,3 +1,5 @@
+import java.util.List;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import java.awt.* ;
 import javax.swing.JPanel;
@@ -23,6 +25,7 @@ public class IHM_NEW  {
     private Animation animation;
     static Timer timer;
     private PanelDialogueCampagne panelDialogueCampagne;
+    public List<Map> aListeMap;
     
     /**
      * Constructeur qui instancie JFrame du Menu.
@@ -35,6 +38,11 @@ public class IHM_NEW  {
         //timer.start();
 
         // Creation de la fenetre : frame
+        aListeMap=new ArrayList<Map>();
+        for( Map carte : Map.values() )
+        {
+            aListeMap.add(carte);
+        }
         frame = new JFrame("SLATCH");
         frame.setTitle("SLATCH");
 
@@ -47,6 +55,12 @@ public class IHM_NEW  {
         //panelInfo = new PanelInfo();
         //panelMatrice = new PanelMatrice(); 
         panelMenu = new PanelMenu();
+        
+        aListeMap=new ArrayList<Map>();
+        for( Map carte : Map.values() )
+        {
+            aListeMap.add(carte);
+        }
 
         
         panel.setLayout(new BorderLayout());
@@ -111,7 +125,7 @@ public class IHM_NEW  {
         panelInfo.addMouseListener(lecteurInfo);
         
         if(panelMenu != null)
-        	panel.remove(panelMenu);
+            panel.remove(panelMenu);
         panel.add(panelMatrice, BorderLayout.CENTER);
         panel.add(panelInfo, BorderLayout.NORTH);
 
@@ -124,6 +138,6 @@ public class IHM_NEW  {
     }
     
     public JPanel getPanelFrame(){
-    	return panel;
+        return panel;
     }
 }

@@ -15,6 +15,7 @@ public class PanelMenu extends JPanel
     private boolean aMenuRapide;
     private boolean aSousMenuRapide1;
     private boolean aSousMenuRapide2;
+    private int aNumeroMap;
     
     public PanelMenu()
     {
@@ -25,6 +26,7 @@ public class PanelMenu extends JPanel
         aMenuRapide = false;
         aSousMenuRapide1 = false;
         aSousMenuRapide2 = false;
+        aNumeroMap=0;
     }
     
     @Override
@@ -34,6 +36,12 @@ public class PanelMenu extends JPanel
         afficheImageRedim("plaine0",0,0,this.getWidth(),this.getHeight(),g);
         Image ok = Slatch.aImages.get("boutonok");
         Image retour = Slatch.aImages.get("boutonretour");
+        
+        Font font = new Font("Helvetica", Font.BOLD, this.getWidth()/50);
+        g.setFont(font);
+        FontMetrics fm=getFontMetrics(font); 
+        g.setColor(Color.black);
+        int hPolice = fm.getHeight();
         
         if(aMenuPrincipal)
         {
@@ -47,7 +55,6 @@ public class PanelMenu extends JPanel
             Image mapcreator = Slatch.aImages.get("boutonmapcreator");
             Image credits = Slatch.aImages.get("boutoncredits");
             
-            //g.drawImage(slatch, this.getWidth()/6, 33, 4*vHauteurTitre,vHauteurTitre, this);
             g.drawImage(slatch, this.getWidth()/2-2*vHauteurTitre, 33, 4*vHauteurTitre,vHauteurTitre, this);
             g.drawImage(campagne, this.getWidth()/2-2*aHauteurBouton, 33+ this.getHeight()/4, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(rapide, this.getWidth()/2-2*aHauteurBouton, 33+ 3*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
@@ -78,21 +85,32 @@ public class PanelMenu extends JPanel
             Image chargerPartie = Slatch.aImages.get("boutonchargerpartie");
             Image nouvellePartie = Slatch.aImages.get("boutonnouvellepartie");
             g.drawImage(titrerapide, this.getWidth()/6, 33, 4*vHauteurTitre,vHauteurTitre, this);
-            g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);//A Remplacer par retour
+            g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
             
             if(aSousMenuRapide1)
             {
-                Image map = Slatch.aImages.get("doublevai");
-               g.drawImage(map, this.getWidth()/12, getHeight()/3,this.getWidth()/2 ,this.getWidth()/3, this);//A Remplacer par OK
-                
-                
-                g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);//A Remplacer par OK
+               Image cadre = Slatch.aImages.get("noir");
+               Image map = Slatch.aImages.get(Slatch.ihm.aListeMap.get(aNumeroMap).getFichier());
+               int tCadre = this.getWidth()/100;
+               
+               g.drawString("Nom : " +Slatch.ihm.aListeMap.get(aNumeroMap).getNom(), this.getWidth()/9+this.getWidth()/2,this.getHeight()/3);
+               g.drawString("Description : "+Slatch.ihm.aListeMap.get(aNumeroMap).getDescription(),this.getWidth()/9+this.getWidth()/2 , this.getHeight()/3+2*hPolice );
+               g.drawString("Conseil : "+Slatch.ihm.aListeMap.get(aNumeroMap).getConseil(),this.getWidth()/9+this.getWidth()/2 ,this.getHeight()/3+4*hPolice );
+               g.drawString("Nombre de Joueurs : "+Slatch.ihm.aListeMap.get(aNumeroMap).getNbrJoueur(),this.getWidth()/9+this.getWidth()/2 ,this.getHeight()/3+6*hPolice );
+               
+               Image flechegauche = Slatch.aImages.get("flechegauche");
+               Image flechedroite = Slatch.aImages.get("flechedroite");
+               g.drawImage(cadre, this.getWidth()/11-tCadre, this.getHeight()/4-tCadre,this.getWidth()/2+2*tCadre ,this.getWidth()/3+2*tCadre, this);
+               g.drawImage(map, this.getWidth()/11, this.getHeight()/4,this.getWidth()/2 ,this.getWidth()/3, this);
+                g.drawImage(flechegauche, this.getWidth()/11, this.getHeight()/4 + this.getWidth()/3, this.getHeight()/8,this.getHeight()/8, this);
+                g.drawImage(flechedroite, this.getWidth()/11+this.getWidth()/2-this.getHeight()/8, this.getHeight()/4 + this.getWidth()/3, this.getHeight()/8,this.getHeight()/8, this);
+                g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-this.getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
                 
             }
             
             else if(aSousMenuRapide2)
             {
-                g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);//A Remplacer par OK
+                g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
             }
             
             else
@@ -163,7 +181,7 @@ public class PanelMenu extends JPanel
             // Clic Bouton Nouvelle Campagne
             if(pY>33+ this.getHeight()/4 && pY<33+ this.getHeight()/4+aHauteurBouton && this.getWidth()/2-3*aHauteurBouton<pX && pX< this.getWidth()/2+ 3*aHauteurBouton)
             {
-            	Slatch.campagne = new Campagne();
+                Slatch.campagne = new Campagne();
             	Slatch.campagne.createDialogue();
             }
             
@@ -178,12 +196,32 @@ public class PanelMenu extends JPanel
         {  
             if(aSousMenuRapide1)
             {
+                // Clic FlecheGauche
+                if(pY> this.getHeight()/4 + this.getWidth()/3 && pY< this.getHeight()/4 + this.getWidth()/3 + this.getHeight()/8 && pX>this.getWidth()/11 && pX<this.getWidth()/11+this.getHeight()/8)
+                {
+                    if(aNumeroMap<=0)
+                    {aNumeroMap=Slatch.ihm.aListeMap.size()-1;}
+                    else
+                    {aNumeroMap=aNumeroMap-1;}
+                    this.repaint();
+                }
+                
+                // Clic FlecheDroite
+                if(pY>this.getHeight()/4 + this.getWidth()/3 && pY< this.getHeight()/4 + this.getWidth()/3 + this.getHeight()/8 && pX>this.getWidth()/11+this.getWidth()/2-this.getHeight()/8 && pX<this.getWidth()/11+this.getWidth()/2)
+                {
+                    if(aNumeroMap>=Slatch.ihm.aListeMap.size()-1)
+                    {aNumeroMap=0;}
+                    else
+                    {aNumeroMap=aNumeroMap+1;}
+                    this.repaint();
+                }
+                
                 // Clic Bouton OK
                 if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>this.getWidth()-this.getHeight()/6-10 && pX< this.getWidth()-10)
                 {
-                    Equipe equipe0 = new Equipe(0);
-                    Equipe equipe1 = new Equipe(1);
-                    Equipe equipe2 = new Equipe(2);
+                   Equipe equipe0 = new Equipe(0);
+                   Equipe equipe1 = new Equipe(1);
+                   Equipe equipe2 = new Equipe(2);
                     Equipe equipe3 = new Equipe(3);
                     Equipe equipe4 = new Equipe(4);
                     
@@ -191,9 +229,10 @@ public class PanelMenu extends JPanel
                     Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe3, equipe4};
                     
                     //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-                    boolean[] vIA = {false,true,true,true,true};
+                    boolean[] vIA = {false,false,false,false,false};
                     
-                    Partie partieRapide = new Partie(20,30,"Maps/doublevai.txt",false,vEquipe,vIA);
+                    Partie partieRapide = new Partie(20,30,"Maps/"+Slatch.ihm.aListeMap.get(aNumeroMap).getFichier()+".txt",false,vEquipe,vIA);
+
                     Slatch.partie=partieRapide;
                     
                     Moteur moteur = new Moteur();
@@ -233,7 +272,7 @@ public class PanelMenu extends JPanel
                 // Clic Bouton OK
                 if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>10 && pX< 10+this.getHeight()/6)
                 {
-
+                    
                 }
                 
                 // Clic Bouton Retour
