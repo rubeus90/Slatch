@@ -27,7 +27,7 @@ public class PanelDialogueCampagne extends JPanel {
 		super();
 		etape = 1;
 		niveau = pNiveau;
-		dialogue = "Coucoucoucou on va commencer le niveau " + (pNiveau + 1);
+		dialogue = "Dans un monde ou les bicyclettes sont des armes, L'amiral Slatch, commandant d'une boutique de vente de velo, dirige le monde - niveau" + (pNiveau + 1);
 	}
 	
 	public PanelDialogueCampagne(){
