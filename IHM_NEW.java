@@ -64,6 +64,7 @@ public class IHM_NEW  {
         frame.pack();
         frame.setVisible(true);
         panelMenu.setVisible(true);
+        
         //panelMatrice.setVisible(true);
         //panelInfo.setVisible(true);
     }
@@ -113,6 +114,7 @@ public class IHM_NEW  {
         	panel.remove(panelMenu);
         panel.add(panelMatrice, BorderLayout.CENTER);
         panel.add(panelInfo, BorderLayout.NORTH);
+
         panelMenu.setVisible(false);
         panelMatrice.setVisible(true);
         panelInfo.setVisible(true);
