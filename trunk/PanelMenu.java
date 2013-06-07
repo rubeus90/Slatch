@@ -77,11 +77,12 @@ public class PanelMenu extends JPanel
         
 //        Font font = new Font("Helvetica", Font.BOLD, this.getWidth()/50);
         Font font;
-        try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
-                    .getClassLoader().getResource("Config/pixelart.ttf")
-                    .toURI())).deriveFont(Font.PLAIN, this.getWidth()/70);
-        
+
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
+					.getClassLoader().getResource("Config/visitor2.ttf")
+					.toURI())).deriveFont(Font.PLAIN, this.getWidth()/50);
+
         g.setFont(font);
         FontMetrics fm=getFontMetrics(font); 
         
@@ -158,6 +159,7 @@ public class PanelMenu extends JPanel
             {
                 g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
                 this.afficheCheckBox();
+                
             }
             
             else
@@ -365,7 +367,7 @@ public class PanelMenu extends JPanel
         cbJ2 =  new JCheckBox("Joueur", statecbJ2);
         cbJ3b =     new JCheckBox("IA", statecbJ3b);
         cbJ1 =  new JCheckBox("Joueur", statecbJ1);
-        cbJ1b =     new JCheckBox("IA", statecbJ1b);   
+        cbJ1b =     new JCheckBox("IA", statecbJ1b); 
     }
     
     /**
