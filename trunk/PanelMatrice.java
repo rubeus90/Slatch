@@ -16,7 +16,7 @@ import javax.swing.*;
 public class PanelMatrice extends JPanel
 {     
     // Boolean degug
-    public static boolean modeDEBUG=true;
+    public static boolean modeDEBUG=false;
 
     // Dimensions en pixel d'une case de matrice
     private int aLargeurCarreau;
