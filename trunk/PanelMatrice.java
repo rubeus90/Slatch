@@ -16,7 +16,7 @@ import javax.swing.*;
 public class PanelMatrice extends JPanel
 {     
     // Boolean degug
-    public static boolean modeDEBUG=false;
+    public static boolean modeDEBUG=true;
 
     // Dimensions en pixel d'une case de matrice
     private int aLargeurCarreau;
@@ -573,16 +573,10 @@ public class PanelMatrice extends JPanel
      * Methode DEBUG : Affiche les info de l'IA
      */
     private void afficheInfoIA (int i, int j, Graphics g) {  
-        int joueurAv; 
-
-        // Commence a l'afficher au tour 2 min
-        if(Slatch.partie.getJoueurActuel()!=1)
-            joueurAv = Slatch.partie.getJoueurActuel()-1;
-        else
-            joueurAv = Slatch.partie.getNbrJoueur();
-            
+        int joueurAv= Slatch.partie.getNbrJoueur(); 
+        
         // Affichage des Influence
-        if(Slatch.partie.getJoueur(joueurAv).estUneIA() && Slatch.partie.getTour()!=1)
+        if(Slatch.partie.getJoueur(joueurAv).estUneIA() && Slatch.partie.getTour()>2 )
         {
             // Recuperation des Influence
             int ca =OperationIA.map[i][j].capture;
