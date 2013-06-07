@@ -1,11 +1,12 @@
 import javax.imageio.ImageIO;
 import java.io.*;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.* ;
+
 import javax.swing.*;
-import javax.swing.JCheckBox;
 
 
 public class PanelMenu extends JPanel
@@ -55,7 +56,13 @@ public class PanelMenu extends JPanel
         Image ok = Slatch.aImages.get("boutonok");
         Image retour = Slatch.aImages.get("boutonretour");
         
-        Font font = new Font("Helvetica", Font.BOLD, this.getWidth()/50);
+//        Font font = new Font("Helvetica", Font.BOLD, this.getWidth()/50);
+        Font font;
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
+					.getClassLoader().getResource("Config/pixelart.ttf")
+					.toURI())).deriveFont(Font.PLAIN, this.getWidth()/50);
+		
         g.setFont(font);
         FontMetrics fm=getFontMetrics(font); 
         
@@ -142,6 +149,10 @@ public class PanelMenu extends JPanel
                 
             }
         }
+		} catch (FontFormatException | IOException | URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
     }
     

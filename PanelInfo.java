@@ -1,3 +1,5 @@
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -5,6 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import java.io.*;
+import java.net.URISyntaxException;
 import java.awt.Color;
 import java.util.HashMap;
 import java.util.List;
@@ -103,7 +106,13 @@ public class PanelInfo extends JPanel
         String barre = " |  ";
         
         // Police
-        Font font = new Font("Helvetica", Font.BOLD, 8+25*this.getWidth()/1500);
+//        Font font = new Font("Helvetica", Font.BOLD, 8+25*this.getWidth()/1500);
+        Font font;
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
+					.getClassLoader().getResource("Config/BlackOps.ttf")
+					.toURI())).deriveFont(Font.PLAIN, 8+25*this.getWidth()/1500);
+		
         g.setFont(font);
         FontMetrics fm=getFontMetrics(font); 
         
@@ -141,6 +150,11 @@ public class PanelInfo extends JPanel
         if(!Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA() || !Slatch.partie.getBrouillard())
             g.drawString(argent, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+barreSize, Y);
         g.drawString(suivant, this.getWidth()-suivantSize-espaceSize, Y);
+        
+		} catch (FontFormatException | IOException | URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     /**
