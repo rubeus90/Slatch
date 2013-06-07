@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.* ;
-
 import javax.swing.*;
 
 
@@ -36,6 +35,26 @@ public class PanelMenu extends JPanel
     private boolean statecbJ4b= false;
     private boolean statecbJ4= false;
     
+    /*******************************************************************************************************************/
+    /***  Parametres de la partie rapide                                                                            /***/
+    /*******************************************************************************************************************/
+    /***/   Equipe equipe0 = new Equipe(0);
+    /***/   Equipe equipe1 = new Equipe(1);
+    /***/   Equipe equipe2 = new Equipe(2);
+    /***/   Equipe equipe3 = new Equipe(3);
+    /***/   Equipe equipe4 = new Equipe(4);
+    /***/ 
+    /***/   //EQUIPE DES JOUEURS : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
+    /***/   Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe3, equipe4};
+    /***/ 
+    /***/   //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
+    /***/   boolean[] vIA = {false,false,false,false,false};
+    /*********************************************************************************************************************/
+    
+    /**
+     * 
+     */
+    
     public PanelMenu()
     {
         super();
@@ -58,11 +77,11 @@ public class PanelMenu extends JPanel
         
 //        Font font = new Font("Helvetica", Font.BOLD, this.getWidth()/50);
         Font font;
-		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
-					.getClassLoader().getResource("Config/pixelart.ttf")
-					.toURI())).deriveFont(Font.PLAIN, this.getWidth()/50);
-		
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
+                    .getClassLoader().getResource("Config/pixelart.ttf")
+                    .toURI())).deriveFont(Font.PLAIN, this.getWidth()/70);
+        
         g.setFont(font);
         FontMetrics fm=getFontMetrics(font); 
         
@@ -149,10 +168,10 @@ public class PanelMenu extends JPanel
                 
             }
         }
-		} catch (FontFormatException | IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        } catch (FontFormatException | IOException | URISyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         
     }
     
@@ -271,17 +290,7 @@ public class PanelMenu extends JPanel
                 //if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>10 && pX< 10+this.getHeight()/6)
                 if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>this.getWidth()-this.getHeight()/6-10 && pX< this.getWidth()-10)
                 {
-                   Equipe equipe0 = new Equipe(0);
-                   Equipe equipe1 = new Equipe(1);
-                   Equipe equipe2 = new Equipe(2);
-                   Equipe equipe3 = new Equipe(3);
-                   Equipe equipe4 = new Equipe(4);
-                    
-                    //EQUIPE DES JOUEURS : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-                    Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe3, equipe4};
-                    
-                    //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-                    boolean[] vIA = {false,false,false,false,false};
+                   
                     
                     Partie partieRapide = new Partie(20,30,"Maps/"+Slatch.ihm.aListeMap.get(aNumeroMap).getFichier()+".txt",false,vEquipe,vIA);
 
@@ -349,14 +358,14 @@ public class PanelMenu extends JPanel
     
     public void afficheCheckBox()
     {
-        cbJ4 = 	new JCheckBox("Joueur", statecbJ4);
-        cbJ4b = 	new JCheckBox("IA", statecbJ4b);
-        cbJ3 = 	new JCheckBox("Joueur", statecbJ3);
-        cbJ3b = 	new JCheckBox("IA", statecbJ3b);
-        cbJ2 = 	new JCheckBox("Joueur", statecbJ2);
-        cbJ3b = 	new JCheckBox("IA", statecbJ3b);
-        cbJ1 = 	new JCheckBox("Joueur", statecbJ1);
-        cbJ1b = 	new JCheckBox("IA", statecbJ1b);   
+        cbJ4 =  new JCheckBox("Joueur", statecbJ4);
+        cbJ4b =     new JCheckBox("IA", statecbJ4b);
+        cbJ3 =  new JCheckBox("Joueur", statecbJ3);
+        cbJ3b =     new JCheckBox("IA", statecbJ3b);
+        cbJ2 =  new JCheckBox("Joueur", statecbJ2);
+        cbJ3b =     new JCheckBox("IA", statecbJ3b);
+        cbJ1 =  new JCheckBox("Joueur", statecbJ1);
+        cbJ1b =     new JCheckBox("IA", statecbJ1b);   
     }
     
     /**
