@@ -29,6 +29,11 @@ public class PanelDialogueCampagne extends JPanel {
 		niveau = pNiveau;
 		dialogue = "Coucoucoucou on va commencer le niveau " + (pNiveau + 1);
 	}
+	
+	public PanelDialogueCampagne(){
+		super();
+		dialogue = "Voila vous avez fini la campagne, maintenant allez jouer dehors!";
+	}
 
 	@Override
 	public void paintComponent(final Graphics g) {

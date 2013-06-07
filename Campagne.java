@@ -20,12 +20,9 @@ public class Campagne implements MouseListener{
 		listeNomPartie = new ArrayList<String>();
 
 		listeNomPartie.add("Maps/gagner.txt");
-		listeNomPartie.add("Maps/mapTest.txt");
-		listeNomPartie.add("Maps/doublevai.txt");
 	}
 
 	public void chargerPartie(int pNiveau) {
-		System.out.println("je charge le niveau " + aNiveau);
 		Equipe equipe0 = new Equipe(0);
 		Equipe equipe1 = new Equipe(1);
 		Equipe equipe2 = new Equipe(2);
@@ -49,39 +46,36 @@ public class Campagne implements MouseListener{
 	}
 
 	public void suite() {
-		System.out.println("Je passe au niveau suivant");
 		if (aNiveau < listeNomPartie.size() - 1) {
 			aNiveau++;
-			System.out.println("on sera au niveau " + aNiveau);
 			createDialogue();
 		}
 		else{
-			System.out.println("C'est caca on depasse des niveaux existants");
-			System.exit(0);
+			aNiveau = listeNomPartie.size();
+			Slatch.ihm.getPanelFrame().removeAll();
+			panel = new PanelDialogueCampagne();
+			panel.addMouseListener(this);
+			Slatch.ihm.getPanelFrame().add(panel, BorderLayout.CENTER);
+			panel.repaint();
+			Slatch.ihm.getPanelFrame().updateUI();
 		}
 	}
 
 	public void createDialogue() {
 		chargerPartie(aNiveau);
-		System.out.println("Je cree le dialogue avant le niveau " + aNiveau);
 		Slatch.ihm.getPanelFrame().removeAll();
-		System.out.println("J'ai remove les 2 paneaux du jeu");
 		
 		panel = new PanelDialogueCampagne(aNiveau);
 		panel.addMouseListener(this);
 
 		Slatch.ihm.getPanelFrame().add(panel, BorderLayout.CENTER);
 		Slatch.ihm.getPanelFrame().updateUI();
-		
-		System.out.println("C'est bon j'ai fini a creer le dialogue");
 	}
 	
 	public void fermerDialogue(){
-		System.out.println("Je ferme le dialogue pour lancer le niveau " + aNiveau);
 		Slatch.ihm.getPanelFrame().remove(panel);
 		Slatch.ihm.getPanelFrame().add(Slatch.ihm.getpanelmatrice(), BorderLayout.CENTER);
 		Slatch.ihm.getPanelFrame().add(Slatch.ihm.getpanelinfo(), BorderLayout.NORTH);
-		System.out.println("je remets les 2 panneaux");
 		
 		if(aNiveau != 0)
 			chargerPartie(aNiveau);		
@@ -92,7 +86,10 @@ public class Campagne implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		fermerDialogue();
+		if(aNiveau < listeNomPartie.size())
+			fermerDialogue();
+		else
+			System.exit(0);
 	}
 
 	@Override
