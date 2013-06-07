@@ -292,7 +292,7 @@ public class PanelMenu extends JPanel
                 {
                    
                     
-                    Partie partieRapide = new Partie(20,30,"Maps/"+Slatch.ihm.aListeMap.get(aNumeroMap).getFichier()+".txt",false,vEquipe,vIA);
+                    Partie partieRapide = new Partie(20,30,"Maps/"+Slatch.ihm.aListeMap.get(aNumeroMap).getFichier()+".txt",true,vEquipe,vIA);
 
                     Slatch.partie=partieRapide;
                     

@@ -11,7 +11,7 @@ public enum TypeAttaque
     FUSIL(10, "fusil", "Envoie une salve de balles sur votre ennemi.",PorteeAttaque.COURTE),
     MORTIER(15, "mortier","Envoi un motier sur votre adversaire",PorteeAttaque.COURTE),
     ROQUETTE(15,"roquette","Envoie des roquettes sur votre ennemi",PorteeAttaque.MOYENNE),
-    MISSILE(20,"missile","Envoie des missiles sur votre ennemi.", PorteeAttaque.LONGUE),
+    MISSILE(15,"missile","Envoie des missiles sur votre ennemi.", PorteeAttaque.LONGUE),
     SOIN(8,"soin","Soigne une unite",PorteeAttaque.COURTE),
     EXPLOSION(35,"explosion","Explose sur une unite",PorteeAttaque.MOYENNE);
    
