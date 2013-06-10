@@ -17,14 +17,11 @@ import java.util.ArrayList;
 public class Partie
 {
     // instance variables - replace the example below with your own
-    private int aNbrJoueur;
     private int aNbrEquipe;
     public List<Joueur> ListeJoueur;
     private int aRevenuBatiment;
-    private int aLargeur;
-    private int aHauteur;
+    private Map aMap;
     private int aTourMax;
-    private Scanner aMap;
     private Terrain[][] aTerrain;
     private int aJoueurActuel;
     private int aTour;
@@ -33,49 +30,47 @@ public class Partie
     private boolean uneSeulEquipedeJoueur;
     private boolean isCampagne;
     
+    // A SUPPRIMER DANS LE FUTUR
+    private int aLargeur;
+    private int aHauteur;
+    private int aNbrJoueur;
+    
     
 
     /**
-     * Constructeur d'une nouvelle partie
+     * Constructeur de MAP d'une nouvelle partie
      */
-    public Partie(final int pRevenuBatiment,final int pTourMax, final String pMap,final boolean pBrouillard,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA)
+    public Partie(final int pRevenuBatiment,final int pTourMax, final Map pMap,final boolean pBrouillard,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA)
     {
-        try {
-            aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }        
-        
+        aMap = pMap;
         isCampagne = false;
         aBrouillard = pBrouillard;
-        
-        initMap(false,pTabFaction,pTabEquipe,pTabIA);
-        aMap.close();
-        
-        //Dans le cas ou le fichier map n'existe pas
         aJoueurActuel= 1;
         aTourMax = pTourMax;
         aTour = 1;
-        aRevenuBatiment = pRevenuBatiment;
-        ListeJoueur.get(1).benefTour(aRevenuBatiment);     
+        aRevenuBatiment = pRevenuBatiment; 
+        
+        initMap(pMap,pTabFaction,pTabEquipe,pTabIA);
+        
+        ListeJoueur.get(1).benefTour(aRevenuBatiment); 
     }
     
-    /*Constructeur pour mode Campagne
-     * 
+    /**
+     * Constructeur de MAP pour mode Campagne
      */
-    public Partie(final int pTourMax, final String pMap,final Equipe[] pTabEquipe)
+    public Partie(final int pTourMax, final Map pMap,final Equipe[] pTabEquipe)
     {
-        //On ouvre le fichier
-        try {
-            aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }        
-        
-        //On a active le brouillard, et le boolean campagne + tous les jouers sont des IA sauf le joueur 1
+        aMap= pMap;
+         
+        //On a active le brouillard, et le boolean campagne + tous les jouers sont des IA sauf le joueur 1 + Paramètre par default
         isCampagne = true;
         aBrouillard = true;
         boolean[] vIA = {false,false,true,true,true};
+        aNbrJoueur = pMap.getNbrJoueur();
+        aRevenuBatiment = 20;
+        aJoueurActuel= 1;
+        aTourMax = pTourMax;
+        aTour = 1;
         
         //Pour les factions, on se base sur les equipes
         Faction[] pTabFaction ={Faction.HUMAINS,Faction.ROBOTS,Faction.ROBOTS,Faction.ROBOTS}; // tableau par default
@@ -84,223 +79,510 @@ public class Partie
             if(pTabEquipe[i].getNumEquipe()==1){ //Si le joueur a des aliés alors ils sont de faction HUMAINS
                 pTabFaction[i]=Faction.HUMAINS;
             }
-        }
+        }  
+
+        initMap(pMap,pTabFaction,pTabEquipe,vIA); 
         
-        //On initialise la Map
-        initMap(false,pTabFaction,pTabEquipe,vIA);
-        aMap.close();
+        ListeJoueur.get(1).benefTour(aRevenuBatiment); 
+    }
+    
+    /**
+     * Consctructeur de MAP pour la creation de Map
+     */
+    public Partie(final String pMap){
+        Scanner vScannerMap;
         
-        aRevenuBatiment = 20;
+        try {
+            vScannerMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
+            aLargeur = Integer.parseInt(vScannerMap.nextLine());
+            aHauteur = Integer.parseInt(vScannerMap.nextLine());
+            aTerrain = new Terrain[aLargeur][aHauteur];
         
-        //Dans le cas ou le fichier map n'existe pas
-        aJoueurActuel= 1;
-        aTourMax = pTourMax;
-        aTour = 1;
-        ListeJoueur.get(1).benefTour(aRevenuBatiment);     
+            //On rempli la carte de plaine 
+            for(int i=0; i<aLargeur; i++){
+                for(int j=0; j<aHauteur; j++){
+                    aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
+                }
+            }  
+        
+            vScannerMap.close();
+            
+            isCampagne = false;
+            aBrouillard = false;
+            
+            //Dans le cas ou le fichier map n'existe pas
+            aJoueurActuel= 1;
+            aTourMax = 999;
+            aTour = 1;
+            aRevenuBatiment = 20;
+            ListeJoueur.get(1).benefTour(aRevenuBatiment);
+            }
+            
+        catch (IOException e) {
+            e.printStackTrace();
+        }        
     }
     
     /**
      * Constructeur de chargement d'une sauvegarde d'une Map
      */
-    public Partie(final String pMap,final boolean pBrouillard){
+    
+    public Partie(final Map pMap,final boolean pBrouillard){
+        Scanner vScannerMap;
+        
+        String sMap = "Maps/"+pMap.getFichier()+".txt";
         try {
-            aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
+            vScannerMap = new Scanner(getClass().getClassLoader().getResource(sMap).openStream());
+            isCampagne = false;
+            aNbrJoueur = pMap.getNbrJoueur();
+            
+            initMap();
+            vScannerMap.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
         
-        isCampagne = false;
-        aBrouillard = pBrouillard;
+    /**
+     * CHARGEMENT D'UNE NOUVELLE MAP
+     * 
+     */
+    private void initMap(final Map pMap,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA){
+        // OUVERTURE DE LA MAP
+        Scanner vScannerMap;
+        String sMap = "Maps/"+pMap.getFichier()+".txt";
+      
+        try {
+            vScannerMap = new Scanner(getClass().getClassLoader().getResource(sMap).openStream());
         
-        //A CHANGER PLUS TARD
-        Equipe equipe0 = new Equipe(0);
-        Equipe equipe1 = new Equipe(1);
-        Equipe equipe2 = new Equipe(2);
-        Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
-        boolean[] vIA = {false,false, true, true,true};
-        Faction[] pTabFaction ={Faction.HUMAINS,Faction.ROBOTS,Faction.ROBOTS,Faction.ROBOTS};
+            // A SUPPRIMER PLUTARD
+            aLargeur = pMap.getLongueur();
+            aHauteur = pMap.getLargeur();
+            aNbrJoueur = pMap.getNbrJoueur();
+            
+            //CREATION DE LA MAP
+            aTerrain = new Terrain[aMap.getLongueur()][aMap.getLargeur()];
+            
+            //On rempli la carte de plaine 
+            for(int i=0; i<aLargeur; i++){
+                for(int j=0; j<aHauteur; j++){
+                    aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
+                }
+            }       
+            
+            //Declaration de toutes les variables pour la suite
+            int vX, vY, vJoueur;
+            String vId;
+            String ligne = "";
+            String tab[] = null;
+            
+            List<Unite> lUnite = new ArrayList<Unite>();
+            List<Terrain> lUsine = new ArrayList<Terrain>();
+            List<Terrain> lBatiment = new ArrayList<Terrain>();
+    
+            int vBatimentJoueur[] = new int[aNbrJoueur+1]; //aNbrJoueur +1 pour prendre en compte le jouer Neutre
+    
+            //On initialise le tableau de batiment à 0 pour chaque joueur
+            for(int i=0; i<aNbrJoueur+1; i++){
+                vBatimentJoueur[i] = 0;
+            }
+          
+            //On lit le fichier et on l'analyse
+            while(vScannerMap.hasNextLine()){
+                ligne = vScannerMap.nextLine();
+                tab = ligne.split(":");
+                vId = tab[0];
+                vX = Integer.parseInt(tab[1]);
+                vY = Integer.parseInt(tab[2]);   
+                vJoueur = Integer.parseInt(tab[3]);
+                
+                switch(vId){
+                    case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.FORET); break;
+                    case "montagne": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.MONTAGNE); break;
+                    case "eau" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.EAU); break;
+                    case "rivebas" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEBAS); break;
+                    case "rivehaut" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEHAUT); break;
+                    case "rivedroite" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEDROITE); break;
+                    case "rivegauche" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEGAUCHE); break;
+                    case "rivebasdroite" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEBASDROITE); break;
+                    case "rivebasgauche" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEBASGAUCHE); break;
+                    case "rivehautdroite" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEHAUTDROITE); break;
+                    case "rivehautgauche" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEHAUTGAUCHE); break;
+                    case "routehorizontal": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTEHORIZONTAL); break;
+                    case "routevertical": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTEVERTICAL); break;
+                    case "viragedroitebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEDROITEBAS); break;
+                    case "viragedroitehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEDROITEHAUT); break;
+                    case "viragegauchebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEGAUCHEBAS); break;
+                    case "viragegauchehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEGAUCHEHAUT); break;
+                    case "routethaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETHAUT); break;
+                    case "routetbas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETBAS); break;
+                    case "routetdroite": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETDROITE); break;
+                    case "routetgauche": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETGAUCHE); break;
+                    case "carrefour": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.CARREFOUR); break;
+                    case "batiment":
+                        aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.BATIMENT); 
+                        vBatimentJoueur[vJoueur]+=1;
+                         lBatiment.add(aTerrain[vX][vY]);
+                        break;
+                    case "usine":
+                        aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.USINE); 
+                        vBatimentJoueur[vJoueur]+=1;
+                        lUsine.add(aTerrain[vX][vY]);
+                        break;
+                    case "qg":
+                        aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.QG); 
+                        vBatimentJoueur[vJoueur]+=1;
+                        lBatiment.add(aTerrain[vX][vY]);
+                        break;
+                    case "Commando": 
+                        Unite vcommando = new Unite(vX,vY,vJoueur,TypeUnite.COMMANDO);
+                        lUnite.add(vcommando);
+                        aTerrain[vX][vY].setUnite(vcommando); 
+                        break;
+                    case "Demolisseur": 
+                        Unite demolisseur = new Unite(vX,vY,vJoueur,TypeUnite.DEMOLISSEUR);
+                        lUnite.add(demolisseur);
+                        aTerrain[vX][vY].setUnite(demolisseur); 
+                        break;
+                    case "While":
+                        Unite vtank = new Unite(vX,vY,vJoueur,TypeUnite.TANK);
+                        lUnite.add(vtank);
+                        aTerrain[vX][vY].setUnite(vtank); 
+                        break;
+                    case "Char":
+                        Unite vchar = new Unite(vX,vY,vJoueur,TypeUnite.CHAR);
+                        lUnite.add(vchar);
+                        aTerrain[vX][vY].setUnite(vchar); 
+                        break;
+                    case "Ingenieur":
+                        Unite ingenieur = new Unite(vX,vY,vJoueur,TypeUnite.INGENIEUR);
+                        lUnite.add(ingenieur);
+                        aTerrain[vX][vY].setUnite(ingenieur); 
+                        break;
+                    case "Distance":
+                        Unite distance = new Unite(vX,vY,vJoueur,TypeUnite.DISTANCE);
+                        lUnite.add(distance);
+                        aTerrain[vX][vY].setUnite(distance); 
+                        break;
+                    case "Uml":
+                        Unite uml = new Unite(vX,vY,vJoueur,TypeUnite.UML);
+                        lUnite.add(uml);
+                        aTerrain[vX][vY].setUnite(uml); 
+                        break;
+                    default: aTerrain[vX][vY] = new Terrain(vX, vY, 0, TypeTerrain.PLAINE);
+                }
+            }
+            
+            vScannerMap.close();
+            
+            ListeJoueur = new ArrayList<Joueur>();
+            Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,pTabEquipe[0],false,""); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
+            ListeJoueur.add(JoueurNeutre);
         
-        initMap(true,pTabFaction,vEquipe,vIA);
-        aMap.close();
+            //Ajout des joueur dans l'arrayList
+            for(int i=1;i<=aNbrJoueur;i++)
+            {
+                ListeJoueur.add(new Joueur(i,pTabFaction[i],vBatimentJoueur[i],pTabEquipe[i],pTabIA[i],""));     
+            }
+            
+            //Creation des liste d'unite ,de batiment de d'usine des Joueurs
+            for(Unite vUniteActuel : lUnite){
+                int vJ = vUniteActuel.getJoueur();
+                ListeJoueur.get(vJ).getListeUnite().add(vUniteActuel);
+            }
+            for(Terrain vUsineActuel : lUsine){
+                int vJ = vUsineActuel.getJoueur();
+                ListeJoueur.get(vJ).getListeUsine().add(vUsineActuel);
+            }
+            for(Terrain vBatActuel : lBatiment){
+                int vJ = vBatActuel.getJoueur();
+                ListeJoueur.get(vJ).getListeBatiment().add(vBatActuel);
+            }
+            
+            isOneEquipeNonIA();
+        } 
+        
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     /**
-     * Methode qui permet le chargement d'une carte depuis un fichier texte et créé les Joueurs
-     * iniMap pour nouvelle partie
+     * CHARGEMENT D'UNE MAP
      */
-    private void initMap(final boolean isCharged,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA){
-        
-        aLargeur = Integer.parseInt(aMap.nextLine());
-        aHauteur = Integer.parseInt(aMap.nextLine());
-        aNbrJoueur = Integer.parseInt(aMap.nextLine());
-        aJoueurActuel = Integer.parseInt(aMap.nextLine());
-        aTourMax = Integer.parseInt(aMap.nextLine());
-        aTour = Integer.parseInt(aMap.nextLine());
-        aRevenuBatiment = Integer.parseInt(aMap.nextLine());
-        
-        int[] vArgent =new int[aNbrJoueur+1];
-        for(int i=1;i<=aNbrJoueur;  i++){
-            vArgent[i]=Integer.parseInt(aMap.nextLine());
-        }
-        
-        aTerrain = new Terrain[aLargeur][aHauteur];
-        
-        //On rempli la carte de plaine 
-        for(int i=0; i<aLargeur; i++){
-            for(int j=0; j<aHauteur; j++){
-                aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
-            }
-        }       
-        
-        int vX, vY, vJoueur, vPV,vLvl,vExperience, vIntDejaDeplacee, vIntDejaAttaque;
-        boolean vDejaDeplacee=false;
-        boolean vDejaAttaque=false;
-        String vId;
-        String ligne = "";
-        String tab[] = null;
-
-        int vBatimentJoueur[] = new int[aNbrJoueur+1]; //aNbrJoueur +1 pour prendre en compte le jouer Neutre
-
-        //On initialise le tableau de batiment à 0 pour chaque joueur
-        for(int i=0; i<aNbrJoueur; i++){
-            vBatimentJoueur[i] = 0;
-        }
-        
-        List<Unite> lUnite = new ArrayList<Unite>();
-        List<Terrain> lUsine = new ArrayList<Terrain>();
-        List<Terrain> lBatiment = new ArrayList<Terrain>();
-        
-        //On lit le fichier et on l'analyse
-        while(aMap.hasNextLine()){
-            ligne = aMap.nextLine();
-            tab = ligne.split(":");
-            vId = tab[0];
-            vX = Integer.parseInt(tab[1]);
-            vY = Integer.parseInt(tab[2]);   
-            vJoueur = Integer.parseInt(tab[3]);
-            vPV = Integer.parseInt(tab[4]);
-            vExperience = Integer.parseInt(tab[5]);
-            vLvl = Integer.parseInt(tab[6]);
-            vIntDejaDeplacee = Integer.parseInt(tab[7]);
-            vIntDejaAttaque = Integer.parseInt(tab[8]);
+    private void initMap(){
+        // OUVERTURE DE LA MAP
+        Scanner vScannerMap;
       
-            if(vIntDejaDeplacee==1)
-                vDejaDeplacee=true;
-            else
-                vDejaDeplacee=false;
+        try {
+            vScannerMap = new Scanner(getClass().getClassLoader().getResource("Maps/mapSauvegarde.txt").openStream());
+            int vBrouillard;
+        
+            aLargeur = Integer.parseInt(vScannerMap.nextLine());
+            aHauteur = Integer.parseInt(vScannerMap.nextLine());
+            aNbrJoueur = Integer.parseInt(vScannerMap.nextLine());
+            aJoueurActuel = Integer.parseInt(vScannerMap.nextLine());
+            aTourMax = Integer.parseInt(vScannerMap.nextLine());
+            aTour = Integer.parseInt(vScannerMap.nextLine());
+            aRevenuBatiment = Integer.parseInt(vScannerMap.nextLine());
             
-            if(vIntDejaAttaque==1)
-                vDejaAttaque=true;
-            else
-                vDejaAttaque=false;
-
-            switch(vId){
-                case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.FORET); break;
-                case "montagne": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.MONTAGNE); break;
-                case "eau" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.EAU); break;
-                case "rivebas" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEBAS); break;
-                case "rivehaut" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEHAUT); break;
-                case "rivedroite" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEDROITE); break;
-                case "rivegauche" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEGAUCHE); break;
-                case "rivebasdroite" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEBASDROITE); break;
-                case "rivebasgauche" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEBASGAUCHE); break;
-                case "rivehautdroite" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEHAUTDROITE); break;
-                case "rivehautgauche" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEHAUTGAUCHE); break;
-                case "routehorizontal": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTEHORIZONTAL); break;
-                case "routevertical": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTEVERTICAL); break;
-                case "viragedroitebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEDROITEBAS); break;
-                case "viragedroitehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEDROITEHAUT); break;
-                case "viragegauchebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEGAUCHEBAS); break;
-                case "viragegauchehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEGAUCHEHAUT); break;
-                case "routethaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETHAUT); break;
-                case "routetbas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETBAS); break;
-                case "routetdroite": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETDROITE); break;
-                case "routetgauche": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETGAUCHE); break;
-                case "carrefour": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.CARREFOUR); break;
-                case "batiment":
-                    aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.BATIMENT,vPV); 
-                    vBatimentJoueur[vJoueur]+=1;
-                     lBatiment.add(aTerrain[vX][vY]);
-                    break;
-                case "usine":
-                    aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.USINE,vPV); 
-                    vBatimentJoueur[vJoueur]+=1;
-                    lUsine.add(aTerrain[vX][vY]);
-                    break;
-                case "qg":
-                    aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.QG,vPV); 
-                    vBatimentJoueur[vJoueur]+=1;
-                    lBatiment.add(aTerrain[vX][vY]);
-                    break;
-                case "Commando": 
-                    Unite vcommando = new Unite(vX,vY,vJoueur,TypeUnite.COMMANDO,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
-                    lUnite.add(vcommando);
-                    aTerrain[vX][vY].setUnite(vcommando); 
-                    break;
-                case "Demolisseur": 
-                    Unite demolisseur = new Unite(vX,vY,vJoueur,TypeUnite.DEMOLISSEUR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
-                    lUnite.add(demolisseur);
-                    aTerrain[vX][vY].setUnite(demolisseur); 
-                    break;
-                case "While":
-                    Unite vtank = new Unite(vX,vY,vJoueur,TypeUnite.TANK,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
-                    lUnite.add(vtank);
-                    aTerrain[vX][vY].setUnite(vtank); 
-                    break;
-                case "Char":
-                    Unite vchar = new Unite(vX,vY,vJoueur,TypeUnite.CHAR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
-                    lUnite.add(vchar);
-                    aTerrain[vX][vY].setUnite(vchar); 
-                    break;
-                case "Ingenieur":
-                    Unite ingenieur = new Unite(vX,vY,vJoueur,TypeUnite.INGENIEUR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
-                    lUnite.add(ingenieur);
-                    aTerrain[vX][vY].setUnite(ingenieur); 
-                    break;
-                case "Distance":
-                    Unite distance = new Unite(vX,vY,vJoueur,TypeUnite.DISTANCE,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
-                    lUnite.add(distance);
-                    aTerrain[vX][vY].setUnite(distance); 
-                    break;
-                case "Uml":
-                    Unite uml = new Unite(vX,vY,vJoueur,TypeUnite.UML,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
-                    lUnite.add(uml);
-                    aTerrain[vX][vY].setUnite(uml); 
-                    break;
-                default: aTerrain[vX][vY] = new Terrain(vX, vY, 0, TypeTerrain.PLAINE);
+            //A CHANGER PLUS TARD
+            Equipe equipe0 = new Equipe(0);
+            Equipe equipe1 = new Equipe(1);
+            Equipe equipe2 = new Equipe(2);
+            Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
+            boolean[] vIA = {false,false, true, true,true};
+            Faction[] pTabFaction ={Faction.HUMAINS,Faction.ROBOTS,Faction.ROBOTS,Faction.ROBOTS};
+            
+            vBrouillard = Integer.parseInt(vScannerMap.nextLine());
+            
+            if(vBrouillard==0){
+                aBrouillard=true;
             }
-        }
-
-        aNbrEquipe = 3;
-        
-        
-        ListeJoueur = new ArrayList<Joueur>();
-        Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,pTabEquipe[0],false,""); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
-        ListeJoueur.add(JoueurNeutre);
+            else{
+                aBrouillard=false;
+            }
+            
+            int[] vArgent =new int[aNbrJoueur+1];
+            for(int i=1;i<=aNbrJoueur;  i++){
+                vArgent[i]=Integer.parseInt(vScannerMap.nextLine());
+            }
+            
+            aTerrain = new Terrain[aLargeur][aHauteur];
+            
+            //On rempli la carte de plaine 
+            for(int i=0; i<aLargeur; i++){
+                for(int j=0; j<aHauteur; j++){
+                    aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
+                }
+            }       
+            
+            int vX, vY, vJoueur, vPV,vLvl,vExperience, vIntDejaDeplacee, vIntDejaAttaque;
+            boolean vDejaDeplacee=false;
+            boolean vDejaAttaque=false;
+            String vId;
+            String ligne = "";
+            String tab[] = null;
     
-        //Ajout des joueur dans l'arrayList
-        for(int i=1;i<=aNbrJoueur;i++)
-        {
-            ListeJoueur.add(new Joueur(i,pTabFaction[i],vBatimentJoueur[i],pTabEquipe[i],pTabIA[i],""));     
-            if(isCharged)
+            int vBatimentJoueur[] = new int[aNbrJoueur+1]; //aNbrJoueur +1 pour prendre en compte le jouer Neutre
+    
+            //On initialise le tableau de batiment à 0 pour chaque joueur
+            for(int i=0; i<aNbrJoueur; i++){
+                vBatimentJoueur[i] = 0;
+            }
+            
+            List<Unite> lUnite = new ArrayList<Unite>();
+            List<Terrain> lUsine = new ArrayList<Terrain>();
+            List<Terrain> lBatiment = new ArrayList<Terrain>();
+            
+            //On lit le fichier et on l'analyse
+            while(vScannerMap.hasNextLine()){
+                ligne = vScannerMap.nextLine();
+                tab = ligne.split(":");
+                vId = tab[0];
+                vX = Integer.parseInt(tab[1]);
+                vY = Integer.parseInt(tab[2]);   
+                vJoueur = Integer.parseInt(tab[3]);
+                vPV = Integer.parseInt(tab[4]);
+                vExperience = Integer.parseInt(tab[5]);
+                vLvl = Integer.parseInt(tab[6]);
+                vIntDejaDeplacee = Integer.parseInt(tab[7]);
+                vIntDejaAttaque = Integer.parseInt(tab[8]);
+          
+                if(vIntDejaDeplacee==1)
+                    vDejaDeplacee=true;
+                else
+                    vDejaDeplacee=false;
+                
+                if(vIntDejaAttaque==1)
+                    vDejaAttaque=true;
+                else
+                    vDejaAttaque=false;
+    
+                switch(vId){
+                    case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.FORET); break;
+                    case "montagne": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.MONTAGNE); break;
+                    case "eau" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.EAU); break;
+                    case "rivebas" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEBAS); break;
+                    case "rivehaut" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEHAUT); break;
+                    case "rivedroite" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEDROITE); break;
+                    case "rivegauche" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEGAUCHE); break;
+                    case "rivebasdroite" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEBASDROITE); break;
+                    case "rivebasgauche" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEBASGAUCHE); break;
+                    case "rivehautdroite" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEHAUTDROITE); break;
+                    case "rivehautgauche" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEHAUTGAUCHE); break;
+                    case "routehorizontal": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTEHORIZONTAL); break;
+                    case "routevertical": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTEVERTICAL); break;
+                    case "viragedroitebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEDROITEBAS); break;
+                    case "viragedroitehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEDROITEHAUT); break;
+                    case "viragegauchebas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEGAUCHEBAS); break;
+                    case "viragegauchehaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.VIRAGEGAUCHEHAUT); break;
+                    case "routethaut": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETHAUT); break;
+                    case "routetbas": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETBAS); break;
+                    case "routetdroite": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETDROITE); break;
+                    case "routetgauche": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETGAUCHE); break;
+                    case "carrefour": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.CARREFOUR); break;
+                    case "batiment":
+                        aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.BATIMENT,vPV); 
+                        vBatimentJoueur[vJoueur]+=1;
+                         lBatiment.add(aTerrain[vX][vY]);
+                        break;
+                    case "usine":
+                        aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.USINE,vPV); 
+                        vBatimentJoueur[vJoueur]+=1;
+                        lUsine.add(aTerrain[vX][vY]);
+                        break;
+                    case "qg":
+                        aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.QG,vPV); 
+                        vBatimentJoueur[vJoueur]+=1;
+                        lBatiment.add(aTerrain[vX][vY]);
+                        break;
+                    case "Commando": 
+                        Unite vcommando = new Unite(vX,vY,vJoueur,TypeUnite.COMMANDO,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
+                        lUnite.add(vcommando);
+                        aTerrain[vX][vY].setUnite(vcommando); 
+                        break;
+                    case "Demolisseur": 
+                        Unite demolisseur = new Unite(vX,vY,vJoueur,TypeUnite.DEMOLISSEUR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
+                        lUnite.add(demolisseur);
+                        aTerrain[vX][vY].setUnite(demolisseur); 
+                        break;
+                    case "While":
+                        Unite vtank = new Unite(vX,vY,vJoueur,TypeUnite.TANK,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
+                        lUnite.add(vtank);
+                        aTerrain[vX][vY].setUnite(vtank); 
+                        break;
+                    case "Char":
+                        Unite vchar = new Unite(vX,vY,vJoueur,TypeUnite.CHAR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
+                        lUnite.add(vchar);
+                        aTerrain[vX][vY].setUnite(vchar); 
+                        break;
+                    case "Ingenieur":
+                        Unite ingenieur = new Unite(vX,vY,vJoueur,TypeUnite.INGENIEUR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
+                        lUnite.add(ingenieur);
+                        aTerrain[vX][vY].setUnite(ingenieur); 
+                        break;
+                    case "Distance":
+                        Unite distance = new Unite(vX,vY,vJoueur,TypeUnite.DISTANCE,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
+                        lUnite.add(distance);
+                        aTerrain[vX][vY].setUnite(distance); 
+                        break;
+                    case "Uml":
+                        Unite uml = new Unite(vX,vY,vJoueur,TypeUnite.UML,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
+                        lUnite.add(uml);
+                        aTerrain[vX][vY].setUnite(uml); 
+                        break;
+                    default: aTerrain[vX][vY] = new Terrain(vX, vY, 0, TypeTerrain.PLAINE);
+                }
+            }
+    
+            aNbrEquipe = 3;
+            
+            
+            ListeJoueur = new ArrayList<Joueur>();
+            Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,vEquipe[0],false,""); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
+            ListeJoueur.add(JoueurNeutre);
+        
+            //Ajout des joueur dans l'arrayList
+            for(int i=1;i<=aNbrJoueur;i++)
+            {
+                ListeJoueur.add(new Joueur(i,pTabFaction[i],vBatimentJoueur[i],vEquipe[i],vIA[i],""));     
                 ListeJoueur.get(i).setArgent(vArgent[i]);
-        }
+            }
+            
+            //Creation des liste d'unite ,de batiment de d'usine des Joueurs
+            for(Unite vUniteActuel : lUnite){
+                int vJ = vUniteActuel.getJoueur();
+                ListeJoueur.get(vJ).getListeUnite().add(vUniteActuel);
+            }
+            for(Terrain vUsineActuel : lUsine){
+                int vJ = vUsineActuel.getJoueur();
+                ListeJoueur.get(vJ).getListeUsine().add(vUsineActuel);
+            }
+            for(Terrain vBatActuel : lBatiment){
+                int vJ = vBatActuel.getJoueur();
+                ListeJoueur.get(vJ).getListeBatiment().add(vBatActuel);
+            }
+            
+            isOneEquipeNonIA();
+        } 
         
-        //Creation des liste d'unite ,de batiment de d'usine des Joueurs
-        for(Unite vUniteActuel : lUnite){
-            int vJ = vUniteActuel.getJoueur();
-            ListeJoueur.get(vJ).getListeUnite().add(vUniteActuel);
+        catch (IOException e) {
+            e.printStackTrace();
         }
-        for(Terrain vUsineActuel : lUsine){
-            int vJ = vUsineActuel.getJoueur();
-            ListeJoueur.get(vJ).getListeUsine().add(vUsineActuel);
+    }
+    
+        public void sauvegardePartie(String pNom) {
+        try {
+            File file = new File(getClass().getClassLoader().getResource(pNom).toURI());
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(""+ aLargeur);
+            bw.newLine();
+            bw.write(""+ aHauteur);
+            bw.newLine();
+            bw.write(""+ aNbrJoueur);
+            bw.newLine();
+            bw.write(""+ aJoueurActuel);
+            bw.newLine();
+            bw.write(""+ aTourMax);
+            bw.newLine();
+            bw.write(""+ aTour);
+            bw.newLine();
+            bw.write(""+ aRevenuBatiment);
+            bw.newLine();
+            for(Joueur joueur: ListeJoueur){
+                if(joueur.getNumJoueur() != 0){
+                    bw.write(""+joueur.getArgent());
+                    bw.newLine();
+                }
+            }
+            
+            for(int i = 0; i<aLargeur; i++){
+                for(int j = 0; j<aHauteur; j++){
+                    Terrain terrain = aTerrain[i][j];
+                    Unite unite = terrain.getUnite();
+                    if(terrain.getType().getNom() != "plaine"){
+                        String string = "";
+                        string += terrain.getType().getNom()+ ":";
+                        string += i+ ":";
+                        string += j+ ":";
+                        string += terrain.getJoueur() + ":";
+                        string += "0:0:0:0:0";
+                        bw.write(string);                    
+                        bw.newLine();
+                    }                    
+                    
+                    if(terrain.getUnite() != null){
+                        String string2 = "";
+                        string2 += unite.getType().getNom()+ ":";
+                        string2 += i+ ":";
+                        string2 += j+ ":";
+                        string2 += unite.getJoueur() + ":";                        
+                        string2 += unite.getPV()+ ":";
+                        string2 += unite.getExperience()+ ":";
+                        string2 += unite.getLvl()+ ":";
+                        if(unite.dejaAttaque())
+                            string2 += "1"+ ":";
+                        else
+                            string2 += "0"+ ":";
+                        
+                        if(unite.dejaDeplacee())
+                            string2 += "0";
+                        else
+                            string2 += "1";
+                        bw.write(string2);
+                        bw.newLine();
+                    }
+                }
+            }
+            
+            bw.close();
+            fw.close();
+        } catch (URISyntaxException | IOException e) {
+            System.out.println("Probleme d'ecriture dans le fichier sauvegarde");
+            e.printStackTrace();
         }
-        for(Terrain vBatActuel : lBatiment){
-            int vJ = vBatActuel.getJoueur();
-            ListeJoueur.get(vJ).getListeBatiment().add(vBatActuel);
-        }
-        
-        isOneEquipeNonIA();
     }
     
     public void tourSuivant(){
@@ -475,101 +757,8 @@ public class Partie
     public void setJoueurActuel(final int pJoueurActuel){
         aJoueurActuel = pJoueurActuel;
     }
-    
-    public void sauvegardePartie(String pNom) {
-        try {
-            File file = new File(getClass().getClassLoader().getResource(pNom).toURI());
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-//            fw.write("");
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(""+ aLargeur);
-            bw.newLine();
-            bw.write(""+ aHauteur);
-            bw.newLine();
-            bw.write(""+ aNbrJoueur);
-            bw.newLine();
-            bw.write(""+ aJoueurActuel);
-            bw.newLine();
-            bw.write(""+ aTourMax);
-            bw.newLine();
-            bw.write(""+ aTour);
-            bw.newLine();
-            bw.write(""+ aRevenuBatiment);
-            bw.newLine();
-            for(Joueur joueur: ListeJoueur){
-                if(joueur.getNumJoueur() != 0){
-                    bw.write(""+joueur.getArgent());
-                    bw.newLine();
-                }
-            }
-            
-            for(int i = 0; i<aLargeur; i++){
-                for(int j = 0; j<aHauteur; j++){
-                    Terrain terrain = aTerrain[i][j];
-                    Unite unite = terrain.getUnite();
-                    if(terrain.getType().getNom() != "plaine"){
-                        String string = "";
-                        string += terrain.getType().getNom()+ ":";
-                        string += i+ ":";
-                        string += j+ ":";
-                        string += terrain.getJoueur() + ":";
-                        string += "0:0:0:0:0";
-                        bw.write(string);                    
-                        bw.newLine();
-                    }                    
-                    
-                    if(terrain.getUnite() != null){
-                        String string2 = "";
-                        string2 += unite.getType().getNom()+ ":";
-                        string2 += i+ ":";
-                        string2 += j+ ":";
-                        string2 += unite.getJoueur() + ":";                        
-                        string2 += unite.getPV()+ ":";
-                        string2 += unite.getExperience()+ ":";
-                        string2 += unite.getLvl()+ ":";
-                        if(unite.dejaAttaque())
-                            string2 += "1"+ ":";
-                        else
-                            string2 += "0"+ ":";
-                        
-                        if(unite.dejaDeplacee())
-                            string2 += "0";
-                        else
-                            string2 += "1";
-                        bw.write(string2);
-                        bw.newLine();
-                    }
-                }
-            }
-            
-            bw.close();
-            fw.close();
-        } catch (URISyntaxException | IOException e) {
-            System.out.println("Probleme d'ecriture dans le fichier sauvegarde");
-            e.printStackTrace();
-        }
-    }
-    
-    public void chargerPartie(final String pNom){
-        try {
-            aMap = new Scanner(getClass().getClassLoader().getResource("Maps/" + pNom + ".txt").openStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-        //A CHANGER PLUS TARD
-        Equipe equipe0 = new Equipe(0);
-        Equipe equipe1 = new Equipe(1);
-        Equipe equipe2 = new Equipe(2);
-        Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
-        boolean[] vIA = {false,false, true, false,false};
-        Faction[] pTabFaction ={Faction.HUMAINS,Faction.ROBOTS,Faction.ROBOTS,Faction.ROBOTS};
-        
-        initMap(true,pTabFaction,vEquipe,vIA); 
-        Slatch.ihm.getPanel().repaint();
-    }
-    
-    public int getEquipeJoueurNonIA(){
+  
+   public int getEquipeJoueurNonIA(){
         for(Joueur vJoueur: ListeJoueur){
             if(!vJoueur.estUneIA() && vJoueur.getEquipe().getNumEquipe()!=0){
                 return vJoueur.getEquipe().getNumEquipe();

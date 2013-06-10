@@ -5,8 +5,8 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Tutoriel extends Partie
-{
+// public class Tutoriel extends Partie
+// {
     /* ATTRIBUT VENANT DE PARTIE
     private int aNbrJoueur;
     private List<Joueur> ListeJoueur;
@@ -20,24 +20,24 @@ public class Tutoriel extends Partie
     private int aTour;
     */
     
-    private int aEtape;
-    
-    
-    /**
-     * Constructor for objects of class Tutoriel
-     */
-    public Tutoriel(final String pMap)
-    {
-       super(pMap,true);
-       aEtape = 1;
-    }
-
-    public void deroulement()
-    {
-        switch(aEtape)
-        {
-            case 1 :
-        }
-        
-    }
-}
+//     private int aEtape;
+//     
+//     
+//     /**
+//      * Constructor for objects of class Tutoriel
+//      */
+//     public Tutoriel(final String pMap)
+//     {
+//        //super(pMap,true);
+//        aEtape = 1;
+//     }
+// 
+//     public void deroulement()
+//     {
+//         switch(aEtape)
+//         {
+//             case 1 :
+//         }
+//         
+//     }
+//}
