@@ -76,6 +76,7 @@ public class OperationIA
                 t.y=y;
             }
             valide[x][y]=false;
+            System.out.println("On boucle pour l'unite "+unite+" du joueur "+unite.getJoueur()+" située en ("+unite.getX()+","+unite.getY()+")");
         }
         int x=t.x;
         int y= t.y;

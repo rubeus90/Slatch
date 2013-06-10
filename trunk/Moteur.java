@@ -1187,7 +1187,7 @@ class Moteur
                 }
             }
             
-            if(getJoueurActuel().estUneIA() && Slatch.partie.getJoueurActuel()!=2)
+            if(getJoueurActuel().estUneIA() && Slatch.partie.getJoueurActuel()!=0)
             {
                 StrategieIA.joueTour(Slatch.partie.getJoueurActuel());
             }
