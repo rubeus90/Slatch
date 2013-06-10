@@ -64,13 +64,48 @@ public class StrategieIA
     
     static void spreadInfluence(Unite unite, Influence[][] map, boolean ajouterInfluence, Influence inf)
     {
-        int x= unite.getCoordonneeX();
-        int y= unite.getCoordonneeY();
-        int pm = unite.getAttaque().aTypePortee.getPorteeMax();
-        int pu = unite.getDeplacement()/10;
+        int x= unite.getX();
+        int y= unite.getY();
+        //int pm = unite.getAttaque().aTypePortee.getPorteeMax();
+        //int pu = unite.getDeplacement()/10;
         Terrain[][] mapTerrain = Slatch.partie.getTerrain();
         int joueurActu= Slatch.partie.getJoueurActuel();
-        if(Slatch.moteur.getEquipe(unite)!=Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
+        Influence[][] mapInf = unite.mapInfluence;
+        
+        if(ajouterInfluence)
+        {
+            for(int i=0; i<mapInf.length; i++)
+            {
+                for(int j=0; j<mapInf.length; j++)
+                {
+                    if(Moteur.dansLesBords(x+i-(mapInf.length-1)/2, y+j-(mapInf.length-1)/2))
+                    {
+                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].offensif+=mapInf[i][j].offensif;
+                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].defensif+=mapInf[i][j].defensif;
+                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].menace+=mapInf[i][j].menace;
+                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].retraite+=mapInf[i][j].retraite;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for(int i=0; i<mapInf.length; i++)
+            {
+                for(int j=0; j<mapInf.length; j++)
+                {
+                    if(Moteur.dansLesBords(x+i-(mapInf.length-1)/2, y+j-(mapInf.length-1)/2))
+                    {
+                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].offensif-=mapInf[i][j].offensif;
+                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].defensif-=mapInf[i][j].defensif;
+                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].menace-=mapInf[i][j].menace;
+                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].retraite-=mapInf[i][j].retraite;
+                    }
+                }
+            }
+        }
+        
+        /*if(Slatch.moteur.getEquipe(unite)!=Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
         {
             for(int i=0; i<=pm+pu; i++)
             {
@@ -131,7 +166,7 @@ public class StrategieIA
                     }
                 }
             }
-        }
+        }*/
     }
     
     static Influence[][] copierMap(Influence[][] map)

@@ -16,6 +16,7 @@ public class Slatch {
     public static HashMap<String,Image> aImages; // Se trouvera dans Le moteur du jeu quand il y sera avec tout les load
     public static CreationMaps maps;
     public static Campagne campagne;
+    public static HashMap<TypeUnite, Influence[][]> tabInf;
     
     
     /**
@@ -32,6 +33,7 @@ public class Slatch {
     {
         aImages=new HashMap<String,Image>();
         loadImage();
+        initialiseMoiLeTableauDInfluence(); 
         ihm = new IHM_NEW();
     }
     
@@ -293,6 +295,50 @@ public class Slatch {
         }
         catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    
+    private void initialiseMoiLeTableauDInfluence()
+    {
+        tabInf = new HashMap<TypeUnite, Influence[][]>();
+        for(TypeUnite type: TypeUnite.values())
+        {
+            TypeAttaque pyte=null;
+            for(TypeAttaque t:TypeAttaque.values())
+            {
+                if(type.getAttaque().equals(t.getNom()))
+                {
+                    pyte=t;
+                    break;
+                }
+            }
+            int pm = pyte.getTypePortee().getPorteeMax();
+            int pu = type.getDeplacement()/10;
+            int m = Math.max(pu,pm+1);
+            Influence[][] inf = new Influence[m*2+1][m*2+1];
+            for(int i=0; i<m*2+1; i++)
+            {
+                for(int j=0; j<m*2+1; j++)
+                {
+                    inf[i][j]=new Influence();
+                }
+            }
+            
+            for(int i=0; i<=m; i++)
+            {
+                for(int j=0; j<=i;j++)
+                {
+                    for(Quad q: Moteur.signes)
+                    {  
+                        int a = i*q.a, b= j*q.b, c=i*q.c, d = j*q.d;
+                        inf[m+a+b][m+c+d].menace=(m+1-i)*5;
+                        inf[m+a+b][m+c+d].offensif=(m+1-i)*5;
+                        inf[m+a+b][m+c+d].retraite=(m+1-i)*5;
+                        inf[m+a+b][m+c+d].defensif=(m+1-i)*5;
+                    }
+                }
+            }
+            tabInf.put(type, inf);
         }
     }
 }
