@@ -242,9 +242,9 @@ class Moteur
     /**
      * Permet a uniteA de capturer le batiment sur lequel elle se trouve
      */
-    public void capture(final int pX,final int pY)
+    public void capture()
     {
-        Terrain vBatiment= Slatch.partie.getTerrain()[pX][pY];
+        Terrain vBatiment= Slatch.partie.getTerrain()[uniteA.getX()][uniteA.getY()];
         if((uniteA=getUnite(pX,pY))==null){return;};
        
         switch(uniteA.getType())
