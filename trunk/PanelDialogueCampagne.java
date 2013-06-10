@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.FontMetrics;
@@ -64,6 +65,7 @@ public class PanelDialogueCampagne extends JPanel {
 	public void afficheText() {
 		this.setLayout(new BorderLayout());
 		
+		textArea.setPreferredSize(new Dimension(800,200));
 		this.add(textArea, BorderLayout.SOUTH);
 		Font font;
 		try {
@@ -79,7 +81,7 @@ public class PanelDialogueCampagne extends JPanel {
 
 		textArea.setForeground(Color.WHITE);
 		textArea.setText(dialogue);
-		textArea.setMargin(new Insets(50, 300, 50, 50));
+		textArea.setMargin(new Insets(40, 40, 40, 40));
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
 		textArea.setOpaque(false);
