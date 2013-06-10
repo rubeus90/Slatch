@@ -20,11 +20,11 @@ public class Partie
     private int aNbrEquipe;
     public List<Joueur> ListeJoueur;
     private int aRevenuBatiment;
-    private Map aMap;
     private int aTourMax;
     private Terrain[][] aTerrain;
     private int aJoueurActuel;
     private int aTour;
+    private Map aMap;
     public boolean partieFinie = false;
     private boolean aBrouillard;
     private boolean uneSeulEquipedeJoueur;
@@ -125,22 +125,10 @@ public class Partie
     
     /**
      * Constructeur de chargement d'une sauvegarde d'une Map
-     */
-    
-    public Partie(final Map pMap,final boolean pBrouillard){
-        Scanner vScannerMap;
-        
-        String sMap = "Maps/"+pMap.getFichier()+".txt";
-        try {
-            vScannerMap = new Scanner(getClass().getClassLoader().getResource(sMap).openStream());
-            isCampagne = false;
-            aNbrJoueur = pMap.getNbrJoueur();
-            
-            initMap();
-            vScannerMap.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+     */  
+    public Partie(){
+        isCampagne = false;
+        initMap();
     }
         
     /**
@@ -149,11 +137,10 @@ public class Partie
      */
     private void initMap(final Map pMap,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA){
         // OUVERTURE DE LA MAP
-        Scanner vScannerMap;
         String sMap = "Maps/"+pMap.getFichier()+".txt";
       
         try {
-            vScannerMap = new Scanner(getClass().getClassLoader().getResource(sMap).openStream());
+            Scanner vScannerMap = new Scanner(getClass().getClassLoader().getResource(sMap).openStream());
         
             // A SUPPRIMER PLUTARD
             aLargeur = pMap.getLongueur();
@@ -309,46 +296,84 @@ public class Partie
     
     /**
      * CHARGEMENT D'UNE MAP
+     * 6 lignes de paramètres
+     * 4 lignes pour chaque joueur
+     * enfin la MAP
      */
     private void initMap(){
-        // OUVERTURE DE LA MAP
-        Scanner vScannerMap;
       
         try {
-            vScannerMap = new Scanner(getClass().getClassLoader().getResource("Maps/mapSauvegarde.txt").openStream());
-            int vBrouillard;
+            Scanner vScannerMap = new Scanner(getClass().getClassLoader().getResource("Maps/mapSauvegarde.txt").openStream());
+            String vNom  = vScannerMap.nextLine();  // 1er ligne
+            
+            for( Map carte : Map.values() )
+            {
+                if(carte.getNom().equals(vNom)){
+                    aMap=carte;
+                }
+            }
         
-            aLargeur = Integer.parseInt(vScannerMap.nextLine());
-            aHauteur = Integer.parseInt(vScannerMap.nextLine());
-            aNbrJoueur = Integer.parseInt(vScannerMap.nextLine());
-            aJoueurActuel = Integer.parseInt(vScannerMap.nextLine());
-            aTourMax = Integer.parseInt(vScannerMap.nextLine());
-            aTour = Integer.parseInt(vScannerMap.nextLine());
-            aRevenuBatiment = Integer.parseInt(vScannerMap.nextLine());
+            // A SUPPRIMER PLUTARD
+            aLargeur = aMap.getLongueur();
+            aHauteur = aMap.getLargeur();
+            aNbrJoueur = aMap.getNbrJoueur();
+            
+            aJoueurActuel = Integer.parseInt(vScannerMap.nextLine()); //2e ligne
+            aTourMax = Integer.parseInt(vScannerMap.nextLine()); // 3e ligne
+            aTour = Integer.parseInt(vScannerMap.nextLine()); //4e ligne
+            aRevenuBatiment = Integer.parseInt(vScannerMap.nextLine()); // 5e ligne
+            String vBrouillard = vScannerMap.nextLine(); // 6e ligne
+            
+            if(vBrouillard.equals(true))
+                aBrouillard=true;
+            else
+                aBrouillard=false;
             
             //A CHANGER PLUS TARD
             Equipe equipe0 = new Equipe(0);
             Equipe equipe1 = new Equipe(1);
             Equipe equipe2 = new Equipe(2);
-            Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
-            boolean[] vIA = {false,false, true, true,true};
-            Faction[] pTabFaction ={Faction.HUMAINS,Faction.ROBOTS,Faction.ROBOTS,Faction.ROBOTS};
+            Equipe equipe3 = new Equipe(3);
+            Equipe equipe4 = new Equipe(4);
             
-            vBrouillard = Integer.parseInt(vScannerMap.nextLine());
             
-            if(vBrouillard==0){
-                aBrouillard=true;
-            }
-            else{
-                aBrouillard=false;
-            }
-            
+            boolean[] vIA = new boolean[aNbrJoueur+1];
             int[] vArgent =new int[aNbrJoueur+1];
+            Equipe[] vEquipe = new Equipe[aNbrJoueur+1];
+            Faction[] vFaction = new Faction[aNbrJoueur+1];
+           
+            // Boucle des joueurs, un joueur = 4 lignes
             for(int i=1;i<=aNbrJoueur;  i++){
-                vArgent[i]=Integer.parseInt(vScannerMap.nextLine());
+                String vIntIA= vScannerMap.nextLine(); // 7e ligne
+                if(vIntIA.equals(true))
+                    vIA[i]=true;
+                else
+                    vIA[i]=false;
+                    
+                String vStringFaction = vScannerMap.nextLine(); // 8e ligne
+                if(vStringFaction.equals("HUMAINS"))
+                    vFaction[i]=Faction.HUMAINS;
+                else
+                    vFaction[i]=Faction.ROBOTS;
+                    
+               switch(Integer.parseInt(vScannerMap.nextLine())){ // 9e ligne
+                   case 1: 
+                    vEquipe[i]=equipe1;
+                    break;
+                   case 2 :
+                    vEquipe[i]=equipe2;
+                    break;
+                   case 3:
+                    vEquipe[i]=equipe3;
+                    break;
+                   case 4:
+                    vEquipe[i]=equipe4;
+                }
+                
+               vArgent[i]=Integer.parseInt(vScannerMap.nextLine()); //10e ligne
             }
             
-            aTerrain = new Terrain[aLargeur][aHauteur];
+            aTerrain = new Terrain[aMap.getLongueur()][aMap.getLargeur()];
             
             //On rempli la carte de plaine 
             for(int i=0; i<aLargeur; i++){
@@ -475,9 +500,6 @@ public class Partie
                     default: aTerrain[vX][vY] = new Terrain(vX, vY, 0, TypeTerrain.PLAINE);
                 }
             }
-    
-            aNbrEquipe = 3;
-            
             
             ListeJoueur = new ArrayList<Joueur>();
             Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,vEquipe[0],false,""); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
@@ -486,7 +508,7 @@ public class Partie
             //Ajout des joueur dans l'arrayList
             for(int i=1;i<=aNbrJoueur;i++)
             {
-                ListeJoueur.add(new Joueur(i,pTabFaction[i],vBatimentJoueur[i],vEquipe[i],vIA[i],""));     
+                ListeJoueur.add(new Joueur(i,vFaction[i],vBatimentJoueur[i],vEquipe[i],vIA[i],""));     
                 ListeJoueur.get(i).setArgent(vArgent[i]);
             }
             
@@ -517,22 +539,24 @@ public class Partie
             File file = new File(getClass().getClassLoader().getResource(pNom).toURI());
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(""+ aLargeur);
+            bw.write(""+ aMap.getNom()); //1er ligne
             bw.newLine();
-            bw.write(""+ aHauteur);
+            bw.write(""+ aJoueurActuel); //2e ligne
             bw.newLine();
-            bw.write(""+ aNbrJoueur);
+            bw.write(""+ aTourMax); // 3e ligne
             bw.newLine();
-            bw.write(""+ aJoueurActuel);
+            bw.write(""+ aTour); // 4e ligne
             bw.newLine();
-            bw.write(""+ aTourMax);
+            bw.write(""+ aRevenuBatiment); // 5e ligne
             bw.newLine();
-            bw.write(""+ aTour);
-            bw.newLine();
-            bw.write(""+ aRevenuBatiment);
+            bw.write(""+ aBrouillard); // 6e ligne
             bw.newLine();
             for(Joueur joueur: ListeJoueur){
                 if(joueur.getNumJoueur() != 0){
+                    bw.write(""+joueur.estUneIA());
+                    bw.newLine();
+                    bw.write(""+joueur.getFaction());
+                    bw.newLine();
                     bw.write(""+joueur.getArgent());
                     bw.newLine();
                 }
@@ -562,15 +586,9 @@ public class Partie
                         string2 += unite.getPV()+ ":";
                         string2 += unite.getExperience()+ ":";
                         string2 += unite.getLvl()+ ":";
-                        if(unite.dejaAttaque())
-                            string2 += "1"+ ":";
-                        else
-                            string2 += "0"+ ":";
-                        
-                        if(unite.dejaDeplacee())
-                            string2 += "0";
-                        else
-                            string2 += "1";
+                        string2 += unite.dejaAttaque() ? "1"+":" : "0"+":";
+                        string2 += unite.dejaDeplacee() ? "1"+":" : "0"+":";
+   
                         bw.write(string2);
                         bw.newLine();
                     }

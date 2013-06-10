@@ -242,13 +242,6 @@ public class CreationMaps extends JPanel implements ActionListener,
 			out.println("" + aLargeur);
 			out.println("" + aHauteur);
 			out.println("" + aNbrJoueur);
-			out.println("0");
-			out.println("0");
-			out.println("0");
-			out.println("0");
-			for (int i = 0; i < Integer.parseInt(aNbrJoueur); i++) {
-				out.println("0");
-			}
 			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
