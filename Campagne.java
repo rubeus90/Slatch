@@ -28,9 +28,8 @@ public class Campagne implements MouseListener{
 		Equipe equipe2 = new Equipe(2);
 
 		Equipe[] vEquipe = { equipe0, equipe1, equipe2, equipe1, equipe2 };
-		boolean[] vIA = { true, true, false, true, true };
 
-		Partie partie = new Partie(99, listeNomPartie.get(pNiveau), true, vEquipe, vIA);
+		Partie partie = new Partie(99, listeNomPartie.get(pNiveau), vEquipe);
 		Slatch.partie = partie;
 		Slatch.moteur = new Moteur();
 
