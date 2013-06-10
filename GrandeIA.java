@@ -292,9 +292,4 @@ public class GrandeIA
         }
         return new Cible(new Triplet (t.d,t.x, t.y),cible);
     }
-    
-    static void aWholeNewWorld(Unite unite)
-    {
-        
-    }
 }
