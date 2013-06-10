@@ -316,11 +316,6 @@ public class PanelMenu extends JPanel
                         StrategieIA.joueTour(Slatch.partie.getJoueurActuel());
                     }
                     
-                    /*if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
-                    {
-                        System.out.println("ICI");
-                        AIMaster.joueTour(Slatch.partie.getJoueurActuel());
-                    }*/
                 }
                 
                 // Clic Bouton Retour
