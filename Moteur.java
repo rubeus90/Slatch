@@ -283,6 +283,9 @@ class Moteur
         uniteA=null;
     }
 
+    /**
+     * Permet d'obtenir le pourcentage de la vie d'unite divise par 100
+     */
     private double modificateurVie(final Unite unite)
     {
         return (double)(pourcentageVie(unite))/100.0;
