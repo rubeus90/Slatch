@@ -54,7 +54,6 @@ class Moteur
         aModeEvoluer = true;
     }
     
-    
     /**
      * Passe en mode soin, ressemble un peu au mode attaque
      */
@@ -63,6 +62,20 @@ class Moteur
         uniteA = getUnite(pX,pY);
         affichePorteeAttaque(uniteA, true);
     }
+    
+    /**
+     * Permet de passer en mode deplacement
+     */
+    public void modeDeplacement(final int pX,final int pY)
+    {
+        uniteD = getUnite(pX,pY);
+        affichePorteeDep(uniteD);
+    }
+    
+    /******************************************************************************************************************************************************
+     *                                                La meilleur defense, c'est l'attaque                                                                *
+     ******************************************************************************************************************************************************/
+    
     
     /**
      * enleve la surbrillance pour tous les éléments de la matrice
@@ -81,8 +94,6 @@ class Moteur
             }
         }
     } 
-      
-    
     
     /**
      * Vérifie si l'unite passee en parametre a une unite alliee adjacente qui a besoin de soins
@@ -140,8 +151,6 @@ class Moteur
         uniteA.deplacee(true);
         uniteA=null;
     }
-    
-    
     
     /**
      * permet a uniteA d'attaquer pVictime
@@ -417,14 +426,7 @@ class Moteur
         }
     }
     
-    /**
-     * Permet de passer en mode deplacement
-     */
-    public void modeDeplacement(final int pX,final int pY)
-    {
-        uniteD = getUnite(pX,pY);
-        affichePorteeDep(uniteD);
-    }
+    
     
     /**
      * Annule le deplacement
