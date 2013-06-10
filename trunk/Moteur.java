@@ -300,6 +300,30 @@ class Moteur
         return seraAPortee(pA, pC.getX(), pC.getY());
     }
     
+    /**
+     * Renvoie true si la case (pX,pY) sera a portee apres deplacement de pA
+     */
+    public boolean seraAPortee(Unite pA, int pX, int pY)
+    {
+        if(pA.getAttaque().aTypePortee.getPorteeMin()==1)
+        {
+            for(Point p: voisins)
+            {
+                int x = (int)(p.getX())+pX;
+                int y = (int)(p.getY())+pY;
+                
+                if(dansLesBords(x,y))
+                {
+                    if(tabDist[x][y]>0 && tabDist[x][y]<= pA.getDeplacement() && Slatch.partie.getTerrain()[x][y].getUnite()==null)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return this.estAPortee(pA, pX, pY);
+    }
+    
     /******************************************************************************************************************************************************
      *                                                  Liste des methodes pour Sparadrap                                                                 *
      ******************************************************************************************************************************************************/
@@ -1141,33 +1165,7 @@ class Moteur
         }
        
     }
-    
-    
-    
-    /**
-     * Renvoie true si la case (pX,pY) sera a portee apres deplacement de pA
-     */
-    public boolean seraAPortee(Unite pA, int pX, int pY)
-    {
-        if(pA.getAttaque().aTypePortee.getPorteeMin()==1)
-        {
-            for(Point p: voisins)
-            {
-                int x = (int)(p.getX())+pX;
-                int y = (int)(p.getY())+pY;
-                
-                if(dansLesBords(x,y))
-                {
-                    if(tabDist[x][y]>0 && tabDist[x][y]<= pA.getDeplacement() && Slatch.partie.getTerrain()[x][y].getUnite()==null)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        return this.estAPortee(pA, pX, pY);
-    }
-    
+ 
     /*****************
      * 
      * METHODEs SIMPLIFICATRICEs
