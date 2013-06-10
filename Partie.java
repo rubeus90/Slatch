@@ -303,7 +303,7 @@ public class Partie
     private void initMap(){
       
         try {
-            Scanner vScannerMap = new Scanner(getClass().getClassLoader().getResource("Maps/mapSauvegarde.txt").openStream());
+            Scanner vScannerMap = new Scanner(getClass().getClassLoader().getResource("Maps/sauvegarde.txt").openStream());
             String vNom  = vScannerMap.nextLine();  // 1er ligne
             
             for( Map carte : Map.values() )
@@ -534,7 +534,7 @@ public class Partie
         }
     }
     
-        public void sauvegardePartie(String pNom) {
+    public void sauvegardePartie(String pNom) {
         try {
             File file = new File(getClass().getClassLoader().getResource(pNom).toURI());
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
