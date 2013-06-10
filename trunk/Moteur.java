@@ -218,6 +218,9 @@ class Moteur
         return degat;
     }
     
+    /**
+     * Quand une unite meurt, on la "supprime" du jeu
+     */
     private void estMort(final Unite unite, final Unite pUniteVictorieux)
     {
         Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setPV(Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType().getPVMax());
