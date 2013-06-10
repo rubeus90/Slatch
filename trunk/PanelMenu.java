@@ -20,6 +20,15 @@ public class PanelMenu extends JPanel
     private boolean aSousMenuRapide1;
     private boolean aSousMenuRapide2;
     private int aNumeroMap;
+    // Attributs des boutons
+    private boolean aIAJ1;
+    private boolean aJ1;
+    private boolean aIAJ2;
+    private boolean aJ2;
+    private boolean aIAJ3;
+    private boolean aJ3;
+    private boolean aIAJ4;
+    private boolean aJ4;
 
     /*******************************************************************************************************************/
     /***  Parametres de la partie rapide                                                                            /***/
@@ -115,7 +124,6 @@ public class PanelMenu extends JPanel
             
         }
         
-        
         else if(aMenuRapide)
         {
             aHauteurBouton = this.getHeight()/9;
@@ -154,15 +162,54 @@ public class PanelMenu extends JPanel
                
             else if(aSousMenuRapide2)
             {
+                afficheImageRedim("noir80",0, this.getHeight()/4-2*tCadre,this.getWidth(), this.getHeight()- (this.getHeight()/4+2*tCadre),g);
+                g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
+                
+                Font font2;
+                try {
+					font2 = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
+                    .getClassLoader().getResource("Config/BlackOps.ttf")
+                    .toURI())).deriveFont(Font.PLAIN, this.getWidth()/35);	
+				
+                g.setFont(font2);
+                g.setColor(Color.white);
+                
+                g.drawString("Joueur 1",2*this.getWidth()/12,this.getHeight()/2-aHauteurBouton);
+                g.drawString("Joueur 2",4*this.getWidth()/12,this.getHeight()/2-aHauteurBouton);
+                g.drawString("Joueur 3",6*this.getWidth()/12,this.getHeight()/2-aHauteurBouton);
+                g.drawString("Joueur 3",8*this.getWidth()/12,this.getHeight()/2-aHauteurBouton);
+                
                 Image on = Slatch.aImages.get("on");
                 Image off = Slatch.aImages.get("off");
                 
-                afficheImageRedim("noir80",0, this.getHeight()/4-2*tCadre,this.getWidth(), this.getHeight()- (this.getHeight()/4+2*tCadre),g);
-                g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
-                g.drawImage(off,3*this.getWidth()/12,this.getHeight()/2,this.getHeight()/50,this.getHeight()/50,this);
-                g.drawImage(off,5*this.getWidth()/12,this.getHeight()/2,this.getHeight()/50,this.getHeight()/50,this);
-                g.drawImage(off,7*this.getWidth()/12,this.getHeight()/2,this.getHeight()/50,this.getHeight()/50,this);
-                g.drawImage(off,9*this.getWidth()/12,this.getHeight()/2,this.getHeight()/50,this.getHeight()/50,this);
+                Font fontRapide = new Font("Serif", Font.BOLD, this.getWidth()/40);
+                g.setFont(fontRapide);
+                g.setColor(Color.white);
+                
+
+                g.drawString("IA",2*this.getWidth()/12+2*this.getHeight()/40,this.getHeight()/2+this.getHeight()/60);
+                if(aIAJ1){g.drawImage(off,2*this.getWidth()/12,this.getHeight()/2,this.getHeight()/40,this.getHeight()/40,this);}
+                else{g.drawImage(on,2*this.getWidth()/12,this.getHeight()/2,this.getHeight()/40,this.getHeight()/40,this);}
+                
+                g.drawString("IA",4*this.getWidth()/12+2*this.getHeight()/40,this.getHeight()/2+this.getHeight()/60);
+                g.drawImage(off,4*this.getWidth()/12,this.getHeight()/2,this.getHeight()/40,this.getHeight()/40,this);
+                g.drawString("IA",6*this.getWidth()/12+2*this.getHeight()/40,this.getHeight()/2+this.getHeight()/60);
+                g.drawImage(off,6*this.getWidth()/12,this.getHeight()/2,this.getHeight()/40,this.getHeight()/40,this);
+                g.drawString("IA",8*this.getWidth()/12+2*this.getHeight()/40,this.getHeight()/2+this.getHeight()/60);
+                g.drawImage(off,8*this.getWidth()/12,this.getHeight()/2,this.getHeight()/40,this.getHeight()/40,this);
+
+                g.drawString("Joueur",2*this.getWidth()/12+2*this.getHeight()/40,this.getHeight()/2+aHauteurBouton+this.getHeight()/60);
+                g.drawImage(off,2*this.getWidth()/12,this.getHeight()/2+aHauteurBouton,this.getHeight()/40,this.getHeight()/40,this);
+                g.drawString("Joueur",4*this.getWidth()/12+2*this.getHeight()/40,this.getHeight()/2+aHauteurBouton+this.getHeight()/60);
+                g.drawImage(off,4*this.getWidth()/12,this.getHeight()/2+aHauteurBouton,this.getHeight()/40,this.getHeight()/40,this);
+                g.drawString("Joueur",6*this.getWidth()/12+2*this.getHeight()/40,this.getHeight()/2+aHauteurBouton+this.getHeight()/60);
+                g.drawImage(off,6*this.getWidth()/12,this.getHeight()/2+aHauteurBouton,this.getHeight()/40,this.getHeight()/40,this);
+                g.drawString("Joueur",8*this.getWidth()/12+2*this.getHeight()/40,this.getHeight()/2+aHauteurBouton+this.getHeight()/60);
+                g.drawImage(off,8*this.getWidth()/12,this.getHeight()/2+aHauteurBouton,this.getHeight()/40,this.getHeight()/40,this);
+                
+                } catch (FontFormatException | IOException | URISyntaxException e) {
+				    e.printStackTrace();
+				}
             }
             
             else
@@ -412,6 +459,11 @@ public class PanelMenu extends JPanel
                 }
             }
         } 
+    }
+    
+    public void clicCheckBox(int pX, int pY)
+    {
+        
     }
     
     public void afficheCheckBox()
