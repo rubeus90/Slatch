@@ -64,7 +64,9 @@ class Moteur
         affichePorteeAttaque(uniteA, true);
     }
     
-    
+    /**
+     * Vérifie si l'unite passee en parametre a une unite alliee adjacente qui a besoin de soins
+     */
     private boolean cibleSoignable(final Unite pUnite)
     {
         int vX;
