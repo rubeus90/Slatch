@@ -29,12 +29,7 @@ public class Partie
     private boolean aBrouillard;
     private boolean uneSeulEquipedeJoueur;
     private boolean isCampagne;
-    
-    // A SUPPRIMER DANS LE FUTUR
-    private int aLargeur;
-    private int aHauteur;
-    private int aNbrJoueur;
-    
+
     
 
     /**
@@ -66,7 +61,6 @@ public class Partie
         isCampagne = true;
         aBrouillard = true;
         boolean[] vIA = {false,false,true,true,true};
-        aNbrJoueur = pMap.getNbrJoueur();
         aRevenuBatiment = 20;
         aJoueurActuel= 1;
         aTourMax = pTourMax;
@@ -94,13 +88,11 @@ public class Partie
         
         try {
             vScannerMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
-            aLargeur = Integer.parseInt(vScannerMap.nextLine());
-            aHauteur = Integer.parseInt(vScannerMap.nextLine());
-            aTerrain = new Terrain[aLargeur][aHauteur];
+            aTerrain = new Terrain[aMap.getLongueur()][aMap.getLargeur()];
         
             //On rempli la carte de plaine 
-            for(int i=0; i<aLargeur; i++){
-                for(int j=0; j<aHauteur; j++){
+            for(int i=0; i<aMap.getLongueur(); i++){
+                for(int j=0; j<aMap.getLargeur(); j++){
                     aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
                 }
             }  
@@ -141,18 +133,13 @@ public class Partie
       
         try {
             Scanner vScannerMap = new Scanner(getClass().getClassLoader().getResource(sMap).openStream());
-        
-            // A SUPPRIMER PLUTARD
-            aLargeur = pMap.getLongueur();
-            aHauteur = pMap.getLargeur();
-            aNbrJoueur = pMap.getNbrJoueur();
-            
+ 
             //CREATION DE LA MAP
             aTerrain = new Terrain[aMap.getLongueur()][aMap.getLargeur()];
             
             //On rempli la carte de plaine 
-            for(int i=0; i<aLargeur; i++){
-                for(int j=0; j<aHauteur; j++){
+            for(int i=0; i<pMap.getLongueur(); i++){
+                for(int j=0; j<pMap.getLargeur(); j++){
                     aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
                 }
             }       
@@ -167,10 +154,10 @@ public class Partie
             List<Terrain> lUsine = new ArrayList<Terrain>();
             List<Terrain> lBatiment = new ArrayList<Terrain>();
     
-            int vBatimentJoueur[] = new int[aNbrJoueur+1]; //aNbrJoueur +1 pour prendre en compte le jouer Neutre
+            int vBatimentJoueur[] = new int[aMap.getNbrJoueur()+1]; //aNbrJoueur +1 pour prendre en compte le jouer Neutre
     
             //On initialise le tableau de batiment à 0 pour chaque joueur
-            for(int i=0; i<aNbrJoueur+1; i++){
+            for(int i=0; i<aMap.getNbrJoueur()+1; i++){
                 vBatimentJoueur[i] = 0;
             }
           
@@ -267,7 +254,7 @@ public class Partie
             ListeJoueur.add(JoueurNeutre);
         
             //Ajout des joueur dans l'arrayList
-            for(int i=1;i<=aNbrJoueur;i++)
+            for(int i=1;i<=aMap.getNbrJoueur();i++)
             {
                 ListeJoueur.add(new Joueur(i,pTabFaction[i],vBatimentJoueur[i],pTabEquipe[i],pTabIA[i],""));     
             }
@@ -312,11 +299,6 @@ public class Partie
                     aMap=carte;
                 }
             }
-        
-            // A SUPPRIMER PLUTARD
-            aLargeur = aMap.getLongueur();
-            aHauteur = aMap.getLargeur();
-            aNbrJoueur = aMap.getNbrJoueur();
             
             aJoueurActuel = Integer.parseInt(vScannerMap.nextLine()); //2e ligne
             aTourMax = Integer.parseInt(vScannerMap.nextLine()); // 3e ligne
@@ -337,13 +319,12 @@ public class Partie
             Equipe equipe4 = new Equipe(4);
             
             
-            boolean[] vIA = new boolean[aNbrJoueur+1];
-            int[] vArgent =new int[aNbrJoueur+1];
-            Equipe[] vEquipe = new Equipe[aNbrJoueur+1];
-            Faction[] vFaction = new Faction[aNbrJoueur+1];
-           
+            boolean[] vIA = new boolean[aMap.getNbrJoueur()+1];
+            int[] vArgent =new int[aMap.getNbrJoueur()+1];
+            Equipe[] vEquipe = new Equipe[aMap.getNbrJoueur()+1];
+            Faction[] vFaction = new Faction[aMap.getNbrJoueur()+1];
             // Boucle des joueurs, un joueur = 4 lignes
-            for(int i=1;i<=aNbrJoueur;  i++){
+            for(int i=1;i<=aMap.getNbrJoueur();  i++){
                 String vIntIA= vScannerMap.nextLine(); // 7e ligne
                 if(vIntIA.equals(true))
                     vIA[i]=true;
@@ -351,11 +332,11 @@ public class Partie
                     vIA[i]=false;
                     
                 String vStringFaction = vScannerMap.nextLine(); // 8e ligne
-                if(vStringFaction.equals("HUMAINS"))
+                if(vStringFaction.equals("HUMAINS")) 
                     vFaction[i]=Faction.HUMAINS;
                 else
                     vFaction[i]=Faction.ROBOTS;
-                    
+                
                switch(Integer.parseInt(vScannerMap.nextLine())){ // 9e ligne
                    case 1: 
                     vEquipe[i]=equipe1;
@@ -376,8 +357,8 @@ public class Partie
             aTerrain = new Terrain[aMap.getLongueur()][aMap.getLargeur()];
             
             //On rempli la carte de plaine 
-            for(int i=0; i<aLargeur; i++){
-                for(int j=0; j<aHauteur; j++){
+            for(int i=0; i<aMap.getLongueur(); i++){
+                for(int j=0; j<aMap.getLargeur(); j++){
                     aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
                 }
             }       
@@ -389,10 +370,10 @@ public class Partie
             String ligne = "";
             String tab[] = null;
     
-            int vBatimentJoueur[] = new int[aNbrJoueur+1]; //aNbrJoueur +1 pour prendre en compte le jouer Neutre
+            int vBatimentJoueur[] = new int[aMap.getNbrJoueur()+1]; //aNbrJoueur +1 pour prendre en compte le jouer Neutre
     
             //On initialise le tableau de batiment à 0 pour chaque joueur
-            for(int i=0; i<aNbrJoueur; i++){
+            for(int i=0; i<aMap.getNbrJoueur(); i++){
                 vBatimentJoueur[i] = 0;
             }
             
@@ -502,11 +483,11 @@ public class Partie
             }
             
             ListeJoueur = new ArrayList<Joueur>();
-            Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,vEquipe[0],false,""); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
+            Joueur JoueurNeutre = new Joueur(0,Faction.NEUTRE,0,equipe0,false,""); //Sert a occuper la place 0 dans la liste pour que le numero du joueur coresponde au numero dans la liste
             ListeJoueur.add(JoueurNeutre);
         
             //Ajout des joueur dans l'arrayList
-            for(int i=1;i<=aNbrJoueur;i++)
+            for(int i=1;i<=aMap.getNbrJoueur();i++)
             {
                 ListeJoueur.add(new Joueur(i,vFaction[i],vBatimentJoueur[i],vEquipe[i],vIA[i],""));     
                 ListeJoueur.get(i).setArgent(vArgent[i]);
@@ -557,13 +538,15 @@ public class Partie
                     bw.newLine();
                     bw.write(""+joueur.getFaction());
                     bw.newLine();
+                    bw.write(""+joueur.getEquipe().getNumEquipe());
+                    bw.newLine();
                     bw.write(""+joueur.getArgent());
                     bw.newLine();
                 }
             }
             
-            for(int i = 0; i<aLargeur; i++){
-                for(int j = 0; j<aHauteur; j++){
+            for(int i = 0; i<aMap.getLargeur(); i++){
+                for(int j = 0; j<aMap.getLongueur(); j++){
                     Terrain terrain = aTerrain[i][j];
                     Unite unite = terrain.getUnite();
                     if(terrain.getType().getNom() != "plaine"){
@@ -606,7 +589,7 @@ public class Partie
     public void tourSuivant(){
         aJoueurActuel++;
         
-        if(aJoueurActuel > aNbrJoueur){
+        if(aJoueurActuel > aMap.getNbrJoueur()){
             aJoueurActuel=1;
             aTour++;
         }
@@ -614,7 +597,7 @@ public class Partie
         if(!ListeJoueur.get(aJoueurActuel).isAlive()){// Si le joueur suivant est mort
             while(!ListeJoueur.get(aJoueurActuel).isAlive()){ // On recherche le prochain vivant
                 aJoueurActuel ++;
-                if(aJoueurActuel > aNbrJoueur){
+                if(aJoueurActuel > aMap.getNbrJoueur()){
                     aJoueurActuel=1;
                     aTour++;
                 }
@@ -653,11 +636,7 @@ public class Partie
      */
     public int getHauteur()
     {
-        return aHauteur;
-    }
-    
-    public void setHauteur(int pHauteur){
-        aHauteur = pHauteur;
+        return aMap.getLargeur();
     }
     
     /**
@@ -666,12 +645,9 @@ public class Partie
      */
     public int getLargeur()
     {
-        return aLargeur;
+        return aMap.getLongueur();
     }
     
-    public void setLargeur(int pLargeur){
-        aLargeur = pLargeur;
-    }
     
     /**
      * Accesseur qui renvoi la valeur le tour actuel du plateau
@@ -706,17 +682,13 @@ public class Partie
      */
     public int getNbrJoueur()
     {
-        return aNbrJoueur;
+        return aMap.getNbrJoueur();
     }
     
     public boolean getBrouillard(){
         return aBrouillard;
     }
-    
-    public void setNbrJoueur(int pNbrJoueur){
-        aNbrJoueur = pNbrJoueur;
-    }
-    
+      
     /**
      * Accesseur qui renvoi le nombre de jouer
      * @return aNbrJoueur
