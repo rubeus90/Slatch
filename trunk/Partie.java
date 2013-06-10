@@ -63,19 +63,31 @@ public class Partie
     /*Constructeur pour mode Campagne
      * 
      */
-    public Partie(final int pTourMax, final String pMap,final boolean pBrouillard,final Equipe[] pTabEquipe,final boolean[] pTabIA)
+    public Partie(final int pTourMax, final String pMap,final Equipe[] pTabEquipe)
     {
+        //On ouvre le fichier
         try {
             aMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
         } catch (IOException e) {
             e.printStackTrace();
         }        
         
+        //On a active le brouillard, et le boolean campagne + tous les jouers sont des IA sauf le joueur 1
         isCampagne = true;
-        aBrouillard = pBrouillard;
-        Faction[] pTabFaction ={Faction.HUMAINS,Faction.ROBOTS,Faction.ROBOTS,Faction.ROBOTS};
+        aBrouillard = true;
+        boolean[] vIA = {false,false,true,true,true};
         
-        initMap(false,pTabFaction,pTabEquipe,pTabIA);
+        //Pour les factions, on se base sur les equipes
+        Faction[] pTabFaction ={Faction.HUMAINS,Faction.ROBOTS,Faction.ROBOTS,Faction.ROBOTS}; // tableau par default
+        
+        for(int i=2;i<4;i++){
+            if(pTabEquipe[i].getNumEquipe()==1){ //Si le joueur a des aliés alors ils sont de faction HUMAINS
+                pTabFaction[i]=Faction.HUMAINS;
+            }
+        }
+        
+        //On initialise la Map
+        initMap(false,pTabFaction,pTabEquipe,vIA);
         aMap.close();
         
         aRevenuBatiment = 20;
