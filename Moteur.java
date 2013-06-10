@@ -1082,6 +1082,9 @@ class Moteur
        
     }
     
+    /**
+     * Renvoie true si pC sera a portee apres deplacement de pA
+     */
     public boolean seraAPortee(Unite pA, Unite pC) // à supposer que tabDist est rempli
     {
         /*if(pA.getAttaque().aTypePortee.getPorteeMin()==1)
@@ -1104,6 +1107,9 @@ class Moteur
         return seraAPortee(pA, pC.getX(), pC.getY());
     }
     
+    /**
+     * Renvoie true si la case (pX,pY) sera a portee apres deplacement de pA
+     */
     public boolean seraAPortee(Unite pA, int pX, int pY)
     {
         if(pA.getAttaque().aTypePortee.getPorteeMin()==1)
