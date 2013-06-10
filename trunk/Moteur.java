@@ -1040,6 +1040,9 @@ class Moteur
         }
     }
     
+    /**
+     * Renvoie true si l'unite appartient au joueur actuel
+     */
     public boolean estAuJoueurActuel(final Unite unite)
     {
         return unite.getJoueur()==Slatch.partie.getJoueurActuel();
