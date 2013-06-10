@@ -404,7 +404,7 @@ class Moteur
                 else
                 {
                     if(unite.getType().getDeplacement()>=tabDist[x][y])
-                    {//System.out.println("X= "+X+" et Y= "+Y);
+                    {
                         if(!geez)
                         {
                             if(getUnite(x,y)==null){
