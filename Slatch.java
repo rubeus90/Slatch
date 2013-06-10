@@ -56,7 +56,6 @@ public class Slatch {
                 {
                     for(int i=0;i<5;i++)
                     {
-                        //System.out.println("TERRAIN DEPENDANCE "+terrain.getImage() + i);
                         image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/plaine/"+ terrain.getImage() + i + ".png"));
                         imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                         aImages.put(""+terrain.getImage() + i,image);
