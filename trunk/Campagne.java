@@ -29,7 +29,7 @@ public class Campagne implements MouseListener{
 
 		Equipe[] vEquipe = { equipe0, equipe1, equipe2, equipe1, equipe2 };
 
-		Partie partie = new Partie(99, listeNomPartie.get(pNiveau), vEquipe);
+		Partie partie = new Partie(99,Map.NIVEAU1, vEquipe);
 		Slatch.partie = partie;
 		Slatch.moteur = new Moteur();
 

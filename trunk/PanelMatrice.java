@@ -400,7 +400,7 @@ public class PanelMatrice extends JPanel
                     if(menuMenu) {
                         // Bouton charger
                         if (0<clickY && clickY<aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
-                            Slatch.partie.chargerPartie("sauvegarde");
+                            //Slatch.partie.chargerPartie("sauvegarde");
                         }
                         // Bouton sauver
                         else if(aHauteurCarreau<clickY && clickY<2*aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
