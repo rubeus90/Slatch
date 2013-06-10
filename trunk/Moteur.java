@@ -1123,23 +1123,7 @@ class Moteur
      */
     public boolean seraAPortee(Unite pA, Unite pC) // à supposer que tabDist est rempli
     {
-        /*if(pA.getAttaque().aTypePortee.getPorteeMin()==1)
-        {
-            for(Point p: voisins)
-            {
-                int x = (int)(p.getX())+pC.getX();
-                int y = (int)(p.getY())+pC.getY();
-                
-                if(dansLesBords(x,y))
-                {
-                    if(tabDist[x][y]>0 && tabDist[x][y]<= pA.getDeplacement() && Slatch.partie.getTerrain()[x][y].getUnite()==null)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        return this.estAPortee(pA, pC);*/
+        
         return seraAPortee(pA, pC.getX(), pC.getY());
     }
     
