@@ -100,7 +100,8 @@ public class PanelDialogueCampagne extends JPanel {
 			String texte = scanner.nextLine();
 			tab = texte.split(":");
 			interlocuteur = tab[0];
-			dialogue = tab[1];
+			dialogue = interlocuteur + " : ";
+			dialogue += tab[1];
 			afficheText();
 		} else
 			dialogueFinished = true;
