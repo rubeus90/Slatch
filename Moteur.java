@@ -794,7 +794,7 @@ class Moteur
     }
     
     /**
-     * renvoie la distance entre (dX,dY) et (aX,aY)
+     * Renvoie la distance entre (dX,dY) et (aX,aY)
      */
     public int distance(final int dX,final int dY,final int aX,final int aY)
     {
@@ -802,7 +802,7 @@ class Moteur
     }
     
     /**
-     * renvoie la distance entre e1 et e2
+     * Renvoie la distance entre e1 et e2
      */
     public int distance(final Entite e1,final Entite e2)
     {
