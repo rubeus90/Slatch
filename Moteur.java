@@ -1008,6 +1008,9 @@ class Moteur
         return false;
     }
     
+    /**
+     * Permet de passer le tour du joueur actuel et de donner la main au suivant
+     */
     public void passeTour()
     {
         if(!Slatch.partie.partieFinie)
