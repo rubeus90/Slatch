@@ -68,6 +68,7 @@ public class Campagne implements MouseListener {
 		panel = new PanelDialogueCampagne(aNiveau);
 		panel.etapeDialogue();
 		panel.getTextArea().addMouseListener(this);
+		panel.addMouseListener(this);
 
 		Slatch.ihm.getPanelFrame().add(panel, BorderLayout.CENTER);
 		Slatch.ihm.getPanelFrame().updateUI();
@@ -91,6 +92,7 @@ public class Campagne implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		if (aNiveau < listeNomPartie.size()) {
 			panel.etapeDialogue();
+			panel.repaint();
 			if(panel.getDialogueFinished())
 				fermerDialogue();
 		} else
