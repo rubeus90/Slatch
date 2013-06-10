@@ -754,6 +754,9 @@ class Moteur
         }
     }
 
+    /**
+     * Retourne true si pC est a portee d'attaque de pA
+     */
     public boolean estAPortee(Unite pA, Unite pC) // nous dit si pC est à portee de tir de PA
     {
         /*
