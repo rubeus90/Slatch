@@ -10,16 +10,16 @@ import javax.swing.JFrame;
  * @author Ngoc
  * 
  */
-public class Campagne implements MouseListener{
-	private ArrayList<String> listeNomPartie;
+public class Campagne implements MouseListener {
+	private ArrayList<Map> listeNomPartie;
 	private int aNiveau;
 	private PanelDialogueCampagne panel;
 
 	public Campagne() {
 		aNiveau = 0;
-		listeNomPartie = new ArrayList<String>();
+		listeNomPartie = new ArrayList<Map>();
 
-		listeNomPartie.add("Maps/niveau1.txt");
+		listeNomPartie.add(Map.GAGNER);
 	}
 
 	public void chargerPartie(int pNiveau) {
@@ -29,7 +29,8 @@ public class Campagne implements MouseListener{
 
 		Equipe[] vEquipe = { equipe0, equipe1, equipe2, equipe1, equipe2 };
 
-		Partie partie = new Partie(99,Map.NIVEAU1, vEquipe);
+
+		Partie partie = new Partie(99,listeNomPartie.get(pNiveau), vEquipe);
 		Slatch.partie = partie;
 		Slatch.moteur = new Moteur();
 
@@ -48,13 +49,13 @@ public class Campagne implements MouseListener{
 		if (aNiveau < listeNomPartie.size() - 1) {
 			aNiveau++;
 			createDialogue();
-		}
-		else{
+		} else {
 			aNiveau = listeNomPartie.size();
 			Slatch.ihm.getPanelFrame().removeAll();
 			panel = new PanelDialogueCampagne();
 			panel.addMouseListener(this);
 			Slatch.ihm.getPanelFrame().add(panel, BorderLayout.CENTER);
+			panel.afficheText();
 			panel.repaint();
 			Slatch.ihm.getPanelFrame().updateUI();
 		}
@@ -63,43 +64,52 @@ public class Campagne implements MouseListener{
 	public void createDialogue() {
 		chargerPartie(aNiveau);
 		Slatch.ihm.getPanelFrame().removeAll();
-		
+
 		panel = new PanelDialogueCampagne(aNiveau);
-		panel.addMouseListener(this);
+		panel.etapeDialogue();
+		panel.getTextArea().addMouseListener(this);
 
 		Slatch.ihm.getPanelFrame().add(panel, BorderLayout.CENTER);
 		Slatch.ihm.getPanelFrame().updateUI();
 	}
-	
-	public void fermerDialogue(){
+
+	public void fermerDialogue() {
 		Slatch.ihm.getPanelFrame().remove(panel);
-		Slatch.ihm.getPanelFrame().add(Slatch.ihm.getpanelmatrice(), BorderLayout.CENTER);
-		Slatch.ihm.getPanelFrame().add(Slatch.ihm.getpanelinfo(), BorderLayout.NORTH);
-		
-		if(aNiveau != 0)
-			chargerPartie(aNiveau);		
-		
+		Slatch.ihm.getPanelFrame().add(Slatch.ihm.getpanelmatrice(),
+				BorderLayout.CENTER);
+		Slatch.ihm.getPanelFrame().add(Slatch.ihm.getpanelinfo(),
+				BorderLayout.NORTH);
+
+		if (aNiveau != 0)
+			chargerPartie(aNiveau);
+
 		Slatch.ihm.getPanelFrame().repaint();
-		
+
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(aNiveau < listeNomPartie.size())
-			fermerDialogue();
-		else
+		if (aNiveau < listeNomPartie.size()) {
+			panel.etapeDialogue();
+			if(panel.getDialogueFinished())
+				fermerDialogue();
+		} else
 			System.exit(0);
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {}
+	public void mouseEntered(MouseEvent e) {
+	}
 
 	@Override
-	public void mouseExited(MouseEvent e) {}
+	public void mouseExited(MouseEvent e) {
+	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {
+	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {}
+	public void mouseReleased(MouseEvent e) {
+	}
 }
