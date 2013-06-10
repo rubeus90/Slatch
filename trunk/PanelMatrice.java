@@ -244,7 +244,7 @@ public class PanelMatrice extends JPanel
             g.setFont(font);
             FontMetrics fm=getFontMetrics(font);  
 
-            String info = "VOICI LE SHOP :";
+            String info = "UNITEE(S) DISPONIBLE(S) :";
             g.drawString(info, aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
             int i=0;
             for(TypeUnite vType : aListeShop) {
