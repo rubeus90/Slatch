@@ -185,6 +185,9 @@ class Moteur
         uniteA=null;
     }
     
+    /**
+     * Endommage la cible de degats points de degats, et retourne true si elle meurt
+     */
     private boolean faireDegats(final Unite cible,final double degats) // retourne vrai si la cible meurt
     {
         cible.setPV(cible.getPV() - (int)degats);
