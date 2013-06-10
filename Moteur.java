@@ -56,7 +56,7 @@ class Moteur
     } 
       
     /**
-     * Passe en mode soin
+     * Passe en mode soin, ressemble un peu au mode attaque
      */
     public void modeSoin(final int pX,final int pY)
     {
@@ -121,6 +121,9 @@ class Moteur
         uniteA=null;
     }
     
+    /**
+     * Passe en mode attaque, permet de memoriser l'unite qui attaque, et d'afficher sa portee
+     */
     public void modeAttaque(final int pX,final int pY)
     {
         uniteA = getUnite(pX,pY);
