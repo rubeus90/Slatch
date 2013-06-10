@@ -686,6 +686,22 @@ class Moteur
         return false;
     }
     
+    /**
+     * Renvoie true si l'unite appartient au joueur actuel
+     */
+    public boolean estAuJoueurActuel(final Unite unite)
+    {
+        return unite.getJoueur()==Slatch.partie.getJoueurActuel();
+    }
+    
+    /**
+     * Renvoie true si l'unite qui se situe sur le point (pX,pY) appartient au joueur actuel
+     */
+    public boolean estAuJoueurActuel(final int pX,final int pY)
+    {
+        return estAuJoueurActuel(getUnite(pX,pY));
+    }
+    
     /******************************************************************************************************************************************************
      *                                                         Fonctionnement                                                                             *
      ******************************************************************************************************************************************************/
@@ -1075,21 +1091,7 @@ class Moteur
         }
     }
     
-    /**
-     * Renvoie true si l'unite appartient au joueur actuel
-     */
-    public boolean estAuJoueurActuel(final Unite unite)
-    {
-        return unite.getJoueur()==Slatch.partie.getJoueurActuel();
-    }
     
-    /**
-     * Renvoie true si l'unite qui se situe sur le point (pX,pY) appartient au joueur actuel
-     */
-    public boolean estAuJoueurActuel(final int pX,final int pY)
-    {
-        return estAuJoueurActuel(getUnite(pX,pY));
-    }
     
     /**
      * Cree une unite du type voulue sur la case voulue
