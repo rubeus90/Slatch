@@ -252,6 +252,12 @@ public class Slatch {
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/flechedroite.png"));
                 aImages.put("flechedroite",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/on.png"));
+                aImages.put("on",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/off.png"));
+                aImages.put("off",image);
         }
         catch (IOException e) {
             e.printStackTrace();
