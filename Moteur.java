@@ -292,6 +292,14 @@ class Moteur
         return false;
     }
     
+    /**
+     * Renvoie true si pC sera a portee apres deplacement de pA
+     */
+    public boolean seraAPortee(Unite pA, Unite pC) // à supposer que tabDist est rempli
+    {
+        return seraAPortee(pA, pC.getX(), pC.getY());
+    }
+    
     /******************************************************************************************************************************************************
      *                                                  Liste des methodes pour Sparadrap                                                                 *
      ******************************************************************************************************************************************************/
@@ -1134,14 +1142,7 @@ class Moteur
        
     }
     
-    /**
-     * Renvoie true si pC sera a portee apres deplacement de pA
-     */
-    public boolean seraAPortee(Unite pA, Unite pC) // à supposer que tabDist est rempli
-    {
-        
-        return seraAPortee(pA, pC.getX(), pC.getY());
-    }
+    
     
     /**
      * Renvoie true si la case (pX,pY) sera a portee apres deplacement de pA
