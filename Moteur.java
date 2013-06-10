@@ -413,6 +413,9 @@ class Moteur
         affichePorteeDep(uniteD);
     }
     
+    /**
+     * Annule le deplacement
+     */
     public void annulerDeplacement()
     {
         uniteD=null;
