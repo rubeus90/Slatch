@@ -34,8 +34,8 @@ public class Unite extends Entite
     private int aDecaleUniteX=0;
     private int aDecaleUniteY=0;
     private boolean isEvolvable;
-    private int vPV;
-    private boolean check=false;
+    private int pVaffiche;
+    private boolean check;
     public Influence[][] mapInfluence;
     /**
      * Constructeur par default de la classe Unite
@@ -58,8 +58,8 @@ public class Unite extends Entite
        aExperience = 0;
        isEvolvable = false;
        aExperienceMax=pType.getXPUP();
-       vPV = aPV;
-       
+       pVaffiche = aPV;
+       check=false;
        for(TypeAttaque type : TypeAttaque.values()) {
                    
                     if(type.getNom().equals(pType.getAttaque())){
@@ -178,6 +178,7 @@ public class Unite extends Entite
         return aPV;
     }
     
+    public int getPVaffiche()    {return pVaffiche;}
     
      /**
      * Accesseur pour aPVMax
@@ -313,8 +314,8 @@ public class Unite extends Entite
             Image img = Slatch.aImages.get(Slatch.partie.getJoueur(getJoueur()).getFaction()+""+ aType.getImage() + getJoueur());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
 
-                int vUnite = aPV%10;
-                int vDizaine = aPV/10;
+                int vUnite = pVaffiche%10;
+                int vDizaine = pVaffiche/10;
                 
                 Image unite = Slatch.aImages.get("pvUnite"+vUnite);
                 Image dizaine = Slatch.aImages.get("pvDizaine"+vDizaine);
@@ -336,9 +337,9 @@ public class Unite extends Entite
                }
 
         
-                if((vPV != aPV) && check)
+                if(check)
                 {
-                    int pDegats = aPV-vPV;
+                    int pDegats = aPV-pVaffiche;
                     
                     Font font = new Font("Helvetica", Font.BOLD, 8+15*Slatch.ihm.getpanelmatrice().getWidth()/1500);
                     g.setFont(font);
@@ -380,7 +381,10 @@ public class Unite extends Entite
     public void addDecaleUniteY(final int p) {aDecaleUniteY+=p;}
     public int getDecaleUniteX() {return aDecaleUniteX;}
     public int getDecaleUniteY() {return aDecaleUniteY;}
-    
+    public void setCheck(final boolean X) {check=X;}
+    public boolean getCheck() { return check;}
+    public void setPVaffiche(final int X) {pVaffiche=X;}
+    //public int getPVaffiche() { return pVaffiche;}
     
     public boolean peutCapturer()
     {

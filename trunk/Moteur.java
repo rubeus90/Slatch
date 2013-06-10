@@ -135,6 +135,13 @@ class Moteur
         }
         uniteA.attaque(true);
         uniteA.deplacee(true);
+        AnimationAttaque attaque=new AnimationAttaque(uniteA,pVictime);
+        Slatch.ihm.getAnimation().addAnimation(attaque);
+        
+           if(!getJoueurActuel().estUneIA())
+        {
+            Slatch.ihm.getAnimation().start();
+        }
         uniteA=null;
     }
     
@@ -454,7 +461,7 @@ class Moteur
         Stack<Point> vChemin = stack;
         double vVitesse = 0;
         AnimationDeplacement animation = new AnimationDeplacement(vChemin,vDepart,vUnite,vVitesse);
-            Slatch.ihm.getAnimation().addDeplacement(animation);
+            Slatch.ihm.getAnimation().addAnimation(animation);
         
            if(!getJoueurActuel().estUneIA())
         {
@@ -828,7 +835,7 @@ class Moteur
         Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setPV(Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType().getPVMax());
         Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(null);
         getJoueur(unite).addNbrUniteMort();
-        repaint();
+        //repaint();
         if(!getJoueur(unite).estUneIA() || unite.getJoueur()!=Slatch.partie.getJoueurActuel())
         {
             getJoueur(unite).getListeUnite().remove(unite);

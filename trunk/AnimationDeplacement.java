@@ -9,7 +9,7 @@ import java.awt.Point;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class AnimationDeplacement
+public class AnimationDeplacement extends Animation
 {
     private Stack<Point> aChemin; // CHEMIN DE ANIMATION 
     private Point aDepart; // DEPART DE ANIMATION
@@ -22,6 +22,7 @@ public class AnimationDeplacement
     public AnimationDeplacement(final Stack<Point> chemin, final Point depart, final Unite unite,final double vitesse)
     {
         aChemin = chemin;
+        aType = "deplacement";
         aDepart = depart;
         aUnite = unite;
         aVitesse = vitesse;
@@ -36,4 +37,6 @@ public class AnimationDeplacement
     public Point getDepart() {return aDepart;}
     public Unite getUnite() {return aUnite;}
     public double getVitesse() {return aVitesse;}
+    
+    
 }
