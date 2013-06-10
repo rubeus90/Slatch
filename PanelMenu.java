@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.* ;
+
 import javax.swing.*;
 
 
@@ -18,14 +19,6 @@ public class PanelMenu extends JPanel
     private boolean aSousMenuRapide1;
     private boolean aSousMenuRapide2;
     private int aNumeroMap;
-    private JCheckBox cbJ4; 
-    private JCheckBox cbJ4b; 
-    private JCheckBox cbJ3; 
-    private JCheckBox cbJ3b; 
-    private JCheckBox cbJ2; 
-    private JCheckBox cbJ2b; 
-    private JCheckBox cbJ1; 
-    private JCheckBox cbJ1b; 
     private boolean statecbJ1b = false;
     private boolean statecbJ1= false;
     private boolean statecbJ2b= false;
@@ -160,7 +153,10 @@ public class PanelMenu extends JPanel
             else if(aSousMenuRapide2)
             {
                 g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
+//                this.removeAll();
                 this.afficheCheckBox();
+//                this.repaint();
+//                this.updateUI();
                 
             }
             
@@ -351,20 +347,20 @@ public class PanelMenu extends JPanel
                     this.repaint();
                 }
             }
-            
         } 
     }
     
     public void afficheCheckBox()
-    {
-        cbJ4 =  new JCheckBox("Joueur", statecbJ4);
-        cbJ4b =     new JCheckBox("IA", statecbJ4b);
-        cbJ3 =  new JCheckBox("Joueur", statecbJ3);
-        cbJ3b =     new JCheckBox("IA", statecbJ3b);
-        cbJ2 =  new JCheckBox("Joueur", statecbJ2);
-        cbJ3b =     new JCheckBox("IA", statecbJ3b);
-        cbJ1 =  new JCheckBox("Joueur", statecbJ1);
-        cbJ1b =     new JCheckBox("IA", statecbJ1b); 
+    {    	
+    	this.setLayout(new BorderLayout());
+    	
+    	JCheckBox humain = new JCheckBox("Humain");
+    	humain.setOpaque(false);
+    	humain.setBorder(null);
+    	humain.setBorderPainted(false);
+    	this.add(humain, BorderLayout.CENTER);
+    	
+    	this.updateUI();
     }
     
     /**
