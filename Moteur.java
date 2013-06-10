@@ -883,43 +883,44 @@ class Moteur
         } 
     }
     
-    public void Brouillard(){
-            if(!getJoueurActuel().estUneIA() || getJoueurActuel().getEquipe().haveUnJoueurHumain()){           
-            
-                //On remplit la map de Brouillard
-                for(int i=0; i<Slatch.partie.getLargeur(); i++)
+    public void Brouillard()
+    {
+        if(!getJoueurActuel().estUneIA() || getJoueurActuel().getEquipe().haveUnJoueurHumain()){           
+        
+            //On remplit la map de Brouillard
+            for(int i=0; i<Slatch.partie.getLargeur(); i++)
+            {
+                for(int j=0; j<Slatch.partie.getHauteur(); j++)
                 {
-                    for(int j=0; j<Slatch.partie.getHauteur(); j++)
-                    {
-                        Slatch.partie.getTerrain()[i][j].setBrouillard(true);
-                    }
-                }  
-                
-                //Pour tous les Joueurs de l'équipe, on enleve le brouillard sur les batiments + la visions des Unites
-                for(Joueur vJoueur : getJoueurActuel().getEquipe().getListeJoueur()){
-                    if(vJoueur.getNumJoueur()!=0){
-                       for(Unite vUnite : vJoueur.getListeUnite()){
-                            affichePorteeBrouillard(vUnite);
-                       }             
-                       for(Terrain terrain : vJoueur.getListeBatiment()){
-                           Slatch.partie.getTerrain()[terrain.getX()][terrain.getY()].setBrouillard(false);
-                       }
-                       for(Terrain terrain : vJoueur.getListeUsine()){
-                           Slatch.partie.getTerrain()[terrain.getX()][terrain.getY()].setBrouillard(false);
-                       }
-                    }
+                    Slatch.partie.getTerrain()[i][j].setBrouillard(true);
+                }
+            }  
+            
+            //Pour tous les Joueurs de l'équipe, on enleve le brouillard sur les batiments + la visions des Unites
+            for(Joueur vJoueur : getJoueurActuel().getEquipe().getListeJoueur()){
+                if(vJoueur.getNumJoueur()!=0){
+                   for(Unite vUnite : vJoueur.getListeUnite()){
+                        affichePorteeBrouillard(vUnite);
+                   }             
+                   for(Terrain terrain : vJoueur.getListeBatiment()){
+                       Slatch.partie.getTerrain()[terrain.getX()][terrain.getY()].setBrouillard(false);
+                   }
+                   for(Terrain terrain : vJoueur.getListeUsine()){
+                       Slatch.partie.getTerrain()[terrain.getX()][terrain.getY()].setBrouillard(false);
+                   }
                 }
             }
-            else if(getJoueurActuel().estUneIA() && !Slatch.partie.getuneSeulEquipedeJoueur()){
-                //On remplit la map de Brouillard
-                for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        }
+        else if(getJoueurActuel().estUneIA() && !Slatch.partie.getuneSeulEquipedeJoueur()){
+            //On remplit la map de Brouillard
+            for(int i=0; i<Slatch.partie.getLargeur(); i++)
+            {
+                for(int j=0; j<Slatch.partie.getHauteur(); j++)
                 {
-                    for(int j=0; j<Slatch.partie.getHauteur(); j++)
-                    {
-                        Slatch.partie.getTerrain()[i][j].setBrouillard(true);
-                    }
-                }  
-            }
+                    Slatch.partie.getTerrain()[i][j].setBrouillard(true);
+                }
+            }  
+        }
     }
       
    
@@ -951,6 +952,9 @@ class Moteur
         pred = new Point[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
     }
     
+    /**
+     * L'algorithme qui permet de trouver les cases atteignables, en calculant par la meme le plus court chemin
+     */
     public void algoDeplacement(final Unite unite,final boolean porteeComptee)
     {
         PriorityQueue<Triplet> pq = new PriorityQueue<Triplet>();
