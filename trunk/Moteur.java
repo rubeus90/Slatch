@@ -37,7 +37,10 @@ class Moteur
         aModeEvoluer = true;
     }
     
-    public void enleverSurbrillance()// enlève la surbrillance pour tous les éléments de la matrice
+    /**
+     * enleve la surbrillance pour tous les éléments de la matrice
+     */
+    public void enleverSurbrillance()
     {
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
@@ -52,6 +55,9 @@ class Moteur
         }
     } 
       
+    /**
+     * Passe en mode soin
+     */
     public void modeSoin(final int pX,final int pY)
     {
         uniteA = getUnite(pX,pY);
