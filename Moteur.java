@@ -765,6 +765,9 @@ class Moteur
         return estAPortee(pA, pC.getX(), pC.getY());
     }
     
+    /**
+     * Retourne true si la case de coordonnees x, y est a portee d'attaque de pA
+     */
     public boolean estAPortee(Unite pA, int x, int y)
     {
         int d=distance(pA.getX(), pA.getY(), x, y);
