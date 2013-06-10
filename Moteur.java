@@ -670,6 +670,22 @@ class Moteur
         return distance(e1.getX(), e1.getY(), e2.getX(), e2.getY());
     }
     
+    /**
+     * Verifie si la case passee en parametre se situe en bordure de deplacement
+     */
+    private boolean enBordureDeDeplacement(Unite unite, int pX, int pY, int d)
+    {
+        Point p = pred[pX][pY];
+        if(p!=null)
+        {
+            int x = (int)p.getX();
+            int y = (int)p.getY();
+            
+            return (d<=unite.getType().getDeplacement() && tabDist[pX][pY]>unite.getType().getDeplacement());
+        }
+        return false;
+    }
+    
     /******************************************************************************************************************************************************
      *                                                         Fonctionnement                                                                             *
      ******************************************************************************************************************************************************/
@@ -953,10 +969,7 @@ class Moteur
         return null;
     }
     
-    
-    
-    
-    
+
      /**
      * Va appeler les methodes pour afficher la portee de deplacement d'une unite
      * @param unite unite qui a envie de bouger
@@ -1028,21 +1041,7 @@ class Moteur
         }
     }
       
-    /**
-     * Verifie si la case passee en parametre se situe en bordure de deplacement
-     */
-    private boolean enBordureDeDeplacement(Unite unite, int pX, int pY, int d)
-    {
-        Point p = pred[pX][pY];
-        if(p!=null)
-        {
-            int x = (int)p.getX();
-            int y = (int)p.getY();
-            
-            return (d<=unite.getType().getDeplacement() && tabDist[pX][pY]>unite.getType().getDeplacement());
-        }
-        return false;
-    }
+    
     
     /**
      * Permet de passer le tour du joueur actuel et de donner la main au suivant
