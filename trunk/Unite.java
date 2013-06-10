@@ -308,7 +308,7 @@ public class Unite extends Entite
         int pPosMidGaucheX = super.getCoordonneeX()*pPanel.getaLargeurCarreau()+pPanel.getaLargeurCarreau()/2;
         int pPosMidGaucheY = super.getCoordonneeY()*pPanel.getaHauteurCarreau()+pPanel.getaHauteurCarreau()/2;
         
-            Image img = Slatch.aImages.get(""+ aType.getImage() + getJoueur());
+            Image img = Slatch.aImages.get(Slatch.partie.getJoueur(getJoueur()).getFaction()+""+ aType.getImage() + getJoueur());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
 
                 int vUnite = aPV%10;

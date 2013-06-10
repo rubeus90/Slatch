@@ -6,9 +6,9 @@ humains:While
 humains:Distance
 humains:Uml
 robots:Commando
+robots:Kamikaze
 robots:Demolisseur
 robots:Char
 robots:While
 robots:Distance
 robots:Uml
-robots:Kamikaze
