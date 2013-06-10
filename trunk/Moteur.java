@@ -992,6 +992,9 @@ class Moteur
         }
     }
     
+    /**
+     * Verifie si la case passee en parametre se situe en bordure de deplacement
+     */
     private boolean enBordureDeDeplacement(Unite unite, int pX, int pY, int d)
     {
         Point p = pred[pX][pY];
