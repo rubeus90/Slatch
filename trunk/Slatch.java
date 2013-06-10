@@ -13,7 +13,7 @@ public class Slatch {
     public static IHM_NEW ihm;
     public static Partie partie;
     public static Moteur moteur;
-    public static HashMap<String,Image> aImages; // Se tro uvera dans Le moteur du jeu quand il y sera avec tout les load
+    public static HashMap<String,Image> aImages; // Se trouvera dans Le moteur du jeu quand il y sera avec tout les load
     public static CreationMaps maps;
     public static Campagne campagne;
     
@@ -56,7 +56,7 @@ public class Slatch {
                 {
                     for(int i=0;i<5;i++)
                     {
-                        image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/plaine/+ terrain.getImage() + i + ".png"));
+                        image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/plaine/"+ terrain.getImage() + i + ".png"));
                         imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                         aImages.put(""+terrain.getImage() + i,image);
                     }
