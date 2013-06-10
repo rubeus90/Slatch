@@ -36,6 +36,7 @@ public class Unite extends Entite
     private boolean isEvolvable;
     private int vPV;
     private boolean check=false;
+    public Influence[][] mapInfluence;
     /**
      * Constructeur par default de la classe Unite
      * Prend en paramètre :
@@ -67,6 +68,7 @@ public class Unite extends Entite
                     }
                 }
             
+       mapInfluence = Slatch.tabInf.get(this.aType);
        aDegats = aAttaque.getDegats();         
        
        dejaAttaque=false;

@@ -34,7 +34,8 @@ public enum TypeUnite
         aPrix = pPrix;
         aPVMax = pPVMax;
         aDeplacement = pDeplacement;
-        aAttaque = pAttaque;
+        
+        aAttaque=pAttaque;
         aTypeDeplacement = pTypeDeplacement;
         aGain = pGain;
         this.nomType = pNomType;
@@ -96,7 +97,7 @@ public enum TypeUnite
      * @return aAttaque
      */
     public String getAttaque(){
-        return  aAttaque;
+       return aAttaque;
     }
     
      /**
@@ -104,7 +105,7 @@ public enum TypeUnite
      * @return aTypeDeplacement
      */
     public TypeDeplacement getTypeDeplacement(){
-        return  aTypeDeplacement;
+        return aTypeDeplacement;
     }
     
     /**
