@@ -1025,9 +1025,6 @@ class Moteur
         }
     }
       
-   
-    
-    
     /**
      * Verifie si la case passee en parametre se situe en bordure de deplacement
      */
