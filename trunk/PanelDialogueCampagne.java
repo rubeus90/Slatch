@@ -49,7 +49,6 @@ public class PanelDialogueCampagne extends JPanel {
 	@Override
 	public void paintComponent(final Graphics g) {
 		afficheImageRedim("background", 0, 0, this.getWidth(), this.getHeight(), g);
-		System.out.println(interlocuteur);
 		afficheImageRedim(interlocuteur, 0, 0, this.getWidth(), this.getHeight(), g);
 	}
 
