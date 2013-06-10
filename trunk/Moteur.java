@@ -421,6 +421,9 @@ class Moteur
         uniteD=null;
     }
     
+    /**
+     * Annule l'attaque
+     */
     public void annulerAttaque()
     {
         uniteA=null;
