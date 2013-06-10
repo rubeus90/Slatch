@@ -33,11 +33,35 @@ class Moteur
         uniteA = null;
     }
     
-    /**
-     * 
+    
+    /******************************************************************************************************************************************************
+     *                                                La toute puissance des Modes                                                                        *
+     ******************************************************************************************************************************************************/
+    
+     /**
+     * Passe en mode attaque, permet de memoriser l'unite qui attaque, et d'afficher sa portee
+     */
+    public void modeAttaque(final int pX,final int pY)
+    {
+        uniteA = getUnite(pX,pY);
+        affichePorteeAttaque(uniteA, false);
+    }
+     
+     /**
+     * Permet de passer en mode evoluer
      */
     public void setModeEvoluer(){
         aModeEvoluer = true;
+    }
+    
+    
+    /**
+     * Passe en mode soin, ressemble un peu au mode attaque
+     */
+    public void modeSoin(final int pX,final int pY)
+    {
+        uniteA = getUnite(pX,pY);
+        affichePorteeAttaque(uniteA, true);
     }
     
     /**
@@ -58,14 +82,7 @@ class Moteur
         }
     } 
       
-    /**
-     * Passe en mode soin, ressemble un peu au mode attaque
-     */
-    public void modeSoin(final int pX,final int pY)
-    {
-        uniteA = getUnite(pX,pY);
-        affichePorteeAttaque(uniteA, true);
-    }
+    
     
     /**
      * Vérifie si l'unite passee en parametre a une unite alliee adjacente qui a besoin de soins
@@ -124,14 +141,7 @@ class Moteur
         uniteA=null;
     }
     
-    /**
-     * Passe en mode attaque, permet de memoriser l'unite qui attaque, et d'afficher sa portee
-     */
-    public void modeAttaque(final int pX,final int pY)
-    {
-        uniteA = getUnite(pX,pY);
-        affichePorteeAttaque(uniteA, false);
-    }
+    
     
     /**
      * permet a uniteA d'attaquer pVictime
