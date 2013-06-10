@@ -398,8 +398,16 @@ public class PanelMenu extends JPanel
                 //Clic Bouton Charger une Partie
                 if(pY>33+ this.getHeight()/2 && pY<33+ this.getHeight()/2+aHauteurBouton && pX>this.getWidth()/2-3*aHauteurBouton && pX< this.getWidth()/2+ 3*aHauteurBouton)
                 {
-                    aSousMenuRapide2 = true;
-                    this.repaint();
+                    Partie partieRapide = new Partie();
+                    Slatch.partie=partieRapide;
+                    Moteur moteur = new Moteur();
+                    Slatch.moteur=moteur;
+                    
+                    
+                    
+                    Slatch.ihm.passageModePartie();
+                    //aSousMenuRapide2 = true;
+                    //this.repaint();
                 }
             }
         } 
