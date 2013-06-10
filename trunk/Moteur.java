@@ -399,10 +399,12 @@ class Moteur
     {
         boolean fini = false;
         boolean geez = false;
+        boolean init=true;
         int x = pX, y =pY;
+        int X=unite.getCoordonneeX(), Y=unite.getCoordonneeY();
         Stack<Point> stack = new Stack<Point>();
         Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
-        if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));unite.deplacee(true); Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setPV(Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType().getPVMax()); if(unite.getAttaque().aTypePortee.getPorteeMin()>1){unite.attaque(true);}}
+        if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));unite.deplacee(true); Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());X=pX;Y=pY;init=false;if(unite.getAttaque().aTypePortee.getPorteeMin()>1){unite.attaque(true);}}
         while(!fini)
         {
             Point p = pred[x][y];
@@ -410,46 +412,71 @@ class Moteur
             {
                 x=(int)p.getX();
                 y=(int)p.getY();
-                if(unite.getX()==x && unite.getY()==y)
+                if(unite.getCoordonneeX()==x && unite.getCoordonneeY()==y)
                 {
                     fini = true;
                 }
                 else
                 {
                     if(unite.getType().getDeplacement()>=tabDist[x][y])
-                    {
+                    {//System.out.println("X= "+X+" et Y= "+Y);
                         if(!geez)
                         {
-                            if(getUnite(x,y)==null){stack.push(p);
-                            unite.deplacee(true); geez = true;Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setPV(Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType().getPVMax());}
+                            if(getUnite(x,y)==null){
+                                stack.push(p);
+                                    
+                            unite.deplacee(true); 
+                            geez = true;Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
+                                 
+                                    if(init)
+                                    {
+                                     X=(int)p.getX();
+                                     Y=(int)p.getY();
+                                     init=false;
+                                    }
+                        }
                         }
                         else
                         {
                             stack.push(p);
+                            if(init)
+                            {
+                             X=(int)p.getX();
+                             Y=(int)p.getY();
+                             init=false;
+                            }
                         }
                     }
                 }
             }
             else{break;}
         }
-        
-        int k = stack.size();
-        int l = unite.getType().getDeplacement();
-        Unite mem = null;
-        while(!stack.isEmpty())
-        {
-            Point p = stack.pop();
-            if((l-=Slatch.partie.getTerrain()[(int)p.getX()][(int)p.getY()].getCout(unite))<0)
-            {
-                break;
-            }
+            int pPosHautGaucheX = X*Slatch.ihm.getPanel().getaLargeurCarreau();
+            int pPosBasDroiteY = (Y+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
+            int pPosHautGaucheXdepart = (int)unite.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
+            int pPosBasDroiteYdepart = (int)(unite.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
+            unite.setDecaleUniteX(-(int)(pPosHautGaucheX - pPosHautGaucheXdepart ));
+            unite.setDecaleUniteY(-(int)(pPosBasDroiteY - pPosBasDroiteYdepart ));
             
-            mem = changerCase(unite, (int)p.getX(), (int)p.getY(), mem);
+        Point vDepart = new Point(unite.getCoordonneeX(),unite.getCoordonneeY());
+        
+        Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
+        Slatch.partie.getTerrain()[X][Y].setUnite(unite);
+        unite.setCoordonneeX(X);
+        unite.setCoordonneeY(Y);
+        
+        Unite vUnite = unite;
+        Stack<Point> vChemin = stack;
+        double vVitesse = 0;
+        AnimationDeplacement animation = new AnimationDeplacement(vChemin,vDepart,vUnite,vVitesse);
+            Slatch.ihm.getAnimation().addDeplacement(animation);
+        
+           if(!getJoueurActuel().estUneIA())
+        {
+            Slatch.ihm.getAnimation().start();
         }
         
-        if(getBrouillard()){
-            Brouillard();
-        }
+        
     }
     
     

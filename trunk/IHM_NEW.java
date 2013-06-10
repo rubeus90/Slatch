@@ -22,7 +22,7 @@ public class IHM_NEW  {
     private PanelMatrice panelMatrice;
     private PanelMenu panelMenu;
     private JFrame frame;
-    private Animation animation;
+    private GestionnaireAnimation animation;
     static Timer timer;
     private PanelDialogueCampagne panelDialogueCampagne;
     public List<Map> aListeMap;
@@ -32,9 +32,9 @@ public class IHM_NEW  {
      */
     public IHM_NEW(){
         // Creation des animations
-        //animation = new Animation();
+        animation = new GestionnaireAnimation();
         // Creation du timer pour les animations
-        //Timer timer = new Timer(50, animation);
+        timer = new Timer(10, animation);
         //timer.start();
 
         // Creation de la fenetre : frame
@@ -112,7 +112,7 @@ public class IHM_NEW  {
         return panelMenu;
     }
     
-    public Animation getAnimation() {
+    public GestionnaireAnimation getAnimation() {
         return animation;
     }
     
