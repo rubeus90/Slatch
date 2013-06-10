@@ -78,7 +78,7 @@ public class GestionnaireAnimation implements ActionListener
         if(deltaT>70) return;
         if(deplacement.isEmpty())
         {
-            System.out.println("On s'arrete (pas d'anim a faire)");
+            //System.out.println("On s'arrete (pas d'anim a faire)");
             numeroUnite=0;
             aNbTick = 0;
             avancement=0;
@@ -96,7 +96,7 @@ public class GestionnaireAnimation implements ActionListener
         {
             if(numeroUnite>=deplacement.size()-1)
             {
-                System.out.println("On s'arrete (plus d'anim a faire)");
+                //System.out.println("On s'arrete (plus d'anim a faire)");
                 numeroUnite=0;
                 aNbTick = 0;
                 avancement=0;
@@ -183,7 +183,7 @@ public class GestionnaireAnimation implements ActionListener
                 unite.addDecaleUniteY(dY*(int)deltaT/10);
                 avancement+=dY*(int)deltaT/10;
                 
-                System.out.println(dX+" "+dY);
+                //System.out.println(dX+" "+dY);
                 if(dY<0 || dX<0){
                      Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdepart-pPosHautGaucheXdest,pPosBasDroiteYdepart-pPosHautGaucheYdest);
                      Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
