@@ -22,7 +22,6 @@ class Moteur
     static Point[] voisins = {new Point(0,1), new Point(0,-1),new Point(1,0),new Point(-1,0)};
     static Quad[] signes = {new Quad(0,1,-1,1), new Quad(0,-1,1,-1),new Quad(1,-1,0,1),new Quad(-1,1,0,-1)};// Permettra de parcourir le rayon de portée d'une unité
     
-    
     public Moteur()
     {
         tabDist = new int[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
