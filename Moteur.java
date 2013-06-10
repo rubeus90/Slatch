@@ -435,7 +435,7 @@ class Moteur
                 }
             }
             else{break;}
-        }
+        }//
             int pPosHautGaucheX = X*Slatch.ihm.getPanel().getaLargeurCarreau();
             int pPosBasDroiteY = (Y+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
             int pPosHautGaucheXdepart = (int)unite.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
