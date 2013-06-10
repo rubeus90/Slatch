@@ -115,11 +115,7 @@ public class Terrain extends Entite{
                 Image surbrillance = Slatch.aImages.get("brouillard");
                 g.drawImage(surbrillance, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
         } 
-        else{
-            if(aUnite!=null){
-            	aUnite.dessine(g, pPanel);    
-            }
-        }
+        
     }
     
     public boolean estCapturable()

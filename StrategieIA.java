@@ -35,7 +35,8 @@ public class StrategieIA
             }
             if(u.getPV()<=0){i.remove();}
         }    
-        Slatch.moteur.passeTour();
+        //Slatch.moteur.passeTour();
+        Slatch.ihm.getAnimation().start();
     }
     
     static void remplirMap()

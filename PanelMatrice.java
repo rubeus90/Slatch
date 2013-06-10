@@ -536,6 +536,13 @@ public class PanelMatrice extends JPanel
                 //afficheInfoTerrain(i,j,g);
             }
         }
+        
+        for(int i=0; i<Slatch.partie.getLargeur(); i++) {
+            for(int j=0; j<Slatch.partie.getHauteur(); j++) {
+                if(Slatch.partie.getTerrain()[i][j].getUnite()!=null && !Slatch.partie.getTerrain()[i][j].getBrouillard())
+                Slatch.partie.getTerrain()[i][j].getUnite().dessine(g, this);
+            }
+        }
     } // FIN dessineMatrice
     
     /**

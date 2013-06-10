@@ -356,9 +356,9 @@ public class Unite extends Entite
 
 
                 }
-                vPV = aPV;
-
-                check=true;    
+                
+                
+            
     }
     
     public boolean seSitue(Point p)
