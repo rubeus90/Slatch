@@ -76,90 +76,7 @@ class Moteur
      *                                                La meilleur defense, c'est l'attaque                                                                *
      ******************************************************************************************************************************************************/
     
-    
-    /******************************************************************************************************************************************************
-     *                                                Liste des methodes pour Sparadrap                                                                   *
-     ******************************************************************************************************************************************************/
-     
-    /******************************************************************************************************************************************************
-     *                                                Suivons le mouvement!                                                                               *
-     ******************************************************************************************************************************************************/
-    /**
-     * enleve la surbrillance pour tous les éléments de la matrice
-     */
-    public void enleverSurbrillance()
-    {
-        for(int i=0; i<Slatch.partie.getLargeur(); i++)
-        {
-            for(int j=0; j<Slatch.partie.getHauteur(); j++)
-            {
-                if(Slatch.partie.getTerrain()[i][j].getSurbrillance())
-                {
-                    Slatch.partie.getTerrain()[i][j].setSurbrillance(false);
-                    repaint();
-                }
-            }
-        }
-    } 
-    
-    /**
-     * Vérifie si l'unite passee en parametre a une unite alliee adjacente qui a besoin de soins
-     */
-    private boolean cibleSoignable(final Unite pUnite)
-    {
-        int vX;
-        int vY;
-        for(Point p: voisins)
-        {
-            vX=(int)p.getX()+pUnite.getX();
-            vY=(int)p.getY()+pUnite.getY();
-            if(dansLesBords(vX,vY))
-            {
-                Unite u = getUnite(vX,vY);
-                if(u!= null)
-                {
-                    if(u.aBesoinDeSoins() && getEquipe(pUnite.getJoueur())==getEquipe(u.getJoueur()))
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-    
-    /**
-     * Methode a deplacer dans Moteur Une fois moteur safe
-     * Methode qui permet a un ingenieur de soigner une unite
-     * @param pUnite
-     */
-    public void soin(final Unite pUnite)
-    { 
-        int vLocal = pUnite.soigner(uniteA.getDegat());
-        if(vLocal!=0){  
-           uniteA.addExperience(vLocal);
-           //Slatch.partie.getJoueur(uniteA.getJoueur()).addSoinTotal(vLocal);
-           getJoueur(uniteA).addSoinTotal(vLocal);
-           uniteA.attaque(true);
-           uniteA.deplacee(true);
-           uniteA=null; 
-        }
-    }
-    
-    /**
-     * Methode qui permet a un ingenieur de faire evoluer une methode
-     * @param pUnite
-     */
-    public void evoluer(final int pX,final int pY)
-    {
-        uniteA = getUnite(pX,pY);
-        uniteA.upLvl();
-        uniteA.attaque(true);
-        uniteA.deplacee(true);
-        uniteA=null;
-    }
-    
-    /**
+     /**
      * permet a uniteA d'attaquer pVictime
      */
     public void attaque(final Unite pVictime)
@@ -246,6 +163,97 @@ class Moteur
          *((double)a.getPV()/(double)a.getPVMax())*/   
         return degat;
     }
+    
+    /******************************************************************************************************************************************************
+     *                                                  Liste des methodes pour Sparadrap                                                                 *
+     ******************************************************************************************************************************************************/
+     
+    /**
+     * Vérifie si l'unite passee en parametre a une unite alliee adjacente qui a besoin de soins
+     */
+    private boolean cibleSoignable(final Unite pUnite)
+    {
+        int vX;
+        int vY;
+        for(Point p: voisins)
+        {
+            vX=(int)p.getX()+pUnite.getX();
+            vY=(int)p.getY()+pUnite.getY();
+            if(dansLesBords(vX,vY))
+            {
+                Unite u = getUnite(vX,vY);
+                if(u!= null)
+                {
+                    if(u.aBesoinDeSoins() && getEquipe(pUnite.getJoueur())==getEquipe(u.getJoueur()))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * Methode a deplacer dans Moteur Une fois moteur safe
+     * Methode qui permet a un ingenieur de soigner une unite
+     * @param pUnite
+     */
+    public void soin(final Unite pUnite)
+    { 
+        int vLocal = pUnite.soigner(uniteA.getDegat());
+        if(vLocal!=0){  
+           uniteA.addExperience(vLocal);
+           getJoueur(uniteA).addSoinTotal(vLocal);
+           uniteA.attaque(true);
+           uniteA.deplacee(true);
+           uniteA=null; 
+        }
+    }
+     
+    /******************************************************************************************************************************************************
+     *                                                      Suivons le mouvement!                                                                         *
+     ******************************************************************************************************************************************************/
+     
+     /******************************************************************************************************************************************************
+     *                                                    UML, digivolve toi en...UML!                                                                     *
+     ******************************************************************************************************************************************************/
+     
+     
+    /**
+     * enleve la surbrillance pour tous les éléments de la matrice
+     */
+    public void enleverSurbrillance()
+    {
+        for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        {
+            for(int j=0; j<Slatch.partie.getHauteur(); j++)
+            {
+                if(Slatch.partie.getTerrain()[i][j].getSurbrillance())
+                {
+                    Slatch.partie.getTerrain()[i][j].setSurbrillance(false);
+                    repaint();
+                }
+            }
+        }
+    } 
+    
+    
+    
+    /**
+     * Methode qui permet a un ingenieur de faire evoluer une methode
+     * @param pUnite
+     */
+    public void evoluer(final int pX,final int pY)
+    {
+        uniteA = getUnite(pX,pY);
+        uniteA.upLvl();
+        uniteA.attaque(true);
+        uniteA.deplacee(true);
+        uniteA=null;
+    }
+    
+    
     
     /**
      * Quand une unite meurt, on la "supprime" du jeu
