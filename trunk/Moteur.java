@@ -404,6 +404,9 @@ class Moteur
         }
     }
     
+    /**
+     * Permet de passer en mode deplacement
+     */
     public void modeDeplacement(final int pX,final int pY)
     {
         uniteD = getUnite(pX,pY);
