@@ -1139,6 +1139,9 @@ class Moteur
         return(x>=0 && y>=0 && x<Slatch.partie.getLargeur() && y<Slatch.partie.getHauteur());
     }
     
+    /**
+     * un p'tit setteur pour uniteA
+     */
     public void setuniteA(Unite pUnite){
         uniteA = pUnite;
     }
