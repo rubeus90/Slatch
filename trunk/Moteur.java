@@ -809,6 +809,9 @@ class Moteur
         return distance(e1.getX(), e1.getY(), e2.getX(), e2.getY());
     }
     
+    /**
+     * Remplit le tableau qui contient les portees de deplacement pour l'unite en cours
+     */
     public void remplitPorteeDep(final Unite unite,final boolean bool)
     {
         this.initialiseTabDist(unite);
@@ -830,7 +833,7 @@ class Moteur
     }
     
     /**
-     * va appeler les methodes pour afficher la portee de deplacement d'une unite
+     * Va appeler les methodes pour afficher la portee de deplacement d'une unite
      * @param unite unite qui a envie de bouger
      */
     private void affichePorteeDep(final Unite unite)
@@ -850,7 +853,7 @@ class Moteur
     }
     
      /**
-     * va appeler les methodes pour afficher la portee de deplacement d'une unite
+     * Va appeler les methodes pour afficher la portee de deplacement d'une unite
      * @param unite unite qui a envie de bouger
      */
     private void affichePorteeBrouillard(final Unite unite)
