@@ -4,27 +4,16 @@ import java.util.Arrays;
 
 public class StrategieIA
 {
-    static Influence[][]iMap;
+    static Influence[][]iMap = new Influence[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
     static ModeIA mode = ModeIA.DEPLOIEMENT;
     static void joueTour(int joueur)
     {
         List<Unite> l = Slatch.partie.getJoueur(joueur).getListeUnite();
-        
-        
+         
         mode = mode.checkMode(joueur);
         
-        iMap = new Influence[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
-        for(int i=0; i<Slatch.partie.getLargeur(); i++)
-        {
-            for(int j=0; j<Slatch.partie.getHauteur(); j++)
-            {
-                iMap[i][j]=new Influence();
-            }
-        }
         remplirMap();
         OperationIA.acheterUnite();
-        
-        
         
         Iterator<Unite> i = l.iterator();
         while(i.hasNext())
@@ -41,26 +30,28 @@ public class StrategieIA
     
     static void remplirMap()
     {
-        
+        Terrain[][] mapTerrain = Slatch.partie.getTerrain();
+        Equipe fail = Slatch.moteur.getJoueurActuel().getEquipe();
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
             {
-                iMap[i][j].defensif+=20*Slatch.partie.getTerrain()[i][j].getType().getCouverture()*mode.inf.defensif;
-                switch(Slatch.partie.getTerrain()[i][j].getType().getNom())
+                iMap[i][j]=new Influence();
+                iMap[i][j].defensif+=20*mapTerrain[i][j].getType().getCouverture()*mode.inf.defensif;
+                switch(mapTerrain[i][j].getType())
                 {
-                    case "usine": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){if(Slatch.partie.getTerrain()[i][j].getUnite()==null){iMap[i][j].capture+=80*mode.inf.capture;}}
+                    case USINE: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=80*mode.inf.capture;}}
                     else{iMap[i][j].retraite+=4*mode.inf.retraite;}
-                    case "batiment": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){if(Slatch.partie.getTerrain()[i][j].getUnite()==null){iMap[i][j].capture+=50*mode.inf.capture;}} 
+                    case BATIMENT: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=50*mode.inf.capture;}} 
                     else{iMap[i][j].retraite+=5*mode.inf.retraite;} break;
-                    case "foret": break;
-                    case "montagne": break;
-                    case "qg": if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=Slatch.moteur.getJoueurActuel().getEquipe()){if(Slatch.partie.getTerrain()[i][j].getUnite()==null){iMap[i][j].capture+=100*mode.inf.capture;}}break;
+                    case FORET: break;
+                    case MONTAGNE: break;
+                    case QG: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=100*mode.inf.capture;}}break;
                     default:
                 }
-                if(Slatch.partie.getTerrain()[i][j].getUnite()!=null)
+                if(mapTerrain[i][j].getUnite()!=null)
                 {
-                    spreadInfluence(Slatch.partie.getTerrain()[i][j].getUnite(), iMap, true);
+                    spreadInfluence(mapTerrain[i][j].getUnite(), iMap, true);
                 }
             }
         }
@@ -77,6 +68,8 @@ public class StrategieIA
         int y= unite.getCoordonneeY();
         int pm = unite.getAttaque().aTypePortee.getPorteeMax();
         int pu = unite.getDeplacement()/10;
+        Terrain[][] mapTerrain = Slatch.partie.getTerrain();
+        int joueurActu= Slatch.partie.getJoueurActuel();
         if(Slatch.moteur.getEquipe(unite)!=Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
         {
             for(int i=0; i<=pm+pu; i++)
@@ -89,7 +82,7 @@ public class StrategieIA
                         if(Moteur.dansLesBords(x+a+b, y+c+d))
                         {
                             if(ajouterInfluence){
-                                if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace+=5*inf.menace;if(Slatch.partie.getTerrain()[x+a+b][y+c+d].getType()==TypeTerrain.QG && Slatch.partie.getTerrain()[x+a+b][y+c+d].getJoueur()==Slatch.partie.getJoueurActuel())
+                                if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace+=5*inf.menace;if(mapTerrain[x+a+b][y+c+d].getType()==TypeTerrain.QG && mapTerrain[x+a+b][y+c+d].getJoueur()==joueurActu)
                                     {
                                         map[x+a+b][y+c+d].menace+=5*inf.menace;
                                     }
@@ -99,7 +92,7 @@ public class StrategieIA
                             else
                             {
                                 if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace-=5*inf.menace;
-                                    if(Slatch.partie.getTerrain()[x+a+b][y+c+d].getType()==TypeTerrain.QG && Slatch.partie.getTerrain()[x+a+b][y+c+d].getJoueur()==Slatch.partie.getJoueurActuel())
+                                    if(mapTerrain[x+a+b][y+c+d].getType()==TypeTerrain.QG && mapTerrain[x+a+b][y+c+d].getJoueur()==joueurActu)
                                     {
                                         map[x+a+b][y+c+d].menace-=5*inf.menace;
                                     }

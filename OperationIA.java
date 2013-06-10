@@ -10,7 +10,6 @@ public class OperationIA
         map = pMap;
         Slatch.moteur.remplitPorteeDep(unite, false);
         adapteMap(unite);
-        valide = new boolean[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
         
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
@@ -249,27 +248,27 @@ public class OperationIA
         
         for (Unite unit : joueurActuel.getListeUnite())
         {
-            switch(unit.getType().getNom())
+            switch(unit.getType())
             {
-                case "Commando" :
+                case COMMANDO :
                                     nombreCommando=nombreCommando+1;
                                     break;
-                case "Demolisseur" :
+                case DEMOLISSEUR :
                                     nombreDemolisseur=nombreDemolisseur+1;
                                     break;
-                case "Ingenieur" :
+                case INGENIEUR :
                                     nombreIngenieur=nombreIngenieur+1;
                                     break;
-                case "Char" :
+                case CHAR :
                                     nombreTank=nombreTank+1;
                                     break;
-                case "Uml" :
+                case UML :
                                     nombreUml=nombreUml+1;
                                     break;
-                case "While" :
+                case TANK :
                                     nombreWhile=nombreWhile+1;
                                     break;
-                case "Distance" :
+                case DISTANCE :
                                     nombreDistance=nombreDistance+1;
                                     break;                   
             }
