@@ -200,6 +200,9 @@ class Moteur
         }
     }
     
+    /**
+     * Contient la formule de calcul des degats
+     */
     private double getDegats(final Unite a,final Unite v) // a= attaquant, v= cible
     {
         int degatA = a.getDegat();
