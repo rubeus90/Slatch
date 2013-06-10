@@ -775,7 +775,7 @@ class Moteur
     }
     
     /**
-     * vérifie si une cible est présente en (x+decX, y+decY)
+     * Vérifie si une cible est présente en (x+decX, y+decY)
      */
     private boolean ciblePresente(final Unite unite,final int decX,final int decY,final boolean soin)
     {
