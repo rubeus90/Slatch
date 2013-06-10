@@ -134,6 +134,10 @@ class Moteur
             getJoueur(uniteA).addNbrUniteTue();
             
             estMort(pVictime,uniteA);
+            
+            if(getJoueur(uniteA).getFaction() == Faction.ROBOTS && uniteA.getType() == TypeUnite.KAMIKAZE){ //Si l'unite Attaquant est un Kamikaze
+                estMort(uniteA,pVictime);
+            }
         }    
         else if(distance(uniteA, pVictime)==1 && pVictime.getAttaque().aTypePortee.getPorteeMin()==1) //sinon + si attaque au CAC, on riposte
         {

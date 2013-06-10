@@ -48,7 +48,10 @@ public class PanelMenu extends JPanel
     /***/   Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe3, equipe4};
     /***/ 
     /***/   //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-    /***/   boolean[] vIA = {false,true,true,true,true};
+    /***/   boolean[] vIA = {false,false,false,true,true};
+    /***/
+    /***/   Faction[] vFaction = {Faction.NEUTRE,Faction.HUMAINS,Faction.ROBOTS,Faction.HUMAINS,Faction.HUMAINS};
+    /***/
     /*********************************************************************************************************************/
     
     /**
@@ -78,10 +81,10 @@ public class PanelMenu extends JPanel
 //        Font font = new Font("Helvetica", Font.BOLD, this.getWidth()/50);
         Font font;
 
-		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
-					.getClassLoader().getResource("Config/visitor2.ttf")
-					.toURI())).deriveFont(Font.PLAIN, this.getWidth()/50);
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
+                    .getClassLoader().getResource("Config/visitor2.ttf")
+                    .toURI())).deriveFont(Font.PLAIN, this.getWidth()/50);
 
         g.setFont(font);
         FontMetrics fm=getFontMetrics(font); 
@@ -294,7 +297,7 @@ public class PanelMenu extends JPanel
                 {
                    
                     
-                    Partie partieRapide = new Partie(20,30,"Maps/"+Slatch.ihm.aListeMap.get(aNumeroMap).getFichier()+".txt",true,vEquipe,vIA);
+                    Partie partieRapide = new Partie(20,30,"Maps/"+Slatch.ihm.aListeMap.get(aNumeroMap).getFichier()+".txt",true,vFaction,vEquipe,vIA);
 
                     Slatch.partie=partieRapide;
                     

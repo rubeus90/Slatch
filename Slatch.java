@@ -32,37 +32,7 @@ public class Slatch {
     {
         aImages=new HashMap<String,Image>();
         loadImage();
-
-        
-        //Equipe equipe0 = new Equipe(0);
-        //Equipe equipe1 = new Equipe(1);
-        //Equipe equipe2 = new Equipe(2);
-        
-        //EQUIPE DES JOUEURS : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-        //Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe1, equipe2};
-        
-        //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-        //boolean[] vIA = {false,true,true,true,true};
-        
-        //Partie partieRapide = new Partie(20,30,"Maps/doublevai.txt",false,vEquipe,vIA);
-        
-
-        //partie = partieRapide;
-        //moteur = new Moteur();
         ihm = new IHM_NEW();
-
-           
-//        maps = new CreationMaps();
-
-       
-        /*if(partie.getBrouillard()){
-            moteur.Brouillard();
-        }*/
-        
-       /* if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
-        {
-            StrategieIA.joueTour(Slatch.partie.getJoueurActuel());
-        }*/
     }
     
     private void loadImage()
@@ -73,7 +43,6 @@ public class Slatch {
         loadTerrain();
         loadUnite();
         loadBoutonMenu();
-       // loadPlaines();
     }
     
     private void loadTerrain()
@@ -108,26 +77,7 @@ public class Slatch {
             e.printStackTrace();
         }
     }
-    
-    private void loadPlaines()
-    {
-       try {
-            Image image;
-            Image imageRedim;
-            for(int i =0;i<=4;i++)
-            {
-                
-                        //System.out.println("TERRAIN DEPENDANCE "+terrain.getImage() + i);
-                        image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/plaine/plaine0" + i + ".png"));
-                        imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
-                        aImages.put("plaine0" + i,image);
-             }
-            }
-        catch (IOException e) {
-            e.printStackTrace();
-        } 
-    }
-    
+      
     private void loadUnite()
     {
       try {
@@ -142,20 +92,20 @@ public class Slatch {
                     image = ImageIO.read(getClass().getClassLoader().getResource("Images/unite/humain/" + unite.getImage() + i + ".png"));
                     imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                     aImages.put(""+unite.getImage() + i,image);
-                    //aImages.put("humains"+unite.getImage() + i,image);
+                    aImages.put("HUMAINS"+unite.getImage() + i,image);
                 }
             }
             
             //Pour les robots
-//             for(TypeUnite unite : TypeUnite.values())
-//             {
-//                 for(int i=1;i<5;i++)
-//                 {
-//                     image = ImageIO.read(getClass().getClassLoader().getResource("Images/unite/robot/" + unite.getImage() + i + ".png"));
-//                     imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
-//                     aImages.put("robots"+unite.getImage() + i,image);
-//                 }
-//             }
+            for(TypeUnite unite : TypeUnite.values())
+            {
+                for(int i=1;i<5;i++)
+                {
+                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/unite/robot/" + unite.getImage() + i + ".png"));
+                    imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                    aImages.put("ROBOTS"+unite.getImage() + i,image);
+                }
+            }
         }
         catch (IOException e) {
             e.printStackTrace();
