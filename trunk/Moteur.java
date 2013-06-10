@@ -749,6 +749,74 @@ class Moteur
         uniteA = pUnite;
     }
     
+    /*****************
+     * 
+     * METHODEs SIMPLIFICATRICEs
+     * 
+     * *************/
+    private void repaint()
+    {
+         Slatch.ihm.getPanel().repaint();
+         Slatch.ihm.getpanelinfo().repaint();
+    }
+    
+    /****
+     * ENSEMBLE DE METHODE QUI RETOURNE DES INDICES DE JOUEUR
+     */ 
+    private int getNumJoueur(final int pX,final int pY){
+        return Slatch.partie.getTerrain()[pX][pY].getUnite().getJoueur();
+    }
+    
+    private int getNumJoueurActuel(){
+        return Slatch.partie.getJoueurActuel();
+    }
+    
+    /****
+     * ENSEMBLE DE METHODE QUI RETOURNE DES UNITES
+     */ 
+    private Unite getUnite(final int pX, final int pY){
+       return Slatch.partie.getTerrain()[pX][pY].getUnite();
+    }
+   
+    
+    /****
+     * ENSEMBLE DE METHODE QUI RETOURNE DES JOUEURS
+     */
+    public Joueur getJoueur(final Unite pUnite){
+        return Slatch.partie.getJoueur(pUnite.getJoueur());
+    }
+    
+    public Joueur getJoueur(final Terrain pTerrain){
+        return Slatch.partie.getJoueur(pTerrain.getJoueur());
+    }
+    
+    public Joueur getJoueurTerrain(final int pX,final int pY){
+        return Slatch.partie.getJoueur(Slatch.partie.getTerrain()[pX][pY].getJoueur());
+    }
+    
+    public Joueur getJoueur(final int pX,final int pY){
+        return Slatch.partie.getJoueur(Slatch.partie.getTerrain()[pX][pY].getUnite().getJoueur());
+    }
+    
+    public Joueur getJoueurActuel(){
+        return Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
+    }
+    
+    /****
+     * ENSEMBLE DE METHODE QUI RETOURNE l'equipe d'un joueur
+     */
+    public int getEquipe(final int pJoueur){
+        return Slatch.partie.getJoueur(pJoueur).getEquipe().getNumEquipe();
+    }
+    
+    public int getEquipe(final Unite pUnite){
+        return getJoueur(pUnite).getEquipe().getNumEquipe();
+    }
+    
+    private boolean getBrouillard(){
+        return Slatch.partie.getBrouillard();
+    }
+    
     /******************************************************************************************************************************************************
      *                                                         Fonctionnement                                                                             *
      ******************************************************************************************************************************************************/
@@ -878,10 +946,7 @@ class Moteur
             }
         }
     }
-    
-    
-    
-    
+
     /**
      * Deplace une unite vers sa destination
      * @param unite unite a deplacer
@@ -1032,7 +1097,6 @@ class Moteur
         return null;
     }
     
-
      /**
      * Va appeler les methodes pour afficher la portee de deplacement d'une unite
      * @param unite unite qui a envie de bouger
@@ -1103,8 +1167,6 @@ class Moteur
             }  
         }
     }
-      
-    
     
     /**
      * Permet de passer le tour du joueur actuel et de donner la main au suivant
@@ -1138,8 +1200,6 @@ class Moteur
         }
     }
     
-    
-    
     /**
      * Cree une unite du type voulue sur la case voulue
      */
@@ -1166,72 +1226,5 @@ class Moteur
        
     }
  
-    /*****************
-     * 
-     * METHODEs SIMPLIFICATRICEs
-     * 
-     * *************/
-     
-    private void repaint()
-    {
-         Slatch.ihm.getPanel().repaint();
-         Slatch.ihm.getpanelinfo().repaint();
-    }
     
-    /****
-     * ENSEMBLE DE METHODE QUI RETOURNE DES INDICES DE JOUEUR
-     */ 
-    private int getNumJoueur(final int pX,final int pY){
-        return Slatch.partie.getTerrain()[pX][pY].getUnite().getJoueur();
-    }
-    
-    private int getNumJoueurActuel(){
-        return Slatch.partie.getJoueurActuel();
-    }
-    
-    /****
-     * ENSEMBLE DE METHODE QUI RETOURNE DES UNITES
-     */ 
-    private Unite getUnite(final int pX, final int pY){
-       return Slatch.partie.getTerrain()[pX][pY].getUnite();
-    }
-   
-    
-    /****
-     * ENSEMBLE DE METHODE QUI RETOURNE DES JOUEURS
-     */
-    public Joueur getJoueur(final Unite pUnite){
-        return Slatch.partie.getJoueur(pUnite.getJoueur());
-    }
-    
-    public Joueur getJoueur(final Terrain pTerrain){
-        return Slatch.partie.getJoueur(pTerrain.getJoueur());
-    }
-    
-    public Joueur getJoueurTerrain(final int pX,final int pY){
-        return Slatch.partie.getJoueur(Slatch.partie.getTerrain()[pX][pY].getJoueur());
-    }
-    
-    public Joueur getJoueur(final int pX,final int pY){
-        return Slatch.partie.getJoueur(Slatch.partie.getTerrain()[pX][pY].getUnite().getJoueur());
-    }
-    
-    public Joueur getJoueurActuel(){
-        return Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
-    }
-    
-    /****
-     * ENSEMBLE DE METHODE QUI RETOURNE l'equipe d'un joueur
-     */
-    public int getEquipe(final int pJoueur){
-        return Slatch.partie.getJoueur(pJoueur).getEquipe().getNumEquipe();
-    }
-    
-    public int getEquipe(final Unite pUnite){
-        return getJoueur(pUnite).getEquipe().getNumEquipe();
-    }
-    
-    private boolean getBrouillard(){
-        return Slatch.partie.getBrouillard();
-    }
 }
