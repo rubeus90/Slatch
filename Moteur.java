@@ -291,6 +291,9 @@ class Moteur
         return (double)(pourcentageVie(unite))/100.0;
     }
     
+    /**
+     * Permet d'obtenir le pourcentage de vie d'unite
+     */
     private int pourcentageVie(final Unite unite)
     {
         return (int)((double)(unite.getPV())/(double)(unite.getPVMax())*100); 
