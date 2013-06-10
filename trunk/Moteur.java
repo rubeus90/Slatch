@@ -33,7 +33,10 @@ class Moteur
         uniteA = null;
     }
     
-    public void setModeEvoluer(final boolean pBoolean){
+    /**
+     * 
+     */
+    public void setModeEvoluer(){
         aModeEvoluer = true;
     }
     
