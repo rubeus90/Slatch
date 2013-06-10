@@ -130,6 +130,9 @@ class Moteur
         affichePorteeAttaque(uniteA, false);
     }
     
+    /**
+     * permet a uniteA d'attaquer pVictime
+     */
     public void attaque(final Unite pVictime)
     { 
         double degatsAtt=0;
