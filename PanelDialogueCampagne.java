@@ -24,15 +24,14 @@ import javax.swing.border.Border;
 public class PanelDialogueCampagne extends JPanel {
 
 	private String dialogue;
-	private int etape;
-	private int niveau;
-	private JTextArea textArea;
+	private JTextArea textArea = new JTextArea();
 	private boolean dialogueFinished;
 	private Scanner scanner;
+	private String interlocuteur;
+	
 
 	public PanelDialogueCampagne(final int pNiveau) {
 		super();
-		etape = 1;
 		try {
 			scanner = new Scanner(getClass().getClassLoader()
 					.getResource("DialoguesCampagne/niveau" + (pNiveau+1))
@@ -40,18 +39,18 @@ public class PanelDialogueCampagne extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		textArea = new JTextArea();
 	}
 
 	public PanelDialogueCampagne() {
 		super();
 		dialogue = "Voila vous avez fini la campagne, maintenant allez jouer dehors!";
-		textArea = new JTextArea();
 	}
 
 	@Override
 	public void paintComponent(final Graphics g) {
-		afficheImageRedim("noir", 0, 0, this.getWidth(), this.getHeight(), g);
+		afficheImageRedim("background", 0, 0, this.getWidth(), this.getHeight(), g);
+		System.out.println(interlocuteur);
+		afficheImageRedim(interlocuteur, 0, 0, this.getWidth(), this.getHeight(), g);
 	}
 
 	private void afficheImageRedim(final String pURL,
@@ -66,7 +65,7 @@ public class PanelDialogueCampagne extends JPanel {
 	public void afficheText() {
 		this.setLayout(new BorderLayout());
 		
-		this.add(textArea, BorderLayout.CENTER);
+		this.add(textArea, BorderLayout.SOUTH);
 		Font font;
 		try {
 			font = Font.createFont(
@@ -81,7 +80,7 @@ public class PanelDialogueCampagne extends JPanel {
 
 		textArea.setForeground(Color.WHITE);
 		textArea.setText(dialogue);
-		textArea.setMargin(new Insets(50, 50, 50, 50));
+		textArea.setMargin(new Insets(50, 300, 50, 50));
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
 		textArea.setOpaque(false);
@@ -94,9 +93,13 @@ public class PanelDialogueCampagne extends JPanel {
 	}
 
 	public void etapeDialogue() {
+		String tab[] = null;
 		if (scanner.hasNextLine()) {
 			dialogueFinished = false;
-			dialogue = scanner.nextLine();
+			String texte = scanner.nextLine();
+			tab = texte.split(":");
+			interlocuteur = tab[0];
+			dialogue = tab[1];
 			afficheText();
 		} else
 			dialogueFinished = true;

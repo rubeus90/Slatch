@@ -194,6 +194,15 @@ public class Slatch {
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/wallpaper.png"));
                 aImages.put("wallpaper",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/background.png"));
+                aImages.put("background",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/1.png"));
+                aImages.put("1",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/2.png"));
+                aImages.put("2",image);
         }
         catch (IOException e) {
             e.printStackTrace();
