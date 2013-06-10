@@ -77,6 +77,14 @@ class Moteur
      ******************************************************************************************************************************************************/
     
      /**
+     * Annule l'attaque
+     */
+    public void annulerAttaque()
+    {
+        uniteA=null;
+    }
+    
+     /**
      * permet a uniteA d'attaquer pVictime
      */
     public void attaque(final Unite pVictime)
@@ -164,6 +172,126 @@ class Moteur
         return degat;
     }
     
+    /**
+     * Vérifie si une unité se trouve à côté de la case passée en paramètre
+     */
+    public boolean uniteProche(final Unite unite,final int pX,final int pY)
+    {
+        for(Point p: voisins)
+        {
+            int decX = (int)p.getX();
+            int decY = (int)p.getY();
+            if(dansLesBords(pX+decX,pY+decY))
+            {
+                if(getUnite(pX+decX,pY+decY)!=null)
+                {
+                    if(getNumJoueur(pX+decX,pY+decY)!=unite.getJoueur());
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * Verifie si une unite se trouve a portee de tir de l'unite passee en parametre
+     * @param unite unite qui cherche une autre unite a frapper
+     * @return true si une unite est a portee de tir, false sinon
+     */
+    public boolean cibleEnVue(final Unite unite,final boolean soin)
+    {
+        for(int i=1; i<=unite.getAttaque().aTypePortee.getPorteeMax(); i++)
+        {
+            for(int j=1; j<=i; j++)
+            {
+                for(Quad q: signes)
+                {      
+                    if(ciblePresente(unite, i*q.a+j*q.b,i*q.c+j*q.d, soin)){return true;}
+                }
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * Affiche la portee d'attaque en mettant en surbrillance les cibles potentielles
+     * @param unite unite qui cherche une autre unite a frapper
+     */
+    public void affichePorteeAttaque(final Unite unite,final boolean soin)
+    {
+        int x = unite.getX();
+        int y = unite.getY();
+
+        for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        {
+            for(int j=0; j<Slatch.partie.getHauteur(); j++)
+            {
+                tabAtt[i][j] = false;
+            }
+        }
+        
+        for(int i=1; i<=unite.getAttaque().aTypePortee.getPorteeMax();i++)
+        {
+            for(int j=1; j<=i;j++)
+            {
+                for(Quad q: signes)
+                {
+                    int a = i*q.a, b= j*q.b, c=i*q.c, d = j*q.d;
+                    if(dansLesBords(x+a+b, y+c+d))
+                    {
+                        if(ciblePresente(unite,a+b,c+d, soin))
+                        {
+                            Slatch.partie.getTerrain()[x+a+b][y+c+d].setSurbrillance(true);
+                            repaint();
+                            tabAtt[x+a+b][y+c+d] = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Retourne true si pC est a portee d'attaque de pA
+     */
+    public boolean estAPortee(Unite pA, Unite pC) // nous dit si pC est à portee de tir de PA
+    {
+        /*
+        int d=distance(pA, pC);
+        return d<=pA.getAttaque().aTypePortee.getPorteeMax() && d>=pA.getAttaque().aTypePortee.getPorteeMin();*/
+        return estAPortee(pA, pC.getX(), pC.getY());
+    }
+    
+    /**
+     * Retourne true si la case de coordonnees x, y est a portee d'attaque de pA
+     */
+    public boolean estAPortee(Unite pA, int x, int y)
+    {
+        int d=distance(pA.getX(), pA.getY(), x, y);
+        return d<=pA.getAttaque().aTypePortee.getPorteeMax() && d>=pA.getAttaque().aTypePortee.getPorteeMin();
+    }
+    
+    /**
+     * Vérifie si une cible est présente en (x+decX, y+decY)
+     */
+    private boolean ciblePresente(final Unite unite,final int decX,final int decY,final boolean soin)
+    {
+        int x = unite.getX();
+        int y = unite.getY();
+        
+        if(dansLesBords(x+decX,y+decY))
+        {
+            if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && getUnite(x+decX,y+decY)!=null)
+            {
+                boolean pasAuJoueurActuel = getEquipe(getNumJoueur(x+decX,y+decY)) != getJoueurActuel().getEquipe().getNumEquipe();
+                return (pasAuJoueurActuel^(soin && (getUnite(x+decX,y+decY).aBesoinDeSoins()||pasAuJoueurActuel)))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
+            }
+        }
+        return false;
+    }
+    
     /******************************************************************************************************************************************************
      *                                                  Liste des methodes pour Sparadrap                                                                 *
      ******************************************************************************************************************************************************/
@@ -215,31 +343,218 @@ class Moteur
      *                                                      Suivons le mouvement!                                                                         *
      ******************************************************************************************************************************************************/
      
-     /******************************************************************************************************************************************************
-     *                                                    UML, digivolve toi en...UML!                                                                     *
-     ******************************************************************************************************************************************************/
-     
-     
-    /**
-     * enleve la surbrillance pour tous les éléments de la matrice
+     /**
+    * permet de déplacer une unité en fonction du chemin passé en paramètre
+    * @param unite unite a deplacer
+    * @param pX abscisse de l'arrivee
+    * @param pY ordonnee de l'arrivee
+    */
+    public void deplacement(Unite unite,final int pX,final int pY)
+    {
+        boolean fini = false;
+        boolean geez = false;
+        boolean init=true;
+        int x = pX, y =pY;
+        int X=unite.getCoordonneeX(), Y=unite.getCoordonneeY();
+        Stack<Point> stack = new Stack<Point>();
+        Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
+        if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));unite.deplacee(true); Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());X=pX;Y=pY;init=false;if(unite.getAttaque().aTypePortee.getPorteeMin()>1){unite.attaque(true);}}
+        while(!fini)
+        {
+            Point p = pred[x][y];
+            if(p!=null)
+            {
+                x=(int)p.getX();
+                y=(int)p.getY();
+                if(unite.getCoordonneeX()==x && unite.getCoordonneeY()==y)
+                {
+                    fini = true;
+                }
+                else
+                {
+                    if(unite.getType().getDeplacement()>=tabDist[x][y])
+                    {//System.out.println("X= "+X+" et Y= "+Y);
+                        if(!geez)
+                        {
+                            if(getUnite(x,y)==null){
+                                stack.push(p);
+                                    
+                            unite.deplacee(true); 
+                            geez = true;Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
+                                 
+                                    if(init)
+                                    {
+                                     X=(int)p.getX();
+                                     Y=(int)p.getY();
+                                     init=false;
+                                    }
+                        }
+                        }
+                        else
+                        {
+                            stack.push(p);
+                            if(init)
+                            {
+                             X=(int)p.getX();
+                             Y=(int)p.getY();
+                             init=false;
+                            }
+                        }
+                    }
+                }
+            }
+            else{break;}
+        }
+            int pPosHautGaucheX = X*Slatch.ihm.getPanel().getaLargeurCarreau();
+            int pPosBasDroiteY = (Y+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
+            int pPosHautGaucheXdepart = (int)unite.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
+            int pPosBasDroiteYdepart = (int)(unite.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
+            unite.setDecaleUniteX(-(int)(pPosHautGaucheX - pPosHautGaucheXdepart ));
+            unite.setDecaleUniteY(-(int)(pPosBasDroiteY - pPosBasDroiteYdepart ));
+            
+        Point vDepart = new Point(unite.getCoordonneeX(),unite.getCoordonneeY());
+        
+        Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
+        Slatch.partie.getTerrain()[X][Y].setUnite(unite);
+        unite.setCoordonneeX(X);
+        unite.setCoordonneeY(Y);
+        
+        Unite vUnite = unite;
+        Stack<Point> vChemin = stack;
+        double vVitesse = 0;
+        AnimationDeplacement animation = new AnimationDeplacement(vChemin,vDepart,vUnite,vVitesse);
+            Slatch.ihm.getAnimation().addDeplacement(animation);
+        
+           if(!getJoueurActuel().estUneIA())
+        {
+            Slatch.ihm.getAnimation().start();
+        }
+        
+        
+    }
+    
+     /**
+     * Annule le deplacement
      */
-    public void enleverSurbrillance()
+    public void annulerDeplacement()
+    {
+        uniteD=null;
+    }
+    
+    /**
+     * Remplit le tableau qui contient les portees de deplacement pour l'unite en cours
+     */
+    public void remplitPorteeDep(final Unite unite,final boolean bool)
+    {
+        this.initialiseTabDist(unite);
+        this.algoDeplacement(unite, bool);
+        
+        for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        {
+            for(int j=0; j<Slatch.partie.getHauteur(); j++)
+            {
+                if(getUnite(i,j)!=null)
+                {
+                    if(getNumJoueur(i,j) == unite.getJoueur())
+                    {
+                        tabDist[i][j] = -2;
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+     * Va appeler les methodes pour afficher la portee de deplacement d'une unite
+     * @param unite unite qui a envie de bouger
+     */
+    private void affichePorteeDep(final Unite unite)
+    {
+        this.remplitPorteeDep(unite, true);
+        for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        {
+            for(int j=0; j<Slatch.partie.getHauteur(); j++)
+            {
+                if(tabDist[i][j]>0)
+                {
+                    Slatch.partie.getTerrain()[i][j].setSurbrillance(true);
+                    repaint();
+                }
+            }
+        }
+    }
+    
+    /**
+     * Initialise tabDist afin d'utiliser algoDeplacement dans des conditions optimales
+     */
+    private void initialiseTabDist(final Unite unite)
     {
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
             {
-                if(Slatch.partie.getTerrain()[i][j].getSurbrillance())
+                if(getUnite(i,j)!=null)  // quand on a déjà une unité sur la case, on ne peut pas y accéder
                 {
-                    Slatch.partie.getTerrain()[i][j].setSurbrillance(false);
-                    repaint();
+                    if(getNumJoueur(i,j)!= unite.getJoueur())
+                    {
+                        tabDist[i][j] = -2;
+                    }
+                    else
+                    {
+                        tabDist[i][j] = -1;
+                    }
+                }
+                else{tabDist[i][j] = -1;} // au début, on suppose qu'on a une distance infinie représentée par -1 sur chacune des cases restantes
+                pred[i][j]=null;
+            }
+        }
+        tabDist[unite.getX()][unite.getY()]=-2;
+        pred = new Point[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
+    }
+    
+    /**
+     * L'algorithme qui permet de trouver les cases atteignables, en calculant par la meme le plus court chemin
+     */
+    public void algoDeplacement(final Unite unite,final boolean porteeComptee)
+    {
+        PriorityQueue<Triplet> pq = new PriorityQueue<Triplet>();
+        pq.add(new Triplet(0,unite.getX(),unite.getY()));
+        while(!pq.isEmpty())
+        {
+            Triplet t = pq.poll();
+            for(Point p: voisins)
+            {
+                int x = t.x+(int)p.getX();
+                int y = t.y+(int)p.getY();
+                if(dansLesBords(x,y))
+                {
+                    int d = t.d+Slatch.partie.getTerrain()[x][y].getCout(unite);
+                    
+                    if(d<=unite.getType().getDeplacement() || !porteeComptee)
+                    {
+                        if(d<tabDist[x][y] || tabDist[x][y]==-1)
+                        {
+                            pred[x][y] = new Point(t.x, t.y);
+                            
+                            if(enBordureDeDeplacement(unite, t.x, t.y, d) && getUnite(t.x,t.y)!=null) // et unité présente aussi
+                            {
+                                pred[x][y]= null;
+                            }
+                            else
+                            {
+                                tabDist[x][y] = d;
+                                pq.offer(new Triplet(d, x, y));
+                            }
+                        }
+                    }
                 }
             }
         }
-    } 
-    
-    
-    
+    }
+    /******************************************************************************************************************************************************
+     *                                                    UML, digivolve toi en...UML!                                                                    *
+     ******************************************************************************************************************************************************/
+     
     /**
      * Methode qui permet a un ingenieur de faire evoluer une methode
      * @param pUnite
@@ -253,30 +568,11 @@ class Moteur
         uniteA=null;
     }
     
-    
-    
-    /**
-     * Quand une unite meurt, on la "supprime" du jeu
-     */
-    private void estMort(final Unite unite, final Unite pUniteVictorieux)
-    {
-        Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setPV(Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType().getPVMax());
-        Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(null);
-        getJoueur(unite).addNbrUniteMort();
-        repaint();
-        if(!getJoueur(unite).estUneIA() || unite.getJoueur()!=Slatch.partie.getJoueurActuel())
-        {
-            getJoueur(unite).getListeUnite().remove(unite);
-        }
-        
-        if(getJoueur(unite).getListeUnite().isEmpty())
-        {
-            getJoueur(unite).mourrir();
-            Slatch.partie.gagner(getJoueur(pUniteVictorieux));
-        }
-    }
-    
-    /**
+    /******************************************************************************************************************************************************
+     *                                                          Capturez les tous!                                                                        *
+     ******************************************************************************************************************************************************/
+     
+     /**
      * Permet a uniteA de capturer le batiment sur lequel elle se trouve
      */
     public void capture(final int pX,final int pY)
@@ -319,7 +615,29 @@ class Moteur
         uniteA.deplacee(true);
         uniteA=null;
     }
-
+    
+    
+    /******************************************************************************************************************************************************
+     *                                                         Rats Courcis                                                                               *
+     ******************************************************************************************************************************************************/
+    /**
+     * enleve la surbrillance pour tous les éléments de la matrice
+     */
+    public void enleverSurbrillance()
+    {
+        for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        {
+            for(int j=0; j<Slatch.partie.getHauteur(); j++)
+            {
+                if(Slatch.partie.getTerrain()[i][j].getSurbrillance())
+                {
+                    Slatch.partie.getTerrain()[i][j].setSurbrillance(false);
+                    repaint();
+                }
+            }
+        }
+    } 
+    
     /**
      * Permet d'obtenir le pourcentage de la vie d'unite divise par 100
      */
@@ -335,7 +653,45 @@ class Moteur
     {
         return (int)((double)(unite.getPV())/(double)(unite.getPVMax())*100); 
     }
-
+    
+    /**
+     * Renvoie la distance entre (dX,dY) et (aX,aY)
+     */
+    public int distance(final int dX,final int dY,final int aX,final int aY)
+    {
+        return Math.abs(dX-aX) + Math.abs(dY-aY);
+    }
+    
+    /**
+     * Renvoie la distance entre e1 et e2
+     */
+    public int distance(final Entite e1,final Entite e2)
+    {
+        return distance(e1.getX(), e1.getY(), e2.getX(), e2.getY());
+    }
+    
+    
+    /**
+     * Quand une unite meurt, on la "supprime" du jeu
+     */
+    private void estMort(final Unite unite, final Unite pUniteVictorieux)
+    {
+        Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setPV(Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType().getPVMax());
+        Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(null);
+        getJoueur(unite).addNbrUniteMort();
+        repaint();
+        if(!getJoueur(unite).estUneIA() || unite.getJoueur()!=Slatch.partie.getJoueurActuel())
+        {
+            getJoueur(unite).getListeUnite().remove(unite);
+        }
+        
+        if(getJoueur(unite).getListeUnite().isEmpty())
+        {
+            getJoueur(unite).mourrir();
+            Slatch.partie.gagner(getJoueur(pUniteVictorieux));
+        }
+    }
+    
     /**
      * Appelee par l'IHM quand on clique sur une case, cette methode doit generer la liste des coordonnees accessibles par l'unite se trouvant sur la case selectionnee si elle ne s'est pas deja deplacee, et passer cette Liste a l'IHM.
      */
@@ -442,113 +798,6 @@ class Moteur
     }
     
     
-    
-    /**
-     * Annule le deplacement
-     */
-    public void annulerDeplacement()
-    {
-        uniteD=null;
-    }
-    
-    /**
-     * Annule l'attaque
-     */
-    public void annulerAttaque()
-    {
-        uniteA=null;
-    }
-    
-    
-    /**
-    * permet de déplacer une unité en fonction du chemin passé en paramètre
-    * @param unite unite a deplacer
-    * @param pX abscisse de l'arrivee
-    * @param pY ordonnee de l'arrivee
-    */
-    public void deplacement(Unite unite,final int pX,final int pY)
-    {
-        boolean fini = false;
-        boolean geez = false;
-        boolean init=true;
-        int x = pX, y =pY;
-        int X=unite.getCoordonneeX(), Y=unite.getCoordonneeY();
-        Stack<Point> stack = new Stack<Point>();
-        Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
-        if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));unite.deplacee(true); Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());X=pX;Y=pY;init=false;if(unite.getAttaque().aTypePortee.getPorteeMin()>1){unite.attaque(true);}}
-        while(!fini)
-        {
-            Point p = pred[x][y];
-            if(p!=null)
-            {
-                x=(int)p.getX();
-                y=(int)p.getY();
-                if(unite.getCoordonneeX()==x && unite.getCoordonneeY()==y)
-                {
-                    fini = true;
-                }
-                else
-                {
-                    if(unite.getType().getDeplacement()>=tabDist[x][y])
-                    {//System.out.println("X= "+X+" et Y= "+Y);
-                        if(!geez)
-                        {
-                            if(getUnite(x,y)==null){
-                                stack.push(p);
-                                    
-                            unite.deplacee(true); 
-                            geez = true;Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
-                                 
-                                    if(init)
-                                    {
-                                     X=(int)p.getX();
-                                     Y=(int)p.getY();
-                                     init=false;
-                                    }
-                        }
-                        }
-                        else
-                        {
-                            stack.push(p);
-                            if(init)
-                            {
-                             X=(int)p.getX();
-                             Y=(int)p.getY();
-                             init=false;
-                            }
-                        }
-                    }
-                }
-            }
-            else{break;}
-        }
-            int pPosHautGaucheX = X*Slatch.ihm.getPanel().getaLargeurCarreau();
-            int pPosBasDroiteY = (Y+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
-            int pPosHautGaucheXdepart = (int)unite.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
-            int pPosBasDroiteYdepart = (int)(unite.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
-            unite.setDecaleUniteX(-(int)(pPosHautGaucheX - pPosHautGaucheXdepart ));
-            unite.setDecaleUniteY(-(int)(pPosBasDroiteY - pPosBasDroiteYdepart ));
-            
-        Point vDepart = new Point(unite.getCoordonneeX(),unite.getCoordonneeY());
-        
-        Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setUnite(null);
-        Slatch.partie.getTerrain()[X][Y].setUnite(unite);
-        unite.setCoordonneeX(X);
-        unite.setCoordonneeY(Y);
-        
-        Unite vUnite = unite;
-        Stack<Point> vChemin = stack;
-        double vVitesse = 0;
-        AnimationDeplacement animation = new AnimationDeplacement(vChemin,vDepart,vUnite,vVitesse);
-            Slatch.ihm.getAnimation().addDeplacement(animation);
-        
-           if(!getJoueurActuel().estUneIA())
-        {
-            Slatch.ihm.getAnimation().start();
-        }
-        
-        
-    }
     
     
     /**
@@ -703,184 +952,7 @@ class Moteur
     
     
     
-    /**
-     * Vérifie si une unité se trouve à côté de la case passée en paramètre
-     */
-    public boolean uniteProche(final Unite unite,final int pX,final int pY)
-    {
-        for(Point p: voisins)
-        {
-            int decX = (int)p.getX();
-            int decY = (int)p.getY();
-            if(dansLesBords(pX+decX,pY+decY))
-            {
-                if(getUnite(pX+decX,pY+decY)!=null)
-                {
-                    if(getNumJoueur(pX+decX,pY+decY)!=unite.getJoueur());
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
     
-    /**
-     * Verifie si une unite se trouve a portee de tir de l'unite passee en parametre
-     * @param unite unite qui cherche une autre unite a frapper
-     * @return true si une unite est a portee de tir, false sinon
-     */
-    public boolean cibleEnVue(final Unite unite,final boolean soin)
-    {
-        for(int i=1; i<=unite.getAttaque().aTypePortee.getPorteeMax(); i++)
-        {
-            for(int j=1; j<=i; j++)
-            {
-                for(Quad q: signes)
-                {      
-                    if(ciblePresente(unite, i*q.a+j*q.b,i*q.c+j*q.d, soin)){return true;}
-                }
-            }
-        }
-        return false;
-    }
-    
-    /**
-     * Affiche la portee d'attaque en mettant en surbrillance les cibles potentielles
-     * @param unite unite qui cherche une autre unite a frapper
-     */
-    public void affichePorteeAttaque(final Unite unite,final boolean soin)
-    {
-        int x = unite.getX();
-        int y = unite.getY();
-
-        for(int i=0; i<Slatch.partie.getLargeur(); i++)
-        {
-            for(int j=0; j<Slatch.partie.getHauteur(); j++)
-            {
-                tabAtt[i][j] = false;
-            }
-        }
-        
-        for(int i=1; i<=unite.getAttaque().aTypePortee.getPorteeMax();i++)
-        {
-            for(int j=1; j<=i;j++)
-            {
-                for(Quad q: signes)
-                {
-                    int a = i*q.a, b= j*q.b, c=i*q.c, d = j*q.d;
-                    if(dansLesBords(x+a+b, y+c+d))
-                    {
-                        if(ciblePresente(unite,a+b,c+d, soin))
-                        {
-                            Slatch.partie.getTerrain()[x+a+b][y+c+d].setSurbrillance(true);
-                            repaint();
-                            tabAtt[x+a+b][y+c+d] = true;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * Retourne true si pC est a portee d'attaque de pA
-     */
-    public boolean estAPortee(Unite pA, Unite pC) // nous dit si pC est à portee de tir de PA
-    {
-        /*
-        int d=distance(pA, pC);
-        return d<=pA.getAttaque().aTypePortee.getPorteeMax() && d>=pA.getAttaque().aTypePortee.getPorteeMin();*/
-        return estAPortee(pA, pC.getX(), pC.getY());
-    }
-    
-    /**
-     * Retourne true si la case de coordonnees x, y est a portee d'attaque de pA
-     */
-    public boolean estAPortee(Unite pA, int x, int y)
-    {
-        int d=distance(pA.getX(), pA.getY(), x, y);
-        return d<=pA.getAttaque().aTypePortee.getPorteeMax() && d>=pA.getAttaque().aTypePortee.getPorteeMin();
-    }
-    
-    /**
-     * Vérifie si une cible est présente en (x+decX, y+decY)
-     */
-    private boolean ciblePresente(final Unite unite,final int decX,final int decY,final boolean soin)
-    {
-        int x = unite.getX();
-        int y = unite.getY();
-        
-        if(dansLesBords(x+decX,y+decY))
-        {
-            if(distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && distance(x+decX, y+decY, x,y)<=unite.getAttaque().aTypePortee.getPorteeMax() && distance(x+decX, y+decY, x,y)>=unite.getAttaque().aTypePortee.getPorteeMin() && getUnite(x+decX,y+decY)!=null)
-            {
-                boolean pasAuJoueurActuel = getEquipe(getNumJoueur(x+decX,y+decY)) != getJoueurActuel().getEquipe().getNumEquipe();
-                return (pasAuJoueurActuel^(soin && (getUnite(x+decX,y+decY).aBesoinDeSoins()||pasAuJoueurActuel)))&&!(unite.dejaDeplacee() && distance(x+decX, y+decY, x,y)>=2);
-            }
-        }
-        return false;
-    }
-    
-    /**
-     * Renvoie la distance entre (dX,dY) et (aX,aY)
-     */
-    public int distance(final int dX,final int dY,final int aX,final int aY)
-    {
-        return Math.abs(dX-aX) + Math.abs(dY-aY);
-    }
-    
-    /**
-     * Renvoie la distance entre e1 et e2
-     */
-    public int distance(final Entite e1,final Entite e2)
-    {
-        return distance(e1.getX(), e1.getY(), e2.getX(), e2.getY());
-    }
-    
-    /**
-     * Remplit le tableau qui contient les portees de deplacement pour l'unite en cours
-     */
-    public void remplitPorteeDep(final Unite unite,final boolean bool)
-    {
-        this.initialiseTabDist(unite);
-        this.algoDeplacement(unite, bool);
-        
-        for(int i=0; i<Slatch.partie.getLargeur(); i++)
-        {
-            for(int j=0; j<Slatch.partie.getHauteur(); j++)
-            {
-                if(getUnite(i,j)!=null)
-                {
-                    if(getNumJoueur(i,j) == unite.getJoueur())
-                    {
-                        tabDist[i][j] = -2;
-                    }
-                }
-            }
-        }
-    }
-    
-    /**
-     * Va appeler les methodes pour afficher la portee de deplacement d'une unite
-     * @param unite unite qui a envie de bouger
-     */
-    private void affichePorteeDep(final Unite unite)
-    {
-        this.remplitPorteeDep(unite, true);
-        for(int i=0; i<Slatch.partie.getLargeur(); i++)
-        {
-            for(int j=0; j<Slatch.partie.getHauteur(); j++)
-            {
-                if(tabDist[i][j]>0)
-                {
-                    Slatch.partie.getTerrain()[i][j].setSurbrillance(true);
-                    repaint();
-                }
-            }
-        }
-    }
     
      /**
      * Va appeler les methodes pour afficher la portee de deplacement d'une unite
@@ -954,73 +1026,7 @@ class Moteur
     }
       
    
-    /**
-     * Initialise tabDist afin d'utiliser algoDeplacement dans des conditions optimales
-     */
-    private void initialiseTabDist(final Unite unite)
-    {
-        for(int i=0; i<Slatch.partie.getLargeur(); i++)
-        {
-            for(int j=0; j<Slatch.partie.getHauteur(); j++)
-            {
-                if(getUnite(i,j)!=null)  // quand on a déjà une unité sur la case, on ne peut pas y accéder
-                {
-                    if(getNumJoueur(i,j)!= unite.getJoueur())
-                    {
-                        tabDist[i][j] = -2;
-                    }
-                    else
-                    {
-                        tabDist[i][j] = -1;
-                    }
-                }
-                else{tabDist[i][j] = -1;} // au début, on suppose qu'on a une distance infinie représentée par -1 sur chacune des cases restantes
-                pred[i][j]=null;
-            }
-        }
-        tabDist[unite.getX()][unite.getY()]=-2;
-        pred = new Point[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
-    }
     
-    /**
-     * L'algorithme qui permet de trouver les cases atteignables, en calculant par la meme le plus court chemin
-     */
-    public void algoDeplacement(final Unite unite,final boolean porteeComptee)
-    {
-        PriorityQueue<Triplet> pq = new PriorityQueue<Triplet>();
-        pq.add(new Triplet(0,unite.getX(),unite.getY()));
-        while(!pq.isEmpty())
-        {
-            Triplet t = pq.poll();
-            for(Point p: voisins)
-            {
-                int x = t.x+(int)p.getX();
-                int y = t.y+(int)p.getY();
-                if(dansLesBords(x,y))
-                {
-                    int d = t.d+Slatch.partie.getTerrain()[x][y].getCout(unite);
-                    
-                    if(d<=unite.getType().getDeplacement() || !porteeComptee)
-                    {
-                        if(d<tabDist[x][y] || tabDist[x][y]==-1)
-                        {
-                            pred[x][y] = new Point(t.x, t.y);
-                            
-                            if(enBordureDeDeplacement(unite, t.x, t.y, d) && getUnite(t.x,t.y)!=null) // et unité présente aussi
-                            {
-                                pred[x][y]= null;
-                            }
-                            else
-                            {
-                                tabDist[x][y] = d;
-                                pq.offer(new Triplet(d, x, y));
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
     
     /**
      * Verifie si la case passee en parametre se situe en bordure de deplacement
