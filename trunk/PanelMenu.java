@@ -140,6 +140,7 @@ public class PanelMenu extends JPanel
                g.drawString("Description : "+Slatch.ihm.aListeMap.get(aNumeroMap).getDescription(),this.getWidth()/9+this.getWidth()/2 , this.getHeight()/3+2*hPolice );
                g.drawString("Conseil : "+Slatch.ihm.aListeMap.get(aNumeroMap).getConseil(),this.getWidth()/9+this.getWidth()/2 ,this.getHeight()/3+4*hPolice );
                g.drawString("Nombre de Joueurs : "+Slatch.ihm.aListeMap.get(aNumeroMap).getNbrJoueur(),this.getWidth()/9+this.getWidth()/2 ,this.getHeight()/3+6*hPolice );
+               g.drawString("Taille : "+Slatch.ihm.aListeMap.get(aNumeroMap).getLongueur()+ " x "+Slatch.ihm.aListeMap.get(aNumeroMap).getLargeur(),this.getWidth()/9+this.getWidth()/2 ,this.getHeight()/3+8*hPolice );
                
                Image flechegauche = Slatch.aImages.get("flechegauche");
                Image flechedroite = Slatch.aImages.get("flechedroite");
