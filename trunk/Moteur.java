@@ -1152,21 +1152,6 @@ class Moteur
         return this.estAPortee(pA, pX, pY);
     }
     
-    /**
-     * Renvoie true si x et y ne depassent pas respectivement la largeur et la hauteur de la carte
-     */
-    static boolean dansLesBords(final int x,final int y)
-    {
-        return(x>=0 && y>=0 && x<Slatch.partie.getLargeur() && y<Slatch.partie.getHauteur());
-    }
-    
-    /**
-     * un p'tit setteur pour uniteA
-     */
-    public void setuniteA(Unite pUnite){
-        uniteA = pUnite;
-    }
-    
     /*****************
      * 
      * METHODEs SIMPLIFICATRICEs
