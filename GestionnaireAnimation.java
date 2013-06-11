@@ -235,6 +235,34 @@ public class GestionnaireAnimation implements ActionListener
                    }
                 
             }
+            break;
+          case "evolution":
+          
+            cible= ((AnimationEvolution)animation.get(numeroUnite)).getCible();
+            fin = afficheEvolution(cible);
+            avancement += deltaT;
+            if(fin)
+            {
+                
+                if(numeroUnite>=animation.size()-1)
+                {
+                    numeroUnite=0;
+                    avancement=0;
+                    animation.clear();
+                    Slatch.ihm.timer.stop();
+                    
+                    if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
+                    Slatch.moteur.passeTour();
+                    
+                    return;
+                }
+                else
+                {
+                    numeroUnite++;
+                    
+                   }
+                
+            }
         }
     }
     
@@ -411,13 +439,36 @@ public class GestionnaireAnimation implements ActionListener
             cible.setMort(true);
             int numero = (int)avancement/90;
             cible.setNumeroExplosion(numero);
-            System.out.println(numero);
             Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXatt,pPosHautGaucheYatt,pPosBasDroiteXatt-pPosHautGaucheXatt,pPosBasDroiteYatt-pPosHautGaucheYatt);
             return false;
         }
         else 
         {
             cible.setMort(false);
+            Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXatt,pPosHautGaucheYatt,pPosBasDroiteXatt-pPosHautGaucheXatt,pPosBasDroiteYatt-pPosHautGaucheYatt);
+            return true;
+        }
+    }
+    
+    public boolean afficheEvolution(final Unite cible)
+    {
+        int pPosHautGaucheXatt = cible.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosHautGaucheYatt = cible.getCoordonneeY()*Slatch.ihm.getPanel().getaHauteurCarreau();
+        int pPosBasDroiteXatt = (cible.getCoordonneeX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosBasDroiteYatt = (cible.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
+       
+
+        if(avancement<900)
+        {
+            cible.setLvlup(true);
+            int numero = (int)avancement/180;
+            cible.setNumeroFleche(numero);
+            Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXatt,pPosHautGaucheYatt,pPosBasDroiteXatt-pPosHautGaucheXatt,pPosBasDroiteYatt-pPosHautGaucheYatt);
+            return false;
+        }
+        else 
+        {
+            cible.setLvlup(false);
             Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXatt,pPosHautGaucheYatt,pPosBasDroiteXatt-pPosHautGaucheXatt,pPosBasDroiteYatt-pPosHautGaucheYatt);
             return true;
         }
