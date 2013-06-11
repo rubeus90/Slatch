@@ -24,7 +24,6 @@ public class StrategieIA
             }
             if(u.getPV()<=0){i.remove();}
         }    
-        //Slatch.moteur.passeTour();
         Slatch.ihm.getAnimation().start();
     }
     
@@ -37,6 +36,12 @@ public class StrategieIA
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
             {
                 iMap[i][j]=new Influence();
+            }
+        }
+        for(int i=0; i<Slatch.partie.getLargeur(); i++)
+        {
+            for(int j=0; j<Slatch.partie.getHauteur(); j++)
+            {
                 iMap[i][j].defensif+=20*mapTerrain[i][j].getType().getCouverture()*mode.inf.defensif;
                 switch(mapTerrain[i][j].getType())
                 {
