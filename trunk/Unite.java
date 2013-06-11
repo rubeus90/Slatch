@@ -38,6 +38,8 @@ public class Unite extends Entite
     private int blessure;
     private boolean check;
     private boolean mort;
+    private boolean lvlup;
+    private int numeroFleche;
     private int numeroExplosion;
     public Influence[][] mapInfluence;
     /**
@@ -64,6 +66,7 @@ public class Unite extends Entite
        aExperienceMax=pType.getXPUP();
        pVaffiche = aPV;
        check=false;
+       
        for(TypeAttaque type : TypeAttaque.values()) {
                    
                     if(type.getNom().equals(pType.getAttaque())){
@@ -75,6 +78,7 @@ public class Unite extends Entite
        mapInfluence = Slatch.tabInf.get(this.aType);
        aDegats = aAttaque.getDegats();         
        mort = false;
+       lvlup=false;
        dejaAttaque=false;
        dejaDeplacee = false;
     }
@@ -366,11 +370,17 @@ public class Unite extends Entite
                 
                 if(mort)
                 {
-                    System.out.println(numeroExplosion);
+                    //System.out.println(numeroExplosion);
                     Image explosion = Slatch.aImages.get("explosion"+numeroExplosion);
                     g.drawImage(explosion, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
                 }
-            
+                
+                if(lvlup)
+                {
+                    //System.out.println(numeroExplosion);
+                    Image explosion = Slatch.aImages.get("fleche"+numeroFleche);
+                    g.drawImage(explosion, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
+                }
     }
     
     public boolean seSitue(Point p)
@@ -394,7 +404,9 @@ public class Unite extends Entite
     public boolean getCheck() { return check;}
     public void setPVaffiche(final int X) {pVaffiche=X;}
     public void setMort(final boolean X) {mort=X;}
+    public void setLvlup(final boolean X) {lvlup=X;}
     public void setNumeroExplosion( final int X) {numeroExplosion = X;}
+    public void setNumeroFleche( final int X) {numeroFleche = X;}
     //public int getPVaffiche() { return pVaffiche;}
     
     public boolean peutCapturer()

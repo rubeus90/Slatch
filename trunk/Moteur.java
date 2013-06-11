@@ -613,9 +613,17 @@ class Moteur
     {
         uniteA = getUnite(pX,pY);
         uniteA.upLvl();
+           AnimationEvolution lvlup=new AnimationEvolution(uniteA);
+           Slatch.ihm.getAnimation().addAnimation(lvlup);
+              if(!getJoueurActuel().estUneIA())
+        {
+            Slatch.ihm.getAnimation().start();
+        }
+        
         uniteA.attaque(true);
         uniteA.deplacee(true);
         uniteA=null;
+        
     }
     
     /******************************************************************************************************************************************************

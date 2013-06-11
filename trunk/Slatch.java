@@ -45,6 +45,7 @@ public class Slatch {
         loadTerrain();
         loadUnite();
         loadExplosion();
+        loadFleche();
         loadBoutonMenu();
     }
     
@@ -91,6 +92,27 @@ public class Slatch {
                 {
                     image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/explosion"+i+".png"));
                     aImages.put("explosion"+ i,image);
+
+                }
+   
+            
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void loadFleche()
+    {
+      try {
+            Image image;
+            
+            
+            
+                for(int i=1;i<6;i++)
+                {
+                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/fleche"+i+".png"));
+                    aImages.put("fleche"+ i,image);
 
                 }
    
