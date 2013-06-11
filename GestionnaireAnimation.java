@@ -75,7 +75,8 @@ public class GestionnaireAnimation implements ActionListener
      * Methode appelee ttes les 50ms
      */
     public void actionPerformed(ActionEvent event) {
-        
+        boolean fin;
+        Unite cible;
         long deltaT = System.currentTimeMillis()-beforeTime;
         beforeTime = System.currentTimeMillis();   
         if(deltaT>70) return;
@@ -101,8 +102,9 @@ public class GestionnaireAnimation implements ActionListener
             return;
         }
 
-        if(animation.get(numeroUnite).aType.equals("deplacement"))
+        switch (animation.get(numeroUnite).aType)
         {
+          case "deplacement":
             if(((AnimationDeplacement)animation.get(numeroUnite)).getChemin().isEmpty())
             {
                 if(numeroUnite>=animation.size()-1)
@@ -140,12 +142,15 @@ public class GestionnaireAnimation implements ActionListener
             
             changerCase(((AnimationDeplacement)animation.get(numeroUnite)).getUnite(),destX,destY,deltaT);
             }
-        }
-        else if (animation.get(numeroUnite).aType.equals("attaque"))
-        {
+            break;
+            
+            
+            
+          case "attaque":
+        
             Unite attaquant= ((AnimationAttaque)animation.get(numeroUnite)).getAttaquant();
             Unite victime =((AnimationAttaque)animation.get(numeroUnite)).getVictime();
-            boolean fin = afficheDegat(attaquant,victime);
+            fin = afficheDegat(attaquant,victime);
             avancement += deltaT;
             if(fin)
             {
@@ -169,11 +174,44 @@ public class GestionnaireAnimation implements ActionListener
                    }
                 
             }
-        }
-        else if (animation.get(numeroUnite).aType.equals("soin"))
-        {
-            Unite cible= ((AnimationSoin)animation.get(numeroUnite)).getCible();
-            boolean fin = afficheSoin(cible);
+            break;
+            
+            
+            
+          case "soin" :
+        
+            cible= ((AnimationSoin)animation.get(numeroUnite)).getCible();
+            fin = afficheSoin(cible);
+            avancement += deltaT;
+            if(fin)
+            {
+                
+                if(numeroUnite>=animation.size()-1)
+                {
+                    numeroUnite=0;
+                    avancement=0;
+                    animation.clear();
+                    Slatch.ihm.timer.stop();
+                    
+                    if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
+                    Slatch.moteur.passeTour();
+                    
+                    return;
+                }
+                else
+                {
+                    numeroUnite++;
+                    
+                   }
+                
+            }
+            break;  
+            
+            
+          case "mort":
+          
+            cible= ((AnimationMort)animation.get(numeroUnite)).getCible();
+            fin = afficheMort(cible);
             avancement += deltaT;
             if(fin)
             {
@@ -355,6 +393,31 @@ public class GestionnaireAnimation implements ActionListener
         {
             cible.setCheck(false);
             cible.setPVaffiche(((AnimationSoin)animation.get(numeroUnite)).getPVcib());
+            Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXatt,pPosHautGaucheYatt,pPosBasDroiteXatt-pPosHautGaucheXatt,pPosBasDroiteYatt-pPosHautGaucheYatt);
+            return true;
+        }
+    }
+    
+    public boolean afficheMort(final Unite cible)
+    {
+        int pPosHautGaucheXatt = cible.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosHautGaucheYatt = cible.getCoordonneeY()*Slatch.ihm.getPanel().getaHauteurCarreau();
+        int pPosBasDroiteXatt = (cible.getCoordonneeX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosBasDroiteYatt = (cible.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
+       
+
+        if(avancement<900)
+        {
+            cible.setMort(true);
+            int numero = (int)avancement/90;
+            cible.setNumeroExplosion(numero);
+            System.out.println(numero);
+            Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXatt,pPosHautGaucheYatt,pPosBasDroiteXatt-pPosHautGaucheXatt,pPosBasDroiteYatt-pPosHautGaucheYatt);
+            return false;
+        }
+        else 
+        {
+            cible.setMort(false);
             Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXatt,pPosHautGaucheYatt,pPosBasDroiteXatt-pPosHautGaucheXatt,pPosBasDroiteYatt-pPosHautGaucheYatt);
             return true;
         }

@@ -135,13 +135,14 @@ class Moteur
         }
         uniteA.attaque(true);
         uniteA.deplacee(true);
+        
         int pVatt=uniteA.getPV();
         int pVvic=pVictime.getPV();
         AnimationAttaque attaque=new AnimationAttaque(uniteA,pVictime,pVatt,pVvic);
         Slatch.ihm.getAnimation().addAnimation(attaque);
-        
            if(!getJoueurActuel().estUneIA())
         {
+           
             Slatch.ihm.getAnimation().start();
         }
         uniteA=null;
@@ -846,10 +847,10 @@ class Moteur
         Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setPV(Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType().getPVMax());
         Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(null);
         getJoueur(unite).addNbrUniteMort();
-        if(getJoueur(unite).estUneIA())
+        //if(getJoueur(unite).estUneIA())
         Slatch.ihm.getAnimation().aTricheAffichage.add(unite);
-        
         repaint();
+        
         if(!getJoueur(unite).estUneIA() || unite.getJoueur()!=Slatch.partie.getJoueurActuel())
         {
             getJoueur(unite).getListeUnite().remove(unite);
@@ -860,6 +861,10 @@ class Moteur
             getJoueur(unite).mourrir();
             Slatch.partie.gagner(getJoueur(pUniteVictorieux));
         }
+        
+           AnimationMort mort=new AnimationMort(unite);
+           Slatch.ihm.getAnimation().addAnimation(mort);
+        
     }
     
     /**

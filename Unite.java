@@ -37,6 +37,8 @@ public class Unite extends Entite
     private int pVaffiche;
     private int blessure;
     private boolean check;
+    private boolean mort;
+    private int numeroExplosion;
     public Influence[][] mapInfluence;
     /**
      * Constructeur par default de la classe Unite
@@ -72,7 +74,7 @@ public class Unite extends Entite
             
        mapInfluence = Slatch.tabInf.get(this.aType);
        aDegats = aAttaque.getDegats();         
-       
+       mort = false;
        dejaAttaque=false;
        dejaDeplacee = false;
     }
@@ -362,6 +364,12 @@ public class Unite extends Entite
                 }
                 
                 
+                if(mort)
+                {
+                    System.out.println(numeroExplosion);
+                    Image explosion = Slatch.aImages.get("explosion"+numeroExplosion);
+                    g.drawImage(explosion, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
+                }
             
     }
     
@@ -385,6 +393,8 @@ public class Unite extends Entite
     public void setCheck(final boolean X) {check=X;}
     public boolean getCheck() { return check;}
     public void setPVaffiche(final int X) {pVaffiche=X;}
+    public void setMort(final boolean X) {mort=X;}
+    public void setNumeroExplosion( final int X) {numeroExplosion = X;}
     //public int getPVaffiche() { return pVaffiche;}
     
     public boolean peutCapturer()
