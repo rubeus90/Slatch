@@ -98,8 +98,12 @@ public class Terrain extends Entite{
         int pPosBasDroiteX = (super.getCoordonneeX()+1)*pPanel.getaLargeurCarreau();
         int pPosBasDroiteY = (super.getCoordonneeY()+1)*pPanel.getaHauteurCarreau();
         Image img;
-            
-        img = Slatch.aImages.get(""+ aType.getImage() + getJoueur());
+        
+        if(aType.getDependance()){
+            img = Slatch.partie.getMap().isDesert() ? Slatch.aImages.get("DESERT"+ aType.getImage() + getJoueur()) : Slatch.aImages.get("TERRE"+ aType.getImage() + getJoueur());
+        }
+        else 
+            img = Slatch.aImages.get(""+ aType.getImage() + getJoueur());
             
             
         g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);

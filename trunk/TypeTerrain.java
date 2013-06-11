@@ -7,36 +7,40 @@ import java.lang.Integer;
 import java.net.URL;
 
 public enum TypeTerrain {
-        FORET("foret", "arbres", "Foret", 2,0,false),
-        PLAINE("plaine", "plaine", "Plaine", 1,0,false),
-        MONTAGNE("montagne", "montagne", "Montagne", 3,0,false),
-        BATIMENT("batiment", "batiment", "Batiment", 2,30,true),
-        QG("qg","qg","QG",5,40,true),
-        USINE("usine","caserne","Usine",3,30,true),
+        FORET("foret", "arbres", "Foret", 2,0,false,false),
+        PLAINE("plaine", "plaine", "Plaine", 1,0,false,false),
+        MONTAGNE("montagne", "montagne", "Montagne", 3,0,false,false),
+        BATIMENT("batiment", "batiment", "Batiment", 2,30,true,false),
+        QG("qg","qg","QG",5,40,true,false),
+        USINE("usine","caserne","Usine",3,30,true,false),
+        
+        DESERT("desert","desert","Desert",1,0,false,true),
+        CACTUS("cactus","cactus","Cactus",2,0,false,true),
+        DUNE("dune","dune","Dune",3,0,false,true),
         
         //eau
-        EAU("eau","eau","Eau",1,0,false),
-        RIVEBAS("rivebas","rivebas","Eau",1,0,false),
-        RIVEHAUT("rivehaut","rivehaut","Eau",1,0,false),
-        RIVEDROITE("rivedroite","rivedroite","Eau",1,0,false),
-        RIVEGAUCHE("rivegauche","rivegauche","Eau",1,0,false),
-        RIVEBASDROITE("rivebasdroite","rivebasdroite","Eau",1,0,false),
-        RIVEBASGAUCHE("rivebasgauche","rivebasgauche","Eau",1,0,false),
-        RIVEHAUTDROITE("rivehautdroite","rivehautdroite","Eau",1,0,false),
-        RIVEHAUTGAUCHE("rivehautgauche","rivehautgauche","Eau",1,0,false),
+        EAU("eau","eau","Eau",1,0,false,false),
+        RIVEBAS("rivebas","rivebas","Eau",1,0,false,false),
+        RIVEHAUT("rivehaut","rivehaut","Eau",1,0,false,false),
+        RIVEDROITE("rivedroite","rivedroite","Eau",1,0,false,false),
+        RIVEGAUCHE("rivegauche","rivegauche","Eau",1,0,false,false),
+        RIVEBASDROITE("rivebasdroite","rivebasdroite","Eau",1,0,false,false),
+        RIVEBASGAUCHE("rivebasgauche","rivebasgauche","Eau",1,0,false,false),
+        RIVEHAUTDROITE("rivehautdroite","rivehautdroite","Eau",1,0,false,false),
+        RIVEHAUTGAUCHE("rivehautgauche","rivehautgauche","Eau",1,0,false,false),
         
         //Route
-        ROUTEHORIZONTAL("routehorizontal","routehorizontale","Route",1,0,false),
-        ROUTEVERTICAL("routevertical","routeverticale","Route",1,0,false),
-        VIRAGEDROITEBAS("viragedroitebas","routedroitebas","Virage",1,0,false),
-        VIRAGEDROITEHAUT("viragedroitehaut","routedroitehaut","Virage",1,0,false),
-        VIRAGEGAUCHEBAS("viragegauchebas","routegauchebas","Virage",1,0,false),
-        VIRAGEGAUCHEHAUT("viragegauchehaut","routegauchehaut","Virage",1,0,false),
-        ROUTETHAUT("routethaut","routeThaut","Route",1,0,false),
-        ROUTETBAS("routetbas","routeTbas","Route",1,0,false),
-        ROUTETDROITE("routetdroite","routeTdroite","Route",1,0,false),
-        ROUTETGAUCHE("routetgauche","routeTgauche","Route",1,0,false),
-        CARREFOUR("carrefour","routecroisement","Croissement",1,0,false);
+        ROUTEHORIZONTAL("routehorizontal","routehorizontale","Route",1,0,false,false),
+        ROUTEVERTICAL("routevertical","routeverticale","Route",1,0,false,false),
+        VIRAGEDROITEBAS("viragedroitebas","routedroitebas","Virage",1,0,false,false),
+        VIRAGEDROITEHAUT("viragedroitehaut","routedroitehaut","Virage",1,0,false,false),
+        VIRAGEGAUCHEBAS("viragegauchebas","routegauchebas","Virage",1,0,false,false),
+        VIRAGEGAUCHEHAUT("viragegauchehaut","routegauchehaut","Virage",1,0,false,false),
+        ROUTETHAUT("routethaut","routeThaut","Route",1,0,false,false),
+        ROUTETBAS("routetbas","routeTbas","Route",1,0,false,false),
+        ROUTETDROITE("routetdroite","routeTdroite","Route",1,0,false,false),
+        ROUTETGAUCHE("routetgauche","routeTgauche","Route",1,0,false,false),
+        CARREFOUR("carrefour","routecroisement","Croissement",1,0,false,false);
         
         
         private String aNom;
@@ -47,15 +51,17 @@ public enum TypeTerrain {
         static final int bonusCouverture = 10;
         private int aPVMax;
         private boolean aDependanceJoueur;
+        private boolean aDesert;
         
        
-        TypeTerrain(final String pNom, final String pImage, final String pDescription, final int pCouverture,final int pPVMax,final boolean pDependance){
+        TypeTerrain(final String pNom, final String pImage, final String pDescription, final int pCouverture,final int pPVMax,final boolean pDependance,final boolean pDesert){
                 aNom = pNom;
                 aDependanceJoueur = pDependance;
                 aImage = pImage;
                 aDescription = pDescription;
                 aCouverture = pCouverture;
                 aPVMax = pPVMax;
+                aDesert=pDesert;
                 aCoutDeplacement = new HashMap<String,Integer> ();
                
                 Scanner fichier = null;
@@ -123,6 +129,11 @@ public enum TypeTerrain {
         public boolean dependDuJoueur()
         {
             return aDependanceJoueur;
+        }
+        
+        public boolean isDesert()
+        {
+            return aDesert;
         }
         
         /***

@@ -108,12 +108,20 @@ public class Partie
             //CREATION DE LA MAP
             aTerrain = new Terrain[aMap.getLongueur()][aMap.getLargeur()];
             
-            //On rempli la carte de plaine 
-            for(int i=0; i<pMap.getLongueur(); i++){
-                for(int j=0; j<pMap.getLargeur(); j++){
-                    aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
+            if(pMap.isDesert()){ //Si la map est un map desert, on rempli de desert
+                for(int i=0; i<pMap.getLongueur(); i++){
+                    for(int j=0; j<pMap.getLargeur(); j++){
+                        aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.DESERT);
+                    }
+                } 
+            }
+            else{ //Sinon On rempli la carte de plaine 
+               for(int i=0; i<pMap.getLongueur(); i++){
+                    for(int j=0; j<pMap.getLargeur(); j++){
+                        aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
+                    }
                 }
-            }       
+            }
             
             //Declaration de toutes les variables pour la suite
             int vX, vY, vJoueur;
@@ -143,6 +151,8 @@ public class Partie
                 
                 switch(vId){
                     case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.FORET); break;
+                    case "dune": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.DUNE); break;
+                    case "cactus": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.CACTUS); break;
                     case "montagne": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.MONTAGNE); break;
                     case "eau" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.EAU); break;
                     case "rivebas" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEBAS); break;
@@ -672,6 +682,11 @@ public class Partie
     public Terrain[][] getTerrain()
     {
         return aTerrain;
+    }
+    
+    public Map getMap()
+    {
+        return aMap;
     }
     
     public void setCarreauTerrain(int i, int j, Terrain pTerrain){
