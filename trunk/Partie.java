@@ -750,6 +750,10 @@ public class Partie
         //System.out.println(uneSeulEquipedeJoueur);
     }
     
+    public boolean isCampagne(){
+    	return isCampagne;
+    }
+    
    /***
     * ICI UN ENSEMBLE DE METHODE DEDIEE UNIQUEMENT AU CREATEUR DE MAP
     * SUPPRIME DANS LA VERSION FINALE
