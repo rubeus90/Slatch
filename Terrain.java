@@ -39,13 +39,7 @@ public class Terrain extends Entite{
         super(pX,pY,pJoueur);
         aType = pType;
         aPVMax = pType.getPVMax();
-        if(pPV==0){
-            aPV =  pType.getPVMax();
-        }
-        else{
-            aPV = pPV;
-        }
-        
+        aPV = pPV;   
     }
     
     

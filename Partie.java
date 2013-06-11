@@ -290,7 +290,7 @@ public class Partie
             aRevenuBatiment = Integer.parseInt(vScannerMap.nextLine()); // 5e ligne
             String vBrouillard = vScannerMap.nextLine(); // 6e ligne
             
-            if(vBrouillard.equals(true))
+            if(vBrouillard.equals("true"))
                 aBrouillard=true;
             else
                 aBrouillard=false;
@@ -310,7 +310,7 @@ public class Partie
             // Boucle des joueurs, un joueur = 4 lignes
             for(int i=1;i<=aMap.getNbrJoueur();  i++){
                 String vIntIA= vScannerMap.nextLine(); // 7e ligne
-                if(vIntIA.equals(true))
+                if(vIntIA.equals("true"))
                     vIA[i]=true;
                 else
                     vIA[i]=false;
