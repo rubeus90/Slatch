@@ -29,6 +29,8 @@ public class PanelDialogueCampagne extends JPanel {
 	private boolean dialogueFinished;
 	private Scanner scanner;
 	private String interlocuteur;
+	private String background;
+	private int etape;
 	
 
 	public PanelDialogueCampagne(final int pNiveau) {
@@ -40,6 +42,7 @@ public class PanelDialogueCampagne extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		etape = 0;
 	}
 
 	public PanelDialogueCampagne() {
@@ -49,7 +52,7 @@ public class PanelDialogueCampagne extends JPanel {
 
 	@Override
 	public void paintComponent(final Graphics g) {
-		afficheImageRedim("background", 0, 0, this.getWidth(), this.getHeight(), g);
+		afficheImageRedim(background, 0, 0, this.getWidth(), this.getHeight(), g);
 		afficheImageRedim(interlocuteur, 0, 0, this.getWidth(), this.getHeight(), g);
 	}
 
@@ -95,6 +98,12 @@ public class PanelDialogueCampagne extends JPanel {
 
 	public void etapeDialogue() {
 		String tab[] = null;
+		
+		if(etape == 0){
+			background = scanner.nextLine();
+			etape = 1;
+		}
+		
 		if (scanner.hasNextLine()) {
 			dialogueFinished = false;
 			String texte = scanner.nextLine();
