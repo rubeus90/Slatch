@@ -19,13 +19,13 @@ public class AnimationDeplacement extends Animation
     /**
      * Constructor for objects of class Animation
      */
-    public AnimationDeplacement(final Stack<Point> chemin, final Point depart, final Unite unite,final double vitesse)
+    public AnimationDeplacement(final Stack<Point> chemin, final Point depart, final Unite unite)
     {
         aChemin = chemin;
         aType = "deplacement";
         aDepart = depart;
         aUnite = unite;
-        aVitesse = vitesse;
+        aVitesse = 1/5.0;
     }
 
     public void setChemin(final Stack<Point> chemin){aChemin = chemin;}

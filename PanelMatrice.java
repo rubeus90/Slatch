@@ -82,7 +82,7 @@ public class PanelMatrice extends JPanel
     
     private List<String> aListeAction;
     private List<TypeUnite> aListeShop;
-
+    
     /**
      * Constructeur du panel, creer les listes et definie les dime,
      */
@@ -105,6 +105,7 @@ public class PanelMatrice extends JPanel
         aTabAchat= new HashMap<Integer,TypeUnite> ();
         aListeAction= new ArrayList<String>();
         aListeShop= new ArrayList<TypeUnite>();
+       
     } // FIN PanelMatrice
 
     /**
@@ -203,8 +204,8 @@ public class PanelMatrice extends JPanel
                 int tailleIcon = aHauteurCarreau -5;
                 //System.out.println("niveau"+t.getUnite().getLvl()+""+Slatch.partie.getJoueur(t.getUnite().getJoueur()).getFaction().getNom());
                 afficheImageRedim ("niveau"+t.getUnite().getLvl()+""+Slatch.partie.getJoueur(t.getUnite().getJoueur()).getFaction().getNom(), (aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(lvl), (aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3)-(2*tailleIcon/3), (aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(lvl)+tailleIcon, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3+(tailleIcon/3), g);
-                
-                afficheImageRedim (t.getUnite().getType().getImage()+""+t.getUnite().getJoueur(), (aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titre),(aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)-(2*tailleIcon/3) ,(aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titre)+tailleIcon, (aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)+(1*tailleIcon/3), g);
+                //System.out.println(t.getUnite().getType().getImage()+""+t.getUnite().getJoueur());
+                afficheImageRedim (Slatch.partie.getJoueur(t.getUnite().getJoueur()).getFaction()+""+t.getUnite().getType().getImage()+""+t.getUnite().getJoueur(), (aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titre),(aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)-(2*tailleIcon/3) ,(aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titre)+tailleIcon, (aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)+(1*tailleIcon/3), g);
                 afficheImageRedim (t.getType().getImage()+""+t.getJoueur(), ((aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titreTerrain),(aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)-(2*tailleIcon/3) ,((aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titreTerrain)+tailleIcon, (aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)+(1*tailleIcon/3), g);
                 
                 g.drawString(titreTerrain, (aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
@@ -542,6 +543,12 @@ public class PanelMatrice extends JPanel
                 if(Slatch.partie.getTerrain()[i][j].getUnite()!=null && !Slatch.partie.getTerrain()[i][j].getBrouillard())
                 Slatch.partie.getTerrain()[i][j].getUnite().dessine(g, this);
             }
+        }
+        
+        //triche pour faire croire qu'une unité est encore sur le terrain alors qu'elle est morte.
+        for(Unite u : Slatch.ihm.getAnimation().aTricheAffichage) {
+            if(u.getPVaffiche()>0)
+            u.dessine(g,this);
         }
     } // FIN dessineMatrice
     

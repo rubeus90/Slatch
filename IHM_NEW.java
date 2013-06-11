@@ -34,7 +34,7 @@ public class IHM_NEW  {
         // Creation des animations
         animation = new GestionnaireAnimation();
         // Creation du timer pour les animations
-        timer = new Timer(10, animation);
+        timer = new Timer(25, animation);
         //timer.start();
 
         // Creation de la fenetre : frame
