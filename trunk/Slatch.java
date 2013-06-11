@@ -59,28 +59,15 @@ public class Slatch {
                     for(int i=0;i<5;i++)
                     {
                         image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/plaine/"+ terrain.getImage() + i + ".png"));
-                        imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
-                        System.out.println("TERRE"+terrain.getImage() + i);
                         aImages.put("TERRE"+terrain.getImage() + i,image);
-                    }
-                    
-                    for(int i=0;i<5;i++)
-                    {
+                        
                         image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/desert/"+ terrain.getImage() + i + ".png"));
-                        imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                         aImages.put("DESERT"+terrain.getImage() + i,image);
-                    }
-                    
+                    }       
                 }
-                else if(terrain.isDesert())
+                else
                 {
-                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/desert/"+ terrain.getImage() +"0.png"));
-                    imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
-                    aImages.put(terrain.getImage()+"0",image);
-                }
-                else{
-                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/plaine/"+ terrain.getImage() +"0.png"));
-                    imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+                    image = terrain.isDesert() ? ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/desert/"+ terrain.getImage() +"0.png")) : ImageIO.read(getClass().getClassLoader().getResource("Images/terrains/plaine/"+ terrain.getImage() +"0.png"));
                     aImages.put(terrain.getImage()+"0",image);
                 }
                 
@@ -104,21 +91,12 @@ public class Slatch {
                 for(int i=1;i<5;i++)
                 {
                     image = ImageIO.read(getClass().getClassLoader().getResource("Images/unite/humain/" + unite.getImage() + i + ".png"));
-                    //imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
-                    aImages.put(""+unite.getImage() + i,image);
                     aImages.put("HUMAINS"+unite.getImage() + i,image);
-                }
-            }
-            
-            //Pour les robots
-            for(TypeUnite unite : TypeUnite.values())
-            {
-                for(int i=1;i<5;i++)
-                {
+                    
                     image = ImageIO.read(getClass().getClassLoader().getResource("Images/unite/robot/" + unite.getImage() + i + ".png"));
-                    //imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                     aImages.put("ROBOTS"+unite.getImage() + i,image);
                 }
+   
             }
         }
         catch (IOException e) {
@@ -134,7 +112,6 @@ public class Slatch {
                 for(int i=1;i<=3;i++){
                    
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/niveau"+i+"HUMAINS.png"));
-                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("niveau"+i+"HUMAINS",image);
             }
 
@@ -151,36 +128,29 @@ public class Slatch {
                 Image imageRedim;
 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/5.png"));
-                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("5",image);
                 
 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/barreinfo2.png"));
-                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("barreinfo",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/noir80.png"));
-                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("noir80",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/noir.png"));
-                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("noir",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/brouillard.png"));
-                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("brouillard",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/yangattaque.png"));
-                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
+ 
                 aImages.put("yangattaque",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/yindeplacement.png"));
-                imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("yindeplacement",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/doublevai.png"));
-                //imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                 aImages.put("doublevai",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/champs.png"));
@@ -297,11 +267,9 @@ public class Slatch {
                 for(int i=0;i<10;i++)
                 {
                     image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/pvUnite"+i+".png"));
-                    imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                     aImages.put("pvUnite"+i,image);
                     
                     image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/pvDizaine"+i+".png"));
-                    imageRedim = image.getScaledInstance(40,40,Image.SCALE_DEFAULT);
                     aImages.put("pvDizaine"+i,image);
                 }
                 
