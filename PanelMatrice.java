@@ -384,7 +384,7 @@ public class PanelMatrice extends JPanel
                 int pPosBasDroiteY = (j+1)*aHauteurCarreau;
                 
                 // Si la partie est finie
-                if(Slatch.partie.partieFinie) {
+                if(Slatch.partie.partieFinie && Slatch.partie.isCampagne()) {
                     Slatch.campagne.suite();
                 }
                 // Si la partie n'est pas fine
