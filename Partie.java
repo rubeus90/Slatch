@@ -29,6 +29,8 @@ public class Partie
     private boolean aBrouillard;
     private boolean uneSeulEquipedeJoueur;
     private boolean isCampagne;
+    private int aLongueur;
+    private int aLargeur;
 
     
 
@@ -79,42 +81,7 @@ public class Partie
         
         ListeJoueur.get(1).benefTour(aRevenuBatiment); 
     }
-    
-    /**
-     * Consctructeur de MAP pour la creation de Map
-     */
-    public Partie(final String pMap){
-        Scanner vScannerMap;
-        
-        try {
-            vScannerMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
-            aTerrain = new Terrain[aMap.getLongueur()][aMap.getLargeur()];
-        
-            //On rempli la carte de plaine 
-            for(int i=0; i<aMap.getLongueur(); i++){
-                for(int j=0; j<aMap.getLargeur(); j++){
-                    aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
-                }
-            }  
-        
-            vScannerMap.close();
-            
-            isCampagne = false;
-            aBrouillard = false;
-            
-            //Dans le cas ou le fichier map n'existe pas
-            aJoueurActuel= 1;
-            aTourMax = 999;
-            aTour = 1;
-            aRevenuBatiment = 20;
-            ListeJoueur.get(1).benefTour(aRevenuBatiment);
-            }
-            
-        catch (IOException e) {
-            e.printStackTrace();
-        }        
-    }
-    
+     
     /**
      * Constructeur de chargement d'une sauvegarde d'une Map
      */  
@@ -128,6 +95,10 @@ public class Partie
      * 
      */
     private void initMap(final Map pMap,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA){
+        //A SUPPRIMER DANS UN FUTUR PROCHE ET LOINTAIN
+        aLongueur = aMap.getLongueur();
+        aLargeur = aMap.getLargeur();
+        
         // OUVERTURE DE LA MAP
         String sMap = "Maps/"+pMap.getFichier()+".txt";
       
@@ -288,7 +259,10 @@ public class Partie
      * enfin la MAP
      */
     private void initMap(){
-      
+        //A SUPPRIMER DANS UN FUTUR PROCHE ET LOINTAIN
+        aLongueur = aMap.getLongueur();
+        aLargeur = aMap.getLargeur();
+        
         try {
             Scanner vScannerMap = new Scanner(getClass().getClassLoader().getResource("Maps/sauvegarde.txt").openStream());
             String vNom  = vScannerMap.nextLine();  // 1er ligne
@@ -636,7 +610,8 @@ public class Partie
      */
     public int getHauteur()
     {
-        return aMap.getLargeur();
+        //return aMap.getLargeur();
+        return aLargeur;
     }
     
     /**
@@ -645,7 +620,8 @@ public class Partie
      */
     public int getLargeur()
     {
-        return aMap.getLongueur();
+        //return aMap.getLongueur();
+        return aLongueur;
     }
     
     
@@ -772,5 +748,91 @@ public class Partie
         }
         uneSeulEquipedeJoueur=true;
         //System.out.println(uneSeulEquipedeJoueur);
+    }
+    
+   /***
+    * ICI UN ENSEMBLE DE METHODE DEDIEE UNIQUEMENT AU CREATEUR DE MAP
+    * SUPPRIME DANS LA VERSION FINALE
+    * 
+    */
+   
+    /**
+     * Consctructeur de MAP pour la creation de Map
+     */
+    public Partie(final String pMap,final String pLargeur,final String pHauteur){
+        aLongueur = Integer.parseInt(pLargeur);
+        aLargeur = Integer.parseInt(pHauteur);
+        
+        Scanner vScannerMap;
+        
+        try {
+            vScannerMap = new Scanner(getClass().getClassLoader().getResource(pMap).openStream());
+            aTerrain = new Terrain[Integer.parseInt(pLargeur)][Integer.parseInt(pHauteur)];
+        
+            //On rempli la carte de plaine 
+            for(int i=0; i<Integer.parseInt(pLargeur); i++){
+                for(int j=0; j<Integer.parseInt(pHauteur); j++){
+                    aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
+                }
+            }  
+        
+            vScannerMap.close();
+            }
+            
+        catch (IOException e) {
+            e.printStackTrace();
+        } 
+    }
+        
+    public void sauvegardePartie(final String pNom,final String pLongueur,final String pLargeur, final String pNbrJoueur) {
+        try {
+            File file = new File(getClass().getClassLoader().getResource(pNom).toURI());
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("Merci de recopier ces lignes dans l'enum Map");
+            bw.newLine();
+            bw.write(""+ pNom); //1er ligne
+            bw.newLine();
+            bw.write(""+ pLongueur); //2e ligne
+            bw.newLine();
+            bw.write(""+ pLargeur); // 3e ligne
+            bw.newLine();
+            bw.write(""+ pNbrJoueur); // 3e ligne
+            bw.newLine();
+            
+            bw.write("Garder ces lignes dans le fichier de votre Map");
+            bw.newLine();
+            for(int i = 0; i<Integer.parseInt(pLongueur); i++){
+                for(int j = 0; j<Integer.parseInt(pLargeur); j++){
+                    Terrain terrain = aTerrain[i][j];
+                    Unite unite = terrain.getUnite();
+                    if(terrain.getType().getNom() != "plaine"){
+                        String string = "";
+                        string += terrain.getType().getNom()+ ":";
+                        string += i+ ":";
+                        string += j+ ":";
+                        string += terrain.getJoueur() + ":";
+                        bw.write(string);                    
+                        bw.newLine();
+                    }                    
+                    
+                    if(terrain.getUnite() != null){
+                        String string2 = "";
+                        string2 += unite.getType().getNom()+ ":";
+                        string2 += i+ ":";
+                        string2 += j+ ":";
+                        string2 += unite.getJoueur() + ":";                           
+                        bw.write(string2);
+                        bw.newLine();
+                    }
+                }
+            }            
+            bw.close();
+            fw.close();
+        }
+        catch (URISyntaxException | IOException e) {
+            System.out.println("Probleme d'ecriture dans le fichier sauvegarde");
+            e.printStackTrace();
+        }
     }
 }

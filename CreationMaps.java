@@ -71,7 +71,7 @@ public class CreationMaps extends JPanel implements ActionListener,
 
 		aJoueur = "0";
 		
-		partieNew = new Partie("Maps/" + aNomMap + ".txt");
+		partieNew = new Partie("Maps/" + aNomMap + ".txt",aLargeur,aHauteur);
 		
 		frame = new JFrame("Creation maps");
 
@@ -230,8 +230,8 @@ public class CreationMaps extends JPanel implements ActionListener,
 	}
 
 	public void genererMap() {
-		partieNew.sauvegardePartie("Maps/" + aNomMap + ".txt");
-	}
+	    partieNew.sauvegardePartie("Maps/" + aNomMap + ".txt",aLargeur,aHauteur, aJoueur);
+    }
 
 	public void initialiseMap() {	
 		
