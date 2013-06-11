@@ -92,17 +92,9 @@ public class Unite extends Entite
        aType = pType;
        aGain = pType.getGain();
        aPVMax = pType.getPVMax();
-       if(pPV==0)
-        aPV = pType.getPVMax();
-       else
-        aPV=pPV;
+       aPV=pPV;
        aDeplacement = pType.getDeplacement();
-       if(pLvl == 0){
-           aLvl = 1;
-       }
-       else{
-           aLvl = pLvl;
-       }
+       aLvl = pLvl;
        isEvolvable = false;
        aExperience = pExperience;
        aExperienceMax=pType.getXPUP();
