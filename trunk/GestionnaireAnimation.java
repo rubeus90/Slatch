@@ -32,6 +32,8 @@ public class GestionnaireAnimation implements ActionListener
     private boolean initialisation;
     //private double vitesse;
     private int destination;
+    
+    public List<Unite> aTricheAffichage;
     /**
      * Constructeur
      */
@@ -45,6 +47,7 @@ public class GestionnaireAnimation implements ActionListener
         //aUnite=new ArrayList<Unite>();
         initialisation = false;
         animation = new ArrayList<Animation>();
+         aTricheAffichage= new ArrayList<Unite>();
     }
     
     /*public void setChemins(final Stack<Point> pChemin)
@@ -88,6 +91,7 @@ public class GestionnaireAnimation implements ActionListener
             //aDepart.clear();
             //aUnite.clear();
             Slatch.ihm.timer.stop();
+            aTricheAffichage.clear();
             if(Slatch.partie.getBrouillard()){
                 Slatch.moteur.Brouillard();
                 }
@@ -96,7 +100,7 @@ public class GestionnaireAnimation implements ActionListener
             
             return;
         }
-        
+
         if(animation.get(numeroUnite).aType.equals("deplacement"))
         {
             if(((AnimationDeplacement)animation.get(numeroUnite)).getChemin().isEmpty())
@@ -111,6 +115,7 @@ public class GestionnaireAnimation implements ActionListener
                     aDepart.clear();
                     aUnite.clear();*/
                     animation.clear();
+                    aTricheAffichage.clear();
                     Slatch.ihm.timer.stop();
                     if(Slatch.partie.getBrouillard()){
                     Slatch.moteur.Brouillard();
@@ -165,6 +170,34 @@ public class GestionnaireAnimation implements ActionListener
                 
             }
         }
+        else if (animation.get(numeroUnite).aType.equals("soin"))
+        {
+            Unite cible= ((AnimationSoin)animation.get(numeroUnite)).getCible();
+            boolean fin = afficheSoin(cible);
+            avancement += deltaT;
+            if(fin)
+            {
+                
+                if(numeroUnite>=animation.size()-1)
+                {
+                    numeroUnite=0;
+                    avancement=0;
+                    animation.clear();
+                    Slatch.ihm.timer.stop();
+                    
+                    if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
+                    Slatch.moteur.passeTour();
+                    
+                    return;
+                }
+                else
+                {
+                    numeroUnite++;
+                    
+                   }
+                
+            }
+        }
     }
     
     /**
@@ -184,6 +217,7 @@ public class GestionnaireAnimation implements ActionListener
          **************************************************************************************************  
          */
         Point vDepart = ((AnimationDeplacement)animation.get(numeroUnite)).getDepart();
+        double vitesse = ((AnimationDeplacement)animation.get(numeroUnite)).getVitesse();
         int vPasDepl = 8;
         int vThread = 5;
         int pPosHautGaucheX = unite.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
@@ -202,7 +236,7 @@ public class GestionnaireAnimation implements ActionListener
         int pPosBasDroiteYdepart = (int)(vDepart.getY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
         //System.out.println("-------------------------------------------------------");
         //System.out.println("DELTA "+deltaT);
-        //System.out.println("VITESSE "+(int)deltaT/10);
+        //System.out.println("VITESSE "+(int)deltaT*(AnimationDeplacement)animation.get(numeroUnite)).getVitesse());
         
         int dX=destX-(int)vDepart.getX();
         int dY=destY-(int)vDepart.getY();
@@ -221,10 +255,10 @@ public class GestionnaireAnimation implements ActionListener
                     initialisation = true;
                 }
                 
-                unite.addDecaleUniteX(dX*(int)deltaT/10);
-                avancement+=dX*(int)deltaT/10;
-                unite.addDecaleUniteY(dY*(int)deltaT/10);
-                avancement+=dY*(int)deltaT/10;
+                unite.addDecaleUniteX(dX*(int)(deltaT*vitesse));
+                avancement+=dX*(int)(deltaT*vitesse);
+                unite.addDecaleUniteY(dY*(int)(deltaT*vitesse));
+                avancement+=dY*(int)(deltaT*vitesse);
                 
                 //System.out.println(dX+" "+dY);
                 if(dY<0 || dX<0){
@@ -283,6 +317,8 @@ public class GestionnaireAnimation implements ActionListener
         {
             attaquant.setCheck(true);
             victime.setCheck(true);
+            attaquant.setBlessure(   ((AnimationAttaque)animation.get(numeroUnite)).getPVatt()  -   attaquant.getPVaffiche()     );
+            victime.setBlessure(     ((AnimationAttaque)animation.get(numeroUnite)).getPVvic()  -   victime.getPVaffiche()      );
             Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXatt,pPosHautGaucheYatt,pPosBasDroiteXatt-pPosHautGaucheXatt,pPosBasDroiteYatt-pPosHautGaucheYatt);
             Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXvic,pPosHautGaucheYvic,pPosBasDroiteXvic-pPosHautGaucheXvic,pPosBasDroiteYvic-pPosHautGaucheYvic);
             return false;
@@ -291,14 +327,38 @@ public class GestionnaireAnimation implements ActionListener
         {
             attaquant.setCheck(false);
             victime.setCheck(false);
-            attaquant.setPVaffiche(attaquant.getPV());
-                victime.setPVaffiche(victime.getPV());
+            attaquant.setPVaffiche(((AnimationAttaque)animation.get(numeroUnite)).getPVatt());
+            victime.setPVaffiche(((AnimationAttaque)animation.get(numeroUnite)).getPVvic());
             Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXatt,pPosHautGaucheYatt,pPosBasDroiteXatt-pPosHautGaucheXatt,pPosBasDroiteYatt-pPosHautGaucheYatt);
             Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXvic,pPosHautGaucheYvic,pPosBasDroiteXvic-pPosHautGaucheXvic,pPosBasDroiteYvic-pPosHautGaucheYvic);
             return true;
         }
     }
     
+    public boolean afficheSoin(final Unite cible)
+    {
+        int pPosHautGaucheXatt = cible.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosHautGaucheYatt = cible.getCoordonneeY()*Slatch.ihm.getPanel().getaHauteurCarreau();
+        int pPosBasDroiteXatt = (cible.getCoordonneeX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
+        int pPosBasDroiteYatt = (cible.getCoordonneeY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
+       
+
+        if(avancement<1000)
+        {
+            cible.setCheck(true);
+            
+            cible.setBlessure(   ((AnimationSoin)animation.get(numeroUnite)).getPVcib()  -   cible.getPVaffiche()     );
+            Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXatt,pPosHautGaucheYatt,pPosBasDroiteXatt-pPosHautGaucheXatt,pPosBasDroiteYatt-pPosHautGaucheYatt);
+            return false;
+        }
+        else 
+        {
+            cible.setCheck(false);
+            cible.setPVaffiche(((AnimationSoin)animation.get(numeroUnite)).getPVcib());
+            Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXatt,pPosHautGaucheYatt,pPosBasDroiteXatt-pPosHautGaucheXatt,pPosBasDroiteYatt-pPosHautGaucheYatt);
+            return true;
+        }
+    }
     
     public void start()
     {

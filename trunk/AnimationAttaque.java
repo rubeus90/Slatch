@@ -12,9 +12,9 @@ import java.awt.Point;
  */
 public class AnimationAttaque extends Animation
 {
-    private int attaquantPVdepart;
+    
     private int attaquantPVfin;
-    private int victimePVdepart;
+    
     private int victimePVfin;
     private Unite aAttaquant;
     private Unite aVictime;
@@ -22,10 +22,12 @@ public class AnimationAttaque extends Animation
     /**
      * Constructor for objects of class Animation
      */
-    public AnimationAttaque(final Unite attaquant, final Unite victime)
+    public AnimationAttaque(final Unite attaquant, final Unite victime,final int pvA,final int pvV)
     {
         aAttaquant = attaquant;
         aVictime = victime;
+        attaquantPVfin=pvA;
+        victimePVfin=pvV;
         aType="attaque";
     }
 
@@ -36,4 +38,6 @@ public class AnimationAttaque extends Animation
     
     public Unite getAttaquant() {return aAttaquant;}
     public Unite getVictime() {return aVictime;}
+    public int getPVatt() {return attaquantPVfin;}
+    public int getPVvic() {return victimePVfin;}
 }

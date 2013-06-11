@@ -135,7 +135,9 @@ class Moteur
         }
         uniteA.attaque(true);
         uniteA.deplacee(true);
-        AnimationAttaque attaque=new AnimationAttaque(uniteA,pVictime);
+        int pVatt=uniteA.getPV();
+        int pVvic=pVictime.getPV();
+        AnimationAttaque attaque=new AnimationAttaque(uniteA,pVictime,pVatt,pVvic);
         Slatch.ihm.getAnimation().addAnimation(attaque);
         
            if(!getJoueurActuel().estUneIA())
@@ -368,9 +370,19 @@ class Moteur
     public void soin(final Unite pUnite)
     { 
         int vLocal = pUnite.soigner(uniteA.getDegat());
+           int pVcib=pUnite.getPV();
+           AnimationSoin soin=new AnimationSoin(pUnite,pVcib);
+           Slatch.ihm.getAnimation().addAnimation(soin);
+              if(!getJoueurActuel().estUneIA())
+        {
+            Slatch.ihm.getAnimation().start();
+        }
         if(vLocal!=0){  
            uniteA.addExperience(vLocal);
            getJoueur(uniteA).addSoinTotal(vLocal);
+           
+           
+        
            uniteA.attaque(true);
            uniteA.deplacee(true);
            uniteA=null; 
@@ -459,8 +471,7 @@ class Moteur
         
         Unite vUnite = unite;
         Stack<Point> vChemin = stack;
-        double vVitesse = 0;
-        AnimationDeplacement animation = new AnimationDeplacement(vChemin,vDepart,vUnite,vVitesse);
+        AnimationDeplacement animation = new AnimationDeplacement(vChemin,vDepart,vUnite);
             Slatch.ihm.getAnimation().addAnimation(animation);
         
            if(!getJoueurActuel().estUneIA())
@@ -647,7 +658,7 @@ class Moteur
            vBatiment.setPV(vBatiment.getType().getPVMax());
            getJoueur(uniteA).addNbreBatiment(1);
            getJoueur(uniteA).addCaptureTotal();
-           repaint();
+           //repaint();
         }
         uniteA.attaque(true);
         uniteA.deplacee(true);
@@ -835,7 +846,10 @@ class Moteur
         Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setPV(Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType().getPVMax());
         Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(null);
         getJoueur(unite).addNbrUniteMort();
-        //repaint();
+        if(getJoueur(unite).estUneIA())
+        Slatch.ihm.getAnimation().aTricheAffichage.add(unite);
+        
+        repaint();
         if(!getJoueur(unite).estUneIA() || unite.getJoueur()!=Slatch.partie.getJoueurActuel())
         {
             getJoueur(unite).getListeUnite().remove(unite);
@@ -953,155 +967,7 @@ class Moteur
         }
     }
 
-    /**
-     * Deplace une unite vers sa destination
-     * @param unite unite a deplacer
-     * @param pX abscisse de l'arrivee
-     * @param pY ordonnee de l'arrivee
-     */
-    public Unite changerCase(Unite unite,final int destX,final int destY,final Unite mem)
-    {
-        int vPasDepl = 8;
-        int vThread = 5;
-        int pPosHautGaucheX = unite.getX()*Slatch.ihm.getPanel().getaLargeurCarreau();
-        int pPosHautGaucheY = unite.getY()*Slatch.ihm.getPanel().getaHauteurCarreau();
-        int pPosBasDroiteX = (unite.getX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
-        int pPosBasDroiteY = (unite.getY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
-        
-        int pPosHautGaucheXdest = destX*Slatch.ihm.getPanel().getaLargeurCarreau();
-        int pPosHautGaucheYdest = destY*Slatch.ihm.getPanel().getaHauteurCarreau();
-        int pPosBasDroiteXdest = (destX+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
-        int pPosBasDroiteYdest = (destY+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
-
-        if(unite.getX() != destX ) {
-            if(unite.getX() < destX) {
-                //BUG
-                Unite ret=getUnite(destX,destY);
-                Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(mem);
-                unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
-                Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
-
-                for(int i=0; i<Slatch.ihm.getPanel().getaLargeurCarreau() ; i=i+vPasDepl) {
-                    getUnite(destX,destY).setDecaleUniteX(-Slatch.ihm.getPanel().getaLargeurCarreau()+i);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
-                    try{Thread.sleep(vThread);}catch(InterruptedException e){e.printStackTrace();}
-                }
-                /*
-                animation=0;
-                while(animation<Slatch.ihm.getPanel().getaLargeurCarreau()) {
-                    getUnite(destX,destY).setDecaleUniteX(-Slatch.ihm.getPanel().getaLargeurCarreau()+animation);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
-                }
-                */
-                unite.setDecaleUniteX(0);
-                unite.setDecaleUniteY(0);
-                
-                Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
-                Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);        
-                
-                Slatch.partie.getJoueur(unite.getJoueur()).addDeplacementTotal(1);
-                return ret;
-            }
-            else  {
-                for(int i=0; i<Slatch.ihm.getPanel().getaLargeurCarreau() ; i=i+vPasDepl) {
-                    unite.setDecaleUniteX(-i);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
-                    try{Thread.sleep(vThread);}catch(InterruptedException e){e.printStackTrace();}
-                }
-                
-                /*
-                animation=0;
-                while(animation<Slatch.ihm.getPanel().getaLargeurCarreau()) {
-                    unite.setDecaleUniteX(-animation);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
-                }
-                */
-                unite.setDecaleUniteX(0);
-                unite.setDecaleUniteY(0);
-            
-                Unite ret=getUnite(destX,destY);
-                Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(mem);
-                unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
-                Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
-        
-                Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
-                Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);        
-                
-                getJoueur(unite).addDeplacementTotal(1);
-                return ret;
-            }
-        }
-        if(unite.getY() != destY ) {
-            if(unite.getY() < destY) {
-                //BUG
-                Unite ret=getUnite(destX,destY);
-                Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(mem);
-                unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
-                Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
-                
-                for(int i=0; i<Slatch.ihm.getPanel().getaHauteurCarreau() ; i=i+vPasDepl) {
-                    getUnite(destX,destY).setDecaleUniteY(-Slatch.ihm.getPanel().getaHauteurCarreau()+i);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
-                    try{Thread.sleep(vThread);}catch(InterruptedException e){e.printStackTrace();}
-                }
-                /*
-                animation=0;
-                while(animation<Slatch.ihm.getPanel().getaLargeurCarreau()) {
-                    getUnite(destX,destY).setDecaleUniteY(-Slatch.ihm.getPanel().getaHauteurCarreau()+animation);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
-                }
-                */
-                
-                unite.setDecaleUniteX(0);
-                unite.setDecaleUniteY(0);
-                
-                Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
-                Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);        
-                
-                Slatch.partie.getJoueur(unite.getJoueur()).addDeplacementTotal(1);
-                return ret;
-            }
-            else  {
-                
-                
-                for(int i=0; i<Slatch.ihm.getPanel().getaHauteurCarreau() ; i=i+vPasDepl) {
-                    unite.setDecaleUniteY(-i);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
-                    try{Thread.sleep(vThread);}catch(InterruptedException e){e.printStackTrace();}
-                }
-                
-                /*
-                animation=0;
-                while(animation<Slatch.ihm.getPanel().getaLargeurCarreau()) {
-                    unite.setDecaleUniteY(-animation);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
-                    Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
-                }*/
-                
-                unite.setDecaleUniteX(0);
-                unite.setDecaleUniteY(0);
-            
-                Unite ret=getUnite(destX,destY);
-                Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(mem);
-                unite.setCoordonneeX(destX); unite.setCoordonneeY(destY);
-                Slatch.partie.getTerrain()[destX][destY].setUnite(unite);
-                
-                Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
-                Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);        
-                
-                getJoueur(unite).addDeplacementTotal(1);
-                return ret;
-            }
-        }
-        return null;
-    }
+  
     
      /**
      * Va appeler les methodes pour afficher la portee de deplacement d'une unite

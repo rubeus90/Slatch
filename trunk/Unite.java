@@ -35,6 +35,7 @@ public class Unite extends Entite
     private int aDecaleUniteY=0;
     private boolean isEvolvable;
     private int pVaffiche;
+    private int blessure;
     private boolean check;
     public Influence[][] mapInfluence;
     /**
@@ -56,6 +57,7 @@ public class Unite extends Entite
        aDeplacement = pType.getDeplacement();
        aLvl = 1;
        aExperience = 0;
+       blessure=0;
        isEvolvable = false;
        aExperienceMax=pType.getXPUP();
        pVaffiche = aPV;
@@ -331,25 +333,32 @@ public class Unite extends Entite
         
                 if(check)
                 {
-                    int pDegats = aPV-pVaffiche;
+                    int pDegats = blessure;
                     
                     Font font = new Font("Helvetica", Font.BOLD, 8+15*Slatch.ihm.getpanelmatrice().getWidth()/1500);
                     g.setFont(font);
-                    if(pDegats <0)
+                    
+                    
+                    
+                     
+                    if (pDegats <0)
                     {
                         g.setColor(Color.red);
                         String stringDegats = ""+pDegats;
                         g.drawString(stringDegats, pPosHautGaucheX, pPosMidGaucheY);
                     }
-                    if(pDegats >=0)
+                    else if(pDegats >0)
                     {
                         g.setColor(Color.green);
                         String stringDegats = "+"+pDegats;
                         g.drawString(stringDegats, pPosHautGaucheX, pPosMidGaucheY);
                     }
+                    /*else if (pDegats ==0)    
+                    {
+                        g.setColor(Color.blue);
+                        String stringDegats = ""+pDegats;
+                    }*/
                     
-
-
                 }
                 
                 
@@ -388,6 +397,10 @@ public class Unite extends Entite
         return this.aType.peutSoigner();
     }
     
+    public void setBlessure(final int pBlessure)
+    {
+        blessure = pBlessure;
+    }
     
     
 }

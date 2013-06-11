@@ -33,6 +33,7 @@ public class Partie
     private int aLargeur;
 
     
+    
 
     /**
      * Constructeur de MAP d'une nouvelle partie
