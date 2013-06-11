@@ -719,6 +719,60 @@ public class Partie
         aTour = pTour;
     }
     
+    public List<Terrain> getListeBatimentsEnnemis()
+    {
+        List<Terrain> l = new ArrayList<Terrain>();
+        for(Joueur j:ListeJoueur)
+        {
+            if(j.getEquipe()!=this.ListeJoueur.get(aJoueurActuel).getEquipe())
+            {
+                l.addAll(j.getListeBatiment());
+                l.addAll(j.getListeUsine());
+            }
+        }
+        return l;
+    }
+    
+    public List<Terrain> getListeBatimentsAllies()
+    {
+        List<Terrain> l = new ArrayList<Terrain>();
+        for(Joueur j:ListeJoueur)
+        {
+            if(j.getEquipe()==this.ListeJoueur.get(aJoueurActuel).getEquipe())
+            {
+                l.addAll(j.getListeBatiment());
+                l.addAll(j.getListeUsine());
+            }
+        }
+        return l;
+    }
+    
+    public List<Unite> getListeUnitesEnnemies()
+    {
+        List<Unite> l = new ArrayList<Unite>();
+        for(Joueur j:ListeJoueur)
+        {
+            if(j.getEquipe()!=this.ListeJoueur.get(aJoueurActuel).getEquipe())
+            {
+                l.addAll(j.getListeUnite());
+            }
+        }
+        return l;
+    }
+    
+    public List<Unite> getListeUnitesAlliees()
+    {
+        List<Unite> l = new ArrayList<Unite>();
+        for(Joueur j:ListeJoueur)
+        {
+            if(j.getEquipe()==this.ListeJoueur.get(aJoueurActuel).getEquipe())
+            {
+                l.addAll(j.getListeUnite());
+            }
+        }
+        return l;
+    }
+    
     /**
      * Mutateur qui modifie la valeur des revenues par batiment
      * @param pRevenuBatiment
