@@ -100,7 +100,7 @@ public class Terrain extends Entite{
             img = Slatch.partie.getMap().isDesert() ? Slatch.aImages.get("DESERT"+ aType.getImage() + getJoueur()) : Slatch.aImages.get("TERRE"+ aType.getImage() + getJoueur());
         }
         else{
-            img = Slatch.aImages.get(""+ aType.getImage() + getJoueur());
+            img = Slatch.aImages.get(""+ aType.getImage()+"0");
         }
             
             
