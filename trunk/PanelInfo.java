@@ -62,7 +62,7 @@ public class PanelInfo extends JPanel
     public void coordclickUnite (int pX, int pY) 
     {
         // Bouton SUIVANT fonctionnement
-        if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()==false && 0<pY && pY<this.getHeight() && this.getWidth()-suivantSize-espaceSize<pX && pX<this.getWidth()) 
+        if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()==false && 0<pY && pY<this.getHeight() && this.getWidth()-suivantSize-espaceSize<pX && pX<this.getWidth() && !Slatch.ihm.getPanel().getPauseTour()) 
         {
             // Efface le petit menu 
             Slatch.ihm.getPanel().setMenuUniteAction(false);
@@ -106,52 +106,52 @@ public class PanelInfo extends JPanel
         String barre = " |  ";
         
         // Police
-//        Font font = new Font("Helvetica", Font.BOLD, 8+25*this.getWidth()/1500);
         Font font;
 		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
-					.getClassLoader().getResource("Config/BlackOps.ttf")
-					.toURI())).deriveFont(Font.PLAIN, 8+25*this.getWidth()/1500);
-		
-        g.setFont(font);
-        FontMetrics fm=getFontMetrics(font); 
-        
-        menuSize = fm.stringWidth(menu);
-        jourSize = fm.stringWidth(jour);
-        joueurSize = fm.stringWidth(joueur);
-        argentSize = fm.stringWidth(argent);
-        suivantSize = fm.stringWidth(suivant);
-        espaceSize = fm.stringWidth(espace);
-        barreSize = fm.stringWidth(barre);
-        
-        int decaleX=3;
-        int decaleY=3;
-        int Y=45;
-        
-        // Ombre
-        g.setColor(Color.black);
-        g.drawString(menu, espaceSize+decaleX, Y+decaleY);
-        g.drawString(barre, espaceSize+menuSize+decaleX, Y+decaleY);
-        g.drawString(jour, espaceSize+menuSize+barreSize+decaleX, Y+decaleY);
-        g.drawString(barre, espaceSize+menuSize+barreSize+jourSize+decaleX, Y+decaleY);
-        g.drawString(joueur, espaceSize+menuSize+barreSize+jourSize+barreSize+decaleX, Y+decaleY);
-        g.drawString(barre, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+decaleX, Y+decaleY);
-        if(!Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA() || !Slatch.partie.getBrouillard())
-            g.drawString(argent, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+barreSize+decaleX, Y+decaleY);
-        g.drawString(suivant, this.getWidth()-suivantSize-espaceSize+decaleX, Y+decaleY);
-        
-        g.setColor(Color.white);
-        g.drawString(menu, espaceSize, Y);
-        g.drawString(barre, espaceSize+menuSize, Y);
-        g.drawString(jour, espaceSize+menuSize+barreSize, Y);
-        g.drawString(barre, espaceSize+menuSize+barreSize+jourSize,Y);
-        g.drawString(joueur, espaceSize+menuSize+barreSize+jourSize+barreSize, Y);
-        g.drawString(barre, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize, Y);
-        if(!Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA() || !Slatch.partie.getBrouillard())
-            g.drawString(argent, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+barreSize, Y);
-        g.drawString(suivant, this.getWidth()-suivantSize-espaceSize, Y);
-        
-		} catch (FontFormatException | IOException | URISyntaxException e) {
+    		font = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
+    					.getClassLoader().getResource("Config/BlackOps.ttf")
+    					.toURI())).deriveFont(Font.PLAIN, 8+25*this.getWidth()/1500);
+    		
+            g.setFont(font);
+            FontMetrics fm=getFontMetrics(font); 
+            
+            menuSize = fm.stringWidth(menu);
+            jourSize = fm.stringWidth(jour);
+            joueurSize = fm.stringWidth(joueur);
+            argentSize = fm.stringWidth(argent);
+            suivantSize = fm.stringWidth(suivant);
+            espaceSize = fm.stringWidth(espace);
+            barreSize = fm.stringWidth(barre);
+            
+            int decaleX=3;
+            int decaleY=3;
+            int Y=45;
+            
+            // Ombre
+            g.setColor(Color.black);
+            g.drawString(menu, espaceSize+decaleX, Y+decaleY);
+            g.drawString(barre, espaceSize+menuSize+decaleX, Y+decaleY);
+            g.drawString(jour, espaceSize+menuSize+barreSize+decaleX, Y+decaleY);
+            g.drawString(barre, espaceSize+menuSize+barreSize+jourSize+decaleX, Y+decaleY);
+            g.drawString(joueur, espaceSize+menuSize+barreSize+jourSize+barreSize+decaleX, Y+decaleY);
+            g.drawString(barre, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+decaleX, Y+decaleY);
+            if(!Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA() || !Slatch.partie.getBrouillard())
+                g.drawString(argent, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+barreSize+decaleX, Y+decaleY);
+            g.drawString(suivant, this.getWidth()-suivantSize-espaceSize+decaleX, Y+decaleY);
+            
+            g.setColor(Color.white);
+            g.drawString(menu, espaceSize, Y);
+            g.drawString(barre, espaceSize+menuSize, Y);
+            g.drawString(jour, espaceSize+menuSize+barreSize, Y);
+            g.drawString(barre, espaceSize+menuSize+barreSize+jourSize,Y);
+            g.drawString(joueur, espaceSize+menuSize+barreSize+jourSize+barreSize, Y);
+            g.drawString(barre, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize, Y);
+            if(!Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA() || !Slatch.partie.getBrouillard())
+                g.drawString(argent, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+barreSize, Y);
+            g.drawString(suivant, this.getWidth()-suivantSize-espaceSize, Y);
+            
+		}
+		catch (FontFormatException | IOException | URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
