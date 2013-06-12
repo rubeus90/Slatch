@@ -313,76 +313,78 @@ public class PanelMatrice extends JPanel
         
         // Si la partie est finie : Ecran de fin de partie
         if(Slatch.partie.partieFinie) {
-            // Fond d'ecran de fin de partie
-            afficheImageRedim ("noir80", 0, 0, this.getWidth(), this.getHeight(), g);
-            
-            // Choix de la police de char
-            Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
-            g.setFont(font);
-            FontMetrics fm=getFontMetrics(font); 
-            g.setColor(Color.white);
-            
-            int hauteurSize = fm.getHeight();
-            String joueur = "Le joueur "+ Slatch.partie.getJoueurActuel() +" a gagné";
-            int joueurSize = fm.stringWidth(joueur);
-            g.drawString(joueur, this.getWidth()/2 - joueurSize/2, 2*this.getHeight()/(2*hauteurSize));
-            
-            // Affiche les statistiques
-            for(int i=1; i<=Slatch.partie.getNbrJoueur(); i++){
-                int decalage=0;
-                if(Slatch.partie.getNbrJoueur()==2 && i==1) decalage=-this.getWidth()/5;
-                if(Slatch.partie.getNbrJoueur()==2 && i==2) decalage=this.getWidth()/5;
-                
-                if(Slatch.partie.getNbrJoueur()==3 && i==1) decalage=-this.getWidth()/5;
-                if(Slatch.partie.getNbrJoueur()==3 && i==2) decalage=0;
-                if(Slatch.partie.getNbrJoueur()==3 && i==3) decalage=this.getWidth()/5;
-                
-                if(Slatch.partie.getNbrJoueur()==4 && i==1) decalage=-this.getWidth()/3;
-                if(Slatch.partie.getNbrJoueur()==4 && i==2) decalage=-this.getWidth()/9;
-                if(Slatch.partie.getNbrJoueur()==4 && i==3) decalage=this.getWidth()/9;
-                if(Slatch.partie.getNbrJoueur()==4 && i==4) decalage=this.getWidth()/3;
-                
-                String stat1 = "Statistiques du joueur " + i;
-                int stat1Size = fm.stringWidth(stat1);
-                String stat13 = "Score : " + Slatch.partie.ListeJoueur.get(i).getScore();
-                int stat13Size = fm.stringWidth(stat13);
-                String stat2 = "Argent recolte : " + Slatch.partie.ListeJoueur.get(i).getArgentTotal()+"¤";
-                int stat2Size = fm.stringWidth(stat2);
-                String stat3 = "Argent depense : " + Slatch.partie.ListeJoueur.get(i).getArgentDepense()+"¤";
-                int stat3Size = fm.stringWidth(stat3);
-                String stat4 = "Batiments Captures: " + Slatch.partie.ListeJoueur.get(i).getCaptureTotal();
-                int stat4Size = fm.stringWidth(stat4);
-                String stat11 = "Unites Tuées : " + Slatch.partie.ListeJoueur.get(i).getNbrUniteTue();
-                int stat11Size = fm.stringWidth(stat11);
-                String stat10 = "Unites créées : " + Slatch.partie.ListeJoueur.get(i).getNbrUniteCree();
-                int stat10Size = fm.stringWidth(stat10);
-                String stat5 = "Unites perdues : " + Slatch.partie.ListeJoueur.get(i).getNbrUniteMort();
-                int stat5Size = fm.stringWidth(stat5);
-                String stat6 = "Degats infliges : " + Slatch.partie.ListeJoueur.get(i).getDegatTotal();
-                int stat6Size = fm.stringWidth(stat6);
-                String stat12 = "Soin donne : " + Slatch.partie.ListeJoueur.get(i).getSoinTotal();
-                int stat12Size = fm.stringWidth(stat12);
-                String stat7 = "Degats subis : " + Slatch.partie.ListeJoueur.get(i).getDegatSubit();
-                int stat7Size = fm.stringWidth(stat7);
-                String stat8 = "Experience Totale : " + Slatch.partie.ListeJoueur.get(i).getExpTotal();
-                int stat8Size = fm.stringWidth(stat8);
-                String stat9 = "Deplacement Total : " + Slatch.partie.ListeJoueur.get(i).getDeplacementTotal();
-                int stat9Size = fm.stringWidth(stat9);
-                    
-                g.drawString(stat1, this.getWidth()/2 + decalage - stat1Size/2, 4*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat13, this.getWidth()/2 + decalage - stat13Size/2, 5*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat2, this.getWidth()/2 + decalage - stat2Size/2, 6*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat3, this.getWidth()/2 + decalage - stat3Size/2, 7*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat4, this.getWidth()/2 + decalage - stat4Size/2, 8*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat5, this.getWidth()/2 + decalage - stat5Size/2, 9*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat11, this.getWidth()/2 + decalage - stat11Size/2, 10*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat10, this.getWidth()/2 + decalage - stat10Size/2, 11*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat6, this.getWidth()/2 + decalage - stat6Size/2, 12*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat12, this.getWidth()/2 + decalage - stat12Size/2, 13*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat7, this.getWidth()/2 + decalage - stat7Size/2, 14*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat8, this.getWidth()/2 + decalage - stat8Size/2, 15*this.getHeight()/(2*hauteurSize));
-                g.drawString(stat9, this.getWidth()/2 + decalage - stat9Size/2, 16*this.getHeight()/(2*hauteurSize));
-            }
+//            // Fond d'ecran de fin de partie
+//            afficheImageRedim ("noir80", 0, 0, this.getWidth(), this.getHeight(), g);
+//            
+//            // Choix de la police de char
+//            Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
+//            g.setFont(font);
+//            FontMetrics fm=getFontMetrics(font); 
+//            g.setColor(Color.white);
+//            
+//            int hauteurSize = fm.getHeight();
+//            String joueur = "Le joueur "+ Slatch.partie.getJoueurActuel() +" a gagné";
+//            int joueurSize = fm.stringWidth(joueur);
+//            g.drawString(joueur, this.getWidth()/2 - joueurSize/2, 2*this.getHeight()/(2*hauteurSize));
+//            
+//            // Affiche les statistiques
+//            for(int i=1; i<=Slatch.partie.getNbrJoueur(); i++){
+//                int decalage=0;
+//                if(Slatch.partie.getNbrJoueur()==2 && i==1) decalage=-this.getWidth()/5;
+//                if(Slatch.partie.getNbrJoueur()==2 && i==2) decalage=this.getWidth()/5;
+//                
+//                if(Slatch.partie.getNbrJoueur()==3 && i==1) decalage=-this.getWidth()/5;
+//                if(Slatch.partie.getNbrJoueur()==3 && i==2) decalage=0;
+//                if(Slatch.partie.getNbrJoueur()==3 && i==3) decalage=this.getWidth()/5;
+//                
+//                if(Slatch.partie.getNbrJoueur()==4 && i==1) decalage=-this.getWidth()/3;
+//                if(Slatch.partie.getNbrJoueur()==4 && i==2) decalage=-this.getWidth()/9;
+//                if(Slatch.partie.getNbrJoueur()==4 && i==3) decalage=this.getWidth()/9;
+//                if(Slatch.partie.getNbrJoueur()==4 && i==4) decalage=this.getWidth()/3;
+//                
+//                String stat1 = "Statistiques du joueur " + i;
+//                int stat1Size = fm.stringWidth(stat1);
+//                String stat13 = "Score : " + Slatch.partie.ListeJoueur.get(i).getScore();
+//                int stat13Size = fm.stringWidth(stat13);
+//                String stat2 = "Argent recolte : " + Slatch.partie.ListeJoueur.get(i).getArgentTotal()+"¤";
+//                int stat2Size = fm.stringWidth(stat2);
+//                String stat3 = "Argent depense : " + Slatch.partie.ListeJoueur.get(i).getArgentDepense()+"¤";
+//                int stat3Size = fm.stringWidth(stat3);
+//                String stat4 = "Batiments Captures: " + Slatch.partie.ListeJoueur.get(i).getCaptureTotal();
+//                int stat4Size = fm.stringWidth(stat4);
+//                String stat11 = "Unites Tuées : " + Slatch.partie.ListeJoueur.get(i).getNbrUniteTue();
+//                int stat11Size = fm.stringWidth(stat11);
+//                String stat10 = "Unites créées : " + Slatch.partie.ListeJoueur.get(i).getNbrUniteCree();
+//                int stat10Size = fm.stringWidth(stat10);
+//                String stat5 = "Unites perdues : " + Slatch.partie.ListeJoueur.get(i).getNbrUniteMort();
+//                int stat5Size = fm.stringWidth(stat5);
+//                String stat6 = "Degats infliges : " + Slatch.partie.ListeJoueur.get(i).getDegatTotal();
+//                int stat6Size = fm.stringWidth(stat6);
+//                String stat12 = "Soin donne : " + Slatch.partie.ListeJoueur.get(i).getSoinTotal();
+//                int stat12Size = fm.stringWidth(stat12);
+//                String stat7 = "Degats subis : " + Slatch.partie.ListeJoueur.get(i).getDegatSubit();
+//                int stat7Size = fm.stringWidth(stat7);
+//                String stat8 = "Experience Totale : " + Slatch.partie.ListeJoueur.get(i).getExpTotal();
+//                int stat8Size = fm.stringWidth(stat8);
+//                String stat9 = "Deplacement Total : " + Slatch.partie.ListeJoueur.get(i).getDeplacementTotal();
+//                int stat9Size = fm.stringWidth(stat9);
+//                    
+//                g.drawString(stat1, this.getWidth()/2 + decalage - stat1Size/2, 4*this.getHeight()/(2*hauteurSize));
+//                g.drawString(stat13, this.getWidth()/2 + decalage - stat13Size/2, 5*this.getHeight()/(2*hauteurSize));
+//                g.drawString(stat2, this.getWidth()/2 + decalage - stat2Size/2, 6*this.getHeight()/(2*hauteurSize));
+//                g.drawString(stat3, this.getWidth()/2 + decalage - stat3Size/2, 7*this.getHeight()/(2*hauteurSize));
+//                g.drawString(stat4, this.getWidth()/2 + decalage - stat4Size/2, 8*this.getHeight()/(2*hauteurSize));
+//                g.drawString(stat5, this.getWidth()/2 + decalage - stat5Size/2, 9*this.getHeight()/(2*hauteurSize));
+//                g.drawString(stat11, this.getWidth()/2 + decalage - stat11Size/2, 10*this.getHeight()/(2*hauteurSize));
+//                g.drawString(stat10, this.getWidth()/2 + decalage - stat10Size/2, 11*this.getHeight()/(2*hauteurSize));
+//                g.drawString(stat6, this.getWidth()/2 + decalage - stat6Size/2, 12*this.getHeight()/(2*hauteurSize));
+//                g.drawString(stat12, this.getWidth()/2 + decalage - stat12Size/2, 13*this.getHeight()/(2*hauteurSize));
+//                g.drawString(stat7, this.getWidth()/2 + decalage - stat7Size/2, 14*this.getHeight()/(2*hauteurSize));
+//                g.drawString(stat8, this.getWidth()/2 + decalage - stat8Size/2, 15*this.getHeight()/(2*hauteurSize));
+//                g.drawString(stat9, this.getWidth()/2 + decalage - stat9Size/2, 16*this.getHeight()/(2*hauteurSize));
+//            }
+        	
+        	afficheStatistique(g);
         } // FIN partieFinie
     }
     
@@ -853,6 +855,14 @@ public class PanelMatrice extends JPanel
             aMenuDescriptionBasDroite_Ypx = Slatch.partie.getHauteur()*aHauteurCarreau;
         }
     } // FIN redimMenuDescription
+    
+    public void afficheStatistique(Graphics g){
+    	Slatch.ihm.getPanelFrame().removeAll();
+    	PanelStatistique panel = new PanelStatistique();
+    	Slatch.ihm.getPanelFrame().add(panel);
+    	Slatch.ihm.getPanelFrame().repaint();
+    	Slatch.ihm.getPanelFrame().updateUI();
+    }
     
     public int getaLargeurCarreau() {return aLargeurCarreau;}
     public int getaHauteurCarreau() {return aHauteurCarreau;}

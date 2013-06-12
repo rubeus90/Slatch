@@ -97,13 +97,16 @@ public class PanelMenu extends JPanel
         Image ok = Slatch.aImages.get("boutonok");
         Image retour = Slatch.aImages.get("boutonretour");
 
+        Image trait = Slatch.aImages.get("trait");
+        
+//        Font font = new Font("Helvetica", Font.BOLD, this.getWidth()/50);
+        Font font;
+
+
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
                     .getClassLoader().getResource("Config/visitor2.ttf")
                     .toURI())).deriveFont(Font.PLAIN, this.getWidth()/50);
-                    } catch (FontFormatException | IOException | URISyntaxException e) {
-            e.printStackTrace();
-        }
         g.setFont(font);
         FontMetrics fm=getFontMetrics(font); 
         
@@ -121,6 +124,7 @@ public class PanelMenu extends JPanel
             Image mapcreator = Slatch.aImages.get("boutonmapcreator");
             Image credits = Slatch.aImages.get("boutoncredits");
             
+            g.drawImage(trait, 0, 0, this.getWidth(), this.getHeight(), this);
             g.drawImage(slatch, this.getWidth()/2-2*vHauteurTitre, this.getHeight()/15, 4*vHauteurTitre,vHauteurTitre, this);
             g.drawImage(campagne, this.getWidth()/2-2*aHauteurBouton, 33+ this.getHeight()/4, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(rapide, this.getWidth()/2-2*aHauteurBouton, 33+ 3*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
@@ -232,7 +236,10 @@ public class PanelMenu extends JPanel
             }
         
         }
-        
+        } 
+        catch (FontFormatException | IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
         
     }
     
