@@ -391,7 +391,10 @@ public class PanelMatrice extends JPanel
      */
     public void coordclickUnite (int pX, int pY) 
     {
-        if(aClickOK) {
+        if(!aClickOK) {
+            aClickOK = true;
+        }
+        else {
             int clickX = pX;
             int clickY = pY; 
     
