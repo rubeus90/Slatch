@@ -31,7 +31,6 @@ public class Partie
     private boolean isCampagne;
     private int aLongueur;
     private int aLargeur;
-
     
     
 
@@ -143,6 +142,7 @@ public class Partie
           
             //On lit le fichier et on l'analyse
             while(vScannerMap.hasNextLine()){
+                //System.out.println(ligne);
                 ligne = vScannerMap.nextLine();
                 tab = ligne.split(":");
                 vId = tab[0];
@@ -214,6 +214,11 @@ public class Partie
                         Unite ingenieur = new Unite(vX,vY,vJoueur,TypeUnite.INGENIEUR);
                         lUnite.add(ingenieur);
                         aTerrain[vX][vY].setUnite(ingenieur); 
+                        break;
+                    case "Kamikaze":
+                        Unite kamikaze = new Unite(vX,vY,vJoueur,TypeUnite.KAMIKAZE);
+                        lUnite.add(kamikaze);
+                        aTerrain[vX][vY].setUnite(kamikaze); 
                         break;
                     case "Distance":
                         Unite distance = new Unite(vX,vY,vJoueur,TypeUnite.DISTANCE);
@@ -899,7 +904,7 @@ public class Partie
                         string2 += unite.getType().getNom()+ ":";
                         string2 += i+ ":";
                         string2 += j+ ":";
-                        string2 += unite.getJoueur() + ":";                           
+                        string2 += unite.getJoueur();                           
                         bw.write(string2);
                         bw.newLine();
                     }
