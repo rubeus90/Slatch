@@ -46,7 +46,7 @@ public class PanelMenu extends JPanel
     /***/   //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
     /***/   boolean[] vIA = {false,true,true,true,true};
     /***/  Faction[] vFaction = {Faction.NEUTRE,Faction.HUMAINS,Faction.ROBOTS,Faction.HUMAINS,Faction.HUMAINS};
-    /***/  boolean dBrouillard = false;
+    /***/  boolean dBrouillard = true;
     /***/   boolean aAnimation = true;
     /***/
     /*********************************************************************************************************************/
@@ -388,7 +388,7 @@ public class PanelMenu extends JPanel
                 //     }
                     
                 //Clic sur la difficulté de l'IA
-                if(pY>this.getHeight()/2+aHauteurBouton-hR/2 && pY<this.getHeight()/2+aHauteurBouton && pX>(2+2*i)*this.getWidth()/10 && pX<(2+2*i)*this.getWidth()/10+SizeNiveauIA)
+                if(pY>this.getHeight()/2+aHauteurBouton-hR && pY<this.getHeight()/2+aHauteurBouton && pX>(2+2*i)*this.getWidth()/10 && pX<(2+2*i)*this.getWidth()/10+SizeNiveauIA)
                     {
                        switch(aNiveauIA[i])
                        {
