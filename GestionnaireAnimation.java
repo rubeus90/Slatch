@@ -80,7 +80,7 @@ public class GestionnaireAnimation implements ActionListener
         long deltaT = System.currentTimeMillis()-beforeTime;
         beforeTime = System.currentTimeMillis();   
         if(deltaT>70) return;
-        
+        Slatch.ihm.getPanel().setClickOK(false);
         
         if(animation.isEmpty())
         {
@@ -92,6 +92,7 @@ public class GestionnaireAnimation implements ActionListener
             //aDepart.clear();
             //aUnite.clear();
             Slatch.ihm.timer.stop();
+            Slatch.ihm.getPanel().setClickOK(true);
             aTricheAffichage.clear();
             if(Slatch.partie.getBrouillard()){
                 Slatch.moteur.Brouillard();
@@ -119,6 +120,7 @@ public class GestionnaireAnimation implements ActionListener
                     animation.clear();
                     aTricheAffichage.clear();
                     Slatch.ihm.timer.stop();
+                    Slatch.ihm.getPanel().setClickOK(true);
                     if(Slatch.partie.getBrouillard()){
                     Slatch.moteur.Brouillard();
                     }
@@ -161,7 +163,7 @@ public class GestionnaireAnimation implements ActionListener
                     avancement=0;
                     animation.clear();
                     Slatch.ihm.timer.stop();
-                    
+                    Slatch.ihm.getPanel().setClickOK(true);
                     if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
                     Slatch.moteur.passeTour();
                     
@@ -192,7 +194,7 @@ public class GestionnaireAnimation implements ActionListener
                     avancement=0;
                     animation.clear();
                     Slatch.ihm.timer.stop();
-                    
+                    Slatch.ihm.getPanel().setClickOK(true);
                     if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
                     Slatch.moteur.passeTour();
                     
@@ -222,7 +224,7 @@ public class GestionnaireAnimation implements ActionListener
                     avancement=0;
                     animation.clear();
                     Slatch.ihm.timer.stop();
-                    
+                    Slatch.ihm.getPanel().setClickOK(true);
                     if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
                     Slatch.moteur.passeTour();
                     
@@ -250,7 +252,7 @@ public class GestionnaireAnimation implements ActionListener
                     avancement=0;
                     animation.clear();
                     Slatch.ihm.timer.stop();
-                    
+                    Slatch.ihm.getPanel().setClickOK(true);
                     if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
                     Slatch.moteur.passeTour();
                     
