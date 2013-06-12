@@ -133,7 +133,7 @@ public class PanelMatrice extends JPanel
             afficheImageRedim ("noir", 0, 0, this.getWidth(), this.getHeight(), g);
             
             // Police
-            Font font = new Font("Serif", Font.BOLD, this.getWidth()/20);
+            Font font = Slatch.fonts.get("Visitor").deriveFont(Font.PLAIN, this.getWidth()/20);
             g.setFont(font);
             FontMetrics fm=getFontMetrics(font); 
             g.setColor(Color.white);
@@ -147,7 +147,7 @@ public class PanelMatrice extends JPanel
             afficheImageRedim ("noir80", aMenuActionHautGauche_Xpx, aMenuActionHautGauche_Ypx, aMenuActionBasDroite_Xpx, aMenuActionBasDroite_Ypx, g);
             
             // Police
-            Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
+            Font font = Slatch.fonts.get("Visitor").deriveFont(Font.PLAIN, this.getWidth()/90);
             g.setFont(font);
             FontMetrics fm=getFontMetrics(font);
             g.setColor(Color.gray);
@@ -198,7 +198,8 @@ public class PanelMatrice extends JPanel
             redimMenuDescription(aUniteMemMenuCaseX,aUniteMemMenuCaseY);
             
             // Police
-            Font font = new Font("Serif", Font.BOLD, this.getWidth()/100);
+            
+            Font font = Slatch.fonts.get("Visitor").deriveFont(Font.PLAIN, this.getWidth()/120);
             g.setFont(font);
             FontMetrics fm=getFontMetrics(font);  
             
@@ -209,7 +210,7 @@ public class PanelMatrice extends JPanel
             // S'il y a une unite et pas de brouillard : on affiche la description de l'unite, on affiche la description du terrain
             if(t.getUnite()!=null && !t.getBrouillard())
             {
-                String portedep = "Portée Depl = "+t.getUnite().getDeplacement()/10;
+                String portedep = "Portee Depl = "+t.getUnite().getDeplacement()/10;
                 String xp = "XP = "+t.getUnite().getExperience()+"   PV = "+t.getUnite().getPV()+"/"+t.getUnite().getPVMax();
                 String lvl = "LVL = ";
                 String couverture = "Couv = "+ t.getType().getCouverture();
@@ -262,7 +263,7 @@ public class PanelMatrice extends JPanel
             afficheImageRedim ("noir80", aShopHautGauche_Xpx, aShopHautGauche_Ypx, aShopBasDroite_Xpx, aShopBasDroite_Ypx, g);
 
             // Police
-            Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
+            Font font = Slatch.fonts.get("Visitor").deriveFont(Font.PLAIN, this.getWidth()/120);
             g.setFont(font);
             FontMetrics fm=getFontMetrics(font);  
 
@@ -293,7 +294,7 @@ public class PanelMatrice extends JPanel
             redimMenu();
             
             // Police
-            Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
+            Font font = Slatch.fonts.get("Visitor").deriveFont(Font.PLAIN, this.getWidth()/90);
             g.setFont(font);
             FontMetrics fm=getFontMetrics(font);  
         
@@ -595,7 +596,7 @@ public class PanelMatrice extends JPanel
         
         afficheImageRedim ("noir80", pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX, pPosBasDroiteY, g);
         
-        Font font = new Font("Serif", Font.PLAIN, this.getWidth()/150);
+        Font font = Slatch.fonts.get("Visitor").deriveFont(Font.PLAIN, this.getWidth()/150);
         g.setFont(font);
         FontMetrics fm=getFontMetrics(font); 
         int h=fm.getHeight()-1;
@@ -636,7 +637,7 @@ public class PanelMatrice extends JPanel
             
             afficheImageRedim ("noir80", pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX, pPosBasDroiteY, g);
             
-            Font font = new Font("Serif", Font.PLAIN, this.getWidth()/150);
+            Font font = Slatch.fonts.get("Visitor").deriveFont(Font.PLAIN, this.getWidth()/150);
             g.setFont(font);
             FontMetrics fm=getFontMetrics(font); 
             int h=fm.getHeight()-1;
