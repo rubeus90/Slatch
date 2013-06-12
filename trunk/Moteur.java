@@ -1080,7 +1080,7 @@ class Moteur
             {
                 if(getJoueurActuel().estUneIA()){AIMaster.joueTour(Slatch.partie.getJoueurActuel());}
             }
-            
+            Slatch.ihm.getPanel().repaint();
         }
     }
     
