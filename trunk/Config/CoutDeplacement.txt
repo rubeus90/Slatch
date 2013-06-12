@@ -1,6 +1,12 @@
 plaine,roues,10
 plaine,chenilles,10
 plaine,pied,10
+routehorizontal,roues,10
+routehorizontal,chenilles,10
+routehorizontal,pied,10
+routevertical,roues,10
+routevertical,chenilles,10
+routevertical,pied,10
 desert,roues,10
 desert,chenilles,10
 desert,pied,10
