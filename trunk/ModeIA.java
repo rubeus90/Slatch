@@ -1,6 +1,6 @@
 public enum ModeIA
 {
-    DEPLOIEMENT(5, 1, 2, 2, 1) , ATTAQUE(5, 1, 2, 2, 1), REPLI(1,4, 1, 5,5);
+    DEPLOIEMENT(5, 5, 2, 2, 1) , ATTAQUE(5, 1, 2, 2, 1), REPLI(1,4, 1, 5,5);
     
     Influence inf;
     

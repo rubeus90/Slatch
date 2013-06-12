@@ -140,6 +140,7 @@ public abstract class Entite
         this.aBrouillard = pBrouillard;
     }
     
+    public abstract boolean estUneUnite();
         
     public boolean appartientAuJoueur(int joueur)
     {

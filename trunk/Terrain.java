@@ -71,6 +71,10 @@ public class Terrain extends Entite{
         aUnite = pUnite;
     }  
     
+    public boolean estUneUnite()
+    {
+        return false;
+    }
     
     /**
      * Retourner le type de terrain

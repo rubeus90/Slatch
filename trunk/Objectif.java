@@ -8,27 +8,21 @@ import java.awt.Point;
  */
 public class Objectif
 {
-    private String aMotPrincipal;
-    private String aMotSecondaire;
     private Entite aCible;
-    private Point aCoordonnee;
     private Entite aExecutant;
+    private TypeObjectif aType;
 
     /**
      * Constructor for objects of class Objectif
      */
-    public Objectif(final String pMotPrincipal,final String pMotSecondaire,final Point pCoordonnee,final Entite pExecutant,final Entite pCible)
+    public Objectif(final Entite pExecutant,final Entite pCible, TypeObjectif pType)
     {
-        aMotPrincipal = pMotPrincipal;
-        aMotSecondaire = pMotSecondaire;
         aCible=pCible;
         aExecutant = pExecutant;
-        aCoordonnee = pCoordonnee;
+        aType = pType;
     }
-
-    public String getMotPrincipal(){return aMotPrincipal;}
-    public String getMotSecondaire(){return aMotSecondaire;}
-    public Point getCoordonnee(){return aCoordonnee;}
+    
     public Entite getExecutant(){return aExecutant;}
     public Entite getCible(){return aCible;}
+    public TypeObjectif getType(){return aType;}
 }

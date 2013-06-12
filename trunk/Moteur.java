@@ -412,7 +412,7 @@ class Moteur
         int X=unite.getCoordonneeX(), Y=unite.getCoordonneeY();
         Stack<Point> stack = new Stack<Point>();
         Slatch.ihm.getPanel().paintImmediately(0,0,Slatch.ihm.getPanel().getWidth(),Slatch.ihm.getPanel().getHeight());
-        if(pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y]){stack.push(new Point(pX,pY));unite.deplacee(true); Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());X=pX;Y=pY;init=false;if(unite.getAttaque().aTypePortee.getPorteeMin()>1){unite.attaque(true);}}
+        if(tabDist[x][y]!=-2 && pred[x][y]!=null && unite.getType().getDeplacement()>=tabDist[x][y] && tabDist[x][y]!=-1){stack.push(new Point(pX,pY));unite.deplacee(true); Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());X=pX;Y=pY;init=false;if(unite.getAttaque().aTypePortee.getPorteeMin()>1){unite.attaque(true);}}
         while(!fini)
         {
             Point p = pred[x][y];
@@ -426,23 +426,24 @@ class Moteur
                 }
                 else
                 {
-                    if(unite.getType().getDeplacement()>=tabDist[x][y])
+                    if(unite.getType().getDeplacement()>=tabDist[x][y] && tabDist[x][y]!=-1)
                     {
                         if(!geez)
                         {
-                            if(getUnite(x,y)==null){
+                            if(getUnite(x,y)==null)
+                            {
                                 stack.push(p);
-                                    
-                            unite.deplacee(true); 
-                            geez = true;Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
-                                 
-                                    if(init)
-                                    {
-                                     X=(int)p.getX();
-                                     Y=(int)p.getY();
-                                     init=false;
-                                    }
-                        }
+                                        
+                                unite.deplacee(true); 
+                                geez = true;Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].setPV(Slatch.partie.getTerrain()[unite.getCoordonneeX()][unite.getCoordonneeY()].getType().getPVMax());
+                                     
+                                if(init)
+                                {
+                                 X=(int)p.getX();
+                                 Y=(int)p.getY();
+                                 init=false;
+                                }
+                            }
                         }
                         else
                         {
@@ -480,7 +481,7 @@ class Moteur
          AnimationDeplacement animation = new AnimationDeplacement(vChemin,vDepart,vUnite);
             Slatch.ihm.getAnimation().addAnimation(animation);
             
-           if(!getJoueurActuel().estUneIA())
+        if(!getJoueurActuel().estUneIA())
           {
             Slatch.ihm.getAnimation().start();
           }
@@ -607,6 +608,17 @@ class Moteur
                                 pq.offer(new Triplet(d, x, y));
                             }
                         }
+                        if(tabDist[x][y]==-2)
+                        {
+                            if(pred[x][y]==null)
+                            {
+                                pred[x][y]= new Point(t.x, t.y);
+                            }
+                            else if(tabDist[(int)(pred[x][y].getX())][(int)(pred[x][y].getY())]>tabDist[t.x][t.y])
+                            {
+                                pred[x][y]= new Point(t.x, t.y);
+                            }
+                        }
                     }
                 }
             }
@@ -710,6 +722,25 @@ class Moteur
         }
     } 
     
+    public boolean estAuCac(Unite u, Unite v)
+    {
+        int vX = v.getX();
+        int vY = v.getY();
+        for(Point p: voisins)
+        {
+            int x=(int)(p.getX())+vX;
+            int y=(int)(p.getY())+vY;
+            if(dansLesBords(x,y))
+            {
+                if(Slatch.partie.getTerrain()[x][y].getUnite()==u)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
     /**
      * Permet d'obtenir le pourcentage de la vie d'unite divise par 100
      */
@@ -756,6 +787,34 @@ class Moteur
             return (d<=unite.getType().getDeplacement() && tabDist[pX][pY]>unite.getType().getDeplacement());
         }
         return false;
+    }
+    
+    /**
+     * Retourne la distance la plus faible a une case adjacente de la case passee en parametre
+     */
+    public int schmurtzDistance(int pX, int pY)
+    {
+        if(Slatch.partie.getTerrain()[pX][pY].getUnite()!=null)
+        {
+            int d=-1;
+            for(Point p: voisins)
+            {
+                int x = (int)(p.getX())+pX;
+                int y = (int)(p.getY())+pY;
+                if(dansLesBords(x,y))
+                {
+                    if(d==-1 || d>tabDist[x][y])
+                    {
+                        d=tabDist[x][y];
+                    }
+                }
+            }
+            return d;
+        }
+        else
+        {
+            return tabDist[pX][pY];
+        }
     }
     
     /**
@@ -1089,14 +1148,7 @@ class Moteur
                 }
             }
             
-            if(getJoueurActuel().estUneIA() && Slatch.partie.getJoueurActuel()!=0)
-            {
                 StrategieIA.joueTour(Slatch.partie.getJoueurActuel());
-            }
-            else
-            {
-                if(getJoueurActuel().estUneIA()){AIMaster.joueTour(Slatch.partie.getJoueurActuel());}
-            }
             Slatch.ihm.getPanel().repaint();
         }
     }
