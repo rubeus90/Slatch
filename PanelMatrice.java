@@ -864,4 +864,5 @@ public class PanelMatrice extends JPanel
     public void setClickOK(final boolean X) {aClickOK=X;}
     public void setPauseTour(final boolean X) {aClickOK=!X; aPauseTour=X;}
     public boolean getPauseTour() {return aPauseTour;}
+    public boolean getClickOK() {return aClickOK;}
 }
