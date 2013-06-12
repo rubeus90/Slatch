@@ -16,19 +16,19 @@ public class OperationIA
         Entite cible;
         if(unite.estLowHP())
         {
-            cible= trouverBonneCase(unite, new Influence(0,20, 1, -4, 4));
+            cible= trouverBonneCase(unite, new Influence(0,20, 1, -4, 15));
         }
         else if(unite.peutSoigner())
         {
-            cible= trouverBonneCase(unite, new Influence(3,6, 0, -2, 2));
+            cible= trouverBonneCase(unite, new Influence(10,6, 0, -2, 2));
         }
         else if(unite.peutCapturer())
         {
-            cible= trouverBonneCase(unite, new Influence(15,1, 50, -2, 1));
+            cible= trouverBonneCase(unite, new Influence(15,1, 40, -2, 1));
         }
         else // l'unité peut attaquer
         {
-            cible= trouverBonneCase(unite, new Influence(0,5, 1500, -5, 5));
+            cible= trouverBonneCase(unite, new Influence(0,1, 50, -1, 1));
         }
        
         //cible= trouverBonneCase(unite, new Influence(1,0, 0, 0, 0));
@@ -98,17 +98,13 @@ public class OperationIA
                         map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+= pontDerration(5000, tabDist[uX][uY]);
                     }
                     int x=0,y=0;
-                    //map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+=5000;
                     if(unite.getAttaque().efficacite.containsKey(u.getType()))
                     {
                         if(Slatch.moteur.seraAPortee(unite, u))
                         {
                             map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+=(int)(unite.getAttaque().efficacite.get(u.getType()).doubleValue()*5000*StrategieIA.mode.inf.offensif*(double)(u.getPVMax())/(double)(u.getPV()));
                         }
-                            //map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+= pontDerration((int)(unite.getAttaque().efficacite.get(u.getType()).doubleValue()*5000.0*StrategieIA.mode.inf.offensif*(double)(u.getPVMax())/(double)(u.getPV())), Slatch.moteur.distance(unite, u));
-                            map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+= pontDerration((int)(unite.getAttaque().efficacite.get(u.getType()).doubleValue()*50000.0*StrategieIA.mode.inf.offensif*(double)(u.getPVMax())/(double)(u.getPV())), 20*Slatch.moteur.schmurtzDistance(uX, uY));
-                        //}
-                        //x+= (int)(unite.getAttaque().efficacite.get(u.getType()).doubleValue()*1.0);
+                        map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+= pontDerration((int)(unite.getAttaque().efficacite.get(u.getType()).doubleValue()*50000.0*StrategieIA.mode.inf.offensif*(double)(u.getPVMax())/(double)(u.getPV())), 20*Slatch.moteur.schmurtzDistance(uX, uY));
                     }
                     
                     if(u.getAttaque().efficacite.containsKey(unite.getType()))
@@ -130,7 +126,6 @@ public class OperationIA
                     {
                         map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=7000;
                     }
-                    //map[t.getX()][t.getY()].capture+=pontDerration(5000,tabDist[t.getX()][t.getY()]);
                 }
                 
                 for(Terrain t: Slatch.partie.getJoueur(i).getListeUsine())
@@ -143,12 +138,6 @@ public class OperationIA
                     {
                         map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=7000;
                     }
-                    /*
-                    else
-                    {
-                        map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=5000/Slatch.moteur.tabDist[t.getCoordonneeX()][t.getCoordonneeY()];
-                    }*/
-                    //map[t.getX()][t.getY()].capture+=pontDerration(5000,tabDist[t.getX()][t.getY()]);
                 }
             }
             if(Slatch.partie.getJoueur(i).getEquipe().getNumEquipe()==Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe() && unite.getType()==TypeUnite.INGENIEUR)
@@ -174,26 +163,6 @@ public class OperationIA
         if(y==0){return x;}
         return x/y;
     }
-    
-    /*static Point trouverBonneCase(Unite unite, Influence pond)
-    {
-        int memi =-1, memj =-1;
-        int mems=0;
-        for(int i=0; i<Slatch.partie.getLargeur(); i++)
-        {
-            for(int j=0; j<Slatch.partie.getHauteur(); j++)
-            {
-                int s = sommePonderee(map[i][j], pond);
-                if(s>mems && valide[i][j])
-                {
-                    mems=s;
-                    memi=i;
-                    memj=j;
-                }
-            }
-        }
-        return new Point(memi, memj);
-    }*/
     
     static Entite trouverBonneCase(Unite unite, Influence pond)
     {
@@ -269,72 +238,84 @@ public class OperationIA
         }
         
         
-        //for(Terrain usine : joueurActuel.getListeUsine())
-        while(!pq.isEmpty())
+        if(StrategieIA.mode==ModeIA.DEPLOIEMENT)
         {
-            Triplet t = pq.poll();
-            Terrain usine = Slatch.partie.getTerrain()[t.x][t.y];
-            int x = usine.getCoordonneeX();
-            int y = usine.getCoordonneeY();
-
-            if(joueurActuel.getArgent()>=700)
-             {                 
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.TANK), TypeObjectif.ACHETER));                    
-                nombreWhile=nombreWhile+1;
-             }
-            else if(joueurActuel.getArgent()>=450 && nombreUml <1)         
+            while(!pq.isEmpty())
             {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.UML), TypeObjectif.ACHETER));
-                nombreUml=nombreUml+1;
+                Triplet t = pq.poll();
+                Terrain usine = Slatch.partie.getTerrain()[t.x][t.y];
+                int x = usine.getCoordonneeX();
+                int y = usine.getCoordonneeY();
+                if(joueurActuel.getArgent()>=100 && nombreCommando<3)
+                {
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.COMMANDO), TypeObjectif.ACHETER));
+                    nombreCommando=nombreCommando+1;
+                }
+                else if(joueurActuel.getArgent()>=100 && nombreSpec <2 && joueurActuel.getFaction()==Faction.HUMAINS)
+                {
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.INGENIEUR), TypeObjectif.ACHETER));
+                    nombreSpec=nombreSpec+1;
+                }
+                else if(joueurActuel.getArgent()>=100 && nombreSpec <2  && joueurActuel.getFaction()==Faction.ROBOTS)
+                {
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.KAMIKAZE), TypeObjectif.ACHETER));
+                    nombreSpec=nombreSpec+1;
+                }
+                //break;
             }
-            else if(joueurActuel.getArgent()>=350 && nombreDistance <1)         
-            {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.DISTANCE), TypeObjectif.ACHETER));
-               nombreDistance=nombreDistance+1;
-            }
-            else if(joueurActuel.getArgent()>=300 && nombreTank <1)
-            {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.CHAR), TypeObjectif.ACHETER));
-                 nombreTank=nombreTank+1;
-            }
-            else if(joueurActuel.getArgent()>=200 && nombreDemolisseur <3)
-            {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.DEMOLISSEUR), TypeObjectif.ACHETER));
-                nombreDemolisseur=nombreDemolisseur+1;
-            }
-            else if(joueurActuel.getArgent()>=100 && nombreCommando <3)
-            {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.COMMANDO), TypeObjectif.ACHETER));
-                nombreCommando=nombreCommando+1;
-            }
-            else if(joueurActuel.getArgent()>=100 && nombreSpec <2 /*&& joueurActuel.getFaction()==Faction.HUMAINS*/)
-            {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.INGENIEUR), TypeObjectif.ACHETER));
-                nombreSpec=nombreSpec+1;
-            }
-            else if(joueurActuel.getArgent()>=100 && nombreSpec <2  && joueurActuel.getFaction()==Faction.ROBOTS)
-            {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.KAMIKAZE), TypeObjectif.ACHETER));
-                nombreSpec=nombreSpec+1;
-            }
-            break;
         }
-    }
+        else
+        {
+            while(!pq.isEmpty())
+            {
+                Triplet t = pq.poll();
+                Terrain usine = Slatch.partie.getTerrain()[t.x][t.y];
+                int x = usine.getCoordonneeX();
+                int y = usine.getCoordonneeY();
     
-    static void acheterUniteAvecStyle()
-    {
-        Joueur joueurActuel = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
-        List<Unite> listeEnnemis = Slatch.partie.getListeUnitesEnnemies();
-        HashMap<TypeUnite, Integer> map = new HashMap<TypeUnite, Integer>();
-        for(TypeUnite t: TypeUnite.values())
-        {
-            map.put(t, 0);
+                if(joueurActuel.getArgent()>=700)
+                 {                 
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.TANK), TypeObjectif.ACHETER));                    
+                    nombreWhile=nombreWhile+1;
+                 }
+                else if(joueurActuel.getArgent()>=450 && nombreUml <2)         
+                {
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.UML), TypeObjectif.ACHETER));
+                    nombreUml=nombreUml+1;
+                }
+                else if(joueurActuel.getArgent()>=350 && nombreDistance <1)         
+                {
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.DISTANCE), TypeObjectif.ACHETER));
+                   nombreDistance=nombreDistance+1;
+                }
+                else if(joueurActuel.getArgent()>=300 && nombreTank <1)
+                {
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.CHAR), TypeObjectif.ACHETER));
+                     nombreTank=nombreTank+1;
+                }
+                else if(joueurActuel.getArgent()>=200 && nombreDemolisseur <3)
+                {
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.DEMOLISSEUR), TypeObjectif.ACHETER));
+                    nombreDemolisseur=nombreDemolisseur+1;
+                }
+                else if(joueurActuel.getArgent()>=100 && nombreCommando <3)
+                {
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.COMMANDO), TypeObjectif.ACHETER));
+                    nombreCommando=nombreCommando+1;
+                }
+                else if(joueurActuel.getArgent()>=100 && nombreSpec <2 && joueurActuel.getFaction()==Faction.HUMAINS)
+                {
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.INGENIEUR), TypeObjectif.ACHETER));
+                    nombreSpec=nombreSpec+1;
+                }
+                else if(joueurActuel.getArgent()>=100 && nombreSpec <2  && joueurActuel.getFaction()==Faction.ROBOTS)
+                {
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.KAMIKAZE), TypeObjectif.ACHETER));
+                    nombreSpec=nombreSpec+1;
+                }
+                //break;
+            }
         }
-        for(Unite u: listeEnnemis)
-        {
-            int mem = map.get(u.getType()).intValue();
-            mem++;
-            map.put(u.getType(), mem);
-        }
+        
     }
 }
