@@ -18,7 +18,9 @@ public enum Map{
     CHAMPSDESERT("Champs","Une map tres petite dans le Desert","2V2 -4","champsdesert",12,12,4,true,false),
     GAGNER("Gagner","Une Map de flemmarde","1V","gagner",10,10,2,false,false),
     NIVEAU1("Mission 1","La carte de la premiere mission de la campagne", "1V1","niveau1",25,12,2,false,true),
-    NIVEAU2("Mission 2","La carte de la deuxième mission de la campagne", "1V1","niveau2",30,14,2,false,true);
+    NIVEAU2("Mission 2","La carte de la deuxième mission de la campagne", "1V1","niveau2",30,14,2,false,true),
+    FRANMAP("FRANMAP","La carte de la...", "2v2 - 4","franmap",25,25,4,false,true);
+    
     
     private String aNom;
     private String aDescription;
