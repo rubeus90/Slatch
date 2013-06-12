@@ -14,10 +14,11 @@ public enum Map{
     MAPTEST4("MapTest4","Map de Test","","mapTest4",32,18,4,false,false),
     PARALLAXE("Parallaxe","Une map de taille moyenne","1V1","Parallaxe",40,15,2,false,false),
     SELETON("Seleton","Une grande map","3V1","seleton",30,30,4,false,false),
-    NIVEAU1("Mission 1","La carte de la premiere mission de la campagne", "1V1","niveau1",25,12,2,false,true),
     COULOIR("Couloir","Une map tout en long","1V1","couloir",30,13,2,false,false),
     CHAMPSDESERT("Champs","Une map très petite dans le Desert","2V2 -4","champsdesert",12,12,4,true,false),
-    GAGNER("Gagner","Une Map de flemmarde","1V","gagner",10,10,2,false,false);
+    GAGNER("Gagner","Une Map de flemmarde","1V","gagner",10,10,2,false,false),
+    NIVEAU1("Mission 1","La carte de la premiere mission de la campagne", "1V1","niveau1",25,12,2,false,true),
+    NIVEAU2("Mission 2","La carte de la deuxième mission de la campagne", "1V1","niveau2",30,14,2,false,true);
     
     private String aNom;
     private String aDescription;
