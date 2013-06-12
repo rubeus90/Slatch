@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -19,18 +20,37 @@ import javax.swing.JTextArea;
  */
 public class PanelStatistique extends JPanel implements MouseListener{
 	private ArrayList<JTextArea> list;
+	private JTextArea gagnant;
+	private JPanel panelHaut;
+	private JPanel panelBas;
 	
 	public PanelStatistique(){
 		this.setPreferredSize(new Dimension(800,500));
-		this.setLayout(new GridLayout(1,4));
+		this.setLayout(new BorderLayout());
+		
+		panelHaut = new JPanel();
+		panelHaut.setLayout(new BorderLayout());
+		panelHaut.setOpaque(false);
+		panelBas = new JPanel();
+		panelBas.setLayout(new GridLayout(1,4));
+		panelBas.setOpaque(false);
+		
+		gagnant = new JTextArea();
+		gagnant.setOpaque(false);
+		gagnant.setForeground(Color.WHITE);
+		gagnant.setEditable(false);
+		gagnant.setFocusable(false);
+		gagnant.addMouseListener(this);
+		
+		panelHaut.add(gagnant, BorderLayout.CENTER);		
 		
 		list = new ArrayList<JTextArea>();
 		for(int i=1; i<=Slatch.partie.getNbrJoueur(); i++){
-			JTextArea text = new JTextArea("Coucouc");
+			JTextArea text = new JTextArea();
 			list.add(text);
 			JPanel panel = new JPanel();
 			panel.add(text);
-			this.add(panel);
+			panelBas.add(panel);
 			panel.setOpaque(false);
 		}
 	
@@ -42,6 +62,10 @@ public class PanelStatistique extends JPanel implements MouseListener{
 			list.get(i).addMouseListener(this);
 			afficheStat(i+1);
 		}
+		
+		this.add(panelHaut, BorderLayout.NORTH);
+		this.add(panelBas, BorderLayout.CENTER);
+		
 		this.addMouseListener(this);
 		
 		this.repaint();
@@ -50,30 +74,16 @@ public class PanelStatistique extends JPanel implements MouseListener{
 	@Override
 	public void paintComponent(final Graphics g){
 		afficheImageRedim ("wallpaper", 0, 0, this.getWidth(), this.getHeight(), g);
-		afficheImageRedim ("noir80", 0, this.getHeight()/5, this.getWidth(), this.getHeight()*4/5, g);
-		
-		Font font = Slatch.fonts.get("BlackOps").deriveFont(Font.PLAIN, this.getWidth()/20);
-		FontMetrics fm = getFontMetrics(font);
-		g.setFont(font);
-		String string = "Le joueur ";
-		
-		ArrayList<Joueur> equipe = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getEquipe().getListeJoueur();
-		
-		for(Joueur joueur : equipe){
-			string += joueur.getNumJoueur() + ",";
-		}
-		
-		string = string.substring(0, string.length()-1);
-		string += " a gagné";
-		
-		int longueur = fm.stringWidth(string);
-		g.drawString(string, this.getWidth()/2 - longueur/2, this.getHeight()/10);
+		afficheImageRedim ("noir80", 0, 0, this.getWidth(), this.getHeight(), g);
 		
 		Font font2 = Slatch.fonts.get("Visitor").deriveFont(Font.PLAIN, this.getWidth()/90);
 		for(int i=0; i< list.size(); i++){
-			list.get(i).setMargin(new Insets(this.getWidth()/6,0,0,0));
+			list.get(i).setMargin(new Insets(40,0,0,0));
 			list.get(i).setFont(font2);
 		}
+		
+		afficheGagnant();
+		
 		this.updateUI();
 	}
 	
@@ -97,6 +107,23 @@ public class PanelStatistique extends JPanel implements MouseListener{
 					+ "Experience Totale : " + Slatch.partie.ListeJoueur.get(i).getExpTotal() + "\n"
 					+ "Deplacement Total : " + Slatch.partie.ListeJoueur.get(i).getDeplacementTotal();
 		list.get(i-1).setText(stat);
+	}
+	
+	public void afficheGagnant(){
+		Font font = Slatch.fonts.get("BlackOps").deriveFont(Font.PLAIN, this.getWidth()/20);
+		FontMetrics fm = getFontMetrics(font);
+		gagnant.setFont(font);
+		
+		String string = "";
+		
+		ArrayList<Joueur> equipe = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getEquipe().getListeJoueur();
+		
+		for(Joueur joueur : equipe){
+			string += "Le joueur " + joueur.getNumJoueur() + " a gagné" + "\n";
+		}
+		gagnant.setText(string);
+		
+		gagnant.setMargin(new Insets(0,this.getWidth()/2 - 19*fm.stringWidth(" "),0,0));
 	}
 
 	@Override
