@@ -1,6 +1,8 @@
 import java.awt.Point;
 import java.util.Arrays;
 import java.util.PriorityQueue;
+import java.util.HashMap;
+import java.util.List;
 public class OperationIA
 {
     static Influence[][] map;
@@ -218,7 +220,7 @@ public class OperationIA
     }
     
     
-     static void acheterUnite()
+    static void acheterUnite()
     {
         Joueur joueurActuel = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
     
@@ -305,7 +307,7 @@ public class OperationIA
                 UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.COMMANDO), TypeObjectif.ACHETER));
                 nombreCommando=nombreCommando+1;
             }
-            else if(joueurActuel.getArgent()>=100 && nombreSpec <2 && joueurActuel.getFaction()==Faction.HUMAINS)
+            else if(joueurActuel.getArgent()>=100 && nombreSpec <2 /*&& joueurActuel.getFaction()==Faction.HUMAINS*/)
             {
                 UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.INGENIEUR), TypeObjectif.ACHETER));
                 nombreSpec=nombreSpec+1;
@@ -316,6 +318,23 @@ public class OperationIA
                 nombreSpec=nombreSpec+1;
             }
             break;
+        }
+    }
+    
+    static void acheterUniteAvecStyle()
+    {
+        Joueur joueurActuel = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
+        List<Unite> listeEnnemis = Slatch.partie.getListeUnitesEnnemies();
+        HashMap<TypeUnite, Integer> map = new HashMap<TypeUnite, Integer>();
+        for(TypeUnite t: TypeUnite.values())
+        {
+            map.put(t, 0);
+        }
+        for(Unite u: listeEnnemis)
+        {
+            int mem = map.get(u.getType()).intValue();
+            mem++;
+            map.put(u.getType(), mem);
         }
     }
 }
