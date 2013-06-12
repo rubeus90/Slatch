@@ -224,6 +224,9 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/wallpaper.png"));
                 aImages.put("wallpaper",image);
                 
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/trait.png"));
+                aImages.put("trait",image);
+                
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/background.png"));
                 aImages.put("background",image);
                 
