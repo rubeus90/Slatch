@@ -343,7 +343,7 @@ public class Slatch {
             		 .toURI()));
              
              Font visitor = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
-            		 .getClassLoader().getResource("Config/visitor2.ttf")
+            		 .getClassLoader().getResource("Config/apl.ttf")
                      .toURI()));
              
              fonts.put("BlackOps", blackOps);
