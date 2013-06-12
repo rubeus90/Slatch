@@ -17,11 +17,13 @@ public enum Map{
     COULOIR("Couloir","Une map tout en long","1V1","couloir",30,13,2,false,false),
     CHAMPSDESERT("Champs","Une map tres petite dans le Desert","2V2 -4","champsdesert",12,12,4,true,false),
     GAGNER("Gagner","Une Map de flemmarde","1V","gagner",10,10,2,false,false),
-    FRANMAP("FRANMAP","La carte de la...", "2v2 - 4","franmap",25,25,4,false,true),
+    FRANMAP("FRANMAP","La carte de la...", "2v2 - 4","franmap",25,25,4,false,false),
+    SAHLAHAH("Sahlahah","Bataille pour le desert du milieu", "2v2 - 4","franmap",32,18,2,true,false),
     NIVEAU1("Mission 1","La carte de la premiere mission de la campagne", "1V1","niveau1",25,15,2,false,true),
     NIVEAU2("Mission 2","La carte de la deuxieme mission de la campagne", "1V1","niveau2",25,12,2,false,true),
     NIVEAU3("Mission 3","La carte de la troisieme mission de la campagne", "1V2","niveau3",25,20,3,false,true),
-    NIVEAU4("Mission 4","La carte de la quatrieme mission de la campagne", "1V1","niveau4",30,14,2,false,true);
+    NIVEAU4("Mission 4","La carte de la quatrieme mission de la campagne", "1V1","niveau4",30,14,2,false,true),
+    NIVEAU5("Mission 5","La carte de la cinquieme mission de la campagne", "1V1","niveau5",15,15,2,false,true);
     
     
     private String aNom;
