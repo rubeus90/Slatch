@@ -47,7 +47,7 @@ public class PanelMenu extends JPanel
     /***/   //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
     /***/   boolean[] vIA = {false,false,true,true,true};
     /***/  Faction[] vFaction = {Faction.NEUTRE,Faction.HUMAINS,Faction.ROBOTS,Faction.HUMAINS,Faction.HUMAINS};
-    /***/  boolean dBrouillard = false;
+    /***/  boolean dBrouillard = true;
     /*********************************************************************************************************************/
     
     /**
