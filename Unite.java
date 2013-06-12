@@ -313,7 +313,8 @@ public class Unite extends Entite
         
             Image img = Slatch.aImages.get(Slatch.partie.getJoueur(getJoueur()).getFaction()+""+ aType.getImage() + getJoueur());
             g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
-
+            if(!Slatch.partie.getActivationAnimation())
+            {pVaffiche=aPV;}
                 int vUnite = pVaffiche%10;
                 int vDizaine = pVaffiche/10;
                 
