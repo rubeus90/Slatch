@@ -20,7 +20,7 @@ public enum ModeIA
         switch(this)
         {
             case DEPLOIEMENT: 
-                if(Slatch.partie.getJoueur(joueur).getListeUnite().size()>=4 || Slatch.partie.getJoueur(joueur).getNbreBatiment()>=nbTotalBatiments/Slatch.partie.getNbrJoueur()-1)
+                if(Slatch.partie.getJoueur(joueur).getListeUnite().size()>=4 && Slatch.partie.getJoueur(joueur).getNbreBatiment()>=nbTotalBatiments/(Slatch.partie.getNbrJoueur()*3))
                 {
                     return ATTAQUE;
                 }
