@@ -190,7 +190,7 @@ public class PanelMenu extends JPanel
                
                 g.drawString("Equipe",this.getWidth()/20,this.getHeight()/2-aHauteurBouton);
                 g.drawString("Faction",this.getWidth()/20,this.getHeight()/2);
-                g.drawString("Joueur",this.getWidth()/20,this.getHeight()/2+aHauteurBouton);
+                g.drawString("IA",this.getWidth()/20,this.getHeight()/2+aHauteurBouton);
                 
                 Image on = Slatch.aImages.get("on");
                 Image off = Slatch.aImages.get("off");
@@ -209,11 +209,11 @@ public class PanelMenu extends JPanel
                     g.drawString(""+aEquipe[i],(2+2*i)*this.getWidth()/10+2*this.getHeight()/40,this.getHeight()/2-aHauteurBouton);
                     
                     if(vFaction[i+1].equals(Faction.HUMAINS))
-                    {g.drawString("humains",(2+2*i)*this.getWidth()/10,this.getHeight()/2);}
+                    {g.drawString("Humain",(2+2*i)*this.getWidth()/10,this.getHeight()/2);}
                     if(vFaction[i+1].equals(Faction.ROBOTS))
-                    {g.drawString("robots",(2+2*i)*this.getWidth()/10,this.getHeight()/2);}
+                    {g.drawString("Robot",(2+2*i)*this.getWidth()/10,this.getHeight()/2);}
                     
-                    g.drawString("IA",(2+2*i)*this.getWidth()/10+2*this.getHeight()/40,this.getHeight()/2+aHauteurBouton);
+                    g.drawString("Active",(2+2*i)*this.getWidth()/10+2*this.getHeight()/40,this.getHeight()/2+aHauteurBouton);
                     
                     if(vIA[i+1]){g.drawImage(on,(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton-hR/2,this.getHeight()/40,this.getHeight()/40,this);}
                     else{g.drawImage(off,(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton-hR/2,this.getHeight()/40,this.getHeight()/40,this);}
