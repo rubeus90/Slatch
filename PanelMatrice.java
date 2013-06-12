@@ -77,6 +77,12 @@ public class PanelMatrice extends JPanel
     private boolean aCapturePossible=false;
     private boolean aEvoluePossible=false;
     
+    // Boolean de la pause entre les tours
+    private boolean aPauseTour = false;
+    
+    // Boolean pour activer ou non le click de sourie
+    private boolean aClickOK = true;
+    
     // Unite que l'on peut acheter (ordonnees)
     private HashMap<Integer,TypeUnite>  aTabAchat;
     
@@ -121,6 +127,20 @@ public class PanelMatrice extends JPanel
         // Dessine la matrice (Terrain + Unite)
         dessineMatrice(g);
                 
+        if(aPauseTour) {
+            aClickOK=false;
+            
+            afficheImageRedim ("noir80", 0, 0, this.getWidth(), this.getHeight(), g);
+            
+            // Police
+            Font font = new Font("Serif", Font.BOLD, this.getWidth()/20);
+            g.setFont(font);
+            FontMetrics fm=getFontMetrics(font); 
+            g.setColor(Color.white);
+            
+            g.drawString("Pause Tour", (this.getWidth() - fm.stringWidth("Pause Tour"))/2 , this.getHeight()/2);
+        }
+        
         // Menu d'action d'une unite non IA
         if(menuUniteAction && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()) 
         {
@@ -129,7 +149,8 @@ public class PanelMatrice extends JPanel
             // Police
             Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
             g.setFont(font);
-            FontMetrics fm=getFontMetrics(font); 
+            FontMetrics fm=getFontMetrics(font);
+            g.setColor(Color.gray);
             
             // Trace les lignes
             for(int vVar=1;vVar<4;vVar++) {
@@ -370,159 +391,161 @@ public class PanelMatrice extends JPanel
      */
     public void coordclickUnite (int pX, int pY) 
     {
-        int clickX = pX;
-        int clickY = pY; 
-
-        // Determine la case matricielle du click
-        for(int i = 0 ; i < Slatch.partie.getLargeur() ; i++) 
-        {
-            for(int j = 0 ; j < Slatch.partie.getHauteur() ; j++) 
+        if(aClickOK) {
+            int clickX = pX;
+            int clickY = pY; 
+    
+            // Determine la case matricielle du click
+            for(int i = 0 ; i < Slatch.partie.getLargeur() ; i++) 
             {
-                // Position de la case selectionnee
-                int pPosHautGaucheX = i*aLargeurCarreau;
-                int pPosHautGaucheY = j*aHauteurCarreau;
-                int pPosBasDroiteX = (i+1)*aLargeurCarreau;
-                int pPosBasDroiteY = (j+1)*aHauteurCarreau;
-                
-                // Si la partie est finie
-                if(Slatch.partie.partieFinie && Slatch.partie.isCampagne()) {
-                    Slatch.campagne.suite();
-                }
-                // Si la partie n'est pas fine
-                else if(pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) 
+                for(int j = 0 ; j < Slatch.partie.getHauteur() ; j++) 
                 {
-                    /*
-                     * 
-                     * Recuperer les coordonnees
-                     * 
-                     */
+                    // Position de la case selectionnee
+                    int pPosHautGaucheX = i*aLargeurCarreau;
+                    int pPosHautGaucheY = j*aHauteurCarreau;
+                    int pPosBasDroiteX = (i+1)*aLargeurCarreau;
+                    int pPosBasDroiteY = (j+1)*aHauteurCarreau;
                     
-                    // Si le menu est la...
-                    if(menuMenu) {
-                        // Bouton charger
-                        if (0<clickY && clickY<aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
-                            //Slatch.partie.chargerPartie("sauvegarde");
-                        }
-                        // Bouton sauver
-                        else if(aHauteurCarreau<clickY && clickY<2*aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
-                            Slatch.partie.sauvegardePartie("Maps/sauvegarde.txt");
-                        }
-                        else {
-                            aUniteMemMenuCaseX=i;
-                            aUniteMemMenuCaseY=j;
-                            effaceMenu();
-                            // Avertir Moteur
-                            Slatch.moteur.caseSelectionnee(i,j);
-                            this.repaint();
-                        }
-                        effaceMenuShop();
+                    // Si la partie est finie
+                    if(Slatch.partie.partieFinie && Slatch.partie.isCampagne()) {
+                        Slatch.campagne.suite();
                     }
-                    
-                    // Si le menu d'action d'une unite est la...
-                    if(menuUniteAction && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
+                    // Si la partie n'est pas fine
+                    else if(pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) 
                     {
-                        if( aMenuActionHautGauche_Ypx<clickY && clickY<aMenuActionBasDroite_Ypx && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )//Si tu es dans menu
-                        {
-                            //Action a differencier
-                            
-                            //Bouton 1 : Deplace
-                            if(aDeplacePossible && (aMenuActionHautGauche_Ypx<clickY && clickY<(aMenuActionHautGauche_Ypx+aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )) 
-                            {
-                                Slatch.moteur.modeDeplacement(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
-                                effaceMenuUniteAction();
-                                aDeplacePossible=false;
+                        /*
+                         * 
+                         * Recuperer les coordonnees
+                         * 
+                         */
+                        
+                        // Si le menu est la...
+                        if(menuMenu) {
+                            // Bouton charger
+                            if (0<clickY && clickY<aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
+                                //Slatch.partie.chargerPartie("sauvegarde");
+                            }
+                            // Bouton sauver
+                            else if(aHauteurCarreau<clickY && clickY<2*aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
+                                Slatch.partie.sauvegardePartie("Maps/sauvegarde.txt");
+                            }
+                            else {
+                                aUniteMemMenuCaseX=i;
+                                aUniteMemMenuCaseY=j;
+                                effaceMenu();
+                                // Avertir Moteur
+                                Slatch.moteur.caseSelectionnee(i,j);
                                 this.repaint();
                             }
-                            
-                            //Bouton 2 : Attaque
-                            if(aAttaquePossible && (aMenuActionHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+2*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx ) 
-                            {
-                                Slatch.moteur.modeAttaque(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
-                                effaceMenuUniteAction();
-                                aAttaquePossible=false;
-                                this.repaint();
-                            }
-                            
-                            //Bouton 2 : Soin
-                            if(aSoinPossible && (aMenuActionHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+2*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx ) 
-                            {
-                                Slatch.moteur.modeSoin(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
-                                effaceMenuUniteAction();
-                                aSoinPossible=false;
-                                this.repaint();
-                            }
-                            
-                            //Bouton 3 : Capture
-                            if(aCapturePossible && (aMenuActionHautGauche_Ypx+2*aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+3*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )
-                            {
-                                Slatch.moteur.capture(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
-                                effaceMenuUniteAction();
-                                aCapturePossible=false;
-                                this.repaint();
-                            }
-                            
-                            //Bouton 4 : Evolue
-                            if(aEvoluePossible && (aMenuActionHautGauche_Ypx+3*aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+4*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )
-                            {
-                                Slatch.moteur.evoluer(aUniteMemMoteurCaseX,aUniteMemMoteurCaseY);
-                                //Slatch.moteur.setModeEvoluer(true);
-                                effaceMenuUniteAction();
-                                aEvoluePossible=false;
-                                this.repaint();
-                            }
+                            effaceMenuShop();
                         }
-                        else 
+                        
+                        // Si le menu d'action d'une unite est la...
+                        if(menuUniteAction && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
                         {
-                            aUniteMemMenuCaseX=i;
-                            aUniteMemMenuCaseY=j;
-                            effaceMenuUniteAction();
-                            // Avertir Moteur
-                            Slatch.moteur.caseSelectionnee(i,j);
-                            this.repaint();
-                        }
-                    }
-                    
-                    // Si le menu d'achat d'une unite est la (et pas le menu action)...
-                    else if(menuShop && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()) {
-                        if (aShopHautGauche_Ypx<clickY && clickY<aShopBasDroite_Ypx && aShopHautGauche_Xpx<clickX && clickX<aShopBasDroite_Xpx) {
-                            for(int v=1; v<aListeShop.size()+1;v++) {
-                                if(aTabAchat.get(v)!=null && (aShopHautGauche_Ypx+v*aHauteurCarreau<clickY && clickY<aShopHautGauche_Ypx+(v+1)*aHauteurCarreau)) {
-                                    Slatch.moteur.creationUnite(aUniteMemMenuCaseX,aUniteMemMenuCaseY,aTabAchat.get(v));
-                                    effaceMenuShop();
+                            if( aMenuActionHautGauche_Ypx<clickY && clickY<aMenuActionBasDroite_Ypx && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )//Si tu es dans menu
+                            {
+                                //Action a differencier
+                                
+                                //Bouton 1 : Deplace
+                                if(aDeplacePossible && (aMenuActionHautGauche_Ypx<clickY && clickY<(aMenuActionHautGauche_Ypx+aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )) 
+                                {
+                                    Slatch.moteur.modeDeplacement(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
+                                    effaceMenuUniteAction();
+                                    aDeplacePossible=false;
                                     this.repaint();
-                                    Slatch.ihm.getpanelinfo().repaint();
+                                }
+                                
+                                //Bouton 2 : Attaque
+                                if(aAttaquePossible && (aMenuActionHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+2*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx ) 
+                                {
+                                    Slatch.moteur.modeAttaque(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
+                                    effaceMenuUniteAction();
+                                    aAttaquePossible=false;
+                                    this.repaint();
+                                }
+                                
+                                //Bouton 2 : Soin
+                                if(aSoinPossible && (aMenuActionHautGauche_Ypx+aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+2*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx ) 
+                                {
+                                    Slatch.moteur.modeSoin(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
+                                    effaceMenuUniteAction();
+                                    aSoinPossible=false;
+                                    this.repaint();
+                                }
+                                
+                                //Bouton 3 : Capture
+                                if(aCapturePossible && (aMenuActionHautGauche_Ypx+2*aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+3*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )
+                                {
+                                    Slatch.moteur.capture(aUniteMemMoteurCaseX, aUniteMemMoteurCaseY);
+                                    effaceMenuUniteAction();
+                                    aCapturePossible=false;
+                                    this.repaint();
+                                }
+                                
+                                //Bouton 4 : Evolue
+                                if(aEvoluePossible && (aMenuActionHautGauche_Ypx+3*aHauteurCarreau)<clickY && clickY<(aMenuActionHautGauche_Ypx+4*aHauteurCarreau) && aMenuActionHautGauche_Xpx<clickX && clickX<aMenuActionBasDroite_Xpx )
+                                {
+                                    Slatch.moteur.evoluer(aUniteMemMoteurCaseX,aUniteMemMoteurCaseY);
+                                    //Slatch.moteur.setModeEvoluer(true);
+                                    effaceMenuUniteAction();
+                                    aEvoluePossible=false;
+                                    this.repaint();
                                 }
                             }
+                            else 
+                            {
+                                aUniteMemMenuCaseX=i;
+                                aUniteMemMenuCaseY=j;
+                                effaceMenuUniteAction();
+                                // Avertir Moteur
+                                Slatch.moteur.caseSelectionnee(i,j);
+                                this.repaint();
+                            }
                         }
-                        else 
+                        
+                        // Si le menu d'achat d'une unite est la (et pas le menu action)...
+                        else if(menuShop && !Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA()) {
+                            if (aShopHautGauche_Ypx<clickY && clickY<aShopBasDroite_Ypx && aShopHautGauche_Xpx<clickX && clickX<aShopBasDroite_Xpx) {
+                                for(int v=1; v<aListeShop.size()+1;v++) {
+                                    if(aTabAchat.get(v)!=null && (aShopHautGauche_Ypx+v*aHauteurCarreau<clickY && clickY<aShopHautGauche_Ypx+(v+1)*aHauteurCarreau)) {
+                                        Slatch.moteur.creationUnite(aUniteMemMenuCaseX,aUniteMemMenuCaseY,aTabAchat.get(v));
+                                        effaceMenuShop();
+                                        this.repaint();
+                                        Slatch.ihm.getpanelinfo().repaint();
+                                    }
+                                }
+                            }
+                            else 
+                            {
+                                aUniteMemMenuCaseX=i;
+                                aUniteMemMenuCaseY=j;
+                                effaceMenuShop();
+                                // Avertir Moteur
+                                Slatch.moteur.caseSelectionnee(i,j);
+                                this.repaint();
+                            }
+                        }
+                        
+                        // S'il n'y a ni menu d'achat ni menu d'action
+                        else
                         {
+                            if(aUniteMemMenuCaseX==i && aUniteMemMenuCaseY==j && menuUniteDescription)
+                                menuUniteDescription = false;
+                            else if (!menuUniteDescription) {
+                                menuUniteDescription = true;
+                            }
                             aUniteMemMenuCaseX=i;
                             aUniteMemMenuCaseY=j;
-                            effaceMenuShop();
+                            redimMenuDescription(i,j);
                             // Avertir Moteur
                             Slatch.moteur.caseSelectionnee(i,j);
                             this.repaint();
                         }
                     }
-                    
-                    // S'il n'y a ni menu d'achat ni menu d'action
-                    else
-                    {
-                        if(aUniteMemMenuCaseX==i && aUniteMemMenuCaseY==j && menuUniteDescription)
-                            menuUniteDescription = false;
-                        else if (!menuUniteDescription) {
-                            menuUniteDescription = true;
-                        }
-                        aUniteMemMenuCaseX=i;
-                        aUniteMemMenuCaseY=j;
-                        redimMenuDescription(i,j);
-                        // Avertir Moteur
-                        Slatch.moteur.caseSelectionnee(i,j);
-                        this.repaint();
-                    }
-                }
+                } // FIN for
             } // FIN for
-        } // FIN for
+        }
     } // FIN coordclickUnite
     
     /**
@@ -832,4 +855,7 @@ public class PanelMatrice extends JPanel
     public void setMenuUniteDescription(final boolean X){menuUniteDescription=X;}
     public void setMenuShop(final boolean X){menuShop=X;}
     public void setMenu(final boolean X){menuMenu=X;}
+    
+    public void setClickOK(final boolean X) {aClickOK=X;}
+    public void setPauseTour(final boolean X) {aClickOK=!X; aPauseTour=X;}
 }
