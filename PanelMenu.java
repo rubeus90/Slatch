@@ -28,7 +28,9 @@ public class PanelMenu extends JPanel
     private FontMetrics fmR;
     private Font font;
     private int[] aEquipe;
-    JPanel panel;
+    private String[] aNiveauIA;
+    private JTextArea textArea = new JTextArea();
+    
     
     /*******************************************************************************************************************/
     /***  Parametres de la partie rapide                                                                            /***/
@@ -43,7 +45,7 @@ public class PanelMenu extends JPanel
     /***/   Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe3, equipe4};
     /***/ 
     /***/   //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-    /***/   boolean[] vIA = {false,false,false,true,true};
+    /***/   boolean[] vIA = {false,false,true,true,true};
     /***/  Faction[] vFaction = {Faction.NEUTRE,Faction.HUMAINS,Faction.ROBOTS,Faction.HUMAINS,Faction.HUMAINS};
     /***/  boolean dBrouillard = true;
     /*********************************************************************************************************************/
@@ -69,6 +71,12 @@ public class PanelMenu extends JPanel
         for(int i=0;i<4;i++)
         {
             aEquipe[i] = i+1;
+        }
+        aNiveauIA = new String[4];
+        for(int i=0;i<4;i++)
+        {
+            if(vIA[i+1]==false){aNiveauIA[i] ="Désactivé";}
+            else if(vIA[i+1]==true){aNiveauIA[i] ="Facile";}
         }
     }
     
@@ -160,8 +168,6 @@ public class PanelMenu extends JPanel
                afficheImageRedim("noir80",0, this.getHeight()/4-2*tCadre,this.getWidth(), this.getHeight()/4+this.getWidth()/3+2*tCadre,g);
                g.setColor(Color.white);
                
-               
-               
                g.drawString("Nom : " +Slatch.ihm.aListeMap.get(aNumeroMap).getNom(), this.getWidth()/9+this.getWidth()/2,this.getHeight()/3);
                g.drawString("Description : "+Slatch.ihm.aListeMap.get(aNumeroMap).getDescription(),this.getWidth()/9+this.getWidth()/2 , this.getHeight()/3+2*hPolice );
                g.drawString("Conseil : "+Slatch.ihm.aListeMap.get(aNumeroMap).getConseil(),this.getWidth()/9+this.getWidth()/2 ,this.getHeight()/3+4*hPolice );
@@ -208,15 +214,12 @@ public class PanelMenu extends JPanel
                     
                     g.drawString(""+aEquipe[i],(2+2*i)*this.getWidth()/10+2*this.getHeight()/40,this.getHeight()/2-aHauteurBouton);
                     
-                    if(vFaction[i+1].equals(Faction.HUMAINS))
-                    {g.drawString("Humain",(2+2*i)*this.getWidth()/10,this.getHeight()/2);}
-                    if(vFaction[i+1].equals(Faction.ROBOTS))
-                    {g.drawString("Robot",(2+2*i)*this.getWidth()/10,this.getHeight()/2);}
+                    g.drawString(vFaction[i+1].getNom(),(2+2*i)*this.getWidth()/10,this.getHeight()/2);
                     
-                    g.drawString("Active",(2+2*i)*this.getWidth()/10+2*this.getHeight()/40,this.getHeight()/2+aHauteurBouton);
+                    g.drawString(""+aNiveauIA[i],(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton);
                     
-                    if(vIA[i+1]){g.drawImage(on,(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton-hR/2,this.getHeight()/40,this.getHeight()/40,this);}
-                    else{g.drawImage(off,(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton-hR/2,this.getHeight()/40,this.getHeight()/40,this);}
+                    //if(vIA[i+1]){g.drawImage(on,(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton-hR/2,this.getHeight()/40,this.getHeight()/40,this);}
+                    //else{g.drawImage(off,(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton-hR/2,this.getHeight()/40,this.getHeight()/40,this);}
                 }
             }
             
@@ -330,23 +333,26 @@ public class PanelMenu extends JPanel
             {
                 int tCadre = this.getWidth()/100;
                 
-//                     panel.setLayout(new BorderLayout());
-//                     JTextArea titles = new JTextArea  ("Nom : "+Slatch.ihm.aListeMap.get(aNumeroMap).getNom()+"\n"+
-//                                                         "Description : "+Slatch.ihm.aListeMap.get(aNumeroMap).getDescription()+"\n"+
-//                                                         "Conseil : "+Slatch.ihm.aListeMap.get(aNumeroMap).getConseil()+"\n"+
-//                                                         "Nombre de Joueurs : "+Slatch.ihm.aListeMap.get(aNumeroMap).getNbrJoueur()+"\n"+
-//                                                         "Taille : "+Slatch.ihm.aListeMap.get(aNumeroMap).getLongueur()+ " x "+Slatch.ihm.aListeMap.get(aNumeroMap).getLargeur());
-//                 
-//                     panel.add(titles, BorderLayout.LINE_END);                                        
-//                     titles.setOpaque(false);
-//                     panel.setOpaque(false);
-//                     titles.setLineWrap(true);
-//                     titles.setWrapStyleWord(true);
-//                     titles.setFocusable(false);
-//                     titles.setEditable(false);
-//                     titles.setMargin(new Insets(50,50,50,50));
-//                     panel.repaint();
-//                     panel.updateUI();
+//                 this.setLayout(new BorderLayout());
+//                 textArea.setPreferredSize(new Dimension(this.getWidth()/2,this.getHeight()/3));
+//                 textArea.setBounds(this.getWidth()/2+this.getWidth()/10,this.getHeight()/3,0,0);
+// 
+//                     this.add(textArea, BorderLayout.EAST);
+//                     
+//                    textArea.setText("Nom : "+Slatch.ihm.aListeMap.get(aNumeroMap).getNom()+"\n"+
+//                                     "Description : "+Slatch.ihm.aListeMap.get(aNumeroMap).getDescription()+"\n"+
+//                                     "Conseil : "+Slatch.ihm.aListeMap.get(aNumeroMap).getConseil()+"\n"+
+//                                     "Nombre de Joueurs : "+Slatch.ihm.aListeMap.get(aNumeroMap).getNbrJoueur()+"\n"+
+//                                     "Taille : "+Slatch.ihm.aListeMap.get(aNumeroMap).getLongueur()+ " x "+Slatch.ihm.aListeMap.get(aNumeroMap).getLargeur());
+//                                                      
+//                     textArea.setOpaque(false);
+//                     textArea.setLineWrap(true);
+//                     textArea.setWrapStyleWord(true);
+//                     textArea.setFocusable(false);
+//                     textArea.setEditable(false);
+//                     textArea.setMargin(new Insets(20,20,0,0));
+//                     this.repaint();
+//                     textArea.updateUI();
                 // Clic FlecheGauche
                 if(pY> this.getHeight()/4 + this.getWidth()/3 +tCadre && pY< this.getHeight()/4 + this.getWidth()/3 + this.getHeight()/8 +tCadre && pX>this.getWidth()/11 && pX<this.getWidth()/11+this.getHeight()/8)
                 {
@@ -389,9 +395,10 @@ public class PanelMenu extends JPanel
                 
                 for(int i =0;i<4;i++)
                 {
-                //Clic sur l'équipe 
-                int SizeFaction = fmR.stringWidth("humains");
-                int SizeEquipe = fmR.stringWidth(""+aEquipe[i]);
+                    //Clic sur l'équipe 
+                    int SizeFaction = fmR.stringWidth(""+vFaction[i+1].getNom());
+                    int SizeEquipe = fmR.stringWidth(""+aEquipe[i]);
+                    int SizeNiveauIA = fmR.stringWidth(""+aNiveauIA[i]);
                     if(pY>this.getHeight()/2-aHauteurBouton-hR && pY<this.getHeight()/2-aHauteurBouton && pX>(2+2*i)*this.getWidth()/10+2*this.getHeight()/40 && pX<(2+2*i)*this.getWidth()/10+2*this.getHeight()/40+SizeEquipe)
                     {
                         if(aEquipe[i]==4)
@@ -411,12 +418,26 @@ public class PanelMenu extends JPanel
                        this.repaint();
                     }
                     
-                //Clic sur le joueur (IA ou non)
+                //Clic sur la check box du joueur (IA ou non)
                 
-                    if(pY>this.getHeight()/2+aHauteurBouton-hR/2 && pY<this.getHeight()/2+aHauteurBouton-hR/2+this.getHeight()/40 && pX>(2+2*i)*this.getWidth()/10 && pX<(2+2*i)*this.getWidth()/10+this.getHeight()/40)
+                //     if(pY>this.getHeight()/2+aHauteurBouton-hR/2 && pY<this.getHeight()/2+aHauteurBouton-hR/2+this.getHeight()/40 && pX>(2+2*i)*this.getWidth()/10 && pX<(2+2*i)*this.getWidth()/10+this.getHeight()/40)
+                //    {
+                //         vIA[i+1] = !vIA[i+1];
+                //         this.repaint();
+                //     }
+                    
+                //Clic sur la difficulté de l'IA
+                if(pY>this.getHeight()/2+aHauteurBouton-hR/2 && pY<this.getHeight()/2+aHauteurBouton && pX>(2+2*i)*this.getWidth()/10 && pX<(2+2*i)*this.getWidth()/10+SizeNiveauIA)
                     {
-                        vIA[i+1] = !vIA[i+1];
-                        this.repaint();
+                       switch(aNiveauIA[i])
+                       {
+                           case("Désactivé") : aNiveauIA[i]="Facile";vIA[i+1] = true;break;
+                           case("Facile") : aNiveauIA[i]="Moyen";break;
+                           case("Moyen") : aNiveauIA[i]="Difficile";break;
+                           case("Difficile") : aNiveauIA[i]="Légendaire";break;
+                           case("Légendaire") : aNiveauIA[i]="Désactivé";vIA[i+1] = false;break;
+                       }
+                       this.repaint();
                     }
                 }
                 
@@ -455,6 +476,7 @@ public class PanelMenu extends JPanel
                         StrategieIA.joueTour(Slatch.partie.getJoueurActuel());
                     }
                     
+                    this.repaint();
                 }
                 
                 // Clic Bouton Retour
@@ -502,10 +524,6 @@ public class PanelMenu extends JPanel
         } 
     }
     
-    public void clicCheckBox(int pX, int pY)
-    {
-        
-    }
     
     /**
      * Affichage du sous menu de Partie Rapide
