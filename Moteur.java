@@ -102,11 +102,6 @@ class Moteur
             
             estMort(pVictime,uniteA);
         }
-        else if(getJoueur(uniteA).getFaction() == Faction.ROBOTS && uniteA.getType() == TypeUnite.KAMIKAZE) //Si l'unite Attaquant est un Kamikaze
-        {
-            System.out.println("MMMEUUURT");
-            estMort(uniteA,pVictime);
-        }
         else if(distance(uniteA, pVictime)==1 && pVictime.getAttaque().aTypePortee.getPorteeMin()==1) //sinon + si attaque au CAC, on riposte
         {
             //Pour les statistiques pour une attaque normal
@@ -132,6 +127,12 @@ class Moteur
                 estMort(uniteA,pVictime);
             }
         }
+        
+        if(getJoueur(uniteA).getFaction() == Faction.ROBOTS && uniteA.getType() == TypeUnite.KAMIKAZE) //Si l'unite Attaquant est un Kamikaze
+        {
+            estMort(uniteA,pVictime);
+        }
+        
         uniteA.attaque(true);
         uniteA.deplacee(true);
         
