@@ -22,14 +22,11 @@ public class PanelMenu extends JPanel
     private int aNumeroMap;
     // Attributs des boutons//cb[0] à cb[3] boutons IA | cb[4] à cb[8] boutons Joueur
     private Faction aFaction;
-    private Font fontBO;
-    private FontMetrics fmBO;
-    private Font fontRapide;
-    private FontMetrics fmR;
-    private Font font;
     private int[] aEquipe;
     private String[] aNiveauIA;
-    private JTextArea textArea = new JTextArea();
+    private JTextArea textArea = new JTextArea();  
+    private FontMetrics fmBlackOps;
+    private FontMetrics fmVisitor;
     
     
     /*******************************************************************************************************************/
@@ -78,39 +75,23 @@ public class PanelMenu extends JPanel
             if(vIA[i+1]==false){aNiveauIA[i] ="Désactivé";}
             else if(vIA[i+1]==true){aNiveauIA[i] ="Facile";}
         }
+        
+        fmBlackOps = getFontMetrics(Slatch.fonts.get("BlackOps"));
+        fmVisitor = getFontMetrics(Slatch.fonts.get("Visitor"));
     }
     
     @Override
     public void paintComponent (final Graphics g) 
     {
-        try {
-                    fontBO = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
-                    .getClassLoader().getResource("Config/BlackOps.ttf")
-                    .toURI())).deriveFont(Font.PLAIN, this.getWidth()/35);
-                     } catch (FontFormatException | IOException | URISyntaxException e) {
-                    e.printStackTrace();
-                }
-        fmBO=getFontMetrics(fontBO);
-        fontRapide = new Font("Serif", Font.BOLD, this.getWidth()/40);
-        fmR=getFontMetrics(fontRapide);
         afficheImageRedim("wallpaper",0,0,this.getWidth(),this.getHeight(),g);
-        Image ok = Slatch.aImages.get("boutonok");
-        Image retour = Slatch.aImages.get("boutonretour");
-
         Image trait = Slatch.aImages.get("trait");
         
-//        Font font = new Font("Helvetica", Font.BOLD, this.getWidth()/50);
-        Font font;
-
-
-        try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
-                    .getClassLoader().getResource("Config/visitor2.ttf")
-                    .toURI())).deriveFont(Font.PLAIN, this.getWidth()/50);
-        g.setFont(font);
-        FontMetrics fm=getFontMetrics(font); 
+        Image ok = Slatch.aImages.get("boutonok");
+        Image retour = Slatch.aImages.get("boutonretour");
         
-        int hPolice = fm.getHeight();
+        g.setFont(Slatch.fonts.get("Visitor"));
+        
+        int hPolice = fmVisitor.getHeight();
         
         if(aMenuPrincipal)
         {
@@ -193,7 +174,7 @@ public class PanelMenu extends JPanel
                 afficheImageRedim("noir80",0, this.getHeight()/4-2*tCadre,this.getWidth(), this.getHeight()- (this.getHeight()/4),g);
                 g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
                 
-                g.setFont(fontBO);
+                g.setFont(Slatch.fonts.get("BlackOps"));
                 g.setColor(Color.white);
                 
                 int n = Slatch.ihm.aListeMap.get(aNumeroMap).getNbrJoueur();
@@ -206,8 +187,8 @@ public class PanelMenu extends JPanel
                 Image off = Slatch.aImages.get("off");
                 
                 
-                int hR = fmR.getHeight();
-                g.setFont(fontRapide);
+                int hR = fmVisitor.getHeight();
+                g.setFont(Slatch.fonts.get("Visitor"));
                 g.setColor(Color.white);
                 
                 
@@ -233,14 +214,8 @@ public class PanelMenu extends JPanel
                 g.drawImage(nouvellePartie, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton,aHauteurBouton, this);
                 g.drawImage(chargerPartie, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton,aHauteurBouton, this);
                 
-            }
-        
-        }
-        } 
-        catch (FontFormatException | IOException | URISyntaxException e) {
-            e.printStackTrace();
-        }
-        
+            }        
+        }        
     }
     
     public void coordsurvolBouton(int pX, int pY)
@@ -398,14 +373,14 @@ public class PanelMenu extends JPanel
             
             else if(aSousMenuRapide2)
             {
-                int hR = fmR.getHeight();
+                int hR = fmVisitor.getHeight();
                 
                 for(int i =0;i<4;i++)
                 {
                     //Clic sur l'équipe 
-                    int SizeFaction = fmR.stringWidth(""+vFaction[i+1].getNom());
-                    int SizeEquipe = fmR.stringWidth(""+aEquipe[i]);
-                    int SizeNiveauIA = fmR.stringWidth(""+aNiveauIA[i]);
+                    int SizeFaction = fmVisitor.stringWidth(""+vFaction[i+1].getNom());
+                    int SizeEquipe = fmVisitor.stringWidth(""+aEquipe[i]);
+                    int SizeNiveauIA = fmVisitor.stringWidth(""+aNiveauIA[i]);
                     if(pY>this.getHeight()/2-aHauteurBouton-hR && pY<this.getHeight()/2-aHauteurBouton && pX>(2+2*i)*this.getWidth()/10+2*this.getHeight()/40 && pX<(2+2*i)*this.getWidth()/10+2*this.getHeight()/40+SizeEquipe)
                     {
                         if(aEquipe[i]==4)

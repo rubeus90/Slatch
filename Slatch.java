@@ -1,7 +1,12 @@
 import java.util.HashMap;
 import javax.imageio.ImageIO;
+
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 /** 
@@ -17,6 +22,7 @@ public class Slatch {
     public static CreationMaps maps;
     public static Campagne campagne;
     public static HashMap<TypeUnite, Influence[][]> tabInf;
+    public static HashMap<String, Font> fonts;
     
     
     /**
@@ -47,6 +53,7 @@ public class Slatch {
         loadExplosion();
         loadFleche();
         loadBoutonMenu();
+        loadFont();
     }
     
     private void loadTerrain()
@@ -324,6 +331,26 @@ public class Slatch {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    private void loadFont(){
+    	
+    	fonts = new HashMap<String, Font>();
+    	
+    	 try {
+             Font blackOps = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
+            		 .getClassLoader().getResource("Config/BlackOps.ttf")
+            		 .toURI()));
+             
+             Font visitor = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
+            		 .getClassLoader().getResource("Config/visitor2.ttf")
+                     .toURI()));
+             
+             fonts.put("BlackOps", blackOps);
+             fonts.put("Visitor", visitor);
+         } catch (FontFormatException | IOException | URISyntaxException e) {
+             e.printStackTrace();
+         }    	 
     }
     
     private void initialiseMoiLeTableauDInfluence()
