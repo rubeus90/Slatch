@@ -31,13 +31,14 @@ public class Partie
     private boolean isCampagne;
     private int aLongueur;
     private int aLargeur;
+    private boolean activationAnimation; 
     
     
 
     /**
      * Constructeur de MAP d'une nouvelle partie
      */
-    public Partie(final int pRevenuBatiment,final int pTourMax, final Map pMap,final boolean pBrouillard,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA)
+    public Partie(final int pRevenuBatiment,final int pTourMax, final Map pMap,final boolean pBrouillard,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA,final boolean activation)
     {
         aMap = pMap;
         isCampagne = false;
@@ -46,7 +47,7 @@ public class Partie
         aTourMax = pTourMax;
         aTour = 1;
         aRevenuBatiment = pRevenuBatiment; 
-        
+        activationAnimation=activation;
         initMap(pMap,pTabFaction,pTabEquipe,pTabIA);
         
         ListeJoueur.get(1).benefTour(aRevenuBatiment); 
@@ -830,7 +831,15 @@ public class Partie
     }
     
     public boolean isCampagne(){
-    	return isCampagne;
+        return isCampagne;
+    }
+    
+    public boolean getActivationAnimation(){
+        return activationAnimation;
+    }
+    
+    public void setActivationAnimation(final boolean X){
+        activationAnimation=X;
     }
     
    /***

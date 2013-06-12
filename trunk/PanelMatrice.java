@@ -396,6 +396,7 @@ public class PanelMatrice extends JPanel
         if(!aClickOK) {
             aClickOK = true;
             aPauseTour = false;
+            repaint();
             return;
         }
         else {
