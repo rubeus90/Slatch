@@ -75,7 +75,6 @@ public class PanelMenu extends JPanel
             if(vIA[i+1]==false){aNiveauIA[i] ="Désactivé";}
             else if(vIA[i+1]==true){aNiveauIA[i] ="Facile";}
         }
-        
         fmBlackOps = getFontMetrics(Slatch.fonts.get("BlackOps"));
         fmVisitor = getFontMetrics(Slatch.fonts.get("Visitor"));
     }
@@ -83,6 +82,7 @@ public class PanelMenu extends JPanel
     @Override
     public void paintComponent (final Graphics g) 
     {
+        
         afficheImageRedim("wallpaper",0,0,this.getWidth(),this.getHeight(),g);
         Image trait = Slatch.aImages.get("trait");
         
@@ -146,27 +146,36 @@ public class PanelMenu extends JPanel
             g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
             
             if(aSousMenuRapide1)
-            {
-               Image cadre = Slatch.aImages.get("noir");
-               Image map = Slatch.aImages.get(Slatch.ihm.aListeMap.get(aNumeroMap).getFichier());
-   
-               afficheImageRedim("noir80",0, this.getHeight()/4-2*tCadre,this.getWidth(), this.getHeight()/4+this.getWidth()/3+2*tCadre,g);
-               g.setColor(Color.white);
-               
-               g.drawString("Nom : " +Slatch.ihm.aListeMap.get(aNumeroMap).getNom(), this.getWidth()/9+this.getWidth()/2,this.getHeight()/3);
-               g.drawString("Description : "+Slatch.ihm.aListeMap.get(aNumeroMap).getDescription(),this.getWidth()/9+this.getWidth()/2 , this.getHeight()/3+2*hPolice );
-               g.drawString("Conseil : "+Slatch.ihm.aListeMap.get(aNumeroMap).getConseil(),this.getWidth()/9+this.getWidth()/2 ,this.getHeight()/3+4*hPolice );
-               g.drawString("Nombre de Joueurs : "+Slatch.ihm.aListeMap.get(aNumeroMap).getNbrJoueur(),this.getWidth()/9+this.getWidth()/2 ,this.getHeight()/3+6*hPolice );
-               g.drawString("Taille : "+Slatch.ihm.aListeMap.get(aNumeroMap).getLongueur()+ " x "+Slatch.ihm.aListeMap.get(aNumeroMap).getLargeur(),this.getWidth()/9+this.getWidth()/2 ,this.getHeight()/3+8*hPolice );
-               
+            {   
+               afficheImageRedim("noir80",0, this.getHeight()/4-2*tCadre,this.getWidth(), 3*this.getHeight()/4+2*tCadre,g);
+
                Image flechegauche = Slatch.aImages.get("flechegauche");
                Image flechedroite = Slatch.aImages.get("flechedroite");
-               g.drawImage(cadre, this.getWidth()/11-tCadre, this.getHeight()/4-tCadre,this.getWidth()/2+2*tCadre ,this.getWidth()/3+2*tCadre, this);
-               g.drawImage(map, this.getWidth()/11, this.getHeight()/4,this.getWidth()/2 ,this.getWidth()/3, this);
-               g.drawImage(flechegauche, this.getWidth()/11, this.getHeight()/4 + this.getWidth()/3+tCadre, this.getHeight()/8,this.getHeight()/8+tCadre, this);
-               g.drawImage(flechedroite, this.getWidth()/11+this.getWidth()/2-this.getHeight()/8, this.getHeight()/4 + this.getWidth()/3+tCadre, this.getHeight()/8,this.getHeight()/8+tCadre, this);
+               afficheImageRedim("noir", this.getWidth()/11-tCadre, this.getHeight()/4-tCadre,this.getWidth()/2+tCadre ,3*this.getHeight()/4+tCadre,g);
+               //Affichage de la miniature de la carte
+               afficheImageRedim(Slatch.ihm.aListeMap.get(aNumeroMap).getFichier(), this.getWidth()/11, this.getHeight()/4,this.getWidth()/2 ,3*this.getHeight()/4,g);
+               g.drawImage(flechegauche, this.getWidth()/11, 3*this.getHeight()/4+2*tCadre, this.getHeight()/10,this.getHeight()/10, this);
+               g.drawImage(flechedroite, this.getWidth()/2-this.getHeight()/10, 3*this.getHeight()/4+2*tCadre, this.getHeight()/10,this.getHeight()/10, this);
                g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-this.getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
              
+               textArea.setPreferredSize(new Dimension(this.getWidth()/3,2*this.getHeight()/3));
+               textArea.setOpaque(false);
+                textArea.setLineWrap(true);
+                textArea.setWrapStyleWord(true);
+                textArea.setFocusable(false);
+                textArea.setEditable(false);
+                textArea.setMargin(new Insets(this.getHeight()/4,this.getWidth()/2+3*tCadre,3*this.getHeight()/4,tCadre));
+                textArea.setForeground(Color.WHITE);
+                textArea.setText("Nom : "+Slatch.ihm.aListeMap.get(aNumeroMap).getNom()+"\n\n"+
+                                "Description : "+Slatch.ihm.aListeMap.get(aNumeroMap).getDescription()+"\n\n"+
+                                "Conseil : "+Slatch.ihm.aListeMap.get(aNumeroMap).getConseil()+"\n\n"+
+                                "Nombre de Joueurs : "+Slatch.ihm.aListeMap.get(aNumeroMap).getNbrJoueur()+"\n\n"+
+                                "Taille : "+Slatch.ihm.aListeMap.get(aNumeroMap).getLongueur()+ " x "+Slatch.ihm.aListeMap.get(aNumeroMap).getLargeur());
+                textArea.repaint();
+                this.repaint();
+                textArea.updateUI();
+                this.updateUI();
+               
             }
                
             else if(aSousMenuRapide2)
@@ -262,27 +271,6 @@ public class PanelMenu extends JPanel
                 aMenuPrincipal = false;
                 aMenuCredits = true;
                 this.repaint();
-                
-                this.setLayout(new BorderLayout());
-                JTextArea titles = new JTextArea  ("¤ Crédits ¤\n\n\n"+
-                                                "¤ Chef de Projet ¤\n\n\n"+
-                                                "¤ Responsable IHM ¤\n\n\n"+
-                                                "¤ Responsable Unités & Web Designer ¤\n\n\n"+
-                                                "¤ Level Designer ¤\n\n\n"+
-                                                "¤ Graphic Designer ¤\n\n\n"+
-                                                "¤ Responsable IA & Mécanique de Jeu ¤\n\n\n");  
-                
-
-                this.add(titles, BorderLayout.CENTER);
-                titles.setOpaque(false);
-                titles.setLineWrap(true);
-                titles.setWrapStyleWord(true);
-                titles.setFocusable(false);
-                titles.setEditable(false);
-                titles.setMargin(new Insets(50,50,50,50));
-
-                this.repaint();
-                this.updateUI();
             }
         }
         else if(aMenuCampagne)
@@ -313,30 +301,10 @@ public class PanelMenu extends JPanel
         {  
             if(aSousMenuRapide1)
             {
-                int tCadre = this.getWidth()/100;
-                
-//                 this.setLayout(new BorderLayout());
-//                 textArea.setPreferredSize(new Dimension(this.getWidth()/2,this.getHeight()/3));
-//                 textArea.setBounds(this.getWidth()/2+this.getWidth()/10,this.getHeight()/3,0,0);
-// 
-//                     this.add(textArea, BorderLayout.EAST);
-//                     
-//                    textArea.setText("Nom : "+Slatch.ihm.aListeMap.get(aNumeroMap).getNom()+"\n"+
-//                                     "Description : "+Slatch.ihm.aListeMap.get(aNumeroMap).getDescription()+"\n"+
-//                                     "Conseil : "+Slatch.ihm.aListeMap.get(aNumeroMap).getConseil()+"\n"+
-//                                     "Nombre de Joueurs : "+Slatch.ihm.aListeMap.get(aNumeroMap).getNbrJoueur()+"\n"+
-//                                     "Taille : "+Slatch.ihm.aListeMap.get(aNumeroMap).getLongueur()+ " x "+Slatch.ihm.aListeMap.get(aNumeroMap).getLargeur());
-//                                                      
-//                     textArea.setOpaque(false);
-//                     textArea.setLineWrap(true);
-//                     textArea.setWrapStyleWord(true);
-//                     textArea.setFocusable(false);
-//                     textArea.setEditable(false);
-//                     textArea.setMargin(new Insets(20,20,0,0));
-//                     this.repaint();
-//                     textArea.updateUI();
+                int tCadre = this.getWidth()/100;            
+                    
                 // Clic FlecheGauche
-                if(pY> this.getHeight()/4 + this.getWidth()/3 +tCadre && pY< this.getHeight()/4 + this.getWidth()/3 + this.getHeight()/8 +tCadre && pX>this.getWidth()/11 && pX<this.getWidth()/11+this.getHeight()/8)
+                if(pY> 3*this.getHeight()/4+2*tCadre && pY< 3*this.getHeight()/4+2*tCadre+this.getHeight()/10 && pX>this.getWidth()/11 && pX<this.getWidth()/11+this.getHeight()/10)
                 {
                     if(aNumeroMap<=0)
                     {aNumeroMap=Slatch.ihm.aListeMap.size()-1;}
@@ -346,7 +314,7 @@ public class PanelMenu extends JPanel
                 }
                 
                 // Clic FlecheDroite
-                if(pY>this.getHeight()/4 + this.getWidth()/3 +tCadre && pY< this.getHeight()/4 + this.getWidth()/3 + this.getHeight()/8 +tCadre && pX>this.getWidth()/11+this.getWidth()/2-this.getHeight()/8 && pX<this.getWidth()/11+this.getWidth()/2)
+                if(pY>3*this.getHeight()/4+2*tCadre && pY< 3*this.getHeight()/4+2*tCadre + this.getHeight()/10 && pX>this.getWidth()/2-this.getHeight()/10 && pX<this.getWidth()/2)
                 {
                     if(aNumeroMap>=Slatch.ihm.aListeMap.size()-1)
                     {aNumeroMap=0;}
@@ -358,6 +326,7 @@ public class PanelMenu extends JPanel
                 // Clic Bouton OK
                 if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>this.getWidth()-this.getHeight()/6-10 && pX< this.getWidth()-10)
                 {
+                   this.remove(textArea);
                    aSousMenuRapide2=true;
                    aSousMenuRapide1=false;
                    this.repaint();
@@ -366,6 +335,7 @@ public class PanelMenu extends JPanel
                 // Clic Bouton Retour
                 if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>10 && pX< 10+this.getHeight()/6)
                 {
+                    this.remove(textArea);
                     aSousMenuRapide1 = false;
                     this.repaint();
                 }
@@ -484,7 +454,10 @@ public class PanelMenu extends JPanel
                 {
                     aSousMenuRapide1 = true;
                     this.repaint();
-    
+                    this.setLayout(new BorderLayout());
+                    
+
+                    this.add(textArea, BorderLayout.NORTH);
 
                 }
                 
@@ -506,18 +479,6 @@ public class PanelMenu extends JPanel
         } 
     }
     
-    
-    /**
-     * Affichage du sous menu de Partie Rapide
-     */
-    public void affMenu1(final Graphics g)
-    {
-        Font font = new Font("Serif", Font.BOLD, 25*this.getWidth()/1000);
-        g.setFont(font);
-        FontMetrics fm=getFontMetrics(font);
-        
-        g.drawString("", 1, 33);
-    }
     
     /**
     * Affiche une image en fond d'ecran
