@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.* ;
-
+import java.awt.Font;
 import javax.swing.*;
 
 
@@ -44,9 +44,11 @@ public class PanelMenu extends JPanel
     /***/   Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe3, equipe4};
     /***/ 
     /***/   //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-    /***/   boolean[] vIA = {false,true,true,true,true};
+    /***/   boolean[] vIA = {false,false,true,true,true};
     /***/  Faction[] vFaction = {Faction.NEUTRE,Faction.HUMAINS,Faction.ROBOTS,Faction.HUMAINS,Faction.HUMAINS};
     /***/  boolean dBrouillard = false;
+    /***/   boolean aAnimation = true;
+    /***/
     /*********************************************************************************************************************/
     
     /**
@@ -74,7 +76,7 @@ public class PanelMenu extends JPanel
         aNiveauIA = new String[4];
         for(int i=0;i<4;i++)
         {
-            if(vIA[i+1]==false){aNiveauIA[i] ="Désactivé";}
+            if(vIA[i+1]==false){aNiveauIA[i] ="Desactive";}
             else if(vIA[i+1]==true){aNiveauIA[i] ="Facile";}
         }
     }
@@ -83,10 +85,10 @@ public class PanelMenu extends JPanel
     public void paintComponent (final Graphics g) 
     {
         fontBlackOps = Slatch.fonts.get("BlackOps").deriveFont(Font.PLAIN, this.getWidth()/30);
-        fontVisitor = Slatch.fonts.get("Visitor").deriveFont(Font.PLAIN, this.getWidth()/40);
+        fontVisitor = Slatch.fonts.get("Visitor").deriveFont(Font.PLAIN, this.getWidth()/55);
+        Font fontVisitorbis = Slatch.fonts.get("Visitor").deriveFont(Font.PLAIN, this.getWidth()/70);
         fmBlackOps = getFontMetrics(fontBlackOps);
         fmVisitor = getFontMetrics(fontVisitor);
-        
         
         afficheImageRedim("wallpaper",0,0,this.getWidth(),this.getHeight(),g);
         Image trait = Slatch.aImages.get("trait");
@@ -94,7 +96,7 @@ public class PanelMenu extends JPanel
         Image ok = Slatch.aImages.get("boutonok");
         Image retour = Slatch.aImages.get("boutonretour");
         
-        g.setFont(fontVisitor);
+        g.setFont(fontVisitorbis);
         
         int hPolice = fmVisitor.getHeight();
         
@@ -171,7 +173,7 @@ public class PanelMenu extends JPanel
                 textArea.setEditable(false);
                 textArea.setMargin(new Insets(this.getHeight()/4,this.getWidth()/2+3*tCadre,3*this.getHeight()/4,tCadre));
                 textArea.setForeground(Color.WHITE);
-                textArea.setFont(fontVisitor);
+                textArea.setFont(fontVisitorbis);
                 textArea.setText("Nom : "+Slatch.ihm.aListeMap.get(aNumeroMap).getNom()+"\n\n"+
                                 "Description : "+Slatch.ihm.aListeMap.get(aNumeroMap).getDescription()+"\n\n"+
                                 "Conseil : "+Slatch.ihm.aListeMap.get(aNumeroMap).getConseil()+"\n\n"+
@@ -201,13 +203,10 @@ public class PanelMenu extends JPanel
                 Image on = Slatch.aImages.get("on");
                 Image off = Slatch.aImages.get("off");
                 
-                
                 int hR = fmVisitor.getHeight();
-                g.setFont(fontVisitor);
                 g.setColor(Color.white);
                 
-                
-                
+                   
                 for(int i = 0; i<n;i++)
                 {
                     g.setFont(fontBlackOps);
@@ -215,8 +214,7 @@ public class PanelMenu extends JPanel
                     g.drawString("Joueur "+(i+1),(2+2*i)*this.getWidth()/10,this.getHeight()/4+tCadre);
                     
                     g.setFont(fontVisitor);
-                    g.getFont().deriveFont(Font.PLAIN, this.getWidth()/35);
-                    g.setFont(fontVisitor);
+                    
                     g.drawString(""+aEquipe[i],(2+2*i)*this.getWidth()/10+2*this.getHeight()/40,this.getHeight()/2-aHauteurBouton);
                     
                     g.drawString(vFaction[i+1].getNom(),(2+2*i)*this.getWidth()/10,this.getHeight()/2);
@@ -394,11 +392,11 @@ public class PanelMenu extends JPanel
                     {
                        switch(aNiveauIA[i])
                        {
-                           case("Désactivé") : aNiveauIA[i]="Facile";vIA[i+1] = true;break;
-                           case("Facile") : aNiveauIA[i]="Moyen";break;
-                           case("Moyen") : aNiveauIA[i]="Difficile";break;
-                           case("Difficile") : aNiveauIA[i]="Légendaire";break;
-                           case("Légendaire") : aNiveauIA[i]="Désactivé";vIA[i+1] = false;break;
+                           case("Desactive") : aNiveauIA[i]="Facile";vIA[i+1] = true;break;
+                           case("Facile") : aNiveauIA[i]="Moyen";vIA[i+1] = true;break;
+                           case("Moyen") : aNiveauIA[i]="Difficile";vIA[i+1] = true;break;
+                           case("Difficile") : aNiveauIA[i]="Legendaire";vIA[i+1] = true;break;
+                           case("Legendaire") : aNiveauIA[i]="Desactive";vIA[i+1] = false;break;
                        }
                        this.repaint();
                     }
@@ -418,7 +416,7 @@ public class PanelMenu extends JPanel
                        }
                    }
                     
-                    Partie partieRapide = new Partie(20,30,Slatch.ihm.aListeMap.get(aNumeroMap),dBrouillard, vFaction,vEquipe,vIA,true);
+                    Partie partieRapide = new Partie(20,30,Slatch.ihm.aListeMap.get(aNumeroMap),dBrouillard, vFaction,vEquipe,vIA,aAnimation);
 
                     Slatch.partie=partieRapide;
                     
