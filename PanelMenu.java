@@ -47,7 +47,7 @@ public class PanelMenu extends JPanel
     /***/   boolean[] vIA = {false,true,true,true,true};
     /***/  Faction[] vFaction = {Faction.NEUTRE,Faction.HUMAINS,Faction.ROBOTS,Faction.HUMAINS,Faction.HUMAINS};
     /***/  boolean dBrouillard = true;
-    /***/   boolean aAnimation = true;
+    /***/   boolean aAnimation = false;
     /***/
     /*********************************************************************************************************************/
     

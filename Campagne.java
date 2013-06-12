@@ -20,6 +20,7 @@ public class Campagne implements MouseListener {
 		listeNomPartie = new ArrayList<Map>();
 
 		listeNomPartie.add(Map.GAGNER);
+		listeNomPartie.add(Map.GAGNER);
 	}
 
 	public void chargerPartie(int pNiveau) {
