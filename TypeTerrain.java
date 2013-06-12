@@ -40,8 +40,10 @@ public enum TypeTerrain {
         ROUTETBAS("routetbas","routeTbas","Route",1,0,false,false),
         ROUTETDROITE("routetdroite","routeTdroite","Route",1,0,false,false),
         ROUTETGAUCHE("routetgauche","routeTgauche","Route",1,0,false,false),
-        CARREFOUR("carrefour","routecroisement","Croissement",1,0,false,false);
+        CARREFOUR("carrefour","routecroisement","Croissement",1,0,false,false),
         
+        PONTHORIZONTAL("ponthorizontal","ponthorizontal","Pont",1,0,false,false),
+        PONTVERTICAL("pontvertical","pontvertical","Pont",1,0,false,false);
         
         private String aNom;
         private String aImage;
