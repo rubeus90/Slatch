@@ -33,8 +33,6 @@ public class Partie
     private int aLargeur;
     private boolean activationAnimation; 
     
-    
-
     /**
      * Constructeur de MAP d'une nouvelle partie
      */
@@ -779,6 +777,21 @@ public class Partie
             {
                 l.addAll(j.getListeUnite());
             }
+        }
+        return l;
+    }
+    
+    public List<Entite> getListeUnitesBatiments()
+    {
+        List<Entite> l = new ArrayList<Entite>();
+        for(Joueur j:ListeJoueur)
+        {
+            l.addAll(j.getListeUnite());
+        }
+        for(Joueur j:ListeJoueur)
+        {
+            l.addAll(j.getListeBatiment());
+            l.addAll(j.getListeUsine());
         }
         return l;
     }

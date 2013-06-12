@@ -42,16 +42,16 @@ public class StrategieIA
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)
             {
-                iMap[i][j].defensif+=20*mapTerrain[i][j].getType().getCouverture()*mode.inf.defensif;
+                iMap[i][j].defensif+=mapTerrain[i][j].getType().getCouverture()*mode.inf.defensif;
                 switch(mapTerrain[i][j].getType())
                 {
-                    case USINE: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=80*mode.inf.capture;}}
+                    case USINE: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=6*mode.inf.capture;}}
                     else{iMap[i][j].retraite+=4*mode.inf.retraite;}
-                    case BATIMENT: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=50*mode.inf.capture;}} 
+                    case BATIMENT: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=4*mode.inf.capture;}} 
                     else{iMap[i][j].retraite+=5*mode.inf.retraite;} break;
                     case FORET: break;
                     case MONTAGNE: break;
-                    case QG: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=100*mode.inf.capture;}}break;
+                    case QG: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=10*mode.inf.capture;}}break;
                     default:
                 }
                 if(mapTerrain[i][j].getUnite()!=null)
@@ -79,32 +79,62 @@ public class StrategieIA
         
         if(ajouterInfluence)
         {
-            for(int i=0; i<mapInf.length; i++)
+            if(Slatch.moteur.getEquipe(unite)!=Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
             {
-                for(int j=0; j<mapInf.length; j++)
+                for(int i=0; i<mapInf.length; i++)
                 {
-                    if(Moteur.dansLesBords(x+i-(mapInf.length-1)/2, y+j-(mapInf.length-1)/2))
+                    for(int j=0; j<mapInf.length; j++)
                     {
-                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].offensif+=mapInf[i][j].offensif;
-                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].defensif+=mapInf[i][j].defensif;
-                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].menace+=mapInf[i][j].menace;
-                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].retraite+=mapInf[i][j].retraite;
+                        if(Moteur.dansLesBords(x+i-(mapInf.length-1)/2, y+j-(mapInf.length-1)/2))
+                        {
+                            //map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].offensif+=mapInf[i][j].offensif*inf.offensif;
+                            map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].menace+=mapInf[i][j].menace*inf.menace;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for(int i=0; i<mapInf.length; i++)
+                {
+                    for(int j=0; j<mapInf.length; j++)
+                    {
+                        if(Moteur.dansLesBords(x+i-(mapInf.length-1)/2, y+j-(mapInf.length-1)/2))
+                        {
+                            map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].defensif+=mapInf[i][j].defensif*inf.defensif;
+                            map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].retraite+=mapInf[i][j].retraite*inf.retraite;
+                        }
                     }
                 }
             }
         }
         else
         {
-            for(int i=0; i<mapInf.length; i++)
+            if(Slatch.moteur.getEquipe(unite)!=Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
             {
-                for(int j=0; j<mapInf.length; j++)
+                for(int i=0; i<mapInf.length; i++)
                 {
-                    if(Moteur.dansLesBords(x+i-(mapInf.length-1)/2, y+j-(mapInf.length-1)/2))
+                    for(int j=0; j<mapInf.length; j++)
                     {
-                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].offensif-=mapInf[i][j].offensif;
-                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].defensif-=mapInf[i][j].defensif;
-                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].menace-=mapInf[i][j].menace;
-                        map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].retraite-=mapInf[i][j].retraite;
+                        if(Moteur.dansLesBords(x+i-(mapInf.length-1)/2, y+j-(mapInf.length-1)/2))
+                        {
+                            //map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].offensif-=mapInf[i][j].offensif*inf.offensif;
+                            map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].menace-=mapInf[i][j].menace*inf.menace;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for(int i=0; i<mapInf.length; i++)
+                {
+                    for(int j=0; j<mapInf.length; j++)
+                    {
+                        if(Moteur.dansLesBords(x+i-(mapInf.length-1)/2, y+j-(mapInf.length-1)/2))
+                        {
+                            map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].defensif-=mapInf[i][j].defensif*inf.defensif;
+                            map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].retraite-=mapInf[i][j].retraite*inf.retraite;
+                        }
                     }
                 }
             }

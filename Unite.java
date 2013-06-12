@@ -68,7 +68,6 @@ public class Unite extends Entite
        check=false;
        
        for(TypeAttaque type : TypeAttaque.values()) {
-                   
                     if(type.getNom().equals(pType.getAttaque())){
                         aAttaque = type;
                         break;
@@ -251,6 +250,11 @@ public class Unite extends Entite
         if(aExperience >= aExperienceMax && aLvl <3){
             isEvolvable = true;
         }
+    }
+    
+    public boolean estUneUnite()
+    {
+        return true;
     }
     
     
