@@ -174,6 +174,8 @@ public class Partie
                     case "routetdroite": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETDROITE); break;
                     case "routetgauche": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.ROUTETGAUCHE); break;
                     case "carrefour": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.CARREFOUR); break;
+                    case "ponthorizontal": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.PONTHORIZONTAL); break;
+                    case "pontvertical": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.PONTVERTICAL); break;
                     case "batiment":
                         aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.BATIMENT); 
                         vBatimentJoueur[vJoueur]+=1;
