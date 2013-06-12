@@ -27,6 +27,8 @@ public class PanelMenu extends JPanel
     private JTextArea textArea = new JTextArea();  
     private FontMetrics fmBlackOps;
     private FontMetrics fmVisitor;
+    private Font fontBlackOps;
+    private Font fontVisitor;
     
     
     /*******************************************************************************************************************/
@@ -75,13 +77,16 @@ public class PanelMenu extends JPanel
             if(vIA[i+1]==false){aNiveauIA[i] ="Désactivé";}
             else if(vIA[i+1]==true){aNiveauIA[i] ="Facile";}
         }
-        fmBlackOps = getFontMetrics(Slatch.fonts.get("BlackOps"));
-        fmVisitor = getFontMetrics(Slatch.fonts.get("Visitor"));
     }
     
     @Override
     public void paintComponent (final Graphics g) 
     {
+        fontBlackOps = Slatch.fonts.get("BlackOps").deriveFont(Font.PLAIN, this.getWidth()/30);
+        fontVisitor = Slatch.fonts.get("Visitor").deriveFont(Font.PLAIN, this.getWidth()/40);
+        fmBlackOps = getFontMetrics(fontBlackOps);
+        fmVisitor = getFontMetrics(fontVisitor);
+        
         
         afficheImageRedim("wallpaper",0,0,this.getWidth(),this.getHeight(),g);
         Image trait = Slatch.aImages.get("trait");
@@ -89,7 +94,7 @@ public class PanelMenu extends JPanel
         Image ok = Slatch.aImages.get("boutonok");
         Image retour = Slatch.aImages.get("boutonretour");
         
-        g.setFont(Slatch.fonts.get("Visitor"));
+        g.setFont(fontVisitor);
         
         int hPolice = fmVisitor.getHeight();
         
@@ -166,6 +171,7 @@ public class PanelMenu extends JPanel
                 textArea.setEditable(false);
                 textArea.setMargin(new Insets(this.getHeight()/4,this.getWidth()/2+3*tCadre,3*this.getHeight()/4,tCadre));
                 textArea.setForeground(Color.WHITE);
+                textArea.setFont(fontVisitor);
                 textArea.setText("Nom : "+Slatch.ihm.aListeMap.get(aNumeroMap).getNom()+"\n\n"+
                                 "Description : "+Slatch.ihm.aListeMap.get(aNumeroMap).getDescription()+"\n\n"+
                                 "Conseil : "+Slatch.ihm.aListeMap.get(aNumeroMap).getConseil()+"\n\n"+
@@ -183,7 +189,7 @@ public class PanelMenu extends JPanel
                 afficheImageRedim("noir80",0, this.getHeight()/4-2*tCadre,this.getWidth(), this.getHeight()- (this.getHeight()/4),g);
                 g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
                 
-                g.setFont(Slatch.fonts.get("BlackOps"));
+                g.setFont(fontBlackOps);
                 g.setColor(Color.white);
                 
                 int n = Slatch.ihm.aListeMap.get(aNumeroMap).getNbrJoueur();
@@ -197,15 +203,20 @@ public class PanelMenu extends JPanel
                 
                 
                 int hR = fmVisitor.getHeight();
-                g.setFont(Slatch.fonts.get("Visitor"));
+                g.setFont(fontVisitor);
                 g.setColor(Color.white);
                 
                 
                 
                 for(int i = 0; i<n;i++)
                 {
+                    g.setFont(fontBlackOps);
+                    
                     g.drawString("Joueur "+(i+1),(2+2*i)*this.getWidth()/10,this.getHeight()/4+tCadre);
                     
+                    g.setFont(fontVisitor);
+                    g.getFont().deriveFont(Font.PLAIN, this.getWidth()/35);
+                    g.setFont(fontVisitor);
                     g.drawString(""+aEquipe[i],(2+2*i)*this.getWidth()/10+2*this.getHeight()/40,this.getHeight()/2-aHauteurBouton);
                     
                     g.drawString(vFaction[i+1].getNom(),(2+2*i)*this.getWidth()/10,this.getHeight()/2);
