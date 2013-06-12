@@ -35,7 +35,7 @@ foret:1:15:0
 foret:1:25:0
 rivehaut:1:26:0
 rivebas:2:0:0
-qg:2:2:0
+qg:2:2:1
 routevertical:2:4:0
 routevertical:2:5:0
 routevertical:2:6:0
