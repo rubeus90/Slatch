@@ -78,7 +78,7 @@ public class PanelMatrice extends JPanel
     private boolean aEvoluePossible=false;
     
     // Boolean de la pause entre les tours
-    private boolean aPauseTour = false;
+    private boolean aPauseTour = true;
     
     // Boolean pour activer ou non le click de sourie
     private boolean aClickOK = true;
@@ -130,7 +130,7 @@ public class PanelMatrice extends JPanel
         if(aPauseTour) {
             aClickOK=false;
             
-            afficheImageRedim ("noir80", 0, 0, this.getWidth(), this.getHeight(), g);
+            afficheImageRedim ("noir", 0, 0, this.getWidth(), this.getHeight(), g);
             
             // Police
             Font font = new Font("Serif", Font.BOLD, this.getWidth()/20);
@@ -302,7 +302,7 @@ public class PanelMatrice extends JPanel
             String sauver = "Sauvegarder";
             int sauverSize = fm.stringWidth(sauver);
 
-            afficheImageRedim ("noir80", aMenuHautGauche_Xpx, aMenuHautGauche_Ypx, aMenuBasDroite_Xpx, aMenuBasDroite_Ypx, g);
+            afficheImageRedim ("noir", aMenuHautGauche_Xpx, aMenuHautGauche_Ypx, aMenuBasDroite_Xpx, aMenuBasDroite_Ypx, g);
             g.setColor(Color.white);
             g.drawString(charger, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-chargerSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
             g.drawString(sauver, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-sauverSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
@@ -393,6 +393,8 @@ public class PanelMatrice extends JPanel
     {
         if(!aClickOK) {
             aClickOK = true;
+            aPauseTour = false;
+            return;
         }
         else {
             int clickX = pX;
