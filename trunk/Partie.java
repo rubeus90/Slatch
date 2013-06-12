@@ -62,7 +62,7 @@ public class Partie
         isCampagne = true;
         aBrouillard = true;
         boolean[] vIA = {false,false,true,true,true};
-        aRevenuBatiment = 20;
+        aRevenuBatiment = 50;
         aJoueurActuel= 1;
         aTourMax = pTourMax;
         aTour = 1;
@@ -916,7 +916,7 @@ public class Partie
                         string += terrain.getType().getNom()+ ":";
                         string += i+ ":";
                         string += j+ ":";
-                        string += terrain.getJoueur() + ":";
+                        string += terrain.getJoueur();
                         bw.write(string);                    
                         bw.newLine();
                     }                    
