@@ -591,7 +591,11 @@ public class Partie
 
         if(aBrouillard){
             Slatch.moteur.Brouillard();
+            if(!ListeJoueur.get(aJoueurActuel).estUneIA() && !uneSeulEquipedeJoueur){
+                Slatch.ihm.getPanel().setPauseTour(true);
+            }
         }
+        
         ListeJoueur.get(aJoueurActuel).benefTour(aRevenuBatiment);
         Slatch.ihm.getpanelinfo().paintImmediately(0,0,Slatch.ihm.getpanelinfo().getWidth(),Slatch.ihm.getpanelinfo().getHeight());
     }

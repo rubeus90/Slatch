@@ -101,10 +101,10 @@ class Moteur
             getJoueur(uniteA).addNbrUniteTue();
             
             estMort(pVictime,uniteA);
-            
         }
         else if(getJoueur(uniteA).getFaction() == Faction.ROBOTS && uniteA.getType() == TypeUnite.KAMIKAZE) //Si l'unite Attaquant est un Kamikaze
         {
+            System.out.println("MMMEUUURT");
             estMort(uniteA,pVictime);
         }
         else if(distance(uniteA, pVictime)==1 && pVictime.getAttaque().aTypePortee.getPorteeMin()==1) //sinon + si attaque au CAC, on riposte
@@ -129,7 +129,6 @@ class Moteur
             {
                 //Si l'unite qui attaque meurt pendant l'attaque,
                 getJoueur(pVictime).addNbrUniteTue();
-                
                 estMort(uniteA,pVictime);
             }
         }
@@ -140,11 +139,10 @@ class Moteur
         int pVvic=pVictime.getPV();
         AnimationAttaque attaque=new AnimationAttaque(uniteA,pVictime,pVatt,pVvic);
         Slatch.ihm.getAnimation().addAnimation(attaque);
-           if(!getJoueurActuel().estUneIA())
-        {
-           
+        
+        if(!getJoueurActuel().estUneIA())
             Slatch.ihm.getAnimation().start();
-        }
+            
         uniteA=null;
     }
     
