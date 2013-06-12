@@ -78,7 +78,7 @@ public class PanelMatrice extends JPanel
     private boolean aEvoluePossible=false;
     
     // Boolean de la pause entre les tours
-    private boolean aPauseTour = true;
+    private boolean aPauseTour = false;
     
     // Boolean pour activer ou non le click de sourie
     private boolean aClickOK = true;
