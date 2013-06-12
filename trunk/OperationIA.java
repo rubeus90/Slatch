@@ -225,7 +225,7 @@ public class OperationIA
         //Choix de l'unite
         int nombreCommando=0;
         int nombreDemolisseur=0;
-        int nombreIngenieur=0;
+        int nombreSpec=0;
         int nombreTank=0;
         int nombreUml=0;
         int nombreDistance=0;
@@ -241,8 +241,9 @@ public class OperationIA
                 case DEMOLISSEUR :
                                     nombreDemolisseur=nombreDemolisseur+1;
                                     break;
+                case KAMIKAZE :                
                 case INGENIEUR :
-                                    nombreIngenieur=nombreIngenieur+1;
+                                    nombreSpec=nombreSpec+1;
                                     break;
                 case CHAR :
                                     nombreTank=nombreTank+1;
@@ -304,15 +305,17 @@ public class OperationIA
                 UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.COMMANDO), TypeObjectif.ACHETER));
                 nombreCommando=nombreCommando+1;
             }
-            else if(joueurActuel.getArgent()>=100 && nombreIngenieur <1)
+            else if(joueurActuel.getArgent()>=100 && nombreSpec <2 && joueurActuel.getFaction()==Faction.HUMAINS)
             {
                 UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.INGENIEUR), TypeObjectif.ACHETER));
-                nombreIngenieur=nombreIngenieur+1;
+                nombreSpec=nombreSpec+1;
             }
-            else
+            else if(joueurActuel.getArgent()>=100 && nombreSpec <2  && joueurActuel.getFaction()==Faction.ROBOTS)
             {
-              break;   
+                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.KAMIKAZE), TypeObjectif.ACHETER));
+                nombreSpec=nombreSpec+1;
             }
+            break;
         }
     }
 }
