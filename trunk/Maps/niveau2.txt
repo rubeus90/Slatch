@@ -143,3 +143,17 @@ foret:23:2:0
 foret:23:3:0
 usine:23:7:2
 foret:24:1:0
+montagne:6:12:0
+montagne:7:12:0
+eau:8:12:0
+eau:9:12:0
+eau:10:12:0
+eau:11:12:0
+eau:12:12:0
+eau:13:12:0
+eau:14:12:0
+eau:15:12:0
+eau:16:12:0
+eau:17:12:0
+foret:18:12:0
+foret:19:12:0
