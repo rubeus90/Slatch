@@ -586,6 +586,12 @@ public class Partie
             aTour++;
         }
         
+        
+        //Campagne
+        if(aTour==aTourMax+1){
+            Slatch.campagne.conditionVictoire();
+        }
+        
         if(!ListeJoueur.get(aJoueurActuel).isAlive()){// Si le joueur suivant est mort
             while(!ListeJoueur.get(aJoueurActuel).isAlive()){ // On recherche le prochain vivant
                 aJoueurActuel ++;
@@ -856,6 +862,10 @@ public class Partie
     
     public void setActivationAnimation(final boolean X){
         activationAnimation=X;
+    }
+    
+    public void setPartieFini(final boolean pBoolean){
+        partieFinie=true;
     }
     
    /***
