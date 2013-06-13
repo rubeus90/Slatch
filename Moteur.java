@@ -949,7 +949,8 @@ class Moteur
         }
         
            if(Slatch.partie.getActivationAnimation())
-        {AnimationMort mort=new AnimationMort(unite);
+        {
+            AnimationMort mort=new AnimationMort(unite);
            Slatch.ihm.getAnimation().addAnimation(mort);}
         
     }
