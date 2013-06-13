@@ -20,11 +20,11 @@ public class OperationIA
         }
         else if(unite.peutSoigner())
         {
-            cible= trouverBonneCase(unite, new Influence(10,6, 0, -2, 2));
+            cible= trouverBonneCase(unite, new Influence(6,6, 0, -2, 2));
         }
         else if(unite.peutCapturer())
         {
-            cible= trouverBonneCase(unite, new Influence(15,1, 40, -2, 1));
+            cible= trouverBonneCase(unite, new Influence(30,1, 40, -2, 1));
         }
         else // l'unité peut attaquer
         {
