@@ -20,37 +20,24 @@ public class PanelMenu extends JPanel
     private boolean aSousMenuRapide1;
     private boolean aSousMenuRapide2;
     private int aNumeroMap;
+    
     // Attributs des boutons//cb[0] à cb[3] boutons IA | cb[4] à cb[8] boutons Joueur
-    private Faction aFaction;
-    private int[] aEquipe;
+    //private Faction aFaction;
+    private int[] aIntEquipe;
     private String[] aNiveauIA;
+    private String aStrBrouillard;
+    private String aStrAnimation;
+    private boolean[] aIA;
+    private Equipe[] aEquipe;
+    private Faction[] aFaction;
+    private boolean dBrouillard;
+    private boolean aAnimation;
     private JTextArea textArea = new JTextArea();  
     private FontMetrics fmBlackOps;
     private FontMetrics fmVisitor;
     private Font fontBlackOps;
     private Font fontVisitor;
-    
-    
-    /*******************************************************************************************************************/
-    /***  Parametres de la partie rapide                                                                            /***/
-    /*******************************************************************************************************************/
-    /***/   Equipe equipe0 = new Equipe(0);
-    /***/   Equipe equipe1 = new Equipe(1);
-    /***/   Equipe equipe2 = new Equipe(2);
-    /***/   Equipe equipe3 = new Equipe(3);
-    /***/   Equipe equipe4 = new Equipe(4);
-    /***/ 
-    /***/   //EQUIPE DES JOUEURS : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-    /***/   Equipe[] vEquipe = {equipe0, equipe1, equipe2, equipe3, equipe4};
-    /***/ 
-    /***/   //POur definir si un Joueur est un IA ou pas : DANS L'ORDRE : Joueur NEUTRE, Joueur1, Joueur2, Joueur3,Joueur4
-    /***/   boolean[] vIA = {false,true,true,true,true};
-    /***/  Faction[] vFaction = {Faction.NEUTRE,Faction.HUMAINS,Faction.ROBOTS,Faction.HUMAINS,Faction.HUMAINS};
-    /***/  boolean dBrouillard = true;
-    /***/   boolean aAnimation = true;
-    /***/
-    /*********************************************************************************************************************/
-    
+   
     /**
      * 
      */
@@ -65,20 +52,42 @@ public class PanelMenu extends JPanel
         aSousMenuRapide1 = false;
         aSousMenuRapide2 = false;
         aNumeroMap=0;
-        
-
-       
-        aEquipe = new int[4];
-        for(int i=0;i<4;i++)
-        {
-            aEquipe[i] = i+1;
-        }
+        aIntEquipe = new int[4];
         aNiveauIA = new String[4];
+        aIA = new boolean[5]; // 4 joueurs + 1 joueurs neutres
+        aEquipe = new Equipe[5]; // 4 joueurs + 1 joueurs neutres
+        aFaction = new Faction[5]; // 4 joueurs + 1 joueurs neutres
+        
+        //Valeur par default dans le menu de parametre d'une nouvelle partie pour l'IA
+        aNiveauIA[0] ="Desactive";
+        aIA[0]=false;
+        aNiveauIA[1] ="Moyen";
+        aIA[1]=true;
+        aNiveauIA[2] ="Moyen";
+        aIA[2]=true;
+        aNiveauIA[3] ="Moyen";
+        aIA[3]=true;
+        
+        //Valeur par default dans le menu de parametre d'une nouvelle partie pour les equipes
         for(int i=0;i<4;i++)
         {
-            if(vIA[i+1]==false){aNiveauIA[i] ="Desactive";}
-            else if(vIA[i+1]==true){aNiveauIA[i] ="Facile";}
+            aIntEquipe[i] = i+1;
         }
+        
+        //Valeur par default des faction
+        aFaction[0] = Faction.NEUTRE;
+        aFaction[1] = Faction.HUMAINS;
+        aFaction[2] = Faction.ROBOTS;
+        aFaction[3] = Faction.ROBOTS;
+        aFaction[4] = Faction.ROBOTS;
+        
+        //Valeur par default de la valeurs du brouillard
+        aStrBrouillard ="Active";
+        dBrouillard=true;
+        
+        //Valeur par default de la valeurs du brouillard
+        aStrAnimation ="Active";
+        aAnimation = true;
     }
     
     @Override
@@ -120,6 +129,7 @@ public class PanelMenu extends JPanel
             g.drawImage(mapcreator, this.getWidth()/2-2*aHauteurBouton, 33+ 5*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(credits, this.getWidth()/2-2*aHauteurBouton, 33+ 6*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
         }
+        
         else if(aMenuCampagne)
         {
             aHauteurBouton = this.getHeight()/9;
@@ -199,6 +209,8 @@ public class PanelMenu extends JPanel
                 g.drawString("Equipe",this.getWidth()/20,this.getHeight()/2-aHauteurBouton);
                 g.drawString("Faction",this.getWidth()/20,this.getHeight()/2);
                 g.drawString("IA",this.getWidth()/20,this.getHeight()/2+aHauteurBouton);
+                g.drawString("Brouillard",this.getWidth()/20,this.getHeight()/2+2*aHauteurBouton);
+                g.drawString("Animation",10*this.getWidth()/20,this.getHeight()/2+2*aHauteurBouton);
                 
                 Image on = Slatch.aImages.get("on");
                 Image off = Slatch.aImages.get("off");
@@ -211,19 +223,21 @@ public class PanelMenu extends JPanel
                 {
                     g.setFont(fontBlackOps);
                     
-                    g.drawString("Joueur "+(i+1),(2+2*i)*this.getWidth()/10,this.getHeight()/4+tCadre);
+                    g.drawString("Joueur "+(i+1),(3+2*i)*this.getWidth()/10,this.getHeight()/4+tCadre);
                     
                     g.setFont(fontVisitor);
                     
-                    g.drawString(""+aEquipe[i],(2+2*i)*this.getWidth()/10+2*this.getHeight()/40,this.getHeight()/2-aHauteurBouton);
+                    g.drawString(""+aIntEquipe[i],(3+2*i)*this.getWidth()/10+2*this.getHeight()/40,this.getHeight()/2-aHauteurBouton);
                     
-                    g.drawString(vFaction[i+1].getNom(),(2+2*i)*this.getWidth()/10,this.getHeight()/2);
+                    g.drawString(aFaction[i+1].getNom(),(3+2*i)*this.getWidth()/10,this.getHeight()/2);
                     
-                    g.drawString(""+aNiveauIA[i],(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton);
-                    
+                    g.drawString(""+aNiveauIA[i],(3+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton);
+
                     //if(vIA[i+1]){g.drawImage(on,(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton-hR/2,this.getHeight()/40,this.getHeight()/40,this);}
                     //else{g.drawImage(off,(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton-hR/2,this.getHeight()/40,this.getHeight()/40,this);}
                 }
+                g.drawString(""+aStrBrouillard,(3)*this.getWidth()/10,this.getHeight()/2+2*aHauteurBouton);
+                g.drawString(""+aStrAnimation,(7)*this.getWidth()/10,this.getHeight()/2+2*aHauteurBouton);
             }
             
             else
@@ -356,88 +370,109 @@ public class PanelMenu extends JPanel
                 
                 for(int i =0;i<4;i++)
                 {
-                    //Clic sur l'équipe 
-                    int SizeFaction = fmVisitor.stringWidth(""+vFaction[i+1].getNom());
-                    int SizeEquipe = fmVisitor.stringWidth(""+aEquipe[i]);
+                    
+                    int SizeFaction = fmVisitor.stringWidth(""+aFaction[i+1].getNom());
+                    int SizeEquipe = fmVisitor.stringWidth(""+aIntEquipe[i]);
                     int SizeNiveauIA = fmVisitor.stringWidth(""+aNiveauIA[i]);
-                    if(pY>this.getHeight()/2-aHauteurBouton-hR && pY<this.getHeight()/2-aHauteurBouton && pX>(2+2*i)*this.getWidth()/10+2*this.getHeight()/40 && pX<(2+2*i)*this.getWidth()/10+2*this.getHeight()/40+SizeEquipe)
+                    
+                    //Clic sur l'équipe 
+                    if(pY>this.getHeight()/2-aHauteurBouton-hR && pY<this.getHeight()/2-aHauteurBouton && pX>(3+2*i)*this.getWidth()/10+2*this.getHeight()/40 && pX<(3+2*i)*this.getWidth()/10+2*this.getHeight()/40+SizeEquipe)
                     {
-                        if(aEquipe[i]==4)
+                        if(aIntEquipe[i]==4)
                         {
-                            aEquipe[i]=0;
+                            aIntEquipe[i]=0;
                         }
-                        aEquipe[i]++;
+                        aIntEquipe[i]++;
                         
 
                         this.repaint();
                     }
-                //Clic sur la faction
-                    if(pY>this.getHeight()/2-hR && pY<this.getHeight()/2 && pX>(2+2*i)*this.getWidth()/10 && pX<(2+2*i)*this.getWidth()/10+SizeFaction)
+                    
+                    //Clic sur la faction
+                    if(pY>this.getHeight()/2-hR && pY<this.getHeight()/2 && pX>(3+2*i)*this.getWidth()/10 && pX<(3+2*i)*this.getWidth()/10+SizeFaction)
                     {
-                       if(vFaction[i+1].equals(Faction.HUMAINS)){ vFaction[i+1] = Faction.ROBOTS;}
-                       else{ vFaction[i+1] = Faction.HUMAINS;}
+                       if(aFaction[i+1].equals(Faction.HUMAINS)){ aFaction[i+1] = Faction.ROBOTS;}
+                       else{ aFaction[i+1] = Faction.HUMAINS;}
                        this.repaint();
                     }
-                    
-                //Clic sur la check box du joueur (IA ou non)
+                                        
+                    //Clic sur la difficulté de l'IA
+                    if(pY>this.getHeight()/2+aHauteurBouton-hR && pY<this.getHeight()/2+aHauteurBouton && pX>(3+2*i)*this.getWidth()/10 && pX<(3+2*i)*this.getWidth()/10+SizeNiveauIA)
+                    {
+                           switch(aNiveauIA[i])
+                           {
+                               case("Desactive") : aNiveauIA[i]="Facile";aIA[i+1] = true;break;
+                               case("Facile") : aNiveauIA[i]="Moyen";aIA[i+1] = true;break;
+                               case("Moyen") : aNiveauIA[i]="Difficile";aIA[i+1] = true;break;
+                               case("Difficile") : aNiveauIA[i]="Legendaire";aIA[i+1] = true;break;
+                               case("Legendaire") : aNiveauIA[i]="Desactive";aIA[i+1] = false;break;
+                           }
+                           this.repaint();
+                    }
+      
+                }
+                int SizeBrouillard = fmVisitor.stringWidth(""+aStrBrouillard);
+                int SizeAnimation = fmVisitor.stringWidth(""+aStrAnimation);
                 
-                //     if(pY>this.getHeight()/2+aHauteurBouton-hR/2 && pY<this.getHeight()/2+aHauteurBouton-hR/2+this.getHeight()/40 && pX>(2+2*i)*this.getWidth()/10 && pX<(2+2*i)*this.getWidth()/10+this.getHeight()/40)
-                //    {
-                //         vIA[i+1] = !vIA[i+1];
-                //         this.repaint();
-                //     }
-                    
-                //Clic sur la difficulté de l'IA
-                if(pY>this.getHeight()/2+aHauteurBouton-hR && pY<this.getHeight()/2+aHauteurBouton && pX>(2+2*i)*this.getWidth()/10 && pX<(2+2*i)*this.getWidth()/10+SizeNiveauIA)
-                    {
-                       switch(aNiveauIA[i])
-                       {
-                           case("Desactive") : aNiveauIA[i]="Facile";vIA[i+1] = true;break;
-                           case("Facile") : aNiveauIA[i]="Moyen";vIA[i+1] = true;break;
-                           case("Moyen") : aNiveauIA[i]="Difficile";vIA[i+1] = true;break;
-                           case("Difficile") : aNiveauIA[i]="Legendaire";vIA[i+1] = true;break;
-                           case("Legendaire") : aNiveauIA[i]="Desactive";vIA[i+1] = false;break;
-                       }
-                       this.repaint();
-                    }
+                //Click sur le brouillard
+                if(pY>this.getHeight()/2+2*aHauteurBouton-hR && pY<this.getHeight()/2+2*aHauteurBouton && pX>(3)*this.getWidth()/10 && pX<(3)*this.getWidth()/10+SizeBrouillard)
+                {
+                   if(aStrBrouillard.equals("Active")){aStrBrouillard="Desactive";dBrouillard=false;}
+                   else{aStrBrouillard="Active"; dBrouillard=true;}
+                   this.repaint();
+                }
+                
+                //Click sur les animations
+                if(pY>this.getHeight()/2+2*aHauteurBouton-hR && pY<this.getHeight()/2+2*aHauteurBouton && pX>(7)*this.getWidth()/10 && pX<(7)*this.getWidth()/10+SizeAnimation)
+                {
+                   if(aStrAnimation.equals("Active")){aStrAnimation="Desactive";aAnimation=false;}
+                   else{aStrAnimation="Active"; aAnimation=true;}
+                   this.repaint();
                 }
                 
                 // Clic Bouton OK
                 if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>this.getWidth()-this.getHeight()/6-10 && pX< this.getWidth()-10)
-                {
-                   for(int i=0;i<4;i++)
+                { 
+                   Equipe equipe0 = new Equipe(0);
+                   Equipe equipe1 = new Equipe(1);
+                   Equipe equipe2 = new Equipe(2);
+                   Equipe equipe3 = new Equipe(3);
+                   Equipe equipe4 = new Equipe(4);
+                   aEquipe[0] = equipe0;
+                   aEquipe[1] = equipe1;
+                   aEquipe[2] = equipe2;
+                   aEquipe[3] = equipe3;
+                    
+                    for(int i=0;i<4;i++)
                    {
-                       switch(aEquipe[i])
+                       switch(aIntEquipe[i])
                        {
-                           case(1) : vEquipe[i+1]=equipe1;break;
-                           case(2) : vEquipe[i+1]=equipe2;break;
-                           case(3) : vEquipe[i+1]=equipe3;break;
-                           case(4) : vEquipe[i+1]=equipe4;break;
+                           case(1) : aEquipe[i+1]=equipe1;break;
+                           case(2) : aEquipe[i+1]=equipe2;break;
+                           case(3) : aEquipe[i+1]=equipe3;break;
+                           case(4) : aEquipe[i+1]=equipe4;break;
                        }
                    }
                     
-                    Partie partieRapide = new Partie(50,30,Slatch.ihm.aListeMap.get(aNumeroMap),dBrouillard, vFaction,vEquipe,vIA,aAnimation);
+                   Partie partieRapide = new Partie(50,30,Slatch.ihm.aListeMap.get(aNumeroMap),dBrouillard, aFaction,aEquipe,aIA,aAnimation);
 
-                    Slatch.partie=partieRapide;
+                   Slatch.partie=partieRapide;
                     
-                    Moteur moteur = new Moteur();
-                    Slatch.moteur=moteur;
-                    
-                    
-                    
-                    Slatch.ihm.passageModePartie();
+                   Moteur moteur = new Moteur();
+                   Slatch.moteur=moteur;
+                   Slatch.ihm.passageModePartie();
                     
                     
-                    if(Slatch.partie.getBrouillard()){
+                   if(Slatch.partie.getBrouillard()){
                         moteur.Brouillard();
-                    }
+                   }
                     
-                    if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
-                    {
+                   if(Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).estUneIA())
+                   {
                         StrategieIA.joueTour(Slatch.partie.getJoueurActuel());
-                    }
+                   }
                     
-                    this.repaint();
+                   this.repaint();
                 }
                 
                 // Clic Bouton Retour
@@ -477,12 +512,7 @@ public class PanelMenu extends JPanel
                     Slatch.partie=partieRapide;
                     Moteur moteur = new Moteur();
                     Slatch.moteur=moteur;
-                    
-                    
-                    
                     Slatch.ihm.passageModePartie();
-                    //aSousMenuRapide2 = true;
-                    //this.repaint();
                 }
             }
         } 
