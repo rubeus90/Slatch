@@ -21,8 +21,10 @@ public class Campagne implements MouseListener {
 
         listeNomPartie.add(Map.NIVEAU1);
         listeNomPartie.add(Map.NIVEAU2);
-        listeNomPartie.add(Map.NIVEAU3);
-        listeNomPartie.add(Map.NIVEAU4);
+        listeNomPartie.add(Map.NIVEAU13); // ce n'est evidement pas la bonne map
+        listeNomPartie.add(Map.NIVEAU14); // ce n'est evidement pas la bonne map
+        listeNomPartie.add(Map.NIVEAU5);
+        listeNomPartie.add(Map.NIVEAU6);
     }
 
     public void chargerPartie(int pNiveau) {
