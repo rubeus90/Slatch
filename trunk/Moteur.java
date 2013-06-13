@@ -131,6 +131,7 @@ class Moteur
         if(getJoueur(uniteA).getFaction() == Faction.ROBOTS && uniteA.getType() == TypeUnite.KAMIKAZE) //Si l'unite Attaquant est un Kamikaze
         {
             estMort(uniteA,pVictime);
+            uniteA.setPV(-1);
         }
         
         uniteA.attaque(true);
