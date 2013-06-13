@@ -214,7 +214,7 @@ public class GestionnaireAnimation implements ActionListener
           case "mort":
             
             cible= ((AnimationMort)animation.get(numeroUnite)).getCible();
-            System.out.println(cible);
+            //System.out.println(cible);
             fin = afficheMort(cible);
             avancement += deltaT;
             if(fin)
