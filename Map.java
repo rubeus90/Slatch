@@ -25,7 +25,8 @@ public enum Map{
     NIVEAU4("Mission 4","La carte de la quatrieme mission de la campagne", "1V1","niveau4",30,14,2,false,true),
     NIVEAU5("Mission 5","La carte de la cinquieme mission de la campagne", "1V1","niveau5",15,15,2,false,true),
     NIVEAU6("Mission 6","La carte de la sixieme mission de la campagne", "2V1","niveau6",28,18,3,true,true),
-    NIVEAU7("Mission 7","La carte de la 7e mission de la campagne", "2V1","niveau7",25,20,3,false,true);
+    NIVEAU7("Mission 7","La carte de la 7e mission de la campagne", "2V1","niveau7",25,20,3,false,true),
+    NIVEAU8("Mission 8","La carte de la 8e mission de la campagne", "1V1","niveau8",22,18,2,true,true);
     
     private String aNom;
     private String aDescription;
