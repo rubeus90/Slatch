@@ -140,9 +140,9 @@ public class PanelMenu extends JPanel
             Image chargerCampagne = Slatch.aImages.get("boutonchargercampagne");
             Image nouvelleCampagne = Slatch.aImages.get("boutonnouvellecampagne");
             
-            g.drawImage(titrecampagne, this.getWidth()/6, 33, 4*vHauteurTitre,vHauteurTitre, this);
-            g.drawImage(nouvelleCampagne, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton,aHauteurBouton, this);
-            g.drawImage(chargerCampagne, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton,aHauteurBouton, this);
+            g.drawImage(titrecampagne, 0, 0, this.getWidth(), this.getHeight()*2/5, this);
+            g.drawImage(nouvelleCampagne, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 5*aHauteurBouton,aHauteurBouton, this);
+            g.drawImage(chargerCampagne, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 5*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
         }
         
