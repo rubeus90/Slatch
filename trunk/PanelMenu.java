@@ -59,14 +59,15 @@ public class PanelMenu extends JPanel
         aFaction = new Faction[5]; // 4 joueurs + 1 joueurs neutres
         
         //Valeur par default dans le menu de parametre d'une nouvelle partie pour l'IA
-        aNiveauIA[0] ="Desactive";
         aIA[0]=false;
+        aNiveauIA[0] ="Desactive";
+        aIA[1]=false;
         aNiveauIA[1] ="Moyen";
-        aIA[1]=true;
-        aNiveauIA[2] ="Moyen";
         aIA[2]=true;
-        aNiveauIA[3] ="Moyen";
+        aNiveauIA[2] ="Moyen";
         aIA[3]=true;
+        aNiveauIA[3] ="Moyen";
+        aIA[4]=true;
         
         //Valeur par default dans le menu de parametre d'une nouvelle partie pour les equipes
         for(int i=0;i<4;i++)
