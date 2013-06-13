@@ -301,11 +301,15 @@ public class PanelMatrice extends JPanel
             int chargerSize = fm.stringWidth(charger);
             String sauver = "Sauvegarder";
             int sauverSize = fm.stringWidth(sauver);
-
+            
+            int MenuPrincipalSize = fm.stringWidth(sauver);
+            String MenuPrincipal = "Menu Principal";
+            
             afficheImageRedim ("noir", aMenuHautGauche_Xpx, aMenuHautGauche_Ypx, aMenuBasDroite_Xpx, aMenuBasDroite_Ypx, g);
             g.setColor(Color.white);
             g.drawString(charger, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-chargerSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
             g.drawString(sauver, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-sauverSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
+            g.drawString(MenuPrincipal, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-MenuPrincipalSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
             
             g.setColor(Color.gray);
             g.drawLine(aMenuHautGauche_Xpx, 0, aMenuBasDroite_Xpx-1, 0);
@@ -313,7 +317,7 @@ public class PanelMatrice extends JPanel
         
         // Si la partie est finie : Ecran de fin de partie
         if(Slatch.partie.partieFinie) {
-        	afficheStatistique(g);
+            afficheStatistique(g);
         } // FIN partieFinie
     }
     
@@ -365,6 +369,9 @@ public class PanelMatrice extends JPanel
                             // Bouton sauver
                             else if(aHauteurCarreau<clickY && clickY<2*aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
                                 Slatch.partie.sauvegardePartie("Maps/sauvegarde.txt");
+                            }
+                            else if(2*aHauteurCarreau<clickY && clickY<3*aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
+                                Slatch.ihm.passageModeMenuPrincipal();
                             }
                             else {
                                 aUniteMemMenuCaseX=i;
@@ -718,8 +725,8 @@ public class PanelMatrice extends JPanel
     public void redimMenu() {
         aMenuHautGauche_Xpx = 0;
         aMenuHautGauche_Ypx = 0;
-        aMenuBasDroite_Xpx = 4*aLargeurCarreau;
-        aMenuBasDroite_Ypx = 2*aHauteurCarreau;
+        aMenuBasDroite_Xpx = 5*aLargeurCarreau;
+        aMenuBasDroite_Ypx = 3*aHauteurCarreau;
     } // FIN redimMenu
     
     /**
@@ -787,11 +794,11 @@ public class PanelMatrice extends JPanel
     } // FIN redimMenuDescription
     
     public void afficheStatistique(Graphics g){
-    	Slatch.ihm.getPanelFrame().removeAll();
-    	PanelStatistique panel = new PanelStatistique();
-    	Slatch.ihm.getPanelFrame().add(panel);
-    	Slatch.ihm.getPanelFrame().repaint();
-    	Slatch.ihm.getPanelFrame().updateUI();
+        Slatch.ihm.getPanelFrame().removeAll();
+        PanelStatistique panel = new PanelStatistique();
+        Slatch.ihm.getPanelFrame().add(panel);
+        Slatch.ihm.getPanelFrame().repaint();
+        Slatch.ihm.getPanelFrame().updateUI();
     }
     
     public int getaLargeurCarreau() {return aLargeurCarreau;}

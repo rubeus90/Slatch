@@ -126,12 +126,33 @@ public class IHM_NEW  {
         
         if(panelMenu != null)
             panel.remove(panelMenu);
+        
         panel.add(panelMatrice, BorderLayout.CENTER);
         panel.add(panelInfo, BorderLayout.NORTH);
 
         panelMenu.setVisible(false);
         panelMatrice.setVisible(true);
         panelInfo.setVisible(true);
+        panel.repaint();
+        panelMatrice.repaint();
+        frame.pack();        
+    }
+    
+    public void passageModeMenuPrincipal(){
+        panelMenu = new PanelMenu();
+        MouseMenu lecteurMenu = new MouseMenu();
+        panelMenu.addMouseListener(lecteurMenu);
+           
+        if(panelInfo != null)
+            panel.remove(panelInfo);
+        if(panelMatrice != null)
+            panel.remove(panelMatrice);
+            
+        panel.add(panelMenu, BorderLayout.CENTER);
+
+        panelMenu.setVisible(true);
+        panelMatrice.setVisible(false);
+        panelInfo.setVisible(false);
         panel.repaint();
         panelMatrice.repaint();
         frame.pack();        
