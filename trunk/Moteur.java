@@ -473,25 +473,27 @@ class Moteur
          unite.setCoordonneeX(X);
          unite.setCoordonneeY(Y);
          
-         if(Slatch.partie.getActivationAnimation())
-        {unite.setDecaleUniteX(-(int)(pPosHautGaucheX - pPosHautGaucheXdepart ));
-         unite.setDecaleUniteY(-(int)(pPosBasDroiteY - pPosBasDroiteYdepart ));
-         Unite vUnite = unite;
-         Stack<Point> vChemin = stack;
-         AnimationDeplacement animation = new AnimationDeplacement(vChemin,vDepart,vUnite);
+        if(Slatch.partie.getActivationAnimation())
+        {
+            unite.setDecaleUniteX(-(int)(pPosHautGaucheX - pPosHautGaucheXdepart ));
+            unite.setDecaleUniteY(-(int)(pPosBasDroiteY - pPosBasDroiteYdepart ));
+            Unite vUnite = unite;
+            Stack<Point> vChemin = stack;
+            AnimationDeplacement animation = new AnimationDeplacement(vChemin,vDepart,vUnite);
             Slatch.ihm.getAnimation().addAnimation(animation);
             
-        if(!getJoueurActuel().estUneIA())
-          {
-            Slatch.ihm.getAnimation().start();
-          }
+            if(!getJoueurActuel().estUneIA())
+            {
+                Slatch.ihm.getAnimation().start();
+            }
         
         }
         else
         {
             if(Slatch.partie.getBrouillard()){
-                    Slatch.moteur.Brouillard();
-                    }
+                Slatch.moteur.Brouillard();
+            }
+                    
         }
         
     }
