@@ -34,7 +34,7 @@ plaine:14:10:0
 plaine:14:11:0
 dune:14:16:0
 plaine:15:6:0
-foret:15:7:1
+foret:15:7:0
 batiment:14:6:0
 plaine:15:8:0
 plaine:15:9:0
@@ -54,7 +54,7 @@ plaine:17:5:0
 plaine:17:6:0
 foret:17:7:0
 plaine:17:8:0
-foret:17:9:1
+foret:17:9:0
 batiment:16:13:0
 eau:17:10:0
 plaine:17:11:0
@@ -75,7 +75,7 @@ cactus:18:16:0
 dune:19:3:0
 dune:19:4:0
 plaine:19:6:0
-foret:19:7:1
+foret:19:7:0
 batiment:20:6:0
 plaine:19:8:0
 eau:19:9:0
