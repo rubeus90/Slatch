@@ -174,13 +174,24 @@ But : Capturer la ville abandonnée ( et tuer un camp robot ? )
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>HUITIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 *******FOND D'ECRAN********
-Une image de campement avec oasis
+campement plaine
 
 *******PERSONNAGE**********
 General X
+Notre prof d'histoire 
 
 *******TEXTE***************
-General X : Vous avez mis une bonne derouillé a ces satanés robots ! Nous pouvons enfin nous désaltérer avec la bonne eau de l'oasis. Demain nous attaquerons la grande base des mechadroids avec toute notre force de frappe. Allons nous coucher, nous devons etre en forme pour demain.
+General X : Les habitants de cette ville nous proposent un marché. Allez voir cette femme la bas pour en discuter.
+Vous : euuuuh Excusez moi
+Prof: Mais qui voila ?! (nom du hero) ça fais longtemps .
+Vous : Madame ?! Vous n'etes plus prof d'histoire ?
+Prof : Appelle moi Isabelle.
+Vous : D'accord Isabelle, vous avez un marché à nous proposer ?
+Prof : Oui, nous avons eu des informations disant que notre ville allé bientot etre attaqué par des mechadroids, si vous nous aider à nous defendre apres la bataille
+nous vous preterons des soldats et des equipements.
+Vous : C'est d'accord, quand sont ils cencés arriver ?
+Prof : Dans 20 minutes.
+
 
 *******PARTIE**************
-But : Perdre
+But : Battre les robots
