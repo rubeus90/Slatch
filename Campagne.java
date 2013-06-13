@@ -35,6 +35,11 @@ public class Campagne implements MouseListener {
         Equipe equipe2 = new Equipe(2);
 
         Equipe[] vEquipe = { equipe0, equipe1, equipe2, equipe2, equipe2 };
+        
+        if(aNiveau==5){
+           vEquipe[2] =equipe1;
+           vEquipe[3]=equipe1;
+        }
 
 
         Partie partie = new Partie(99,listeNomPartie.get(pNiveau), vEquipe);
