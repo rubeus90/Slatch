@@ -28,14 +28,14 @@ cactus:14:2:0
 dune:14:3:0
 plaine:14:7:0
 foret:14:8:0
-foret:14:9:1
-batiment:13:11:1
+foret:14:9:0
+batiment:13:11:0
 plaine:14:10:0
 plaine:14:11:0
 dune:14:16:0
 plaine:15:6:0
 foret:15:7:1
-batiment:14:6:1
+batiment:14:6:0
 plaine:15:8:0
 plaine:15:9:0
 plaine:15:10:0
@@ -46,8 +46,8 @@ plaine:16:7:0
 plaine:16:8:0
 plaine:16:9:0
 foret:16:10:0
-foret:16:11:1
-batiment:15:13:1
+foret:16:11:0
+batiment:15:13:0
 plaine:16:12:0
 cactus:16:14:0
 plaine:17:5:0
@@ -55,7 +55,7 @@ plaine:17:6:0
 foret:17:7:0
 plaine:17:8:0
 foret:17:9:1
-batiment:16:13:1
+batiment:16:13:0
 eau:17:10:0
 plaine:17:11:0
 plaine:17:12:0
@@ -76,7 +76,7 @@ dune:19:3:0
 dune:19:4:0
 plaine:19:6:0
 foret:19:7:1
-batiment:20:6:1
+batiment:20:6:0
 plaine:19:8:0
 eau:19:9:0
 eau:19:10:0
@@ -109,3 +109,4 @@ Char:16:6:2
 Uml:20:6:2
 Commando:15:8:2
 Commando:17:12:2
+While:20:8:2
