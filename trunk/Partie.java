@@ -788,12 +788,12 @@ public class Partie
         List<Entite> l = new ArrayList<Entite>();
         for(Joueur j:ListeJoueur)
         {
-            l.addAll(j.getListeUnite());
+            l.addAll(j.getListeBatiment());
+            l.addAll(j.getListeUsine());
         }
         for(Joueur j:ListeJoueur)
         {
-            l.addAll(j.getListeBatiment());
-            l.addAll(j.getListeUsine());
+            l.addAll(j.getListeUnite());
         }
         return l;
     }
