@@ -144,7 +144,7 @@ public class GestionnaireAnimation implements ActionListener
             
             changerCase(((AnimationDeplacement)animation.get(numeroUnite)).getUnite(),destX,destY,deltaT);
             }
-            break;
+            return;
             
             
             
@@ -157,10 +157,11 @@ public class GestionnaireAnimation implements ActionListener
             if(fin)
             {
                 
+                
+                    avancement=0;
                 if(numeroUnite>=animation.size()-1)
                 {
                     numeroUnite=0;
-                    avancement=0;
                     animation.clear();
                     Slatch.ihm.timer.stop();
                     Slatch.ihm.getPanel().setClickOK(true);
@@ -176,7 +177,7 @@ public class GestionnaireAnimation implements ActionListener
                    }
                 
             }
-            break;
+            return;
             
             
             
@@ -187,11 +188,11 @@ public class GestionnaireAnimation implements ActionListener
             avancement += deltaT;
             if(fin)
             {
-                
+                    
+                    avancement=0;
                 if(numeroUnite>=animation.size()-1)
                 {
                     numeroUnite=0;
-                    avancement=0;
                     animation.clear();
                     Slatch.ihm.timer.stop();
                     Slatch.ihm.getPanel().setClickOK(true);
@@ -207,21 +208,22 @@ public class GestionnaireAnimation implements ActionListener
                    }
                 
             }
-            break;  
+            return;  
             
             
           case "mort":
-          
+            
             cible= ((AnimationMort)animation.get(numeroUnite)).getCible();
+            System.out.println(cible);
             fin = afficheMort(cible);
             avancement += deltaT;
             if(fin)
             {
                 
+                    avancement=0;
                 if(numeroUnite>=animation.size()-1)
                 {
                     numeroUnite=0;
-                    avancement=0;
                     animation.clear();
                     Slatch.ihm.timer.stop();
                     Slatch.ihm.getPanel().setClickOK(true);
@@ -237,7 +239,7 @@ public class GestionnaireAnimation implements ActionListener
                    }
                 
             }
-            break;
+            return;
           case "evolution":
           
             cible= ((AnimationEvolution)animation.get(numeroUnite)).getCible();
@@ -245,11 +247,11 @@ public class GestionnaireAnimation implements ActionListener
             avancement += deltaT;
             if(fin)
             {
-                
+                    
+                    avancement=0;
                 if(numeroUnite>=animation.size()-1)
                 {
                     numeroUnite=0;
-                    avancement=0;
                     animation.clear();
                     Slatch.ihm.timer.stop();
                     Slatch.ihm.getPanel().setClickOK(true);
@@ -265,7 +267,10 @@ public class GestionnaireAnimation implements ActionListener
                    }
                 
             }
+            return;
         }
+        
+        
     }
     
     /**
