@@ -181,7 +181,7 @@ General X
 Notre prof d'histoire 
 
 *******TEXTE***************
-General X : Les habitants de cette ville nous proposent un marché. Allez voir cette femme la bas pour en discuter.
+General X : Les habitants de cette ville nous proposent un marché. Allez voir la femme aux yeux bleu la bas pour en discuter.
 Vous : euuuuh Excusez moi
 Prof: Mais qui voila ?! (nom du hero) ça fais longtemps .
 Vous : Madame ?! Vous n'etes plus prof d'histoire ?

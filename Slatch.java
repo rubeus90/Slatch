@@ -163,7 +163,7 @@ public class Slatch {
                 for(int i=1;i<=3;i++){
                    
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/niveau"+i+"HUMAINS.png"));
-                aImages.put("niveau"+i+"HUMAINS",image);
+                aImages.put("niveau"+i+"humains",image);
             }
 
         }
