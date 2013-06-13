@@ -273,7 +273,12 @@ public class OperationIA
                 int x = usine.getCoordonneeX();
                 int y = usine.getCoordonneeY();
     
-                if(joueurActuel.getArgent()>=700)
+                if(joueurActuel.getArgent()>=100 && nombreCommando <2)
+                {
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.COMMANDO), TypeObjectif.ACHETER));
+                    nombreCommando=nombreCommando+1;
+                }
+                else if(joueurActuel.getArgent()>=700)
                  {                 
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.TANK), TypeObjectif.ACHETER));                    
                     nombreWhile=nombreWhile+1;
@@ -297,11 +302,6 @@ public class OperationIA
                 {
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.DEMOLISSEUR), TypeObjectif.ACHETER));
                     nombreDemolisseur=nombreDemolisseur+1;
-                }
-                else if(joueurActuel.getArgent()>=100 && nombreCommando <3)
-                {
-                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.COMMANDO), TypeObjectif.ACHETER));
-                    nombreCommando=nombreCommando+1;
                 }
                 else if(joueurActuel.getArgent()>=100 && nombreSpec <2 && joueurActuel.getFaction()==Faction.HUMAINS)
                 {
