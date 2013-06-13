@@ -61,6 +61,7 @@ public class Partie
         //On a active le brouillard, et le boolean campagne + tous les jouers sont des IA sauf le joueur 1 + Paramètre par default
         isCampagne = true;
         aBrouillard = true;
+        activationAnimation=true;
         boolean[] vIA = {false,false,true,true,true};
         aRevenuBatiment = 50;
         aJoueurActuel= 1;
@@ -68,7 +69,7 @@ public class Partie
         aTour = 1;
         
         //Pour les factions, on se base sur les equipes
-        Faction[] pTabFaction ={Faction.HUMAINS,Faction.ROBOTS,Faction.ROBOTS,Faction.ROBOTS}; // tableau par default
+        Faction[] pTabFaction ={Faction.NEUTRE,Faction.HUMAINS,Faction.ROBOTS,Faction.ROBOTS,Faction.ROBOTS}; // tableau par default
         
         for(int i=2;i<4;i++){
             if(pTabEquipe[i].getNumEquipe()==1){ //Si le joueur a des aliés alors ils sont de faction HUMAINS

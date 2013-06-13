@@ -233,3 +233,9 @@ eau:24:11:0:
 eau:24:12:0:
 eau:24:13:0:
 eau:24:14:0:
+Commando:7:8:2
+Commando:8:10:2
+Commando:18:2:2
+Demolisseur:18:1:2
+Char:20:3:2
+Char:20:1:2
