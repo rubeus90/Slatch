@@ -25,6 +25,8 @@ public enum Map{
     NIVEAU4("Mission 4","La carte de la 4e mission de la campagne", "1V1","niveau4",18,15,2,true,true),
     NIVEAU5("Mission 5","La carte de la 5e mission de la campagne", "1V1","niveau5",22,18,2,true,true),
     NIVEAU6("Mission 6","La carte de la 6e mission de la campagne", "3V1","niveau6",25,20,4,true,true),
+    NIVEAU7("Mission 7","La carte de la 7e mission de la campagne", "1V1","niveau7",26,14,2,false,true),
+    NIVEAU8("Mission 8","La carte de la 8e mission de la campagne", "1V1","niveau8",26,14,2,false,true),
     NIVEAU9("Mission 9","La carte de la 9e mission de la campagne", "1V2","niveau9",28,18,3,true,true),
     NIVEAU12("Mission 12","La carte de la 12e mission de la campagne", "1V2","niveau12",25,20,3,false,true),
     NIVEAU13("Mission 13","La carte de la 13e mission de la campagne", "1V2","niveau13",25,20,3,false,true),
