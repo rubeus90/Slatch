@@ -160,7 +160,7 @@ public class PanelMenu extends JPanel
             Image titrerapide = Slatch.aImages.get("titrerapide");
             Image chargerPartie = Slatch.aImages.get("boutonchargerpartie");
             Image nouvellePartie = Slatch.aImages.get("boutonnouvellepartie");
-            g.drawImage(titrerapide, this.getWidth()/6, 33, 4*vHauteurTitre,vHauteurTitre, this);
+            g.drawImage(titrerapide, 0, 0, this.getWidth(), this.getHeight()*2/5, this);
             g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
             
             if(aSousMenuRapide1)
