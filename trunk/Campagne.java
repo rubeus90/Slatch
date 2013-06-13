@@ -35,14 +35,22 @@ public class Campagne implements MouseListener {
         Equipe equipe2 = new Equipe(2);
 
         Equipe[] vEquipe = { equipe0, equipe1, equipe2, equipe2, equipe2 };
+        int vTourMax;
+        vTourMax=99;
+        
+        
+        //Specificite de certains Niveau
+        if(aNiveau==2){
+           vTourMax=8; 
+        }
         
         if(aNiveau==5){
            vEquipe[2] =equipe1;
            vEquipe[3]=equipe1;
         }
-
-
-        Partie partie = new Partie(99,listeNomPartie.get(pNiveau), vEquipe);
+         
+        //On cree la partie
+        Partie partie = new Partie(vTourMax,listeNomPartie.get(pNiveau), vEquipe);
         Slatch.partie = partie;
         Slatch.moteur = new Moteur();
 
@@ -98,6 +106,12 @@ public class Campagne implements MouseListener {
 
         Slatch.ihm.getPanelFrame().repaint();
 
+    }
+    
+    public void conditionVictoire(){
+        if(aNiveau==2){
+            Slatch.partie.setPartieFini(true);
+        }
     }
 
     @Override
