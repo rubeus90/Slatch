@@ -137,7 +137,7 @@ public class PanelMenu extends JPanel
         
         int hPolice = fmVisitor.getHeight();
         
-        g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
+        
         
         if(aMenuPrincipal)
         {
@@ -168,11 +168,12 @@ public class PanelMenu extends JPanel
             g.drawImage(titrecampagne, 0, 0, this.getWidth(), this.getHeight()*2/5, this);
             g.drawImage(Slatch.aImages.get("boutonnouvellecampagne"+aImages.get("boutonnouvellecampagne")), this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton,aHauteurBouton+10, this);
             g.drawImage(Slatch.aImages.get("boutonchargercampagne"+aImages.get("boutonchargercampagne")), this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton,aHauteurBouton+10, this);
+            g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
         }
         
         else if(aMenuCredits)
         {      
-            
+            g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
         }
         
         else if(aMenuTuto)
@@ -188,6 +189,7 @@ public class PanelMenu extends JPanel
             g.drawImage(Slatch.aImages.get("boutoninterface"+aImages.get("boutoninterface")), vMilieu, 6*this.getHeight()/10, vRatio, vSize, this);
             g.drawImage(Slatch.aImages.get("boutonterrain"+aImages.get("boutonterrain")), vMilieu, 7*this.getHeight()/10, vRatio, vSize, this);
             g.drawImage(Slatch.aImages.get("boutonachat"+aImages.get("boutonachat")), vMilieu, 8*this.getHeight()/10, vRatio, vSize, this);
+            g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
         }
         
         else if(aMenuRapide)
@@ -198,6 +200,7 @@ public class PanelMenu extends JPanel
             
             Image titrerapide = Slatch.aImages.get("titrerapide");
             g.drawImage(titrerapide, 0, 0, this.getWidth(), this.getHeight()*2/5, this);
+            g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
             
             if(aSousMenuRapide1)
             {   
@@ -211,7 +214,7 @@ public class PanelMenu extends JPanel
                g.drawImage(flechegauche, this.getWidth()/11, 3*this.getHeight()/4+2*tCadre, this.getHeight()/10,this.getHeight()/10, this);
                g.drawImage(flechedroite, this.getWidth()/2-this.getHeight()/10, 3*this.getHeight()/4+2*tCadre, this.getHeight()/10,this.getHeight()/10, this);
                g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-this.getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
-            
+
              
                textArea.setPreferredSize(new Dimension(this.getWidth()/3,2*this.getHeight()/3));
                textArea.setOpaque(false);
