@@ -402,10 +402,8 @@ public class PanelMenu extends JPanel
                     {
                            switch(aNiveauIA[i])
                            {
-                               case("Desactive") : aNiveauIA[i]="Facile";aIA[i+1] = true;break;
-                               case("Facile") : aNiveauIA[i]="Moyen";aIA[i+1] = true;break;
-                               case("Moyen") : aNiveauIA[i]="Difficile";aIA[i+1] = true;break;
-                               case("Difficile") : aNiveauIA[i]="Legendaire";aIA[i+1] = true;break;
+                               case("Desactive") : aNiveauIA[i]="Moyen";aIA[i+1] = true;break;
+                               case("Moyen") : aNiveauIA[i]="Legendaire";aIA[i+1] = true;break;
                                case("Legendaire") : aNiveauIA[i]="Desactive";aIA[i+1] = false;break;
                            }
                            this.repaint();
