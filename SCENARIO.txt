@@ -252,3 +252,67 @@ General X : Je suis d'accord allons y.
 
 *******PARTIE**************
 But : Battre les HUMAINS de Kcrog.
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DOUZIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement plaine
+
+*******PERSONNAGE**********
+Isabelle 
+IsabelleCyborg 
+General X
+
+*******TEXTE***************
+Isabelle : Nous avons réussi ! Je vais pouvoir chercher des informations dans leurs documents vu que ce sont des fidèles, on pourrait trouver des informations interessantes. J'y vais de ce pas.
+*Isabelle part*
+General X : Sam, je peut te parler ?
+Vous : Euuuh oui.
+General X : J'ai de moins en moins confiance en Isabelle. Je ne sais pas pourquoi mais je eu l'impression que ce que nous avons attaqué pensaient que c'etait nous les adorateurs.
+Vous : Attention, la voila.
+*Isabelle Revient*
+Isabelle : Les dossiers parlent d'une autre villes d'adorateur, nous devions y aller je pense.
+General X : Ok
+*Isabelle part*
+General X : Tu vois elle nous fais encore attaquer des Humains, c'est louche ! Demain je partirais voir si c'est vraiment des adorateurs.
+*Personne ne parle juste un message de narration *
+
+LE LENDEMAIN MATIN
+
+General X : Tu vois elle nous fais encore attaquer des Humains, c'est louche ! Demain je partirais voir si c'est vraiment des adorateurs.
+Allons vite la voir dans sa tente pour qu'elle nous donne des explications.
+
+****PASSAGE AU FOND DANS LA TENTE *****
+
+*Personne ne parle juste un message de narration *
+ISABELLE EST EN TRAIN DE SE MAQUILLER MAIS l'ON VOIT QUELQUE CHOSE DE BIZARRE SUR SON VISAGE
+
+General X : Isab.... !
+IsabelleCyborg : Miserable humain ! Vous vous ete laissé manipuler comme de vulgaire cafard !
+General X : Soldat ! Venez emprisonner cette abomination !
+*Isabelle part*
+
+General X : J'en reviens pas qu'on se soit fais manipuler.
+Vous: moi aussi.
+General X : J'ai donc parler avec les habitants, ils veulent bien nous aider, il sont meme allié a un groupe de méchadroid rebelle. Ils doivent aller les aider car ils sont en mauvaise posture, aidons les pour nous faire pardonner. Esperons que ces alliés tiendrons X jours.
+
+*******PARTIE**************
+But : Jouer les Robots et tenir X jours.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TREIZIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement plaine
+
+*******PERSONNAGE**********
+General X
+GeneralRobot
+
+*******TEXTE***************
+General X : Nous sommes la pour vous aider !
+GeneralRobot : Merci, nous en avons bien besoin.
+General X : Pétons la gueule de ces fichu tas de ... euuuh ALLONS Y !
+
+*******PARTIE**************
+But : Jouer les humains allié a des robots et gagner les robot ennemi.
