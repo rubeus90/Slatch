@@ -30,7 +30,6 @@ public class PanelDialogueCampagne extends JPanel {
 	private Scanner scanner;
 	private String interlocuteur;
 	private String background;
-	private String barredialogue;
 	private int etape;
 	
 
@@ -53,10 +52,9 @@ public class PanelDialogueCampagne extends JPanel {
 
 	@Override
 	public void paintComponent(final Graphics g) {
-	    //afficheImageRedim(barredialogue, 0, 0, this.getWidth(), this.getHeight(), g);
-		afficheImageRedim(background, 0, 0, this.getWidth(), this.getHeight(), g);
-		//afficheImageRedim(interlocuteur, 0, 0, this.getWidth(), this.getHeight(), g);
-		g.drawImage(Slatch.aImages.get(interlocuteur),0,0,4*this.getHeight()/5,4*this.getHeight()/5,this);
+		afficheImageRedim(background, 0, 0, this.getWidth(), 3*this.getHeight()/4, g);
+		g.drawImage(Slatch.aImages.get(interlocuteur),0,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
+		afficheImageRedim("barredialogue", 0, this.getHeight()-this.getHeight()/4, this.getWidth(), this.getHeight(), g);
 	}
 
 	private void afficheImageRedim(final String pURL,
