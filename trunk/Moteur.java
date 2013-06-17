@@ -1157,7 +1157,7 @@ class Moteur
                {StrategieIA.joueTour(Slatch.partie.getJoueurActuel());}
             
                 
-                Slatch.ihm.getPanel().repaint();
+               Slatch.ihm.getPanel().repaint();
         }
     }
     
