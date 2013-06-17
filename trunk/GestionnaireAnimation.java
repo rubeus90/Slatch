@@ -50,21 +50,6 @@ public class GestionnaireAnimation implements ActionListener
          aTricheAffichage= new ArrayList<Unite>();
     }
     
-    /*public void setChemins(final Stack<Point> pChemin)
-    {
-        aLesChemins.add(pChemin);
-    }
-    
-    public void setUnite(final Unite pUnite)
-    {
-        aUnite.add(pUnite);
-    }
-    
-    public void setDepart(final Point pDepart)
-    {
-        aDepart.add(pDepart);
-    }*/
-    
     
        public void addAnimation(final Animation pAnimation)
     {
@@ -247,7 +232,7 @@ public class GestionnaireAnimation implements ActionListener
             avancement += deltaT;
             if(fin)
             {
-                    
+                    cible.setPV(cible.getPVaffiche());
                     avancement=0;
                 if(numeroUnite>=animation.size()-1)
                 {
