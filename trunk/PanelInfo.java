@@ -107,10 +107,7 @@ public class PanelInfo extends JPanel
         
         // Police
         Font font;
-		try {
-    		font = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
-    					.getClassLoader().getResource("Config/BlackOps.ttf")
-    					.toURI())).deriveFont(Font.PLAIN, 8+25*this.getWidth()/1500);
+    		font = Slatch.fonts.get("BlackOps").deriveFont(Font.PLAIN, 8+25*this.getWidth()/1500);
     		
             g.setFont(font);
             FontMetrics fm=getFontMetrics(font); 
@@ -150,11 +147,6 @@ public class PanelInfo extends JPanel
                 g.drawString(argent, espaceSize+menuSize+barreSize+jourSize+barreSize+joueurSize+barreSize, Y);
             g.drawString(suivant, this.getWidth()-suivantSize-espaceSize, Y);
             
-		}
-		catch (FontFormatException | IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     }
     
     /**

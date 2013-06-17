@@ -58,7 +58,8 @@ public class PanelDialogueCampagne extends JPanel {
         if(interlocuteur1 != " ")
             g.drawImage(Slatch.aImages.get(interlocuteur1),0,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
         if(interlocuteur2 != " ")
-            g.drawImage(Slatch.aImages.get(interlocuteur2),this.getWidth()/2,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
+            g.drawImage(Slatch.aImages.get(interlocuteur2),this.getWidth()/2
+            ,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
         
         afficheImageRedim("barredialogue", 0, this.getHeight()-this.getHeight()/4, this.getWidth(), this.getHeight(), g);
         this.afficheText();
