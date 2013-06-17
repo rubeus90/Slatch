@@ -106,6 +106,18 @@ public class PanelMenu extends JPanel
         
     }
     
+    public void departMenuTuto()
+    {
+        aMenuPrincipal = false;
+        aMenuCampagne = false;
+        aMenuRapide = false;
+        aMenuTuto = true;
+        aSousMenuRapide1 = false;
+        aSousMenuRapide2 = false;
+    }
+    
+    
+    
     @Override
     public void paintComponent (final Graphics g) 
     {
@@ -554,9 +566,7 @@ public class PanelMenu extends JPanel
         } 
             else if(aMenuCredits)
             {
-                int vSize = this.getHeight()/10;
-                int vRatio = vSize*(718/159);
-                int vMilieu = this.getWidth()/2-vRatio/2;
+                
                 // Clic Bouton Retour
                 if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>10 && pX< 10+this.getHeight()/6)
                 {
@@ -565,10 +575,27 @@ public class PanelMenu extends JPanel
                     this.repaint();
                 }
                 
+                
+            }
+            
+            else if(aMenuTuto)
+            {
+                if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>10 && pX< 10+this.getHeight()/6)
+                {
+                    aMenuPrincipal = true;
+                    aMenuTuto = false;
+                    this.repaint();
+                }
+                
+                int vSize = this.getHeight()/10;
+                int vRatio = vSize*(718/159);
+                int vMilieu = this.getWidth()/2-vRatio/2;
+                
                 //Clic Bouton Deplacement
                 if(pY>3*this.getHeight()/10 && pY<3*this.getHeight()/10+vSize && pX>vMilieu && pX< vMilieu+vRatio)
                 {
-                    
+                    Tutoriel tuto = new TutorielDeplacement("menu");
+                    Slatch.ihm.passageModeTuto(tuto);
                 }
                 //Clic Bouton Capture
                 if(pY>4*this.getHeight()/10 && pY<4*this.getHeight()/10+vSize && pX>vMilieu && pX< vMilieu+vRatio)
@@ -594,16 +621,6 @@ public class PanelMenu extends JPanel
                 if(pY>8*this.getHeight()/10 && pY<8*this.getHeight()/10+vSize && pX>vMilieu && pX< vMilieu+vRatio)
                 {
                     
-                }
-            }
-            
-            else if(aMenuTuto)
-            {
-                if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>10 && pX< 10+this.getHeight()/6)
-                {
-                    aMenuPrincipal = true;
-                    aMenuTuto = false;
-                    this.repaint();
                 }
             }
     }
