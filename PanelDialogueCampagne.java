@@ -55,7 +55,8 @@ public class PanelDialogueCampagne extends JPanel {
 	public void paintComponent(final Graphics g) {
 	    //afficheImageRedim(barredialogue, 0, 0, this.getWidth(), this.getHeight(), g);
 		afficheImageRedim(background, 0, 0, this.getWidth(), this.getHeight(), g);
-		afficheImageRedim(interlocuteur, 0, 0, this.getWidth(), this.getHeight(), g);
+		//afficheImageRedim(interlocuteur, 0, 0, this.getWidth(), this.getHeight(), g);
+		g.drawImage(Slatch.aImages.get(interlocuteur),0,0,4*this.getHeight()/5,4*this.getHeight()/5,this);
 	}
 
 	private void afficheImageRedim(final String pURL,
