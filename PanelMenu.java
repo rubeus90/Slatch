@@ -326,25 +326,31 @@ public class PanelMenu extends JPanel
                 // Clic FlecheGauche
                 if(pY> 3*this.getHeight()/4+2*tCadre && pY< 3*this.getHeight()/4+2*tCadre+this.getHeight()/10 && pX>this.getWidth()/11 && pX<this.getWidth()/11+this.getHeight()/10)
                 {
+                    
+                    aNumeroMap--;
                     if(aNumeroMap<=0)
-                    {aNumeroMap=Slatch.ihm.aListeMap.size()-1;}
-                    else
-                    {aNumeroMap=aNumeroMap-1;}
+                        aNumeroMap=Slatch.ihm.aListeMap.size()-1;
+                        
+                    while(Slatch.ihm.aListeMap.get(aNumeroMap).isVerrouille()){
+                        aNumeroMap--;
+                        if(aNumeroMap>=Slatch.ihm.aListeMap.size()-1)
+                            aNumeroMap=0;
+                    }
+                    
                     this.repaint();
                 }
                 
                 // Clic FlecheDroite
                 if(pY>3*this.getHeight()/4+2*tCadre && pY< 3*this.getHeight()/4+2*tCadre + this.getHeight()/10 && pX>this.getWidth()/2-this.getHeight()/10 && pX<this.getWidth()/2)
                 {
+                    aNumeroMap++;
                     if(aNumeroMap>=Slatch.ihm.aListeMap.size()-1)
-                    {aNumeroMap=0;}
-                    else{
-                        aNumeroMap=aNumeroMap+1;
-                        while(Slatch.ihm.aListeMap.get(aNumeroMap).isVerrouille()){
-                            aNumeroMap++;
-                            if(aNumeroMap>=Slatch.ihm.aListeMap.size()-1)
-                                aNumeroMap=0;
-                        }
+                        aNumeroMap=0;
+                        
+                    while(Slatch.ihm.aListeMap.get(aNumeroMap).isVerrouille()){
+                        aNumeroMap++;
+                        if(aNumeroMap>=Slatch.ihm.aListeMap.size()-1)
+                            aNumeroMap=0;
                     }
                     this.repaint();
                 }
