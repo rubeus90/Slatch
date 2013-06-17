@@ -293,6 +293,42 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutontutoriel.png"));
                 aImages.put("boutontutoriel",image);
                 
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutondeplacement.png"));
+                aImages.put("boutondeplacement",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutondeplacementon.png"));
+                aImages.put("boutondeplacementon",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutoncapture.png"));
+                aImages.put("boutoncapture",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutoncaptureon.png"));
+                aImages.put("boutoncaptureon",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonattaque.png"));
+                aImages.put("boutonattaque",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonattaqueon.png"));
+                aImages.put("boutonattaqueon",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutoninterface.png"));
+                aImages.put("boutoninterface",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutoninterfaceon.png"));
+                aImages.put("boutoninterfaceon",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonterrain.png"));
+                aImages.put("boutonterrain",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonterrainon.png"));
+                aImages.put("boutonterrainon",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonachat.png"));
+                aImages.put("boutonachat",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonachaton.png"));
+                aImages.put("boutonachaton",image);
+                
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonmapcreator.png"));
                 aImages.put("boutonmapcreator",image);
                 
@@ -334,6 +370,9 @@ public class Slatch {
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/titrerapide.png"));
                 aImages.put("titrerapide",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/titretutoriel.png"));
+                aImages.put("titretutoriel",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/flechegauche.png"));
                 aImages.put("flechegauche",image);
