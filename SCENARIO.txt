@@ -88,7 +88,7 @@ General X :Prennez des hommes et partez preparer le terrain, en cas de probleme 
 But : Tenir 10Jours
 
 
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TROISIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>QUATRIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 *******FOND D'ECRAN********
 Une image de campement désert
@@ -106,7 +106,7 @@ But : Tenir 10Jours
 
 
 
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>QUATRIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>CINQUIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 *******FOND D'ECRAN********
 Une image de campement désert
@@ -121,7 +121,7 @@ General X : On dirait qu'on est arrivé juste a temps ! Repartons à la charge p
 But : Battre les robots
 
 
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>CINQUIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SIXIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 *******FOND D'ECRAN********
 Une image de campement désert
@@ -136,7 +136,7 @@ General X : Bon maintenant que l'on s'est bien installé dans Sahlahah nous pouv
 But : Battre les robots
 
 
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SOIXANTE MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SEPTIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 *******FOND D'ECRAN********
 Une image de campement avec oasis
@@ -151,7 +151,7 @@ General X : Vous avez mis une bonne derouillé a ces satanés robots ! Nous pouv
 But : Perdre
 
 
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SEPTIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>HUITIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 *******FOND D'ECRAN********
 Desert ( pas de campement )
@@ -174,7 +174,7 @@ But : Capturer la ville abandonnée ( et tuer un camp robot ? )
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>HUITIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 *******FOND D'ECRAN********
-campement plaine
+campement Ville
 
 *******PERSONNAGE**********
 General X
@@ -191,6 +191,42 @@ Prof : Oui, nous avons eu des informations disant que notre ville allé bientot 
 nous vous preterons des soldats et des equipements.
 Vous : C'est d'accord, quand sont ils cencés arriver ?
 Prof : Dans 20 minutes.
+
+
+*******PARTIE**************
+But : Battre les robots 
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>NEUXIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement Ville
+
+*******PERSONNAGE**********
+Isabelle 
+General X
+
+*******TEXTE***************
+Prof: Merci Sam ! Comme prévu nos trouve vous aiderons dans vos prochaines missions, et je viens aussi avec vous pour aider les scientifiques de votre groupe.
+General X : Bon, Sam, il faut repartir dans notre guerre avec ces fichu robots ! Les habitants m'ont parlé d'une base robot dans les environs , nous pourrions les attaquer pour recuperer des informations. Allons y.
+
+
+*******PARTIE**************
+But : Battre les robots 
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DIXIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement plaine
+
+*******PERSONNAGE**********
+Isabelle 
+General X
+
+*******TEXTE***************
+Prof: Sam ! Dans un des batiments que les robots avaient envahi j'ai trouvé des informations d'anciens résistants à propos d'une cité dans les iles ( ou pres de fleuve si tu arrive pas a faire une map iles ) avec de nombreuse armes.
+General X : Des armes ?! IL NOUS LES FAUT ! Allons les chercher . 
 
 
 *******PARTIE**************
