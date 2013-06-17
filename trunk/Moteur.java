@@ -598,7 +598,7 @@ class Moteur
                     
                     if(d<=unite.getType().getDeplacement() || !porteeComptee)
                     {
-                        if(d<tabDist[x][y] || tabDist[x][y]==-1)
+                        if(d<tabDist[x][y] || (tabDist[x][y]==-1&&d<999))
                         {
                             pred[x][y] = new Point(t.x, t.y);
                             
