@@ -55,6 +55,7 @@ public class PanelDialogueCampagne extends JPanel {
         afficheImageRedim(background, 0, 0, this.getWidth(), 3*this.getHeight()/4, g);
         g.drawImage(Slatch.aImages.get(interlocuteur),0,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
         afficheImageRedim("barredialogue", 0, this.getHeight()-this.getHeight()/4, this.getWidth(), this.getHeight(), g);
+        this.afficheText();
     }
 
     private void afficheImageRedim(final String pURL,
@@ -69,15 +70,15 @@ public class PanelDialogueCampagne extends JPanel {
     public void afficheText() {
         this.setLayout(new BorderLayout());
         
-        textArea.setPreferredSize(new Dimension(800,this.getHeight()/4));
-        this.add(textArea, BorderLayout.SOUTH);
+        textArea.setPreferredSize(new Dimension(this.getWidth(),this.getHeight()/4));
+        this.add(textArea, BorderLayout.CENTER);
         Font font;
         try {
             font = Font.createFont(
                     Font.TRUETYPE_FONT,
                     new File(getClass().getClassLoader()
                             .getResource("Config/BlackOps.ttf").toURI()))
-                    .deriveFont(Font.PLAIN, this.getWidth()/50);
+                    .deriveFont(Font.PLAIN, 10+this.getWidth()/80);
             textArea.setFont(font);
         } catch (FontFormatException | IOException | URISyntaxException e) {
             e.printStackTrace();
@@ -85,7 +86,7 @@ public class PanelDialogueCampagne extends JPanel {
         
         textArea.setForeground(Color.WHITE);
         textArea.setText(dialogue);
-        textArea.setMargin(new Insets(40, 40, 40, 40));
+        textArea.setMargin(new Insets(3*this.getHeight()/4+20, 40, this.getWidth()/100, this.getWidth()/100));
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setOpaque(false);
