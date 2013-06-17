@@ -37,7 +37,7 @@ public class OperationIA
         int x=cible.getX();
         int y= cible.getY();
         
-        StrategieIA.spreadInfluence(unite,StrategieIA.iMap, false);
+        
         
         Unite u= Slatch.partie.getTerrain()[x][y].getUnite();
         
@@ -73,7 +73,7 @@ public class OperationIA
             UniteIA.decrypterObjectif(new Objectif(unite, cible, TypeObjectif.ALLER));
         }
         
-        StrategieIA.spreadInfluence(unite,StrategieIA.iMap, true);
+        
     }
     
     static void adapteMap(Unite unite)

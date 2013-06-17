@@ -25,6 +25,10 @@ public class StrategieIA
             if(u.getPV()<=0){i.remove();}
         }    
         Slatch.ihm.getAnimation().start();
+        if(Slatch.partie.getJoueur(joueur).getListeUnite().isEmpty())
+        {
+            Slatch.partie.getJoueur(joueur).mourrir();
+        }
     }
     
     static void remplirMap()

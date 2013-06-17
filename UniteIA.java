@@ -52,8 +52,9 @@ public class UniteIA
            }
            if(t.d>0){break;}
         }*/
-        
+        StrategieIA.spreadInfluence(u,StrategieIA.iMap, false);
         Slatch.moteur.deplacement(u, t.x,t.y);
+        StrategieIA.spreadInfluence(u,StrategieIA.iMap, true);
         u.deplacee(true);
     }
     
@@ -83,7 +84,6 @@ public class UniteIA
         {seDirigerVers(u, pCible);}
         if(u.seSitue(p)){
             Slatch.moteur.capture(pCible.getX(),pCible.getY());
-            
         }
         u.attaque(true);
         u.deplacee(true);
