@@ -342,8 +342,14 @@ public class PanelMenu extends JPanel
                 {
                     if(aNumeroMap>=Slatch.ihm.aListeMap.size()-1)
                     {aNumeroMap=0;}
-                    else
-                    {aNumeroMap=aNumeroMap+1;}
+                    else{
+                        aNumeroMap=aNumeroMap+1;
+                        while(Slatch.ihm.aListeMap.get(aNumeroMap).isVerrouille()){
+                            aNumeroMap++;
+                            if(aNumeroMap>=Slatch.ihm.aListeMap.size()-1)
+                                aNumeroMap=0;
+                        }
+                    }
                     this.repaint();
                 }
                 
