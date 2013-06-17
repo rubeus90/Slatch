@@ -86,7 +86,7 @@ public class PanelDialogueCampagne extends JPanel {
         
         textArea.setForeground(Color.WHITE);
         textArea.setText(dialogue);
-        textArea.setMargin(new Insets(3*this.getHeight()/4+20, 40, this.getWidth()/100, this.getWidth()/100));
+        textArea.setMargin(new Insets(3*this.getHeight()/4+this.getHeight()/40, 40, this.getWidth()/100, this.getWidth()/100));
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setOpaque(false);
