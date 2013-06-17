@@ -16,7 +16,7 @@ public class Campagne implements MouseListener {
     private PanelDialogueCampagne panel;
 
     public Campagne() {
-        aNiveau = 0;
+        aNiveau = 8;
         listeNomPartie = new ArrayList<Map>();
 
         listeNomPartie.add(Map.NIVEAU1);
@@ -27,6 +27,9 @@ public class Campagne implements MouseListener {
         listeNomPartie.add(Map.NIVEAU6);
         listeNomPartie.add(Map.NIVEAU7);
         listeNomPartie.add(Map.NIVEAU8);
+        listeNomPartie.add(Map.NIVEAU9);
+        listeNomPartie.add(Map.NIVEAU10);
+        listeNomPartie.add(Map.NIVEAU11);
     }
 
     public void chargerPartie(int pNiveau) {
@@ -47,6 +50,10 @@ public class Campagne implements MouseListener {
         if(aNiveau==5){
            vEquipe[2] =equipe1;
            vEquipe[3]=equipe1;
+        }
+        
+        if(aNiveau==8){
+           vTourMax=20; 
         }
          
         //On cree la partie
@@ -116,6 +123,10 @@ public class Campagne implements MouseListener {
     
     public void conditionVictoire(){
         if(aNiveau==2){
+            Slatch.partie.setPartieFini(true);
+        }
+        if(aNiveau==8){
+            Slatch.partie.setJoueurActuel(2);
             Slatch.partie.setPartieFini(true);
         }
     }

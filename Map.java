@@ -27,11 +27,13 @@ public enum Map{
     NIVEAU6("Mission 6","La carte de la 6e mission de la campagne", "3V1","niveau6",25,20,4,true,true),
     NIVEAU7("Mission 7","La carte de la 7e mission de la campagne", "1V1","niveau7",26,14,2,false,true),
     NIVEAU8("Mission 8","La carte de la 8e mission de la campagne", "1V1","niveau8",26,14,2,false,true),
-    NIVEAU9("Mission 9","La carte de la 9e mission de la campagne", "1V2","niveau9",28,18,3,true,true),
+    NIVEAU9("Mission 9","La carte de la 9e mission de la campagne", "1V1","niveau9",22,14,2,false,true),
+    NIVEAU10("Mission 10","La carte de la 10e mission de la campagne", "1V1","niveau10",28,22,2,false,true),
+    NIVEAU11("Mission 11","La carte de la 11e mission de la campagne", "1V1","niveau14",15,15,2,false,false),
     NIVEAU12("Mission 12","La carte de la 12e mission de la campagne", "1V2","niveau12",25,20,3,false,true),
     NIVEAU13("Mission 13","La carte de la 13e mission de la campagne", "1V2","niveau13",25,20,3,false,true),
-    NIVEAU14("Mission 14","La carte de la 14e mission de la campagne", "1V1","niveau14",15,15,2,false,true),
-    NIVEAU15("Mission 15","La carte de la 15e mission de la campagne", "1V1","niveau15",30,14,2,false,true);
+    NIVEAU15("Mission 15","La carte de la 15e mission de la campagne", "1V1","niveau15",30,14,2,false,false),
+    NIVEAU16("Mission 16","La carte de la 16e mission de la campagne", "1V2","niveau16",28,18,3,true,true);
     
     private String aNom;
     private String aDescription;
