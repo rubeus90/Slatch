@@ -74,6 +74,8 @@ public class IHM_NEW  {
         //panelInfo.addMouseListener(lecteurInfo);
         MouseMenu lecteurMenu = new MouseMenu();
         panelMenu.addMouseListener(lecteurMenu);
+        MouseMotionMenu survolMenu = new MouseMotionMenu();
+        panelMenu.addMouseMotionListener(survolMenu);
 
         frame.pack();
         frame.setVisible(true);

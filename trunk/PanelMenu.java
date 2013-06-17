@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.* ;
-import java.awt.Font;
 import javax.swing.*;
 
 
@@ -37,6 +36,7 @@ public class PanelMenu extends JPanel
     private FontMetrics fmVisitor;
     private Font fontBlackOps;
     private Font fontVisitor;
+    private HashMap<String,String> aImages;
    
     /**
      * 
@@ -89,6 +89,13 @@ public class PanelMenu extends JPanel
         //Valeur par default de la valeurs du brouillard
         aStrAnimation ="Active";
         aAnimation = true;
+        
+        aImages = new HashMap<String,String>();
+        
+        aImages.put("boutonchargercampagne","");
+        aImages.put("boutonnouvellecampagne","");
+        aImages.put("boutonnouvellepartie","");
+        aImages.put("boutonchargerpartie","");
     }
     
     @Override
@@ -115,16 +122,14 @@ public class PanelMenu extends JPanel
             aHauteurBouton = this.getHeight()/10;  
             int vHauteurTitre = this.getHeight()/8;
             
-            Image slatch = Slatch.aImages.get("slatch");
-            Image campagne = Slatch.aImages.get("boutoncampagne");
             Image rapide = Slatch.aImages.get("boutonrapide");
             Image tutoriel = Slatch.aImages.get("boutontutoriel");
             Image mapcreator = Slatch.aImages.get("boutonmapcreator");
             Image credits = Slatch.aImages.get("boutoncredits");
             
             g.drawImage(trait, 0, 0, this.getWidth(), this.getHeight(), this);
-            g.drawImage(slatch, this.getWidth()/2-2*vHauteurTitre, this.getHeight()/15, 4*vHauteurTitre,vHauteurTitre, this);
-            g.drawImage(campagne, this.getWidth()/2-2*aHauteurBouton, 33+ this.getHeight()/4, 4*aHauteurBouton,aHauteurBouton, this);
+            g.drawImage(Slatch.aImages.get("slatch"), this.getWidth()/2-2*vHauteurTitre, this.getHeight()/15, 4*vHauteurTitre,vHauteurTitre, this);
+            g.drawImage(Slatch.aImages.get("boutoncampagne"), this.getWidth()/2-2*aHauteurBouton, 33+ this.getHeight()/4, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(rapide, this.getWidth()/2-2*aHauteurBouton, 33+ 3*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(tutoriel, this.getWidth()/2-2*aHauteurBouton, 33+ 4*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(mapcreator, this.getWidth()/2-2*aHauteurBouton, 33+ 5*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
@@ -137,18 +142,16 @@ public class PanelMenu extends JPanel
             int vHauteurTitre = this.getHeight()/8;
             
             Image titrecampagne = Slatch.aImages.get("titrecampagne");
-            Image chargerCampagne = Slatch.aImages.get("boutonchargercampagne");
-            Image nouvelleCampagne = Slatch.aImages.get("boutonnouvellecampagne");
             
             g.drawImage(titrecampagne, 0, 0, this.getWidth(), this.getHeight()*2/5, this);
-            g.drawImage(nouvelleCampagne, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton,aHauteurBouton+10, this);
-            g.drawImage(chargerCampagne, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton,aHauteurBouton+10, this);
+            g.drawImage(Slatch.aImages.get("boutonnouvellecampagne"+aImages.get("boutonnouvellecampagne")), this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton,aHauteurBouton+10, this);
+            g.drawImage(Slatch.aImages.get("boutonchargercampagne"+aImages.get("boutonchargercampagne")), this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton,aHauteurBouton+10, this);
             g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
         }
         
         else if(aMenuCredits)
         {      
-            
+            g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
         }
         
         else if(aMenuRapide)
@@ -158,15 +161,14 @@ public class PanelMenu extends JPanel
             int tCadre = this.getWidth()/100;
             
             Image titrerapide = Slatch.aImages.get("titrerapide");
-            Image chargerPartie = Slatch.aImages.get("boutonchargerpartie");
-            Image nouvellePartie = Slatch.aImages.get("boutonnouvellepartie");
             g.drawImage(titrerapide, 0, 0, this.getWidth(), this.getHeight()*2/5, this);
             g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
             
             if(aSousMenuRapide1)
             {   
                afficheImageRedim("noir80",0, this.getHeight()/4-2*tCadre,this.getWidth(), 3*this.getHeight()/4+2*tCadre,g);
-
+               afficheImageRedim("noir80",this.getWidth()/11-2*tCadre, 3*this.getHeight()/4+2*tCadre,this.getWidth()/2+2*tCadre, 3*this.getHeight()/4+3*tCadre+this.getHeight()/10,g);
+               
                Image flechegauche = Slatch.aImages.get("flechegauche");
                Image flechedroite = Slatch.aImages.get("flechedroite");
                afficheImageRedim("noir", this.getWidth()/11-tCadre, this.getHeight()/4-tCadre,this.getWidth()/2+tCadre ,3*this.getHeight()/4+tCadre,g);
@@ -175,6 +177,7 @@ public class PanelMenu extends JPanel
                g.drawImage(flechegauche, this.getWidth()/11, 3*this.getHeight()/4+2*tCadre, this.getHeight()/10,this.getHeight()/10, this);
                g.drawImage(flechedroite, this.getWidth()/2-this.getHeight()/10, 3*this.getHeight()/4+2*tCadre, this.getHeight()/10,this.getHeight()/10, this);
                g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-this.getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
+            
              
                textArea.setPreferredSize(new Dimension(this.getWidth()/3,2*this.getHeight()/3));
                textArea.setOpaque(false);
@@ -213,8 +216,6 @@ public class PanelMenu extends JPanel
                 g.drawString("Brouillard",this.getWidth()/20,this.getHeight()/2+2*aHauteurBouton);
                 g.drawString("Animation",10*this.getWidth()/20,this.getHeight()/2+2*aHauteurBouton);
                 
-                Image on = Slatch.aImages.get("on");
-                Image off = Slatch.aImages.get("off");
                 
                 int hR = fmVisitor.getHeight();
                 g.setColor(Color.white);
@@ -224,15 +225,15 @@ public class PanelMenu extends JPanel
                 {
                     g.setFont(fontBlackOps);
                     
-                    g.drawString("Joueur "+(i+1),(3+2*i)*this.getWidth()/10,this.getHeight()/4+tCadre);
+                    g.drawString("Joueur "+(i+1),(2+2*i)*this.getWidth()/10,this.getHeight()/4+tCadre);
                     
                     g.setFont(fontVisitor);
                     
-                    g.drawString(""+aIntEquipe[i],(3+2*i)*this.getWidth()/10+2*this.getHeight()/40,this.getHeight()/2-aHauteurBouton);
+                    g.drawString(""+aIntEquipe[i],(2+2*i)*this.getWidth()/10+2*this.getHeight()/40,this.getHeight()/2-aHauteurBouton);
                     
-                    g.drawString(aFaction[i+1].getNom(),(3+2*i)*this.getWidth()/10,this.getHeight()/2);
+                    g.drawString(aFaction[i+1].getNom(),(2+2*i)*this.getWidth()/10,this.getHeight()/2);
                     
-                    g.drawString(""+aNiveauIA[i],(3+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton);
+                    g.drawString(""+aNiveauIA[i],(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton);
 
                     //if(vIA[i+1]){g.drawImage(on,(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton-hR/2,this.getHeight()/40,this.getHeight()/40,this);}
                     //else{g.drawImage(off,(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton-hR/2,this.getHeight()/40,this.getHeight()/40,this);}
@@ -244,16 +245,11 @@ public class PanelMenu extends JPanel
             else
             {
                 
-                g.drawImage(nouvellePartie, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton, aHauteurBouton+10, this);
-                g.drawImage(chargerPartie, this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton, aHauteurBouton+10, this);
+                g.drawImage(Slatch.aImages.get("boutonnouvellepartie"+aImages.get("boutonnouvellecampagne")), this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton, aHauteurBouton+10, this);
+                g.drawImage(Slatch.aImages.get("boutonchargerpartie"+aImages.get("boutonchargercampagne")), this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton, aHauteurBouton+10, this);
                 
             }        
         }        
-    }
-    
-    public void coordsurvolBouton(int pX, int pY)
-    {
-
     }
     
     public void coordclickBouton(int pX, int pY)
@@ -383,7 +379,7 @@ public class PanelMenu extends JPanel
                     int SizeNiveauIA = fmVisitor.stringWidth(""+aNiveauIA[i]);
                     
                     //Clic sur l'équipe 
-                    if(pY>this.getHeight()/2-aHauteurBouton-hR && pY<this.getHeight()/2-aHauteurBouton && pX>(3+2*i)*this.getWidth()/10+2*this.getHeight()/40 && pX<(3+2*i)*this.getWidth()/10+2*this.getHeight()/40+SizeEquipe)
+                    if(pY>this.getHeight()/2-aHauteurBouton-hR && pY<this.getHeight()/2-aHauteurBouton && pX>(2+2*i)*this.getWidth()/10+2*this.getHeight()/40 && pX<(2+2*i)*this.getWidth()/10+2*this.getHeight()/40+SizeEquipe)
                     {
                         if(aIntEquipe[i]==4)
                         {
@@ -396,7 +392,7 @@ public class PanelMenu extends JPanel
                     }
                     
                     //Clic sur la faction
-                    if(pY>this.getHeight()/2-hR && pY<this.getHeight()/2 && pX>(3+2*i)*this.getWidth()/10 && pX<(3+2*i)*this.getWidth()/10+SizeFaction)
+                    if(pY>this.getHeight()/2-hR && pY<this.getHeight()/2 && pX>(2+2*i)*this.getWidth()/10 && pX<(2+2*i)*this.getWidth()/10+SizeFaction)
                     {
                        if(aFaction[i+1].equals(Faction.HUMAINS)){ aFaction[i+1] = Faction.ROBOTS;}
                        else{ aFaction[i+1] = Faction.HUMAINS;}
@@ -404,7 +400,7 @@ public class PanelMenu extends JPanel
                     }
                                         
                     //Clic sur la difficulté de l'IA
-                    if(pY>this.getHeight()/2+aHauteurBouton-hR && pY<this.getHeight()/2+aHauteurBouton && pX>(3+2*i)*this.getWidth()/10 && pX<(3+2*i)*this.getWidth()/10+SizeNiveauIA)
+                    if(pY>this.getHeight()/2+aHauteurBouton-hR && pY<this.getHeight()/2+aHauteurBouton && pX>(2+2*i)*this.getWidth()/10 && pX<(2+2*i)*this.getWidth()/10+SizeNiveauIA)
                     {
                            switch(aNiveauIA[i])
                            {
@@ -487,6 +483,15 @@ public class PanelMenu extends JPanel
                     this.repaint();
                 }
             }
+            else if(aMenuCredits)
+            {
+                if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>10 && pX< 10+this.getHeight()/6)
+                {
+                    aMenuPrincipal = true;
+                    aMenuCredits = false;
+                    this.repaint();
+                }
+            }
             
             else
             {
@@ -526,6 +531,45 @@ public class PanelMenu extends JPanel
         } 
     }
     
+    public String getImages(String pImage)
+    {
+        return aImages.get(pImage);
+    }
+    
+    public void setImage(String pImage, String On)
+    {
+        aImages.put(pImage,On);
+    }
+    
+    public void coordsurvolBouton(int pX, int pY)
+    {
+        if(aImages.get("boutonchargercampagne")!=""){aImages.put("boutonchargercampagne","");}
+        if(aImages.get("boutonnouvellecampagne")!=""){aImages.put("boutonnouvellecampagne","");}
+        if(aImages.get("boutonchargerpartie")!=""){aImages.put("boutonchargerpartie","");}
+        if(aImages.get("boutonnouvellepartie")!=""){aImages.put("boutonnouvellepartie","");}
+        
+        if(pY>33+ this.getHeight()/4 && pY<33+ this.getHeight()/4+aHauteurBouton && this.getWidth()/2-3*aHauteurBouton<pX && pX< this.getWidth()/2+ 3*aHauteurBouton)
+        {
+            aImages.put("boutonnouvellecampagne","on");
+        }
+        
+        if(pY>33+ this.getHeight()/2 && pY<33+ this.getHeight()/2+aHauteurBouton && pX>this.getWidth()/2-3*aHauteurBouton && pX< this.getWidth()/2+ 3*aHauteurBouton)
+        {
+            aImages.put("boutonchargercampagne","on");
+        }
+        
+        if(pY>33+ this.getHeight()/4 && pY<33+ this.getHeight()/4+aHauteurBouton && pX>this.getWidth()/2-3*aHauteurBouton && pX< this.getWidth()/2+ 3*aHauteurBouton)
+        {
+            aImages.put("boutonnouvellepartie","on");
+        }
+        
+        //Clic Bouton Charger une Partie
+        if(pY>33+ this.getHeight()/2 && pY<33+ this.getHeight()/2+aHauteurBouton && pX>this.getWidth()/2-3*aHauteurBouton && pX< this.getWidth()/2+ 3*aHauteurBouton)
+        {
+            aImages.put("boutonchargerpartie","on");
+        }
+        this.repaint();
+    }
     
     /**
     * Affiche une image en fond d'ecran
