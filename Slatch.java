@@ -54,6 +54,7 @@ public class Slatch {
         loadFleche();
         loadBoutonMenu();
         loadFont();
+        loadTutoriel();
     }
     
     private void loadTerrain()
@@ -87,6 +88,28 @@ public class Slatch {
             e.printStackTrace();
         }
     }
+    
+    private void loadTutoriel()
+    {
+        try {
+            Image image;
+            
+            
+            
+                for(int i=1;i<6;i++)
+                {
+                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutodeplacement"+i+".png"));
+                    aImages.put("tutodeplacement"+ i,image);
+
+                }
+   
+            
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+   
     
     private void loadExplosion()
     {
@@ -164,6 +187,9 @@ public class Slatch {
                    
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/niveau"+i+"HUMAINS.png"));
                 aImages.put("niveau"+i+"humains",image);
+                aImages.put("niveau"+i+"robots",image);
+                //image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/niveau"+i+"ROBOTS.png"));
+                //aImages.put("niveau"+i+"robots",image);
             }
 
         }
@@ -180,8 +206,7 @@ public class Slatch {
 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/5.png"));
                 aImages.put("5",image);
-                
-
+                       
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/barreinfo2.png"));
                 aImages.put("barreinfo",image);
                 

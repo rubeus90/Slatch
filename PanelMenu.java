@@ -15,6 +15,7 @@ public class PanelMenu extends JPanel
     private boolean aMenuPrincipal;
     private boolean aMenuCampagne;
     private boolean aMenuRapide;
+    private boolean aMenuTuto;
     private boolean aMenuCredits;
     private boolean aSousMenuRapide1;
     private boolean aSousMenuRapide2;
@@ -154,6 +155,11 @@ public class PanelMenu extends JPanel
             g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
         }
         
+        else if(aMenuTuto)
+        {      
+            
+        }
+        
         else if(aMenuRapide)
         {
             aHauteurBouton = this.getHeight()/9;
@@ -275,7 +281,8 @@ public class PanelMenu extends JPanel
             //Clic Bouton Tutoriel
             if(pY>33+ 4*this.getHeight()/8 && pY<33+ 4*this.getHeight()/8+aHauteurBouton && pX>this.getWidth()/2-2*aHauteurBouton && pX< this.getWidth()/2+2*aHauteurBouton)
             {
-                
+                Tutoriel tuto = new TutorielDeplacement("menu");
+                Slatch.ihm.passageModeTuto(tuto);
             }
             
             //Clic Bouton Map Creator

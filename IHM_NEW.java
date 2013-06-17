@@ -19,6 +19,7 @@ import javax.swing.Timer;
 public class IHM_NEW  {
     private JPanel panel;
     private PanelInfo panelInfo;
+    private Tutoriel tutoriel;
     private PanelMatrice panelMatrice;
     private PanelMenu panelMenu;
     private JFrame frame;
@@ -128,7 +129,9 @@ public class IHM_NEW  {
         
         if(panelMenu != null)
             panel.remove(panelMenu);
-        
+        if(tutoriel != null)
+            panel.remove(tutoriel);
+            
         panel.add(panelMatrice, BorderLayout.CENTER);
         panel.add(panelInfo, BorderLayout.NORTH);
 
@@ -145,18 +148,48 @@ public class IHM_NEW  {
         MouseMenu lecteurMenu = new MouseMenu();
         panelMenu.addMouseListener(lecteurMenu);
            
-        if(panelInfo != null)
+        if(panelInfo != null){
             panel.remove(panelInfo);
-        if(panelMatrice != null)
+            panelInfo.setVisible(false);
+        }
+        if(panelMatrice != null){
             panel.remove(panelMatrice);
+            panelMatrice.setVisible(false);
+        }
+        if(tutoriel != null)
+            panel.remove(tutoriel);
             
         panel.add(panelMenu, BorderLayout.CENTER);
 
         panelMenu.setVisible(true);
-        panelMatrice.setVisible(false);
-        panelInfo.setVisible(false);
+        //tutoriel.setVisible(false);
         panel.repaint();
-        panelMatrice.repaint();
+        panelMenu.repaint();
+        frame.pack();        
+    }
+    
+    public void passageModeTuto(final Tutoriel tuto){
+        tutoriel = tuto;
+           
+        if(panelInfo != null){
+            panel.remove(panelInfo);
+            panelInfo.setVisible(false);
+        }
+        if(panelMatrice != null){
+            panel.remove(panelMatrice);
+            panelMatrice.setVisible(false);
+        }
+        if(panelMenu != null){
+            panel.remove(panelMenu);
+            panelMenu.setVisible(false);
+        }
+            
+        panel.add(tuto, BorderLayout.CENTER);
+
+        
+        tutoriel.setVisible(true);
+        panel.repaint();
+        tuto.repaint();
         frame.pack();        
     }
     
