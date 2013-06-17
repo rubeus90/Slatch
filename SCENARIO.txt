@@ -316,3 +316,58 @@ General X : Pétons la gueule de ces fichu tas de ... euuuh ALLONS Y !
 
 *******PARTIE**************
 But : Jouer les humains allié a des robots et gagner les robot ennemi.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>QUATORZIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement plaine
+
+*******PERSONNAGE**********
+General X
+GeneralRobot
+
+*******TEXTE***************
+GeneralRobot : Merci de votre aide.
+General X : Ce n'est rien, nous pourrions devenir allié.
+GeneralRobot : Cette proposition est interessante. Nous devons libérer des amis prisonniers d'humains adorateurs après ça, nous vous aiderons volontier.
+General X : C'est d'accord .
+
+*******PARTIE**************
+But : Battre les HUMAINS
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>QUINZIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement Ville
+
+*******PERSONNAGE**********
+General X
+GeneralRobot
+
+*******TEXTE***************
+GeneralRobot : Maintenant que nous avons sauvé nos ami nous pouvons nous aider. Nous avons trouver des informations selon quoi la cité du desert de Sahlahah etait vulnerable.
+General X : C'est le moment de les attaquer !
+GeneralRobot : Nous allons chercher des alliés Humain, car nous aurons besoin d'aide, donnons nous rendez vous devant la cité.
+General X : Ok, nous allons gagner cette guerre ! Nous nous partons attaquer un avant poste dans le desert.
+
+*******PARTIE**************
+But : Battre les robots ( desert )
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SEIZIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement desert
+
+*******PERSONNAGE**********
+General X
+GeneralRobot
+
+*******TEXTE***************
+General X : Content de vous voir General !
+GeneralRobot : De meme General !
+General X : Pret a prendre cette grande base Sam ?
+Vous : oui ALLONS Y !!!
+
+*******PARTIE**************
+But : Battre les robots avec VOUS, un allié Robot, un allié HUMAIN ( utiliser la carte ou on a perdu au depart mais plus simle )
