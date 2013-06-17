@@ -230,4 +230,25 @@ General X : Des armes ?! IL NOUS LES FAUT ! Allons les chercher .
 
 
 *******PARTIE**************
-But : Battre les robots 
+But : Gagner en moins de X jour
+
+*******CARTE**************
+Un ville robot a assiégé 
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ONZIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement plaine
+
+*******PERSONNAGE**********
+Isabelle 
+General X
+
+*******TEXTE***************
+General X : Félicitation ! Nous avons fais le plein de munitions et d'arme très puissante, de plus je crois qu'Isabelle a trouvé des informations intéressante.
+Isabelle : D'abord les ordinateurs, les habitants avais prévu, avant de se faire assiégé par les méchadroids , d'attaquer une ville de servant dans méchadroid, Kcrog. Je pense que l'on devrait terminé leur mission..
+General X : Je suis d'accord allons y.
+
+*******PARTIE**************
+But : Battre les HUMAINS de Kcrog.
