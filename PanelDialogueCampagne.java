@@ -24,100 +24,100 @@ import javax.swing.border.Border;
  */
 public class PanelDialogueCampagne extends JPanel {
 
-	private String dialogue;
-	private JTextArea textArea = new JTextArea();
-	private boolean dialogueFinished;
-	private Scanner scanner;
-	private String interlocuteur;
-	private String background;
-	private int etape;
-	
+    private String dialogue;
+    private JTextArea textArea = new JTextArea();
+    private boolean dialogueFinished;
+    private Scanner scanner;
+    private String interlocuteur;
+    private String background;
+    private int etape;
+    
 
-	public PanelDialogueCampagne(final int pNiveau) {
-		super();
-		try {
-			scanner = new Scanner(getClass().getClassLoader()
-					.getResource("DialoguesCampagne/niveau" + (pNiveau+1))
-					.openStream());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		etape = 0;
-	}
+    public PanelDialogueCampagne(final int pNiveau) {
+        super();
+        try {
+            scanner = new Scanner(getClass().getClassLoader()
+                    .getResource("DialoguesCampagne/niveau" + (pNiveau+1))
+                    .openStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        etape = 0;
+    }
 
-	public PanelDialogueCampagne() {
-		super();
-		dialogue = "Voila vous avez fini la campagne, maintenant allez jouer dehors!";
-	}
+    public PanelDialogueCampagne() {
+        super();
+        dialogue = "Voila vous avez fini la campagne, maintenant allez jouer dehors!";
+    }
 
-	@Override
-	public void paintComponent(final Graphics g) {
-		afficheImageRedim(background, 0, 0, this.getWidth(), 3*this.getHeight()/4, g);
-		g.drawImage(Slatch.aImages.get(interlocuteur),0,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
-		afficheImageRedim("barredialogue", 0, this.getHeight()-this.getHeight()/4, this.getWidth(), this.getHeight(), g);
-	}
+    @Override
+    public void paintComponent(final Graphics g) {
+        afficheImageRedim(background, 0, 0, this.getWidth(), 3*this.getHeight()/4, g);
+        g.drawImage(Slatch.aImages.get(interlocuteur),0,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
+        afficheImageRedim("barredialogue", 0, this.getHeight()-this.getHeight()/4, this.getWidth(), this.getHeight(), g);
+    }
 
-	private void afficheImageRedim(final String pURL,
-			final int pPosHautGaucheX, final int pPosHautGaucheY,
-			final int pPosBasDroiteX, final int pPosBasDroiteY, final Graphics g) {
-		Image img = Slatch.aImages.get(pURL);
-		g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX
-				- pPosHautGaucheX, pPosBasDroiteY - pPosHautGaucheY,
-				Slatch.ihm.getPanel());
-	}
+    private void afficheImageRedim(final String pURL,
+            final int pPosHautGaucheX, final int pPosHautGaucheY,
+            final int pPosBasDroiteX, final int pPosBasDroiteY, final Graphics g) {
+        Image img = Slatch.aImages.get(pURL);
+        g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX
+                - pPosHautGaucheX, pPosBasDroiteY - pPosHautGaucheY,
+                Slatch.ihm.getPanel());
+    }
 
-	public void afficheText() {
-		this.setLayout(new BorderLayout());
-		
-		textArea.setPreferredSize(new Dimension(800,200));
-		this.add(textArea, BorderLayout.SOUTH);
-		Font font;
-		try {
-			font = Font.createFont(
-					Font.TRUETYPE_FONT,
-					new File(getClass().getClassLoader()
-							.getResource("Config/BlackOps.ttf").toURI()))
-					.deriveFont(Font.PLAIN, 20f);
-			textArea.setFont(font);
-		} catch (FontFormatException | IOException | URISyntaxException e) {
-			e.printStackTrace();
-		}
+    public void afficheText() {
+        this.setLayout(new BorderLayout());
+        
+        textArea.setPreferredSize(new Dimension(800,this.getHeight()/4));
+        this.add(textArea, BorderLayout.SOUTH);
+        Font font;
+        try {
+            font = Font.createFont(
+                    Font.TRUETYPE_FONT,
+                    new File(getClass().getClassLoader()
+                            .getResource("Config/BlackOps.ttf").toURI()))
+                    .deriveFont(Font.PLAIN, this.getWidth()/50);
+            textArea.setFont(font);
+        } catch (FontFormatException | IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+        
+        textArea.setForeground(Color.WHITE);
+        textArea.setText(dialogue);
+        textArea.setMargin(new Insets(40, 40, 40, 40));
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setOpaque(false);
+        textArea.setFocusable(false);
+        textArea.setEditable(false);
+    }
 
-		textArea.setForeground(Color.WHITE);
-		textArea.setText(dialogue);
-		textArea.setMargin(new Insets(40, 40, 40, 40));
-		textArea.setLineWrap(true);
-		textArea.setWrapStyleWord(true);
-		textArea.setOpaque(false);
-		textArea.setFocusable(false);
-		textArea.setEditable(false);
-	}
+    public JTextArea getTextArea() {
+        return textArea;
+    }
 
-	public JTextArea getTextArea() {
-		return textArea;
-	}
+    public void etapeDialogue() {
+        String tab[] = null;
+        
+        if(etape == 0){
+            background = scanner.nextLine();
+            etape = 1;
+        }
+        
+        if (scanner.hasNextLine()) {
+            dialogueFinished = false;
+            String texte = scanner.nextLine();
+            tab = texte.split(":");
+            interlocuteur = tab[0];
+            dialogue = interlocuteur + " : ";
+            dialogue += tab[1];
+            afficheText();
+        } else
+            dialogueFinished = true;
+    }
 
-	public void etapeDialogue() {
-		String tab[] = null;
-		
-		if(etape == 0){
-			background = scanner.nextLine();
-			etape = 1;
-		}
-		
-		if (scanner.hasNextLine()) {
-			dialogueFinished = false;
-			String texte = scanner.nextLine();
-			tab = texte.split(":");
-			interlocuteur = tab[0];
-			dialogue = interlocuteur + " : ";
-			dialogue += tab[1];
-			afficheText();
-		} else
-			dialogueFinished = true;
-	}
-
-	public boolean getDialogueFinished() {
-		return dialogueFinished;
-	}
+    public boolean getDialogueFinished() {
+        return dialogueFinished;
+    }
 }
