@@ -240,11 +240,11 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/barredialogue.png"));
                 aImages.put("barredialogue",image);
                 
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/1.png"));
-                aImages.put("Darth Vador",image);
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/generalcatraz.png"));
+                aImages.put("Generalcatraz",image);
                 
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/2.png"));
-                aImages.put("Vador Darth",image);
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/isabelle.png"));
+                aImages.put("Isabelle",image);
         }
         catch (IOException e) {
             e.printStackTrace();
