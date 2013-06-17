@@ -147,6 +147,8 @@ public class IHM_NEW  {
         panelMenu = new PanelMenu();
         MouseMenu lecteurMenu = new MouseMenu();
         panelMenu.addMouseListener(lecteurMenu);
+        MouseMotionMenu survolMenu = new MouseMotionMenu();
+        panelMenu.addMouseMotionListener(survolMenu);
            
         if(panelInfo != null){
             panel.remove(panelInfo);
