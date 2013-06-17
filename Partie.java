@@ -277,9 +277,6 @@ public class Partie
      * enfin la MAP
      */
     private void initMap(){
-        //A SUPPRIMER DANS UN FUTUR PROCHE ET LOINTAIN
-        aLongueur = aMap.getLongueur();
-        aLargeur = aMap.getLargeur();
         
         try {
             Scanner vScannerMap = new Scanner(getClass().getClassLoader().getResource("Maps/sauvegarde.txt").openStream());
@@ -291,7 +288,9 @@ public class Partie
                     aMap=carte;
                 }
             }
-            
+            //A SUPPRIMER DANS UN FUTUR PROCHE ET LOINTAIN
+            aLongueur = aMap.getLongueur();
+            aLargeur = aMap.getLargeur();
             aJoueurActuel = Integer.parseInt(vScannerMap.nextLine()); //2e ligne
             aTourMax = Integer.parseInt(vScannerMap.nextLine()); // 3e ligne
             aTour = Integer.parseInt(vScannerMap.nextLine()); //4e ligne
@@ -348,12 +347,21 @@ public class Partie
             
             aTerrain = new Terrain[aMap.getLongueur()][aMap.getLargeur()];
             
-            //On rempli la carte de plaine 
-            for(int i=0; i<aMap.getLongueur(); i++){
-                for(int j=0; j<aMap.getLargeur(); j++){
-                    aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
+            if(aMap.isDesert()){ //Si la map est un map desert, on rempli de desert
+                for(int i=0; i<aMap.getLongueur(); i++){
+                    for(int j=0; j<aMap.getLargeur(); j++){
+                        aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.DESERT);
+                    }
+                } 
+            }
+            else{ //Sinon On rempli la carte de plaine 
+               for(int i=0; i<aMap.getLongueur(); i++){
+                    for(int j=0; j<aMap.getLargeur(); j++){
+                        System.out.println("je rentre ici hihihihihi");
+                        aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
+                    }
                 }
-            }       
+            }      
             
             int vX, vY, vJoueur, vPV,vLvl,vExperience, vIntDejaDeplacee, vIntDejaAttaque;
             boolean vDejaDeplacee=false;
@@ -399,6 +407,8 @@ public class Partie
     
                 switch(vId){
                     case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.FORET); break;
+                    case "dune": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.DUNE); break;
+                    case "cactus": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.CACTUS); break;
                     case "montagne": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.MONTAGNE); break;
                     case "eau" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.EAU); break;
                     case "rivebas" : aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.RIVEBAS); break;
@@ -459,6 +469,11 @@ public class Partie
                         Unite ingenieur = new Unite(vX,vY,vJoueur,TypeUnite.INGENIEUR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
                         lUnite.add(ingenieur);
                         aTerrain[vX][vY].setUnite(ingenieur); 
+                        break;
+                    case "Kamikaze":
+                        Unite kamikaze = new Unite(vX,vY,vJoueur,TypeUnite.KAMIKAZE);
+                        lUnite.add(kamikaze);
+                        aTerrain[vX][vY].setUnite(kamikaze); 
                         break;
                     case "Distance":
                         Unite distance = new Unite(vX,vY,vJoueur,TypeUnite.DISTANCE,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
@@ -537,11 +552,11 @@ public class Partie
                 }
             }
             
-            for(int i = 0; i<aMap.getLargeur(); i++){
-                for(int j = 0; j<aMap.getLongueur(); j++){
+            for(int i = 0; i<aMap.getLongueur(); i++){
+                for(int j = 0; j<aMap.getLargeur(); j++){
                     Terrain terrain = aTerrain[i][j];
                     Unite unite = terrain.getUnite();
-                    if(terrain.getType().getNom() != "plaine"){
+                    if(terrain.getType().getNom() != "plaine" && terrain.getType().getNom() !="desert"){
                         String string = "";
                         string += terrain.getType().getNom()+ ":";
                         string += i+ ":";
