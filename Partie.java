@@ -2,11 +2,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.lang.Integer;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.ArrayList;
+import java.io.PrintWriter;
 
 /**
  * Write a description of class Partie here.
@@ -278,9 +280,10 @@ public class Partie
      * enfin la MAP
      */
     private void initMap(){
+        String home = System.getProperty("user.home");
         
         try {
-            Scanner vScannerMap = new Scanner(getClass().getClassLoader().getResource("Maps/sauvegarde.txt").openStream());
+            Scanner vScannerMap = new Scanner(new File(home + "/.slatch/config/sauvegarde.txt"));
             String vNom  = vScannerMap.nextLine();  // 1er ligne
             
             for( Map carte : Map.values() )
@@ -358,7 +361,6 @@ public class Partie
             else{ //Sinon On rempli la carte de plaine 
                for(int i=0; i<aMap.getLongueur(); i++){
                     for(int j=0; j<aMap.getLargeur(); j++){
-                        System.out.println("je rentre ici hihihihihi");
                         aTerrain[i][j] = new Terrain(i, j, 0, TypeTerrain.PLAINE);
                     }
                 }
@@ -518,38 +520,35 @@ public class Partie
             isOneEquipeNonIA();
         } 
         
-        catch (IOException e) {
+        catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
     
     public void sauvegardePartie(String pNom) {
+        String home = System.getProperty("user.home");
+        String path = home + "/.slatch/config/sauvegarde.txt";
+        
+        File file = new File(home + "/.slatch/config/");
+        if(!file.exists())
+            file.mkdirs();
+        
         try {
-            File file = new File(getClass().getClassLoader().getResource(pNom).toURI());
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(""+ aMap.getNom()); //1er ligne
-            bw.newLine();
-            bw.write(""+ aJoueurActuel); //2e ligne
-            bw.newLine();
-            bw.write(""+ aTourMax); // 3e ligne
-            bw.newLine();
-            bw.write(""+ aTour); // 4e ligne
-            bw.newLine();
-            bw.write(""+ aRevenuBatiment); // 5e ligne
-            bw.newLine();
-            bw.write(""+ aBrouillard); // 6e ligne
-            bw.newLine();
+            PrintWriter out = new PrintWriter(new FileWriter(path));
+            out.flush();
+            out.println(""+ aMap.getNom());
+            out.println(""+ aJoueurActuel);
+            out.println(""+ aTourMax);
+            out.println(""+ aTour);
+            out.println(""+ aRevenuBatiment);
+            out.println(""+ aBrouillard);
+            
             for(Joueur joueur: ListeJoueur){
                 if(joueur.getNumJoueur() != 0){
-                    bw.write(""+joueur.estUneIA());
-                    bw.newLine();
-                    bw.write(""+joueur.getFaction());
-                    bw.newLine();
-                    bw.write(""+joueur.getEquipe().getNumEquipe());
-                    bw.newLine();
-                    bw.write(""+joueur.getArgent());
-                    bw.newLine();
+                    out.println(""+joueur.estUneIA());
+                    out.println(""+joueur.getFaction());
+                    out.println(""+joueur.getEquipe().getNumEquipe());
+                    out.println(""+joueur.getArgent());
                 }
             }
             
@@ -564,8 +563,7 @@ public class Partie
                         string += j+ ":";
                         string += terrain.getJoueur() + ":";
                         string += "0:0:0:0:0";
-                        bw.write(string);                    
-                        bw.newLine();
+                        out.println(string);
                     }                    
                     
                     if(terrain.getUnite() != null){
@@ -580,16 +578,13 @@ public class Partie
                         string2 += unite.dejaAttaque() ? "1"+":" : "0"+":";
                         string2 += unite.dejaDeplacee() ? "1"+":" : "0"+":";
    
-                        bw.write(string2);
-                        bw.newLine();
+                        out.println(string2);
                     }
                 }
             }
             
-            bw.close();
-            fw.close();
-        } catch (URISyntaxException | IOException e) {
-            System.out.println("Probleme d'ecriture dans le fichier sauvegarde");
+            out.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -930,6 +925,7 @@ public class Partie
     }
         
     public void sauvegardePartie(final String pNom,final String pLongueur,final String pLargeur, final String pNbrJoueur) {
+      
         try {
             File file = new File(getClass().getClassLoader().getResource(pNom).toURI());
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
