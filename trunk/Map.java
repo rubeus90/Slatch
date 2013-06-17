@@ -130,5 +130,10 @@ public enum Map{
         return aDesert;
     }
     
+    public void setVerrouille(final boolean pLock){
+        aLock=pLock;
+    }
+        
+    
     
 }
