@@ -1,7 +1,8 @@
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-public class MouseMenu implements MouseListener {    
+public class MouseMenu implements MouseListener, MouseMotionListener {    
     @Override
     public void mouseClicked(MouseEvent event) {
         Slatch.ihm.getPanelMenu().coordclickBouton(event.getX(),event.getY());
@@ -24,6 +25,16 @@ public class MouseMenu implements MouseListener {
     @Override
     public void mouseReleased(MouseEvent event) {
         
-        
     }  
+
+    @Override
+        public void mouseMoved(MouseEvent event) {
+            Slatch.ihm.getPanelMenu().coordsurvolBouton(event.getX(),event.getY());
+        }
+        
+    @Override
+        public void mouseDragged(MouseEvent event) {
+
+        }
 }
+
