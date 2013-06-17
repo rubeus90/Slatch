@@ -48,7 +48,11 @@ public class TutorielDeplacement extends Tutoriel
             default :
             
             if(aProvenance == "menu")
-            Slatch.ihm.passageModeMenuPrincipal();
+            {
+              Slatch.ihm.passageModeMenuPrincipal();
+              Slatch.ihm.getPanelMenu().departMenuTuto();
+            
+           }
             
         }
     }
