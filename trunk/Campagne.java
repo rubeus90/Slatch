@@ -16,7 +16,7 @@ public class Campagne implements MouseListener {
     private PanelDialogueCampagne panel;
 
     public Campagne() {
-        aNiveau = 8;
+        aNiveau = 0;
         listeNomPartie = new ArrayList<Map>();
 
         listeNomPartie.add(Map.NIVEAU1);
@@ -30,6 +30,10 @@ public class Campagne implements MouseListener {
         listeNomPartie.add(Map.NIVEAU9);
         listeNomPartie.add(Map.NIVEAU10);
         listeNomPartie.add(Map.NIVEAU11);
+        listeNomPartie.add(Map.NIVEAU12);
+        listeNomPartie.add(Map.NIVEAU13);
+        listeNomPartie.add(Map.NIVEAU14);
+        listeNomPartie.add(Map.NIVEAU15);
     }
 
     public void chargerPartie(int pNiveau) {
