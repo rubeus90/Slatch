@@ -66,18 +66,23 @@ public class Campagne implements MouseListener {
     }
 
     public void suite() {
-        if (aNiveau < listeNomPartie.size() - 1) {
+        if(Slatch.partie.getJoueurWin()){
+            if (aNiveau < listeNomPartie.size() - 1) {
             aNiveau++;
             createDialogue();
-        } else {
-            aNiveau = listeNomPartie.size();
-            Slatch.ihm.getPanelFrame().removeAll();
-            panel = new PanelDialogueCampagne();
-            panel.addMouseListener(this);
-            Slatch.ihm.getPanelFrame().add(panel, BorderLayout.CENTER);
-            panel.afficheText();
-            panel.repaint();
-            Slatch.ihm.getPanelFrame().updateUI();
+            } else {
+                aNiveau = listeNomPartie.size();
+                Slatch.ihm.getPanelFrame().removeAll();
+                panel = new PanelDialogueCampagne();
+                panel.addMouseListener(this);
+                Slatch.ihm.getPanelFrame().add(panel, BorderLayout.CENTER);
+                panel.afficheText();
+                panel.repaint();
+                Slatch.ihm.getPanelFrame().updateUI();
+            }
+        }
+        else{
+           createDialogue();
         }
     }
 
@@ -141,3 +146,5 @@ public class Campagne implements MouseListener {
     public void mouseReleased(MouseEvent e) {
     }
 }
+
+
