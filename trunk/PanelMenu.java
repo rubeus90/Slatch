@@ -488,15 +488,6 @@ public class PanelMenu extends JPanel
                     this.repaint();
                 }
             }
-            else if(aMenuCredits)
-            {
-                if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>10 && pX< 10+this.getHeight()/6)
-                {
-                    aMenuPrincipal = true;
-                    aMenuCredits = false;
-                    this.repaint();
-                }
-            }
             
             else
             {
@@ -534,6 +525,16 @@ public class PanelMenu extends JPanel
                 }
             }
         } 
+        else if(aMenuCredits)
+            {
+                // Clic Bouton Retour
+                if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>10 && pX< 10+this.getHeight()/6)
+                {
+                    aMenuPrincipal = true;
+                    aMenuCredits = false;
+                    this.repaint();
+                }
+            }
     }
     
     public String getImages(String pImage)
