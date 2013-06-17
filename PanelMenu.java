@@ -279,8 +279,8 @@ public class PanelMenu extends JPanel
             else
             {
                 
-                g.drawImage(Slatch.aImages.get("boutonnouvellepartie"+aImages.get("boutonnouvellecampagne")), this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton, aHauteurBouton+10, this);
-                g.drawImage(Slatch.aImages.get("boutonchargerpartie"+aImages.get("boutonchargercampagne")), this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton, aHauteurBouton+10, this);
+                g.drawImage(Slatch.aImages.get("boutonnouvellepartie"+aImages.get("boutonnouvellepartie")), this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton, aHauteurBouton+10, this);
+                g.drawImage(Slatch.aImages.get("boutonchargerpartie"+aImages.get("boutonchargerpartie")), this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton, aHauteurBouton+10, this);
                 
             }        
         }        
