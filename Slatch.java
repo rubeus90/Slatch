@@ -416,18 +416,14 @@ public class Slatch {
     	
     	fonts = new HashMap<String, Font>();
     	
-    	 try {
-             Font blackOps = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
-            		 .getClassLoader().getResource("Config/BlackOps.ttf")
-            		 .toURI()));
+    	 try {		 
+            Font blackOps = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().getResourceAsStream("Config/BlackOps.ttf"));
              
-             Font visitor = Font.createFont(Font.TRUETYPE_FONT, new File(getClass()
-            		 .getClassLoader().getResource("Config/apl.ttf")
-                     .toURI()));
+             Font visitor = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().getResourceAsStream("Config/apl.ttf"));
              
              fonts.put("BlackOps", blackOps);
              fonts.put("Visitor", visitor);
-         } catch (FontFormatException | IOException | URISyntaxException e) {
+         } catch (FontFormatException | IOException e) {
              e.printStackTrace();
          }    	 
     }
