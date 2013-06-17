@@ -512,6 +512,9 @@ public class PanelMenu extends JPanel
                     Moteur moteur = new Moteur();
                     Slatch.moteur=moteur;
                     Slatch.ihm.passageModePartie();
+                    if(Slatch.partie.getBrouillard()){
+                        moteur.Brouillard();
+                    }
                 }
             }
         } 
