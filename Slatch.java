@@ -237,6 +237,9 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/background.png"));
                 aImages.put("background",image);
                 
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/barredialogue.png"));
+                aImages.put("barredialogue",image);
+                
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/1.png"));
                 aImages.put("Darth Vador",image);
                 

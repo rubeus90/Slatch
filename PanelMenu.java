@@ -167,7 +167,6 @@ public class PanelMenu extends JPanel
             if(aSousMenuRapide1)
             {   
                afficheImageRedim("noir80",0, this.getHeight()/4-2*tCadre,this.getWidth(), 3*this.getHeight()/4+2*tCadre,g);
-               afficheImageRedim("noir80",this.getWidth()/11-2*tCadre, 3*this.getHeight()/4+2*tCadre,this.getWidth()/2+2*tCadre, 3*this.getHeight()/4+3*tCadre+this.getHeight()/10,g);
                
                Image flechegauche = Slatch.aImages.get("flechegauche");
                Image flechedroite = Slatch.aImages.get("flechedroite");
