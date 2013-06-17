@@ -69,6 +69,7 @@ public class Campagne implements MouseListener {
         if(Slatch.partie.getJoueurWin()){
             if (aNiveau < listeNomPartie.size() - 1) {
             aNiveau++;
+            listeNomPartie.get(aNiveau).setVerrouille(false);
             createDialogue();
             } else {
                 aNiveau = listeNomPartie.size();
