@@ -1,10 +1,10 @@
 background
 Generalcatraz; : Les habitants de cette ville nous proposent un marché. Allez voir la femme aux yeux bleu la bas pour en discuter.
-Vous; : euuuuh Excusez moi
-Isabelle; : Mais qui voila ?! (nom du hero) ça fais longtemps .
-Vous; : Madame ?! Vous n'etes plus prof d'histoire ?
-Isabelle; : Appelle moi Isabelle.
-Vous; : D'accord Isabelle, vous avez un marché à nous proposer ?
-Isabelle; : Oui, nous avons eu des informations disant que notre ville allé bientot etre attaqué par des mechadroids, si vous nous aider à nous defendre apres la bataille, nous vous preterons des soldats et des equipements.
-Vous; : C'est d'accord, quand sont ils cencés arriver ?
-Isabelle; : Dans 20 minutes.
+Generalcatraz;Vous: euuuuh Excusez moi
+Generalcatraz;Isabelle: Mais qui voila ?! Sam, ça fais longtemps .
+Generalcatraz;Vous: Madame ?! Vous n'etes plus prof d'histoire ?
+Isabelle;Generalcatraz: Appelle moi Isabelle.
+Vous;Generalcatraz: D'accord Isabelle, vous avez un marché à nous proposer ?
+Isabelle;Generalcatraz: Oui, nous avons eu des informations disant que notre ville allé bientot etre attaqué par des mechadroids, si vous nous aider à nous defendre apres la bataille, nous vous preterons des soldats et des equipements.
+Vous;Generalcatraz: C'est d'accord, quand sont ils cencés arriver ?
+Isabelle;Generalcatraz: Dans 20 minutes.
