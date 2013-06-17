@@ -28,7 +28,8 @@ public class PanelDialogueCampagne extends JPanel {
     private JTextArea textArea = new JTextArea();
     private boolean dialogueFinished;
     private Scanner scanner;
-    private String interlocuteur;
+    private String interlocuteur1 = null;
+    private String interlocuteur2 = null;
     private String background;
     private int etape;
     
@@ -53,7 +54,12 @@ public class PanelDialogueCampagne extends JPanel {
     @Override
     public void paintComponent(final Graphics g) {
         afficheImageRedim(background, 0, 0, this.getWidth(), 3*this.getHeight()/4, g);
-        g.drawImage(Slatch.aImages.get(interlocuteur),0,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
+        
+        if(interlocuteur1 != " ")
+            g.drawImage(Slatch.aImages.get(interlocuteur1),0,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
+        if(interlocuteur2 != " ")
+            g.drawImage(Slatch.aImages.get(interlocuteur2),this.getWidth()/2,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
+        
         afficheImageRedim("barredialogue", 0, this.getHeight()-this.getHeight()/4, this.getWidth(), this.getHeight(), g);
         this.afficheText();
     }
@@ -106,12 +112,18 @@ public class PanelDialogueCampagne extends JPanel {
             etape = 1;
         }
         
+        String personnes[] = null;
+        
         if (scanner.hasNextLine()) {
             dialogueFinished = false;
             String texte = scanner.nextLine();
             tab = texte.split(":");
-            interlocuteur = tab[0];
-            dialogue = interlocuteur + " : ";
+            
+            personnes = tab[0].split(";");
+            interlocuteur1 = personnes[0];
+            interlocuteur2 = personnes[1];
+            
+            dialogue = interlocuteur1 + " : ";
             dialogue += tab[1];
             afficheText();
         } else
