@@ -16,7 +16,7 @@ public class Campagne implements MouseListener {
     private PanelDialogueCampagne panel;
 
     public Campagne() {
-        aNiveau = 9;
+        aNiveau = 0;
         listeNomPartie = new ArrayList<Map>();
 
         listeNomPartie.add(Map.NIVEAU1);
