@@ -188,7 +188,9 @@ public class OperationIA
         return (inf.capture*pond.capture+inf.offensif*pond.offensif+inf.defensif*pond.defensif+inf.menace*pond.menace+inf.retraite*pond.retraite);
     }
     
-    
+    /**
+     * Achete les unites
+     */
     static void acheterUnite()
     {
         Joueur joueurActuel = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel());
