@@ -93,7 +93,7 @@ eau:4:3:0:
 eau:4:4:0:
 rivebas:4:5:0:
 batiment:4:6:2:
-usine:4:7:0:
+usine:4:7:2:
 rivedroite:4:12:0:
 eau:4:13:0:
 eau:4:14:0:
