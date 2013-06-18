@@ -217,19 +217,18 @@ public class PanelMatrice extends JPanel
             // S'il y a une unite et pas de brouillard : on affiche la description de l'unite, on affiche la description du terrain
             if(t.getUnite()!=null && !t.getBrouillard())
             {
-                String portedep = "Portée Depl = "+t.getUnite().getDeplacement()/10;
+                String portedep = "Portée : Depl "+t.getUnite().getDeplacement()/10;
                 String xp = "XP = "+t.getUnite().getExperience()+"   PV = "+t.getUnite().getPV()+"/"+t.getUnite().getPVMax();
                 String lvl = "LVL = ";
+                String porteeAttaque=", Att["+t.getUnite().getAttaque().getTypePortee().getPorteeMin()+","+t.getUnite().getAttaque().getTypePortee().getPorteeMax()+"]";
                 String couverture = "Couv = "+ t.getType().getCouverture();
                 String coord = "X = "+aUniteMemMenuCaseX+"   Y ="+aUniteMemMenuCaseY;
                 String titre = t.getUnite().getType().getNom()+" : ";
                 String titreTerrain=t.getType().getDescription()+" : ";
                 
                 
-                
-                
                 g.drawString(titre, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
-                g.drawString(portedep, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
+                g.drawString(portedep+porteeAttaque, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
                 g.drawString(xp, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
                 g.drawString(lvl, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
                 
