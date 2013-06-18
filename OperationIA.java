@@ -20,7 +20,7 @@ public class OperationIA
         }
         else if(unite.peutSoigner())
         {
-            cible= trouverBonneCase(unite, new Influence(6,6, 0, -2, 2));
+           cible= trouverBonneCase(unite, new Influence(1,70, 0, -1, 1));
         }
         else if(unite.peutCapturer())
         {
@@ -50,14 +50,14 @@ public class OperationIA
         {
             if(Slatch.moteur.getEquipe(u)==Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
             {
-                if(unite.peutSoigner() && u.aBesoinDeSoins())
+                if(unite.getType()==TypeUnite.INGENIEUR && u.aBesoinDeSoins())
                 {
-                    //System.out.println(unite+" en ("+ unite.getX()+","+unite.getY()+") va soigner "+u+" en ("+cible.getX()+","+cible.getY()+")");
+                    System.out.println(unite+" en ("+ unite.getX()+","+unite.getY()+") va soigner "+u+" en ("+cible.getX()+","+cible.getY()+")");
                     UniteIA.decrypterObjectif(new Objectif(unite, u, TypeObjectif.SOIGNER));
                 }
                 else
                 {
-                    //System.out.println(unite+" en ("+ unite.getX()+","+unite.getY()+") va vers "+u+" en ("+cible.getX()+","+cible.getY()+")");
+                    System.out.println(unite+" en ("+ unite.getX()+","+unite.getY()+") va vers "+u+" en ("+cible.getX()+","+cible.getY()+")");
                     UniteIA.decrypterObjectif(new Objectif(unite, cible, TypeObjectif.ALLER));
                 }
             }
@@ -234,7 +234,7 @@ public class OperationIA
         PriorityQueue<Triplet> pq = new PriorityQueue<Triplet>();
         for(Terrain usine : joueurActuel.getListeUsine())
         {
-            pq.add(new Triplet(-StrategieIA.iMap[usine.getX()][usine.getY()].menace, usine.getX(),usine.getY()));
+            if(usine.getUnite()==null){pq.add(new Triplet(-StrategieIA.iMap[usine.getX()][usine.getY()].menace, usine.getX(),usine.getY()));}
         }
         
         

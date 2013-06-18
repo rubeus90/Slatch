@@ -160,7 +160,6 @@ class Moteur
             return true;
         }
         else{
-            repaint(); 
             return false;
         }
     }
@@ -373,7 +372,7 @@ class Moteur
     public void soin(final Unite pUnite)
     { 
         int vLocal = pUnite.soigner(uniteA.getDegat());
-           int pVcib=pUnite.getPV();
+        int pVcib=pUnite.getPV();
            if(Slatch.partie.getActivationAnimation())
         {AnimationSoin soin=new AnimationSoin(pUnite,pVcib);
            Slatch.ihm.getAnimation().addAnimation(soin);
@@ -386,11 +385,15 @@ class Moteur
            uniteA.addExperience(vLocal);
            getJoueur(uniteA).addSoinTotal(vLocal);
            
-           
+           System.out.println("donald is on rampage");
         
            uniteA.attaque(true);
            uniteA.deplacee(true);
            uniteA=null; 
+        }
+        else
+        {
+            System.out.println("Ca soigne du 0, mais allô quoi");
         }
     }
      
