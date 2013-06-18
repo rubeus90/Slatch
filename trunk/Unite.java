@@ -266,7 +266,9 @@ public class Unite extends Entite
        aExperience-=aExperienceMax;
        aPVMax = (int)(aPVMax*aGain);
        aDegats = (int)(aDegats*aGain);
+       System.out.println("D'accord" + aPV);
        aPV = (int)(aPV*aGain);
+       System.out.println("Puis " + aPV);
        aExperienceMax = (int)(aExperienceMax*aGain);
        
        if(aGain==2){

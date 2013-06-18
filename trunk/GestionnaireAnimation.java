@@ -230,9 +230,11 @@ public class GestionnaireAnimation implements ActionListener
             cible= ((AnimationEvolution)animation.get(numeroUnite)).getCible();
             fin = afficheEvolution(cible);
             avancement += deltaT;
+            
+            
             if(fin)
             {
-                    cible.setPV(cible.getPVaffiche());
+                    
                     avancement=0;
                 if(numeroUnite>=animation.size()-1)
                 {
@@ -461,6 +463,7 @@ public class GestionnaireAnimation implements ActionListener
         else 
         {
             cible.setLvlup(false);
+            cible.setPVaffiche(cible.getPV());
             Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXatt,pPosHautGaucheYatt,pPosBasDroiteXatt-pPosHautGaucheXatt,pPosBasDroiteYatt-pPosHautGaucheYatt);
             return true;
         }
