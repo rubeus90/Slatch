@@ -502,7 +502,7 @@ public class PanelMenu extends JPanel
                        }
                    }
                     
-                   Partie partieRapide = new Partie(50,30,Slatch.ihm.aListeMap.get(aNumeroMap),dBrouillard, aFaction,aEquipe,aIA,aAnimation);
+                   Partie partieRapide = new Partie(50,Slatch.ihm.aListeMap.get(aNumeroMap),dBrouillard, aFaction,aEquipe,aIA,aAnimation);
 
                    Slatch.partie=partieRapide;
                     
