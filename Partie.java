@@ -39,13 +39,13 @@ public class Partie
     /**
      * Constructeur de MAP d'une nouvelle partie
      */
-    public Partie(final int pRevenuBatiment,final int pTourMax, final Map pMap,final boolean pBrouillard,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA,final boolean activation)
+    public Partie(final int pRevenuBatiment, final Map pMap,final boolean pBrouillard,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA,final boolean activation)
     {
         aMap = pMap;
         isCampagne = false;
         aBrouillard = pBrouillard;
         aJoueurActuel= 1;
-        aTourMax = pTourMax;
+        aTourMax = 9999;
         aTour = 1;
         aRevenuBatiment = pRevenuBatiment; 
         activationAnimation=activation;
