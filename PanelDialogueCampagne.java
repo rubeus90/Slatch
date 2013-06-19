@@ -62,6 +62,7 @@ public class PanelDialogueCampagne extends JPanel {
             ,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
         
         afficheImageRedim("barredialogue", 0, this.getHeight()-this.getHeight()/4, this.getWidth(), this.getHeight(), g);
+        afficheImageRedim("skip", this.getWidth()/80, this.getHeight()/50, this.getWidth()/4, this.getHeight()/10, g);
         this.afficheText();
     }
 
