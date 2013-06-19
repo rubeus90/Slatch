@@ -534,10 +534,10 @@ public class Slatch {
                     for(Quad q: Moteur.signes)
                     {  
                         int a = i*q.a, b= j*q.b, c=i*q.c, d = j*q.d;
-                        inf[m+a+b][m+c+d].menace=(m+1-i)*5;
+                        inf[m+a+b][m+c+d].menace=(m+1-i);
                         inf[m+a+b][m+c+d].offensif=(m+1-i)*5;
                         inf[m+a+b][m+c+d].retraite=(m+1-i)*5;
-                        inf[m+a+b][m+c+d].defensif=(m+1-i)*5;
+                        inf[m+a+b][m+c+d].defensif=(m+1-i);
                     }
                 }
             }
