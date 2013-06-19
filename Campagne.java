@@ -12,6 +12,8 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 
+import com.sun.media.sound.FFT;
+
 /**
  * @author Ngoc
  * 
@@ -22,7 +24,7 @@ public class Campagne implements MouseListener {
     private PanelDialogueCampagne panel;
 
     public Campagne() {
-        aNiveau = 15;
+        aNiveau = 0;
         listeNomPartie = new ArrayList<Map>();
 
         listeNomPartie.add(Map.NIVEAU1);
@@ -53,24 +55,20 @@ public class Campagne implements MouseListener {
         vTourMax=99;
         
         
-        //Specificite de certains Niveau        
+        //Specificite de certains Niveau
+        if(aNiveau==2){
+           vTourMax=8; 
+        }
+        
         if(aNiveau==5 || aNiveau==15){
            vEquipe[2] =equipe1;
            vEquipe[3]=equipe1;
         }
         
-        if(aNiveau==2){
-           vTourMax=8; 
-        }
-        
         if(aNiveau==8){
            vTourMax=20; 
         }
-        
-        if(aNiveau==11){
-           vTourMax=20; 
-        }
-        
+         
         //On cree la partie
         Partie partie = new Partie(vTourMax,listeNomPartie.get(pNiveau), vEquipe);
         Slatch.partie = partie;
@@ -93,15 +91,8 @@ public class Campagne implements MouseListener {
             aNiveau++;
             listeNomPartie.get(aNiveau).setVerrouille(false);
             createDialogue();
-            } else {
-                aNiveau = listeNomPartie.size();
-                Slatch.ihm.getPanelFrame().removeAll();
-                panel = new PanelDialogueCampagne();
-                panel.addMouseListener(this);
-                Slatch.ihm.getPanelFrame().add(panel, BorderLayout.CENTER);
-                panel.afficheText();
-                panel.repaint();
-                Slatch.ihm.getPanelFrame().updateUI();
+            } else { // ecran fin de campagne
+                finirCampagne();
             }
         }
         else{
@@ -139,15 +130,10 @@ public class Campagne implements MouseListener {
     
     public void conditionVictoire(){
         if(aNiveau==2){
-            Slatch.partie.setJoueurGagnant(1);
             Slatch.partie.setPartieFini(true);
         }
         if(aNiveau==8){
-            Slatch.partie.setJoueurGagnant(2);
-            Slatch.partie.setPartieFini(true);
-        }
-        if(aNiveau==11){
-            Slatch.partie.setJoueurGagnant(1);
+            Slatch.partie.setJoueurActuel(2);
             Slatch.partie.setPartieFini(true);
         }
     }
@@ -184,11 +170,20 @@ public class Campagne implements MouseListener {
 			e.printStackTrace();
 		}        
     }
+    
+    public void finirCampagne(){
+    	aNiveau = listeNomPartie.size();
+    	panel.setFini();
+    	panel.repaint();
+    	Slatch.ihm.getPanelFrame().repaint();
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-    	if(e.getX()>=panel.getWidth()/80 && e.getY()>=panel.getHeight()/50 && e.getX()<=panel.getWidth()/4+panel.getWidth()/80 && e.getY()<=panel.getHeight()/10+panel.getHeight()/50){
-    		fermerDialogue();
+ 
+    	// A supprimer apres
+    	if(e.getX()>=panel.getWidth()*9/10 && e.getY()<=panel.getHeight()*9/10){
+    		finirCampagne();
     	}
     	else{
     		if (aNiveau < listeNomPartie.size()) {
@@ -196,6 +191,9 @@ public class Campagne implements MouseListener {
                 panel.repaint();
                 if(panel.getDialogueFinished())
                     fermerDialogue();
+                else if(e.getX()>=panel.getWidth()/80 && e.getY()>=panel.getHeight()/50 && e.getX()<=panel.getWidth()/4+panel.getWidth()/80 && e.getY()<=panel.getHeight()/10+panel.getHeight()/50){
+            		fermerDialogue();
+            	}
             } else
                 System.exit(0);
     	}

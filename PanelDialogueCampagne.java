@@ -32,6 +32,7 @@ public class PanelDialogueCampagne extends JPanel {
     private String interlocuteur2 = null;
     private String background;
     private int etape;
+    private boolean fini = false;
     
 
     public PanelDialogueCampagne(final int pNiveau) {
@@ -48,17 +49,22 @@ public class PanelDialogueCampagne extends JPanel {
 
     @Override
     public void paintComponent(final Graphics g) {
-        afficheImageRedim(background, 0, 0, this.getWidth(), 3*this.getHeight()/4, g);
-        
-        if(interlocuteur1 != " ")
-            g.drawImage(Slatch.aImages.get(interlocuteur1),0,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
-        if(interlocuteur2 != " ")
-            g.drawImage(Slatch.aImages.get(interlocuteur2),this.getWidth()/2
-            ,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
-        
-        afficheImageRedim("barredialogue", 0, this.getHeight()-this.getHeight()/4, this.getWidth(), this.getHeight(), g);
-        afficheImageRedim("skip", this.getWidth()/80, this.getHeight()/50, this.getWidth()/8, this.getHeight()/10, g);
-        this.afficheText();
+    	if(!fini){
+    		afficheImageRedim(background, 0, 0, this.getWidth(), 3*this.getHeight()/4, g);
+            
+            if(interlocuteur1 != " ")
+                g.drawImage(Slatch.aImages.get(interlocuteur1),0,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
+            if(interlocuteur2 != " ")
+                g.drawImage(Slatch.aImages.get(interlocuteur2),this.getWidth()/2
+                ,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
+            
+            afficheImageRedim("barredialogue", 0, this.getHeight()-this.getHeight()/4, this.getWidth(), this.getHeight(), g);
+            afficheImageRedim("skip", this.getWidth()/80, this.getHeight()/50, this.getWidth()/8, this.getHeight()/10, g);
+            this.afficheText();
+    	}
+    	else{
+    		afficheImageRedim("fin", 0, 0, this.getWidth(), this.getHeight(), g);
+    	}
     }
 
     private void afficheImageRedim(final String pURL,
@@ -129,5 +135,9 @@ public class PanelDialogueCampagne extends JPanel {
 
     public boolean getDialogueFinished() {
         return dialogueFinished;
+    }
+    
+    public void setFini(){
+    	fini = true;
     }
 }
