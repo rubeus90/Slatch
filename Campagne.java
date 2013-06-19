@@ -22,7 +22,7 @@ public class Campagne implements MouseListener {
     private PanelDialogueCampagne panel;
 
     public Campagne() {
-        aNiveau = 11;
+        aNiveau = 12;
         listeNomPartie = new ArrayList<Map>();
 
         listeNomPartie.add(Map.NIVEAU1);
@@ -72,6 +72,12 @@ public class Campagne implements MouseListener {
         
         if(aNiveau==11){
             vFaction[1] = Faction.ROBOTS;
+        }
+        
+        if(aNiveau==12){
+            vFaction[1] = Faction.ROBOTS;
+            vFaction[4] = Faction.HUMAINS;
+            vEquipe[4]= equipe1;
         }
         
         if(aNiveau==15){
