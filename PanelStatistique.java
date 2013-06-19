@@ -115,7 +115,7 @@ public class PanelStatistique extends JPanel implements MouseListener{
         gagnant.setFont(font);
 		String string = "";
 		
-		ArrayList<Joueur> equipe = Slatch.partie.getJoueur(Slatch.partie.getJoueurActuel()).getEquipe().getListeJoueur();
+		ArrayList<Joueur> equipe = Slatch.partie.getJoueurGagnant().getEquipe().getListeJoueur();
 		
 		for(Joueur joueur : equipe){
 			string += "Le joueur " + joueur.getNumJoueur() + " a gagné" + "\n";

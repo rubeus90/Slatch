@@ -25,6 +25,7 @@ public class Partie
     private int aTourMax;
     private Terrain[][] aTerrain;
     private int aJoueurActuel;
+    private Joueur aJoueurGagnant;
     private int aTour;
     private Map aMap;
     public boolean partieFinie = false;
@@ -34,7 +35,6 @@ public class Partie
     private int aLongueur;
     private int aLargeur;
     private boolean activationAnimation;
-    private boolean aJoueurWin;
     
     /**
      * Constructeur de MAP d'une nouvelle partie
@@ -634,13 +634,8 @@ public class Partie
                }   
            }
        }
+       aJoueurGagnant = pJoueur;
        partieFinie=true;
-       
-       //Pour la campagne
-       if(pJoueur.getNumJoueur() == 1)
-        aJoueurWin=true;
-       else
-        aJoueurWin = false;
         
     }
     
@@ -705,12 +700,12 @@ public class Partie
         return aMap.getNbrJoueur();
     }
     
-    public boolean getJoueurWin(){
-        return aJoueurWin;
-    }
-    
     public boolean getBrouillard(){
         return aBrouillard;
+    }
+    
+    public Joueur getJoueurGagnant(){
+        return aJoueurGagnant;
     }
       
     /**

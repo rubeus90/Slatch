@@ -77,7 +77,7 @@ public class Campagne implements MouseListener {
     }
 
     public void suite() {
-        if(Slatch.partie.getJoueurWin()){
+        if(Slatch.partie.getJoueurGagnant().getNumJoueur()==1){
             if (aNiveau < listeNomPartie.size() - 1) {
             aNiveau++;
             listeNomPartie.get(aNiveau).setVerrouille(false);
