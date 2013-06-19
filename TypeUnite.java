@@ -3,13 +3,13 @@
  */
 public enum TypeUnite
 {
-    COMMANDO("Commando", "Capable de capturer un batiment","commando",100,30,40,"fusil",TypeDeplacement.PIED,1.3, "Terrestre",30, true, false),
-    DEMOLISSEUR("Demolisseur", "Capable capturer un batiment de faire des degats aux tanks","demolisseur",200,20,30,"mortier",TypeDeplacement.PIED,1.2,"Terrestre",30,true, false), 
-    CHAR("Char","un char","char",300,40,60,"canon",TypeDeplacement.CHENILLES,1.3,"Terrestre",40, false, false),
-    TANK("While","Unite tres puissante","tank",700,65,40,"groscanon",TypeDeplacement.CHENILLES,1.2, "Terrestre",80, false, false),
+    COMMANDO("Commando", "Capable de capturer un batiment","commando",100,30,40,"fusil",TypeDeplacement.PIED,1.3, "Terrestre",40, true, false),
+    DEMOLISSEUR("Demolisseur", "Capable capturer un batiment de faire des degats aux tanks","demolisseur",200,20,40,"mortier",TypeDeplacement.PIED,1.2,"Terrestre",30,true, false), 
+    CHAR("Char","un char","char",300,40,60,"canon",TypeDeplacement.CHENILLES,1.3,"Terrestre",60, false, false),
+    TANK("While","Unite tres puissante","tank",700,65,40,"groscanon",TypeDeplacement.CHENILLES,1.2, "Terrestre",120, false, false),
     INGENIEUR("Ingenieur","Capable de soigner des unites et de les faire evoluer","special",100,15,40,"soin",TypeDeplacement.PIED,2.0, "Terrestre",20, true, true),
-    DISTANCE("Distance","un vehicule a moyenne distance","distance",350,35,50,"roquette",TypeDeplacement.ROUES,1.3, "Terrestre",40, false, false),
-    UML("Uml","Capable de tirer a distance","uml",450,30,40,"missile",TypeDeplacement.CHENILLES,1.3, "Terrestre",45, false, false),
+    DISTANCE("Distance","un vehicule a moyenne distance","distance",350,35,50,"roquette",TypeDeplacement.ROUES,1.3, "Terrestre",60, false, false),
+    UML("Uml","Capable de tirer a distance","uml",450,30,40,"missile",TypeDeplacement.CHENILLES,1.3, "Terrestre",70, false, false),
     KAMIKAZE("Kamikaze","Kamikaze capable de faire d'enorme degat a une unite","special",100,1,40,"explosion",TypeDeplacement.PIED,1.0,"Terrestre",1000,false,false);
 
     private String aNom;
