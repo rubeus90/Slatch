@@ -22,7 +22,7 @@ public class Campagne implements MouseListener {
     private PanelDialogueCampagne panel;
 
     public Campagne() {
-        aNiveau = 0;
+        aNiveau = 15;
         listeNomPartie = new ArrayList<Map>();
 
         listeNomPartie.add(Map.NIVEAU1);
@@ -49,6 +49,7 @@ public class Campagne implements MouseListener {
         Equipe equipe2 = new Equipe(2);
 
         Equipe[] vEquipe = { equipe0, equipe1, equipe2, equipe2, equipe2 };
+        Faction[] vFaction ={Faction.NEUTRE,Faction.HUMAINS,Faction.ROBOTS,Faction.ROBOTS,Faction.ROBOTS};
         int vTourMax;
         vTourMax=99;
        
@@ -58,17 +59,26 @@ public class Campagne implements MouseListener {
            vTourMax=8;
         }
        
-        if(aNiveau==5 || aNiveau==15){
+        if(aNiveau==5){
            vEquipe[2] =equipe1;
            vEquipe[3]=equipe1;
+           vFaction[2] = Faction.HUMAINS;
+           vFaction[3] = Faction.HUMAINS;
         }
        
         if(aNiveau==8){
            vTourMax=20;
         }
+        
+        if(aNiveau==15){
+           vEquipe[2] =equipe1;
+           vEquipe[3]=equipe1;
+           vFaction[2] = Faction.ROBOTS;
+           vFaction[3] = Faction.HUMAINS;
+        }
          
         //On cree la partie
-        Partie partie = new Partie(vTourMax,listeNomPartie.get(pNiveau), vEquipe);
+        Partie partie = new Partie(vTourMax,listeNomPartie.get(pNiveau), vEquipe,vFaction);
         Slatch.partie = partie;
         Slatch.moteur = new Moteur();
 
