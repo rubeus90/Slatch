@@ -94,8 +94,6 @@ class Moteur
         if(faireDegats(pVictime, degatsAtt)) // si la victime meurt
         {
             //Pour les statistiques 
-            getJoueur(uniteA).addNbrUniteTue();
-            
             estMort(pVictime,uniteA);
         }
         else if(distance(uniteA, pVictime)==1 && pVictime.getAttaque().aTypePortee.getPorteeMin()==1) //sinon + si attaque au CAC, on riposte
@@ -105,12 +103,11 @@ class Moteur
             if(faireDegats(uniteA, degatsAtt))
             {
                 //Si l'unite qui attaque meurt pendant l'attaque,
-                getJoueur(pVictime).addNbrUniteTue();
                 estMort(uniteA,pVictime);
             }
         }
         
-        if(getJoueur(uniteA).getFaction() == Faction.ROBOTS && uniteA.getType() == TypeUnite.KAMIKAZE) //Si l'unite Attaquant est un Kamikaze
+        if(uniteA.getType() == TypeUnite.KAMIKAZE) //Si l'unite Attaquant est un Kamikaze
         {
             estMort(uniteA,pVictime);
             uniteA.setPV(-1);
@@ -921,15 +918,26 @@ class Moteur
     {
         Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setPV(Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType().getPVMax());
         Slatch.partie.getTerrain()[unite.getX()][unite.getY()].setUnite(null);
+        
+        //Statistique
         getJoueur(unite).addNbrUniteMort();
+        getJoueur(pUniteVictorieux).addNbrUniteTue();
+        
         //if(getJoueur(unite).estUneIA())
-        if(Slatch.partie.getActivationAnimation())
-        {Slatch.ihm.getAnimation().aTricheAffichage.add(unite);
-        repaint();}
+        if(Slatch.partie.getActivationAnimation()){
+            Slatch.ihm.getAnimation().aTricheAffichage.add(unite);
+            repaint();
+        }
         
         if(!getJoueur(unite).estUneIA() || unite.getJoueur()!=Slatch.partie.getJoueurActuel())
         {
             getJoueur(unite).getListeUnite().remove(unite);
+        }
+        
+        if(getJoueur(pUniteVictorieux).getListeUnite().isEmpty())
+        {
+            getJoueur(unite).mourrir();
+            Slatch.partie.gagner(getJoueur(unite));
         }
         
         if(getJoueur(unite).getListeUnite().isEmpty())
@@ -938,7 +946,7 @@ class Moteur
             Slatch.partie.gagner(getJoueur(pUniteVictorieux));
         }
         
-           if(Slatch.partie.getActivationAnimation())
+        if(Slatch.partie.getActivationAnimation())
         {
             AnimationMort mort=new AnimationMort(unite);
            Slatch.ihm.getAnimation().addAnimation(mort);}
