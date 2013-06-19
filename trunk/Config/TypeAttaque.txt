@@ -53,7 +53,7 @@ soin:While:0
 soin:Ingenieur:0
 soin:Distance:0
 soin:Uml:0
-soin:Kamikaze:1
+soin:Kamikaze:0
 explosion:Commando:1
 explosion:Demolisseur:1
 explosion:Char:1
