@@ -63,7 +63,9 @@ public class PanelDialogueCampagne extends JPanel {
             this.afficheText();
     	}
     	else{
+    		afficheImageRedim("wallpaper", 0, 0, this.getWidth(), this.getHeight(), g);
     		afficheImageRedim("fin", 0, 0, this.getWidth(), this.getHeight(), g);
+    		this.remove(textArea);
     	}
     }
 
