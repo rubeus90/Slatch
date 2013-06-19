@@ -12,11 +12,9 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 
-import com.sun.media.sound.FFT;
-
 /**
  * @author Ngoc
- * 
+ *
  */
 public class Campagne implements MouseListener {
     private ArrayList<Map> listeNomPartie;
@@ -30,7 +28,7 @@ public class Campagne implements MouseListener {
         listeNomPartie.add(Map.NIVEAU1);
         listeNomPartie.add(Map.NIVEAU2);
         listeNomPartie.add(Map.NIVEAU3);
-        listeNomPartie.add(Map.NIVEAU4); 
+        listeNomPartie.add(Map.NIVEAU4);
         listeNomPartie.add(Map.NIVEAU5);
         listeNomPartie.add(Map.NIVEAU6);
         listeNomPartie.add(Map.NIVEAU7);
@@ -53,20 +51,20 @@ public class Campagne implements MouseListener {
         Equipe[] vEquipe = { equipe0, equipe1, equipe2, equipe2, equipe2 };
         int vTourMax;
         vTourMax=99;
-        
-        
+       
+       
         //Specificite de certains Niveau
         if(aNiveau==2){
-           vTourMax=8; 
+           vTourMax=8;
         }
-        
+       
         if(aNiveau==5 || aNiveau==15){
            vEquipe[2] =equipe1;
            vEquipe[3]=equipe1;
         }
-        
+       
         if(aNiveau==8){
-           vTourMax=20; 
+           vTourMax=20;
         }
          
         //On cree la partie
@@ -101,7 +99,7 @@ public class Campagne implements MouseListener {
     }
 
     public void createDialogue() {
-    	sauvegardeCampagne();
+        sauvegardeCampagne();
         chargerPartie(aNiveau);
         Slatch.ihm.getPanelFrame().removeAll();
 
@@ -127,7 +125,7 @@ public class Campagne implements MouseListener {
         Slatch.ihm.getPanelFrame().repaint();
 
     }
-    
+   
     public void conditionVictoire(){
         if(aNiveau==2){
             Slatch.partie.setPartieFini(true);
@@ -137,66 +135,66 @@ public class Campagne implements MouseListener {
             Slatch.partie.setPartieFini(true);
         }
     }
-    
+   
     public void sauvegardeCampagne(){
-    	String home = System.getProperty("user.home");
+        String home = System.getProperty("user.home");
         String path = home + "/.slatch/config/sauvegardeCampagne.txt";
-        
+       
         File file = new File(home + "/.slatch/config/");
         if(!file.exists())
             file.mkdirs();
-        
+       
         PrintWriter out;
-		try {
-			out = new PrintWriter(new FileWriter(path));
-			out.flush();
-			out.print(aNiveau);
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}        
+                try {
+                        out = new PrintWriter(new FileWriter(path));
+                        out.flush();
+                        out.print(aNiveau);
+                        out.close();
+                } catch (IOException e) {
+                        e.printStackTrace();
+                }        
     }
-    
+   
     public void chargerCampagne(){
-    	String home = System.getProperty("user.home");
-        
+        String home = System.getProperty("user.home");
+       
         Scanner vScannerMap;
-		try {
-			vScannerMap = new Scanner(new File(home + "/.slatch/config/sauvegardeCampagne.txt"));
-			String niveauSauvegarde  = vScannerMap.nextLine();  // 1er ligne
-			aNiveau = Integer.parseInt(niveauSauvegarde);
-			createDialogue();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}        
+                try {
+                        vScannerMap = new Scanner(new File(home + "/.slatch/config/sauvegardeCampagne.txt"));
+                        String niveauSauvegarde  = vScannerMap.nextLine();  // 1er ligne
+                        aNiveau = Integer.parseInt(niveauSauvegarde);
+                        createDialogue();
+                } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                }        
     }
-    
+   
     public void finirCampagne(){
-    	aNiveau = listeNomPartie.size();
-    	panel.setFini();
-    	panel.repaint();
-    	Slatch.ihm.getPanelFrame().repaint();
+        aNiveau = listeNomPartie.size();
+        panel.setFini();
+        panel.repaint();
+        Slatch.ihm.getPanelFrame().repaint();
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
  
-    	// A supprimer apres
-    	if(e.getX()>=panel.getWidth()*9/10 && e.getY()<=panel.getHeight()*9/10){
-    		finirCampagne();
-    	}
-    	else{
-    		if (aNiveau < listeNomPartie.size()) {
+        // A supprimer apres
+        if(e.getX()>=panel.getWidth()*9/10 && e.getY()<=panel.getHeight()*9/10){
+                finirCampagne();
+        }
+        else{
+                if (aNiveau < listeNomPartie.size()) {
                 panel.etapeDialogue();
                 panel.repaint();
                 if(panel.getDialogueFinished())
                     fermerDialogue();
                 else if(e.getX()>=panel.getWidth()/80 && e.getY()>=panel.getHeight()/50 && e.getX()<=panel.getWidth()/4+panel.getWidth()/80 && e.getY()<=panel.getHeight()/10+panel.getHeight()/50){
-            		fermerDialogue();
-            	}
+                        fermerDialogue();
+                }
             } else
                 System.exit(0);
-    	}
+        }
     }
 
     @Override
@@ -215,5 +213,3 @@ public class Campagne implements MouseListener {
     public void mouseReleased(MouseEvent e) {
     }
 }
-
-
