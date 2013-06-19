@@ -599,9 +599,9 @@ public class Partie
         
         
         //Campagne
-        /*if(aTour==aTourMax+1){
+        if(aTour==aTourMax+1){
             Slatch.campagne.conditionVictoire();
-        }*/
+        }
         
         if(!ListeJoueur.get(aJoueurActuel).isAlive()){// Si le joueur suivant est mort
             while(!ListeJoueur.get(aJoueurActuel).isAlive()){ // On recherche le prochain vivant

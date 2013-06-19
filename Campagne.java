@@ -53,20 +53,24 @@ public class Campagne implements MouseListener {
         vTourMax=99;
         
         
-        //Specificite de certains Niveau
-        if(aNiveau==2){
-           vTourMax=8; 
-        }
-        
+        //Specificite de certains Niveau        
         if(aNiveau==5 || aNiveau==15){
            vEquipe[2] =equipe1;
            vEquipe[3]=equipe1;
         }
         
+        if(aNiveau==2){
+           vTourMax=8; 
+        }
+        
         if(aNiveau==8){
            vTourMax=20; 
         }
-         
+        
+        if(aNiveau==11){
+           vTourMax=20; 
+        }
+        
         //On cree la partie
         Partie partie = new Partie(vTourMax,listeNomPartie.get(pNiveau), vEquipe);
         Slatch.partie = partie;
