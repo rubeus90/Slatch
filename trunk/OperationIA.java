@@ -148,10 +148,10 @@ public class OperationIA
                 {
                     if(u.aBesoinDeSoins() && u!=unite)
                     {
-                        map[u.getX()][u.getY()].defensif+=pontDerration((int)(5000.0*(double)(u.getPVMax())/(double)(u.getPV())),tabDist[u.getX()][u.getY()]);
+                        map[u.getX()][u.getY()].defensif+=pontDerration((int)(5000.0*(double)(u.getPV())/(double)(u.getPVMax())),tabDist[u.getX()][u.getY()]);
                         if(Slatch.moteur.seraAPortee(unite, u))
                         {
-                            map[u.getCoordonneeX()][u.getCoordonneeY()].defensif+=pontDerration((int)(5000.0*(double)(u.getPVMax())/(double)(u.getPV())),tabDist[u.getX()][u.getY()]);
+                            map[u.getCoordonneeX()][u.getCoordonneeY()].defensif+=pontDerration((int)(5000.0*(double)(u.getPV())/(double)(u.getPVMax())),tabDist[u.getX()][u.getY()]);
                         }
                     }
                 }
@@ -209,9 +209,45 @@ public class OperationIA
         int nombreDistance=0;
         int nombreWhile=0;
         
+        int eCommando=0;
+        int eDemolisseur=0;
+        int eSpec=0;
+        int eTank=0;
+        int eUml=0;
+        int eDistance=0;
+        int eWhile=0;
+        
         for (Unite unit : joueurActuel.getListeUnite())
         {
             switch(unit.getType())
+            {
+                case COMMANDO :
+                                    eCommando=eCommando+1;
+                                    break;
+                case DEMOLISSEUR :
+                                    eDemolisseur=eDemolisseur+1;
+                                    break;
+                case KAMIKAZE :                
+                case INGENIEUR :
+                                    eSpec=eSpec+1;
+                                    break;
+                case CHAR :
+                                    eTank=eTank+1;
+                                    break;
+                case UML :
+                                    eUml=eUml+1;
+                                    break;
+                case WHILE :
+                                    eWhile=eWhile+1;
+                                    break;
+                case DISTANCE :
+                                    eDistance=eDistance+1;
+                                    break;                   
+            }
+        }
+        for(Unite u: Slatch.partie.getListeUnitesEnnemies())
+        {
+            switch(u.getType())
             {
                 case COMMANDO :
                                     nombreCommando=nombreCommando+1;
@@ -280,45 +316,50 @@ public class OperationIA
                 int x = usine.getCoordonneeX();
                 int y = usine.getCoordonneeY();
     
-                if(joueurActuel.getArgent()>=100 && nombreCommando <2)
+                if(joueurActuel.getArgent()>=100 && nombreCommando <eDemolisseur/2+1)
                 {
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.COMMANDO), TypeObjectif.ACHETER));
                     nombreCommando=nombreCommando+1;
                 }
-                else if(joueurActuel.getArgent()>=450 && nombreUml <3)         
+                else if(joueurActuel.getArgent()>=450 && nombreUml <eWhile/2+1)         
                 {
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.UML), TypeObjectif.ACHETER));
                     nombreUml=nombreUml+1;
                 }
-                else if(joueurActuel.getArgent()>=700)
+                else if(joueurActuel.getArgent()>=700 && (nombreWhile<eDistance+1 || nombreWhile<3))
                 {                 
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.WHILE), TypeObjectif.ACHETER));                    
                     nombreWhile=nombreWhile+1;
                 }
-                else if(joueurActuel.getArgent()>=350 && nombreDistance <1)         
+                else if(joueurActuel.getArgent()>=350 && (nombreDistance <eTank+1 || nombreDistance<2))         
                 {
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.DISTANCE), TypeObjectif.ACHETER));
                    nombreDistance=nombreDistance+1;
                 }
-                else if(joueurActuel.getArgent()>=300 && nombreTank <1)
+                else if(joueurActuel.getArgent()>=300 && (nombreTank <eCommando/2+1 || nombreTank <2))
                 {
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.CHAR), TypeObjectif.ACHETER));
                      nombreTank=nombreTank+1;
                 }
-                else if(joueurActuel.getArgent()>=200 && nombreDemolisseur <3)
+                else if(joueurActuel.getArgent()>=200 && (nombreDemolisseur <eWhile+1|| nombreDemolisseur <2))
                 {
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.DEMOLISSEUR), TypeObjectif.ACHETER));
                     nombreDemolisseur=nombreDemolisseur+1;
                 }
-                else if(joueurActuel.getArgent()>=100 && nombreSpec <2 && joueurActuel.getFaction()==Faction.HUMAINS)
+                else if(joueurActuel.getArgent()>=100 && nombreSpec <3 && joueurActuel.getFaction()==Faction.HUMAINS)
                 {
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.INGENIEUR), TypeObjectif.ACHETER));
                     nombreSpec=nombreSpec+1;
                 }
-                else if(joueurActuel.getArgent()>=100 && nombreSpec <2  && joueurActuel.getFaction()==Faction.ROBOTS)
+                else if(joueurActuel.getArgent()>=100 && nombreSpec <3  && joueurActuel.getFaction()==Faction.ROBOTS)
                 {
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.KAMIKAZE), TypeObjectif.ACHETER));
                     nombreSpec=nombreSpec+1;
+                }
+                else if(joueurActuel.getArgent()>=700)
+                {
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.WHILE), TypeObjectif.ACHETER));                    
+                    nombreWhile=nombreWhile+1;
                 }
                 //break;
             }

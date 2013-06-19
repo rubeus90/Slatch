@@ -504,7 +504,7 @@ class Moteur
             {
                 if(getUnite(i,j)!=null)
                 {
-                    if(getNumJoueur(i,j) == unite.getJoueur())
+                    if(Slatch.partie.getJoueur(getNumJoueur(i,j)).getEquipe().getNumEquipe()== getEquipe(unite))
                     {
                         tabDist[i][j] = -2;
                     }
@@ -544,7 +544,7 @@ class Moteur
             {
                 if(getUnite(i,j)!=null)  // quand on a déjà une unité sur la case, on ne peut pas y accéder
                 {
-                    if(getNumJoueur(i,j)!= unite.getJoueur())
+                    if(Slatch.partie.getJoueur(getNumJoueur(i,j)).getEquipe().getNumEquipe()!= getEquipe(unite))
                     {
                         tabDist[i][j] = -2;
                     }
@@ -1141,11 +1141,15 @@ class Moteur
                 }
             }
             
-                if(getJoueurActuel().estUneIA() && Slatch.partie.getJoueurActuel()!=0)              
-               {StrategieIA.joueTour(Slatch.partie.getJoueurActuel());}
+            if(getJoueurActuel().estUneIA() && Slatch.partie.getJoueurActuel()!=0)              
+            {StrategieIA.joueTour(Slatch.partie.getJoueurActuel());}
+            else
+            {
+                if(getJoueurActuel().estUneIA()){AIMaster.joueTour(Slatch.partie.getJoueurActuel());}
+            }
             
                 
-               Slatch.ihm.getPanel().repaint();
+            Slatch.ihm.getPanel().repaint();
         }
     }
     
