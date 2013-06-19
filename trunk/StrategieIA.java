@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class StrategieIA
 {
-    static Influence[][]iMap = new Influence[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
+    static Influence[][]iMap= new Influence[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
     static ModeIA mode = ModeIA.DEPLOIEMENT;
     static void joueTour(int joueur)
     {
