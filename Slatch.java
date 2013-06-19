@@ -360,6 +360,18 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonachaton.png"));
                 aImages.put("boutonachaton",image);
                 
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonexp.png"));
+                aImages.put("boutonexp",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonexpon.png"));
+                aImages.put("boutonexpon",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutontabunites.png"));
+                aImages.put("boutontabunites",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutontabuniteson.png"));
+                aImages.put("boutontabuniteson",image);
+                
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonmapcreator.png"));
                 aImages.put("boutonmapcreator",image);
                 
