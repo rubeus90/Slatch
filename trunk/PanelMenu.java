@@ -193,8 +193,8 @@ public class PanelMenu extends JPanel
             g.drawImage(Slatch.aImages.get("boutoninterface"+aImages.get("boutoninterface")), vGauche, 6*this.getHeight()/10, vRatio, vSize, this);
             g.drawImage(Slatch.aImages.get("boutonterrain"+aImages.get("boutonterrain")), vDroite, 3*this.getHeight()/10, vRatio, vSize, this);
             g.drawImage(Slatch.aImages.get("boutonachat"+aImages.get("boutonachat")), vDroite, 4*this.getHeight()/10, vRatio, vSize, this);
-            g.drawImage(Slatch.aImages.get("boutontabunites"+aImages.get("boutontabunites")), vDroite, 5*this.getHeight()/10, vRatio, vSize, this);
-            g.drawImage(Slatch.aImages.get("boutonexp"+aImages.get("boutonexp")), vDroite, 6*this.getHeight()/10, vRatio, vSize, this);
+            g.drawImage(Slatch.aImages.get("boutonexp"+aImages.get("boutonexp")), vDroite, 5*this.getHeight()/10, vRatio, vSize, this);
+            g.drawImage(Slatch.aImages.get("boutontabunites"+aImages.get("boutontabunites")), vDroite, 6*this.getHeight()/10, vRatio, vSize, this);
             g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
         }
         
@@ -646,16 +646,16 @@ public class PanelMenu extends JPanel
                     Tutoriel tuto = new TutorielAchat("menu");
                     Slatch.ihm.passageModeTuto(tuto);
                 }
-                // Bouton Tableau des Unites
-                if(pY>5*this.getHeight()/10 && pY<5*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
-                {
-                   
-                }
                 // Bouton Experience & Evolution
-                if(pY>6*this.getHeight()/10 && pY<6*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
+                if(pY>5*this.getHeight()/10 && pY<5*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
                 {
                    Tutoriel tuto = new TutorielEvolution("menu");
                     Slatch.ihm.passageModeTuto(tuto);
+                }
+                // Bouton Tableau des Unites
+                if(pY>6*this.getHeight()/10 && pY<6*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
+                {
+                   
                 }
                 
             }
@@ -772,15 +772,16 @@ public class PanelMenu extends JPanel
             {
                 aImages.put("boutonachat","on");
             }
-            // Bouton Tableau des Unités
+            // Bouton Expérience & Evolution
             if(pY>5*this.getHeight()/10 && pY<5*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
             {
-                aImages.put("boutontabunites","on");
+                aImages.put("boutonexp","on");
             }
-            // Bouton Expérience & Evolution
+            // Bouton Tableau des Unités
             if(pY>6*this.getHeight()/10 && pY<6*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
             {
-                aImages.put("boutonexp","on");
+                
+                aImages.put("boutontabunites","on");
             }
         }
         if(aMenuChoixTuto){
