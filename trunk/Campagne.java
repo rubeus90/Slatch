@@ -22,7 +22,7 @@ public class Campagne implements MouseListener {
     private PanelDialogueCampagne panel;
 
     public Campagne() {
-        aNiveau = 15;
+        aNiveau = 11;
         listeNomPartie = new ArrayList<Map>();
 
         listeNomPartie.add(Map.NIVEAU1);
@@ -68,6 +68,10 @@ public class Campagne implements MouseListener {
        
         if(aNiveau==8){
            vTourMax=20;
+        }
+        
+        if(aNiveau==11){
+            vFaction[1] = Faction.ROBOTS;
         }
         
         if(aNiveau==15){
