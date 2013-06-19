@@ -224,7 +224,7 @@ public class OperationIA
                 case UML :
                                     nombreUml=nombreUml+1;
                                     break;
-                case TANK :
+                case WHILE :
                                     nombreWhile=nombreWhile+1;
                                     break;
                 case DISTANCE :
@@ -282,7 +282,7 @@ public class OperationIA
                 }
                 else if(joueurActuel.getArgent()>=700)
                  {                 
-                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.TANK), TypeObjectif.ACHETER));                    
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.WHILE), TypeObjectif.ACHETER));                    
                     nombreWhile=nombreWhile+1;
                  }
                 else if(joueurActuel.getArgent()>=450 && nombreUml <2)         
