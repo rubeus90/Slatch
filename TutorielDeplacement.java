@@ -22,7 +22,7 @@ public class TutorielDeplacement extends Tutoriel
 
     public void deroulement(final Graphics g)
     {
-        System.out.println(aEtape);
+        
         switch ( aEtape )
         {
             case 1 :

@@ -603,7 +603,8 @@ public class PanelMenu extends JPanel
                 //Clic Bouton Capture
                 if(pY>4*this.getHeight()/10 && pY<4*this.getHeight()/10+vSize && pX>vMilieu && pX< vMilieu+vRatio)
                 {
-                    
+                    Tutoriel tuto = new TutorielCapture("menu");
+                    Slatch.ihm.passageModeTuto(tuto);
                 }
                 //Clic Bouton Attaque
                 if(pY>5*this.getHeight()/10 && pY<5*this.getHeight()/10+vSize && pX>vMilieu && pX< vMilieu+vRatio)
@@ -613,17 +614,20 @@ public class PanelMenu extends JPanel
                 //Clic Bouton Interface
                 if(pY>6*this.getHeight()/10 && pY<6*this.getHeight()/10+vSize && pX>vMilieu && pX< vMilieu+vRatio)
                 {
-                    
+                    Tutoriel tuto = new TutorielInterface("menu");
+                    Slatch.ihm.passageModeTuto(tuto);
                 }
                 //Clic Bouton Terrain
                 if(pY>7*this.getHeight()/10 && pY<7*this.getHeight()/10+vSize && pX>vMilieu && pX< vMilieu+vRatio)
                 {
-                    
+                    Tutoriel tuto = new TutorielTerrain("menu");
+                    Slatch.ihm.passageModeTuto(tuto);
                 }
                 //Clic Bouton Achat
                 if(pY>8*this.getHeight()/10 && pY<8*this.getHeight()/10+vSize && pX>vMilieu && pX< vMilieu+vRatio)
                 {
-                    
+                    Tutoriel tuto = new TutorielAchat("menu");
+                    Slatch.ihm.passageModeTuto(tuto);
                 }
             }
     }

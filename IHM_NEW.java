@@ -156,9 +156,10 @@ public class IHM_NEW  {
             panel.remove(panelMatrice);
             panelMatrice.setVisible(false);
         }
-        if(tutoriel != null)
+        if(tutoriel != null){
             panel.remove(tutoriel);
-            
+            tutoriel.setVisible(false);
+        }    
         panel.add(panelMenu, BorderLayout.CENTER);
 
         panelMenu.setVisible(true);
