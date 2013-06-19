@@ -49,8 +49,8 @@ public class PanelDialogueCampagne extends JPanel {
 
     @Override
     public void paintComponent(final Graphics g) {
-    	if(!fini){
-    		afficheImageRedim(background, 0, 0, this.getWidth(), 3*this.getHeight()/4, g);
+        if(!fini){
+            afficheImageRedim(background, 0, 0, this.getWidth(), 3*this.getHeight()/4, g);
             
             if(interlocuteur1 != " ")
                 g.drawImage(Slatch.aImages.get(interlocuteur1),0,0,3*this.getHeight()/4,3*this.getHeight()/4,this);
@@ -61,6 +61,7 @@ public class PanelDialogueCampagne extends JPanel {
             afficheImageRedim("barredialogue", 0, this.getHeight()-this.getHeight()/4, this.getWidth(), this.getHeight(), g);
             afficheImageRedim("skip", this.getWidth()/80, this.getHeight()/50, this.getWidth()/8, this.getHeight()/10, g);
             this.afficheText();
+
     	}
     	else{
     		afficheImageRedim("wallpaper", 0, 0, this.getWidth(), this.getHeight(), g);
@@ -68,6 +69,7 @@ public class PanelDialogueCampagne extends JPanel {
     		g.drawImage(Slatch.aImages.get("boutonFin"), 2*this.getWidth()/6, this.getHeight()/2, this.getWidth()/3, this.getHeight()/80*15, this);
     		this.remove(textArea);
     	}
+
     }
 
     private void afficheImageRedim(final String pURL,
@@ -120,11 +122,12 @@ public class PanelDialogueCampagne extends JPanel {
         
         String personnes[] = null;
         
-        if (scanner.hasNextLine()) {
+        if (scanner.hasNextLine()) 
+        {
             dialogueFinished = false;
             String texte = scanner.nextLine();
+            if(texte.contains(":")){
             tab = texte.split(":");
-            
             personnes = tab[0].split(";");
             interlocuteur1 = personnes[0];
             interlocuteur2 = personnes[1];
@@ -132,6 +135,20 @@ public class PanelDialogueCampagne extends JPanel {
             dialogue = interlocuteur1 + " : ";
             dialogue += tab[1];
             afficheText();
+        }
+        else
+        {
+            background = texte;
+            String texte2 = scanner.nextLine();
+            tab = texte2.split(":");
+            personnes = tab[0].split(";");
+            interlocuteur1 = personnes[0];
+            interlocuteur2 = personnes[1];
+            
+            dialogue = interlocuteur1 + " : ";
+            dialogue += tab[1];
+            afficheText();
+        }
         } else
             dialogueFinished = true;
     }
@@ -141,6 +158,6 @@ public class PanelDialogueCampagne extends JPanel {
     }
     
     public void setFini(){
-    	fini = true;
+        fini = true;
     }
 }
