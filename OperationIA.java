@@ -81,7 +81,7 @@ public class OperationIA
         int[][] tabDist = Slatch.moteur.tabDist;
         if(unite.isEvolvable())
         {
-            map[unite.getX()][unite.getY()].defensif+=5001;
+            map[unite.getX()][unite.getY()].defensif+=5000000;
         }
         StrategieIA.spreadInfluence(unite,map, false);
         for(int i=0; i<=Slatch.partie.getNbrJoueur(); i++)
