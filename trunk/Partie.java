@@ -625,7 +625,6 @@ public class Partie
     }
     
     public void gagner(final Joueur pJoueur){
-       int i=1;
        for(Joueur vJoueur: ListeJoueur){
            if(vJoueur.getNumJoueur()!=0){
                if(vJoueur.isAlive()){
@@ -634,7 +633,6 @@ public class Partie
                    }
                }   
            }
-           i++;
        }
        partieFinie=true;
        
