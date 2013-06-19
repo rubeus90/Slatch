@@ -108,27 +108,27 @@ public class Slatch {
                 for(int i=1;i<6;i++)
                 {
                     
-                   image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutodeplacement"+i+".png"));
+                   image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutoriel/tutodeplacement"+i+".png"));
                     aImages.put("tutodeplacement"+ i,image);
                     
-                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutoterrain"+i+".png"));
+                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutoriel/tutoterrain"+i+".png"));
                     aImages.put("tutoterrain"+ i,image);
                     
                     image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutointerface"+i+".png"));
                     aImages.put("tutointerface"+ i,image);
                     
-                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutoachat"+i+".png"));
+                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutoriel/tutoachat"+i+".png"));
                     aImages.put("tutoachat"+ i,image);
 
                 }
                 
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutointerface6.png"));
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutoriel/tutointerface6.png"));
                 aImages.put("tutointerface6",image);
                     
                 for(int i=1;i<5;i++)
                 {
                     
-                   image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutocapture"+i+".png"));
+                   image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutoriel/tutocapture"+i+".png"));
                     aImages.put("tutocapture"+ i,image);
 
                 }
