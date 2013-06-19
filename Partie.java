@@ -829,6 +829,10 @@ public class Partie
         aRevenuBatiment = pRevenuBatiment;
     }
     
+    public void setJoueurGagnant(final int pJoueurGagnant){
+        aJoueurGagnant = ListeJoueur.get(pJoueurGagnant);
+    }
+    
     public boolean getuneSeulEquipedeJoueur(){
         return uneSeulEquipedeJoueur;
     }
