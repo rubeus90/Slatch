@@ -234,7 +234,7 @@ public class CreationMaps extends JPanel implements ActionListener,
     }
 
     public void initialiseMap() {   
-        String path = "/Maps/" + aNomMap + ".txt";
+        String path = "Maps/" + aNomMap + ".txt";
                 
         try {
             PrintWriter out = new PrintWriter(new FileWriter(path));

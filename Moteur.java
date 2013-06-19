@@ -355,17 +355,18 @@ class Moteur
      */
     public void soin(final Unite pUnite)
     { 
-        int vLocal = pUnite.soigner(uniteA.getDegat());
-        int pVcib=pUnite.getPV();
-           if(Slatch.partie.getActivationAnimation())
-        {AnimationSoin soin=new AnimationSoin(pUnite,pVcib);
+       int vLocal = pUnite.soigner(uniteA.getDegat());
+       int pVcib=pUnite.getPV();
+       if(Slatch.partie.getActivationAnimation()){
+           AnimationSoin soin=new AnimationSoin(pUnite,pVcib);
            Slatch.ihm.getAnimation().addAnimation(soin);
-               if(!getJoueurActuel().estUneIA())
-          {
-            Slatch.ihm.getAnimation().start();
-          }
+           
+           if(!getJoueurActuel().estUneIA()){
+               Slatch.ihm.getAnimation().start();
+           }
        }
-        if(vLocal!=0){  
+       
+       if(vLocal!=0){  
            uniteA.addExperience(vLocal);
            getJoueur(uniteA).addSoinTotal(vLocal);
            
@@ -374,11 +375,10 @@ class Moteur
            uniteA.attaque(true);
            uniteA.deplacee(true);
            uniteA=null; 
-        }
-        else
-        {
+       }
+       else{
             System.out.println("Ca soigne du 0, mais allô quoi");
-        }
+       }
     }
      
     /******************************************************************************************************************************************************

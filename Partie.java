@@ -75,7 +75,7 @@ public class Partie
         Faction[] pTabFaction ={Faction.NEUTRE,Faction.HUMAINS,Faction.ROBOTS,Faction.ROBOTS,Faction.ROBOTS}; // tableau par default
         
         for(int i=2;i<4;i++){
-            if(pTabEquipe[i].getNumEquipe()==1 && pTabEquipe[i].getNumEquipe()==4){ //Si le joueur a des aliés alors ils sont de faction HUMAINS
+            if(pTabEquipe[i].getNumEquipe()==1 || pTabEquipe[i].getNumEquipe()==4){ //Si le joueur a des aliés alors ils sont de faction HUMAINS
                 pTabFaction[i]=Faction.HUMAINS;
             }
         }  
