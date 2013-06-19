@@ -625,7 +625,8 @@ public class PanelMenu extends JPanel
                 //Clic Bouton Attaque
                 if(pY>5*this.getHeight()/10 && pY<5*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
                 {
-                    
+                    Tutoriel tuto = new TutorielAttaque("menu");
+                    Slatch.ihm.passageModeTuto(tuto);
                 }
                 //Clic Bouton Interface
                 if(pY>6*this.getHeight()/10 && pY<6*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
@@ -648,12 +649,13 @@ public class PanelMenu extends JPanel
                 // Bouton Tableau des Unites
                 if(pY>5*this.getHeight()/10 && pY<5*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
                 {
-                    aImages.put("boutontabunites","on");
+                   
                 }
                 // Bouton Experience & Evolution
                 if(pY>6*this.getHeight()/10 && pY<6*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
                 {
-                    aImages.put("boutonexp","on");
+                   Tutoriel tuto = new TutorielEvolution("menu");
+                    Slatch.ihm.passageModeTuto(tuto);
                 }
                 
             }

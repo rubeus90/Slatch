@@ -375,6 +375,11 @@ public class Unite extends Entite
                     
                 }
                 
+                if(isEvolvable && !dejaAttaque)
+                {
+                    Image explosion = Slatch.aImages.get("yengevolution");
+                    g.drawImage(explosion, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
+                }
                 
                 if(mort)
                 {

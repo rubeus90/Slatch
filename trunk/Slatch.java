@@ -128,16 +128,19 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutoriel/tutointerface6.png"));
                 aImages.put("tutointerface6",image);
                     
-                for(int i=1;i<5;i++)
+                for(int i=1;i<4;i++)
                 {
                     
                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutoriel/tutocapture"+i+".png"));
                     aImages.put("tutocapture"+ i,image);
+                    
+                    image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutoriel/tutoevolution"+i+".png"));
+                    aImages.put("tutoevolution"+i,image);
 
                 }
 
-                
-            
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutoriel/tutocapture4.png"));
+                aImages.put("tutocapture4",image);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -259,6 +262,9 @@ public class Slatch {
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/yindeplacement.png"));
                 aImages.put("yindeplacement",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/yengevolution.png"));
+                aImages.put("yengevolution",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/doublevai.png"));
                 aImages.put("doublevai",image);
