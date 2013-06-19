@@ -215,8 +215,5 @@ dune:24:17:0
 dune:24:18:0
 dune:24:19:0
 batiment:3:18:1
-batiment:1:18:1
 batiment:9:17:2
-batiment:11:17:2
-batiment:21:13:3
 batiment:18:17:3
