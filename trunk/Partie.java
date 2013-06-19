@@ -57,7 +57,7 @@ public class Partie
     /**
      * Constructeur de MAP pour mode Campagne
      */
-    public Partie(final int pTourMax, final Map pMap,final Equipe[] pTabEquipe)
+    public Partie(final int pTourMax, final Map pMap,final Equipe[] pTabEquipe,final Faction[] pTabFaction)
     {
         aMap= pMap;
          
@@ -70,15 +70,6 @@ public class Partie
         aJoueurActuel= 1;
         aTourMax = pTourMax;
         aTour = 1;
-        
-        //Pour les factions, on se base sur les equipes
-        Faction[] pTabFaction ={Faction.NEUTRE,Faction.HUMAINS,Faction.ROBOTS,Faction.ROBOTS,Faction.ROBOTS}; // tableau par default
-        
-        for(int i=2;i<4;i++){
-            if(pTabEquipe[i].getNumEquipe()==1 || pTabEquipe[i].getNumEquipe()==4){ //Si le joueur a des aliés alors ils sont de faction HUMAINS
-                pTabFaction[i]=Faction.HUMAINS;
-            }
-        }  
 
         initMap(pMap,pTabFaction,pTabEquipe,vIA); 
         
