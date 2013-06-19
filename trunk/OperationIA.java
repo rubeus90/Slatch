@@ -26,8 +26,11 @@ public class OperationIA
         {
             cible= trouverBonneCase(unite, new Influence(30,1, 40, -2, 1));
         }
-        else // l'unité peut attaquer
+        else if(unite.isEvolvable())
         {
+            cible= trouverBonneCase(unite, new Influence(0,1, 0, 0, 0));
+        }        
+        else{// l'unité peut attaquer
             cible= trouverBonneCase(unite, new Influence(0,1, 50, -1, 1));
         }
        
@@ -40,8 +43,11 @@ public class OperationIA
         
         
         Unite u= Slatch.partie.getTerrain()[x][y].getUnite();
-        
-        if(Slatch.partie.getTerrain()[x][y].estCapturable()&&unite.peutCapturer()&&(u==null || u==unite))
+        if(unite.isEvolvable())
+        {
+            UniteIA.decrypterObjectif(new Objectif(unite, cible, TypeObjectif.EVOLUER));
+        }
+        else if(Slatch.partie.getTerrain()[x][y].estCapturable()&&unite.peutCapturer()&&(u==null || u==unite))
         {
             //System.out.println(unite+" en ("+ unite.getX()+","+unite.getY()+") va capturer "+cible+" en ("+cible.getX()+","+cible.getY()+")");
             UniteIA.decrypterObjectif(new Objectif(unite, cible, TypeObjectif.CAPTURER));
@@ -79,10 +85,6 @@ public class OperationIA
     static void adapteMap(Unite unite)
     {
         int[][] tabDist = Slatch.moteur.tabDist;
-        if(unite.isEvolvable())
-        {
-            map[unite.getX()][unite.getY()].defensif+=5000000;
-        }
         StrategieIA.spreadInfluence(unite,map, false);
         for(int i=0; i<=Slatch.partie.getNbrJoueur(); i++)
         {
