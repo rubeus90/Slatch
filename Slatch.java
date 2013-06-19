@@ -49,6 +49,7 @@ public class Slatch {
         loadNiveau();
         loadNumero();
         loadTerrain();
+        loadImageMap();
         loadUnite();
         loadExplosion();
         loadFleche();
@@ -219,7 +220,6 @@ public class Slatch {
     {
         try {
                 Image image;
-                Image imageRedim;
                 for(int i=1;i<=3;i++){
                    
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/niveau"+i+"HUMAINS.png"));
@@ -235,11 +235,55 @@ public class Slatch {
         }
     }
     
+    private void loadImageMap()
+    {
+        try {
+                            Image image;
+                            
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/doublevai.png"));
+                aImages.put("doublevai",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/champs.png"));
+                aImages.put("champs",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/hacheMap.png"));
+                aImages.put("hacheMap",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/jonathan.png"));
+                aImages.put("jonathan",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/mapTest.png"));
+                aImages.put("mapTest",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/mapTest4.png"));
+                aImages.put("mapTest4",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/Parallaxe.png"));
+                aImages.put("Parallaxe",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/seleton.png"));
+                aImages.put("seleton",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/franmap.png"));
+                aImages.put("franmap",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/couloir.png"));
+                aImages.put("couloir",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/sahlaha.png"));
+                aImages.put("bataillepourledesertdumillieu",image);
+                        
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }       
+    }
+    
+    
     private void loadAutre()
     {
         try {
                 Image image;
-                Image imageRedim;
 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/5.png"));
                 aImages.put("5",image);
@@ -266,30 +310,6 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/IHM/yengevolution.png"));
                 aImages.put("yengevolution",image);
                 
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/doublevai.png"));
-                aImages.put("doublevai",image);
-                
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/champs.png"));
-                aImages.put("champs",image);
-                
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/hacheMap.png"));
-                aImages.put("hacheMap",image);
-                
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/jonathan.png"));
-                aImages.put("jonathan",image);
-                
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/mapTest.png"));
-                aImages.put("mapTest",image);
-                
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/mapTest4.png"));
-                aImages.put("mapTest4",image);
-                
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/Parallaxe.png"));
-                aImages.put("Parallaxe",image);
-                
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/seleton.png"));
-                aImages.put("seleton",image);
-                
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/noir.png"));
                 aImages.put("noir",image);
                 
@@ -309,7 +329,7 @@ public class Slatch {
                 aImages.put("barredialogue",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/generalcatraz.png"));
-                aImages.put("Generalcatraz",image);
+                aImages.put("General Catraz",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/isabelle.png"));
                 aImages.put("Isabelle",image);
