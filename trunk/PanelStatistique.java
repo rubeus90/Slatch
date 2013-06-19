@@ -120,6 +120,7 @@ public class PanelStatistique extends JPanel implements MouseListener{
 		for(Joueur joueur : equipe){
 			string += "Le joueur " + joueur.getNumJoueur() + " a gagné" + "\n";
 		}
+		string +="en " + Slatch.partie.getTour() +" jours";
 		gagnant.setText(string);
 		
 		gagnant.setMargin(new Insets(0,this.getWidth()/2 - 19*fm.stringWidth(" "),0,0));
