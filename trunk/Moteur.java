@@ -93,33 +93,15 @@ class Moteur
         
         if(faireDegats(pVictime, degatsAtt)) // si la victime meurt
         {
-            //Pour les statistiques si le nombre de degat est superieur a nombre de point de vie de l'unite
-            uniteA.addExperience(degatsAtt+pVictime.getPV());
-            getJoueur(uniteA).addExpTotal(degatsAtt+pVictime.getPV());
-            getJoueur(uniteA).addExpTotal(degatsAtt+pVictime.getPV());
-            getJoueur(pVictime).addExpTotal(degatsAtt+pVictime.getPV());
+            //Pour les statistiques 
             getJoueur(uniteA).addNbrUniteTue();
             
             estMort(pVictime,uniteA);
         }
         else if(distance(uniteA, pVictime)==1 && pVictime.getAttaque().aTypePortee.getPorteeMin()==1) //sinon + si attaque au CAC, on riposte
-        {
-            //Pour les statistiques pour une attaque normal
-            uniteA.addExperience(degatsAtt);
-            getJoueur(uniteA).addExpTotal(degatsAtt);
-            getJoueur(uniteA).addDegatTotal(degatsAtt);
-            getJoueur(pVictime).addDegatSubit(degatsAtt);
-            
+        {            
             degatsAtt= 0.7*getDegats(pVictime, uniteA);
-            
-            //Add XP a l'unite qui contre-attaque
-            pVictime.addExperience(degatsAtt);
-            getJoueur(pVictime).addExpTotal(degatsAtt);
-            
-            //Stat
-            getJoueur(uniteA).addDegatSubit(degatsAtt);
-            getJoueur(pVictime).addDegatTotal(degatsAtt);
-            
+           
             if(faireDegats(uniteA, degatsAtt))
             {
                 //Si l'unite qui attaque meurt pendant l'attaque,
@@ -176,9 +158,14 @@ class Moteur
         
         double degat = degatA*efficaciteA*bonusTerrain*maluspvA;
         
-        /*((a.getAttaque().getDegats()*a.getAttaque().efficacite.get(v.getType()))
-        *(100-(TypeTerrain.bonusCouverture*Slatch.partie.getTerrain()[v.getX()][v.getY()].getType().getCouverture()))/100)
-         *((double)a.getPV()/(double)a.getPVMax())*/   
+        
+        //Statistique
+        a.addExperience(degat);
+        getJoueur(a).addDegatTotal(degat);
+        getJoueur(a).addExpTotal(degat);
+        
+        getJoueur(v).addDegatSubit(degat);
+          
         return degat;
     }
     
@@ -636,7 +623,7 @@ class Moteur
      ******************************************************************************************************************************************************/
      
     /**
-     * Methode qui permet a un ingenieur de faire evoluer une methode
+     * Methode qui permet de faire evoluer une unite
      * @param pUnite
      */
     public void evoluer(final int pX,final int pY)
