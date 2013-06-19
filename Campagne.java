@@ -2,7 +2,13 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 
@@ -100,6 +106,7 @@ public class Campagne implements MouseListener {
     }
 
     public void createDialogue() {
+    	sauvegardeCampagne();
         chargerPartie(aNiveau);
         Slatch.ihm.getPanelFrame().removeAll();
 
@@ -134,6 +141,39 @@ public class Campagne implements MouseListener {
             Slatch.partie.setJoueurActuel(2);
             Slatch.partie.setPartieFini(true);
         }
+    }
+    
+    public void sauvegardeCampagne(){
+    	String home = System.getProperty("user.home");
+        String path = home + "/.slatch/config/sauvegardeCampagne.txt";
+        
+        File file = new File(home + "/.slatch/config/");
+        if(!file.exists())
+            file.mkdirs();
+        
+        PrintWriter out;
+		try {
+			out = new PrintWriter(new FileWriter(path));
+			out.flush();
+			out.print(aNiveau);
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}        
+    }
+    
+    public void chargerCampagne(){
+    	String home = System.getProperty("user.home");
+        
+        Scanner vScannerMap;
+		try {
+			vScannerMap = new Scanner(new File(home + "/.slatch/config/sauvegardeCampagne.txt"));
+			String niveauSauvegarde  = vScannerMap.nextLine();  // 1er ligne
+			aNiveau = Integer.parseInt(niveauSauvegarde);
+			createDialogue();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}        
     }
 
     @Override
