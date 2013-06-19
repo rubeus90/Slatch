@@ -22,6 +22,7 @@ public class IHM_NEW  {
     private Tutoriel tutoriel;
     private PanelMatrice panelMatrice;
     private PanelMenu panelMenu;
+    private PanelDialogueCampagne dialogue;
     private JFrame frame;
     private GestionnaireAnimation animation;
     static Timer timer;
@@ -148,18 +149,24 @@ public class IHM_NEW  {
         panelMenu.addMouseListener(lecteurMenu);
         panelMenu.addMouseMotionListener(lecteurMenu);
            
-        if(panelInfo != null){
-            panel.remove(panelInfo);
-            panelInfo.setVisible(false);
-        }
-        if(panelMatrice != null){
-            panel.remove(panelMatrice);
-            panelMatrice.setVisible(false);
-        }
-        if(tutoriel != null){
-            panel.remove(tutoriel);
-            tutoriel.setVisible(false);
-        }    
+//        if(panelInfo != null){
+//            panel.remove(panelInfo);
+//            panelInfo.setVisible(false);
+//        }
+//        if(panelMatrice != null){
+//            panel.remove(panelMatrice);
+//            panelMatrice.setVisible(false);
+//        }
+//        if(tutoriel != null){
+//            panel.remove(tutoriel);
+//            tutoriel.setVisible(false);
+//        }    
+//        if(dialogue != null){
+//        	panel.remove(dialogue);
+//            dialogue.setVisible(false);
+//        }
+        
+        panel.removeAll();
         panel.add(panelMenu, BorderLayout.CENTER);
 
         panelMenu.setVisible(true);

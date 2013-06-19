@@ -207,7 +207,7 @@ public class Campagne implements MouseListener {
                         fermerDialogue();
                 }
             } else
-                System.exit(0);
+            	Slatch.ihm.passageModeMenuPrincipal();
         }
     }
 
