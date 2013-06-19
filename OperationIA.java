@@ -24,7 +24,7 @@ public class OperationIA
         }
         else if(unite.peutCapturer())
         {
-            cible= trouverBonneCase(unite, new Influence(30,1, 40, -2, 1));
+            cible= trouverBonneCase(unite, new Influence(30,1, 40, -1, 1));
         }
         else if(unite.isEvolvable())
         {
