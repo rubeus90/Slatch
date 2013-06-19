@@ -923,7 +923,6 @@ class Moteur
         getJoueur(unite).addNbrUniteMort();
         getJoueur(pUniteVictorieux).addNbrUniteTue();
         
-        //if(getJoueur(unite).estUneIA())
         if(Slatch.partie.getActivationAnimation()){
             Slatch.ihm.getAnimation().aTricheAffichage.add(unite);
             repaint();
@@ -934,11 +933,6 @@ class Moteur
             getJoueur(unite).getListeUnite().remove(unite);
         }
         
-        if(getJoueur(pUniteVictorieux).getListeUnite().isEmpty())
-        {
-            getJoueur(unite).mourrir();
-            Slatch.partie.gagner(getJoueur(unite));
-        }
         
         if(getJoueur(unite).getListeUnite().isEmpty())
         {
