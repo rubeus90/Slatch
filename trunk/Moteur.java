@@ -370,14 +370,10 @@ class Moteur
            uniteA.addExperience(vLocal);
            getJoueur(uniteA).addSoinTotal(vLocal);
            
-           System.out.println("donald is on rampage");
         
            uniteA.attaque(true);
            uniteA.deplacee(true);
            uniteA=null; 
-       }
-       else{
-            System.out.println("Ca soigne du 0, mais allô quoi");
        }
     }
      
