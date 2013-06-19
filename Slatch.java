@@ -316,6 +316,9 @@ public class Slatch {
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/fincampagne.png"));
                 aImages.put("fin",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/boutonFinCampagne.png"));
+                aImages.put("boutonFin",image);
         }
         catch (IOException e) {
             e.printStackTrace();
