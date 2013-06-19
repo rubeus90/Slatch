@@ -178,13 +178,18 @@ public class Campagne implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (aNiveau < listeNomPartie.size()) {
-            panel.etapeDialogue();
-            panel.repaint();
-            if(panel.getDialogueFinished())
-                fermerDialogue();
-        } else
-            System.exit(0);
+    	if(e.getX()>=panel.getWidth()/80 && e.getY()>=panel.getHeight()/50 && e.getX()<=panel.getWidth()/4+panel.getWidth()/80 && e.getY()<=panel.getHeight()/10+panel.getHeight()/50){
+    		fermerDialogue();
+    	}
+    	else{
+    		if (aNiveau < listeNomPartie.size()) {
+                panel.etapeDialogue();
+                panel.repaint();
+                if(panel.getDialogueFinished())
+                    fermerDialogue();
+            } else
+                System.exit(0);
+    	}
     }
 
     @Override
