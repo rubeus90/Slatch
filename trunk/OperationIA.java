@@ -217,7 +217,7 @@ public class OperationIA
         int eDistance=0;
         int eWhile=0;
         
-        for (Unite unit : joueurActuel.getListeUnite())
+        for (Unite unit : Slatch.partie.getListeUnitesEnnemies())
         {
             switch(unit.getType())
             {
@@ -245,7 +245,7 @@ public class OperationIA
                                     break;                   
             }
         }
-        for(Unite u: Slatch.partie.getListeUnitesEnnemies())
+        for(Unite u: joueurActuel.getListeUnite())
         {
             switch(u.getType())
             {
