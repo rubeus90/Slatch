@@ -9,49 +9,6 @@ public class UniteIA
         Terrain[][] tab = Slatch.partie.getTerrain();
         int[][] tabDist = Slatch.moteur.tabDist;
         Triplet t = new Triplet(-1,cible.getX(),cible.getY());
-        
-        /*if(tab[cible.getX()][cible.getY()].getUnite()!=null)
-        {
-            for(Point p: Moteur.voisins)
-            {
-                int x = (int)(p.getX())+cible.getX();
-                int y = (int)(p.getY())+cible.getY();
-                if(Slatch.moteur.dansLesBords(x,y))
-                {
-                    if(t.d==-1 || tabDist[x][y]<t.d)
-                    {
-                        t.d=tabDist[x][y];
-                        t.x=x;
-                        t.y=y;
-                    }
-                }
-            }
-            if(t.d<0){return;}
-        }*/
-        
-        /*Quad[] signes = Slatch.moteur.signes;
-        
-        for(int i=1; 1>0; i++)
-        {
-           for(int j=0; j<=i; j++)
-           {
-               for(Quad q: signes)
-               {
-                   int x = q.a*i+q.b*j+cible.getX();
-                   int y = q.a*i+q.b*j+cible.getY();
-                   if(Slatch.moteur.dansLesBords(x,y))
-                   {
-                        if(t.d<0 || tabDist[x][y]<t.d)
-                        {
-                            t.d=tabDist[x][y];
-                            t.x=x;
-                            t.y=y;
-                        }
-                   }   
-               }
-           }
-           if(t.d>0){break;}
-        }*/
         StrategieIA.spreadInfluence(u,StrategieIA.iMap, false);
         Slatch.moteur.deplacement(u, t.x,t.y);
         StrategieIA.spreadInfluence(u,StrategieIA.iMap, true);
@@ -61,11 +18,10 @@ public class UniteIA
     static private void attaquerUnite(final Entite pUnite,final Entite pCible){
         Unite u = (Unite)pUnite;
         Unite cible = (Unite)pCible;
-        if(!Slatch.moteur.estAPortee(u, cible)){seDirigerVers(u, cible); /*System.out.println("Approche tactique");*/}
+        if(!Slatch.moteur.estAPortee(u, cible)){seDirigerVers(u, cible);}
         if(Slatch.moteur.estAPortee(u, cible) && ((u.getAttaque().aTypePortee.getPorteeMin()==1 && Slatch.moteur.distance(u, cible)==1) || !u.dejaDeplacee())){
             Slatch.moteur.setuniteA(u);
             Slatch.moteur.attaque(cible);
-            //System.out.println("C'est bon on attaque, on est des fous, on en peut plus!");
             if(u.getPV()<=0)
             {
                 StrategieIA.spreadInfluence(u, StrategieIA.iMap, false);
@@ -97,10 +53,12 @@ public class UniteIA
     {
         Unite e = (Unite)executant;
         Unite c = (Unite)cible;
+        //System.out.println("Je rentre dans le soin!");
         if(!Slatch.moteur.estAuCac(e,c))
         {seDirigerVers(e, c);}
         if(Slatch.moteur.estAuCac(e,c))
         {
+            //System.out.println("Soin intensif!");
             Slatch.moteur.setuniteA(e);
             Slatch.moteur.soin(c);
         }

@@ -52,12 +52,12 @@ public class OperationIA
             {
                 if(unite.getType()==TypeUnite.INGENIEUR && u.aBesoinDeSoins())
                 {
-                    System.out.println(unite+" en ("+ unite.getX()+","+unite.getY()+") va soigner "+u+" en ("+cible.getX()+","+cible.getY()+")");
+                    //System.out.println(unite+" en ("+ unite.getX()+","+unite.getY()+") va soigner "+u+" en ("+cible.getX()+","+cible.getY()+")");
                     UniteIA.decrypterObjectif(new Objectif(unite, u, TypeObjectif.SOIGNER));
                 }
                 else
                 {
-                    System.out.println(unite+" en ("+ unite.getX()+","+unite.getY()+") va vers "+u+" en ("+cible.getX()+","+cible.getY()+")");
+                    //System.out.println(unite+" en ("+ unite.getX()+","+unite.getY()+") va vers "+u+" en ("+cible.getX()+","+cible.getY()+")");
                     UniteIA.decrypterObjectif(new Objectif(unite, cible, TypeObjectif.ALLER));
                 }
             }
@@ -164,6 +164,9 @@ public class OperationIA
         return x/y;
     }
     
+    /**
+     * Trouve la bonne case
+     */
     static Entite trouverBonneCase(Unite unite, Influence pond)
     {
         int memi =-1, memj =-1;
@@ -280,15 +283,15 @@ public class OperationIA
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.COMMANDO), TypeObjectif.ACHETER));
                     nombreCommando=nombreCommando+1;
                 }
-                else if(joueurActuel.getArgent()>=700)
-                 {                 
-                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.WHILE), TypeObjectif.ACHETER));                    
-                    nombreWhile=nombreWhile+1;
-                 }
-                else if(joueurActuel.getArgent()>=450 && nombreUml <2)         
+                else if(joueurActuel.getArgent()>=450 && nombreUml <3)         
                 {
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.UML), TypeObjectif.ACHETER));
                     nombreUml=nombreUml+1;
+                }
+                else if(joueurActuel.getArgent()>=700)
+                {                 
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.WHILE), TypeObjectif.ACHETER));                    
+                    nombreWhile=nombreWhile+1;
                 }
                 else if(joueurActuel.getArgent()>=350 && nombreDistance <1)         
                 {
