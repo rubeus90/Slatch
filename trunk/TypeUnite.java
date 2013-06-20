@@ -4,7 +4,7 @@
 public enum TypeUnite
 {
     COMMANDO("Commando", "Capable de capturer un batiment","commando",100,30,40,"fusil",TypeDeplacement.PIED,1.3, "Terrestre",40, true, false),
-    DEMOLISSEUR("Demolisseur", "Capable capturer un batiment de faire des degats aux tanks","demolisseur",200,20,40,"mortier",TypeDeplacement.PIED,1.2,"Terrestre",30,true, false), 
+    DEMOLISSEUR("Demolisseur", "Capable capturer un batiment de faire des degats aux tanks","demolisseur",200,20,30,"mortier",TypeDeplacement.PIED,1.2,"Terrestre",40,true, false), 
     CHAR("Char","un char","char",300,40,60,"canon",TypeDeplacement.CHENILLES,1.3,"Terrestre",60, false, false),
     WHILE("While","Unite tres puissante","tank",700,65,40,"groscanon",TypeDeplacement.CHENILLES,1.2, "Terrestre",120, false, false),
     INGENIEUR("Ingenieur","Capable de soigner des unites et de les faire evoluer","special",100,15,40,"soin",TypeDeplacement.PIED,2.0, "Terrestre",20, true, true),
