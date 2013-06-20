@@ -278,8 +278,6 @@ public class GestionnaireAnimation implements ActionListener
          */
         Point vDepart = ((AnimationDeplacement)animation.get(numeroUnite)).getDepart();
         double vitesse = ((AnimationDeplacement)animation.get(numeroUnite)).getVitesse();
-        int vPasDepl = 8;
-        int vThread = 5;
         int pPosHautGaucheX = unite.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
         int pPosHautGaucheY = unite.getCoordonneeY()*Slatch.ihm.getPanel().getaHauteurCarreau();
         int pPosBasDroiteX = (unite.getCoordonneeX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();

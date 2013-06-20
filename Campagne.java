@@ -49,10 +49,6 @@ public class Campagne implements MouseListener {
 			vFaction[3] = Faction.HUMAINS;
 		}
 
-		if (aNiveau == 8) {
-			vTourMax = 20;
-		}
-
 		if (aNiveau == 11) {
 			vFaction[1] = Faction.ROBOTS;
 		}
