@@ -368,7 +368,7 @@ public class PanelMenu extends JPanel
             //Clic Bouton Charger une Campagne
             if(pY>33+ this.getHeight()/2 && pY<33+ this.getHeight()/2+aHauteurBouton && pX>this.getWidth()/2-3*aHauteurBouton && pX< this.getWidth()/2+ 3*aHauteurBouton)
             {
-            	Slatch.campagne = new Campagne();
+            	Slatch.campagne = new Campagne(Slatch.ihm.aListeMission);
             	Slatch.campagne.chargerCampagne(Slatch.ihm.aNiveau);
             }
             
@@ -675,7 +675,7 @@ public class PanelMenu extends JPanel
             	}
             	//Bouton Non
             	else if(pX>this.getWidth()/2-2*aHauteurBouton && pY>33+ 3*this.getHeight()/8 && pX<this.getWidth()/2-2*aHauteurBouton+7/2*aHauteurBouton && pY<33+ 3*this.getHeight()/8+aHauteurBouton){
-            		Slatch.campagne = new Campagne();
+            		Slatch.campagne = new Campagne(Slatch.ihm.aListeMission);
                   Slatch.campagne.createDialogue();
             	}
             }
