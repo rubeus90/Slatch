@@ -138,7 +138,10 @@ public class Campagne implements MouseListener {
 	public void sauvegardeCampagne() {
 		String home = System.getProperty("user.home");
 		String path = home + "/.slatch/config/sauvegardeCampagne.txt";
-		Slatch.ihm.aNiveau = this.aNiveau;
+		if(aNiveau != listeNomPartie.size())
+			Slatch.ihm.aNiveau = this.aNiveau;
+		else
+			Slatch.ihm.aNiveau = 0;
 
 		String niveauDebloque = null;
 
@@ -190,6 +193,7 @@ public class Campagne implements MouseListener {
 		if (e.getX() >= panel.getWidth() * 9 / 10
 				&& e.getY() <= panel.getHeight() * 9 / 10) {
 			finirCampagne();
+			sauvegardeCampagne();
 		} else {
 			if (aNiveau < listeNomPartie.size()) {
 				panel.etapeDialogue();
