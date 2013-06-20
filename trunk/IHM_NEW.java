@@ -28,7 +28,7 @@ public class IHM_NEW  {
     static Timer timer;
     private PanelDialogueCampagne panelDialogueCampagne;
     public List<Map> aListeMap;
-    
+    public List<Map> aListeMission;
     public int aNiveau;
     
     /**
@@ -40,7 +40,8 @@ public class IHM_NEW  {
         // Creation du timer pour les animations
         timer = new Timer(25, animation);
         //timer.start();
-
+        
+        aListeMission=new ArrayList<Map>();
         // Creation de la fenetre : frame
         aListeMap=new ArrayList<Map>();
         for( Map carte : Map.values() )
@@ -167,7 +168,7 @@ public class IHM_NEW  {
 //            tutoriel.setVisible(false);
 //        }    
 //        if(dialogue != null){
-//        	panel.remove(dialogue);
+//          panel.remove(dialogue);
 //            dialogue.setVisible(false);
 //        }
         

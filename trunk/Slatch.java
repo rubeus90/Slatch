@@ -47,26 +47,12 @@ public class Slatch {
         loadImage();
         initialiseMoiLeTableauDInfluence(); 
         ihm = new IHM_NEW();
-        creationSauvegarde();
+        InitListeCampagne();
+        //creationSauvegarde();
         chargement();
     }
     
-    private void creationSauvegarde()
-    {
-        String home = System.getProperty("user.home");
-        String path = home + "/.slatch/config/sauvegardeCampagne.txt";
-        File file = new File(home + "/.slatch/config/");
-        if (!file.exists())
-            file.mkdirs();
-            
-        PrintWriter out;
-            try {
-            out = new PrintWriter(new FileWriter(path));
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    
     
     private void chargement()
     {
@@ -88,9 +74,29 @@ public class Slatch {
         }    
         //System.out.println(niveau+" "+niveauSauvegarde);
         Slatch.ihm.aNiveau=niveau;
-        /*for(int i=0;i<niveau;i++)
-        listeNomPartie.get(i).setVerrouille(false);*/
+        for(int i=0;i<niveau-1;i++)
+         Slatch.ihm.aListeMission.get(i).setVerrouille(false);
         
+    }
+    
+    private void InitListeCampagne()
+    {
+        Slatch.ihm.aListeMission.add(Map.NIVEAU1);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU2);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU3);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU4);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU5);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU6);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU7);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU8);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU9);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU10);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU11);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU12);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU13);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU14);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU15);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU16);
     }
     
     private void loadImage()

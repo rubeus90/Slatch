@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -17,32 +17,13 @@ import javax.swing.JFrame;
  * 
  */
 public class Campagne implements MouseListener {
-    private ArrayList<Map> listeNomPartie;
+    private List<Map> listeNomPartie;
     private int aNiveau;
     private PanelDialogueCampagne panel;
 
-    public Campagne() {
+    public Campagne(final List<Map> pListe ) {
         aNiveau = 0;
-        listeNomPartie = new ArrayList<Map>();
-
-        listeNomPartie.add(Map.NIVEAU1);
-        listeNomPartie.add(Map.NIVEAU2);
-        listeNomPartie.add(Map.NIVEAU3);
-        listeNomPartie.add(Map.NIVEAU4);
-        listeNomPartie.add(Map.NIVEAU5);
-        listeNomPartie.add(Map.NIVEAU6);
-        listeNomPartie.add(Map.NIVEAU7);
-        listeNomPartie.add(Map.NIVEAU8);
-        listeNomPartie.add(Map.NIVEAU9);
-        listeNomPartie.add(Map.NIVEAU10);
-        listeNomPartie.add(Map.NIVEAU11);
-        listeNomPartie.add(Map.NIVEAU12);
-        listeNomPartie.add(Map.NIVEAU13);
-        listeNomPartie.add(Map.NIVEAU14);
-        listeNomPartie.add(Map.NIVEAU15);
-        listeNomPartie.add(Map.NIVEAU16);
-        
-            
+        listeNomPartie = pListe;
         
     }
 
