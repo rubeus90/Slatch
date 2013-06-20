@@ -436,14 +436,23 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutoncampagne.png"));
                 aImages.put("boutoncampagne",image);
                 
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutoncampagneon.png"));
+                aImages.put("boutoncampagneon",image);
+                
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/slatch.png"));
                 aImages.put("slatch",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonrapide.png"));
                 aImages.put("boutonrapide",image);
                 
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonrapideon.png"));
+                aImages.put("boutonrapideon",image);
+                
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutontutoriel.png"));
                 aImages.put("boutontutoriel",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutontutorielon.png"));
+                aImages.put("boutontutorielon",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutondeplacement.png"));
                 aImages.put("boutondeplacement",image);
@@ -496,8 +505,14 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonmapcreator.png"));
                 aImages.put("boutonmapcreator",image);
                 
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonmapcreatoron.png"));
+                aImages.put("boutonmapcreatoron",image);
+                
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutoncredits.png"));
                 aImages.put("boutoncredits",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutoncreditson.png"));
+                aImages.put("boutoncreditson",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonok.png"));
                 aImages.put("boutonok",image);
