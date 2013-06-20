@@ -418,6 +418,7 @@ public class Unite extends Entite
     public void setLvlup(final boolean X) {lvlup=X;}
     public void setNumeroExplosion( final int X) {numeroExplosion = X;}
     public void setNumeroFleche( final int X) {numeroFleche = X;}
+    public int getExpMax() {return aExperienceMax;}
     //public int getPVaffiche() { return pVaffiche;}
     
     public boolean peutCapturer()

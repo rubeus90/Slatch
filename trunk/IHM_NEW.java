@@ -29,6 +29,8 @@ public class IHM_NEW  {
     private PanelDialogueCampagne panelDialogueCampagne;
     public List<Map> aListeMap;
     
+    public int aNiveau;
+    
     /**
      * Constructeur qui instancie JFrame du Menu.
      */
@@ -93,6 +95,8 @@ public class IHM_NEW  {
         return panelInfo;
     }
     
+    public void setNiveau ( final int lvl){aNiveau=lvl;}
+    
     /**
      * Accesseur du Paneau du Menu.
      */
@@ -138,8 +142,9 @@ public class IHM_NEW  {
         panelMenu.setVisible(false);
         panelMatrice.setVisible(true);
         panelInfo.setVisible(true);
-        panel.repaint();
+        
         panelMatrice.repaint();
+        panel.repaint();
         frame.pack();        
     }
     

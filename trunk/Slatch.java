@@ -1,8 +1,9 @@
 import java.util.HashMap;
 import javax.imageio.ImageIO;
-
+import java.util.Scanner;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.io.FileNotFoundException;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -41,6 +42,28 @@ public class Slatch {
         loadImage();
         initialiseMoiLeTableauDInfluence(); 
         ihm = new IHM_NEW();
+        chargement();
+    }
+    
+    private void chargement()
+    {
+        String home = System.getProperty("user.home");
+        int niveau=0;
+        String niveauSauvegarde="";
+        Scanner vScannerMap=null;
+        try {
+            vScannerMap = new Scanner(new File(home
+                    + "/.slatch/config/sauvegardeCampagne.txt"));
+            niveauSauvegarde = vScannerMap.nextLine(); // 1er ligne
+            niveau = Integer.parseInt(niveauSauvegarde);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }    
+        //System.out.println(niveau+" "+niveauSauvegarde);
+        Slatch.ihm.aNiveau=niveau;
+        /*for(int i=0;i<niveau;i++)
+        listeNomPartie.get(i).setVerrouille(false);*/
+        vScannerMap.close();
     }
     
     private void loadImage()

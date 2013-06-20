@@ -369,7 +369,7 @@ public class PanelMenu extends JPanel
             if(pY>33+ this.getHeight()/2 && pY<33+ this.getHeight()/2+aHauteurBouton && pX>this.getWidth()/2-3*aHauteurBouton && pX< this.getWidth()/2+ 3*aHauteurBouton)
             {
             	Slatch.campagne = new Campagne();
-            	Slatch.campagne.chargerCampagne();
+            	Slatch.campagne.chargerCampagne(Slatch.ihm.aNiveau);
             }
             
         }

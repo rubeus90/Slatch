@@ -218,7 +218,7 @@ public class PanelMatrice extends JPanel
             if(t.getUnite()!=null && !t.getBrouillard())
             {
                 String portedep = "Portée : Depl "+t.getUnite().getDeplacement()/10;
-                String xp = "XP = "+t.getUnite().getExperience()+"   PV = "+t.getUnite().getPV()+"/"+t.getUnite().getPVMax();
+                String xp = "XP = "+t.getUnite().getExperience()+"/"+t.getUnite().getExpMax()+"   PV = "+t.getUnite().getPV()+"/"+t.getUnite().getPVMax();
                 String lvl = "LVL = ";
                 String porteeAttaque=", Att["+t.getUnite().getAttaque().getTypePortee().getPorteeMin()+","+t.getUnite().getAttaque().getTypePortee().getPorteeMax()+"]";
                 String couverture = "Couv = "+ t.getType().getCouverture();
@@ -277,7 +277,7 @@ public class PanelMatrice extends JPanel
             afficheImageRedim ("noir80", aShopHautGauche_Xpx, aShopHautGauche_Ypx, aShopBasDroite_Xpx, aShopBasDroite_Ypx, g);
 
             // Police
-            Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
+            Font font = new Font("Serif", Font.BOLD, this.getWidth()/85);
             g.setFont(font);
             FontMetrics fm=getFontMetrics(font);  
 
@@ -286,15 +286,27 @@ public class PanelMatrice extends JPanel
             int i=0;
             for(TypeUnite vType : aListeShop) {
                 i++;
+                TypeAttaque t=null;
+                        for(TypeAttaque type : TypeAttaque.values())
+                        {
+                            if(type.getNom().equals(vType.getAttaque()))
+                            {
+                                t=type;
+                                break;
+                            }
+                        }
+                if(t==null)
+                System.out.println( vType.getNom());
+                        
                 if(aArgentMem<vType.getPrix()) {
                     // Ecrie les boutons en gris
                     g.setColor(Color.gray);
-                    g.drawString(vType.getNom()+":  Prix:"+vType.getPrix()+"¤  PV:"+vType.getPVMax()+"  Depl:"+vType.getDeplacement()/10+"  Attaque:"+vType.getAttaque(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
+                    g.drawString(vType.getNom()+":  Prix:"+vType.getPrix()+"¤  PV:"+vType.getPVMax()+"  Depl:"+vType.getDeplacement()/10+" Portee Min:"+t.getTypePortee().getPorteeMin()+" Max:"+t.getTypePortee().getPorteeMax()+" Degat: "+t.getDegats(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
                 }
                 else {
                     // Ecrie les boutons en vert
                     g.setColor(Color.green);
-                    g.drawString(vType.getNom()+":  Prix"+vType.getPrix()+"¤  PV:"+vType.getPVMax()+"  Depl:"+vType.getDeplacement()/10+"  Attaque:"+vType.getAttaque(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
+                    g.drawString(vType.getNom()+":  Prix"+vType.getPrix()+"¤  PV:"+vType.getPVMax()+"  Depl:"+vType.getDeplacement()/10+"  Portee Min:"+t.getTypePortee().getPorteeMin()+" Max:"+t.getTypePortee().getPorteeMax()+" Degat: "+t.getDegats(), aShopHautGauche_Xpx+aLargeurCarreau/3, aShopHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*i);
                     aTabAchat.put(i,vType);
                 }
             }
