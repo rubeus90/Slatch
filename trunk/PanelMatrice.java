@@ -312,8 +312,6 @@ public class PanelMatrice extends JPanel
             g.setFont(font);
             FontMetrics fm=getFontMetrics(font);  
         
-            String charger = "Charger";
-            int chargerSize = fm.stringWidth(charger);
             String sauver = "Sauvegarder";
             int sauverSize = fm.stringWidth(sauver);
             
@@ -322,9 +320,8 @@ public class PanelMatrice extends JPanel
             
             afficheImageRedim ("noir", aMenuHautGauche_Xpx, aMenuHautGauche_Ypx, aMenuBasDroite_Xpx, aMenuBasDroite_Ypx, g);
             g.setColor(Color.white);
-            g.drawString(charger, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-chargerSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
-            g.drawString(sauver, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-sauverSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
-            g.drawString(MenuPrincipal, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-MenuPrincipalSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*2);
+            g.drawString(sauver, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-sauverSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
+            g.drawString(MenuPrincipal, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-MenuPrincipalSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
             
             g.setColor(Color.gray);
             g.drawLine(aMenuHautGauche_Xpx, 0, aMenuBasDroite_Xpx-1, 0);
@@ -377,15 +374,12 @@ public class PanelMatrice extends JPanel
                         
                         // Si le menu est la...
                         if(menuMenu) {
-                            // Bouton charger
-                            if (0<clickY && clickY<aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
-                                //Slatch.partie.chargerPartie("sauvegarde");
-                            }
                             // Bouton sauver
-                            else if(aHauteurCarreau<clickY && clickY<2*aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
+                            if (0<clickY && clickY<aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
                                 Slatch.partie.sauvegardePartie("Maps/sauvegarde.txt");
                             }
-                            else if(2*aHauteurCarreau<clickY && clickY<3*aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
+                            // Bouton menu principal
+                            else if(aHauteurCarreau<clickY && clickY<2*aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
                                 Slatch.ihm.passageModeMenuPrincipal();
                             }
                             else {
