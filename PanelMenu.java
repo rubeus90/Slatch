@@ -147,18 +147,13 @@ public class PanelMenu extends JPanel
             aHauteurBouton = this.getHeight()/10;  
             int vHauteurTitre = this.getHeight()/8;
             
-            Image rapide = Slatch.aImages.get("boutonrapide");
-            Image tutoriel = Slatch.aImages.get("boutontutoriel");
-            Image mapcreator = Slatch.aImages.get("boutonmapcreator");
-            Image credits = Slatch.aImages.get("boutoncredits");
-            
             g.drawImage(trait, 0, 0, this.getWidth(), this.getHeight(), this);
             g.drawImage(Slatch.aImages.get("slatch"), this.getWidth()/2-2*vHauteurTitre, this.getHeight()/15, 4*vHauteurTitre,vHauteurTitre, this);
-            g.drawImage(Slatch.aImages.get("boutoncampagne"), this.getWidth()/2-2*aHauteurBouton, 33+ this.getHeight()/4, 4*aHauteurBouton,aHauteurBouton, this);
-            g.drawImage(rapide, this.getWidth()/2-2*aHauteurBouton, 33+ 3*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
-            g.drawImage(tutoriel, this.getWidth()/2-2*aHauteurBouton, 33+ 4*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
-            g.drawImage(mapcreator, this.getWidth()/2-2*aHauteurBouton, 33+ 5*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
-            g.drawImage(credits, this.getWidth()/2-2*aHauteurBouton, 33+ 6*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
+            g.drawImage(Slatch.aImages.get("boutoncampagne"+aImages.get("boutoncampagne")), this.getWidth()/2-2*aHauteurBouton, 33+ this.getHeight()/4, 4*aHauteurBouton,aHauteurBouton, this);
+            g.drawImage(Slatch.aImages.get("boutonrapide"+aImages.get("boutonrapide")), this.getWidth()/2-2*aHauteurBouton, 33+ 3*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
+            g.drawImage(Slatch.aImages.get("boutontutoriel"+aImages.get("boutontutoriel")), this.getWidth()/2-2*aHauteurBouton, 33+ 4*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
+            g.drawImage(Slatch.aImages.get("boutonmapcreator"+aImages.get("boutonmapcreator")), this.getWidth()/2-2*aHauteurBouton, 33+ 5*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
+            g.drawImage(Slatch.aImages.get("boutoncredits"+aImages.get("boutoncredits")), this.getWidth()/2-2*aHauteurBouton, 33+ 6*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
         }
         
         else if(aMenuCampagne)
@@ -708,7 +703,31 @@ public class PanelMenu extends JPanel
         if(aImages.get("choixtutooui")!=""){aImages.put("choixtutooui","");}
         if(aImages.get("choixtutonon")!=""){aImages.put("choixtutonon","");}
         if(aImages.get("boutontabunites")!=""){aImages.put("boutontabunites","");}
-        if(aImages.get("boutonexp")!=""){aImages.put("boutonexp","");}
+        if(aImages.get("boutoncampagne")!=""){aImages.put("boutoncampagne","");}
+        if(aImages.get("boutonrapide")!=""){aImages.put("boutonrapide","");}
+        if(aImages.get("boutontutoriel")!=""){aImages.put("boutontutoriel","");}
+        if(aImages.get("boutonmapcreator")!=""){aImages.put("boutonmapcreator","");}
+        if(aImages.get("boutoncredits")!=""){aImages.put("boutoncredits","");}
+        
+        
+        
+        if(aMenuPrincipal){
+        	if(pX>this.getWidth()/2-2*aHauteurBouton && pY>33+ 2*this.getHeight()/8 && pX<this.getWidth()/2-2*aHauteurBouton+4*aHauteurBouton && pY<33+ 2*this.getHeight()/8+aHauteurBouton){
+        		aImages.put("boutoncampagne","on");
+        	}
+        	if(pX>this.getWidth()/2-2*aHauteurBouton && pY>33+ 3*this.getHeight()/8 && pX<this.getWidth()/2-2*aHauteurBouton+4*aHauteurBouton && pY<33+ 3*this.getHeight()/8+aHauteurBouton){
+        		aImages.put("boutonrapide","on");
+        	}
+        	if(pX>this.getWidth()/2-2*aHauteurBouton && pY>33+ 4*this.getHeight()/8 && pX<this.getWidth()/2-2*aHauteurBouton+4*aHauteurBouton && pY<33+ 4*this.getHeight()/8+aHauteurBouton){
+        		aImages.put("boutontutoriel","on");
+        	}
+        	if(pX>this.getWidth()/2-2*aHauteurBouton && pY>33+ 5*this.getHeight()/8 && pX<this.getWidth()/2-2*aHauteurBouton+4*aHauteurBouton && pY<33+ 5*this.getHeight()/8+aHauteurBouton){
+        		aImages.put("boutonmapcreator","on");
+        	}
+        	if(pX>this.getWidth()/2-2*aHauteurBouton && pY>33+ 6*this.getHeight()/8 && pX<this.getWidth()/2-2*aHauteurBouton+4*aHauteurBouton && pY<33+ 6*this.getHeight()/8+aHauteurBouton){
+        		aImages.put("boutoncredits","on");
+        	}
+        }
         
         if(aMenuCampagne)
         {
@@ -781,8 +800,7 @@ public class PanelMenu extends JPanel
             }
             // Bouton Tableau des Unités
             if(pY>6*this.getHeight()/10 && pY<6*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
-            {
-                
+            {                
                 aImages.put("boutontabunites","on");
             }
         }
