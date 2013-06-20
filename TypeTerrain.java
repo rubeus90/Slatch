@@ -8,13 +8,13 @@ import java.net.URL;
 
 public enum TypeTerrain {
         FORET("foret", "arbres", "Foret", 2,0,false,false),
-        PLAINE("plaine", "plaine", "Plaine", 1,0,false,false),
+        PLAINE("plaine", "plaine", "Plaine", 0,0,false,false),
         MONTAGNE("montagne", "montagne", "Montagne", 3,0,false,false),
         BATIMENT("batiment", "batiment", "Batiment", 2,30,true,false),
         QG("qg","qg","QG",5,40,true,false),
         USINE("usine","caserne","Usine",3,30,true,false),
         
-        DESERT("desert","desert","Desert",1,0,false,true),
+        DESERT("desert","desert","Desert",0,0,false,true),
         CACTUS("cactus","cactus","Cactus",2,0,false,true),
         DUNE("dune","dune","Dune",3,0,false,true),
         
@@ -30,17 +30,17 @@ public enum TypeTerrain {
         RIVEHAUTGAUCHE("rivehautgauche","rivehautgauche","Eau",1,0,false,false),
         
         //Route
-        ROUTEHORIZONTAL("routehorizontal","routehorizontale","Route",1,0,false,false),
-        ROUTEVERTICAL("routevertical","routeverticale","Route",1,0,false,false),
-        VIRAGEDROITEBAS("viragedroitebas","routedroitebas","Virage",1,0,false,false),
-        VIRAGEDROITEHAUT("viragedroitehaut","routedroitehaut","Virage",1,0,false,false),
-        VIRAGEGAUCHEBAS("viragegauchebas","routegauchebas","Virage",1,0,false,false),
-        VIRAGEGAUCHEHAUT("viragegauchehaut","routegauchehaut","Virage",1,0,false,false),
-        ROUTETHAUT("routethaut","routeThaut","Route",1,0,false,false),
-        ROUTETBAS("routetbas","routeTbas","Route",1,0,false,false),
-        ROUTETDROITE("routetdroite","routeTdroite","Route",1,0,false,false),
-        ROUTETGAUCHE("routetgauche","routeTgauche","Route",1,0,false,false),
-        CARREFOUR("carrefour","routecroisement","Croissement",1,0,false,false),
+        ROUTEHORIZONTAL("routehorizontal","routehorizontale","Route",0,0,false,false),
+        ROUTEVERTICAL("routevertical","routeverticale","Route",0,0,false,false),
+        VIRAGEDROITEBAS("viragedroitebas","routedroitebas","Virage",0,0,false,false),
+        VIRAGEDROITEHAUT("viragedroitehaut","routedroitehaut","Virage",0,0,false,false),
+        VIRAGEGAUCHEBAS("viragegauchebas","routegauchebas","Virage",0,0,false,false),
+        VIRAGEGAUCHEHAUT("viragegauchehaut","routegauchehaut","Virage",0,0,false,false),
+        ROUTETHAUT("routethaut","routeThaut","Route",0,0,false,false),
+        ROUTETBAS("routetbas","routeTbas","Route",0,0,false,false),
+        ROUTETDROITE("routetdroite","routeTdroite","Route",0,0,false,false),
+        ROUTETGAUCHE("routetgauche","routeTgauche","Route",0,0,false,false),
+        CARREFOUR("carrefour","routecroisement","Croissement",0,0,false,false),
         
         PONTHORIZONTAL("ponthorizontal","ponthorizontal","Pont",1,0,false,false),
         PONTVERTICAL("pontvertical","pontvertical","Pont",1,0,false,false);
