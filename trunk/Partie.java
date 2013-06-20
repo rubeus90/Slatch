@@ -49,6 +49,11 @@ public class Partie
         aTour = 1;
         aRevenuBatiment = pRevenuBatiment; 
         activationAnimation=activation;
+        
+        //A SUPPRIMER DANS UN FUTUR PROCHE ET LOINTAIN
+        aLongueur = aMap.getLongueur();
+        aLargeur = aMap.getLargeur();
+        
         initMap(pMap,pTabFaction,pTabEquipe,pTabIA);
         
         ListeJoueur.get(1).benefTour(aRevenuBatiment); 
@@ -70,6 +75,10 @@ public class Partie
         aJoueurActuel= 1;
         aTourMax = pTourMax;
         aTour = 1;
+        
+        //A SUPPRIMER DANS UN FUTUR PROCHE ET LOINTAIN
+        aLongueur = aMap.getLongueur();
+        aLargeur = aMap.getLargeur();
 
         initMap(pMap,pTabFaction,pTabEquipe,vIA); 
         
@@ -88,11 +97,7 @@ public class Partie
      * CHARGEMENT D'UNE NOUVELLE MAP
      * 
      */
-    private void initMap(final Map pMap,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA){
-        //A SUPPRIMER DANS UN FUTUR PROCHE ET LOINTAIN
-        aLongueur = aMap.getLongueur();
-        aLargeur = aMap.getLargeur();
-        
+    private void initMap(final Map pMap,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA){   
         // OUVERTURE DE LA MAP
         String sMap = "Maps/"+pMap.getFichier()+".txt";
       
