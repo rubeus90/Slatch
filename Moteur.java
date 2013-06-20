@@ -661,7 +661,6 @@ class Moteur
         if(vBatiment.getPV()<=0)
         {
            if(vBatiment.getType()!=TypeTerrain.QG){
-               System.out.print("Et non je rentre ici");
                if(vBatiment.getType()==TypeTerrain.USINE)
                {
                         getJoueur(vBatiment).getListeUsine().remove(vBatiment);
@@ -679,7 +678,6 @@ class Moteur
                getJoueur(uniteA).addCaptureTotal();
            }
            else{
-               System.out.println("Je rentre ici");
                getJoueur(vBatiment).mourrir();
                Slatch.partie.gagner(getJoueur(vBatiment.getX(),vBatiment.getY())); // On donne a gagner le joueur qui vient de capturer et pas celui qui vient de perdre le QG
                Slatch.partie.getTerrain()[pX][pY] = new Terrain(pX, pY, uniteA.getJoueur(), TypeTerrain.BATIMENT);
