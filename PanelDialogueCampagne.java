@@ -121,35 +121,28 @@ public class PanelDialogueCampagne extends JPanel {
             etape = 1;
         }
         
-        String personnes[] = null;
-        
         if (scanner.hasNextLine()) 
         {
             dialogueFinished = false;
             String texte = scanner.nextLine();
-            if(texte.contains(":")){
-            tab = texte.split(":");
-            personnes = tab[0].split(";");
-            interlocuteur1 = personnes[0];
-            interlocuteur2 = personnes[1];
-            
-            dialogue = interlocuteur1 + " : ";
-            dialogue += tab[1];
-            afficheText();
-        }
-        else
-        {
-            background = texte;
-            String texte2 = scanner.nextLine();
-            tab = texte2.split(":");
-            personnes = tab[0].split(";");
-            interlocuteur1 = personnes[0];
-            interlocuteur2 = personnes[1];
-            
-            dialogue = interlocuteur1 + " : ";
-            dialogue += tab[1];
-            afficheText();
-        }
+            if(texte.contains(";")){
+            	tab = texte.split(";");
+            	interlocuteur1 = tab[0];
+            	interlocuteur2 = tab[1];            
+            	dialogue = tab[2];
+            	afficheText();
+            }
+            else
+            {
+            	background = texte;
+            	String texte2 = scanner.nextLine();
+            	tab = texte2.split(";");
+            	interlocuteur1 = tab[0];
+            	interlocuteur2 = tab[1];            
+            	dialogue = tab[2];
+            	dialogue += tab[1];
+            	afficheText();
+            }
         } else
             dialogueFinished = true;
     }
