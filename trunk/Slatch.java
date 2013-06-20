@@ -48,11 +48,27 @@ public class Slatch {
         initialiseMoiLeTableauDInfluence(); 
         ihm = new IHM_NEW();
         InitListeCampagne();
-        //creationSauvegarde();
+        creationSauvegarde();
         chargement();
     }
     
-    
+    public void creationSauvegarde()
+    {
+        String home = System.getProperty("user.home");
+        File file=new File(home
+                    + "/.slatch/config/sauvegardeCampagne.txt");
+        if(!file.exists())
+        
+        {
+           
+         try
+         {
+             file.createNewFile();
+         }
+         catch(Exception e)
+         {System.out.println("Echec création fichier sauvegarde");}      
+        }
+    }
     
     private void chargement()
     {

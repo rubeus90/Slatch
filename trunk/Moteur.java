@@ -1143,6 +1143,7 @@ class Moteur
                 if(Slatch.partie.getTerrain()[u.getX()][u.getY()].estUnBatimentAuJoueur(u.getJoueur()))
                 {
                     u.soigner(8);
+                    u.setPVaffiche(u.getPV());
                 }
             }
             
