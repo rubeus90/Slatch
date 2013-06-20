@@ -105,7 +105,7 @@ public class Campagne implements MouseListener {
 		if (Slatch.partie.getJoueurGagnant().getNumJoueur() == 1) {
 			if (aNiveau < listeNomPartie.size() - 1) {
 				aNiveau++;
-				listeNomPartie.get(aNiveau).setVerrouille(false);
+				listeNomPartie.get(aNiveau-1).setVerrouille(false);
 				createDialogue();
 			} else { // ecran fin de campagne
 				finirCampagne();
