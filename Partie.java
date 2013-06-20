@@ -631,6 +631,7 @@ public class Partie
            }
        }
        aJoueurGagnant = pJoueur;
+       
        partieFinie=true;
         
     }

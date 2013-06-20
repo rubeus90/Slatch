@@ -35,6 +35,8 @@ public class StrategieIA
     {
         Terrain[][] mapTerrain = Slatch.partie.getTerrain();
         Equipe fail = Slatch.moteur.getJoueurActuel().getEquipe();
+        System.out.println(Slatch.partie.getLargeur() +" ? "+ Slatch.partie.getMap().getLongueur());
+        System.out.println(Slatch.partie.getHauteur() +" ? "+ Slatch.partie.getMap().getLargeur());
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
         {
             for(int j=0; j<Slatch.partie.getHauteur(); j++)

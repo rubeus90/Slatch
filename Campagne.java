@@ -22,7 +22,7 @@ public class Campagne implements MouseListener {
     private PanelDialogueCampagne panel;
 
     public Campagne(final List<Map> pListe ) {
-        aNiveau = 4;
+        aNiveau = 6;
         listeNomPartie = pListe;        
     }
 
@@ -82,7 +82,7 @@ public class Campagne implements MouseListener {
 	}
 
 	public void suite() {
-		if (Slatch.partie.getJoueurGagnant().getNumJoueur() == 1) {
+		if (Slatch.partie.getJoueurGagnant().getNumJoueur() == 1 || aNiveau == 5) {
 			if (aNiveau < listeNomPartie.size() - 1) {
 				aNiveau++;
 				listeNomPartie.get(aNiveau).setVerrouille(false);
