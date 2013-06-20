@@ -177,6 +177,8 @@ public class PanelMenu extends JPanel
         else if(aMenuCredits)
         {      
             g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
+            g.drawImage(Slatch.aImages.get("credits"), 0, 0, this.getWidth(), this.getHeight(), this);
+            g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
         }
         
         else if(aMenuTuto)

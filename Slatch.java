@@ -561,6 +561,9 @@ public class Slatch {
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/ChoixTutoNonOn.png"));
                 aImages.put("choixtutononon",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/credits.png"));
+                aImages.put("credits",image);
         }
         catch (IOException e) {
             e.printStackTrace();
