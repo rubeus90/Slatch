@@ -113,25 +113,28 @@ public class PanelStatistique extends JPanel implements MouseListener{
         Font font = Slatch.fonts.get("BlackOps").deriveFont(Font.PLAIN, this.getWidth()/20);
         FontMetrics fm = getFontMetrics(font);
         gagnant.setFont(font);
-		String string = "";
-		
-		ArrayList<Joueur> equipe = Slatch.partie.getJoueurGagnant().getEquipe().getListeJoueur();
-		
-		for(Joueur joueur : equipe){
-			string += "Le joueur " + joueur.getNumJoueur() + " a gagné" + "\n";
-		}
-		string +="en " + Slatch.partie.getTour() +" jours";
-		gagnant.setText(string);
-		
-		gagnant.setMargin(new Insets(0,this.getWidth()/2 - 19*fm.stringWidth(" "),0,0));
-	}
+        String string = "";
+        
+        ArrayList<Joueur> equipe = Slatch.partie.getJoueurGagnant().getEquipe().getListeJoueur();
+        
+        for(Joueur joueur : equipe){
+            string += "Le joueur " + joueur.getNumJoueur() + " a gagné" + "\n";
+        }
+        string +="en " + Slatch.partie.getTour() +" jours";
+        gagnant.setText(string);
+        
+        gagnant.setMargin(new Insets(0,this.getWidth()/2 - 19*fm.stringWidth(" "),0,0));
+    }
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// Si la partie est finie
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        // Si la partie est finie
         if(Slatch.partie.partieFinie && Slatch.partie.isCampagne()) {
             Slatch.campagne.suite();
-	    }
+        }
+        else if(Slatch.partie.partieFinie){
+           Slatch.ihm.passageModeMenuPrincipal();
+        }
     }    
 
     @Override
