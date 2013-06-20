@@ -86,7 +86,7 @@ public class Joueur
     public int getDeplacementTotal() {return aDeplacementTotal;}
     public int getCaptureTotal() {return aCaptureTotal;}
     public Equipe getEquipe() {return aEquipe;}
-    public int getScore(){ return 2*(int)aDegatTotal+2*aArgentTotal+aArgentDepense+2*aNbrUniteCree+(int)aDegatSubit+2*aNbrUniteTue+aExpTotal+aSoinTotal+aCaptureTotal;}
+    public int getScore(){ return 3*(int)aDegatTotal+2*aArgentTotal+2*aArgentDepense+aNbrUniteCree+(int)aDegatSubit+3*aNbrUniteTue+aExpTotal+aSoinTotal+2*aCaptureTotal;}
     public List<Unite> getListeUnite()   {return aListeUnite;}
     public List<Terrain> getListeUsine()   {return aListeUsine;}
     public List<Terrain> getListeBatiment()   {return aListeBatiment;}
