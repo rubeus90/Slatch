@@ -141,6 +141,14 @@ public class Joueur
             Slatch.partie.getTerrain()[vUnite.getCoordonneeX()][vUnite.getCoordonneeY()].setUnite(null);
         }
         
+        for(Terrain vBatiment : aListeBatiment){
+            vBatiment.setJoueur(0);
+        }
+        
+        for(Terrain vUsine : aListeUsine){
+            vUsine.setJoueur(0);
+        }
+        
         aListeBatiment.clear();
         aListeUsine.clear();
         aListeUnite.clear();

@@ -660,27 +660,34 @@ class Moteur
         
         if(vBatiment.getPV()<=0)
         {
-           if(vBatiment.getType()==TypeTerrain.USINE)
-           {
-                    getJoueur(vBatiment).getListeUsine().remove(vBatiment);
-                    getJoueur(uniteA).getListeUsine().add(vBatiment);
-           } 
-           if(vBatiment.getType()==TypeTerrain.BATIMENT)
-           {
-                    getJoueur(vBatiment).getListeBatiment().remove(vBatiment);
-                    getJoueur(uniteA).getListeBatiment().add(vBatiment);
+           if(vBatiment.getType()!=TypeTerrain.QG){
+               System.out.print("Et non je rentre ici");
+               if(vBatiment.getType()==TypeTerrain.USINE)
+               {
+                        getJoueur(vBatiment).getListeUsine().remove(vBatiment);
+                        getJoueur(uniteA).getListeUsine().add(vBatiment);
+               } 
+               else if(vBatiment.getType()==TypeTerrain.BATIMENT)
+               {
+                        getJoueur(vBatiment).getListeBatiment().remove(vBatiment);
+                        getJoueur(uniteA).getListeBatiment().add(vBatiment);
+               }
+               getJoueur(vBatiment).addNbreBatiment(-1);
+               vBatiment.setJoueur(uniteA.getJoueur());
+               vBatiment.setPV(vBatiment.getType().getPVMax());
+               getJoueur(uniteA).addNbreBatiment(1);
+               getJoueur(uniteA).addCaptureTotal();
            }
-           if(vBatiment.getType()==TypeTerrain.QG)
-           {
+           else{
+               System.out.println("Je rentre ici");
                getJoueur(vBatiment).mourrir();
                Slatch.partie.gagner(getJoueur(vBatiment.getX(),vBatiment.getY())); // On donne a gagner le joueur qui vient de capturer et pas celui qui vient de perdre le QG
+               Slatch.partie.getTerrain()[pX][pY] = new Terrain(pX, pY, uniteA.getJoueur(), TypeTerrain.BATIMENT);
+               vBatiment= Slatch.partie.getTerrain()[pX][pY]; // redefinition de la variable pour contenir un batiment et non plus un QG
+               Slatch.partie.getTerrain()[pX][pY].setUnite(uniteA);
+               getJoueur(uniteA).getListeBatiment().add(vBatiment);
+               getJoueur(uniteA).addCaptureTotal();
            }
-           getJoueur(vBatiment).addNbreBatiment(-1);
-           vBatiment.setJoueur(uniteA.getJoueur());
-           vBatiment.setPV(vBatiment.getType().getPVMax());
-           getJoueur(uniteA).addNbreBatiment(1);
-           getJoueur(uniteA).addCaptureTotal();
-           //repaint();
         }
         uniteA.attaque(true);
         uniteA.deplacee(true);
