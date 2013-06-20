@@ -45,6 +45,7 @@ public class PanelDialogueCampagne extends JPanel {
             e.printStackTrace();
         }
         etape = 0;
+        background ="campementnuitplaine";
     }
 
     @Override
