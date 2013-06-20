@@ -55,15 +55,16 @@ public class Slatch {
     public void creationSauvegarde()
     {
         String home = System.getProperty("user.home");
-        File file=new File(home
+        File file1=new File(home
+                    + "/.slatch/config/");
+        File file2=new File(home
                     + "/.slatch/config/sauvegardeCampagne.txt");
-        if(!file.exists())
-        
-        {
-           
+        if(!file1.exists())
+            file1.mkdirs();
+        if(!file2.exists()) {           
          try
          {
-             file.createNewFile();
+             file2.createNewFile();
          }
          catch(Exception e)
          {System.out.println("Echec création fichier sauvegarde");}      
