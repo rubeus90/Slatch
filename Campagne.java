@@ -126,6 +126,7 @@ public class Campagne implements MouseListener {
 
 	public void conditionVictoire() {
 		if (aNiveau == 2) {
+		    Slatch.partie.setJoueurActuel(1);
 			Slatch.partie.setPartieFini(true);
 		}
 		if (aNiveau == 8) {
