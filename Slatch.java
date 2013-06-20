@@ -9,6 +9,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /** 
  * @author rubeus
@@ -42,7 +47,25 @@ public class Slatch {
         loadImage();
         initialiseMoiLeTableauDInfluence(); 
         ihm = new IHM_NEW();
+        creationSauvegarde();
         chargement();
+    }
+    
+    private void creationSauvegarde()
+    {
+        String home = System.getProperty("user.home");
+        String path = home + "/.slatch/config/sauvegardeCampagne.txt";
+        File file = new File(home + "/.slatch/config/");
+        if (!file.exists())
+            file.mkdirs();
+            
+        PrintWriter out;
+            try {
+            out = new PrintWriter(new FileWriter(path));
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     private void chargement()
@@ -54,8 +77,11 @@ public class Slatch {
         try {
             vScannerMap = new Scanner(new File(home
                     + "/.slatch/config/sauvegardeCampagne.txt"));
-            niveauSauvegarde = vScannerMap.nextLine(); // 1er ligne
-            niveau = Integer.parseInt(niveauSauvegarde);
+            if(vScannerMap.hasNextLine())
+            {
+                niveauSauvegarde = vScannerMap.nextLine(); // 1er ligne
+                niveau = Integer.parseInt(niveauSauvegarde);
+             }
             vScannerMap.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
