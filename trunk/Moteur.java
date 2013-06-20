@@ -587,7 +587,7 @@ class Moteur
                             
                             if(enBordureDeDeplacement(unite, t.x, t.y, d) && getUnite(t.x,t.y)!=null) // et unité présente aussi
                             {
-                                pred[x][y]= null;
+                                pred[t.x][t.y]= null;
                             }
                             else
                             {
