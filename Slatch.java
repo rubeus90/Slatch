@@ -58,7 +58,9 @@ public class Slatch {
     {
         String home = System.getProperty("user.home");
         int niveau=0;
+        int avancement=0;
         String niveauSauvegarde="";
+        String avancementSauvegarde="";
         Scanner vScannerMap=null;
         try {
             vScannerMap = new Scanner(new File(home
@@ -67,6 +69,8 @@ public class Slatch {
             {
                 niveauSauvegarde = vScannerMap.nextLine(); // 1er ligne
                 niveau = Integer.parseInt(niveauSauvegarde);
+                avancementSauvegarde = vScannerMap.nextLine(); // 2eme ligne
+                avancement = Integer.parseInt(avancementSauvegarde);
              }
             vScannerMap.close();
         } catch (FileNotFoundException e) {
@@ -74,7 +78,7 @@ public class Slatch {
         }    
         //System.out.println(niveau+" "+niveauSauvegarde);
         Slatch.ihm.aNiveau=niveau;
-        for(int i=0;i<niveau-1;i++)
+        for(int i=0;i<avancement-1;i++)
          Slatch.ihm.aListeMission.get(i).setVerrouille(false);
         
     }
