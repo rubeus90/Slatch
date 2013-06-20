@@ -56,6 +56,7 @@ public class Slatch {
                     + "/.slatch/config/sauvegardeCampagne.txt"));
             niveauSauvegarde = vScannerMap.nextLine(); // 1er ligne
             niveau = Integer.parseInt(niveauSauvegarde);
+            vScannerMap.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }    
@@ -63,7 +64,7 @@ public class Slatch {
         Slatch.ihm.aNiveau=niveau;
         /*for(int i=0;i<niveau;i++)
         listeNomPartie.get(i).setVerrouille(false);*/
-        vScannerMap.close();
+        
     }
     
     private void loadImage()
