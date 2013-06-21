@@ -163,7 +163,7 @@ public class PanelMenu extends JPanel
             g.drawImage(Slatch.aImages.get("boutontutoriel"+aImages.get("boutontutoriel")), this.getWidth()/2-2*aHauteurBouton, 33+ 4*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(Slatch.aImages.get("boutonmapcreator"+aImages.get("boutonmapcreator")), this.getWidth()/2-2*aHauteurBouton, 33+ 5*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(Slatch.aImages.get("boutoncredits"+aImages.get("boutoncredits")), this.getWidth()/2-2*aHauteurBouton, 33+ 6*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
-            g.drawImage(Slatch.aImages.get("engrenage"+aImages.get("engrenage")), this.getWidth()-aHauteurBouton/2-this.getHeight()/15,aHauteurBouton/2,this.getHeight()/10,this.getHeight()/10, this);            
+            g.drawImage(Slatch.aImages.get("engrenage"+aImages.get("engrenage")), this.getWidth()-aHauteurBouton/2-this.getHeight()/10,aHauteurBouton/2,this.getHeight()/10,this.getHeight()/10, this);            
             
         }
         
@@ -805,7 +805,8 @@ public class PanelMenu extends JPanel
         if(aImages.get("boutontutoriel")!=""){aImages.put("boutontutoriel","");}
         if(aImages.get("boutonmapcreator")!=""){aImages.put("boutonmapcreator","");}
         if(aImages.get("boutoncredits")!=""){aImages.put("boutoncredits","");}
-         if(aImages.get("boutonexp")!=""){aImages.put("boutonexp","");}
+        if(aImages.get("boutonexp")!=""){aImages.put("boutonexp","");}
+        if(aImages.get("engrenage")!=""){aImages.put("engrenage","");}
         
         
         if(aMenuPrincipal){
@@ -823,6 +824,9 @@ public class PanelMenu extends JPanel
             }
             if(pX>this.getWidth()/2-2*aHauteurBouton && pY>33+ 6*this.getHeight()/8 && pX<this.getWidth()/2-2*aHauteurBouton+4*aHauteurBouton && pY<33+ 6*this.getHeight()/8+aHauteurBouton){
                 aImages.put("boutoncredits","on");
+            }
+            if(pX>this.getWidth()-aHauteurBouton/2-this.getHeight()/10 && pY>aHauteurBouton/2 && pX<this.getWidth()-aHauteurBouton/2 && pY<aHauteurBouton/2+this.getHeight()/10){
+                aImages.put("engrenage","on");
             }
         }
         
