@@ -56,6 +56,11 @@ public class GestionnaireAnimation implements ActionListener
      animation.add(pAnimation);
     }
     
+       public void viderAnimation()
+    {
+     animation.clear();
+    }
+   
     /**
      * Methode appelee ttes les 50ms
      */

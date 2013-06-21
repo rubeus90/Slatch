@@ -244,6 +244,7 @@ public class Partie
             //Ajout des joueur dans l'arrayList
             for(int i=1;i<=aMap.getNbrJoueur();i++)
             {
+                //System.out.println(aMap.getNbrJoueur()+" "+i);
                 ListeJoueur.add(new Joueur(i,pTabFaction[i],vBatimentJoueur[i],pTabEquipe[i],pTabIA[i],""));     
             }
             
@@ -882,6 +883,7 @@ public class Partie
     
     public void setPartieFini(final boolean pBoolean){
         partieFinie=true;
+        Slatch.ihm.getAnimation().viderAnimation();
     }
     
    /***
