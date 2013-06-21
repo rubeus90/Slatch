@@ -14,6 +14,7 @@ public class OperationIA
         
         
         Entite cible;
+        
         if(unite.estLowHP())
         {
             cible= trouverBonneCase(unite, new Influence(0,0, 1, -4, 15));
@@ -32,7 +33,12 @@ public class OperationIA
         }        
         else{// l'unité peut attaquer
             //cible= trouverBonneCase(unite, new Influence(0,1, 5000, -1, 1));
-            cible= trouverBonneCase(unite, new Influence(0,0, 1, 0, 0));
+            cible= trouverBonneCase(unite, new Influence(0,0, 5000, 0, 0));
+        }
+        
+        if(unite.getAttaque().aTypePortee.getPorteeMin()>1 && Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType()==TypeTerrain.USINE && Slatch.partie.getTerrain()[unite.getX()][unite.getY()].appartientAuJoueur(Slatch.partie.getJoueurActuel()))
+        {
+            cible= trouverBonneCase(unite, new Influence(0,1, 0, 0, 0));
         }
        
         //cible= trouverBonneCase(unite, new Influence(1,0, 0, 0, 0));
@@ -98,7 +104,7 @@ public class OperationIA
                     
                     if(Slatch.partie.getTerrain()[uX][uY].estCapturable() && Slatch.partie.getTerrain()[uX][uY].appartientAuJoueur(Slatch.partie.getJoueurActuel()))
                     {
-                        map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+= pontDerration(5000, tabDist[uX][uY]);
+                        map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+= pontDerration(5000, tabDist[uX][uY])+5000;
                     }
                     int x=0,y=0;
                     if(unite.getAttaque().efficacite.containsKey(u.getType()))
@@ -159,6 +165,10 @@ public class OperationIA
                     }
                 }
             }
+        }
+        if(unite.getAttaque().aTypePortee.getPorteeMin()>1 && Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType()==TypeTerrain.USINE && Slatch.partie.getTerrain()[unite.getX()][unite.getY()].appartientAuJoueur(Slatch.partie.getJoueurActuel()))
+        {
+            map[unite.getX()][unite.getY()].defensif-=2000;
         }
     }
     
@@ -284,7 +294,12 @@ public class OperationIA
                 int x = usine.getCoordonneeX();
                 int y = usine.getCoordonneeY();
     
-                if(joueurActuel.getArgent()>=700 && nombreWhile<3)
+                if(joueurActuel.getArgent()>=100 && nombreCommando<3 && nombreWhile>0)
+                {
+                    UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.COMMANDO), TypeObjectif.ACHETER));
+                    nombreCommando=nombreCommando+1;
+                }
+                else if(joueurActuel.getArgent()>=700 && nombreWhile<3)
                 {                 
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.WHILE), TypeObjectif.ACHETER));                    
                     nombreWhile=nombreWhile+1;
