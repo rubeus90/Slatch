@@ -31,7 +31,8 @@ public class OperationIA
             cible= trouverBonneCase(unite, new Influence(0,1, 0, 0, 0));
         }        
         else{// l'unité peut attaquer
-            cible= trouverBonneCase(unite, new Influence(0,1, 5000, -1, 1));
+            //cible= trouverBonneCase(unite, new Influence(0,1, 5000, -1, 1));
+            cible= trouverBonneCase(unite, new Influence(0,0, 1, 0, 0));
         }
        
         //cible= trouverBonneCase(unite, new Influence(1,0, 0, 0, 0));
