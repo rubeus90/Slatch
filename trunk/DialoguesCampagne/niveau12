@@ -1,4 +1,4 @@
-background
+campementjourplaine
 Isabelle;General Catraz;Isabelle : Nous avons réussi ! Je vais pouvoir chercher des informations dans leurs documents: vu que ce sont des fidèles, on pourrait trouver des choses interessantes. J'y vais de ce pas.
 General Catraz; ;Général Catraz : Sam, je peux te parler ?
 Vous; ;Vous : Que se passe-t-il, mon général?
@@ -17,6 +17,7 @@ Isabelle;General Catraz;Isabelle : Ma source est sûre, je vous le répète. Si 
 General Catraz; ;Général Catraz : Elle est repartie. Ecoute, Sam, j'y suis peut être allé un peu fort avec elle, ce n'est pas sa faute si sa source est mal intentionnée. Tu pourrais aller lui parler? Elle te connaît mieux que moi et tu sauras peut être trouver les mots. Il faudrait que tu trouves qui est sa source et que tu la convainque de rester, on a besoin d'elle mine de rien.
 Vous;General Catraz;Vous : D'accord mon général, j'y vais de ce pas.
 Vous; ;Vous : Alors, la tente d'Isabelle, c'était où déjà? Ah oui, par là!
+tente
 Vous; ;Vous : Excusez moi Isabelle, je...
 Vous;IsabelleCyborg;Vous : Excusez moi Isabelle, je...mais, vous êtes un mechadroïde!
 IsabelleCyborg; ;Isabelle : Oh non! J'avais pourtant dit aux gardes que je ne voulais pas être dérangée! Ma couverture tombe à l'eau! Bon en même temps je me demande comment vous n'avez pas deviné plus tôt dans quel camp j'étais.
