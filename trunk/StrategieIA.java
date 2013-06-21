@@ -55,7 +55,7 @@ public class StrategieIA
                 switch(mapTerrain[i][j].getType())
                 {
                     case USINE: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=6*mode.inf.capture;}}
-                    else{iMap[i][j].retraite+=4*mode.inf.retraite;} iMap[i][j].offensif+=-5000;
+                    else{iMap[i][j].retraite+=4*mode.inf.retraite;}
                     case BATIMENT: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=4*mode.inf.capture;}} 
                     else{iMap[i][j].retraite+=5*mode.inf.retraite;} break;
                     case FORET: break;
