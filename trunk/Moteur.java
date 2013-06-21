@@ -100,7 +100,7 @@ class Moteur
         {            
             degatsAtt= 0.7*getDegats(pVictime, uniteA);
            
-            if(faireDegats(uniteA, degatsAtt))
+            if(faireDegats(uniteA, degatsAtt) && uniteA.getType() != TypeUnite.KAMIKAZE) //2e condition necessaire pour eviter que le kamikaze meurt 2 fois
             {
                 //Si l'unite qui attaque meurt pendant l'attaque,
                 estMort(uniteA,pVictime);
