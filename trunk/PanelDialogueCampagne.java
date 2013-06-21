@@ -86,19 +86,8 @@ public class PanelDialogueCampagne extends JPanel {
         this.setLayout(new BorderLayout());
         
         textArea.setPreferredSize(new Dimension(this.getWidth(),this.getHeight()/4));
-        this.add(textArea, BorderLayout.CENTER);
-        Font font;
-        try {
-            font = Font.createFont(
-                    Font.TRUETYPE_FONT,
-                    new File(getClass().getClassLoader()
-                            .getResource("Config/BlackOps.ttf").toURI()))
-                    .deriveFont(Font.PLAIN, 10+this.getWidth()/80);
-            textArea.setFont(font);
-        } catch (FontFormatException | IOException | URISyntaxException e) {
-            e.printStackTrace();
-        }
-        
+        this.add(textArea, BorderLayout.CENTER);        
+        textArea.setFont(Slatch.fonts.get("BlackOps").deriveFont(Font.PLAIN, 6+this.getWidth()/80));
         textArea.setForeground(Color.WHITE);
         textArea.setText(dialogue);
         textArea.setMargin(new Insets(3*this.getHeight()/4+this.getHeight()/40, 40, this.getWidth()/100, this.getWidth()/100));
