@@ -61,7 +61,7 @@ public class Campagne implements MouseListener {
 		}
 		
 		if (aNiveau == 14) {
-			vEquipe[3] = equipe1;
+			vEquipe[2] = equipe1;
 		}
 
 		if (aNiveau == 15) {
