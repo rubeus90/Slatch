@@ -138,6 +138,8 @@ public class PanelMenu extends JPanel
         Font fontVisitorbis = Slatch.fonts.get("Visitor").deriveFont(Font.PLAIN, this.getWidth()/70);
         fmBlackOps = getFontMetrics(fontBlackOps);
         fmVisitor = getFontMetrics(fontVisitor);
+        FontMetrics fmVisitorbis;
+        fmVisitorbis = getFontMetrics(fontVisitorbis);
         
         afficheImageRedim("wallpaper",0,0,this.getWidth(),this.getHeight(),g);
         Image trait = Slatch.aImages.get("trait");
@@ -191,8 +193,8 @@ public class PanelMenu extends JPanel
         {
             int vSize = this.getHeight()/10;
             int vRatio = vSize*(718/159);
-            int vGauche = this.getWidth()/5;
-            int vDroite = this.getWidth()-this.getWidth()/5-vRatio;
+            int vGauche = this.getWidth()/2-vRatio-vSize/2;
+            int vDroite = this.getWidth()-vGauche-vRatio;
             
             g.drawImage(Slatch.aImages.get("titretutoriel"), 0, 0, this.getWidth(), this.getHeight()*2/5, this);
             g.drawImage(Slatch.aImages.get("boutonregles"+aImages.get("boutonregles")), vGauche, 3*this.getHeight()/10, vRatio, vSize, this);            
@@ -320,11 +322,15 @@ public class PanelMenu extends JPanel
             if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Active";}
             else{aStrBrouillard ="Desactive";}
             g.drawString(""+aStrBrouillard,this.getWidth()/3 + fmVisitor.stringWidth("Brouillard    "),3*this.getHeight()/7);
+            
             if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Active";}
             else{aStrAnimation ="Desactive";}
             
             g.drawString(""+aStrAnimation,this.getWidth()/3 + fmVisitor.stringWidth("Animation    "),4*this.getHeight()/7);
             g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-this.getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
+            
+            g.setFont(fontVisitorbis);
+            g.drawString("Le brouillard ne peut pas etre desactive en mode campagne",this.getWidth()/2-fmVisitorbis.stringWidth("Le brouillard ne peut pas etre desactive en mode campagne")/2,10*this.getHeight()/21);
         }
         
         else if(aMenuChoixTuto){
@@ -662,8 +668,8 @@ public class PanelMenu extends JPanel
                 
                 int vSize = this.getHeight()/10;
                 int vRatio = vSize*(718/159);
-                int vGauche = this.getWidth()/5;
-                int vDroite = this.getWidth()-this.getWidth()/5-vRatio;
+                int vGauche = this.getWidth()/2-vRatio-vSize/2;
+                int vDroite = this.getWidth()-vGauche-vRatio;
                 
                 //Clic Bouton Règles du Jeu
                 if(pY>3*this.getHeight()/10 && pY<3*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
@@ -861,8 +867,8 @@ public class PanelMenu extends JPanel
         {
             int vSize = this.getHeight()/10;
             int vRatio = vSize*(718/159);
-            int vGauche = this.getWidth()/5;
-            int vDroite = this.getWidth()-this.getWidth()/5-vRatio;
+            int vGauche = this.getWidth()/2-vRatio-vSize/2;
+            int vDroite = this.getWidth()-vGauche-vRatio;
             
             // Bouton Regles du Jeu
             if(pY>3*this.getHeight()/10 && pY<3*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
