@@ -23,6 +23,7 @@ public class StrategieIA
                 if(!u.dejaAttaque()||!u.dejaDeplacee()){OperationIA.joueUnite(u, copierMap(iMap));}
             }
             if(u.getPV()<=0){i.remove();}
+            if(Slatch.partie.partieFinie){break;}
         }    
         Slatch.ihm.getAnimation().start();
         /*if(Slatch.partie.getJoueur(joueur).getListeUnite().isEmpty())
