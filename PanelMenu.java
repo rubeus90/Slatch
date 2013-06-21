@@ -654,7 +654,8 @@ public class PanelMenu extends JPanel
                 //Clic Bouton Règles du Jeu
                 if(pY>3*this.getHeight()/10 && pY<3*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
                 {
-                   
+                   Tutoriel tuto = new TutorielRegle("menu");
+                    Slatch.ihm.passageModeTuto(tuto);
                 }
                 
                 //Clic Bouton Deplacement
@@ -790,7 +791,7 @@ public class PanelMenu extends JPanel
         if(aImages.get("boutontutoriel")!=""){aImages.put("boutontutoriel","");}
         if(aImages.get("boutonmapcreator")!=""){aImages.put("boutonmapcreator","");}
         if(aImages.get("boutoncredits")!=""){aImages.put("boutoncredits","");}
-        
+         if(aImages.get("boutonexp")!=""){aImages.put("boutonexp","");}
         
         
         if(aMenuPrincipal){
