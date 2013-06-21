@@ -11,7 +11,7 @@ import java.io.IOException;
 public enum Faction
 {
    HUMAINS("humains"),
-   ROBOTS("mechadroides"),
+   ROBOTS("robots"),
    NEUTRE("neutre");
    
     public String aNom;
