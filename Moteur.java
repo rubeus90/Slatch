@@ -578,7 +578,6 @@ class Moteur
                 if(dansLesBords(x,y))
                 {
                     int d = t.d+Slatch.partie.getTerrain()[x][y].getCout(unite);
-                    
                     if(d<=unite.getType().getDeplacement() || !porteeComptee)
                     {
                         if(d<tabDist[x][y] || (tabDist[x][y]==-1&&d<999))
