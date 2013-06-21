@@ -144,7 +144,9 @@ public class Joueur
         for(Terrain vBatiment : aListeBatiment){
             vBatiment.setJoueur(0);
             if(vBatiment.getType() == TypeTerrain.QG ){
+                Unite vUnite = Slatch.partie.getTerrain()[vBatiment.getX()][vBatiment.getY()].getUnite();
                 Slatch.partie.getTerrain()[vBatiment.getX()][vBatiment.getY()] = new Terrain(vBatiment.getX(), vBatiment.getY(), 0, TypeTerrain.BATIMENT);
+                Slatch.partie.getTerrain()[vBatiment.getX()][vBatiment.getY()].setUnite(vUnite);
             }    
         }
         
