@@ -84,7 +84,6 @@ public class StrategieIA
         Terrain[][] mapTerrain = Slatch.partie.getTerrain();
         int joueurActu= Slatch.partie.getJoueurActuel();
         Influence[][] mapInf = unite.mapInfluence;
-        
         if(ajouterInfluence)
         {
             if(Slatch.moteur.getEquipe(unite)!=Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
@@ -95,7 +94,7 @@ public class StrategieIA
                     {
                         if(Moteur.dansLesBords(x+i-(mapInf.length-1)/2, y+j-(mapInf.length-1)/2))
                         {
-                            //map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].offensif+=mapInf[i][j].offensif*inf.offensif;
+                            map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].offensif+=mapInf[i][j].offensif*inf.offensif;
                             map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].menace+=mapInf[i][j].menace*inf.menace;
                         }
                     }
@@ -126,7 +125,7 @@ public class StrategieIA
                     {
                         if(Moteur.dansLesBords(x+i-(mapInf.length-1)/2, y+j-(mapInf.length-1)/2))
                         {
-                            //map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].offensif-=mapInf[i][j].offensif*inf.offensif;
+                            map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].offensif-=mapInf[i][j].offensif*inf.offensif;
                             map[x+i-(mapInf.length-1)/2][y+j-(mapInf.length-1)/2].menace-=mapInf[i][j].menace*inf.menace;
                         }
                     }

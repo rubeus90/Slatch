@@ -31,7 +31,7 @@ public class OperationIA
             cible= trouverBonneCase(unite, new Influence(0,1, 0, 0, 0));
         }        
         else{// l'unité peut attaquer
-            cible= trouverBonneCase(unite, new Influence(0,1, 500, -1, 1));
+            cible= trouverBonneCase(unite, new Influence(0,1, 5000, -1, 1));
         }
        
         //cible= trouverBonneCase(unite, new Influence(1,0, 0, 0, 0));
@@ -126,7 +126,8 @@ public class OperationIA
                     }
                     if(t.getUnite()==unite)
                     {
-                        map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=7000;
+                        if(t.getPV()<t.getType().getPVMax()){map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=7000/((double)t.getPV()/(double)t.getType().getPVMax());}
+                        else{map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=7000;}
                     }
                 }
                 
@@ -138,7 +139,8 @@ public class OperationIA
                     }
                     if(t.getUnite()==unite)
                     {
-                        map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=7000;
+                        if(t.getPV()<t.getType().getPVMax()){map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=7000/((double)t.getPV()/(double)t.getType().getPVMax());}
+                        else{map[t.getCoordonneeX()][t.getCoordonneeY()].capture+=7000;}
                     }
                 }
             }
