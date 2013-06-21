@@ -891,4 +891,9 @@ public class PanelMenu extends JPanel
         Image img = Slatch.aImages.get(pURL);
         g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
     }
+    
+    public boolean getAnimation()
+    {
+        return aAnimation;
+    }
 }

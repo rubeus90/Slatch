@@ -62,14 +62,14 @@ public class Partie
     /**
      * Constructeur de MAP pour mode Campagne
      */
-    public Partie(final int pTourMax, final Map pMap,final Equipe[] pTabEquipe,final Faction[] pTabFaction)
+    public Partie(final int pTourMax, final Map pMap,final Equipe[] pTabEquipe,final Faction[] pTabFaction,final boolean activation)
     {
         aMap= pMap;
          
         //On a active le brouillard, et le boolean campagne + tous les jouers sont des IA sauf le joueur 1 + Paramètre par default
         isCampagne = true;
         aBrouillard = true;
-        activationAnimation=true;
+        activationAnimation=activation;
         boolean[] vIA = {false,false,true,true,true};
         aRevenuBatiment = 50;
         aJoueurActuel= 1;
