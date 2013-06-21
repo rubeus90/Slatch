@@ -33,6 +33,10 @@ public class StrategieIA
     
     static void remplirMap()
     {
+        if(iMap.length != Slatch.partie.getLargeur() || iMap[0].length != Slatch.partie.getHauteur())
+        {
+            iMap= new Influence[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
+        }
         Terrain[][] mapTerrain = Slatch.partie.getTerrain();
         Equipe fail = Slatch.moteur.getJoueurActuel().getEquipe();
         for(int i=0; i<Slatch.partie.getLargeur(); i++)
