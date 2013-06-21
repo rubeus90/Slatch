@@ -434,6 +434,9 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/generalcatraz.png"));
                 aImages.put("General Catraz",image);
                 
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/generalrobot.png"));
+                aImages.put("GeneralRobot",image);
+                
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/isabelle.png"));
                 aImages.put("Isabelle",image);
                 
