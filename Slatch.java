@@ -95,8 +95,10 @@ public class Slatch {
         }    
         //System.out.println(niveau+" "+niveauSauvegarde);
         Slatch.ihm.aNiveau=niveau;
-        for(int i=0;i<avancement-1;i++)
-         Slatch.ihm.aListeMission.get(i).setVerrouille(false);
+        for(int i=0;i<avancement-1;i++){
+            if(i!=4 && i!=6) // et plus si affinite
+                Slatch.ihm.aListeMission.get(i).setVerrouille(false);
+        }
         
     }
     
