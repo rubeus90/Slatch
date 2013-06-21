@@ -1,10 +1,13 @@
 import javax.imageio.ImageIO;
+
 import java.io.*;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.awt.* ;
+
 import javax.swing.*;
 
 
@@ -618,14 +621,19 @@ public class PanelMenu extends JPanel
                 //Clic Bouton Charger une Partie
                 if(pY>33+ this.getHeight()/2 && pY<33+ this.getHeight()/2+aHauteurBouton && pX>this.getWidth()/2-3*aHauteurBouton && pX< this.getWidth()/2+ 3*aHauteurBouton)
                 {
-                    Partie partieRapide = new Partie();
-                    Slatch.partie=partieRapide;
-                    Moteur moteur = new Moteur();
-                    Slatch.moteur=moteur;
-                    Slatch.ihm.passageModePartie();
-                    if(Slatch.partie.getBrouillard()){
-                        moteur.Brouillard();
-                    }
+                	String home = System.getProperty("user.home");                    
+                    File file = new File(home + "/.slatch/config/sauvegarde.txt");
+                    
+                    if(file.exists()){
+                    	Partie partieRapide = new Partie();
+                        Slatch.partie=partieRapide;
+                        Moteur moteur = new Moteur();
+                        Slatch.moteur=moteur;
+                        Slatch.ihm.passageModePartie();
+                        if(Slatch.partie.getBrouillard()){
+                            moteur.Brouillard();
+                        }
+                    }                    
                 }
             }
         } 
