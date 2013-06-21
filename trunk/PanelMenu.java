@@ -20,20 +20,16 @@ public class PanelMenu extends JPanel
     private boolean aSousMenuRapide1;
     private boolean aSousMenuRapide2;
     private boolean aMenuChoixTuto;
-    private boolean aMenuParametres;
+    private boolean aMenuParametres;  
     private int aNumeroMap;
     
     // Attributs des boutons//cb[0] à cb[3] boutons IA | cb[4] à cb[8] boutons Joueur
     //private Faction aFaction;
     private int[] aIntEquipe;
     private String[] aNiveauIA;
-    private String aStrBrouillard;
-    private String aStrAnimation;
     private boolean[] aIA;
     private Equipe[] aEquipe;
     private Faction[] aFaction;
-    private boolean dBrouillard;
-    private boolean aAnimation;
     private JTextArea textArea = new JTextArea();  
     private FontMetrics fmBlackOps;
     private FontMetrics fmVisitor;
@@ -88,12 +84,13 @@ public class PanelMenu extends JPanel
         aFaction[4] = Faction.ROBOTS;
         
         //Valeur par default de la valeurs du brouillard
-        aStrBrouillard ="Active";
-        dBrouillard=true;
+        /*if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Active";}
+        else{aStrBrouillard ="Desactive";}
         
         //Valeur par default de la valeurs du brouillard
-        aStrAnimation ="Active";
-        aAnimation = true;
+        if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Active";}
+        else{aStrAnimation ="Desactive";}*/
+       
         
         aImages = new HashMap<String,String>();
         
@@ -284,7 +281,13 @@ public class PanelMenu extends JPanel
                     //if(vIA[i+1]){g.drawImage(on,(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton-hR/2,this.getHeight()/40,this.getHeight()/40,this);}
                     //else{g.drawImage(off,(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton-hR/2,this.getHeight()/40,this.getHeight()/40,this);}
                 }
+                String aStrBrouillard;
+                String aStrAnimation;
+                if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Active";}
+                else{aStrBrouillard ="Desactive";}
                 g.drawString(""+aStrBrouillard,(3)*this.getWidth()/10,this.getHeight()/2+2*aHauteurBouton);
+                if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Active";}
+                else{aStrAnimation ="Desactive";}
                 g.drawString(""+aStrAnimation,(7)*this.getWidth()/10,this.getHeight()/2+2*aHauteurBouton);
             }                      
             else
@@ -303,7 +306,14 @@ public class PanelMenu extends JPanel
             g.drawString("Brouillard",this.getWidth()/3,3*this.getHeight()/7);
             g.drawString("Animation",this.getWidth()/3,4*this.getHeight()/7);
             g.setFont(fontVisitor);
+            String aStrBrouillard;
+            String aStrAnimation;
+            if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Active";}
+            else{aStrBrouillard ="Desactive";}
             g.drawString(""+aStrBrouillard,this.getWidth()/3 + fmVisitor.stringWidth("Brouillard    "),3*this.getHeight()/7);
+            if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Active";}
+            else{aStrAnimation ="Desactive";}
+            
             g.drawString(""+aStrAnimation,this.getWidth()/3 + fmVisitor.stringWidth("Animation    "),4*this.getHeight()/7);
             g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-this.getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
         }
@@ -499,22 +509,28 @@ public class PanelMenu extends JPanel
                     }
       
                 }
+                String aStrBrouillard;
+                String aStrAnimation;
+                if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Active";}
+                else{aStrBrouillard ="Desactive";}
                 int SizeBrouillard = fmVisitor.stringWidth(""+aStrBrouillard);
+                if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Active";}
+                else{aStrAnimation ="Desactive";}
                 int SizeAnimation = fmVisitor.stringWidth(""+aStrAnimation);
                 
                 //Click sur le brouillard
                 if(pY>this.getHeight()/2+2*aHauteurBouton-hR && pY<this.getHeight()/2+2*aHauteurBouton && pX>(3)*this.getWidth()/10 && pX<(3)*this.getWidth()/10+SizeBrouillard)
                 {
-                   if(aStrBrouillard.equals("Active")){aStrBrouillard="Desactive";dBrouillard=false;}
-                   else{aStrBrouillard="Active"; dBrouillard=true;}
+                   if(aStrBrouillard.equals("Active")){aStrBrouillard="Desactive";Slatch.ihm.setValBrouillard(false);}
+                   else{aStrBrouillard="Active"; Slatch.ihm.setValBrouillard(true);}
                    this.repaint();
                 }
                 
                 //Click sur les animations
                 if(pY>this.getHeight()/2+2*aHauteurBouton-hR && pY<this.getHeight()/2+2*aHauteurBouton && pX>(7)*this.getWidth()/10 && pX<(7)*this.getWidth()/10+SizeAnimation)
                 {
-                   if(aStrAnimation.equals("Active")){aStrAnimation="Desactive";aAnimation=false;}
-                   else{aStrAnimation="Active"; aAnimation=true;}
+                   if(aStrAnimation.equals("Active")){aStrAnimation="Desactive";Slatch.ihm.setValAnimation(false);}
+                   else{aStrAnimation="Active"; Slatch.ihm.setValAnimation(true);}
                    this.repaint();
                 }
                 
@@ -542,7 +558,7 @@ public class PanelMenu extends JPanel
                        }
                    }
                     
-                   Partie partieRapide = new Partie(50,Slatch.ihm.aListeMap.get(aNumeroMap),dBrouillard, aFaction,aEquipe,aIA,aAnimation);
+                   Partie partieRapide = new Partie(50,Slatch.ihm.aListeMap.get(aNumeroMap),Slatch.ihm.getValBrouillard(), aFaction,aEquipe,aIA,Slatch.ihm.getValAnimation());
 
                    Slatch.partie=partieRapide;
                     
@@ -712,19 +728,25 @@ public class PanelMenu extends JPanel
             }
             else if(aMenuParametres)
             {
+                String aStrBrouillard;
+                String aStrAnimation;
+                if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Active";}
+                else{aStrBrouillard ="Desactive";}
+                if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Active";}
+                else{aStrAnimation ="Desactive";}
                 //Click sur le brouillard
                 if(pY>3*this.getHeight()/7-fmVisitor.getHeight() && pY<3*this.getHeight()/7  && pX>this.getWidth()/3 + fmVisitor.stringWidth("Brouillard    ") && pX<this.getWidth()/3 + fmVisitor.stringWidth("Brouillard    ")+fmVisitor.stringWidth(""+aStrBrouillard))
                 {
-                   if(aStrBrouillard.equals("Active")){aStrBrouillard="Desactive";dBrouillard=false;}
-                   else{aStrBrouillard="Active"; dBrouillard=true;}
+                   if(aStrBrouillard.equals("Active")){aStrBrouillard="Desactive";Slatch.ihm.setValBrouillard(false);}
+                   else{aStrBrouillard="Active"; Slatch.ihm.setValBrouillard(true);}
                    this.repaint();
                 }
                 
                 //Click sur les animations
                 if(pY>4*this.getHeight()/7-fmVisitor.getHeight() && pY<4*this.getHeight()/7 && pX>this.getWidth()/3 + fmVisitor.stringWidth("Animation    ") && pX<this.getWidth()/3 + fmVisitor.stringWidth("Animation    ")+fmVisitor.stringWidth(""+aStrAnimation))
                 {
-                   if(aStrAnimation.equals("Active")){aStrAnimation="Desactive";aAnimation=false;}
-                   else{aStrAnimation="Active"; aAnimation=true;}
+                   if(aStrAnimation.equals("Active")){aStrAnimation="Desactive";Slatch.ihm.setValAnimation(false);}
+                   else{aStrAnimation="Active"; Slatch.ihm.setValAnimation(true);}
                    this.repaint();
                 }
                 
@@ -890,10 +912,5 @@ public class PanelMenu extends JPanel
     private void afficheImageRedim (final String pURL, final int pPosHautGaucheX, final int pPosHautGaucheY,final int pPosBasDroiteX, final int pPosBasDroiteY, final Graphics g) {  
         Image img = Slatch.aImages.get(pURL);
         g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, Slatch.ihm.getPanel());
-    }
-    
-    public boolean getAnimation()
-    {
-        return aAnimation;
     }
 }
