@@ -62,7 +62,7 @@ public class Campagne implements MouseListener {
 
 		// On cree la partie
 		Partie partie = new Partie(vTourMax, listeNomPartie.get(pNiveau),
-				vEquipe, vFaction);
+				vEquipe, vFaction, Slatch.ihm.getValAnimation());
 		Slatch.partie = partie;
 		Slatch.moteur = new Moteur();
 
