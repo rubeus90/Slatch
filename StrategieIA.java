@@ -146,69 +146,6 @@ public class StrategieIA
                 }
             }
         }
-        
-        /*if(Slatch.moteur.getEquipe(unite)!=Slatch.moteur.getJoueurActuel().getEquipe().getNumEquipe())
-        {
-            for(int i=0; i<=pm+pu; i++)
-            {
-                for(int j=0; j<=i;j++)
-                {
-                    for(Quad q: Moteur.signes)
-                    {   
-                        int a = i*q.a, b= j*q.b, c=i*q.c, d = j*q.d;
-                        if(Moteur.dansLesBords(x+a+b, y+c+d))
-                        {
-                            if(ajouterInfluence){
-                                if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace+=5*inf.menace;if(mapTerrain[x+a+b][y+c+d].getType()==TypeTerrain.QG && mapTerrain[x+a+b][y+c+d].getJoueur()==joueurActu)
-                                    {
-                                        map[x+a+b][y+c+d].menace+=5*inf.menace;
-                                    }
-                                }
-                                if(i<=3){map[x+a+b][y+c+d].offensif+=(1*(pm+pu-i+1))*inf.offensif;}
-                            }
-                            else
-                            {
-                                if(Slatch.moteur.seraAPortee(unite, x+a+b,y+c+d)){map[x+a+b][y+c+d].menace-=5*inf.menace;
-                                    if(mapTerrain[x+a+b][y+c+d].getType()==TypeTerrain.QG && mapTerrain[x+a+b][y+c+d].getJoueur()==joueurActu)
-                                    {
-                                        map[x+a+b][y+c+d].menace-=5*inf.menace;
-                                    }
-                                }
-                                if(i<=3){map[x+a+b][y+c+d].offensif-=(1*(pm+pu-i+1))*inf.offensif;}
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        else
-        {
-            for(int i=0; i<=pu; i++)
-            {
-                for(int j=0; j<=i;j++)
-                {
-                    for(Quad q: Moteur.signes)
-                    {   
-                        int a = i*q.a, b= j*q.b, c=i*q.c, d = j*q.d;
-                        if(ajouterInfluence){
-                            if(Moteur.dansLesBords(x+a+b, y+c+d))
-                            {
-                                map[x+a+b][y+c+d].defensif+=(5*(pu-i+1))*inf.defensif;
-                                map[x+a+b][y+c+d].retraite+=(5*(pu-i+1))*inf.retraite;
-                            }
-                        }
-                        else
-                        {
-                            if(Moteur.dansLesBords(x+a+b, y+c+d))
-                            {
-                                 map[x+a+b][y+c+d].defensif-=(5*(pu-i+1))*inf.defensif;
-                                 map[x+a+b][y+c+d].retraite-=(5*(pu-i+1))*inf.retraite;
-                            }
-                        }
-                    }
-                }
-            }
-        }*/
     }
     
     static Influence[][] copierMap(Influence[][] map)
