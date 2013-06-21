@@ -632,7 +632,7 @@ public class Partie
        }
        aJoueurGagnant = pJoueur;
        
-       partieFinie=true;
+       setPartieFini(true);
         
     }
     
