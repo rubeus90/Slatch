@@ -143,6 +143,9 @@ public class Joueur
         
         for(Terrain vBatiment : aListeBatiment){
             vBatiment.setJoueur(0);
+            if(vBatiment.getType() == TypeTerrain.QG ){
+                Slatch.partie.getTerrain()[vBatiment.getX()][vBatiment.getY()] = new Terrain(vBatiment.getX(), vBatiment.getY(), 0, TypeTerrain.BATIMENT);
+            }    
         }
         
         for(Terrain vUsine : aListeUsine){
