@@ -22,7 +22,7 @@ public class Campagne implements MouseListener {
     private PanelDialogueCampagne panel;
 
     public Campagne(final List<Map> pListe ) {
-        aNiveau = 0;
+        aNiveau = 9;
         listeNomPartie = pListe;        
     }
 
@@ -123,10 +123,6 @@ public class Campagne implements MouseListener {
 	public void conditionVictoire() {
 		if (aNiveau == 2) {
 		    Slatch.partie.setJoueurGagnant(1);
-			Slatch.partie.setPartieFini(true);
-		}
-		if (aNiveau == 8) {
-			Slatch.partie.setJoueurGagnant(2);
 			Slatch.partie.setPartieFini(true);
 		}
 	}
