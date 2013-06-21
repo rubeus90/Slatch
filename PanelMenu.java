@@ -20,6 +20,7 @@ public class PanelMenu extends JPanel
     private boolean aSousMenuRapide1;
     private boolean aSousMenuRapide2;
     private boolean aMenuChoixTuto;
+    private boolean aMenuParametres;
     private int aNumeroMap;
     
     // Attributs des boutons//cb[0] à cb[3] boutons IA | cb[4] à cb[8] boutons Joueur
@@ -54,6 +55,7 @@ public class PanelMenu extends JPanel
         aSousMenuRapide1 = false;
         aSousMenuRapide2 = false;
         aMenuChoixTuto = false;
+        aMenuParametres = false;
         aNumeroMap=0;
         aIntEquipe = new int[4];
         aNiveauIA = new String[4];
@@ -290,8 +292,22 @@ public class PanelMenu extends JPanel
                 g.drawImage(Slatch.aImages.get("boutonnouvellepartie"+aImages.get("boutonnouvellepartie")), this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton, aHauteurBouton+10, this);
                 g.drawImage(Slatch.aImages.get("boutonchargerpartie"+aImages.get("boutonchargerpartie")), this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton, aHauteurBouton+10, this);
                 
-            }        
-        }   
+            }       
+        }
+        else if(aMenuParametres)
+        {
+            afficheImageRedim("noir80",0, 2*this.getHeight()/7,this.getWidth(), 5*this.getHeight()/7,g);
+            g.setColor(Color.white);
+            g.drawImage(Slatch.aImages.get("titreparametres"), 0, 0, this.getWidth(), this.getHeight()*2/5, this);
+            g.setFont(fontBlackOps);
+            g.drawString("Brouillard",this.getWidth()/3,3*this.getHeight()/7);
+            g.drawString("Animation",this.getWidth()/3,4*this.getHeight()/7);
+            g.setFont(fontVisitor);
+            g.drawString(""+aStrBrouillard,this.getWidth()/3 + fmVisitor.stringWidth("Brouillard    "),3*this.getHeight()/7);
+            g.drawString(""+aStrAnimation,this.getWidth()/3 + fmVisitor.stringWidth("Animation    "),4*this.getHeight()/7);
+            g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-this.getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
+        }
+        
         else if(aMenuChoixTuto){
             aHauteurBouton = this.getHeight()/10;
             g.drawImage(Slatch.aImages.get("choixtuto"), 0, 0, this.getWidth(), this.getHeight()*3/5, this);
@@ -308,6 +324,9 @@ public class PanelMenu extends JPanel
             //Clic Bouton Parametres
             if(pY>aHauteurBouton/2 && pY<aHauteurBouton/2+this.getHeight()/10 && pX>this.getWidth()-aHauteurBouton/2-this.getHeight()/10 && pX<this.getWidth()-aHauteurBouton/2)
             {
+                aMenuParametres = true;
+                aMenuPrincipal = false;
+                this.repaint();
             }
             
             //Clic Bouton Campagne
@@ -689,6 +708,31 @@ public class PanelMenu extends JPanel
                 else if(pX>this.getWidth()/2-2*aHauteurBouton && pY>33+ 3*this.getHeight()/8 && pX<this.getWidth()/2-2*aHauteurBouton+7/2*aHauteurBouton && pY<33+ 3*this.getHeight()/8+aHauteurBouton){
                     Slatch.campagne = new Campagne(Slatch.ihm.aListeMission);
                   Slatch.campagne.createDialogue();
+                }
+            }
+            else if(aMenuParametres)
+            {
+                //Click sur le brouillard
+                if(pY>3*this.getHeight()/7-fmVisitor.getHeight() && pY<3*this.getHeight()/7  && pX>this.getWidth()/3 + fmVisitor.stringWidth("Brouillard    ") && pX<this.getWidth()/3 + fmVisitor.stringWidth("Brouillard    ")+fmVisitor.stringWidth(""+aStrBrouillard))
+                {
+                   if(aStrBrouillard.equals("Active")){aStrBrouillard="Desactive";dBrouillard=false;}
+                   else{aStrBrouillard="Active"; dBrouillard=true;}
+                   this.repaint();
+                }
+                
+                //Click sur les animations
+                if(pY>4*this.getHeight()/7-fmVisitor.getHeight() && pY<4*this.getHeight()/7 && pX>this.getWidth()/3 + fmVisitor.stringWidth("Animation    ") && pX<this.getWidth()/3 + fmVisitor.stringWidth("Animation    ")+fmVisitor.stringWidth(""+aStrAnimation))
+                {
+                   if(aStrAnimation.equals("Active")){aStrAnimation="Desactive";aAnimation=false;}
+                   else{aStrAnimation="Active"; aAnimation=true;}
+                   this.repaint();
+                }
+                
+                if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>this.getWidth()-this.getHeight()/6-10 && pX< this.getWidth()-10)
+                { 
+                    aMenuPrincipal = true;
+                    aMenuParametres= false;
+                    this.repaint();
                 }
             }
     }
