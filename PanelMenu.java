@@ -108,6 +108,11 @@ public class PanelMenu extends JPanel
         aImages.put("boutontabunites","");
         aImages.put("boutonregles","");
         aImages.put("engrenage","");
+        aImages.put("boutoncampagne","");
+        aImages.put("boutonrapide","");
+        aImages.put("boutontutoriel","");
+        aImages.put("boutonmapcreator","");
+        aImages.put("boutoncredits","");
     }
     
     public void departMenuTuto()
@@ -156,6 +161,7 @@ public class PanelMenu extends JPanel
             g.drawImage(Slatch.aImages.get("boutonmapcreator"+aImages.get("boutonmapcreator")), this.getWidth()/2-2*aHauteurBouton, 33+ 5*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(Slatch.aImages.get("boutoncredits"+aImages.get("boutoncredits")), this.getWidth()/2-2*aHauteurBouton, 33+ 6*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(Slatch.aImages.get("engrenage"+aImages.get("engrenage")), this.getWidth()-aHauteurBouton/2-this.getHeight()/15,aHauteurBouton/2,this.getHeight()/10,this.getHeight()/10, this);            
+            
         }
         
         else if(aMenuCampagne)
