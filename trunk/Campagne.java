@@ -51,6 +51,7 @@ public class Campagne implements MouseListener {
 
 		if (aNiveau == 11) {
 			vFaction[1] = Faction.ROBOTS;
+			vTourMax = 10;
 		}
 
 		if (aNiveau == 15) {
@@ -122,6 +123,10 @@ public class Campagne implements MouseListener {
 
 	public void conditionVictoire() {
 		if (aNiveau == 2) {
+		    Slatch.partie.setJoueurGagnant(1);
+			Slatch.partie.setPartieFini(true);
+		}
+		if (aNiveau == 11) {
 		    Slatch.partie.setJoueurGagnant(1);
 			Slatch.partie.setPartieFini(true);
 		}
