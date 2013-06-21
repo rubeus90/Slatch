@@ -59,6 +59,10 @@ public class Campagne implements MouseListener {
 			vFaction[4] = Faction.HUMAINS;
 			vEquipe[4] = equipe1;
 		}
+		
+		if (aNiveau == 14) {
+			vEquipe[3] = equipe1;
+		}
 
 		if (aNiveau == 15) {
 			vEquipe[2] = equipe1;
