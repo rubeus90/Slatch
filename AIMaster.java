@@ -12,7 +12,7 @@ public class AIMaster
     static void joueTour(int joueur)
     {
         List<Unite> l = Slatch.partie.getJoueur(joueur).getListeUnite();
-        OperationIA.acheterUnite();
+        GrandeIA.acheterUnite();
         
         iMap = new int[Slatch.partie.getLargeur()][Slatch.partie.getHauteur()];
         //remplirMap();

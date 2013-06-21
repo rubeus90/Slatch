@@ -1,16 +1,12 @@
-import java.awt.Point;
+ import java.awt.Point;
 import java.util.Stack;
 public class UniteIA
 {
     static private void seDirigerVers(final Entite executant,final Entite cible)
     {
         Unite u = (Unite)executant;
-        //Slatch.moteur.remplitPorteeDep(u, false);
-        Terrain[][] tab = Slatch.partie.getTerrain();
-        int[][] tabDist = Slatch.moteur.tabDist;
-        Triplet t = new Triplet(-1,cible.getX(),cible.getY());
         StrategieIA.spreadInfluence(u,StrategieIA.iMap, false);
-        Slatch.moteur.deplacement(u, t.x,t.y);
+        Slatch.moteur.deplacement(u, cible.getX(),cible.getY());
         StrategieIA.spreadInfluence(u,StrategieIA.iMap, true);
         u.deplacee(true);
     }
