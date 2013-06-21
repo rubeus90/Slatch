@@ -53,6 +53,12 @@ public class Campagne implements MouseListener {
 			vFaction[1] = Faction.ROBOTS;
 			vTourMax = 10;
 		}
+		
+		if (aNiveau == 12) {
+			vFaction[1] = Faction.ROBOTS;
+			vFaction[4] = Faction.HUMAINS;
+			vEquipe[4] = equipe1;
+		}
 
 		if (aNiveau == 15) {
 			vEquipe[2] = equipe1;
