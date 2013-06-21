@@ -29,12 +29,17 @@ public class IHM_NEW  {
     private PanelDialogueCampagne panelDialogueCampagne;
     public List<Map> aListeMap;
     public List<Map> aListeMission;
+    private boolean aBrouillard;
+    private boolean aAnimation;
     public int aNiveau;
     
     /**
      * Constructeur qui instancie JFrame du Menu.
      */
     public IHM_NEW(){
+        aBrouillard = true;
+        aAnimation = true;
+        
         // Creation des animations
         animation = new GestionnaireAnimation();
         // Creation du timer pour les animations
@@ -87,6 +92,7 @@ public class IHM_NEW  {
         
         //panelMatrice.setVisible(true);
         //panelInfo.setVisible(true);
+        
     }
     
     /**
@@ -209,5 +215,25 @@ public class IHM_NEW  {
     
     public JPanel getPanelFrame(){
         return panel;
+    }
+    
+    public boolean getValAnimation()
+    {
+        return aAnimation;
+    }
+    
+    public void setValAnimation(boolean pAnimation)
+    {
+        this.aAnimation = pAnimation;
+    }
+    
+    public boolean getValBrouillard()
+    {
+        return aBrouillard;
+    }
+    
+    public void setValBrouillard(boolean pBrouillard)
+    {
+        this.aBrouillard = pBrouillard;
     }
 }
