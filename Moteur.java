@@ -677,9 +677,11 @@ class Moteur
                getJoueur(uniteA).addCaptureTotal();
            }
            else{ //Si le QG
+               
                getJoueur(vBatiment).mourrir();
+               
                Slatch.partie.gagner(getJoueur(vBatiment.getX(),vBatiment.getY())); // On donne a gagner le joueur qui vient de capturer et pas celui qui vient de perdre le QG
-               Slatch.partie.getTerrain()[pX][pY] = new Terrain(pX, pY, uniteA.getJoueur(), TypeTerrain.BATIMENT);
+               
                vBatiment= Slatch.partie.getTerrain()[pX][pY]; // redefinition de la variable pour contenir un batiment et non plus un QG
                Slatch.partie.getTerrain()[pX][pY].setUnite(uniteA);
                getJoueur(uniteA).getListeBatiment().add(vBatiment);
