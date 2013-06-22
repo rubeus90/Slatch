@@ -531,8 +531,8 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutonexpon.png"));
                 aImages.put("boutonexpon",image);
                 
-                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutontabunites.png"));
-                aImages.put("boutontabunites",image);
+//                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutontabunites.png"));
+//                 aImages.put("boutontabunites",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/boutontabuniteson.png"));
                 aImages.put("boutontabuniteson",image);
@@ -654,7 +654,7 @@ public class Slatch {
          try {       
             Font blackOps = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().getResourceAsStream("Config/BlackOps.ttf"));
              
-             Font visitor = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().getResourceAsStream("Config/apl.ttf"));
+             Font visitor = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().getResourceAsStream("Config/pf_tempesta_seven.ttf"));
              
              fonts.put("BlackOps", blackOps);
              fonts.put("Visitor", visitor);
