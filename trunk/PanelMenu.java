@@ -65,7 +65,7 @@ public class PanelMenu extends JPanel
         
         //Valeur par default dans le menu de parametre d'une nouvelle partie pour l'IA
         aIA[0]=false;
-        aNiveauIA[0] ="Dï¿½sactivï¿½";
+        aNiveauIA[0] ="Désactivé";
         aIA[1]=false;
         aNiveauIA[1] ="Moyen";
         aIA[2]=true;
@@ -265,7 +265,7 @@ public class PanelMenu extends JPanel
                 
                 int n = Slatch.ihm.aListeMap.get(aNumeroMap).getNbrJoueur();
                
-                g.drawString("ï¿½quipe",this.getWidth()/20,this.getHeight()/2-aHauteurBouton);
+                g.drawString("équipe",this.getWidth()/20,this.getHeight()/2-aHauteurBouton);
                 g.drawString("Faction",this.getWidth()/20,this.getHeight()/2);
                 g.drawString("IA",this.getWidth()/20,this.getHeight()/2+aHauteurBouton);
                 g.drawString("Brouillard",this.getWidth()/20,this.getHeight()/2+2*aHauteurBouton);
@@ -286,7 +286,10 @@ public class PanelMenu extends JPanel
                     
                     g.drawString(""+aIntEquipe[i],(2+2*i)*this.getWidth()/10+2*this.getHeight()/40,this.getHeight()/2-aHauteurBouton);
                     
-                    g.drawString(aFaction[i+1].getNom(),(2+2*i)*this.getWidth()/10,this.getHeight()/2);
+                    if(aFaction[i+1].getNom()=="humains")
+                    {g.drawString("Humain",(2+2*i)*this.getWidth()/10,this.getHeight()/2);}
+                    if(aFaction[i+1].getNom()=="robots")
+                    {g.drawString("Mecadroïdes",(2+2*i)*this.getWidth()/10,this.getHeight()/2);}
                     
                     g.drawString(""+aNiveauIA[i],(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton);
 
@@ -295,11 +298,11 @@ public class PanelMenu extends JPanel
                 }
                 String aStrBrouillard;
                 String aStrAnimation;
-                if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Activï¿½";}
-                else{aStrBrouillard ="Dï¿½sactivï¿½";}
+                if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Activé";}
+                else{aStrBrouillard ="Désactivé";}
                 g.drawString(""+aStrBrouillard,(3)*this.getWidth()/10,this.getHeight()/2+2*aHauteurBouton);
-                if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Activï¿½";}
-                else{aStrAnimation ="Dï¿½sactivï¿½";}
+                if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Activé";}
+                else{aStrAnimation ="Désactivé";}
                 g.drawString(""+aStrAnimation,(7)*this.getWidth()/10,this.getHeight()/2+2*aHauteurBouton);
             }                      
             else
@@ -319,18 +322,18 @@ public class PanelMenu extends JPanel
             g.setFont(fontVisitor);
             String aStrBrouillard;
             String aStrAnimation;
-            if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Activï¿½";}
-            else{aStrBrouillard ="Dï¿½sactivï¿½";}
+            if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Activé";}
+            else{aStrBrouillard ="Désactivé";}
             g.drawString(""+aStrBrouillard,this.getWidth()/3 + fmBlackOps.stringWidth("Brouillard    "),3*this.getHeight()/7);
             
-            if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Activï¿½";}
-            else{aStrAnimation ="Dï¿½sactivï¿½";}
+            if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Activé";}
+            else{aStrAnimation ="Désactivé";}
             
             g.drawString(""+aStrAnimation,this.getWidth()/3 + fmBlackOps.stringWidth("Animation    "),4*this.getHeight()/7);
             g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-this.getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
             
             g.setFont(fontVisitorbis);
-            g.drawString("ï¿½ela ne dï¿½sactive pas le brouillard du mode campagne",this.getWidth()/2-fmVisitorbis.stringWidth("ï¿½ela ne dï¿½sactive pas le brouillard du mode campagne")/2,10*this.getHeight()/21);
+            g.drawString("Çela ne désactive pas le brouillard du mode campagne",this.getWidth()/2-fmVisitorbis.stringWidth("Çela ne désactive pas le brouillard du mode campagne")/2,10*this.getHeight()/21);
         }
         
         else if(aMenuChoixTuto){
@@ -516,9 +519,9 @@ public class PanelMenu extends JPanel
                     {
                            switch(aNiveauIA[i])
                            {
-                               case("Dï¿½sactivï¿½") : aNiveauIA[i]="Moyen";aIA[i+1] = true;break;
-                               case("Moyen") : aNiveauIA[i]="Lï¿½gendaire";aIA[i+1] = true;break;
-                               case("Legendaire") : aNiveauIA[i]="Dï¿½sactivï¿½";aIA[i+1] = false;break;
+                               case("Désactivé") : aNiveauIA[i]="Moyen";aIA[i+1] = true;break;
+                               case("Moyen") : aNiveauIA[i]="Légendaire";aIA[i+1] = true;break;
+                               case("Légendaire") : aNiveauIA[i]="Désactivé";aIA[i+1] = false;break;
                            }
                            this.repaint();
                     }
@@ -526,26 +529,26 @@ public class PanelMenu extends JPanel
                 }
                 String aStrBrouillard;
                 String aStrAnimation;
-                if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Activï¿½";}
-                else{aStrBrouillard ="Dï¿½sactivï¿½";}
+                if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Activé";}
+                else{aStrBrouillard ="Désactivé";}
                 int SizeBrouillard = fmVisitor.stringWidth(""+aStrBrouillard);
-                if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Activï¿½";}
-                else{aStrAnimation ="Dï¿½sactivï¿½";}
+                if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Activé";}
+                else{aStrAnimation ="Désactivé";}
                 int SizeAnimation = fmVisitor.stringWidth(""+aStrAnimation);
                 
                 //Click sur le brouillard
                 if(pY>this.getHeight()/2+2*aHauteurBouton-hR && pY<this.getHeight()/2+2*aHauteurBouton && pX>(3)*this.getWidth()/10 && pX<(3)*this.getWidth()/10+SizeBrouillard)
                 {
-                   if(aStrBrouillard.equals("Activï¿½")){aStrBrouillard="Dï¿½sactive";Slatch.ihm.setValBrouillard(false);}
-                   else{aStrBrouillard="Activï¿½"; Slatch.ihm.setValBrouillard(true);}
+                   if(aStrBrouillard.equals("Activé")){aStrBrouillard="Désactive";Slatch.ihm.setValBrouillard(false);}
+                   else{aStrBrouillard="Activé"; Slatch.ihm.setValBrouillard(true);}
                    this.repaint();
                 }
                 
                 //Click sur les animations
                 if(pY>this.getHeight()/2+2*aHauteurBouton-hR && pY<this.getHeight()/2+2*aHauteurBouton && pX>(7)*this.getWidth()/10 && pX<(7)*this.getWidth()/10+SizeAnimation)
                 {
-                   if(aStrAnimation.equals("Activï¿½")){aStrAnimation="Desactivï¿½";Slatch.ihm.setValAnimation(false);}
-                   else{aStrAnimation="Activï¿½"; Slatch.ihm.setValAnimation(true);}
+                   if(aStrAnimation.equals("Activé")){aStrAnimation="Desactivé";Slatch.ihm.setValAnimation(false);}
+                   else{aStrAnimation="Activé"; Slatch.ihm.setValAnimation(true);}
                    this.repaint();
                 }
                 
@@ -751,23 +754,23 @@ public class PanelMenu extends JPanel
             {
                 String aStrBrouillard;
                 String aStrAnimation;
-                if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Activï¿½";}
-                else{aStrBrouillard ="Dï¿½sactivï¿½";}
-                if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Activï¿½";}
-                else{aStrAnimation ="Dï¿½sactivï¿½";}
+                if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Activé";}
+                else{aStrBrouillard ="Désactivé";}
+                if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Activé";}
+                else{aStrAnimation ="Désactivé";}
                 //Click sur le brouillard
                 if(pY>3*this.getHeight()/7-fmVisitor.getHeight() && pY<3*this.getHeight()/7  && pX>this.getWidth()/3 + fmBlackOps.stringWidth("Brouillard    ") && pX<this.getWidth()/3 + fmBlackOps.stringWidth("Brouillard    ")+fmVisitor.stringWidth(""+aStrBrouillard))
                 {
-                   if(aStrBrouillard.equals("Activï¿½")){aStrBrouillard="Desactivï¿½";Slatch.ihm.setValBrouillard(false);}
-                   else{aStrBrouillard="Activï¿½"; Slatch.ihm.setValBrouillard(true);}
+                   if(aStrBrouillard.equals("Activé")){aStrBrouillard="Desactivé";Slatch.ihm.setValBrouillard(false);}
+                   else{aStrBrouillard="Activé"; Slatch.ihm.setValBrouillard(true);}
                    this.repaint();
                 }
                 
                 //Click sur les animations
                 if(pY>4*this.getHeight()/7-fmVisitor.getHeight() && pY<4*this.getHeight()/7 && pX>this.getWidth()/3 + fmBlackOps.stringWidth("Animation    ") && pX<this.getWidth()/3 + fmBlackOps.stringWidth("Animation    ")+fmVisitor.stringWidth(""+aStrAnimation))
                 {
-                   if(aStrAnimation.equals("Activï¿½")){aStrAnimation="Dï¿½sactivï¿½";Slatch.ihm.setValAnimation(false);}
-                   else{aStrAnimation="Activï¿½"; Slatch.ihm.setValAnimation(true);}
+                   if(aStrAnimation.equals("Activé")){aStrAnimation="Désactivé";Slatch.ihm.setValAnimation(false);}
+                   else{aStrAnimation="Activé"; Slatch.ihm.setValAnimation(true);}
                    this.repaint();
                 }
                 
