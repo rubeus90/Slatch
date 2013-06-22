@@ -126,7 +126,11 @@ public class Campagne implements MouseListener {
 
 		if (aNiveau != 0)
 			chargerPartie(aNiveau);
+		
+		Slatch.ihm.getpanelmatrice().setObjectif(true);
+		Slatch.ihm.getpanelmatrice().setStringObjectif(panel.getObjectif());
 
+		Slatch.ihm.getpanelmatrice().repaint();
 		Slatch.ihm.getPanelFrame().repaint();
 
 	}

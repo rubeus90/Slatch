@@ -33,6 +33,7 @@ public class PanelDialogueCampagne extends JPanel {
     private String background;
     private int etape;
     private boolean fini = false;
+    private String objectif;
     
 
     public PanelDialogueCampagne(final int pNiveau) {
@@ -40,12 +41,15 @@ public class PanelDialogueCampagne extends JPanel {
         try {
             scanner = new Scanner(getClass().getClassLoader()
                     .getResource("DialoguesCampagne/niveau" + (pNiveau+1))
-                    .openStream());
+                    .openStream(), "UTF-8");
         } catch (IOException e) {
             e.printStackTrace();
         }
         etape = 0;
         background ="campementnuitplaine";
+        
+        objectif = scanner.nextLine();
+        System.out.println(objectif);
     }
 
     @Override
@@ -114,6 +118,7 @@ public class PanelDialogueCampagne extends JPanel {
         {
             dialogueFinished = false;
             String texte = scanner.nextLine();
+            
             if(texte.contains(";")){
             	tab = texte.split(";");
             	interlocuteur1 = tab[0];
@@ -142,5 +147,9 @@ public class PanelDialogueCampagne extends JPanel {
     
     public void setFini(){
         fini = true;
+    }
+    
+    public String getObjectif(){
+    	return objectif;
     }
 }

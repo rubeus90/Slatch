@@ -77,6 +77,9 @@ public class PanelMatrice extends JPanel
     private boolean aCapturePossible=false;
     private boolean aEvoluePossible=false;
     
+    private boolean objectif = false;
+    private String stringObjectif;
+    
     // Boolean de la pause entre les tours
     private boolean aPauseTour = false;
     
@@ -125,7 +128,7 @@ public class PanelMatrice extends JPanel
         aHauteurCarreau = this.getHeight()/ Slatch.partie.getHauteur();
         
         // Dessine la matrice (Terrain + Unite)
-        dessineMatrice(g);
+        dessineMatrice(g);        	
                 
         if(aPauseTour) {
             aClickOK=false;
@@ -343,6 +346,14 @@ public class PanelMatrice extends JPanel
         if(Slatch.partie.partieFinie) {
             afficheStatistique(g);
         } // FIN partieFinie
+        
+      //Ecran d'objectif pour la campagne
+        if(objectif){
+        	g.drawImage(Slatch.aImages.get("noir80"), 0, this.getHeight()/2 - this.getHeight()/10, this.getWidth(), this.getHeight()/5, this);
+        	g.setColor(Color.white);
+        	g.setFont(Slatch.fonts.get("BlackOps").deriveFont(Font.PLAIN, this.getHeight()/20));
+        	g.drawString(stringObjectif, this.getWidth()/40, this.getHeight()/2);
+        }
     }
     
     /**
@@ -828,6 +839,8 @@ public class PanelMatrice extends JPanel
     public void setMenuUniteDescription(final boolean X){menuUniteDescription=X;}
     public void setMenuShop(final boolean X){menuShop=X;}
     public void setMenu(final boolean X){menuMenu=X;}
+    public void setObjectif(boolean pObjectif){objectif = pObjectif;}
+    public void setStringObjectif(String pString){stringObjectif = pString;}
     
     public void setClickOK(final boolean X) {aClickOK=X;}
     public void setPauseTour(final boolean X) {aClickOK=!X; aPauseTour=X;}
