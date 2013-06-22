@@ -298,7 +298,6 @@ public class PanelMatrice extends JPanel
                                 break;
                             }
                         }
-                if(t==null)
                         
                 if(aArgentMem<vType.getPrix()) {
                     // Ecrie les boutons en gris
