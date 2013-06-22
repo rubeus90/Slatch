@@ -77,7 +77,7 @@ public class Campagne implements MouseListener {
 		Slatch.partie = partie;
 		Slatch.moteur = new Moteur();
 
-		Slatch.ihm.passageModePartie();
+//		Slatch.ihm.passageModePartie();
 
 		if (Slatch.partie.getBrouillard()) {
 			Slatch.moteur.Brouillard();
@@ -100,8 +100,6 @@ public class Campagne implements MouseListener {
 		} else {
 			createDialogue();
 		}
-		Slatch.ihm.getPanel().setObjectif(true);
-		Slatch.ihm.getPanel().setStringObjectif(panel.getObjectif());
 	}
 
 	public void createDialogue() {
@@ -116,25 +114,28 @@ public class Campagne implements MouseListener {
 
 		Slatch.ihm.getPanelFrame().add(panel, BorderLayout.CENTER);
 		Slatch.ihm.getPanelFrame().updateUI();
-		Slatch.ihm.getPanelFrame().repaint();
+		Slatch.ihm.getPanelFrame().repaint();	
 	}
 
 	public void fermerDialogue() {
-		Slatch.ihm.getPanelFrame().remove(panel);
-		Slatch.ihm.getPanelFrame().add(Slatch.ihm.getPanel(),
-				BorderLayout.CENTER);
-		Slatch.ihm.getPanelFrame().add(Slatch.ihm.getpanelinfo(),
-				BorderLayout.NORTH);
-
-		if (aNiveau != 0)
-			chargerPartie(aNiveau);
+		Slatch.ihm.getPanelFrame().removeAll();
+		
+		Slatch.ihm.passageModePartie();
 		
 		Slatch.ihm.getPanel().setObjectif(true);
 		Slatch.ihm.getPanel().setStringObjectif(panel.getObjectif());
+		Slatch.ihm.getPanel().repaint();
+		
+//		Slatch.ihm.getPanelFrame().add(Slatch.ihm.getPanel(),
+//				BorderLayout.CENTER);
+//		Slatch.ihm.getPanelFrame().add(Slatch.ihm.getpanelinfo(),
+//				BorderLayout.NORTH);
+
+		if (aNiveau != 0)
+			chargerPartie(aNiveau);
 
 		Slatch.ihm.getPanel().repaint();
 		Slatch.ihm.getPanelFrame().repaint();
-
 	}
 
 	public void conditionVictoire() {
@@ -189,9 +190,6 @@ public class Campagne implements MouseListener {
 
 		aNiveau = lvl;
 		createDialogue();
-		
-		Slatch.ihm.getPanel().setObjectif(true);
-		Slatch.ihm.getPanel().setStringObjectif(panel.getObjectif());
 	}
 
 	public void finirCampagne() {
