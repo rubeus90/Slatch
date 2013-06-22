@@ -24,6 +24,7 @@ public class MouseMatrice implements MouseListener {
     @Override
     public void mousePressed(MouseEvent event) {
         Slatch.ihm.getPanel().coordclickUnite(event.getX(),event.getY());
+        Slatch.ihm.getpanelmatrice().setObjectif(false);
     }
 
     @Override
