@@ -40,6 +40,7 @@ public class PanelMenu extends JPanel
     private Font fontVisitor;
     private HashMap<String,String> aImages;
    
+   
     /**
      * 
      */
@@ -223,13 +224,13 @@ public class PanelMenu extends JPanel
             {   
                afficheImageRedim("noir80",0, this.getHeight()/4-2*tCadre,this.getWidth(), 3*this.getHeight()/4+2*tCadre,g);
                
-               Image flechegauche = Slatch.aImages.get("flechegauche");
-               Image flechedroite = Slatch.aImages.get("flechedroite");
                afficheImageRedim("noir", this.getWidth()/11-tCadre, this.getHeight()/4-tCadre,this.getWidth()/2+tCadre ,3*this.getHeight()/4+tCadre,g);
                //Affichage de la miniature de la carte
                afficheImageRedim(Slatch.ihm.aListeMap.get(aNumeroMap).getFichier(), this.getWidth()/11, this.getHeight()/4,this.getWidth()/2 ,3*this.getHeight()/4,g);
-               g.drawImage(flechegauche, this.getWidth()/11, 3*this.getHeight()/4+2*tCadre, this.getHeight()/10,this.getHeight()/10, this);
-               g.drawImage(flechedroite, this.getWidth()/2-this.getHeight()/10, 3*this.getHeight()/4+2*tCadre, this.getHeight()/10,this.getHeight()/10, this);
+               
+               Image flechegauche,flechedroite;
+               g.drawImage(Slatch.aImages.get("flechegauche"), this.getWidth()/11, 3*this.getHeight()/4+2*tCadre, this.getHeight()/10,this.getHeight()/10, this);
+               g.drawImage(Slatch.aImages.get("flechedroite"), this.getWidth()/2-this.getHeight()/10, 3*this.getHeight()/4+2*tCadre, this.getHeight()/10,this.getHeight()/10, this);
                g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-this.getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
 
              
@@ -305,7 +306,7 @@ public class PanelMenu extends JPanel
             {   
                 g.drawImage(Slatch.aImages.get("boutonnouvellepartie"+aImages.get("boutonnouvellepartie")), this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/4, 6*aHauteurBouton, aHauteurBouton+10, this);
                 g.drawImage(Slatch.aImages.get("boutonchargerpartie"+aImages.get("boutonchargerpartie")), this.getWidth()/2-3*aHauteurBouton, 33+ this.getHeight()/2, 6*aHauteurBouton, aHauteurBouton+10, this);
-                
+                Image nouvellePartie,chargerPartie;     
             }       
         }
         else if(aMenuParametres)
