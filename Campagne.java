@@ -23,7 +23,7 @@ public class Campagne implements MouseListener {
 
     public Campagne(final List<Map> pListe ) {
         aNiveau = 0;
-        listeNomPartie = pListe;        
+        listeNomPartie = pListe;  
     }
 
 	public void chargerPartie(int pNiveau) {
@@ -125,6 +125,8 @@ public class Campagne implements MouseListener {
 		Slatch.ihm.getPanel().setObjectif(true);
 		Slatch.ihm.getPanel().setStringObjectif(panel.getObjectif());
 		Slatch.ihm.getPanel().repaint();
+		
+        Slatch.ihm.getPanel().setIsCampagne(true);
 		
 //		Slatch.ihm.getPanelFrame().add(Slatch.ihm.getPanel(),
 //				BorderLayout.CENTER);
