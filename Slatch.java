@@ -360,7 +360,33 @@ public class Slatch {
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/sahlaha.png"));
                 aImages.put("bataillepourledesertdumillieu",image);
-                        
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau1.png"));
+                aImages.put("niveau1",image);      
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau2.png"));
+                aImages.put("niveau2",image);
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau3.png"));
+                aImages.put("niveau3",image);
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau4.png"));
+                aImages.put("niveau4",image);
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau6.png"));
+                aImages.put("niveau6",image);
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau8.png"));
+                aImages.put("niveau8",image);
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau10.png"));
+                aImages.put("niveau10",image);
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau11.png"));
+                aImages.put("niveau11",image);
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau12.png"));
+                aImages.put("niveau12",image);
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau13.png"));
+                aImages.put("niveau13",image);
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau14.png"));
+                aImages.put("niveau14",image);
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau15.png"));
+                aImages.put("niveau15",image);
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau16.png"));
+                aImages.put("niveau16",image);      
         }
         catch (IOException e) {
             e.printStackTrace();
