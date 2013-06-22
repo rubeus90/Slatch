@@ -200,12 +200,12 @@ public class Campagne implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
-		// A supprimer apres
-		if (e.getX() >= panel.getWidth() * 9 / 10
-				&& e.getY() <= panel.getHeight() * 9 / 10) {
-			finirCampagne();
-			sauvegardeCampagne();
-		} else {
+//		// A supprimer apres
+//		if (e.getX() >= panel.getWidth() * 9 / 10
+//				&& e.getY() <= panel.getHeight() * 9 / 10) {
+//			finirCampagne();
+//			sauvegardeCampagne();
+//		} else {
 			if (aNiveau < listeNomPartie.size()) {
 				panel.etapeDialogue();
 				panel.repaint();
@@ -228,7 +228,7 @@ public class Campagne implements MouseListener {
 								+ panel.getHeight() / 2)
 					Slatch.ihm.passageModeMenuPrincipal();
 			}
-		}
+//		}
 	}
 
 	@Override

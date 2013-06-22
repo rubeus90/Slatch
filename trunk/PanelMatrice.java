@@ -299,7 +299,6 @@ public class PanelMatrice extends JPanel
                             }
                         }
                 if(t==null)
-                System.out.println( vType.getNom());
                         
                 if(aArgentMem<vType.getPrix()) {
                     // Ecrie les boutons en gris

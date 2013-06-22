@@ -49,7 +49,6 @@ public class PanelDialogueCampagne extends JPanel {
         background ="campementnuitplaine";
         
         objectif = scanner.nextLine();
-        System.out.println(objectif);
     }
 
     @Override
