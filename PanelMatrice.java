@@ -322,7 +322,7 @@ public class PanelMatrice extends JPanel
             redimMenu();
             
             // Police
-            Font font = new Font("Serif", Font.BOLD, this.getWidth()/75);
+            Font font = new Font("Serif", Font.BOLD, aHauteurCarreau/3);
             g.setFont(font);
             FontMetrics fm=getFontMetrics(font);  
         
