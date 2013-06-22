@@ -104,12 +104,12 @@ public class IHM_NEW  {
     
     public void setNiveau ( final int lvl){aNiveau=lvl;}
     
-    /**
-     * Accesseur du Paneau du Menu.
-     */
-    public PanelMatrice getpanelmatrice() {
-        return panelMatrice;
-    }
+//    /**
+//     * Accesseur du Paneau du Menu.
+//     */
+//    public PanelMatrice getpanelmatrice() {
+//        return panelMatrice;
+//    }
     
     public JFrame getframe() {
         return frame;
