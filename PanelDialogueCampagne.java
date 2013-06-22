@@ -80,9 +80,7 @@ public class PanelDialogueCampagne extends JPanel {
             final int pPosHautGaucheX, final int pPosHautGaucheY,
             final int pPosBasDroiteX, final int pPosBasDroiteY, final Graphics g) {
         Image img = Slatch.aImages.get(pURL);
-        g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX
-                - pPosHautGaucheX, pPosBasDroiteY - pPosHautGaucheY,
-                Slatch.ihm.getPanel());
+        g.drawImage(img, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX - pPosHautGaucheX, pPosBasDroiteY - pPosHautGaucheY, this);
     }
 
     public void afficheText() {

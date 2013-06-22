@@ -77,7 +77,7 @@ public class PanelMatrice extends JPanel
     private boolean aCapturePossible=false;
     private boolean aEvoluePossible=false;
     
-    private boolean objectif = false;
+    private boolean objectif;
     private String stringObjectif;
     
     private boolean isCampagne = false;
@@ -115,8 +115,7 @@ public class PanelMatrice extends JPanel
         
         aTabAchat= new HashMap<Integer,TypeUnite> ();
         aListeAction= new ArrayList<String>();
-        aListeShop= new ArrayList<TypeUnite>();
-       
+        aListeShop= new ArrayList<TypeUnite>();       
     } // FIN PanelMatrice
 
     /**
@@ -365,6 +364,8 @@ public class PanelMatrice extends JPanel
      */
     public void coordclickUnite (int pX, int pY) 
     {
+    	objectif = false;
+    	
         if(!aClickOK) {
             aClickOK = true;
             aPauseTour = false;
@@ -851,4 +852,5 @@ public class PanelMatrice extends JPanel
     public void setPauseTour(final boolean X) {aClickOK=!X; aPauseTour=X;}
     public boolean getPauseTour() {return aPauseTour;}
     public boolean getClickOK() {return aClickOK;}
+    public boolean getObjectif(){return objectif;}
 }

@@ -142,6 +142,8 @@ public class IHM_NEW  {
             panel.remove(panelMenu);
         if(tutoriel != null)
             panel.remove(tutoriel);
+        if(dialogue != null)
+        	panel.remove(dialogue);
             
         panel.add(panelMatrice, BorderLayout.CENTER);
         panel.add(panelInfo, BorderLayout.NORTH);
