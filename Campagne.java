@@ -187,7 +187,9 @@ public class Campagne implements MouseListener {
 
 		aNiveau = lvl;
 		createDialogue();
-
+		
+		Slatch.ihm.getpanelmatrice().setObjectif(true);
+		Slatch.ihm.getpanelmatrice().setStringObjectif(panel.getObjectif());
 	}
 
 	public void finirCampagne() {
