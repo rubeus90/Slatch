@@ -373,6 +373,8 @@ public class Slatch {
                 aImages.put("niveau6",image);
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau8.png"));
                 aImages.put("niveau8",image);
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau9.png"));
+                aImages.put("niveau9",image);
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau10.png"));
                 aImages.put("niveau10",image);
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/menu/niveau11.png"));
