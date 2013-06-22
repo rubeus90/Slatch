@@ -335,11 +335,11 @@ public class PanelMatrice extends JPanel
             afficheImageRedim ("noir", aMenuHautGauche_Xpx, aMenuHautGauche_Ypx, aMenuBasDroite_Xpx, aMenuBasDroite_Ypx, g);
             g.setColor(Color.white);
             
-            //On affiche cette ligne qu'en mode Partie Rapide
-            if(!isCampagne)
-            	g.drawString(sauver, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-sauverSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
+            g.drawString(MenuPrincipal, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-sauverSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
             
-            g.drawString(MenuPrincipal, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-MenuPrincipalSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
+          //On affiche cette ligne qu'en mode Partie Rapide
+            if(!isCampagne)
+            	g.drawString(sauver, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-MenuPrincipalSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
             
             g.setColor(Color.gray);
             g.drawLine(aMenuHautGauche_Xpx, 0, aMenuBasDroite_Xpx-1, 0);
@@ -403,11 +403,11 @@ public class PanelMatrice extends JPanel
                         // Si le menu est la...
                         if(menuMenu) {
                             // Bouton sauver
-                            if (0<clickY && clickY<aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
+                        	if(aHauteurCarreau<clickY && clickY<2*aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx){
                                 Slatch.partie.sauvegardePartie("Maps/sauvegarde.txt");
                             }
                             // Bouton menu principal
-                            else if(aHauteurCarreau<clickY && clickY<2*aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
+                            else if(0<clickY && clickY<aHauteurCarreau && aMenuHautGauche_Xpx<clickX && clickX<aMenuBasDroite_Xpx) {
                                 Slatch.ihm.passageModeMenuPrincipal();
                             }
                             else {
@@ -763,7 +763,7 @@ public class PanelMatrice extends JPanel
         aMenuHautGauche_Xpx = 0;
         aMenuHautGauche_Ypx = 0;
         aMenuBasDroite_Xpx = 5*aLargeurCarreau;
-        aMenuBasDroite_Ypx = 3*aHauteurCarreau;
+        aMenuBasDroite_Ypx = 2*aHauteurCarreau;
     } // FIN redimMenu
     
     /**
