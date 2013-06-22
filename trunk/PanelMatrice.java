@@ -80,6 +80,8 @@ public class PanelMatrice extends JPanel
     private boolean objectif = false;
     private String stringObjectif;
     
+    private boolean isCampagne = false;
+    
     // Boolean de la pause entre les tours
     private boolean aPauseTour = false;
     
@@ -333,7 +335,11 @@ public class PanelMatrice extends JPanel
             
             afficheImageRedim ("noir", aMenuHautGauche_Xpx, aMenuHautGauche_Ypx, aMenuBasDroite_Xpx, aMenuBasDroite_Ypx, g);
             g.setColor(Color.white);
-            g.drawString(sauver, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-sauverSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
+            
+            //On affiche cette ligne qu'en mode Partie Rapide
+            if(!isCampagne)
+            	g.drawString(sauver, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-sauverSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0);
+            
             g.drawString(MenuPrincipal, (aMenuBasDroite_Xpx-aMenuHautGauche_Xpx-MenuPrincipalSize)/2, aMenuHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*1);
             
             g.setColor(Color.gray);
@@ -839,6 +845,7 @@ public class PanelMatrice extends JPanel
     public void setMenu(final boolean X){menuMenu=X;}
     public void setObjectif(boolean pObjectif){objectif = pObjectif;}
     public void setStringObjectif(String pString){stringObjectif = pString;}
+    public void setIsCampagne(boolean pIsCampagne){isCampagne = pIsCampagne;}
     
     public void setClickOK(final boolean X) {aClickOK=X;}
     public void setPauseTour(final boolean X) {aClickOK=!X; aPauseTour=X;}
