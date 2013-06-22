@@ -333,7 +333,7 @@ public class PanelMenu extends JPanel
             g.drawImage(ok, this.getWidth()-10-this.getHeight()/6, this.getHeight()-10-this.getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
             
             g.setFont(fontVisitorbis);
-            g.drawString("éela ne désactive pas le brouillard du mode campagne",this.getWidth()/2-fmVisitorbis.stringWidth("éela ne désactive pas le brouillard du mode campagne")/2,10*this.getHeight()/21);
+            g.drawString("Cela ne désactive pas le brouillard du mode campagne",this.getWidth()/2-fmVisitorbis.stringWidth("éela ne désactive pas le brouillard du mode campagne")/2,10*this.getHeight()/21);
         }
         
         else if(aMenuChoixTuto){
