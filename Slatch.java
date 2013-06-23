@@ -459,6 +459,12 @@ public class Slatch {
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/ville.png"));
                 aImages.put("ville",image);
                 
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/oasis.png"));
+                aImages.put("oasis",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/tente.png"));
+                aImages.put("tente",image);
+                
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/barredialogue.png"));
                 aImages.put("barredialogue",image);
                 
@@ -470,6 +476,9 @@ public class Slatch {
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/isabelle.png"));
                 aImages.put("Isabelle",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/isabellerobot.png"));
+                aImages.put("IsabelleCyborg",image);
                 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/campagne/Skip.png"));
                 aImages.put("skip",image);
