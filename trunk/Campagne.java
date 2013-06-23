@@ -22,7 +22,7 @@ public class Campagne implements MouseListener {
     private PanelDialogueCampagne panel;
 
     public Campagne(final List<Map> pListe ) {
-        aNiveau = 11;
+        aNiveau = 15;
         listeNomPartie = pListe;  
     }
 
@@ -111,7 +111,8 @@ public class Campagne implements MouseListener {
 
     public void fermerDialogue() {
         Slatch.ihm.getPanelFrame().removeAll();
-        
+        if (aNiveau != 0)
+            chargerPartie(aNiveau);
         
         Slatch.ihm.passageModePartie();
         
@@ -133,8 +134,7 @@ public class Campagne implements MouseListener {
 //      Slatch.ihm.getPanelFrame().add(Slatch.ihm.getpanelinfo(),
 //              BorderLayout.NORTH);
 
-        if (aNiveau != 0)
-            chargerPartie(aNiveau);
+        
 
         Slatch.ihm.getPanel().repaint();
         Slatch.ihm.getPanelFrame().repaint();
