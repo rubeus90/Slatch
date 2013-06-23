@@ -113,7 +113,7 @@ public class Unite extends Entite
                         break;
                     }
                 }
-            
+       mapInfluence = Slatch.tabInf.get(this.aType);     
        aDegats = aAttaque.getDegats();         
        
        dejaAttaque=pDejaAttaque;
