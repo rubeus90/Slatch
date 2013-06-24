@@ -198,21 +198,27 @@ public class PanelMenu extends JPanel
         
         else if(aMenuTuto)
         {
+            g.setFont(fontBlackOps);
+            g.setColor(Color.white);
             if(aSousMenuTab1)
             {
                 int tailleFleche = this.getWidth()/15;
                 int marge = this.getWidth()/20;
+                afficheImageRedim("noir80",0,0,this.getWidth(), this.getHeight(),g);
+                g.drawString("Les Unités",this.getWidth()/2-fmBlackOps.stringWidth("Les Unités")/2,this.getHeight()/8);
+                afficheImageRedim("tableauunite1",this.getWidth()/5,this.getHeight()/5,4*this.getWidth()/5, 4*this.getHeight()/5,g);
                 g.drawImage(Slatch.aImages.get("flechegauche"), this.getWidth()-2*tailleFleche-2*marge,this.getHeight()-tailleFleche-marge,tailleFleche,tailleFleche, this);
                 g.drawImage(Slatch.aImages.get("flechedroite"), this.getWidth()-tailleFleche-marge,this.getHeight()-tailleFleche-marge,tailleFleche,tailleFleche, this);
-    
             }
             else if(aSousMenuTab2)
             {
                 int tailleFleche = this.getWidth()/15;
                 int marge = this.getWidth()/20;
+                afficheImageRedim("noir80",0,0,this.getWidth(), this.getHeight(),g);
+                g.drawString("Les Rapports de Force",this.getWidth()/2-fmBlackOps.stringWidth("Les Rapports de Force")/2,this.getHeight()/8);
+                afficheImageRedim("tableauunite2",this.getWidth()/5,this.getHeight()/5,4*this.getWidth()/5, 4*this.getHeight()/5,g);
                 g.drawImage(Slatch.aImages.get("flechegauche"), this.getWidth()-2*tailleFleche-2*marge,this.getHeight()-tailleFleche-marge,tailleFleche,tailleFleche, this);
-                g.drawImage(Slatch.aImages.get("flechedroite"), this.getWidth()-tailleFleche-marge,this.getHeight()-tailleFleche-marge,tailleFleche,tailleFleche, this);
-    
+                g.drawImage(Slatch.aImages.get("flechedroite"), this.getWidth()-tailleFleche-marge,this.getHeight()-tailleFleche-marge,tailleFleche,tailleFleche, this); 
             }
             else
             {
@@ -722,6 +728,7 @@ public class PanelMenu extends JPanel
                     //Clic fleche gauche
             	    if(pX>this.getWidth()-2*tailleFleche-2*marge && pX<this.getWidth()-2*tailleFleche-2*marge+tailleFleche && pY>this.getHeight()-tailleFleche-marge && pY<this.getHeight()-marge)
             	    {
+            	        aSousMenuTab1 = true;
             	        aSousMenuTab2 = false;
             	        this.repaint();
             	    }
