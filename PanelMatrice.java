@@ -237,9 +237,9 @@ public class PanelMatrice extends JPanel
                 g.drawString(lvl, aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3);
                 
                 int tailleIcon = aHauteurCarreau -5;
-                //System.out.println("niveau"+t.getUnite().getLvl()+""+Slatch.partie.getJoueur(t.getUnite().getJoueur()).getFaction().getNom());
+
                 afficheImageRedim ("niveau"+t.getUnite().getLvl()+""+Slatch.partie.getJoueur(t.getUnite().getJoueur()).getFaction().getNom(), (aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(lvl), (aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3)-(2*tailleIcon/3), (aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(lvl)+tailleIcon, aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*3+(tailleIcon/3), g);
-                //System.out.println(t.getUnite().getType().getImage()+""+t.getUnite().getJoueur());
+
                 afficheImageRedim (Slatch.partie.getJoueur(t.getUnite().getJoueur()).getFaction()+""+t.getUnite().getType().getImage()+""+t.getUnite().getJoueur(), (aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titre),(aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)-(2*tailleIcon/3) ,(aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titre)+tailleIcon, (aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)+(1*tailleIcon/3), g);
                 
                 if(t.getType().getDependance())afficheImageRedim (typemap+t.getType().getImage()+""+t.getJoueur(), ((aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titreTerrain),(aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)-(2*tailleIcon/3) ,((aLargeurMenuDescriptionEnCase/2)*aLargeurCarreau + aMenuDescriptionHautGauche_Xpx+aLargeurCarreau/3)+fm.stringWidth(titreTerrain)+tailleIcon, (aMenuDescriptionHautGauche_Ypx+2*aHauteurCarreau/3+aHauteurCarreau*0)+(1*tailleIcon/3), g);
@@ -333,9 +333,7 @@ public class PanelMatrice extends JPanel
             //On affiche cette ligne qu'en mode Partie Rapide
             if(!isCampagne)
             	g.drawString(sauver, this.getWidth()/50, this.getHeight()/8);
-//            
-//            g.setColor(Color.gray);
-//            g.drawLine(aMenuHautGauche_Xpx, 0, aMenuBasDroite_Xpx-1, 0);
+
         } // FIN menuMenu
         
         // Si la partie est finie : Ecran de fin de partie
@@ -380,10 +378,7 @@ public class PanelMatrice extends JPanel
                     int pPosBasDroiteX = (i+1)*aLargeurCarreau;
                     int pPosBasDroiteY = (j+1)*aHauteurCarreau;
                     
-//                    // Si la partie est finie
-//                    if(Slatch.partie.partieFinie && Slatch.partie.isCampagne()) {
-//                        Slatch.campagne.suite();
-//                    }
+
                     // Si la partie n'est pas fine
                     if(pPosHautGaucheY<clickY && clickY<pPosBasDroiteY && pPosHautGaucheX<clickX && clickX<pPosBasDroiteX) 
                     {

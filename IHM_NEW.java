@@ -44,7 +44,6 @@ public class IHM_NEW  {
         animation = new GestionnaireAnimation();
         // Creation du timer pour les animations
         timer = new Timer(25, animation);
-        //timer.start();
         
         aListeMission=new ArrayList<Map>();
         // Creation de la fenetre : frame
@@ -62,8 +61,6 @@ public class IHM_NEW  {
         panel = new JPanel();
         frame.setContentPane(panel);
         
-        //panelInfo = new PanelInfo();
-        //panelMatrice = new PanelMatrice(); 
         panelMenu = new PanelMenu();
         
         aListeMap=new ArrayList<Map>();
@@ -73,15 +70,9 @@ public class IHM_NEW  {
         }
 
         
-        panel.setLayout(new BorderLayout());
-        //panel.add(panelInfo, BorderLayout.NORTH);
-        //panel.add(panelMatrice, BorderLayout.CENTER);     
+        panel.setLayout(new BorderLayout());  
         panel.add(panelMenu, BorderLayout.CENTER);  
        
-        //MouseMatrice lecteurMatrice = new MouseMatrice();
-        //panelMatrice.addMouseListener(lecteurMatrice);
-        //MouseInfo lecteurInfo = new MouseInfo();
-        //panelInfo.addMouseListener(lecteurInfo);
         MouseMenu lecteurMenu = new MouseMenu();
         panelMenu.addMouseListener(lecteurMenu);
         panelMenu.addMouseMotionListener(lecteurMenu);
@@ -90,8 +81,6 @@ public class IHM_NEW  {
         frame.setVisible(true);
         panelMenu.setVisible(true);
         
-        //panelMatrice.setVisible(true);
-        //panelInfo.setVisible(true);
         
     }
     
@@ -103,13 +92,6 @@ public class IHM_NEW  {
     }
     
     public void setNiveau ( final int lvl){aNiveau=lvl;}
-    
-//    /**
-//     * Accesseur du Paneau du Menu.
-//     */
-//    public PanelMatrice getpanelmatrice() {
-//        return panelMatrice;
-//    }
     
     public JFrame getframe() {
         return frame;
@@ -163,28 +145,11 @@ public class IHM_NEW  {
         panelMenu.addMouseListener(lecteurMenu);
         panelMenu.addMouseMotionListener(lecteurMenu);
            
-//        if(panelInfo != null){
-//            panel.remove(panelInfo);
-//            panelInfo.setVisible(false);
-//        }
-//        if(panelMatrice != null){
-//            panel.remove(panelMatrice);
-//            panelMatrice.setVisible(false);
-//        }
-//        if(tutoriel != null){
-//            panel.remove(tutoriel);
-//            tutoriel.setVisible(false);
-//        }    
-//        if(dialogue != null){
-//          panel.remove(dialogue);
-//            dialogue.setVisible(false);
-//        }
-        
+      
         panel.removeAll();
         panel.add(panelMenu, BorderLayout.CENTER);
 
         panelMenu.setVisible(true);
-        //tutoriel.setVisible(false);
         panel.repaint();
         panelMenu.repaint();
         frame.pack();        

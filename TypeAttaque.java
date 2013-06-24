@@ -25,8 +25,6 @@ public enum TypeAttaque
     TypeAttaque(int pDegats, String pNom, String pDescription ,final PorteeAttaque pTypePortee ) // ajouter PorteeAttaque pPortee
     {
         aDegats = pDegats;
-        //efficacite.put(TypeUnite.NAVAL, 1.5);
-        //efficacite = pEfficacite;
         aNom = pNom;
         aDescription = pDescription;
         efficacite= new HashMap<TypeUnite,Double> ();
