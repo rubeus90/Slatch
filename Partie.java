@@ -19,7 +19,6 @@ import java.io.PrintWriter;
  */
 public class Partie
 {
-    // instance variables - replace the example below with your own
     private int aNbrEquipe;
     public List<Joueur> ListeJoueur;
     private int aRevenuBatiment;
@@ -246,7 +245,6 @@ public class Partie
             //Ajout des joueur dans l'arrayList
             for(int i=1;i<=aMap.getNbrJoueur();i++)
             {
-                //System.out.println(aMap.getNbrJoueur()+" "+i);
                 Joueur vPlayer = new Joueur(i,pTabFaction[i],vBatimentJoueur[i],pTabEquipe[i],pTabIA[i],"");
                 vPlayer.setTypeIA(pTypeIA[i-1]);
                 ListeJoueur.add(vPlayer);
@@ -910,7 +908,6 @@ public class Partie
              }
         }
         uneSeulEquipedeJoueur=true;
-        //System.out.println(uneSeulEquipedeJoueur);
     }
     
     public boolean isCampagne(){

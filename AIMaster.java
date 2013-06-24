@@ -23,7 +23,6 @@ public class AIMaster
             if(u.getPV()<=0){i.remove();}
             if(Slatch.partie.partieFinie){return;}
         }    
-        //Slatch.moteur.passeTour();
         Slatch.ihm.getAnimation().start();
     }
 }

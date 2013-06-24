@@ -345,13 +345,9 @@ public class Unite extends Entite
                 {
                     int pDegats = blessure;
                     
-                    //Font font = new Font("Helvetica", Font.BOLD, 8+15*Slatch.ihm.getpanelmatrice().getWidth()/1500);
                     Font font = new Font("Helvetica", Font.BOLD, (Slatch.ihm.getPanel().getWidth()/Slatch.partie.getMap().getLongueur())/2);
                     g.setFont(font);
                     
-                    
-                    
-                     
                     if (pDegats <0)
                     {
                         g.setColor(Color.red);
@@ -364,12 +360,7 @@ public class Unite extends Entite
                         String stringDegats = "+"+pDegats;
                         g.drawString(stringDegats, pPosHautGaucheX, pPosMidGaucheY);
                     }
-                    /*else if (pDegats ==0)    
-                    {
-                        g.setColor(Color.blue);
-                        String stringDegats = ""+pDegats;
-                    }*/
-                    
+                   
                 }
                 
                 if(isEvolvable && !dejaAttaque)
@@ -380,14 +371,12 @@ public class Unite extends Entite
                 
                 if(mort)
                 {
-                    //System.out.println(numeroExplosion);
                     Image explosion = Slatch.aImages.get("explosion"+numeroExplosion);
                     g.drawImage(explosion, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
                 }
                 
                 if(lvlup)
                 {
-                    //System.out.println(numeroExplosion);
                     Image explosion = Slatch.aImages.get("fleche"+numeroFleche);
                     g.drawImage(explosion, pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY, pPanel);
                 }

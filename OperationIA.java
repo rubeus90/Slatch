@@ -32,7 +32,6 @@ public class OperationIA
             cible= trouverBonneCase(unite, new Influence(0,1, 0, 0, 0));
         }        
         else{// l'unité peut attaquer
-            //cible= trouverBonneCase(unite, new Influence(0,1, 5000, -1, 1));
             cible= trouverBonneCase(unite, new Influence(0,0, 5000, 0, 0));
         }
         
@@ -40,9 +39,7 @@ public class OperationIA
         {
             cible= trouverBonneCase(unite, new Influence(0,1, 0, 0, 0));
         }
-       
-        //cible= trouverBonneCase(unite, new Influence(1,0, 0, 0, 0));
-        //cible= trouverBonneCase(unite, new Influence(0,0, 1, 0, 0));
+
         if(cible == null){return;}
         int x=cible.getX();
         int y= cible.getY();
@@ -56,7 +53,7 @@ public class OperationIA
         }
         else if(Slatch.partie.getTerrain()[x][y].estCapturable()&&unite.peutCapturer()&&(u==null || u==unite))
         {
-            //System.out.println(unite+" en ("+ unite.getX()+","+unite.getY()+") va capturer "+cible+" en ("+cible.getX()+","+cible.getY()+")");
+            
             UniteIA.decrypterObjectif(new Objectif(unite, cible, TypeObjectif.CAPTURER));
         }
         else if(u!=null)
@@ -65,24 +62,24 @@ public class OperationIA
             {
                 if(unite.getType()==TypeUnite.INGENIEUR && u.aBesoinDeSoins())
                 {
-                    //System.out.println(unite+" en ("+ unite.getX()+","+unite.getY()+") va soigner "+u+" en ("+cible.getX()+","+cible.getY()+")");
+                    
                     UniteIA.decrypterObjectif(new Objectif(unite, u, TypeObjectif.SOIGNER));
                 }
                 else
                 {
-                    //System.out.println(unite+" en ("+ unite.getX()+","+unite.getY()+") va vers "+u+" en ("+cible.getX()+","+cible.getY()+")");
+                    
                     UniteIA.decrypterObjectif(new Objectif(unite, cible, TypeObjectif.ALLER));
                 }
             }
             else
             {
-                //System.out.println(unite+" en ("+ unite.getX()+","+unite.getY()+") va attaquer "+u+" en ("+cible.getX()+","+cible.getY()+")");
+                
                 UniteIA.decrypterObjectif(new Objectif(unite, u, TypeObjectif.ATTAQUER));
             }
         }
         else
         {
-            //System.out.println(unite+" en ("+ unite.getX()+","+unite.getY()+") va vers "+cible+" en ("+cible.getX()+","+cible.getY()+")");
+            
             UniteIA.decrypterObjectif(new Objectif(unite, cible, TypeObjectif.ALLER));
         }
         
@@ -282,7 +279,6 @@ public class OperationIA
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.KAMIKAZE), TypeObjectif.ACHETER));
                     nombreSpec=nombreSpec+1;
                 }
-                //break;
             }
         }
         else
@@ -344,7 +340,6 @@ public class OperationIA
                     UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.WHILE), TypeObjectif.ACHETER));                    
                     nombreWhile=nombreWhile+1;
                 }
-                //break;
             }
         }
         
