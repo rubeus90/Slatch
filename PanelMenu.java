@@ -163,8 +163,7 @@ public class PanelMenu extends JPanel
             g.drawImage(Slatch.aImages.get("boutoncampagne"+aImages.get("boutoncampagne")), this.getWidth()/2-2*aHauteurBouton, 33+ this.getHeight()/4, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(Slatch.aImages.get("boutonrapide"+aImages.get("boutonrapide")), this.getWidth()/2-2*aHauteurBouton, 33+ 3*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(Slatch.aImages.get("boutontutoriel"+aImages.get("boutontutoriel")), this.getWidth()/2-2*aHauteurBouton, 33+ 4*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
-            g.drawImage(Slatch.aImages.get("boutonmapcreator"+aImages.get("boutonmapcreator")), this.getWidth()/2-2*aHauteurBouton, 33+ 5*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
-            g.drawImage(Slatch.aImages.get("boutoncredits"+aImages.get("boutoncredits")), this.getWidth()/2-2*aHauteurBouton, 33+ 6*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
+            g.drawImage(Slatch.aImages.get("boutoncredits"+aImages.get("boutoncredits")), this.getWidth()/2-2*aHauteurBouton, 33+ 5*this.getHeight()/8, 4*aHauteurBouton,aHauteurBouton, this);
             g.drawImage(Slatch.aImages.get("engrenage"+aImages.get("engrenage")), this.getWidth()-aHauteurBouton/2-this.getHeight()/10,aHauteurBouton/2,this.getHeight()/10,this.getHeight()/10, this);            
             
         }
@@ -416,14 +415,8 @@ public class PanelMenu extends JPanel
                 //Slatch.ihm.passageModeTuto(tuto);
             }
             
-            //Clic Bouton Map Creator
-            if(pY>33+ 5*this.getHeight()/8 && pY<33+ 5*this.getHeight()/8+aHauteurBouton && pX>this.getWidth()/2-2*aHauteurBouton && pX< this.getWidth()/2+2*aHauteurBouton)
-            {
-                Slatch.maps = new CreationMaps();
-            }
-            
             //Clic Bouton Credits
-            if(pY>33+ 6*this.getHeight()/8 && pY<33+ 6*this.getHeight()/8+aHauteurBouton && pX>this.getWidth()/2-2*aHauteurBouton && pX< this.getWidth()/2+2*aHauteurBouton)
+            if(pY>33+ 5*this.getHeight()/8 && pY<33+ 5*this.getHeight()/8+aHauteurBouton && pX>this.getWidth()/2-2*aHauteurBouton && pX< this.getWidth()/2+2*aHauteurBouton)
             {
                 aMenuPrincipal = false;
                 aMenuCredits = true;
@@ -884,7 +877,6 @@ public class PanelMenu extends JPanel
         if(aImages.get("boutoncampagne")!=""){aImages.put("boutoncampagne","");}
         if(aImages.get("boutonrapide")!=""){aImages.put("boutonrapide","");}
         if(aImages.get("boutontutoriel")!=""){aImages.put("boutontutoriel","");}
-        if(aImages.get("boutonmapcreator")!=""){aImages.put("boutonmapcreator","");}
         if(aImages.get("boutoncredits")!=""){aImages.put("boutoncredits","");}
         if(aImages.get("boutonexp")!=""){aImages.put("boutonexp","");}
         if(aImages.get("engrenage")!=""){aImages.put("engrenage","");}
@@ -901,9 +893,6 @@ public class PanelMenu extends JPanel
                 aImages.put("boutontutoriel","on");
             }
             if(pX>this.getWidth()/2-2*aHauteurBouton && pY>33+ 5*this.getHeight()/8 && pX<this.getWidth()/2-2*aHauteurBouton+4*aHauteurBouton && pY<33+ 5*this.getHeight()/8+aHauteurBouton){
-                aImages.put("boutonmapcreator","on");
-            }
-            if(pX>this.getWidth()/2-2*aHauteurBouton && pY>33+ 6*this.getHeight()/8 && pX<this.getWidth()/2-2*aHauteurBouton+4*aHauteurBouton && pY<33+ 6*this.getHeight()/8+aHauteurBouton){
                 aImages.put("boutoncredits","on");
             }
             if(pX>this.getWidth()-aHauteurBouton/2-this.getHeight()/10 && pY>aHauteurBouton/2 && pX<this.getWidth()-aHauteurBouton/2 && pY<aHauteurBouton/2+this.getHeight()/10){
