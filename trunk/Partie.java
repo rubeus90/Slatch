@@ -247,9 +247,9 @@ public class Partie
             for(int i=1;i<=aMap.getNbrJoueur();i++)
             {
                 //System.out.println(aMap.getNbrJoueur()+" "+i);
-                Joueur vJouir = new Joueur(i,pTabFaction[i],vBatimentJoueur[i],pTabEquipe[i],pTabIA[i],"");
-                vJouir.setTypeIA(pTypeIA[i-1]);
-                ListeJoueur.add(vJouir);
+                Joueur vPlayer = new Joueur(i,pTabFaction[i],vBatimentJoueur[i],pTabEquipe[i],pTabIA[i],"");
+                vPlayer.setTypeIA(pTypeIA[i-1]);
+                ListeJoueur.add(vPlayer);
                 
             }
             
@@ -315,7 +315,6 @@ public class Partie
             else
                 activationAnimation=false;
             
-            //A CHANGER PLUS TARD
             Equipe equipe0 = new Equipe(0);
             Equipe equipe1 = new Equipe(1);
             Equipe equipe2 = new Equipe(2);
@@ -328,6 +327,8 @@ public class Partie
             Equipe[] vEquipe = new Equipe[aMap.getNbrJoueur()+1];
             Faction[] vFaction = new Faction[aMap.getNbrJoueur()+1];
             boolean[] vAlive = new boolean[aMap.getNbrJoueur()+1];
+            TypeIA[] pTypeIA = new TypeIA[aMap.getNbrJoueur()+1];
+            
             
             // Boucle des joueurs, un joueur = 4 lignes
             for(int i=1;i<=aMap.getNbrJoueur();  i++){
@@ -360,10 +361,18 @@ public class Partie
                vArgent[i]=Integer.parseInt(vScannerMap.nextLine()); //10e ligne
                
                String vIsViviant= vScannerMap.nextLine(); // 11e ligne
-                if(vIsViviant.equals("true"))
-                    vAlive[i]=true;
-                else
-                    vAlive[i]=false;
+               if(vIsViviant.equals("true"))
+                   vAlive[i]=true;
+               else
+                   vAlive[i]=false;
+                    
+              String vStringTypeIA = vScannerMap.nextLine(); // 12e ligne
+              if(vStringTypeIA.equals("Aggressive"))
+                   pTypeIA[i]=TypeIA.AGGRESSIVE;
+              else if(vStringTypeIA.equals("Réfléchie"))
+                   pTypeIA[i]=TypeIA.REFLECHIE;
+              else
+                   pTypeIA[i]=TypeIA.DESACTIVEE;
             }
             
             aTerrain = new Terrain[aMap.getLongueur()][aMap.getLargeur()];
@@ -525,6 +534,7 @@ public class Partie
             {
                 ListeJoueur.add(new Joueur(i,vFaction[i],vBatimentJoueur[i],vEquipe[i],vIA[i],""));     
                 ListeJoueur.get(i).setArgent(vArgent[i]);
+                ListeJoueur.get(i).setTypeIA(pTypeIA[i]);
                 if(vAlive[i]==false)
                     ListeJoueur.get(i).mourrir();
             }
@@ -577,6 +587,7 @@ public class Partie
                     out.println(""+joueur.getEquipe().getNumEquipe());
                     out.println(""+joueur.getArgent());
                     out.println(""+joueur.isAlive());
+                    out.println(""+joueur.getTypeIA());
                 }
             }
             
