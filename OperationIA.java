@@ -35,7 +35,7 @@ public class OperationIA
             cible= trouverBonneCase(unite, new Influence(0,0, 5000, 0, 0));
         }
         
-        if(unite.getAttaque().aTypePortee.getPorteeMin()>1 && Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType()==TypeTerrain.USINE && Slatch.partie.getTerrain()[unite.getX()][unite.getY()].appartientAuJoueur(Slatch.partie.getJoueurActuel()))
+        if(unite.getAttaque().aTypePortee.getPorteeMin()>1 && Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType()==TypeTerrain.USINE && Slatch.partie.getJoueur(Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getJoueur()).getEquipe() == Slatch.moteur.getJoueurActuel().getEquipe())
         {
             cible= trouverBonneCase(unite, new Influence(0,1, 0, 0, 0));
         }
@@ -108,7 +108,7 @@ public class OperationIA
                     {
                         if(Slatch.moteur.seraAPortee(unite, u))
                         {
-                            map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+=(int)(unite.getAttaque().efficacite.get(u.getType()).doubleValue()*5000*StrategieIA.mode.inf.offensif*(double)(u.getPVMax())/(double)(u.getPV()));
+                            map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+=(int)(unite.getAttaque().efficacite.get(u.getType()).doubleValue()*5000.0*StrategieIA.mode.inf.offensif*(double)(u.getPVMax())/(double)(u.getPV()));
                         }
                         map[u.getCoordonneeX()][u.getCoordonneeY()].offensif+= pontDerration((int)(unite.getAttaque().efficacite.get(u.getType()).doubleValue()*50000.0*StrategieIA.mode.inf.offensif*(double)(u.getPVMax())/(double)(u.getPV())), 20*Slatch.moteur.schmurtzDistance(uX, uY));
                     }
