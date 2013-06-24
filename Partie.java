@@ -15,6 +15,7 @@ import java.io.PrintWriter;
  * 
  * @author (your name) .
  * @version (a version number or a date)
+ * * aller 1400
  */
 public class Partie
 {
