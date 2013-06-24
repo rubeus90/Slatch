@@ -1,0 +1,14 @@
+humains:Commando
+humains:Ingenieur
+humains:Demolisseur
+humains:Char
+humains:While
+humains:Distance
+humains:Uml
+robots:Commando
+robots:Kamikaze
+robots:Demolisseur
+robots:Char
+robots:While
+robots:Distance
+robots:Uml

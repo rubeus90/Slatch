@@ -1,0 +1,7 @@
+HUMAINS:infanterie
+HUMAINS:vehicule
+ROBOTS:infanterie
+ROBOTS:vehicule
+ALIENS:infanterie
+ALIENS:vehicule
+
