@@ -292,6 +292,7 @@ public class Partie
             //A SUPPRIMER DANS UN FUTUR PROCHE ET LOINTAIN
             aLongueur = aMap.getLongueur();
             aLargeur = aMap.getLargeur();
+            
             aJoueurActuel = Integer.parseInt(vScannerMap.nextLine()); //2e ligne
             aTourMax = Integer.parseInt(vScannerMap.nextLine()); // 3e ligne
             aTour = Integer.parseInt(vScannerMap.nextLine()); //4e ligne
@@ -321,10 +322,12 @@ public class Partie
             int[] vArgent =new int[aMap.getNbrJoueur()+1];
             Equipe[] vEquipe = new Equipe[aMap.getNbrJoueur()+1];
             Faction[] vFaction = new Faction[aMap.getNbrJoueur()+1];
+            boolean[] vAlive = new boolean[aMap.getNbrJoueur()+1];
+            
             // Boucle des joueurs, un joueur = 4 lignes
             for(int i=1;i<=aMap.getNbrJoueur();  i++){
-                String vIntIA= vScannerMap.nextLine(); // 7e ligne
-                if(vIntIA.equals("true"))
+                String vStringIA= vScannerMap.nextLine(); // 7e ligne
+                if(vIA.equals("true"))
                     vIA[i]=true;
                 else
                     vIA[i]=false;
@@ -350,6 +353,12 @@ public class Partie
                 }
                 
                vArgent[i]=Integer.parseInt(vScannerMap.nextLine()); //10e ligne
+               
+               String vIsViviant= vScannerMap.nextLine(); // 11e ligne
+                if(vIsViviant.equals("true"))
+                    vAlive[i]=true;
+                else
+                    vAlive[i]=false;
             }
             
             aTerrain = new Terrain[aMap.getLongueur()][aMap.getLargeur()];
@@ -511,6 +520,8 @@ public class Partie
             {
                 ListeJoueur.add(new Joueur(i,vFaction[i],vBatimentJoueur[i],vEquipe[i],vIA[i],""));     
                 ListeJoueur.get(i).setArgent(vArgent[i]);
+                if(vAlive[i]==false)
+                    ListeJoueur.get(i).mourrir();
             }
             
             //Creation des liste d'unite ,de batiment de d'usine des Joueurs
@@ -560,6 +571,7 @@ public class Partie
                     out.println(""+joueur.getFaction());
                     out.println(""+joueur.getEquipe().getNumEquipe());
                     out.println(""+joueur.getArgent());
+                    out.println(""+joueur.isAlive());
                 }
             }
             
