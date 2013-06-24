@@ -86,6 +86,7 @@ public class Campagne implements MouseListener {
                 listeNomPartie.get(aNiveau).setVerrouille(false);
                 createDialogue();
             } else { // ecran fin de campagne
+            	createDialogue();
                 finirCampagne();
             }
         } else {
