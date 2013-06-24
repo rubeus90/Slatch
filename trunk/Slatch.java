@@ -230,6 +230,12 @@ public class Slatch {
 
                 image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutoriel/tutocapture4.png"));
                 aImages.put("tutocapture4",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutoriel/tableauunite1.png"));
+                aImages.put("tableauunite1",image);
+                
+                image = ImageIO.read(getClass().getClassLoader().getResource("Images/tutoriel/tableauunite2.png"));
+                aImages.put("tableauunite2",image);
         }
         catch (IOException e) {
             e.printStackTrace();
