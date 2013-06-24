@@ -1,9 +1,3 @@
-Merci de recopier ces lignes dans l'enum Map
-Maps/yingyang.txt
-20
-20
-0
-Garder ces lignes dans le fichier de votre Map
 eau:0:0:0
 eau:0:1:0
 eau:0:2:0

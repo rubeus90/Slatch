@@ -14,6 +14,7 @@ public enum Map{
     SELETON("Seleton","Une grande map","3V1","seleton",30,30,4,false,false),
     COULOIR("Couloir","Une map tout en long","1V1","couloir",30,13,2,false,false),
     FRANMAP("FRANMAP","La carte de la...", "2v2 - 4","franmap",25,25,4,false,false),
+    YINGYANG("YingYang","Combattez pour l'equilibre", "2v2 - 4","yingyang",20,20,2,false,false),
     SAHLAHAH("Sahlahah","Bataille pour le desert du milieu", "2v2 - 4","bataillepourledesertdumillieu",32,18,2,true,false),
     NIVEAU1("Mission 1","La carte de la premiere mission de la campagne", "1V1","niveau1",25,15,2,false,true),
     NIVEAU2("Mission 2","La carte de la deuxieme mission de la campagne", "1V1","niveau2",25,13,2,false,true),
