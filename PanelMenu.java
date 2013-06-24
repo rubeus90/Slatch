@@ -19,11 +19,14 @@ public class PanelMenu extends JPanel
     private boolean aMenuCampagne;
     private boolean aMenuRapide;
     private boolean aMenuTuto;
+    private boolean aSousMenuTab1;
+    private boolean aSousMenuTab2;
     private boolean aMenuCredits;
     private boolean aSousMenuRapide1;
     private boolean aSousMenuRapide2;
     private boolean aMenuChoixTuto;
-    private boolean aMenuParametres;  
+    private boolean aMenuParametres; 
+    
     private int aNumeroMap;
     
     // Attributs des boutons//cb[0] à cb[3] boutons IA | cb[4] à cb[8] boutons Joueur
@@ -56,6 +59,9 @@ public class PanelMenu extends JPanel
         aSousMenuRapide2 = false;
         aMenuChoixTuto = false;
         aMenuParametres = false;
+        aMenuTuto = false;
+        aSousMenuTab1 = false;
+        aSousMenuTab2 = false;
         aNumeroMap=0;
         aIntEquipe = new int[4];
         aNiveauIA = new TypeIA[4];
@@ -192,22 +198,41 @@ public class PanelMenu extends JPanel
         
         else if(aMenuTuto)
         {
-            int vSize = this.getHeight()/10;
-            int vRatio = vSize*(718/159);
-            int vGauche = this.getWidth()/2-vRatio-vSize/2;
-            int vDroite = this.getWidth()-vGauche-vRatio;
-            
-            g.drawImage(Slatch.aImages.get("titretutoriel"), 0, 0, this.getWidth(), this.getHeight()*2/5, this);
-            g.drawImage(Slatch.aImages.get("boutonregles"+aImages.get("boutonregles")), vGauche, 3*this.getHeight()/10, vRatio, vSize, this);            
-            g.drawImage(Slatch.aImages.get("boutondeplacement"+aImages.get("boutondeplacement")), vGauche, 4*this.getHeight()/10, vRatio, vSize, this);
-            g.drawImage(Slatch.aImages.get("boutoncapture"+aImages.get("boutoncapture")), vGauche, 5*this.getHeight()/10, vRatio, vSize, this);
-            g.drawImage(Slatch.aImages.get("boutonattaque"+aImages.get("boutonattaque")), vGauche, 6*this.getHeight()/10, vRatio, vSize, this);
-            g.drawImage(Slatch.aImages.get("boutoninterface"+aImages.get("boutoninterface")), vGauche, 7*this.getHeight()/10, vRatio, vSize, this);
-            g.drawImage(Slatch.aImages.get("boutonterrain"+aImages.get("boutonterrain")), vDroite, 3*this.getHeight()/10, vRatio, vSize, this);
-            g.drawImage(Slatch.aImages.get("boutonachat"+aImages.get("boutonachat")), vDroite, 4*this.getHeight()/10, vRatio, vSize, this);
-            g.drawImage(Slatch.aImages.get("boutonexp"+aImages.get("boutonexp")), vDroite, 5*this.getHeight()/10, vRatio, vSize, this);
-            g.drawImage(Slatch.aImages.get("boutontabunites"+aImages.get("boutontabunites")), vDroite, 6*this.getHeight()/10, vRatio, vSize, this);
-            g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
+            if(aSousMenuTab1)
+            {
+                int tailleFleche = this.getWidth()/15;
+                int marge = this.getWidth()/20;
+                g.drawImage(Slatch.aImages.get("flechegauche"), this.getWidth()-2*tailleFleche-2*marge,this.getHeight()-tailleFleche-marge,tailleFleche,tailleFleche, this);
+                g.drawImage(Slatch.aImages.get("flechedroite"), this.getWidth()-tailleFleche-marge,this.getHeight()-tailleFleche-marge,tailleFleche,tailleFleche, this);
+    
+            }
+            else if(aSousMenuTab2)
+            {
+                int tailleFleche = this.getWidth()/15;
+                int marge = this.getWidth()/20;
+                g.drawImage(Slatch.aImages.get("flechegauche"), this.getWidth()-2*tailleFleche-2*marge,this.getHeight()-tailleFleche-marge,tailleFleche,tailleFleche, this);
+                g.drawImage(Slatch.aImages.get("flechedroite"), this.getWidth()-tailleFleche-marge,this.getHeight()-tailleFleche-marge,tailleFleche,tailleFleche, this);
+    
+            }
+            else
+            {
+                int vSize = this.getHeight()/10;
+                int vRatio = vSize*(718/159);
+                int vGauche = this.getWidth()/2-vRatio-vSize/2;
+                int vDroite = this.getWidth()-vGauche-vRatio;
+                
+                g.drawImage(Slatch.aImages.get("titretutoriel"), 0, 0, this.getWidth(), this.getHeight()*2/5, this);
+                g.drawImage(Slatch.aImages.get("boutonregles"+aImages.get("boutonregles")), vGauche, 3*this.getHeight()/10, vRatio, vSize, this);            
+                g.drawImage(Slatch.aImages.get("boutondeplacement"+aImages.get("boutondeplacement")), vGauche, 4*this.getHeight()/10, vRatio, vSize, this);
+                g.drawImage(Slatch.aImages.get("boutoncapture"+aImages.get("boutoncapture")), vGauche, 5*this.getHeight()/10, vRatio, vSize, this);
+                g.drawImage(Slatch.aImages.get("boutonattaque"+aImages.get("boutonattaque")), vGauche, 6*this.getHeight()/10, vRatio, vSize, this);
+                g.drawImage(Slatch.aImages.get("boutoninterface"+aImages.get("boutoninterface")), vGauche, 7*this.getHeight()/10, vRatio, vSize, this);
+                g.drawImage(Slatch.aImages.get("boutonterrain"+aImages.get("boutonterrain")), vDroite, 3*this.getHeight()/10, vRatio, vSize, this);
+                g.drawImage(Slatch.aImages.get("boutonachat"+aImages.get("boutonachat")), vDroite, 4*this.getHeight()/10, vRatio, vSize, this);
+                g.drawImage(Slatch.aImages.get("boutonexp"+aImages.get("boutonexp")), vDroite, 5*this.getHeight()/10, vRatio, vSize, this);
+                g.drawImage(Slatch.aImages.get("boutontabunites"+aImages.get("boutontabunites")), vDroite, 6*this.getHeight()/10, vRatio, vSize, this);
+                g.drawImage(retour, 10, this.getHeight()-10-getHeight()/12, this.getHeight()/6,this.getHeight()/18, this);
+            }
         }
         
         else if(aMenuRapide)
@@ -671,71 +696,112 @@ public class PanelMenu extends JPanel
             
             else if(aMenuTuto)
             {
-                if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>10 && pX< 10+this.getHeight()/6)
+                if(aSousMenuTab1)
                 {
-                    aMenuPrincipal = true;
-                    aMenuTuto = false;
-                    this.repaint();
+                    int tailleFleche = this.getWidth()/15;
+                    int marge = this.getWidth()/20;
+                    //Clic fleche gauche
+            	    if(pX>this.getWidth()-2*tailleFleche-2*marge && pX<this.getWidth()-2*tailleFleche-2*marge+tailleFleche && pY>this.getHeight()-tailleFleche-marge && pY<this.getHeight()-marge)
+            	    {
+            	        aSousMenuTab1 = false;
+            	        this.repaint();
+            	    }
+            	    //Clic fleche droite
+            	    if(pX>this.getWidth()-tailleFleche-marge && pX<this.getWidth()-marge && pY>this.getHeight()-tailleFleche-marge && pY<this.getHeight()-marge)
+            	    {
+            	        aSousMenuTab2 = true;
+            	        aSousMenuTab1 = false;
+            	        this.repaint();
+            	    }
+            	    
+                }
+                else if(aSousMenuTab2)
+                {
+                    int tailleFleche = this.getWidth()/15;
+                    int marge = this.getWidth()/20;
+                    //Clic fleche gauche
+            	    if(pX>this.getWidth()-2*tailleFleche-2*marge && pX<this.getWidth()-2*tailleFleche-2*marge+tailleFleche && pY>this.getHeight()-tailleFleche-marge && pY<this.getHeight()-marge)
+            	    {
+            	        aSousMenuTab2 = false;
+            	        this.repaint();
+            	    }
+            	    //Clic fleche droite
+            	    if(pX>this.getWidth()-tailleFleche-marge && pX<this.getWidth()-marge && pY>this.getHeight()-tailleFleche-marge && pY<this.getHeight()-marge)
+            	    {
+            	        aSousMenuTab2 = false;
+            	        this.repaint();
+            	    }
                 }
                 
-                int vSize = this.getHeight()/10;
-                int vRatio = vSize*(718/159);
-                int vGauche = this.getWidth()/2-vRatio-vSize/2;
-                int vDroite = this.getWidth()-vGauche-vRatio;
-                
-                //Clic Bouton Règles du Jeu
-                if(pY>3*this.getHeight()/10 && pY<3*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
+                else
                 {
-                   Tutoriel tuto = new TutorielRegle("menu");
-                    Slatch.ihm.passageModeTuto(tuto);
-                }
-                
-                //Clic Bouton Deplacement
-                if(pY>4*this.getHeight()/10 && pY<4*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
-                {
-                    Tutoriel tuto = new TutorielDeplacement("menu");
-                    Slatch.ihm.passageModeTuto(tuto);
-                }
-                //Clic Bouton Capture
-                if(pY>5*this.getHeight()/10 && pY<5*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
-                {
-                    Tutoriel tuto = new TutorielCapture("menu");
-                    Slatch.ihm.passageModeTuto(tuto);
-                }
-                //Clic Bouton Attaque
-                if(pY>6*this.getHeight()/10 && pY<6*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
-                {
-                    Tutoriel tuto = new TutorielAttaque("menu");
-                    Slatch.ihm.passageModeTuto(tuto);
-                }
-                //Clic Bouton Interface
-                if(pY>7*this.getHeight()/10 && pY<7*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
-                {
-                    Tutoriel tuto = new TutorielInterface("menu");
-                    Slatch.ihm.passageModeTuto(tuto);
-                }
-                //Clic Bouton Terrain
-                if(pY>3*this.getHeight()/10 && pY<3*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
-                {
-                    Tutoriel tuto = new TutorielTerrain("menu");
-                    Slatch.ihm.passageModeTuto(tuto);
-                }
-                //Clic Bouton Achat
-                if(pY>4*this.getHeight()/10 && pY<4*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
-                {
-                    Tutoriel tuto = new TutorielAchat("menu");
-                    Slatch.ihm.passageModeTuto(tuto);
-                }
-                // Bouton Experience & Evolution
-                if(pY>5*this.getHeight()/10 && pY<5*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
-                {
-                   Tutoriel tuto = new TutorielEvolution("menu");
-                    Slatch.ihm.passageModeTuto(tuto);
-                }
-                // Bouton Tableau des Unites
-                if(pY>6*this.getHeight()/10 && pY<6*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
-                {
-                   
+                    int vSize = this.getHeight()/10;
+                    int vRatio = vSize*(718/159);
+                    int vGauche = this.getWidth()/2-vRatio-vSize/2;
+                    int vDroite = this.getWidth()-vGauche-vRatio;
+                    
+                    //Clic Bouton Règles du Jeu
+                    if(pY>3*this.getHeight()/10 && pY<3*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
+                    {
+                       Tutoriel tuto = new TutorielRegle("menu");
+                        Slatch.ihm.passageModeTuto(tuto);
+                    }
+                    
+                    //Clic Bouton Deplacement
+                    if(pY>4*this.getHeight()/10 && pY<4*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
+                    {
+                        Tutoriel tuto = new TutorielDeplacement("menu");
+                        Slatch.ihm.passageModeTuto(tuto);
+                    }
+                    //Clic Bouton Capture
+                    if(pY>5*this.getHeight()/10 && pY<5*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
+                    {
+                        Tutoriel tuto = new TutorielCapture("menu");
+                        Slatch.ihm.passageModeTuto(tuto);
+                    }
+                    //Clic Bouton Attaque
+                    if(pY>6*this.getHeight()/10 && pY<6*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
+                    {
+                        Tutoriel tuto = new TutorielAttaque("menu");
+                        Slatch.ihm.passageModeTuto(tuto);
+                    }
+                    //Clic Bouton Interface
+                    if(pY>7*this.getHeight()/10 && pY<7*this.getHeight()/10+vSize && pX>vGauche && pX< vGauche+vRatio)
+                    {
+                        Tutoriel tuto = new TutorielInterface("menu");
+                        Slatch.ihm.passageModeTuto(tuto);
+                    }
+                    //Clic Bouton Terrain
+                    if(pY>3*this.getHeight()/10 && pY<3*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
+                    {
+                        Tutoriel tuto = new TutorielTerrain("menu");
+                        Slatch.ihm.passageModeTuto(tuto);
+                    }
+                    //Clic Bouton Achat
+                    if(pY>4*this.getHeight()/10 && pY<4*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
+                    {
+                        Tutoriel tuto = new TutorielAchat("menu");
+                        Slatch.ihm.passageModeTuto(tuto);
+                    }
+                    // Bouton Experience & Evolution
+                    if(pY>5*this.getHeight()/10 && pY<5*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
+                    {
+                       Tutoriel tuto = new TutorielEvolution("menu");
+                        Slatch.ihm.passageModeTuto(tuto);
+                    }
+                    // Bouton Tableau des Unites
+                    if(pY>6*this.getHeight()/10 && pY<6*this.getHeight()/10+vSize && pX>vDroite && pX< vDroite+vRatio)
+                    {
+                       aSousMenuTab1 = true;
+                       this.repaint();
+                    }
+                    
+                     if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>10 && pX< 10+this.getHeight()/6)
+                    {
+                        aMenuPrincipal = true;
+                        aMenuTuto = false;
+                        this.repaint();
+                    }
                 }
                 
             }
@@ -744,13 +810,13 @@ public class PanelMenu extends JPanel
                 if(pY>this.getHeight()-10-getHeight()/12 && pY<this.getHeight()-10-getHeight()/12+this.getHeight()/6 && pX>10 && pX< 10+this.getHeight()/6)
                 {
                     aMenuPrincipal = true;
-                    aMenuCredits = false;
+                    aMenuChoixTuto = false;
                     this.repaint();
                 }
                 //Bouton Oui
                 else if(pX>this.getWidth()/2-2*aHauteurBouton && pY>33+ 2*this.getHeight()/8 && pX<this.getWidth()/2-2*aHauteurBouton+7/2*aHauteurBouton && pY<33+ 2*this.getHeight()/8+aHauteurBouton){
                     aMenuTuto = true;
-                    aMenuPrincipal = false;
+                    aMenuChoixTuto = false;
                     this.repaint();
                 }
                 //Bouton Non
