@@ -31,6 +31,7 @@ public class Joueur
     private int aSoinTotal;
     private Equipe aEquipe;
     private GeneraleIA aGeneraleIA;
+    private TypeIA typeIA;
     
     /**
      * Créer un joueur
@@ -93,6 +94,7 @@ public class Joueur
     public boolean estUneIA()                  {return IA;}
     public boolean isAlive()                  {return aVivant;}
     public GeneraleIA getGeneraleIA()       {return aGeneraleIA;}
+    public TypeIA getTypeIA(){return typeIA;}
     
     public void setNumJoueur(final int pNum) {aNumJoueur = pNum;}
     public void setFaction(final Faction pFaction) {aFaction = pFaction;}
@@ -105,6 +107,7 @@ public class Joueur
     public void addCaptureTotal() {aCaptureTotal ++;}
     public void addNbrUniteCree() {aNbrUniteCree++;}
     public void addNbrUniteTue() {aNbrUniteTue++;}
+    public void setTypeIA(TypeIA pT){typeIA=pT;}
     public void setArgent(final int pArgent){
         aArgent = pArgent;
         aArgentTotal = pArgent;

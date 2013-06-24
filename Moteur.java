@@ -1136,7 +1136,8 @@ class Moteur
         if(!Slatch.partie.partieFinie)
         {
             Slatch.partie.tourSuivant();
-            List<Unite> l = getJoueurActuel().getListeUnite();
+            Joueur j = getJoueurActuel();
+            List<Unite> l = j.getListeUnite();
             
             for(Unite u: l)
             {
@@ -1149,11 +1150,16 @@ class Moteur
                 }
             }
             
-            if(getJoueurActuel().estUneIA() && Slatch.partie.getJoueurActuel()!=0)              
-            {StrategieIA.joueTour(Slatch.partie.getJoueurActuel());}
+            if(j.estUneIA() && Slatch.partie.getJoueurActuel()!=0)              
+            {
+                j.getTypeIA().joueTour();
+            }
             else
             {
-                if(getJoueurActuel().estUneIA()){AIMaster.joueTour(Slatch.partie.getJoueurActuel());}
+                if(j.estUneIA())
+                {
+                    AIMaster.joueTour(Slatch.partie.getJoueurActuel());
+                }
             }
             
                 
