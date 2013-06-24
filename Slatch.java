@@ -119,7 +119,7 @@ public class Slatch {
         Slatch.ihm.aListeMission.add(Map.NIVEAU13);
         Slatch.ihm.aListeMission.add(Map.NIVEAU14);
         Slatch.ihm.aListeMission.add(Map.NIVEAU15);
-        Slatch.ihm.aListeMission.add(Map.GAGNER);
+        Slatch.ihm.aListeMission.add(Map.NIVEAU16);
     }
     
     private void loadImage()
