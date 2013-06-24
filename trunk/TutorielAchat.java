@@ -42,10 +42,6 @@ public class TutorielAchat extends Tutoriel
             
             break;
             
-            case 5 :
-            afficheImageRedim("tutoachat5",0,0,this.getWidth(),this.getHeight(),g);
-            
-            break;
             default :
             
             if(aProvenance == "menu")

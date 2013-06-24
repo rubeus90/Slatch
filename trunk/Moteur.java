@@ -454,7 +454,7 @@ class Moteur
          unite.setCoordonneeX(X);
          unite.setCoordonneeY(Y);
          
-        if(Slatch.partie.getActivationAnimation())
+        if(Slatch.partie.getActivationAnimation() && !Slatch.partie.getTerrain()[X][Y].getBrouillard())
         {
             unite.setDecaleUniteX(-(int)(pPosHautGaucheX - pPosHautGaucheXdepart ));
             unite.setDecaleUniteY(-(int)(pPosBasDroiteY - pPosBasDroiteYdepart ));
