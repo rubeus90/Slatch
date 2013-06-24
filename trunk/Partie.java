@@ -333,7 +333,7 @@ public class Partie
             // Boucle des joueurs, un joueur = 4 lignes
             for(int i=1;i<=aMap.getNbrJoueur();  i++){
                 String vStringIA= vScannerMap.nextLine(); // 7e ligne
-                if(vIA.equals("true"))
+                if(vStringIA.equals("true"))
                     vIA[i]=true;
                 else
                     vIA[i]=false;
