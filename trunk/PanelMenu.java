@@ -30,7 +30,6 @@ public class PanelMenu extends JPanel
     private int aNumeroMap;
     
     // Attributs des boutons//cb[0] à cb[3] boutons IA | cb[4] à cb[8] boutons Joueur
-    //private Faction aFaction;
     private int[] aIntEquipe;
     private TypeIA[] aNiveauIA;
     private boolean[] aIA;
@@ -93,13 +92,7 @@ public class PanelMenu extends JPanel
         aFaction[3] = Faction.ROBOTS;
         aFaction[4] = Faction.ROBOTS;
         
-        //Valeur par default de la valeurs du brouillard
-        /*if(Slatch.ihm.getValBrouillard() == true){aStrBrouillard ="Active";}
-        else{aStrBrouillard ="Desactive";}
-        
-        //Valeur par default de la valeurs du brouillard
-        if(Slatch.ihm.getValAnimation() == true){aStrAnimation ="Active";}
-        else{aStrAnimation ="Desactive";}*/
+
        
         
         aImages = new HashMap<String,String>();
@@ -333,8 +326,7 @@ public class PanelMenu extends JPanel
                     
                     g.drawString(""+aNiveauIA[i],(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton);
 
-                    //if(vIA[i+1]){g.drawImage(on,(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton-hR/2,this.getHeight()/40,this.getHeight()/40,this);}
-                    //else{g.drawImage(off,(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton-hR/2,this.getHeight()/40,this.getHeight()/40,this);}
+                    
                 }
                 String aStrBrouillard;
                 String aStrAnimation;
@@ -451,8 +443,6 @@ public class PanelMenu extends JPanel
             // Clic Bouton Nouvelle Campagne
             if(pY>33+ this.getHeight()/4 && pY<33+ this.getHeight()/4+aHauteurBouton && this.getWidth()/2-3*aHauteurBouton<pX && pX< this.getWidth()/2+ 3*aHauteurBouton)
             {
-//                Slatch.campagne = new Campagne();
-//                Slatch.campagne.createDialogue();
                 aMenuCampagne = false;
                 aMenuChoixTuto = true;
                 this.repaint();
@@ -707,37 +697,37 @@ public class PanelMenu extends JPanel
                     int tailleFleche = this.getWidth()/15;
                     int marge = this.getWidth()/20;
                     //Clic fleche gauche
-            	    if(pX>this.getWidth()-2*tailleFleche-2*marge && pX<this.getWidth()-2*tailleFleche-2*marge+tailleFleche && pY>this.getHeight()-tailleFleche-marge && pY<this.getHeight()-marge)
-            	    {
-            	        aSousMenuTab1 = false;
-            	        this.repaint();
-            	    }
-            	    //Clic fleche droite
-            	    if(pX>this.getWidth()-tailleFleche-marge && pX<this.getWidth()-marge && pY>this.getHeight()-tailleFleche-marge && pY<this.getHeight()-marge)
-            	    {
-            	        aSousMenuTab2 = true;
-            	        aSousMenuTab1 = false;
-            	        this.repaint();
-            	    }
-            	    
+                    if(pX>this.getWidth()-2*tailleFleche-2*marge && pX<this.getWidth()-2*tailleFleche-2*marge+tailleFleche && pY>this.getHeight()-tailleFleche-marge && pY<this.getHeight()-marge)
+                    {
+                        aSousMenuTab1 = false;
+                        this.repaint();
+                    }
+                    //Clic fleche droite
+                    if(pX>this.getWidth()-tailleFleche-marge && pX<this.getWidth()-marge && pY>this.getHeight()-tailleFleche-marge && pY<this.getHeight()-marge)
+                    {
+                        aSousMenuTab2 = true;
+                        aSousMenuTab1 = false;
+                        this.repaint();
+                    }
+                    
                 }
                 else if(aSousMenuTab2)
                 {
                     int tailleFleche = this.getWidth()/15;
                     int marge = this.getWidth()/20;
                     //Clic fleche gauche
-            	    if(pX>this.getWidth()-2*tailleFleche-2*marge && pX<this.getWidth()-2*tailleFleche-2*marge+tailleFleche && pY>this.getHeight()-tailleFleche-marge && pY<this.getHeight()-marge)
-            	    {
-            	        aSousMenuTab1 = true;
-            	        aSousMenuTab2 = false;
-            	        this.repaint();
-            	    }
-            	    //Clic fleche droite
-            	    if(pX>this.getWidth()-tailleFleche-marge && pX<this.getWidth()-marge && pY>this.getHeight()-tailleFleche-marge && pY<this.getHeight()-marge)
-            	    {
-            	        aSousMenuTab2 = false;
-            	        this.repaint();
-            	    }
+                    if(pX>this.getWidth()-2*tailleFleche-2*marge && pX<this.getWidth()-2*tailleFleche-2*marge+tailleFleche && pY>this.getHeight()-tailleFleche-marge && pY<this.getHeight()-marge)
+                    {
+                        aSousMenuTab1 = true;
+                        aSousMenuTab2 = false;
+                        this.repaint();
+                    }
+                    //Clic fleche droite
+                    if(pX>this.getWidth()-tailleFleche-marge && pX<this.getWidth()-marge && pY>this.getHeight()-tailleFleche-marge && pY<this.getHeight()-marge)
+                    {
+                        aSousMenuTab2 = false;
+                        this.repaint();
+                    }
                 }
                 
                 else
