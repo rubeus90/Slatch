@@ -13,7 +13,7 @@ public enum TypeAttaque
     ROQUETTE(15,"roquette","Envoie des roquettes sur votre ennemi",PorteeAttaque.MOYENNE),
     MISSILE(15,"missile","Envoie des missiles sur votre ennemi.", PorteeAttaque.LONGUE),
     SOIN(8,"soin","Soigne une unite",PorteeAttaque.COURTE),
-    EXPLOSION(35,"explosion","Explose sur une unite",PorteeAttaque.COURTE);
+    EXPLOSION(45,"explosion","Explose sur une unite",PorteeAttaque.COURTE);
    
     private int aDegats; // dégâts de base de l'attaque
     private String aNom;
