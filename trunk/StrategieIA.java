@@ -26,10 +26,7 @@ public class StrategieIA
             if(Slatch.partie.partieFinie){break;}
         }    
         Slatch.ihm.getAnimation().start();
-        /*if(Slatch.partie.getJoueur(joueur).getListeUnite().isEmpty())
-        {
-            Slatch.partie.getJoueur(joueur).mourrir();
-        }*/
+        
     }
     
     static void remplirMap()
@@ -80,8 +77,6 @@ public class StrategieIA
     {
         int x= unite.getX();
         int y= unite.getY();
-        //int pm = unite.getAttaque().aTypePortee.getPorteeMax();
-        //int pu = unite.getDeplacement()/10;
         Terrain[][] mapTerrain = Slatch.partie.getTerrain();
         int joueurActu= Slatch.partie.getJoueurActuel();
         Influence[][] mapInf = unite.mapInfluence;

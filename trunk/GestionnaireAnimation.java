@@ -21,16 +21,10 @@ public class GestionnaireAnimation implements ActionListener
     private long timeDifference;
     private long sleepTime;
     private boolean animationDone;
-    //private Stack<Point> chemin;
     private List<Animation> animation;
-    //private List<Stack<Point>> aLesChemins; // LISTE DES CHEMINS DES ANIMATIONS A FAIRE
-    //private List<Point> aDepart; // LISTE DES DEPARTS DES ANIMATIONS
     private int numeroUnite; // NUMERO DE L'ANIMATION A FAIRE
-    //private int animation;
-    //private List<Unite> aUnite; // LISTE DES UNITES CONCERNÉES PAR LES ANIMATIONS
     private int avancement;
     private boolean initialisation;
-    //private double vitesse;
     private int destination;
     
     public List<Unite> aTricheAffichage;
@@ -43,8 +37,6 @@ public class GestionnaireAnimation implements ActionListener
         numeroUnite=0;
         aNbTick = 0;
         avancement=0;
-        //aDepart=new ArrayList<Point>(); //Vector
-        //aUnite=new ArrayList<Unite>();
         initialisation = false;
         animation = new ArrayList<Animation>();
          aTricheAffichage= new ArrayList<Unite>();
@@ -74,13 +66,9 @@ public class GestionnaireAnimation implements ActionListener
         
         if(animation.isEmpty())
         {
-            //System.out.println("On s'arrete (pas d'anim a faire)");
             numeroUnite=0;
             aNbTick = 0;
             avancement=0;
-            //aLesChemins.clear();
-            //aDepart.clear();
-            //aUnite.clear();
             Slatch.ihm.timer.stop();
             Slatch.ihm.getPanel().setClickOK(true);
             aTricheAffichage.clear();
@@ -100,13 +88,9 @@ public class GestionnaireAnimation implements ActionListener
             {
                 if(numeroUnite>=animation.size()-1)
                 {
-                    //System.out.println("On s'arrete (plus d'anim a faire)");
                     numeroUnite=0;
                     aNbTick = 0;
                     avancement=0;
-                    /*aLesChemins.clear();
-                    aDepart.clear();
-                    aUnite.clear();*/
                     animation.clear();
                     aTricheAffichage.clear();
                     Slatch.ihm.timer.stop();
@@ -178,7 +162,6 @@ public class GestionnaireAnimation implements ActionListener
             avancement += deltaT;
             if(fin)
             {
-                    
                     avancement=0;
                 if(numeroUnite>=animation.size()-1)
                 {
@@ -192,10 +175,7 @@ public class GestionnaireAnimation implements ActionListener
                     return;
                 }
                 else
-                {
-                    numeroUnite++;
-                    
-                   }
+                {numeroUnite++;}
                 
             }
             return;  
@@ -204,7 +184,6 @@ public class GestionnaireAnimation implements ActionListener
           case "mort":
             
             cible= ((AnimationMort)animation.get(numeroUnite)).getCible();
-            //System.out.println(cible);
             fin = afficheMort(cible);
             avancement += deltaT;
             if(fin)
@@ -223,10 +202,7 @@ public class GestionnaireAnimation implements ActionListener
                     return;
                 }
                 else
-                {
-                    numeroUnite++;
-                    
-                   }
+                {numeroUnite++;}
                 
             }
             return;
@@ -239,7 +215,6 @@ public class GestionnaireAnimation implements ActionListener
             
             if(fin)
             {
-                    
                     avancement=0;
                 if(numeroUnite>=animation.size()-1)
                 {
@@ -253,10 +228,7 @@ public class GestionnaireAnimation implements ActionListener
                     return;
                 }
                 else
-                {
-                    numeroUnite++;
-                    
-                   }
+                {numeroUnite++;}
                 
             }
             return;
@@ -273,14 +245,6 @@ public class GestionnaireAnimation implements ActionListener
      */
     public void changerCase(Unite unite,final int destX,final int destY,long deltaT)
     {
-        /*
-         ************************************************************************************************** 
-         * 
-         * CE METHODE PEUT ETRE SIMPLIFIER CAR ON SEPARAIT LES DIFFERENT CAR CAR ON AVAIS DES PROBLEMES D'AFFICHAGE MAIS NOUS AVONS TROUVÉ UNE AUTRE SOLUTION
-         * MAIS LA METHODE N'A PAS ENCORE ETÉ SIMPLIFIÉ
-         * 
-         **************************************************************************************************  
-         */
         Point vDepart = ((AnimationDeplacement)animation.get(numeroUnite)).getDepart();
         double vitesse = ((AnimationDeplacement)animation.get(numeroUnite)).getVitesse();
         int pPosHautGaucheX = unite.getCoordonneeX()*Slatch.ihm.getPanel().getaLargeurCarreau();
@@ -297,9 +261,6 @@ public class GestionnaireAnimation implements ActionListener
         int pPosHautGaucheYdepart = (int)vDepart.getY()*Slatch.ihm.getPanel().getaHauteurCarreau();
         int pPosBasDroiteXdepart = (int)(vDepart.getX()+1)*Slatch.ihm.getPanel().getaLargeurCarreau();
         int pPosBasDroiteYdepart = (int)(vDepart.getY()+1)*Slatch.ihm.getPanel().getaHauteurCarreau();
-        //System.out.println("-------------------------------------------------------");
-        //System.out.println("DELTA "+deltaT);
-        //System.out.println("VITESSE "+(int)deltaT*(AnimationDeplacement)animation.get(numeroUnite)).getVitesse());
         
         int dX=destX-(int)vDepart.getX();
         int dY=destY-(int)vDepart.getY();
@@ -323,7 +284,6 @@ public class GestionnaireAnimation implements ActionListener
                 unite.addDecaleUniteY(dY*(int)(deltaT*vitesse));
                 avancement+=dY*(int)(deltaT*vitesse);
                 
-                //System.out.println(dX+" "+dY);
                 if(dY<0 || dX<0){
                      Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdepart-pPosHautGaucheXdest,pPosBasDroiteYdepart-pPosHautGaucheYdest);
                      Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
@@ -336,22 +296,20 @@ public class GestionnaireAnimation implements ActionListener
                 
                 if(avancement>destination && (dY>0 || dX>0)) //QUAND l'IMAGE EST ARRIVEE A LA CASE FINAL
                 {   
-                    //System.out.println(avancement + " et "+ destX);
+                    
                     unite.setDecaleUniteX(-(int)(pPosHautGaucheX - pPosHautGaucheXdest ));
                     unite.setDecaleUniteY(-(int)(pPosBasDroiteY - pPosBasDroiteYdest ));
                     ((AnimationDeplacement)animation.get(numeroUnite)).setDepart(new Point(destX,destY));
                     Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
-                    //Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
                     Slatch.partie.getJoueur(unite.getJoueur()).addDeplacementTotal(1);
                 }
                 else if(avancement<destination && (dY<0 || dX<0))
                 {
-                    //System.out.println(avancement + " et "+ destX);
+                    
                     unite.setDecaleUniteX(-(int)(pPosHautGaucheX - pPosHautGaucheXdest ));
                     unite.setDecaleUniteY(-(int)(pPosBasDroiteY - pPosBasDroiteYdest ));
                     ((AnimationDeplacement)animation.get(numeroUnite)).setDepart(new Point(destX,destY));
                     Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheXdest,pPosHautGaucheYdest,pPosBasDroiteXdest-pPosHautGaucheXdest,pPosBasDroiteYdest-pPosHautGaucheYdest);
-                    //Slatch.ihm.getPanel().paintImmediately(pPosHautGaucheX, pPosHautGaucheY, pPosBasDroiteX-pPosHautGaucheX, pPosBasDroiteY-pPosHautGaucheY);
                     Slatch.partie.getJoueur(unite.getJoueur()).addDeplacementTotal(1);
                 }
                 

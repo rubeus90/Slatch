@@ -77,7 +77,6 @@ public class Campagne implements MouseListener {
         Slatch.partie = partie;
         Slatch.moteur = new Moteur();
 
-        //Slatch.ihm.passageModePartie();
     }
 
     public void suite() {
@@ -128,13 +127,6 @@ public class Campagne implements MouseListener {
         Slatch.ihm.getPanel().repaint();
         
         Slatch.ihm.getPanel().setIsCampagne(true);
-        
-//      Slatch.ihm.getPanelFrame().add(Slatch.ihm.getPanel(),
-//              BorderLayout.CENTER);
-//      Slatch.ihm.getPanelFrame().add(Slatch.ihm.getpanelinfo(),
-//              BorderLayout.NORTH);
-
-        
 
         Slatch.ihm.getPanel().repaint();
         Slatch.ihm.getPanelFrame().repaint();
@@ -204,12 +196,7 @@ public class Campagne implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-//      // A supprimer apres
-//      if (e.getX() >= panel.getWidth() * 9 / 10
-//              && e.getY() <= panel.getHeight() * 9 / 10) {
-//          finirCampagne();
-//          sauvegardeCampagne();
-//      } else {
+
             if (aNiveau < listeNomPartie.size()) {
                 panel.etapeDialogue();
                 panel.repaint();
@@ -232,7 +219,7 @@ public class Campagne implements MouseListener {
                                 + panel.getHeight() / 2)
                     Slatch.ihm.passageModeMenuPrincipal();
             }
-//      }
+
     }
 
     @Override
