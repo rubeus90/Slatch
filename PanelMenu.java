@@ -280,7 +280,16 @@ public class PanelMenu extends JPanel
                 {
                     g.setFont(fontBlackOps);
                     
-                    g.drawString("Joueur "+(i+1),(2+2*i)*this.getWidth()/10,this.getHeight()/4+tCadre);
+                    switch(i){
+                        case(0):{g.setColor(Color.blue);break;}
+                        case(1):{g.setColor(Color.yellow);break;}
+                        case(2):{g.setColor(Color.red);break;}
+                        case(3):{g.setColor(Color.green);break;}
+                    }
+                    
+                    g.drawString("Joueur "+(i+1),(2+2*i)*this.getWidth()/10,this.getHeight()/4+tCadre);    
+                       
+                    g.setColor(Color.white);
                     
                     g.setFont(fontVisitor);
                     
@@ -630,11 +639,11 @@ public class PanelMenu extends JPanel
                 //Clic Bouton Charger une Partie
                 if(pY>33+ this.getHeight()/2 && pY<33+ this.getHeight()/2+aHauteurBouton && pX>this.getWidth()/2-3*aHauteurBouton && pX< this.getWidth()/2+ 3*aHauteurBouton)
                 {
-                	String home = System.getProperty("user.home");                    
+                    String home = System.getProperty("user.home");                    
                     File file = new File(home + "/.slatch/config/sauvegarde.txt");
                     
                     if(file.exists()){
-                    	Partie partieRapide = new Partie();
+                        Partie partieRapide = new Partie();
                         Slatch.partie=partieRapide;
                         Moteur moteur = new Moteur();
                         Slatch.moteur=moteur;
