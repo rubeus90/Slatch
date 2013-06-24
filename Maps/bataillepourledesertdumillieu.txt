@@ -22,7 +22,7 @@ dune:1:3:0:
 dune:1:4:0:
 usine:1:14:1:
 batiment:1:15:1:
-qg:1:16:0:
+qg:1:16:1:
 dune:1:17:0:
 dune:2:0:0:
 batiment:2:1:0:
