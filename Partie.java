@@ -71,7 +71,7 @@ public class Partie
         aBrouillard = true;
         activationAnimation=pAnimation;
         boolean[] vIA = {false,false,true,true,true};
-        TypeIA[] vType = {TypeIA.DESACTIVEE,TypeIA.DESACTIVEE,TypeIA.REFLECHIE,TypeIA.REFLECHIE,TypeIA.REFLECHIE};
+        TypeIA[] vType = {TypeIA.DESACTIVEE,TypeIA.REFLECHIE,TypeIA.REFLECHIE,TypeIA.REFLECHIE};
         aRevenuBatiment = 50;
         aJoueurActuel= 1;
         aTourMax = pTourMax;
