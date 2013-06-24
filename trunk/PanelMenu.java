@@ -29,7 +29,7 @@ public class PanelMenu extends JPanel
     // Attributs des boutons//cb[0] à cb[3] boutons IA | cb[4] à cb[8] boutons Joueur
     //private Faction aFaction;
     private int[] aIntEquipe;
-    private String[] aNiveauIA;
+    private TypeIA[] aNiveauIA;
     private boolean[] aIA;
     private Equipe[] aEquipe;
     private Faction[] aFaction;
@@ -58,20 +58,20 @@ public class PanelMenu extends JPanel
         aMenuParametres = false;
         aNumeroMap=0;
         aIntEquipe = new int[4];
-        aNiveauIA = new String[4];
+        aNiveauIA = new TypeIA[4];
         aIA = new boolean[5]; // 4 joueurs + 1 joueurs neutres
         aEquipe = new Equipe[5]; // 4 joueurs + 1 joueurs neutres
         aFaction = new Faction[5]; // 4 joueurs + 1 joueurs neutres
         
         //Valeur par default dans le menu de parametre d'une nouvelle partie pour l'IA
         aIA[0]=false;
-        aNiveauIA[0] ="Désactivé";
+        aNiveauIA[0] = TypeIA.DESACTIVEE;
         aIA[1]=false;
-        aNiveauIA[1] ="Moyen";
+        aNiveauIA[1] =TypeIA.AGGRESSIVE;
         aIA[2]=true;
-        aNiveauIA[2] ="Moyen";
+        aNiveauIA[2] =TypeIA.AGGRESSIVE;
         aIA[3]=true;
-        aNiveauIA[3] ="Moyen";
+        aNiveauIA[3] =TypeIA.AGGRESSIVE;
         aIA[4]=true;
         
         //Valeur par default dans le menu de parametre d'une nouvelle partie pour les equipes
@@ -298,7 +298,7 @@ public class PanelMenu extends JPanel
                     if(aFaction[i+1].getNom()=="humains")
                     {g.drawString("Humain",(2+2*i)*this.getWidth()/10,this.getHeight()/2);}
                     if(aFaction[i+1].getNom()=="robots")
-                    {g.drawString("Mecadroédes",(2+2*i)*this.getWidth()/10,this.getHeight()/2);}
+                    {g.drawString("Mecadroïdes",(2+2*i)*this.getWidth()/10,this.getHeight()/2);}
                     
                     g.drawString(""+aNiveauIA[i],(2+2*i)*this.getWidth()/10,this.getHeight()/2+aHauteurBouton);
 
@@ -528,9 +528,9 @@ public class PanelMenu extends JPanel
                     {
                            switch(aNiveauIA[i])
                            {
-                               case("Désactivé") : aNiveauIA[i]="Moyen";aIA[i+1] = true;break;
-                               case("Moyen") : aNiveauIA[i]="Légendaire";aIA[i+1] = true;break;
-                               case("Légendaire") : aNiveauIA[i]="Désactivé";aIA[i+1] = false;break;
+                               case DESACTIVEE: aNiveauIA[i]=TypeIA.AGGRESSIVE;aIA[i+1] = true;break;
+                               case AGGRESSIVE : aNiveauIA[i]=TypeIA.REFLECHIE;aIA[i+1] = true;break;
+                               case REFLECHIE : aNiveauIA[i]=TypeIA.DESACTIVEE;aIA[i+1] = false;break;
                            }
                            this.repaint();
                     }
@@ -585,7 +585,7 @@ public class PanelMenu extends JPanel
                        }
                    }
                     
-                   Partie partieRapide = new Partie(50,Slatch.ihm.aListeMap.get(aNumeroMap),Slatch.ihm.getValBrouillard(), aFaction,aEquipe,aIA,Slatch.ihm.getValAnimation());
+                   Partie partieRapide = new Partie(50,Slatch.ihm.aListeMap.get(aNumeroMap),Slatch.ihm.getValBrouillard(), aFaction,aEquipe,aIA,Slatch.ihm.getValAnimation(),aNiveauIA);
 
                    Slatch.partie=partieRapide;
                     

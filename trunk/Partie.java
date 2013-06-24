@@ -40,7 +40,7 @@ public class Partie
     /**
      * Constructeur de MAP d'une nouvelle partie
      */
-    public Partie(final int pRevenuBatiment, final Map pMap,final boolean pBrouillard,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA,final boolean activation)
+    public Partie(final int pRevenuBatiment, final Map pMap,final boolean pBrouillard,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA,final boolean activation, final TypeIA[] pTypeIA)
     {
         aMap = pMap;
         isCampagne = false;
@@ -55,7 +55,7 @@ public class Partie
         aLongueur = aMap.getLongueur();
         aLargeur = aMap.getLargeur();
         
-        initMap(pMap,pTabFaction,pTabEquipe,pTabIA);
+        initMap(pMap,pTabFaction,pTabEquipe,pTabIA,pTypeIA);
         
         ListeJoueur.get(1).benefTour(aRevenuBatiment); 
     }
@@ -72,6 +72,7 @@ public class Partie
         aBrouillard = true;
         activationAnimation=pAnimation;
         boolean[] vIA = {false,false,true,true,true};
+        TypeIA[] vType = {TypeIA.DESACTIVEE,TypeIA.DESACTIVEE,TypeIA.REFLECHIE,TypeIA.REFLECHIE,TypeIA.REFLECHIE};
         aRevenuBatiment = 50;
         aJoueurActuel= 1;
         aTourMax = pTourMax;
@@ -81,7 +82,7 @@ public class Partie
         aLongueur = aMap.getLongueur();
         aLargeur = aMap.getLargeur();
 
-        initMap(pMap,pTabFaction,pTabEquipe,vIA); 
+        initMap(pMap,pTabFaction,pTabEquipe,vIA, vType); 
         
         ListeJoueur.get(1).benefTour(aRevenuBatiment); 
     }
@@ -98,7 +99,7 @@ public class Partie
      * CHARGEMENT D'UNE NOUVELLE MAP
      * 
      */
-    private void initMap(final Map pMap,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA){   
+    private void initMap(final Map pMap,final Faction[] pTabFaction,final Equipe[] pTabEquipe,final boolean[] pTabIA, final TypeIA[] pTypeIA){   
         // OUVERTURE DE LA MAP
         String sMap = "Maps/"+pMap.getFichier()+".txt";
       
@@ -246,7 +247,10 @@ public class Partie
             for(int i=1;i<=aMap.getNbrJoueur();i++)
             {
                 //System.out.println(aMap.getNbrJoueur()+" "+i);
-                ListeJoueur.add(new Joueur(i,pTabFaction[i],vBatimentJoueur[i],pTabEquipe[i],pTabIA[i],""));     
+                Joueur vJouir = new Joueur(i,pTabFaction[i],vBatimentJoueur[i],pTabEquipe[i],pTabIA[i],"");
+                vJouir.setTypeIA(pTypeIA[i]);
+                ListeJoueur.add(vJouir);
+                
             }
             
             //Creation des liste d'unite ,de batiment de d'usine des Joueurs
