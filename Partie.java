@@ -396,9 +396,9 @@ public class Partie
                 vIntDejaAttaque = Integer.parseInt(tab[8]);
           
                 if(vIntDejaDeplacee==1)
-                    vDejaDeplacee=true;
-                else
                     vDejaDeplacee=false;
+                else
+                    vDejaDeplacee=true;
                 
                 if(vIntDejaAttaque==1)
                     vDejaAttaque=true;
