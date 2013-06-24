@@ -1,11 +1,5 @@
-import java.util.HashMap;
-import java.io.File;
-import java.io.IOException;
-import java.lang.Integer;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.Random;
-import javax.imageio.ImageIO;
 
 /**
  * Cette classe gere les terrains du jeu, qui comporte les differents types de terrains et

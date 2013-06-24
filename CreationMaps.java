@@ -1,5 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -9,12 +8,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -39,9 +35,6 @@ public class CreationMaps extends JPanel implements ActionListener,
 
     private JScrollPane listScroller;
 
-    private int NbrCaseX;
-    private int NbrCaseY;
-    private Terrain[][] MATRICE_TEST;
     private Partie partieNew;
     private DefaultListModel<String> listeTerrain;
     private JList<String> liste;

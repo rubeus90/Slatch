@@ -1,6 +1,3 @@
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 /**
  * Classe qui s'occupe des animations grace
  * a un timer qui lance actionPerformed toutes

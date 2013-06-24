@@ -1,4 +1,3 @@
-
 /**
  * Enumeration class TypeObjectif - write a description of the enum class here
  * 

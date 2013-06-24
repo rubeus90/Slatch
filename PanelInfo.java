@@ -1,25 +1,10 @@
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FontFormatException;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import java.io.*;
-import java.net.URISyntaxException;
 import java.awt.Color;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
-import javax.swing.JFrame;
-import java.awt.* ;
-import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import javax.swing.*;
-import java.awt.font.LineMetrics;
-import java.awt.font.FontRenderContext;
 
 
 /**

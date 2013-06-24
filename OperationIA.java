@@ -1,8 +1,5 @@
-import java.awt.Point;
-import java.util.Arrays;
 import java.util.PriorityQueue;
-import java.util.HashMap;
-import java.util.List;
+
 public class OperationIA
 {
     static Influence[][] map;

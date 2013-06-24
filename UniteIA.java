@@ -1,5 +1,5 @@
 import java.awt.Point;
-import java.util.Stack;
+
 public class UniteIA
 {
     static private void seDirigerVers(final Entite executant,final Entite cible)

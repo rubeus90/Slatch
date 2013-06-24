@@ -7,13 +7,6 @@ import java.io.FileNotFoundException;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /** 
  * @author rubeus

@@ -1,5 +1,3 @@
-import java.awt.Point;
-
 /**
  * Write a description of class Objectif here.
  * 

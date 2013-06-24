@@ -1,19 +1,19 @@
-import javax.imageio.ImageIO;
-
-import java.io.*;
-import java.net.URISyntaxException;
 import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.awt.* ;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Insets;
+import java.io.File;
 
-import javax.swing.*;
-
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 public class PanelMenu extends JPanel
 {  
-    private int aMilieu;
     private int aHauteurBouton;
     private boolean aMenuPrincipal;
     private boolean aMenuCampagne;

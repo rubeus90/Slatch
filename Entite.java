@@ -1,7 +1,4 @@
-import java.awt.Image;
 import java.awt.Graphics;
-import java.io.*;
-import javax.imageio.ImageIO;
 
 /**
  * Classe Entite : Unite ou Terrain

@@ -1,10 +1,7 @@
 import java.util.HashMap;
 import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.Integer;
-import java.net.URL;
 
 public enum TypeTerrain {
         FORET("foret", "arbres", "Foret", 2,0,false,false),

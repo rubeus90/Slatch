@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class Influence here.
  * 
@@ -33,7 +32,5 @@ public class Influence
         this.offensif=offensif;
         this.menace=menace;
         this.retraite=retraite;
-    }
-
-   
+    }   
 }

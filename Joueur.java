@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Iterator;
 /**
  * Un joueur possede un numero de joueur (aNumJoueur), une faction (aFaction)
  * 
@@ -162,9 +161,5 @@ public class Joueur
         aListeUnite.clear();
         aNbreBatiment=0;
         aArgent=0;
-    }
-    
-
-    
-    
+    }    
 }
