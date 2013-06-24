@@ -369,9 +369,10 @@ public class Partie
                 }
             }      
             
-            int vX, vY, vJoueur, vPV,vLvl,vExperience, vIntDejaDeplacee, vIntDejaAttaque;
+            int vX, vY, vJoueur, vPV,vLvl,vExperience, vIntDejaDeplacee, vIntDejaAttaque, vIntisEvoluable;
             boolean vDejaDeplacee=false;
             boolean vDejaAttaque=false;
+            boolean isEvoluable =false;
             String vId;
             String ligne = "";
             String tab[] = null;
@@ -400,16 +401,22 @@ public class Partie
                 vLvl = Integer.parseInt(tab[6]);
                 vIntDejaDeplacee = Integer.parseInt(tab[7]);
                 vIntDejaAttaque = Integer.parseInt(tab[8]);
+                vIntisEvoluable = Integer.parseInt(tab[9]);
           
                 if(vIntDejaDeplacee==1)
-                    vDejaDeplacee=false;
-                else
                     vDejaDeplacee=true;
+                else
+                    vDejaDeplacee=false;
                 
                 if(vIntDejaAttaque==1)
                     vDejaAttaque=true;
                 else
                     vDejaAttaque=false;
+                    
+                if(vIntisEvoluable==1)
+                    isEvoluable=true;
+                else
+                    isEvoluable=false;
     
                 switch(vId){
                     case "foret": aTerrain[vX][vY] = new Terrain(vX, vY, vJoueur, TypeTerrain.FORET); break;
@@ -452,42 +459,42 @@ public class Partie
                         lBatiment.add(aTerrain[vX][vY]);
                         break;
                     case "Commando": 
-                        Unite vcommando = new Unite(vX,vY,vJoueur,TypeUnite.COMMANDO,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
+                        Unite vcommando = new Unite(vX,vY,vJoueur,TypeUnite.COMMANDO,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee,isEvoluable);
                         lUnite.add(vcommando);
                         aTerrain[vX][vY].setUnite(vcommando); 
                         break;
                     case "Demolisseur": 
-                        Unite demolisseur = new Unite(vX,vY,vJoueur,TypeUnite.DEMOLISSEUR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
+                        Unite demolisseur = new Unite(vX,vY,vJoueur,TypeUnite.DEMOLISSEUR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee,isEvoluable);
                         lUnite.add(demolisseur);
                         aTerrain[vX][vY].setUnite(demolisseur); 
                         break;
                     case "While":
-                        Unite vtank = new Unite(vX,vY,vJoueur,TypeUnite.WHILE,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
+                        Unite vtank = new Unite(vX,vY,vJoueur,TypeUnite.WHILE,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee,isEvoluable);
                         lUnite.add(vtank);
                         aTerrain[vX][vY].setUnite(vtank); 
                         break;
                     case "Char":
-                        Unite vchar = new Unite(vX,vY,vJoueur,TypeUnite.CHAR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
+                        Unite vchar = new Unite(vX,vY,vJoueur,TypeUnite.CHAR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee,isEvoluable);
                         lUnite.add(vchar);
                         aTerrain[vX][vY].setUnite(vchar); 
                         break;
                     case "Ingenieur":
-                        Unite ingenieur = new Unite(vX,vY,vJoueur,TypeUnite.INGENIEUR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
+                        Unite ingenieur = new Unite(vX,vY,vJoueur,TypeUnite.INGENIEUR,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee,isEvoluable);
                         lUnite.add(ingenieur);
                         aTerrain[vX][vY].setUnite(ingenieur); 
                         break;
                     case "Kamikaze":
-                        Unite kamikaze = new Unite(vX,vY,vJoueur,TypeUnite.KAMIKAZE);
+                        Unite kamikaze = new Unite(vX,vY,vJoueur,TypeUnite.KAMIKAZE,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee,isEvoluable);
                         lUnite.add(kamikaze);
                         aTerrain[vX][vY].setUnite(kamikaze); 
                         break;
                     case "Distance":
-                        Unite distance = new Unite(vX,vY,vJoueur,TypeUnite.DISTANCE,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
+                        Unite distance = new Unite(vX,vY,vJoueur,TypeUnite.DISTANCE,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee,isEvoluable);
                         lUnite.add(distance);
                         aTerrain[vX][vY].setUnite(distance); 
                         break;
                     case "Uml":
-                        Unite uml = new Unite(vX,vY,vJoueur,TypeUnite.UML,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee);
+                        Unite uml = new Unite(vX,vY,vJoueur,TypeUnite.UML,vPV,vExperience,vLvl,vDejaAttaque,vDejaDeplacee,isEvoluable);
                         lUnite.add(uml);
                         aTerrain[vX][vY].setUnite(uml); 
                         break;
@@ -567,7 +574,7 @@ public class Partie
                         string += j+ ":";
                         string += terrain.getJoueur() + ":";
                         string += terrain.getPV()+ ":";
-                        string += "0:0:0:0";
+                        string += "0:0:0:0:0";
                         out.println(string);
                     }                    
                     
@@ -582,7 +589,8 @@ public class Partie
                         string2 += unite.getLvl()+ ":";
                         string2 += unite.dejaAttaque() ? "1"+":" : "0"+":";
                         string2 += unite.dejaDeplacee() ? "1"+":" : "0"+":";
-   
+                        string2 += unite.isEvolvable() ? "1"+":" : "0"+":";
+                        
                         out.println(string2);
                     }
                 }

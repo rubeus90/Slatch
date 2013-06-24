@@ -81,7 +81,7 @@ public class Unite extends Entite
      * Constructeur du chargement de Map
      * @param pX pY pJoueur pType
      */
-    public Unite(final int pX,final int pY,final int pJoueur, final TypeUnite pType,final int pPV,final int pExperience,final int pLvl,final boolean pDejaAttaque,final boolean pDejaDeplacee)
+    public Unite(final int pX,final int pY,final int pJoueur, final TypeUnite pType,final int pPV,final int pExperience,final int pLvl,final boolean pDejaAttaque,final boolean pDejaDeplacee,final boolean pIsEvoluable)
     {
        super(pX,pY,pJoueur);
        aType = pType;
@@ -90,6 +90,7 @@ public class Unite extends Entite
        aPV=pPV;
        aDeplacement = pType.getDeplacement();
        aLvl = pLvl;
+       isEvolvable = pIsEvoluable;
        
        //Pour remettre les seuils et les dégats comme il faut
        for(int i=1;i<pLvl;i++){
@@ -101,7 +102,6 @@ public class Unite extends Entite
                 aExperienceMax = (int)(aExperienceMax*aGain*2);
        }
        
-       isEvolvable = false;
        aExperience = pExperience;
        aExperienceMax=pType.getXPUP();
        
