@@ -91,7 +91,7 @@ public class PanelDialogueCampagne extends JPanel {
         textArea.setFont(Slatch.fonts.get("BlackOps").deriveFont(Font.PLAIN, 6+this.getWidth()/80));
         textArea.setForeground(Color.WHITE);
         textArea.setText(dialogue);
-        textArea.setMargin(new Insets(3*this.getHeight()/4+this.getHeight()/40, 40, this.getWidth()/100, this.getWidth()/100));
+        textArea.setMargin(new Insets(3*this.getHeight()/4+this.getHeight()/40, this.getWidth()/50, this.getWidth()/100, this.getWidth()/50));
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setOpaque(false);
