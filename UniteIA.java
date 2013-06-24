@@ -1,4 +1,4 @@
- import java.awt.Point;
+import java.awt.Point;
 import java.util.Stack;
 public class UniteIA
 {
@@ -49,12 +49,10 @@ public class UniteIA
     {
         Unite e = (Unite)executant;
         Unite c = (Unite)cible;
-        //System.out.println("Je rentre dans le soin!");
         if(!Slatch.moteur.estAuCac(e,c))
         {seDirigerVers(e, c);}
         if(Slatch.moteur.estAuCac(e,c))
         {
-            //System.out.println("Soin intensif!");
             Slatch.moteur.setuniteA(e);
             Slatch.moteur.soin(c);
         }

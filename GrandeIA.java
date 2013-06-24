@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class GrandeIA
 {
-    static UniteIA uia = new UniteIA();
+    static BourrineIA uia = new BourrineIA();
    
     
     static void elaborationObjectif(Unite unite)
@@ -118,52 +118,52 @@ public class GrandeIA
         {
                 if(joueurActuel.getArgent()>=100 && nombreCommando<3 && nombreWhile>0)
             {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.COMMANDO), TypeObjectif.ACHETER));
+                BourrineIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.COMMANDO), TypeObjectif.ACHETER));
                 nombreCommando=nombreCommando+1;
             }
             else if(joueurActuel.getArgent()>=700 && nombreWhile<3)
             {                 
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.WHILE), TypeObjectif.ACHETER));                    
+                BourrineIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.WHILE), TypeObjectif.ACHETER));                    
                 nombreWhile=nombreWhile+1;
             }
             else if(joueurActuel.getArgent()>=450 && nombreUml <3)         
             {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.UML), TypeObjectif.ACHETER));
+                BourrineIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.UML), TypeObjectif.ACHETER));
                 nombreUml=nombreUml+1;
             }
             else if(joueurActuel.getArgent()>=350 && nombreDistance<2)         
             {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.DISTANCE), TypeObjectif.ACHETER));
+                BourrineIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.DISTANCE), TypeObjectif.ACHETER));
                nombreDistance=nombreDistance+1;
             }
             else if(joueurActuel.getArgent()>=300 && nombreTank <2)
             {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.CHAR), TypeObjectif.ACHETER));
+                BourrineIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.CHAR), TypeObjectif.ACHETER));
                  nombreTank=nombreTank+1;
             }
             else if(joueurActuel.getArgent()>=200 && nombreDemolisseur <2)
             {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.DEMOLISSEUR), TypeObjectif.ACHETER));
+                BourrineIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.DEMOLISSEUR), TypeObjectif.ACHETER));
                 nombreDemolisseur=nombreDemolisseur+1;
             }
             else if(joueurActuel.getArgent()>=100 && nombreCommando<3)
             {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.COMMANDO), TypeObjectif.ACHETER));
+                BourrineIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.COMMANDO), TypeObjectif.ACHETER));
                 nombreCommando=nombreCommando+1;
             }
             else if(joueurActuel.getArgent()>=100 && nombreSpec <3 && joueurActuel.getFaction()==Faction.HUMAINS)
             {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.INGENIEUR), TypeObjectif.ACHETER));
+                BourrineIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.INGENIEUR), TypeObjectif.ACHETER));
                 nombreSpec=nombreSpec+1;
             }
             else if(joueurActuel.getArgent()>=100 && nombreSpec <3  && joueurActuel.getFaction()==Faction.ROBOTS)
             {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.KAMIKAZE), TypeObjectif.ACHETER));
+                BourrineIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.KAMIKAZE), TypeObjectif.ACHETER));
                 nombreSpec=nombreSpec+1;
             }
             else if(joueurActuel.getArgent()>=700)
             {
-                UniteIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.WHILE), TypeObjectif.ACHETER));                    
+                BourrineIA.decrypterObjectif(new Objectif(usine, new Unite(0,0,0,TypeUnite.WHILE), TypeObjectif.ACHETER));                    
                 nombreWhile=nombreWhile+1;
             }
         }

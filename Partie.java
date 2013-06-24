@@ -248,7 +248,7 @@ public class Partie
             {
                 //System.out.println(aMap.getNbrJoueur()+" "+i);
                 Joueur vJouir = new Joueur(i,pTabFaction[i],vBatimentJoueur[i],pTabEquipe[i],pTabIA[i],"");
-                vJouir.setTypeIA(pTypeIA[i]);
+                vJouir.setTypeIA(pTypeIA[i-1]);
                 ListeJoueur.add(vJouir);
                 
             }
