@@ -566,7 +566,8 @@ public class Partie
                         string += i+ ":";
                         string += j+ ":";
                         string += terrain.getJoueur() + ":";
-                        string += "0:0:0:0:0";
+                        string += terrain.getPV()+ ":";
+                        string += "0:0:0:0";
                         out.println(string);
                     }                    
                     
