@@ -22,7 +22,7 @@ public class Campagne implements MouseListener {
     private PanelDialogueCampagne panel;
 
     public Campagne(final List<Map> pListe ) {
-        aNiveau = 3;
+        aNiveau = 0;
         listeNomPartie = pListe;  
     }
 
