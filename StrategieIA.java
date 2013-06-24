@@ -50,13 +50,13 @@ public class StrategieIA
                 iMap[i][j].defensif+=mapTerrain[i][j].getType().getCouverture()*mode.inf.defensif;
                 switch(mapTerrain[i][j].getType())
                 {
-                    case USINE: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=6*mode.inf.capture;}}
+                    case USINE: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=3*mode.inf.capture;}}
                     else{iMap[i][j].retraite+=4*mode.inf.retraite;}
-                    case BATIMENT: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=4*mode.inf.capture;}} 
+                    case BATIMENT: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=2*mode.inf.capture;}} 
                     else{iMap[i][j].retraite+=5*mode.inf.retraite;} break;
                     case FORET: break;
                     case MONTAGNE: break;
-                    case QG: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=10*mode.inf.capture;}}break;
+                    case QG: if(Slatch.moteur.getJoueurTerrain(i,j).getEquipe()!=fail){if(mapTerrain[i][j].getUnite()==null){iMap[i][j].capture+=5*mode.inf.capture;}}break;
                     default:
                 }
                 if(mapTerrain[i][j].getUnite()!=null)

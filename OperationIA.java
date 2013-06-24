@@ -22,7 +22,7 @@ public class OperationIA
         }
         else if(unite.peutCapturer())
         {
-            cible= trouverBonneCase(unite, new Influence(50,1, 20, -1, 1));
+            cible= trouverBonneCase(unite, new Influence(800,1,20, -1, 1));
         }
         else if(unite.isEvolvable())
         {
