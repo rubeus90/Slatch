@@ -1,8 +1,8 @@
 import java.util.HashMap;
 import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+
+
 public enum TypeAttaque
 {
     OMEGA_SLASH_DE_L_ULTIME_APOLLON(250, "Omega Slash de l'ultime Apollon", "Une série de coups frénétiques qui laisseront tous les ennemis sur le tapis",PorteeAttaque.COURTE), // en attente de créer les vraies attaques

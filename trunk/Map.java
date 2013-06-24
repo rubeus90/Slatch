@@ -1,9 +1,8 @@
-
 /**
  * Enumeration class Map - write a description of the enum class here
  * 
- * @author (your name here)
- * @version (version number or date here)
+ * @author 
+ * @version 
  */
 public enum Map{
     DOUBLEVAI("DoubleVai", "Une map en double V", "1V1","doublevai",32,18,2,false,false),
@@ -132,8 +131,5 @@ public enum Map{
     
     public void setVerrouille(final boolean pLock){
         aLock=pLock;
-    }
-        
-    
-    
+    }    
 }

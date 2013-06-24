@@ -9,9 +9,7 @@ import java.awt.Dimension;
  */
 public class TutorielAttaque extends Tutoriel 
 {
-    
-
-    /**
+	/**
      * Constructor for objects of class Tutorielattaque
      */
     public TutorielAttaque(final String provenance)

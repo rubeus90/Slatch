@@ -9,8 +9,6 @@ import java.awt.Dimension;
  */
 public class TutorielAchat extends Tutoriel 
 {
-    
-
     /**
      * Constructor for objects of class Tutorielachat
      */

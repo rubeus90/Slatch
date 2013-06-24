@@ -3,9 +3,6 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import java.awt.* ;
 import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import javax.swing.*;
 
 import javax.swing.Timer;
 
@@ -26,7 +23,6 @@ public class IHM_NEW  {
     private JFrame frame;
     private GestionnaireAnimation animation;
     static Timer timer;
-    private PanelDialogueCampagne panelDialogueCampagne;
     public List<Map> aListeMap;
     public List<Map> aListeMission;
     private boolean aBrouillard;

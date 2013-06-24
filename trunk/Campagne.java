@@ -1,16 +1,12 @@
 import java.awt.BorderLayout;
-import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Scanner;
-
-import javax.swing.JFrame;
 
 /**
  * @author Ngoc

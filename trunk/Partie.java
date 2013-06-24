@@ -19,7 +19,6 @@ import java.io.PrintWriter;
  */
 public class Partie
 {
-    private int aNbrEquipe;
     public List<Joueur> ListeJoueur;
     private int aRevenuBatiment;
     private int aTourMax;

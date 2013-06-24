@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Stack;
 import java.awt.Point;
 import java.util.PriorityQueue;
@@ -1182,9 +1181,6 @@ class Moteur
             if(getBrouillard()){
                 Brouillard();
             }
-        }
-       
-    }
- 
-    
+        }       
+    }    
 }
