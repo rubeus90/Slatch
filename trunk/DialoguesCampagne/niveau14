@@ -1,6 +1,6 @@
 Objectif : Gagner la partie
 campementjourplaine
- ;GeneralRobot;Général Zeimer : Merci de votre aide.
-General Catraz; ;Général Catraz : Ce n'est rien, nous pourrions devenir alliés.
- ;GeneralRobot;Général Zeimer : Cette proposition est intéressante. Nous devons libérer des amis prisonniers d'humains adorateurs après ça, nous vous aiderons volontier.
-General Catraz; ;Général Catraz : C'est d'accord.
+General Catraz;GeneralRobot;Général Zeimer : Merci de votre aide.
+General Catraz;GeneralRobot;Général Catraz : Ce n'est rien, nous pourrions devenir alliés.
+General Catraz;GeneralRobot;Général Zeimer : Cette proposition est intéressante. Nous devons libérer des amis prisonniers d'humains adorateurs après ça, nous vous aiderons volontier.
+General Catraz;GeneralRobot;Général Catraz : C'est d'accord.

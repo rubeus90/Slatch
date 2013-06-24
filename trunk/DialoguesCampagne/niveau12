@@ -2,30 +2,30 @@ Objectif : Tenir 10 jours
 campementjourplaine
 Isabelle;General Catraz;Isabelle : Nous avons réussi ! Je vais pouvoir chercher des informations dans leurs documents: vu que ce sont des fidèles, on pourrait trouver des choses interessantes. J'y vais de ce pas.
  ;General Catraz;Général Catraz : Sam, je peux te parler ?
-Vous; ;Vous : Que se passe-t-il, mon général?
-;General Catraz;Général Catraz : J'ai de moins en moins confiance en Isabelle. Je ne sais pas pourquoi mais j'ai eu l'impression que ceux que nous avons attaqué pensaient que c'était nous les adorateurs.
-Vous; ;Vous : Attention, la voilà.
+ ;General Catraz;Sam : Que se passe-t-il, mon général?
+ ;General Catraz;Général Catraz : J'ai de moins en moins confiance en Isabelle. Je ne sais pas pourquoi mais j'ai eu l'impression que ceux que nous avons attaqué pensaient que c'était nous les adorateurs.
+ ;General Catraz;Sam : Attention, la voilà.
 Isabelle;General Catraz;Isabelle : Les dossiers parlent d'une autre ville d'adorateurs un peu plus à l'est, nous devrions y aller de ce pas.
-;General Catraz;General Catraz : Ok
-Vous; ;Vous : Elle est partie. 
-;General Catraz;Général Catraz : Tu vois elle nous fais encore attaquer des humains, c'est louche ! Demain je partirais voir si ce sont vraiment des adorateurs. Allons vite la voir pour qu'elle nous donne des explications.
+Isabelle;General Catraz;General Catraz : Ok
+ ;General Catraz;Sam : Elle est partie. 
+ ;General Catraz;Général Catraz : Tu vois elle nous fais encore attaquer des humains, c'est louche ! Demain je partirais voir si ce sont vraiment des adorateurs. Allons vite la voir pour qu'elle nous donne des explications.
  ;General Catraz;Général Catraz : Isabelle !
 Isabelle;General Catraz;Isabelle : Oui, général?
- ;General Catraz;Général Catraz : Vous semblez avoir à votre disposition une source intéressante. D'où tenez-vous ces informations?
+Isabelle;General Catraz;Général Catraz : Vous semblez avoir à votre disposition une source intéressante. D'où tenez-vous ces informations?
 Isabelle;General Catraz;Isabelle : Je ne peux pas vous le dire.
- ;General Catraz;Général Catraz : Bien, dans ce cas nous n'irons pas attaquer cette ville de soi-disant adorateurs! Je serais prêt à parier ma moustache qu'ils ne sont pas hostiles envers les humains. Je ne sais pas d'où vous tenez vos informations, mais elles sont erronées!
+Isabelle;General Catraz;Général Catraz : Bien, dans ce cas nous n'irons pas attaquer cette ville de soi-disant adorateurs! Je serais prêt à parier ma moustache qu'ils ne sont pas hostiles envers les humains. Je ne sais pas d'où vous tenez vos informations, mais elles sont erronées!
 Isabelle;General Catraz;Isabelle : Ma source est sûre, je vous le répète. Si vous avez fini de critiquer mes informations, je vais aller préparer mes bagages. Je m'en vais, puisqu'ici apparemment la confiance est une denrée rare.  
  ;General Catraz;Général Catraz : Elle est repartie. Ecoute, Sam, j'y suis peut être allé un peu fort avec elle, ce n'est pas sa faute si sa source est mal intentionnée. Tu pourrais aller lui parler? Elle te connaît mieux que moi et tu sauras peut être trouver les mots. Il faudrait que tu trouves qui est sa source et que tu la convainque de rester, on a besoin d'elle mine de rien.
-Vous;General Catraz;Vous : D'accord mon général, j'y vais de ce pas.
-Vous; ;Vous : Alors, la tente d'Isabelle, c'était où déjà? Ah oui, par là!
+ ;General Catraz;Sam : D'accord mon général, j'y vais de ce pas.
+ ; ;Sam : Alors, la tente d'Isabelle, c'était où déjà? Ah oui, par là!
 tente
-Vous; ;Vous : Excusez moi Isabelle, je...
-IsabelleCyborg;Vous;Vous : Excusez moi Isabelle, je...mais, vous êtes un mechadroïde!
+ ; ;Sam : Excusez moi Isabelle, je...
+IsabelleCyborg; ;Sam : ...Mais, vous êtes un mechadroïde!
 IsabelleCyborg; ;Isabelle : Oh non! J'avais pourtant dit aux gardes que je ne voulais pas être dérangée! Ma couverture tombe à l'eau! Bon en même temps je me demande comment vous n'avez pas deviné plus tôt dans quel camp j'étais.
 IsabelleCyborg; ;Isabelle : Misérables humains ! Vous vous êtes laissés manipuler comme de vulgaires cafards ! 
- ;General Catraz;Général Catraz : Soldats ! Venez emprisonner cette abomination !
-IsabelleCyborg; ;Isabelle : Vous ne pouvez rien contre nous! Nous allons réduire votre peuple en esclavage tout comme vous avez fait au nôtre! Ce sont vous les monstres! Vous croyez vraiment que votre règne sur Eris est légitime?
+IsabelleCyborg;General Catraz;Général Catraz : Soldats ! Venez emprisonner cette abomination !
+IsabelleCyborg;General Catraz;Isabelle : Vous ne pouvez rien contre nous! Nous allons réduire votre peuple en esclavage tout comme vous avez fait au nôtre! Ce sont vous les monstres! Vous croyez vraiment que votre règne sur Eris est légitime?
  ;General Catraz;Général Catraz : J'en reviens pas qu'on se soit fait manipuler comme ça.
-Vous; ;Vous : Moi non plus.
+ ;General Catraz;Sam : Moi non plus.
  ;General Catraz;Général Catraz : J'ai donc parlé avec les habitants, ils veulent bien nous aider, il sont même alliés a un groupe de méchadroïdes rebelles. Ils doivent aller les aider car ils sont en mauvaise posture, aidons les nous aussi pour nous faire pardonner.
  ;General Catraz;Général Catraz : Espérons que ces alliés tiendront au moins 10 jours.
