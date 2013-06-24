@@ -297,11 +297,17 @@ public class Partie
             aTour = Integer.parseInt(vScannerMap.nextLine()); //4e ligne
             aRevenuBatiment = Integer.parseInt(vScannerMap.nextLine()); // 5e ligne
             String vBrouillard = vScannerMap.nextLine(); // 6e ligne
+            String vAnimation = vScannerMap.nextLine(); // 7e ligne
             
             if(vBrouillard.equals("true"))
                 aBrouillard=true;
             else
                 aBrouillard=false;
+                
+            if(vAnimation.equals("true"))
+                activationAnimation=true;
+            else
+                activationAnimation=false;
             
             //A CHANGER PLUS TARD
             Equipe equipe0 = new Equipe(0);
@@ -539,6 +545,7 @@ public class Partie
             out.println(""+ aTour);
             out.println(""+ aRevenuBatiment);
             out.println(""+ aBrouillard);
+            out.println("" + activationAnimation);
             
             for(Joueur joueur: ListeJoueur){
                 if(joueur.getNumJoueur() != 0){
