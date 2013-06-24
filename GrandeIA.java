@@ -20,17 +20,17 @@ public class GrandeIA
         Cible ennemiProche = null;
         Cible cibleSoin = null;
         Slatch.moteur.remplitPorteeDep(unite, false);
-        switch(unite.getType().getNom())
+        switch(unite.getType())
         {
-           case "Ingenieur" :
+           case INGENIEUR :
                     cibleSoin = determineEnnemiProche(unite, true);
                     if(cibleSoin.u!=null)
                     {
                         break;
                     }
            
-           case "Demolisseur" :
-           case "Commando":
+           case DEMOLISSEUR :
+           case COMMANDO:
            
                     int X = unite.getCoordonneeX();
                     int Y = unite.getCoordonneeY();

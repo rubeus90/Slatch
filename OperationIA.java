@@ -14,7 +14,7 @@ public class OperationIA
         
         if(unite.estLowHP())
         {
-            cible= trouverBonneCase(unite, new Influence(0,0, 1, -4, 15));
+            cible= trouverBonneCase(unite, new Influence(0,0, 0, -4, 15));
         }
         else if(unite.peutSoigner())
         {
@@ -22,14 +22,14 @@ public class OperationIA
         }
         else if(unite.peutCapturer())
         {
-            cible= trouverBonneCase(unite, new Influence(30,1, 20, -1, 1));
+            cible= trouverBonneCase(unite, new Influence(50,1, 20, -1, 1));
         }
         else if(unite.isEvolvable())
         {
             cible= trouverBonneCase(unite, new Influence(0,1, 0, 0, 0));
         }        
         else{// l'unité peut attaquer
-            cible= trouverBonneCase(unite, new Influence(0,0, 5000, 0, 0));
+            cible= trouverBonneCase(unite, new Influence(0,0, 1, 0, 0));
         }
         
         if(unite.getAttaque().aTypePortee.getPorteeMin()>1 && Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getType()==TypeTerrain.USINE && Slatch.partie.getJoueur(Slatch.partie.getTerrain()[unite.getX()][unite.getY()].getJoueur()).getEquipe() == Slatch.moteur.getJoueurActuel().getEquipe())
