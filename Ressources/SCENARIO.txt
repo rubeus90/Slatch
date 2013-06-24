@@ -1,0 +1,373 @@
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DEBUTDUSENARIO<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+Une image de campement la nuit pendant que tout le monde dort
+
+
+*******TEXTE***************
+Vous : Demain, c'est ma première bataille contre les robots ...
+Vous : Je me souviens au lycée, quand notre prof d'histoire nous racontait comment la guerre etait arrivée.
+
+
+*******TRANSITION ?********
+Effet floutage flashback
+
+
+*******FOND D'ECRAN********
+Une image de salle de classe  
+
+
+*******PERSONNAGE**********
+Une prof
+
+
+*******TEXTE***************
+Prof : En 46553 après l'année de la lumière, le 23 du 23ème mois de l'année, une race extra-(nom de la planete) , les (nom race aliens) arrivèrent  pour nous rencontrer
+à l'E... Spacial InterGalactique de l'Empire E... (ESIEE).
+
+Prof : Ils voulèrent nous offrir un présent d'amitier : La technologie d'une inteligence artificielle superieur. Un cadeau que notre gouvernement acceptèrent avec plaisir. Les (aliens) repartirent chez eux très rapidement sans prévenir mais nous etions trop content de notre nouveau jouet pour nous en soucier.
+
+Prof : Notre gouvernement commença alors a etudié cette IA pour l'utiliser le mieux possible et commença à la modifier pour l'adapter a notre technologie. A partir de ce moment là beaucoup de machine et de robot fut produit avec cette IA modifiée.
+
+
+Prof : 10 ans après, les Mechadroid comme on les a nommés, se trouvaient partout sur (nom planete) et quand l'anniversaire de leur arrivée sonnèrent un programme s'activa et les mechadroid commencèrent a avoir un comportement etrange. L'IA etait initialement programmée pour nous envahir. Nous avons donc commencé une guerre contre les mechadroids
+Pour information, pour les gens qui souhaitent s'engager dans cette guerre vous pouvez vous inscrire au cour de STRATEGIE MILITAIRE de Mr........ .
+
+********CHOIX*************
+OUI : Lancement du Tuto
+NON : Lancement de l'histoire
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>PREMIERE MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+Une image de campement la nuit pendant que tout le monde dort
+
+
+*******PERSONNAGE**********
+General X
+
+*******TEXTE***************
+General X : (Nom Heros) ! Les mechadroid ont une journée d'avance  !!! la bataille de demain dois commencer maintenant  ! Va à ton poste de commandement ! 
+Il faut court-cicuiter ces putains de tas de feraille 
+
+*******PARTIE**************
+But : Resister X tours /ou/ Tuer toutes les unités robots
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DEUXIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+Une image de campement la journée
+
+*******PERSONNAGE**********
+General X
+
+*******TEXTE***************
+General X : Felicitation (Nom Heros) ! Les mechadroid ont pris une telle dérouillé qu'ils ont fuit comme des lopettes ! Nous pouvons maintenant réfléchir à notre contre-attaque. Nous avons trouvé une base mechadroid plus à l'ouest je vous charge de prendre leur QG.
+
+*******PARTIE**************
+But : Capturer le QG
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TROISIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+Une image de campement la journée
+
+*******PERSONNAGE**********
+General X
+
+*******TEXTE***************
+General X : Nous les avons bien eu ces putain de machine ! Vous avez réussit à récuperer des données dans les carcasses que vous avez endommagé. Nos scientifiques les ont etudiées et ont trouvé des informations menaçantes. Les mechadroids sont en train de creer une arme anti être vivant dans le désert de Sahlahah. Il faut les arreter !
+
+General X :Prennez des hommes et partez preparer le terrain, en cas de probleme tenez le temps qu'on arrive.
+
+*******PARTIE**************
+But : Tenir 10Jours
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>QUATRIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+Une image de campement désert
+
+*******PERSONNAGE**********
+General X
+
+*******TEXTE***************
+General X : Nous les avons bien eu ces putain de machine ! Vous avez réussit à récuperer des données dans les carcasses que vous avez endommagé. Nos scientifiques les ont etudiées et ont trouvé des informations menaçantes. Les mechadroids sont en train de creer une arme anti être vivant dans le désert de Sahlahah. Il faut les arreter !
+
+General X :Prennez des hommes et partez preparer le terrain, en cas de probleme tenez le temps qu'on arrive.
+
+*******PARTIE**************
+But : Tenir 10Jours
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>CINQUIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+Une image de campement désert
+
+*******PERSONNAGE**********
+General X
+
+*******TEXTE***************
+General X : On dirait qu'on est arrivé juste a temps ! Repartons à la charge prenons leur base pour mieux localiser leur arme !
+
+*******PARTIE**************
+But : Battre les robots
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SIXIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+Une image de campement désert
+
+*******PERSONNAGE**********
+General X
+
+*******TEXTE***************
+General X : Bon maintenant que l'on s'est bien installé dans Sahlahah nous pouvons progresser vers l'oasis de Kaydalah, il va nous falloir des vivre pour survivre dans ce desert. Je vous charge de cette mission ... .On compte sur vous !
+
+*******PARTIE**************
+But : Battre les robots
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SEPTIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+Une image de campement avec oasis
+
+*******PERSONNAGE**********
+General X
+
+*******TEXTE***************
+General X : Vous avez mis une bonne derouillé a ces satanés robots ! Nous pouvons enfin nous désaltérer avec la bonne eau de l'oasis. Demain nous attaquerons la grande base des mechadroids avec toute notre force de frappe. Allons nous coucher, nous devons etre en forme pour demain.
+
+*******PARTIE**************
+But : Perdre
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>HUITIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+Desert ( pas de campement )
+
+*******PERSONNAGE**********
+General X
+
+*******TEXTE***************
+General X : (nom heros) ! NE VA PAS VERS LA LUMIERE ! ( nom heros ) !
+Vous : General ? qu'est ce qui s'est passé ?
+General X : Les informations etaient fausses, c'etait un piège on s'est fais exploser comme des débutants.
+Vous : Ou sont les autres ? Que faisons nous maintenant ?
+General X : J'ai dis au quelques survivants de partir a la recherche d'une ville en dehors de ce desert.Il faut qu'on aille les aider.
+
+*******PARTIE**************
+But : Capturer la ville abandonnée ( et tuer un camp robot ? )
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>HUITIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement Ville
+
+*******PERSONNAGE**********
+General X
+Notre prof d'histoire 
+
+*******TEXTE***************
+General X : Les habitants de cette ville nous proposent un marché. Allez voir la femme aux yeux bleu la bas pour en discuter.
+Vous : euuuuh Excusez moi
+Prof: Mais qui voila ?! (nom du hero) ça fais longtemps .
+Vous : Madame ?! Vous n'etes plus prof d'histoire ?
+Prof : Appelle moi Isabelle.
+Vous : D'accord Isabelle, vous avez un marché à nous proposer ?
+Prof : Oui, nous avons eu des informations disant que notre ville allé bientot etre attaqué par des mechadroids, si vous nous aider à nous defendre apres la bataille
+nous vous preterons des soldats et des equipements.
+Vous : C'est d'accord, quand sont ils cencés arriver ?
+Prof : Dans 20 minutes.
+
+
+*******PARTIE**************
+But : Battre les robots 
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>NEUXIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement Ville
+
+*******PERSONNAGE**********
+Isabelle 
+General X
+
+*******TEXTE***************
+Prof: Merci Sam ! Comme prévu nos trouve vous aiderons dans vos prochaines missions, et je viens aussi avec vous pour aider les scientifiques de votre groupe.
+General X : Bon, Sam, il faut repartir dans notre guerre avec ces fichu robots ! Les habitants m'ont parlé d'une base robot dans les environs , nous pourrions les attaquer pour recuperer des informations. Allons y.
+
+
+*******PARTIE**************
+But : Battre les robots 
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DIXIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement plaine
+
+*******PERSONNAGE**********
+Isabelle 
+General X
+
+*******TEXTE***************
+Prof: Sam ! Dans un des batiments que les robots avaient envahi j'ai trouvé des informations d'anciens résistants à propos d'une cité dans les iles ( ou pres de fleuve si tu arrive pas a faire une map iles ) avec de nombreuse armes.
+General X : Des armes ?! IL NOUS LES FAUT ! Allons les chercher . 
+
+
+*******PARTIE**************
+But : Gagner en moins de X jour
+
+*******CARTE**************
+Un ville robot a assiégé 
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ONZIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement plaine
+
+*******PERSONNAGE**********
+Isabelle 
+General X
+
+*******TEXTE***************
+General X : Félicitation ! Nous avons fais le plein de munitions et d'arme très puissante, de plus je crois qu'Isabelle a trouvé des informations intéressante.
+Isabelle : D'abord les ordinateurs, les habitants avais prévu, avant de se faire assiégé par les méchadroids , d'attaquer une ville de servant dans méchadroid, Kcrog. Je pense que l'on devrait terminé leur mission..
+General X : Je suis d'accord allons y.
+
+*******PARTIE**************
+But : Battre les HUMAINS de Kcrog.
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DOUZIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement plaine
+
+*******PERSONNAGE**********
+Isabelle 
+IsabelleCyborg 
+General X
+
+*******TEXTE***************
+Isabelle : Nous avons réussi ! Je vais pouvoir chercher des informations dans leurs documents vu que ce sont des fidèles, on pourrait trouver des informations interessantes. J'y vais de ce pas.
+*Isabelle part*
+General X : Sam, je peut te parler ?
+Vous : Euuuh oui.
+General X : J'ai de moins en moins confiance en Isabelle. Je ne sais pas pourquoi mais je eu l'impression que ce que nous avons attaqué pensaient que c'etait nous les adorateurs.
+Vous : Attention, la voila.
+*Isabelle Revient*
+Isabelle : Les dossiers parlent d'une autre villes d'adorateur, nous devions y aller je pense.
+General X : Ok
+*Isabelle part*
+General X : Tu vois elle nous fais encore attaquer des Humains, c'est louche ! Demain je partirais voir si c'est vraiment des adorateurs.
+*Personne ne parle juste un message de narration *
+
+LE LENDEMAIN MATIN
+
+General X : Tu vois elle nous fais encore attaquer des Humains, c'est louche ! Demain je partirais voir si c'est vraiment des adorateurs.
+Allons vite la voir dans sa tente pour qu'elle nous donne des explications.
+
+****PASSAGE AU FOND DANS LA TENTE *****
+
+*Personne ne parle juste un message de narration *
+ISABELLE EST EN TRAIN DE SE MAQUILLER MAIS l'ON VOIT QUELQUE CHOSE DE BIZARRE SUR SON VISAGE
+
+General X : Isab.... !
+IsabelleCyborg : Miserable humain ! Vous vous ete laissé manipuler comme de vulgaire cafard !
+General X : Soldat ! Venez emprisonner cette abomination !
+*Isabelle part*
+
+General X : J'en reviens pas qu'on se soit fais manipuler.
+Vous: moi aussi.
+General X : J'ai donc parler avec les habitants, ils veulent bien nous aider, il sont meme allié a un groupe de méchadroid rebelle. Ils doivent aller les aider car ils sont en mauvaise posture, aidons les pour nous faire pardonner. Esperons que ces alliés tiendrons X jours.
+
+*******PARTIE**************
+But : Jouer les Robots et tenir X jours.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>TREIZIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement plaine
+
+*******PERSONNAGE**********
+General X
+GeneralRobot
+
+*******TEXTE***************
+General X : Nous sommes la pour vous aider !
+GeneralRobot : Merci, nous en avons bien besoin.
+General X : Pétons la gueule de ces fichu tas de ... euuuh ALLONS Y !
+
+*******PARTIE**************
+But : Jouer les humains allié a des robots et gagner les robot ennemi.
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>QUATORZIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement plaine
+
+*******PERSONNAGE**********
+General X
+GeneralRobot
+
+*******TEXTE***************
+GeneralRobot : Merci de votre aide.
+General X : Ce n'est rien, nous pourrions devenir allié.
+GeneralRobot : Cette proposition est interessante. Nous devons libérer des amis prisonniers d'humains adorateurs après ça, nous vous aiderons volontier.
+General X : C'est d'accord .
+
+*******PARTIE**************
+But : Battre les HUMAINS
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>QUINZIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement Ville
+
+*******PERSONNAGE**********
+General X
+GeneralRobot
+
+*******TEXTE***************
+GeneralRobot : Maintenant que nous avons sauvé nos ami nous pouvons nous aider. Nous avons trouver des informations selon quoi la cité du desert de Sahlahah etait vulnerable.
+General X : C'est le moment de les attaquer !
+GeneralRobot : Nous allons chercher des alliés Humain, car nous aurons besoin d'aide, donnons nous rendez vous devant la cité.
+General X : Ok, nous allons gagner cette guerre ! Nous nous partons attaquer un avant poste dans le desert.
+
+*******PARTIE**************
+But : Battre les robots ( desert )
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>SEIZIEME MISSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+*******FOND D'ECRAN********
+campement desert
+
+*******PERSONNAGE**********
+General X
+GeneralRobot
+
+*******TEXTE***************
+General X : Content de vous voir General !
+GeneralRobot : De meme General !
+General X : Pret a prendre cette grande base Sam ?
+Vous : oui ALLONS Y !!!
+
+*******PARTIE**************
+But : Battre les robots avec VOUS, un allié Robot, un allié HUMAIN ( utiliser la carte ou on a perdu au depart mais plus simle )
