@@ -44,11 +44,6 @@ public class Unite extends Entite
     public Influence[][] mapInfluence;
     /**
      * Constructeur par default de la classe Unite
-     * Prend en paramètre :
-     * Un int correspondant au coordonné X
-     * Un int correspondant au coordonné Y
-     * Un int correspondant au Joueur
-     * Un TypeUnite
      * @param pX pY pJoueur pType
      */
     public Unite(final int pX,final int pY,final int pJoueur, final TypeUnite pType)
@@ -68,11 +63,11 @@ public class Unite extends Entite
        check=false;
        
        for(TypeAttaque type : TypeAttaque.values()) {
-                    if(type.getNom().equals(pType.getAttaque())){
-                        aAttaque = type;
-                        break;
-                    }
-                }
+            if(type.getNom().equals(pType.getAttaque())){
+                aAttaque = type;
+                break;
+            }
+       }
             
        mapInfluence = Slatch.tabInf.get(this.aType);
        aDegats = aAttaque.getDegats();         
@@ -83,14 +78,7 @@ public class Unite extends Entite
     }
     
     /**
-     * Constructeur de la classe Unite
-     * Prend en paramètre :
-     * Un int correspondant au coordonné X
-     * Un int correspondant au coordonné Y
-     * Un int correspondant au Joueur
-     * Un TypeUnite
-     * Un int correspondant au point de vie de l'Unite
-     * Deux boolean pour savoir si l'unite a été deplacé ou non
+     * Constructeur du chargement de Map
      * @param pX pY pJoueur pType
      */
     public Unite(final int pX,final int pY,final int pJoueur, final TypeUnite pType,final int pPV,final int pExperience,final int pLvl,final boolean pDejaAttaque,final boolean pDejaDeplacee)
@@ -102,17 +90,27 @@ public class Unite extends Entite
        aPV=pPV;
        aDeplacement = pType.getDeplacement();
        aLvl = pLvl;
+       
+       //Pour remettre les seuils et les dégats comme il faut
+       for(int i=1;i<pLvl;i++){
+           aPVMax = (int)(aPVMax*aGain);
+           aDegats = (int)(aDegats*aGain);
+           aExperienceMax = (int)(aExperienceMax*aGain);
+       
+           if(aGain==2) // Cas de l'ingenieur
+                aExperienceMax = (int)(aExperienceMax*aGain*2);
+       }
+       
        isEvolvable = false;
        aExperience = pExperience;
        aExperienceMax=pType.getXPUP();
        
-       for(TypeAttaque type : TypeAttaque.values()) {
-                   
-                    if(type.getNom().equals(pType.getAttaque())){
-                        aAttaque = type;
-                        break;
-                    }
-                }
+       for(TypeAttaque type : TypeAttaque.values()) {          
+            if(type.getNom().equals(pType.getAttaque())){
+                aAttaque = type;
+                break;
+            }
+       }
        mapInfluence = Slatch.tabInf.get(this.aType);     
        aDegats = aAttaque.getDegats();         
        
